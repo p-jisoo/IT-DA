@@ -8,8 +8,8 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-bda8ceea">
-    <cl:button std:sid="button-36848c7f" value="Button">
-      <cl:xylayoutdata std:sid="xyl-data-8f9c98a8" top="168px" left="155px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:button std:sid="button-36848c7f" value="인덱스페이지">
+      <cl:xylayoutdata std:sid="xyl-data-8f9c98a8" top="181px" left="155px" width="130px" height="35px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>
   </body>

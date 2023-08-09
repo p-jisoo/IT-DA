@@ -37,12 +37,12 @@
 			
 			// UI Configuration
 			var button_1 = new cpr.controls.Button();
-			button_1.value = "Button";
+			button_1.value = "인덱스페이지";
 			container.addChild(button_1, {
-				"top": "168px",
+				"top": "181px",
 				"left": "155px",
-				"width": "100px",
-				"height": "20px"
+				"width": "130px",
+				"height": "35px"
 			});
 		}
 	});

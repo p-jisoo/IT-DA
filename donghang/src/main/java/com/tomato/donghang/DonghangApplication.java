@@ -11,5 +11,4 @@ public class DonghangApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DonghangApplication.class, args);
 	}
-
 }
