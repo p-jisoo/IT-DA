@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-54baa929" version="1.0.4584">
+  <head std:sid="head-162c68ae">
+    <screen std:sid="screen-79145753" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-cdbf9bc8" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-51432eba" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-2048d226" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-f5aa63b5"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-3c47f0cf" style="top:0px; color:#fffff; left:0px; font-weight:bolder; width:300px; font-style:oblique; height:300px;">
+    <cl:group std:sid="group-ad83e16d" style="background-color:#8AB0FE; color:#59E1FB;" overscrollbehavior="none">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-7ca80331">
+        <cl:xylayoutdata std:sid="sxyl-data-b05fe2b4" top="0px" right="0px" left="0px" height="40px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+      <cl:button std:sid="button-505506e9" style="background-color:#8ab0fe; border-right-style:none; color:#FFFFFF; border-left-style:none; font-weight:bolder; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="마이 페이지">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-cc7dd946">
+          <cl:xylayoutdata std:sid="sxyl-data-2e3c6f92" top="10px" left="1453px" width="127px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:button std:sid="button-039d8043" style="background-color:#8ab0fe; border-right-style:none; color:#FFFFFF; border-left-style:none; font-weight:bolder; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="로그인">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-312e93f1">
+          <cl:xylayoutdata std:sid="sxyl-data-c839a996" top="10px" left="1600px" width="127px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:button std:sid="button-cb6275bf" style="background-color:#8ab0fe; border-right-style:none; color:#FFFFFF; border-left-style:none; font-weight:bolder; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-d0d6ef11">
+          <cl:xylayoutdata std:sid="sxyl-data-39ed333d" top="10px" left="1736px" width="164px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:responsivexylayout std:sid="r-xylayout-0b09c1b6"/>
+    </cl:group>
+    <cl:group std:sid="group-335a7ec9" style="background-color:#F4F4F2; color:#59E1FB;" overscrollbehavior="none">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-5651b715">
+        <cl:xylayoutdata std:sid="sxyl-data-c6cebe5c" top="40px" right="0px" left="0px" height="80px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+      <cl:img std:sid="image-0c281e94" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:none;" src="theme/images/11.png">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-9b6cadc8">
+          <cl:xylayoutdata std:sid="sxyl-data-ee8a27f7" top="8px" left="20px" width="58px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-739aa12d" top="8px" left="38px" width="109px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:img>
+      <cl:button std:sid="button-f7effacf" style="background-color:#f4f4f2; border-right-style:none; color:#000000; border-left-style:none; font-size:1.5rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="ITDA 후기">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-e8c19494">
+          <cl:xylayoutdata std:sid="sxyl-data-c188e492" top="25px" left="635px" width="123px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-5e02fae6" top="25px" left="1191px" width="231px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:output std:sid="output-f0443e2b" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:2rem; border-bottom-style:none; border-top-style:none;" value="IT-DA">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-3031b8ac">
+          <cl:xylayoutdata std:sid="sxyl-data-3fe74d63" top="18px" left="88px" width="100px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-e1e5e3ff" top="18px" left="165px" width="188px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:button std:sid="button-9f3ee23c" style="background-color:#f4f4f2; border-right-style:none; color:#000000; border-left-style:none; font-size:1.5rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="봉사 모집">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-d26e6f3c">
+          <cl:xylayoutdata std:sid="sxyl-data-4ae7757b" top="25px" left="480px" width="123px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-34f3b671" top="25px" left="900px" width="231px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:button std:sid="button-a570807d" style="background-color:#f4f4f2; border-right-style:none; color:#000000; border-left-style:none; font-size:1.5rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="봉사 자료">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-fe7274fb">
+          <cl:xylayoutdata std:sid="sxyl-data-db923516" top="25px" left="326px" width="123px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-f2e2174f" top="25px" left="611px" width="231px" height="30px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        </cl:responsivexylayoutdata>
+      </cl:button>
+      <cl:responsivexylayout std:sid="r-xylayout-dc4cae67"/>
+    </cl:group>
+    <cl:embeddedapp std:sid="e-app-6a6e8137" id="ea1">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-80e70d43">
+        <cl:xylayoutdata std:sid="sxyl-data-f169e944" top="150px" right="50px" left="50px" height="866px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+    </cl:embeddedapp>
+    <cl:responsivexylayout std:sid="r-xylayout-7a1701c0"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
