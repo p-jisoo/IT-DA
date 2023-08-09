@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b82936a5" version="1.0.4584">
+  <head std:sid="head-4325bccb">
+    <screen std:sid="screen-1e19ae71" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-63dae67b" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-e51ca67a" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-8e62cdfc" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <cl:model std:sid="model-c545dd26"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-bde335ed">
+    <cl:group std:sid="group-41782b7b">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-8d9e9f07">
+        <cl:xylayoutdata std:sid="sxyl-data-17361cff" top="200px" left="350px" width="344px" height="368px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-85ff31a8" top="120px" left="98px" width="304px" height="347px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-7a6843bb" top="80px" left="33px" width="297px" height="359px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="mobile"/>
+        <cl:xylayoutdata std:sid="sxyl-data-d7ba3e22" top="278px" left="660px" width="495px" height="392px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+      <cl:inputbox std:sid="i-box-02d728be" id="ipb1" placeholder="아이디">
+        <cl:formdata std:sid="f-data-7d4b3be6" row="0" col="0" rowspan="1" colspan="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-dad6a076" id="ipb3" placeholder="주소">
+        <cl:formdata std:sid="f-data-6f61cff2" row="3" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-ea836b77" id="ipb4" placeholder="비밀번호">
+        <cl:formdata std:sid="f-data-dde63123" row="1" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-d0f83f08" id="ipb5" placeholder="전화번호">
+        <cl:formdata std:sid="f-data-5e336ff9" row="4" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-571609c6" id="ipb6" placeholder="이름">
+        <cl:formdata std:sid="f-data-c4ec16b3" row="5" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-2b16f508" id="ipb7" placeholder="닉네임">
+        <cl:formdata std:sid="f-data-e96867ff" row="6" col="0"/>
+      </cl:inputbox>
+      <cl:output std:sid="output-73790eaa" value="Output">
+        <cl:formdata std:sid="f-data-18fbe70b" row="2" col="0"/>
+      </cl:output>
+      <cl:formlayout std:sid="f-layout-5f6f2ee5" scrollable="false" hspace="1px" vspace="1px" top-margin="1px" right-margin="1px" bottom-margin="1px" left-margin="1px">
+        <cl:rows length="50" unit="PIXEL" autoSizing="true" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="50" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="50" unit="PIXEL"/>
+        <cl:rows length="20" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:output std:sid="output-4f7d9d9f" style="text-align:center;" value="회원정보수정">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-8f5cdfd7">
+        <cl:xylayoutdata std:sid="sxyl-data-c2a20b81" top="20px" left="345px" width="353px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a8b35388" top="20px" left="164px" width="172px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a1e46226" top="20px" right="129px" left="132px" height="45px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="mobile"/>
+        <cl:xylayoutdata std:sid="sxyl-data-9086a720" top="102px" right="773px" bottom="836px" left="653px" horizontalAnchor="BOTH" verticalAnchor="BOTH" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+    </cl:output>
+    <cl:button std:sid="button-8a400df8" value="수정">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-1e5bdae8">
+        <cl:xylayoutdata std:sid="sxyl-data-71f4075e" top="448px" left="121px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="mobile"/>
+        <cl:xylayoutdata std:sid="sxyl-data-ee88f5ce" top="506px" left="207px" width="49px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
+        <cl:xylayoutdata std:sid="sxyl-data-f6f26620" top="598px" left="475px" width="73px" height="38px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        <cl:xylayoutdata std:sid="sxyl-data-dbb991c3" top="710px" left="839px" width="137px" height="38px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+      </cl:responsivexylayoutdata>
+    </cl:button>
+    <cl:responsivexylayout std:sid="r-xylayout-4dd05140"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
