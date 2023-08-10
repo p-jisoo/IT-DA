@@ -16,10 +16,51 @@
 			 * Created at 2023. 8. 9. 오전 10:46:05.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * 내비게이션 바에서 selection-change 이벤트 발생 시 호출.
+			 * 선택된 Item 값이 저장된 후에 발생하는 이벤트.
+			 */
+			function onNav1SelectionChange2(/* cpr.events.CEvent */ e){
+				/** @type cpr.controls.NavigationBar */
+				var nav1 = e.control;
+				var dataSet = app.lookup("ds1");
+			    var submission = app.lookup("sms1");
+			    submission.send();
+			    
+			}
+
+			/*
+			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(/* cpr.events.CEvent */e){
+				var button = e.control;
+				
+				
+			};
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("ds1");
+			dataSet_1.parseData({
+				"columns": [
+					{"name": "labal"},
+					{"name": "value"}
+				],
+				"rows": [
+					{"labal": "HOME", "value": "value1"},
+					{"labal": "교육신청", "value": "value2"},
+					{"labal": "자료", "value": "value3"},
+					{"labal": "봉사참여", "value": "value4"}
+				]
+			});
+			app.register(dataSet_1);
+			var submission_1 = new cpr.protocols.Submission("sms1");
+			submission_1.action = "apply";
+			submission_1.addRequestData(dataSet_1);
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -41,16 +82,13 @@
 			group_1.setLayout(responsiveXYLayout_1);
 			(function(container){
 				var group_2 = new cpr.controls.Container();
-				group_2.style.css({
-					"background-color" : "#91C8E4"
-				});
 				var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 				group_2.setLayout(xYLayout_2);
 				(function(container){
 					var button_1 = new cpr.controls.Button();
-					button_1.value = "|   로그인   ";
+					button_1.value = "  로그인   ";
 					button_1.style.css({
-						"background-color" : "#91C8E4",
+						"background-color" : "#FFFFFF",
 						"border-right-style" : "none",
 						"color" : "#4682A9",
 						"border-left-style" : "none",
@@ -60,14 +98,14 @@
 					});
 					container.addChild(button_1, {
 						"top": "20px",
-						"left": "1360px",
-						"width": "89px",
+						"left": "1372px",
+						"width": "70px",
 						"height": "44px"
 					});
 					var button_2 = new cpr.controls.Button();
-					button_2.value = "|  회원가입  |";
+					button_2.value = "회원가입  ";
 					button_2.style.css({
-						"background-color" : "#91C8E4",
+						"background-color" : "#FFFFFF",
 						"border-right-style" : "none",
 						"color" : "#4682A9",
 						"border-left-style" : "none",
@@ -75,10 +113,30 @@
 						"border-bottom-style" : "none",
 						"border-top-style" : "none"
 					});
+					if(typeof onButtonClick == "function") {
+						button_2.addEventListener("click", onButtonClick);
+					}
 					container.addChild(button_2, {
 						"top": "20px",
 						"left": "1441px",
 						"width": "107px",
+						"height": "44px"
+					});
+					var button_3 = new cpr.controls.Button();
+					button_3.value = " 마이페이지 ";
+					button_3.style.css({
+						"background-color" : "#FFFFFF",
+						"border-right-style" : "none",
+						"color" : "#4682A9",
+						"border-left-style" : "none",
+						"font-weight" : "bold",
+						"border-bottom-style" : "none",
+						"border-top-style" : "none"
+					});
+					container.addChild(button_3, {
+						"top": "20px",
+						"left": "1269px",
+						"width": "104px",
 						"height": "44px"
 					});
 				})(group_2);
@@ -107,57 +165,28 @@
 						}
 					]
 				});
-				var comboBox_1 = new cpr.controls.ComboBox("cmb1");
-				comboBox_1.style.css({
-					"background-color" : "#F6F4EB"
-				});
-				container.addChild(comboBox_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "73px",
-							"right": "-20px",
-							"left": "20px",
-							"height": "135px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "73px",
-							"right": "-10px",
-							"left": "10px",
-							"height": "135px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "73px",
-							"right": "-7px",
-							"left": "7px",
-							"height": "135px"
-						}
-					]
-				});
 				var image_1 = new cpr.controls.Image();
 				image_1.src = "theme/images/pivot/logodonghang .png";
 				container.addChild(image_1, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "92px",
-							"left": "158px",
+							"top": "83px",
+							"left": "172px",
 							"width": "88px",
 							"height": "102px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "92px",
-							"left": "77px",
+							"top": "83px",
+							"left": "84px",
 							"width": "43px",
 							"height": "102px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "92px",
-							"left": "54px",
+							"top": "83px",
+							"left": "59px",
 							"width": "30px",
 							"height": "102px"
 						}
@@ -171,21 +200,21 @@
 							"media": "all and (min-width: 1024px)",
 							"top": "251px",
 							"left": "269px",
-							"width": "1210px",
+							"width": "1127px",
 							"height": "606px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "251px",
 							"left": "131px",
-							"width": "591px",
+							"width": "550px",
 							"height": "606px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "251px",
 							"left": "92px",
-							"width": "414px",
+							"width": "385px",
 							"height": "606px"
 						}
 					]
@@ -193,7 +222,7 @@
 				var textArea_1 = new cpr.controls.TextArea("txa1");
 				textArea_1.value = "IT다";
 				textArea_1.style.css({
-					"background-color" : "#F6F4EB",
+					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
 					"white-space" : "normal",
@@ -207,179 +236,31 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "112px",
+							"top": "103px",
 							"left": "269px",
 							"width": "140px",
 							"height": "61px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "112px",
+							"top": "103px",
 							"left": "131px",
 							"width": "68px",
 							"height": "61px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "112px",
+							"top": "103px",
 							"left": "92px",
 							"width": "48px",
 							"height": "61px"
 						}
 					]
 				});
-				var button_3 = new cpr.controls.Button();
-				button_3.value = "HOME";
-				button_3.style.css({
-					"background-color" : "#F6F4EB",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.7rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(button_3, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "125px",
-							"left": "504px",
-							"width": "122px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "125px",
-							"left": "246px",
-							"width": "60px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "125px",
-							"left": "172px",
-							"width": "42px",
-							"height": "55px"
-						}
-					]
-				});
-				var button_4 = new cpr.controls.Button();
-				button_4.value = "교육신청";
-				button_4.style.css({
-					"background-color" : "#F6F4EB",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.7rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(button_4, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "125px",
-							"left": "744px",
-							"width": "147px",
-							"height": "56px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "125px",
-							"left": "363px",
-							"width": "72px",
-							"height": "56px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "125px",
-							"left": "254px",
-							"width": "50px",
-							"height": "56px"
-						}
-					]
-				});
-				var button_5 = new cpr.controls.Button();
-				button_5.value = "Button";
-				button_5.style.css({
-					"background-color" : "#F6F4EB",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.7rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(button_5, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "133px",
-							"left": "1010px",
-							"width": "162px",
-							"height": "40px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "133px",
-							"left": "493px",
-							"width": "79px",
-							"height": "40px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "133px",
-							"left": "345px",
-							"width": "55px",
-							"height": "40px"
-						}
-					]
-				});
-				var button_6 = new cpr.controls.Button();
-				button_6.value = "Button";
-				button_6.style.css({
-					"background-color" : "#F6F4EB",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.7rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(button_6, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "138px",
-							"left": "1259px",
-							"width": "157px",
-							"height": "29px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "138px",
-							"left": "615px",
-							"width": "77px",
-							"height": "29px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "138px",
-							"left": "430px",
-							"width": "54px",
-							"height": "29px"
-						}
-					]
-				});
 				var textArea_2 = new cpr.controls.TextArea("txa2");
 				textArea_2.value = "Accompany";
 				textArea_2.style.css({
-					"background-color" : "#F6F4EB",
+					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
 					"white-space" : "normal",
@@ -393,33 +274,80 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "163px",
+							"top": "153px",
 							"left": "269px",
 							"width": "183px",
-							"height": "40px"
+							"height": "50px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "163px",
+							"top": "153px",
 							"left": "131px",
 							"width": "89px",
-							"height": "40px"
+							"height": "50px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "163px",
+							"top": "153px",
 							"left": "92px",
 							"width": "63px",
-							"height": "40px"
+							"height": "50px"
+						}
+					]
+				});
+				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
+				navigationBar_1.barItemSpacing = 150;
+				navigationBar_1.style.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"font-weight" : "bold",
+					"font-size" : "1.7rem",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none"
+				});
+				(function(navigationBar_1){
+					navigationBar_1.setItemSet(app.lookup("ds1"), {
+						"label": "labal",
+						"value": "value"
+					});
+				})(navigationBar_1);
+				if(typeof onNav1SelectionChange2 == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
+				}
+				container.addChild(navigationBar_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "84px",
+							"left": "540px",
+							"width": "1133px",
+							"height": "142px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "84px",
+							"left": "264px",
+							"width": "553px",
+							"height": "142px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "84px",
+							"left": "185px",
+							"width": "387px",
+							"height": "142px"
 						}
 					]
 				});
 			})(group_1);
+			if(typeof onGroupClick == "function") {
+				group_1.addEventListener("click", onGroupClick);
+			}
 			container.addChild(group_1, {
-				"top": "10px",
-				"right": "-1090px",
-				"bottom": "-1930px",
-				"left": "10px"
+				"top": "0px",
+				"right": "-1080px",
+				"bottom": "-1980px",
+				"left": "0px"
 			});
 		}
 	});
