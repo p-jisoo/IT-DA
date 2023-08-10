@@ -18,18 +18,6 @@
 			 * @author USER
 			 ************************************************/
 
-			/*
-			 * 내비게이션 바에서 selection-change 이벤트 발생 시 호출.
-			 * 선택된 Item 값이 저장된 후에 발생하는 이벤트.
-			 */
-			function onNav1SelectionChange2(/* cpr.events.CEvent */ e){
-				/** @type cpr.controls.NavigationBar */
-				var nav1 = e.control;
-				var dataSet = app.lookup("ds1");
-			    var submission = app.lookup("sms1");
-			    submission.send();
-			    
-			}
 
 			/*
 			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
@@ -39,6 +27,49 @@
 				var button = e.control;
 				
 				
+			}
+
+			/*
+			 * 내비게이션 바에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			//function onSms1SubmitSuccess(e){
+			//	var sms1 = e.control;
+			//	var dataSet = app.lookup("ds1");
+			//    var submission = app.lookup("sms1");
+			//    submission.send();
+			//}
+
+			/*
+			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
+			 * 아이템 클릭시 발생하는 이벤트.
+			 */
+			function onNav1ItemClick(e){
+				var nav1 = e.control;
+				var submission = app.lookup("sms1");
+			    var navigationBar = app.lookup("nav1");
+			    var count = navigationBar.getSelectedIndices().toString()  
+			    submission.setParameters("menu", count);
+			    submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms1SubmitSuccess2(e){
+				var sms1 = e.control;
+				console.log(sms1.getParameters("menu"));
+				var number = sms1.getParameters("menu").toString();
+				if(number=="0"){
+					window.location.href="/";
+				}
 			};
 			// End - User Script
 			
@@ -58,8 +89,14 @@
 			});
 			app.register(dataSet_1);
 			var submission_1 = new cpr.protocols.Submission("sms1");
-			submission_1.action = "apply";
-			submission_1.addRequestData(dataSet_1);
+			submission_1.async = true;
+			submission_1.action = "apply.do";
+			if(typeof onSms1ReceiveJson == "function") {
+				submission_1.addEventListener("receive-json", onSms1ReceiveJson);
+			}
+			if(typeof onSms1SubmitSuccess2 == "function") {
+				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
+			}
 			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -313,6 +350,12 @@
 				})(navigationBar_1);
 				if(typeof onNav1SelectionChange2 == "function") {
 					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
+				}
+				if(typeof onNav1Click == "function") {
+					navigationBar_1.addEventListener("click", onNav1Click);
+				}
+				if(typeof onNav1ItemClick == "function") {
+					navigationBar_1.addEventListener("item-click", onNav1ItemClick);
 				}
 				container.addChild(navigationBar_1, {
 					positions: [

@@ -29,8 +29,9 @@
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
-      <cl:submission std:sid="submission-c41b4901" id="sms1" action="apply">
-        <cl:requestdata dataid="ds1"/>
+      <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply.do">
+        <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
+        <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -77,6 +78,8 @@
       </cl:textarea>
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.7rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-8edca3ec" name="selection-change" handler="onNav1SelectionChange2"/>
+        <cl:listener std:sid="listener-a01699b4" name="click" handler="onNav1Click"/>
+        <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1f8f1a9">
           <cl:xylayoutdata std:sid="sxyl-data-3294b4a1" top="84px" left="540px" width="1133px" height="142px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
