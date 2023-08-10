@@ -9,6 +9,8 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-bde335ed">
+    <cl:listener std:sid="listener-fa2d2808" name="init" handler="onBodyInit"/>
+    <cl:listener std:sid="listener-77903c64" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-41782b7b">
       <cl:responsivexylayoutdata std:sid="rxyl-data-8d9e9f07">
         <cl:xylayoutdata std:sid="sxyl-data-17361cff" top="200px" left="350px" width="344px" height="368px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
@@ -16,8 +18,8 @@
         <cl:xylayoutdata std:sid="sxyl-data-7a6843bb" top="80px" left="33px" width="297px" height="359px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="mobile"/>
         <cl:xylayoutdata std:sid="sxyl-data-d7ba3e22" top="278px" left="660px" width="495px" height="392px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
-      <cl:inputbox std:sid="i-box-02d728be" id="ipb1" placeholder="아이디">
-        <cl:formdata std:sid="f-data-7d4b3be6" row="0" col="0" rowspan="1" colspan="1"/>
+      <cl:inputbox std:sid="i-box-02d728be" id="ipb1" style="background-repeat:no-repeat; background-size:contain; white-space:normal; background-image:url('theme/images/icon/flag/001-south-korea.svg'); background-position:center; background-origin:border-box;" showclearbutton="true" placeholder="아이디">
+        <cl:formdata std:sid="f-data-7d4b3be6" halign="FILL" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-dad6a076" id="ipb3" placeholder="주소">
         <cl:formdata std:sid="f-data-6f61cff2" row="3" col="0"/>

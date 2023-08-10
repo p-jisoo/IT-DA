@@ -16,7 +16,17 @@
 			 * Created at 2023. 8. 9. 오후 3:01:12.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad(e){
+				var inputBox = app.lookup("ipb1");
+			};
 			// End - User Script
 			
 			// Header
@@ -52,12 +62,22 @@
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				inputBox_1.showClearButton = true;
 				inputBox_1.placeholder = "아이디";
+				inputBox_1.style.css({
+					"background-repeat" : "no-repeat",
+					"background-size" : "contain",
+					"white-space" : "normal",
+					"background-image" : "url('theme/images/icon/flag/001-south-korea.svg')",
+					"background-position" : "center",
+					"background-origin" : "border-box"
+				});
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
 					"colSpan": 1,
-					"rowSpan": 1
+					"rowSpan": 1,
+					"horizontalAlign": "fill"
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb3");
 				inputBox_2.placeholder = "주소";
@@ -201,6 +221,12 @@
 					}
 				]
 			});
+			if(typeof onBodyInit == "function"){
+				app.addEventListener("init", onBodyInit);
+			}
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "registerform";
