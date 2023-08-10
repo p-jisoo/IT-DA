@@ -17,60 +17,44 @@
 			 *
 			 * @author USER
 			 ************************************************/
-
-
-			/*
-			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onButtonClick(/* cpr.events.CEvent */e){
-				var button = e.control;
-				
-				
-			}
-
-			/*
-			 * 내비게이션 바에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-
-
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			//function onSms1SubmitSuccess(e){
-			//	var sms1 = e.control;
-			//	var dataSet = app.lookup("ds1");
-			//    var submission = app.lookup("sms1");
-			//    submission.send();
-			//}
-
 			/*
 			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
 			 * 아이템 클릭시 발생하는 이벤트.
 			 */
-			function onNav1ItemClick(e){
+			function onNav1ItemClick(e) {
 				var nav1 = e.control;
 				var submission = app.lookup("sms1");
-			    var navigationBar = app.lookup("nav1");
-			    var count = navigationBar.getSelectedIndices().toString()  
-			    submission.setParameters("menu", count);
-			    submission.send();
+				var navigationBar = app.lookup("nav1");
+				var count = navigationBar.getSelectedIndices().toString()
+				submission.setParameters("menu", count);
+				submission.send();
 			}
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms1SubmitSuccess2(e){
+			function onSms1SubmitSuccess2(e) {
 				var sms1 = e.control;
-				console.log(sms1.getParameters("menu"));
+				console.log(sms1.getParameters("menu")); 
 				var number = sms1.getParameters("menu").toString();
-				if(number=="0"){
-					window.location.href="/";
+				//	if(number=="0"){
+				//		window.location.href="/";
+				switch (number) {
+					case "0":
+						window.location.href = "/";
+						break;
+					case "1":
+						window.location.href = "showmeapply.do";
+						break;
+					case "2":
+						window.location.href = "showmeapply.do";
+						break;
+					case "3":
+						window.location.href = "showmeapply.do";
+						break;
 				}
-			};
+			}
 			// End - User Script
 			
 			// Header
@@ -98,6 +82,19 @@
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
 			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("sms2");
+			submission_2.action = "apply.do";
+			if(typeof onSms2SubmitSuccess2 == "function") {
+				submission_2.addEventListener("submit-success", onSms2SubmitSuccess2);
+			}
+			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("sms3");
+			if(typeof onSms3SubmitSuccess == "function") {
+				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
+			}
+			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -348,14 +345,14 @@
 						"value": "value"
 					});
 				})(navigationBar_1);
-				if(typeof onNav1SelectionChange2 == "function") {
-					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
-				}
-				if(typeof onNav1Click == "function") {
-					navigationBar_1.addEventListener("click", onNav1Click);
-				}
 				if(typeof onNav1ItemClick == "function") {
 					navigationBar_1.addEventListener("item-click", onNav1ItemClick);
+				}
+				if(typeof onNav1SelectionChange == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
+				}
+				if(typeof onNav1Click2 == "function") {
+					navigationBar_1.addEventListener("click", onNav1Click2);
 				}
 				container.addChild(navigationBar_1, {
 					positions: [

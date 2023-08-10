@@ -24,7 +24,7 @@ public class HomeController {
 		System.out.println(request.getParameter("menu"));
 		String menu= request.getParameter("menu");
 		return menu;		
-		// 왜 안나오는거임 끼잉끼잉
+		
 	}
 	@GetMapping("ui/showmeapply.do")
 	public View shome(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
