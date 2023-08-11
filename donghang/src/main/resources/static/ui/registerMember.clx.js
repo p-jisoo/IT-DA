@@ -26,6 +26,15 @@
 				var button = e.control;
 				var submission = app.lookup("sms1");
 				submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms1SubmitSuccess2(e){
+				var sms1 = e.control;
+				window.location.href="/";
 			};
 			// End - User Script
 			
@@ -58,7 +67,9 @@
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "registerMember";
 			submission_1.addRequestData(dataMap_1);
-			submission_1.addResponseData(dataMap_1, true);
+			if(typeof onSms1SubmitSuccess2 == "function") {
+				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
+			}
 			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");

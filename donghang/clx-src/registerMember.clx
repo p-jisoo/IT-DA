@@ -18,8 +18,8 @@
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-03e5db67" id="sms1" action="registerMember">
+        <cl:listener std:sid="listener-28d0fd53" name="submit-success" handler="onSms1SubmitSuccess2"/>
         <cl:requestdata dataid="dm1"/>
-        <cl:responsedata dataid="dm1" isadd="true"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>

@@ -15,4 +15,11 @@ function onButtonClick(e){
 	submission.send();
 }
 
-
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms1SubmitSuccess2(e){
+	var sms1 = e.control;
+	window.location.href="/";
+}
