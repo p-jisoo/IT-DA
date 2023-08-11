@@ -18,14 +18,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EduApplyBoardController {
 	private final EduApplyBoardService eduApplyBoardService;
-
 	@PostMapping("/ui/testajax.do")
 	//@ResponseBody => RestController 이므로 필요없음 
 	public String testAjax() { // @RequestParam 생략가능
 		System.out.println("1");
 		return "hello ajax"; // RestController 즉 ajax 응답 
 	}
-
 	@PostMapping("/ui/createBoard.do")
 	public void createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) { 
 		ParameterGroup param = dataRequest.getParameterGroup("dm1");
@@ -41,7 +39,4 @@ public class EduApplyBoardController {
 		System.out.println(vo +"controller");
 		eduApplyBoardService.createBoard(vo);
 	}
-
-	
-	
 }
