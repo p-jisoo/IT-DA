@@ -1,13 +1,15 @@
 package com.tomato.donghang.model.vo;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
-public class EduApplyBoradVO {
+@ToString
+public class EduApplyBoardVO {
 	private long boardNo;
 	private String boardTitle;
 	private String boardContent;
 	private String category;
-	private String applyStatus;
-	private String memberVO;
+//	private String applyStatus;
+//	private String memberVO;
 }

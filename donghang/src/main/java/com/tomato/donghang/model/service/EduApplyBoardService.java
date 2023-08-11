@@ -1,7 +1,7 @@
 package com.tomato.donghang.model.service;
 
-import com.tomato.donghang.model.vo.EduApplyBoradVO;
+import com.tomato.donghang.model.vo.EduApplyBoardVO;
 
 public interface EduApplyBoardService {
-	EduApplyBoradVO createBoard();
+	void createBoard(EduApplyBoardVO vo);
 }

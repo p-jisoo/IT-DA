@@ -6,5 +6,5 @@ import lombok.Data;
 public class ApplyVO {
 	private long applyNo;
 	private MemberVO memberVO;
-	private EduApplyBoradVO eduApplyBoradVO;
+	private EduApplyBoardVO eduApplyBoradVO;
 }
