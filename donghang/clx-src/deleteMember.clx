@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b2023635" version="1.0.4584">
+  <head std:sid="head-05345b11">
+    <screen std:sid="screen-c68ef5df" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
+    <screen std:sid="screen-768584f1" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-b8f4b4e7" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-0d5539b3" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <cl:model std:sid="model-27ae2b8d"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-909e54a7">
+    <cl:output std:sid="output-bbbb72d4" style="font-size:40px; text-align:center;" value="회원 정보 탈퇴">
+      <cl:xylayoutdata std:sid="xyl-data-8e232a7f" top="422px" left="861px" width="290px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:inputbox std:sid="i-box-06f7e7ca" id="ipb1" value="비밀번호">
+      <cl:xylayoutdata std:sid="xyl-data-ff235244" top="497px" left="762px" width="392px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:inputbox std:sid="i-box-794f0928" id="ipb2" value="비밀번호 재확인">
+      <cl:xylayoutdata std:sid="xyl-data-4770eb6f" top="565px" left="761px" width="393px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:button std:sid="button-8efd09e7" style="background-color:#84888A; font-size:25px;" value="탈퇴">
+      <cl:xylayoutdata std:sid="xyl-data-284a5c1f" top="632px" left="1001px" width="150px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:img std:sid="image-b7dd0b62" src="theme/images/logo_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-92e5235c" top="212px" left="836px" width="200px" height="200px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:img std:sid="image-c72c1ddf" style="background-size:auto;" src="theme/images/deleteMember_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-66ef6311" top="422px" left="761px" width="88px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:xylayout std:sid="xylayout-4d93eb3f"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

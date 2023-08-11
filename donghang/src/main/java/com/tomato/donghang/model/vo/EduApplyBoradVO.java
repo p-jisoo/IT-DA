@@ -7,7 +7,7 @@ public class EduApplyBoradVO {
 	private long boardNo;
 	private String boardTitle;
 	private String boardContent;
-	private String catogory;
+	private String category;
 	private String applyStatus;
-	private String mebmerVO;
+	private String memberVO;
 }

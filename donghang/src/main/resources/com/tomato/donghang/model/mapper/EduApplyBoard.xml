@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.donghang.model.mapper.EduApplyBoard">
+	<insert id="createBoard"
+		parameterType="com.tomato.donghang.model.vo.EduApplyBoradVO">
+INSERT INTO EDU_APPLY_BOARD(BOARD_NO,BOARD_TITLE,BOARD_CONTENT,CATEGORY,USER_ID)
+VALUES(EDU_APPLY_BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{category},#{mebmerVO.id});
+<!-- 	private String boardTitle;
+	private String boardContent;
+	private String catogory;
+	private String applyStatus;
+	private String memberVO; -->
+	</insert>
 </mapper>
 
