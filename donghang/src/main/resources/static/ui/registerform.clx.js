@@ -16,10 +16,48 @@
 			 * Created at 2023. 8. 9. 오후 3:01:12.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				var submission = app.lookup("sms1");
+				submission.send();
+			};
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("ds1");
+			dataSet_1.parseData({});
+			app.register(dataSet_1);
+			var dataMap_1 = new cpr.data.DataMap("dm1");
+			dataMap_1.parseData({
+				"columns" : [
+					{
+						"name": "user_id",
+						"info": ""
+					},
+					{"name": "password"},
+					{
+						"name": "address",
+						"dataType": "string"
+					},
+					{"name": "user_tel"},
+					{"name": "user_name"},
+					{
+						"name": "nickName",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("sms1");
+			submission_1.action = "updateMember";
+			submission_1.addRequestData(dataMap_1);
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -53,6 +91,7 @@
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
 				inputBox_1.placeholder = "아이디";
+				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
 				container.addChild(inputBox_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
@@ -61,30 +100,35 @@
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb3");
 				inputBox_2.placeholder = "주소";
+				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "address");
 				container.addChild(inputBox_2, {
 					"colIndex": 0,
 					"rowIndex": 3
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb4");
 				inputBox_3.placeholder = "비밀번호";
+				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
 				container.addChild(inputBox_3, {
 					"colIndex": 0,
 					"rowIndex": 1
 				});
 				var inputBox_4 = new cpr.controls.InputBox("ipb5");
 				inputBox_4.placeholder = "전화번호";
+				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "user_tel");
 				container.addChild(inputBox_4, {
 					"colIndex": 0,
 					"rowIndex": 4
 				});
 				var inputBox_5 = new cpr.controls.InputBox("ipb6");
 				inputBox_5.placeholder = "이름";
+				inputBox_5.bind("value").toDataMap(app.lookup("dm1"), "user_name");
 				container.addChild(inputBox_5, {
 					"colIndex": 0,
 					"rowIndex": 5
 				});
 				var inputBox_6 = new cpr.controls.InputBox("ipb7");
 				inputBox_6.placeholder = "닉네임";
+				inputBox_6.bind("value").toDataMap(app.lookup("dm1"), "nickName");
 				container.addChild(inputBox_6, {
 					"colIndex": 0,
 					"rowIndex": 6
@@ -100,8 +144,8 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "278px",
-						"left": "660px",
+						"top": "417px",
+						"left": "712px",
 						"width": "495px",
 						"height": "392px"
 					}, 
@@ -129,52 +173,17 @@
 				]
 			});
 			
-			var output_2 = new cpr.controls.Output();
-			output_2.value = "회원정보수정";
-			output_2.style.css({
-				"text-align" : "center"
-			});
-			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "102px",
-						"right": "773px",
-						"bottom": "836px",
-						"left": "653px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "20px",
-						"left": "345px",
-						"width": "353px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "20px",
-						"left": "164px",
-						"width": "172px",
-						"height": "80px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "20px",
-						"right": "129px",
-						"left": "132px",
-						"height": "45px"
-					}
-				]
-			});
-			
 			var button_1 = new cpr.controls.Button();
 			button_1.value = "수정";
+			if(typeof onButtonClick == "function") {
+				button_1.addEventListener("click", onButtonClick);
+			}
 			container.addChild(button_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "710px",
-						"left": "839px",
+						"top": "839px",
+						"left": "891px",
 						"width": "137px",
 						"height": "38px"
 					}, 
@@ -198,6 +207,115 @@
 						"left": "121px",
 						"width": "100px",
 						"height": "20px"
+					}
+				]
+			});
+			
+			var image_1 = new cpr.controls.Image();
+			image_1.src = "theme/images/pivot/logodonghang .png";
+			container.addChild(image_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "89px",
+						"left": "869px",
+						"width": "168px",
+						"height": "156px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "89px",
+						"left": "869px",
+						"width": "168px",
+						"height": "156px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "89px",
+						"left": "424px",
+						"width": "82px",
+						"height": "156px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "89px",
+						"left": "297px",
+						"width": "57px",
+						"height": "156px"
+					}
+				]
+			});
+			
+			var output_2 = new cpr.controls.Output();
+			output_2.value = " 회원정보 수정";
+			output_2.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1.9rem"
+			});
+			container.addChild(output_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "296px",
+						"left": "869px",
+						"width": "223px",
+						"height": "91px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "296px",
+						"left": "869px",
+						"width": "223px",
+						"height": "91px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "296px",
+						"left": "424px",
+						"width": "109px",
+						"height": "91px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "296px",
+						"left": "297px",
+						"width": "76px",
+						"height": "91px"
+					}
+				]
+			});
+			
+			var image_2 = new cpr.controls.Image();
+			image_2.src = "theme/images/img/ManageAccount_donghang.png";
+			container.addChild(image_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "302px",
+						"left": "789px",
+						"width": "70px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "302px",
+						"left": "789px",
+						"width": "70px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "302px",
+						"left": "385px",
+						"width": "34px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "302px",
+						"left": "270px",
+						"width": "24px",
+						"height": "79px"
 					}
 				]
 			});
