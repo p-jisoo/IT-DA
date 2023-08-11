@@ -283,6 +283,7 @@
 					"rowIndex": 3
 				});
 				var dateInput_1 = new cpr.controls.DateInput("dti1");
+				dateInput_1.preventInput = false;
 				container.addChild(dateInput_1, {
 					"colIndex": 1,
 					"rowIndex": 0

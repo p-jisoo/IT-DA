@@ -84,7 +84,7 @@
       <cl:inputbox std:sid="i-box-e49aa10a" id="ipb10" style="font-size:16px;" value="오프라인">
         <cl:formdata std:sid="f-data-e6badf82" row="3" col="3"/>
       </cl:inputbox>
-      <cl:dateinput std:sid="d-input-e19c1cfc" id="dti1">
+      <cl:dateinput std:sid="d-input-e19c1cfc" id="dti1" preventinput="false">
         <cl:formdata std:sid="f-data-ce046f25" row="0" col="1"/>
       </cl:dateinput>
       <cl:formlayout std:sid="f-layout-6bffee7b" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
