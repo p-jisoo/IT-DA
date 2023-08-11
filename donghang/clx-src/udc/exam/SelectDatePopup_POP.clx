@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-10838622" version="1.0.3388">
+  <head std:sid="head-30d1141c">
+    <screen std:sid="screen-bb866595" id="default" name="default" minwidth="1024px" width="1024px" height="768px" useCustomHeight="true" customHeight="641" customWidth="800"/>
+    <screen std:sid="screen-9f0f1727" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-80ebe331" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-ad343bb4"/>
+    <cl:appspec title="FromTo캘린더"/>
+  </head>
+  <body std:sid="body-5863259f" style="top:0px; left:0px; width:600px; height:400px;">
+    <cl:listener std:sid="listener-ea4247d5" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-7150e0de" name="init" handler="onBodyInit"/>
+    <cl:calendar std:sid="calendar-56f5e7fb" id="cal2" footervisible="false" format="YYYY-MM-DD" selectiontype="range">
+      <cl:listener std:sid="listener-e8f96a07" name="before-value-change" handler="onCal2BeforeValueChange"/>
+      <cl:formdata std:sid="f-data-2edc55d8" row="0" col="2"/>
+    </cl:calendar>
+    <cl:calendar std:sid="calendar-86546fb2" id="cal1" footervisible="false" format="YYYY-MM-DD" selectiontype="range">
+      <cl:listener std:sid="listener-a4f205dc" name="before-value-change" handler="onCal1BeforeValueChange"/>
+      <cl:listener std:sid="listener-7d6b312d" name="value-change" handler="onCal1ValueChange"/>
+      <cl:formdata std:sid="f-data-8dd8dff9" row="0" col="1"/>
+    </cl:calendar>
+    <cl:group std:sid="group-55eabbf0" id="grp1">
+      <cl:formdata std:sid="f-data-7f957b91" row="2" col="2"/>
+      <cl:button std:sid="button-e832267c" id="btnOK" value="Apply">
+        <cl:listener std:sid="listener-4179c06d" name="click" handler="onBtnOKClick"/>
+        <cl:flowlayoutdata std:sid="f-data-e6cf2f40" width="100px" height="30px"/>
+      </cl:button>
+      <cl:button std:sid="button-91a19b48" id="btnCancel" value="Cancel">
+        <cl:listener std:sid="listener-eea24ba5" name="click" handler="onBtnCancelClick"/>
+        <cl:flowlayoutdata std:sid="f-data-5793c178" width="100px" height="30px"/>
+      </cl:button>
+      <cl:flowlayout std:sid="f-layout-6ee5a49b" scrollable="false" halign="right"/>
+    </cl:group>
+    <cl:dateinput std:sid="d-input-1e8305fe" id="dtiFromTime" hidebutton="true" placeholder="시:분:초" mask="HH:mm:ss" format="hh:mm:ss">
+      <cl:listener std:sid="listener-5ae6eb28" name="value-change" handler="onDtiFromTimeValueChange"/>
+      <cl:formdata std:sid="f-data-3d23732b" halign="CENTER" valign="FILL" width="150" row="1" col="1"/>
+    </cl:dateinput>
+    <cl:dateinput std:sid="d-input-de473a24" id="dtiToTime" hidebutton="true" placeholder="시:분:초" mask="HH:mm:ss" format="hh:mm:ss">
+      <cl:listener std:sid="listener-a9e83b00" name="value-change" handler="onDtiToTimeValueChange"/>
+      <cl:formdata std:sid="f-data-df13384c" halign="CENTER" valign="FILL" width="150" row="1" col="2"/>
+    </cl:dateinput>
+    <cl:group std:sid="group-0b61439b" id="grp2">
+      <cl:formdata std:sid="f-data-1a47eabe" row="0" col="0"/>
+      <cl:output std:sid="output-0b3c17ab" style="background-color:#62b5e5; color:#ffffff; text-align:center;" value="자동선택">
+        <cl:formdata std:sid="f-data-5be5f0b2" row="0" col="0" rowspan="1" colspan="2"/>
+      </cl:output>
+      <cl:button std:sid="button-112f8a5e" id="btn1" value="금주">
+        <cl:listener std:sid="listener-95a4300b" name="click" handler="onBtn1Click"/>
+        <cl:formdata std:sid="f-data-8967529d" row="1" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-0fc8e79b" id="btn3" value="당월">
+        <cl:listener std:sid="listener-561a96f0" name="click" handler="onBtn3Click"/>
+        <cl:formdata std:sid="f-data-5dddd2fe" row="2" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-b34da3cb" id="btn5" value="당분기">
+        <cl:listener std:sid="listener-87ad664c" name="click" handler="onBtn5Click"/>
+        <cl:formdata std:sid="f-data-b86bb5fc" row="3" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-d65ee342" id="btn2" value="전주">
+        <cl:listener std:sid="listener-27eace77" name="click" handler="onBtn2Click"/>
+        <cl:formdata std:sid="f-data-18eb3b30" row="1" col="1"/>
+      </cl:button>
+      <cl:button std:sid="button-aef9198b" id="btn4" value="전월">
+        <cl:listener std:sid="listener-9d7a51eb" name="click" handler="onBtn4Click"/>
+        <cl:formdata std:sid="f-data-23fe10a7" row="2" col="1"/>
+      </cl:button>
+      <cl:button std:sid="button-3d2f2471" id="btn6" value="전분기">
+        <cl:listener std:sid="listener-b9ca6273" name="click" handler="onBtn6Click"/>
+        <cl:formdata std:sid="f-data-afbdc936" row="3" col="1"/>
+      </cl:button>
+      <cl:button std:sid="button-d40b5fc3" id="btn8" value="금년(전체)">
+        <cl:listener std:sid="listener-f1befd12" name="click" handler="onBtn8Click"/>
+        <cl:formdata std:sid="f-data-153cd98c" row="4" col="0"/>
+      </cl:button>
+      <cl:button std:sid="button-d2b7dd91" id="btn10" value="전년(전체)">
+        <cl:listener std:sid="listener-f79fecf8" name="click" handler="onBtn10Click"/>
+        <cl:formdata std:sid="f-data-8c6fc91b" row="4" col="1"/>
+      </cl:button>
+      <cl:formlayout std:sid="f-layout-4e7f16b1" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+        <cl:rows length="35" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:rows length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent"/>
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:formlayout std:sid="f-layout-e626db72" scrollable="false" hspace="5px" vspace="5px" top-margin="10px" right-margin="10px" bottom-margin="10px" left-margin="10px">
+      <cl:rows length="1" unit="FRACTION"/>
+      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+      <cl:columns length="1" unit="FRACTION" hidden="true"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+    </cl:formlayout>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
