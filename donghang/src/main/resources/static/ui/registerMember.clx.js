@@ -19,7 +19,7 @@
 			 ************************************************/
 
 			/*
-			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
+			 * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick(e){
@@ -37,20 +37,17 @@
 			dataMap_1.parseData({
 				"columns" : [
 					{
-						"name": "user_id",
+						"name": "userId",
+						"dataType": "string",
 						"info": ""
 					},
 					{"name": "password"},
 					{
-						"name": "password_chek",
-						"dataType": "string"
-					},
-					{
 						"name": "address",
 						"dataType": "string"
 					},
-					{"name": "user_tel"},
-					{"name": "user_name"},
+					{"name": "userTel"},
+					{"name": "userName"},
 					{
 						"name": "nickName",
 						"dataType": "string"
@@ -61,6 +58,7 @@
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "registerMember";
 			submission_1.addRequestData(dataMap_1);
+			submission_1.addResponseData(dataMap_1, true);
 			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
@@ -80,170 +78,14 @@
 			container.setLayout(responsiveXYLayout_1);
 			
 			// UI Configuration
-			var group_1 = new cpr.controls.Container();
-			var formLayout_1 = new cpr.controls.layouts.FormLayout();
-			formLayout_1.scrollable = false;
-			formLayout_1.topMargin = "1px";
-			formLayout_1.rightMargin = "1px";
-			formLayout_1.bottomMargin = "1px";
-			formLayout_1.leftMargin = "1px";
-			formLayout_1.horizontalSpacing = "1px";
-			formLayout_1.verticalSpacing = "1px";
-			formLayout_1.setColumns(["1fr"]);
-			formLayout_1.setRows(["50px", "50px", "50px", "50px", "50px", "50px", "50px", "20px"]);
-			formLayout_1.setRowAutoSizing(0, true);
-			group_1.setLayout(formLayout_1);
-			(function(container){
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				inputBox_1.placeholder = "아이디";
-				inputBox_1.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
-				container.addChild(inputBox_1, {
-					"colIndex": 0,
-					"rowIndex": 0,
-					"colSpan": 1,
-					"rowSpan": 1
-				});
-				var inputBox_2 = new cpr.controls.InputBox("ipb3");
-				inputBox_2.placeholder = "주소";
-				inputBox_2.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "address");
-				container.addChild(inputBox_2, {
-					"colIndex": 0,
-					"rowIndex": 3
-				});
-				var inputBox_3 = new cpr.controls.InputBox("ipb4");
-				inputBox_3.placeholder = "비밀번호";
-				inputBox_3.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
-				container.addChild(inputBox_3, {
-					"colIndex": 0,
-					"rowIndex": 1
-				});
-				var inputBox_4 = new cpr.controls.InputBox("ipb5");
-				inputBox_4.placeholder = "전화번호";
-				inputBox_4.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "user_tel");
-				container.addChild(inputBox_4, {
-					"colIndex": 0,
-					"rowIndex": 4
-				});
-				var inputBox_5 = new cpr.controls.InputBox("ipb6");
-				inputBox_5.placeholder = "이름";
-				inputBox_5.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_5.bind("value").toDataMap(app.lookup("dm1"), "user_name");
-				container.addChild(inputBox_5, {
-					"colIndex": 0,
-					"rowIndex": 5
-				});
-				var inputBox_6 = new cpr.controls.InputBox("ipb7");
-				inputBox_6.placeholder = "닉네임";
-				inputBox_6.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_6.bind("value").toDataMap(app.lookup("dm1"), "nickName");
-				container.addChild(inputBox_6, {
-					"colIndex": 0,
-					"rowIndex": 6
-				});
-				var inputBox_7 = new cpr.controls.InputBox("ipb2");
-				inputBox_7.placeholder = "비밀번호 재확인";
-				inputBox_7.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_7.bind("value").toDataMap(app.lookup("dm1"), "password_chek");
-				container.addChild(inputBox_7, {
-					"colIndex": 0,
-					"rowIndex": 2
-				});
-			})(group_1);
-			container.addChild(group_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "471px",
-						"left": "970px",
-						"width": "495px",
-						"height": "392px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "200px",
-						"left": "350px",
-						"width": "344px",
-						"height": "368px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "120px",
-						"left": "98px",
-						"width": "304px",
-						"height": "347px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "80px",
-						"left": "33px",
-						"width": "297px",
-						"height": "359px"
-					}
-				]
-			});
-			
-			var button_1 = new cpr.controls.Button();
-			button_1.value = "회원가입";
-			button_1.style.css({
-				"font-weight" : "bold",
-				"font-size" : "1.7rem"
-			});
-			if(typeof onButtonClick == "function") {
-				button_1.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "905px",
-						"left": "1132px",
-						"width": "213px",
-						"height": "79px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "598px",
-						"left": "475px",
-						"width": "73px",
-						"height": "38px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "506px",
-						"left": "207px",
-						"width": "49px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "448px",
-						"left": "121px",
-						"width": "100px",
-						"height": "20px"
-					}
-				]
-			});
-			
 			var image_1 = new cpr.controls.Image();
 			image_1.src = "theme/images/pivot/logodonghang .png";
+			if(typeof onImageItemClick == "function") {
+				image_1.addEventListener("item-click", onImageItemClick);
+			}
+			if(typeof onImageValueChange == "function") {
+				image_1.addEventListener("value-change", onImageValueChange);
+			}
 			container.addChild(image_1, {
 				positions: [
 					{
@@ -278,88 +120,13 @@
 			});
 			
 			var output_1 = new cpr.controls.Output();
-			output_1.value = "회원가입";
+			output_1.value = "ITda";
 			output_1.style.css({
-				"font-weight" : "bold",
-				"font-size" : "2.7rem",
-				"font-style" : "normal"
-			});
-			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "342px",
-						"left": "1135px",
-						"width": "188px",
-						"height": "93px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "342px",
-						"left": "1135px",
-						"width": "188px",
-						"height": "93px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "342px",
-						"left": "554px",
-						"width": "92px",
-						"height": "93px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "342px",
-						"left": "388px",
-						"width": "64px",
-						"height": "93px"
-					}
-				]
-			});
-			
-			var image_2 = new cpr.controls.Image();
-			image_2.src = "theme/images/img/register_donghang.png";
-			container.addChild(image_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "114px",
-						"left": "1089px",
-						"width": "295px",
-						"height": "204px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "114px",
-						"left": "1089px",
-						"width": "295px",
-						"height": "204px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "114px",
-						"left": "532px",
-						"width": "144px",
-						"height": "204px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "114px",
-						"left": "372px",
-						"width": "101px",
-						"height": "204px"
-					}
-				]
-			});
-			
-			var output_2 = new cpr.controls.Output();
-			output_2.value = "ITda";
-			output_2.style.css({
 				"color" : "#4682A9",
 				"font-weight" : "bolder",
 				"font-size" : "2rem"
 			});
-			container.addChild(output_2, {
+			container.addChild(output_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
@@ -392,14 +159,14 @@
 				]
 			});
 			
-			var output_3 = new cpr.controls.Output();
-			output_3.value = "Accompany";
-			output_3.style.css({
+			var output_2 = new cpr.controls.Output();
+			output_2.value = "Accompany";
+			output_2.style.css({
 				"color" : "#4682A9",
 				"font-weight" : "bold",
 				"font-size" : "1.6rem"
 			});
-			container.addChild(output_3, {
+			container.addChild(output_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
@@ -428,6 +195,277 @@
 						"left": "73px",
 						"width": "52px",
 						"height": "41px"
+					}
+				]
+			});
+			
+			var group_1 = new cpr.controls.Container();
+			var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_1.setLayout(responsiveXYLayout_2);
+			(function(container){
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "회원가입";
+				output_3.style.css({
+					"font-weight" : "bold",
+					"font-size" : "2.7rem",
+					"font-style" : "normal"
+				});
+				container.addChild(output_3, {
+					positions: [
+						{
+							"media": "all and (min-width: 1920px)",
+							"top": "299px",
+							"left": "143px",
+							"width": "179px",
+							"height": "49px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "299px",
+							"left": "143px",
+							"width": "179px",
+							"height": "49px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "299px",
+							"left": "70px",
+							"width": "87px",
+							"height": "49px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "299px",
+							"left": "49px",
+							"width": "61px",
+							"height": "49px"
+						}
+					]
+				});
+				var image_2 = new cpr.controls.Image();
+				image_2.src = "theme/images/img/register_donghang.png";
+				container.addChild(image_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1920px)",
+							"top": "73px",
+							"left": "110px",
+							"width": "264px",
+							"height": "160px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "73px",
+							"left": "110px",
+							"width": "264px",
+							"height": "160px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "73px",
+							"left": "54px",
+							"width": "129px",
+							"height": "160px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "73px",
+							"left": "38px",
+							"width": "90px",
+							"height": "160px"
+						}
+					]
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "72px",
+						"left": "878px",
+						"width": "484px",
+						"height": "389px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "72px",
+						"left": "878px",
+						"width": "484px",
+						"height": "389px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "72px",
+						"left": "429px",
+						"width": "236px",
+						"height": "389px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "72px",
+						"left": "300px",
+						"width": "165px",
+						"height": "389px"
+					}
+				]
+			});
+			
+			var group_2 = new cpr.controls.Container();
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "1px";
+			formLayout_1.rightMargin = "1px";
+			formLayout_1.bottomMargin = "1px";
+			formLayout_1.leftMargin = "1px";
+			formLayout_1.horizontalSpacing = "1px";
+			formLayout_1.verticalSpacing = "1px";
+			formLayout_1.setColumns(["1fr"]);
+			formLayout_1.setRows(["50px", "50px", "50px", "50px", "50px", "50px", "50px", "20px"]);
+			formLayout_1.setRowAutoSizing(0, true);
+			group_2.setLayout(formLayout_1);
+			(function(container){
+				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				inputBox_1.placeholder = "유저 아이디";
+				inputBox_1.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "userId");
+				container.addChild(inputBox_1, {
+					"colIndex": 0,
+					"rowIndex": 0
+				});
+				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				inputBox_2.placeholder = "비밀번호";
+				inputBox_2.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
+				container.addChild(inputBox_2, {
+					"colIndex": 0,
+					"rowIndex": 1
+				});
+				var inputBox_3 = new cpr.controls.InputBox("ipb3");
+				inputBox_3.placeholder = "비밀번호";
+				inputBox_3.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
+				container.addChild(inputBox_3, {
+					"colIndex": 0,
+					"rowIndex": 2
+				});
+				var inputBox_4 = new cpr.controls.InputBox("ipb4");
+				inputBox_4.placeholder = "주소";
+				inputBox_4.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "address");
+				container.addChild(inputBox_4, {
+					"colIndex": 0,
+					"rowIndex": 3
+				});
+				var inputBox_5 = new cpr.controls.InputBox("ipb5");
+				inputBox_5.placeholder = "성함";
+				inputBox_5.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_5.bind("value").toDataMap(app.lookup("dm1"), "userName");
+				container.addChild(inputBox_5, {
+					"colIndex": 0,
+					"rowIndex": 5
+				});
+				var inputBox_6 = new cpr.controls.InputBox("ipb6");
+				inputBox_6.placeholder = "닉네임";
+				inputBox_6.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_6.bind("value").toDataMap(app.lookup("dm1"), "nickName");
+				container.addChild(inputBox_6, {
+					"colIndex": 0,
+					"rowIndex": 6
+				});
+				var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
+				maskEditor_1.mask = "(000)0000-0000";
+				maskEditor_1.style.css({
+					"font-size" : "1.2rem"
+				});
+				maskEditor_1.bind("value").toDataMap(app.lookup("dm1"), "userTel");
+				container.addChild(maskEditor_1, {
+					"colIndex": 0,
+					"rowIndex": 4
+				});
+			})(group_2);
+			container.addChild(group_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "471px",
+						"left": "867px",
+						"width": "495px",
+						"height": "392px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "471px",
+						"left": "867px",
+						"width": "495px",
+						"height": "392px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "471px",
+						"left": "423px",
+						"width": "242px",
+						"height": "392px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "471px",
+						"left": "296px",
+						"width": "169px",
+						"height": "392px"
+					}
+				]
+			});
+			
+			var button_1 = new cpr.controls.Button();
+			button_1.value = "회원가입";
+			button_1.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1.7rem"
+			});
+			if(typeof onButtonClick == "function") {
+				button_1.addEventListener("click", onButtonClick);
+			}
+			container.addChild(button_1, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "905px",
+						"left": "1029px",
+						"width": "213px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "905px",
+						"left": "1029px",
+						"width": "213px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "905px",
+						"left": "502px",
+						"width": "104px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "905px",
+						"left": "352px",
+						"width": "73px",
+						"height": "79px"
 					}
 				]
 			});

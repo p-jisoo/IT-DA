@@ -60,8 +60,9 @@
 			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
+				window.location.href="register";													
 			};
 			// End - User Script
 			
@@ -90,6 +91,13 @@
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
 			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("sms2");
+			submission_2.action = "register";
+			if(typeof onSms2SubmitSuccess2 == "function") {
+				submission_2.addEventListener("submit-success", onSms2SubmitSuccess2);
+			}
+			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -111,8 +119,8 @@
 			group_1.setLayout(responsiveXYLayout_1);
 			(function(container){
 				var group_2 = new cpr.controls.Container();
-				var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-				group_2.setLayout(xYLayout_2);
+				var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
+				group_2.setLayout(responsiveXYLayout_2);
 				(function(container){
 					var button_1 = new cpr.controls.Button();
 					button_1.value = "  로그인   ";
@@ -126,12 +134,31 @@
 						"border-top-style" : "none"
 					});
 					container.addChild(button_1, {
-						"top": "20px",
-						"left": "1372px",
-						"width": "70px",
-						"height": "44px"
+						positions: [
+							{
+								"media": "all and (min-width: 1024px)",
+								"top": "20px",
+								"left": "1372px",
+								"width": "70px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (min-width: 500px) and (max-width: 1023px)",
+								"top": "20px",
+								"left": "670px",
+								"width": "34px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (max-width: 499px)",
+								"top": "20px",
+								"left": "469px",
+								"width": "24px",
+								"height": "44px"
+							}
+						]
 					});
-					var button_2 = new cpr.controls.Button();
+					var button_2 = new cpr.controls.Button("btn_register");
 					button_2.value = "회원가입  ";
 					button_2.style.css({
 						"background-color" : "#FFFFFF",
@@ -146,10 +173,29 @@
 						button_2.addEventListener("click", onButtonClick2);
 					}
 					container.addChild(button_2, {
-						"top": "20px",
-						"left": "1441px",
-						"width": "107px",
-						"height": "44px"
+						positions: [
+							{
+								"media": "all and (min-width: 1024px)",
+								"top": "20px",
+								"left": "1441px",
+								"width": "107px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (min-width: 500px) and (max-width: 1023px)",
+								"top": "20px",
+								"left": "704px",
+								"width": "52px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (max-width: 499px)",
+								"top": "20px",
+								"left": "493px",
+								"width": "37px",
+								"height": "44px"
+							}
+						]
 					});
 					var button_3 = new cpr.controls.Button();
 					button_3.value = " 마이페이지 ";
@@ -163,12 +209,34 @@
 						"border-top-style" : "none"
 					});
 					container.addChild(button_3, {
-						"top": "20px",
-						"left": "1269px",
-						"width": "104px",
-						"height": "44px"
+						positions: [
+							{
+								"media": "all and (min-width: 1024px)",
+								"top": "20px",
+								"left": "1269px",
+								"width": "104px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (min-width: 500px) and (max-width: 1023px)",
+								"top": "20px",
+								"left": "620px",
+								"width": "51px",
+								"height": "44px"
+							}, 
+							{
+								"media": "all and (max-width: 499px)",
+								"top": "20px",
+								"left": "434px",
+								"width": "36px",
+								"height": "44px"
+							}
+						]
 					});
 				})(group_2);
+				if(typeof onGroupClick2 == "function") {
+					group_2.addEventListener("click", onGroupClick2);
+				}
 				container.addChild(group_2, {
 					positions: [
 						{
@@ -270,30 +338,30 @@
 				if(typeof onNav1Click2 == "function") {
 					navigationBar_1.addEventListener("click", onNav1Click2);
 				}
-				if(typeof onNav1SelectionChange2 == "function") {
-					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
+				if(typeof onNav1SelectionChange == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
 				}
 				container.addChild(navigationBar_1, {
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
 							"top": "84px",
+							"right": "431px",
 							"left": "540px",
-							"width": "1133px",
 							"height": "142px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "84px",
+							"right": "210px",
 							"left": "264px",
-							"width": "553px",
 							"height": "142px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "84px",
+							"right": "147px",
 							"left": "185px",
-							"width": "387px",
 							"height": "142px"
 						}
 					]

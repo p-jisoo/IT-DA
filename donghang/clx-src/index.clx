@@ -12,19 +12,19 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[HOME]]></cl:datavalue>
+            <cl:datavalue columnname="labal">HOME</cl:datavalue>
             <cl:datavalue columnname="value">value1</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[교육신청]]></cl:datavalue>
+            <cl:datavalue columnname="labal">교육신청</cl:datavalue>
             <cl:datavalue columnname="value">value2</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[자료]]></cl:datavalue>
+            <cl:datavalue columnname="labal">자료</cl:datavalue>
             <cl:datavalue columnname="value">value3</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[봉사참여]]></cl:datavalue>
+            <cl:datavalue columnname="labal">봉사참여</cl:datavalue>
             <cl:datavalue columnname="value">value4</cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
@@ -32,6 +32,9 @@
       <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-b47f7720" id="sms2" action="register">
+        <cl:listener std:sid="listener-020825c0" name="submit-success" handler="onSms2SubmitSuccess2"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -41,20 +44,27 @@
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
       <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="0px" right="-1080px" bottom="-1980px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:group std:sid="group-f2a4904e">
+        <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-bd49ed5e">
           <cl:xylayoutdata std:sid="sxyl-data-751b4d86" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:button std:sid="button-14d0131e" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value="  로그인   ">
-          <cl:xylayoutdata std:sid="xyl-data-1853db54" top="20px" left="1372px" width="70px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:responsivexylayoutdata std:sid="rxyl-data-8a172b03">
+            <cl:xylayoutdata std:sid="sxyl-data-702e5e55" top="20px" left="1372px" width="70px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          </cl:responsivexylayoutdata>
         </cl:button>
-        <cl:button std:sid="button-15c4f97b" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value="회원가입  ">
+        <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value="회원가입  ">
           <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-          <cl:xylayoutdata std:sid="xyl-data-84d04ae6" top="20px" left="1441px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:responsivexylayoutdata std:sid="rxyl-data-5cf0f1ad">
+            <cl:xylayoutdata std:sid="sxyl-data-352084e3" top="20px" left="1441px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          </cl:responsivexylayoutdata>
         </cl:button>
         <cl:button std:sid="button-cbc3994d" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value=" 마이페이지 ">
-          <cl:xylayoutdata std:sid="xyl-data-2e9538c2" top="20px" left="1269px" width="104px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:responsivexylayoutdata std:sid="rxyl-data-eb648c4a">
+            <cl:xylayoutdata std:sid="sxyl-data-1bc36404" top="20px" left="1269px" width="104px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          </cl:responsivexylayoutdata>
         </cl:button>
-        <cl:xylayout std:sid="xylayout-82874f67"/>
+        <cl:responsivexylayout std:sid="r-xylayout-e94b3b1c"/>
       </cl:group>
       <cl:img std:sid="image-4c8c343d" src="theme/images/pivot/logodonghang .png">
         <cl:responsivexylayoutdata std:sid="rxyl-data-60a3da2c">
@@ -69,9 +79,9 @@
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.7rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
         <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
-        <cl:listener std:sid="listener-bcbb6471" name="selection-change" handler="onNav1SelectionChange2"/>
+        <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1f8f1a9">
-          <cl:xylayoutdata std:sid="sxyl-data-3294b4a1" top="84px" left="540px" width="1133px" height="142px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-3294b4a1" top="84px" right="431px" left="540px" height="142px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
