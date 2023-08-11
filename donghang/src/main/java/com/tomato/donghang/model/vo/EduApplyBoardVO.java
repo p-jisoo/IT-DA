@@ -6,10 +6,14 @@ import lombok.ToString;
 @Data
 @ToString
 public class EduApplyBoardVO {
-	private long boardNo;
-	private String boardTitle;
-	private String boardContent;
-	private String category;
-//	private String applyStatus;
-//	private String memberVO;
+	private long eboardNo;
+    private String eduBoardTitle;
+    private String eduBoardStartPeriod;
+    private String eduBoardEndPeriod;
+    private String eduBoardApplyStartPeriod;
+    private String eduBoardApplyEndPeriod;
+    private int eduBoardApplyMemberCount;
+    private String eduApplyBoardStatus;
+    private String eduApplyBoardCategory;
+    private String eduApplyBoardContent;
 }

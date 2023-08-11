@@ -1,5 +1,7 @@
 package com.tomato.donghang.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
@@ -8,5 +10,7 @@ import com.tomato.donghang.model.vo.EduApplyBoardVO;
 public interface EduApplyBoardMapper {
 
 	void createBoard(EduApplyBoardVO vo);
+
+	List<EduApplyBoardVO> findAllBoardList();
 
 }

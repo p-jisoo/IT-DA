@@ -26,17 +26,6 @@ public class EduApplyBoardController {
 	}
 	@PostMapping("/ui/createBoard.do")
 	public void createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) { 
-		ParameterGroup param = dataRequest.getParameterGroup("dm1");
-		String title =param.getValue("BOARD_TITLE");
-		String content = param.getValue("BOARD_CONTENT");
-		String category = param.getValue("CATEGORY");
-		System.out.println(param.getValue("BOARD_TITLE"));
 		
-		EduApplyBoardVO vo= new EduApplyBoardVO();
-		vo.setBoardTitle(title);
-		vo.setBoardContent(content);
-		vo.setCategory(category);
-		System.out.println(vo +"controller");
-		eduApplyBoardService.createBoard(vo);
 	}
 }

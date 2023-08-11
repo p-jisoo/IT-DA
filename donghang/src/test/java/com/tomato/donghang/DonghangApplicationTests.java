@@ -20,13 +20,7 @@ class DonghangApplicationTests {
 	EduApplyBoardMapper eduApplyBoardMapper;
 	@Test
 	public void eduApplyBoardServiceDI() {
-		EduApplyBoardVO vo= new EduApplyBoardVO();
-		String title = "asdf";
-		String content = "asdf";
-		String category = "asdf";
-		vo.setBoardTitle(title);
-		vo.setBoardContent(content);
-		vo.setCategory(category);
+	
 		//int count = eduApplyBoardMapper.createBoard(vo);
 	}
 	

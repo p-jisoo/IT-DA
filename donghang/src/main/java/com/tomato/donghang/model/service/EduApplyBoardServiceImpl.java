@@ -17,5 +17,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			
 		eduApplyBoardMapper.createBoard(vo);
 	}
+	
+	
+	
 
 }

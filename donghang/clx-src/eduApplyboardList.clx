@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-68a7fcd2" version="1.0.4584">
+  <head std:sid="head-8887224d">
+    <screen std:sid="screen-fb47c1b7" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
+    <screen std:sid="screen-016a0653" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-e81e80c3" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-0f929c98" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-98a6d020">
+      <cl:dataset std:sid="d-set-1dbb85fd" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-47889cb8" name="BOARD_NO" displayonly="true"/>
+          <cl:datacolumn std:sid="d-column-00bedc35" name="BOARD_TITLE" displayonly="false"/>
+          <cl:datacolumn std:sid="d-column-89e418af" name="PERIOD" datatype="string" displayonly="true"/>
+          <cl:datacolumn std:sid="d-column-5b26f625" name="BOARD_CATEGORY" displayonly="true"/>
+          <cl:datacolumn std:sid="d-column-d7a770bc" name="APPLY_STATUS" displayonly="true"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-ce86803d">
+    <cl:group std:sid="group-922b7e01">
+      <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
+      <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:grid std:sid="grid-61c7ca21" id="grd1" readonly="true" datasetid="ds1">
+        <cl:xylayoutdata std:sid="xyl-data-2eb214fe" top="202px" left="266px" width="1333px" height="551px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:gridcolumn std:sid="g-column-ef748243"/>
+        <cl:gridcolumn std:sid="g-column-a2a3ec5a"/>
+        <cl:gridcolumn std:sid="g-column-3f42ae33"/>
+        <cl:gridcolumn std:sid="g-column-ae005fb6"/>
+        <cl:gridcolumn std:sid="g-column-2f49cff9"/>
+        <cl:gridheader std:sid="gh-band-248b8bf1">
+          <cl:gridrow std:sid="g-row-7396b9f7"/>
+          <cl:gridcell std:sid="gh-cell-8fb32f6f" rowindex="0" colindex="0" targetcolumnname="BOARD_NO" sortable="false" filterable="false" text="BOARD_NO"/>
+          <cl:gridcell std:sid="gh-cell-0f6c7b20" rowindex="0" colindex="1" targetcolumnname="BOARD_TITLE" sortable="false" filterable="false" text="BOARD_TITLE"/>
+          <cl:gridcell std:sid="gh-cell-a91858ae" rowindex="0" colindex="2" targetcolumnname="PERIOD" sortable="false" filterable="false" text="PERIOD"/>
+          <cl:gridcell std:sid="gh-cell-74ac1ed5" rowindex="0" colindex="3" targetcolumnname="BOARD_CATEGORY" sortable="false" filterable="false" text="BOARD_CATEGORY"/>
+          <cl:gridcell std:sid="gh-cell-212cb56f" rowindex="0" colindex="4" targetcolumnname="APPLY_STATUS" sortable="false" filterable="false" text="APPLY_STATUS"/>
+        </cl:gridheader>
+        <cl:griddetail std:sid="gd-band-3a7d070b">
+          <cl:gridrow std:sid="g-row-603b28de"/>
+          <cl:gridcell std:sid="gd-cell-92db6863" rowindex="0" colindex="0" columnname="BOARD_NO">
+            <cl:inputbox std:sid="i-box-9a175b69" id="ipb1">
+              <cl:celldata/>
+            </cl:inputbox>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-383e1c1d" rowindex="0" colindex="1" columnname="BOARD_TITLE">
+            <cl:inputbox std:sid="i-box-4ce9cdee" id="ipb2">
+              <cl:celldata/>
+            </cl:inputbox>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-4b892207" rowindex="0" colindex="2" columnname="PERIOD">
+            <cl:inputbox std:sid="i-box-15afc360" id="ipb3">
+              <cl:celldata/>
+            </cl:inputbox>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-74b45cd7" rowindex="0" colindex="3" columnname="BOARD_CATEGORY">
+            <cl:inputbox std:sid="i-box-bebe5f1c" id="ipb4">
+              <cl:celldata/>
+            </cl:inputbox>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-25065d98" rowindex="0" colindex="4" columnname="APPLY_STATUS">
+            <cl:inputbox std:sid="i-box-4185737d" id="ipb5">
+              <cl:celldata/>
+            </cl:inputbox>
+          </cl:gridcell>
+        </cl:griddetail>
+      </cl:grid>
+      <cl:xylayout std:sid="xylayout-27bafe77"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-bec286de"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
