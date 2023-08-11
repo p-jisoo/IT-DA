@@ -36,7 +36,6 @@
 			 */
 			function onSms1SubmitSuccess2(e) {
 				var sms1 = e.control;
-				console.log(sms1.getParameters("menu")); 
 				var number = sms1.getParameters("menu").toString();
 				//	if(number=="0"){
 				//		window.location.href="/";
@@ -54,7 +53,16 @@
 						window.location.href = "showmeapply.do";
 						break;
 				}
+				
 			}
+
+			/*
+			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+			};
 			// End - User Script
 			
 			// Header
@@ -74,7 +82,7 @@
 			app.register(dataSet_1);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
-			submission_1.action = "apply.do";
+			submission_1.action = "apply";
 			if(typeof onSms1ReceiveJson == "function") {
 				submission_1.addEventListener("receive-json", onSms1ReceiveJson);
 			}
@@ -82,19 +90,6 @@
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
 			app.register(submission_1);
-			
-			var submission_2 = new cpr.protocols.Submission("sms2");
-			submission_2.action = "apply.do";
-			if(typeof onSms2SubmitSuccess2 == "function") {
-				submission_2.addEventListener("submit-success", onSms2SubmitSuccess2);
-			}
-			app.register(submission_2);
-			
-			var submission_3 = new cpr.protocols.Submission("sms3");
-			if(typeof onSms3SubmitSuccess == "function") {
-				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
-			}
-			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -147,8 +142,8 @@
 						"border-bottom-style" : "none",
 						"border-top-style" : "none"
 					});
-					if(typeof onButtonClick == "function") {
-						button_2.addEventListener("click", onButtonClick);
+					if(typeof onButtonClick2 == "function") {
+						button_2.addEventListener("click", onButtonClick2);
 					}
 					container.addChild(button_2, {
 						"top": "20px",
@@ -232,100 +227,24 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1024px)",
-							"top": "251px",
-							"left": "269px",
+							"top": "289px",
+							"left": "230px",
 							"width": "1127px",
 							"height": "606px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "251px",
-							"left": "131px",
+							"top": "289px",
+							"left": "112px",
 							"width": "550px",
 							"height": "606px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "251px",
-							"left": "92px",
+							"top": "289px",
+							"left": "79px",
 							"width": "385px",
 							"height": "606px"
-						}
-					]
-				});
-				var textArea_1 = new cpr.controls.TextArea("txa1");
-				textArea_1.value = "IT다";
-				textArea_1.style.css({
-					"background-color" : "#FFFFFF",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"white-space" : "normal",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.8rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(textArea_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "103px",
-							"left": "269px",
-							"width": "140px",
-							"height": "61px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "103px",
-							"left": "131px",
-							"width": "68px",
-							"height": "61px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "103px",
-							"left": "92px",
-							"width": "48px",
-							"height": "61px"
-						}
-					]
-				});
-				var textArea_2 = new cpr.controls.TextArea("txa2");
-				textArea_2.value = "Accompany";
-				textArea_2.style.css({
-					"background-color" : "#FFFFFF",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"white-space" : "normal",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.3rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				container.addChild(textArea_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1024px)",
-							"top": "153px",
-							"left": "269px",
-							"width": "183px",
-							"height": "50px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "153px",
-							"left": "131px",
-							"width": "89px",
-							"height": "50px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "153px",
-							"left": "92px",
-							"width": "63px",
-							"height": "50px"
 						}
 					]
 				});
@@ -348,11 +267,11 @@
 				if(typeof onNav1ItemClick == "function") {
 					navigationBar_1.addEventListener("item-click", onNav1ItemClick);
 				}
-				if(typeof onNav1SelectionChange == "function") {
-					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
-				}
 				if(typeof onNav1Click2 == "function") {
 					navigationBar_1.addEventListener("click", onNav1Click2);
+				}
+				if(typeof onNav1SelectionChange2 == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
 				}
 				container.addChild(navigationBar_1, {
 					positions: [
@@ -376,6 +295,70 @@
 							"left": "185px",
 							"width": "387px",
 							"height": "142px"
+						}
+					]
+				});
+				var output_1 = new cpr.controls.Output();
+				output_1.value = "ITda";
+				output_1.style.css({
+					"color" : "#4682A9",
+					"font-weight" : "bolder",
+					"font-size" : "2rem"
+				});
+				container.addChild(output_1, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "102px",
+							"left": "269px",
+							"width": "107px",
+							"height": "44px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "102px",
+							"left": "131px",
+							"width": "52px",
+							"height": "44px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "102px",
+							"left": "92px",
+							"width": "37px",
+							"height": "44px"
+						}
+					]
+				});
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "Accompany";
+				output_2.style.css({
+					"color" : "#4682A9",
+					"font-weight" : "bold",
+					"font-size" : "1.6rem"
+				});
+				container.addChild(output_2, {
+					positions: [
+						{
+							"media": "all and (min-width: 1024px)",
+							"top": "144px",
+							"left": "269px",
+							"width": "153px",
+							"height": "41px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "144px",
+							"left": "131px",
+							"width": "75px",
+							"height": "41px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "144px",
+							"left": "92px",
+							"width": "52px",
+							"height": "41px"
 						}
 					]
 				});

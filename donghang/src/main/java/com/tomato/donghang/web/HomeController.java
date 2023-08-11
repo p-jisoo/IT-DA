@@ -19,9 +19,8 @@ public class HomeController {
 	public View Home() {
 		return new UIView("ui/index.clx");
 	}
-	@PostMapping("ui/apply.do")
+	@PostMapping("ui/apply")
 	public String apply(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		System.out.println(request.getParameter("menu"));
 		String menu= request.getParameter("menu");
 		return menu;		
 		

@@ -23,7 +23,6 @@ function onNav1ItemClick(e) {
  */
 function onSms1SubmitSuccess2(e) {
 	var sms1 = e.control;
-	console.log(sms1.getParameters("menu")); 
 	var number = sms1.getParameters("menu").toString();
 	//	if(number=="0"){
 	//		window.location.href="/";
@@ -41,4 +40,13 @@ function onSms1SubmitSuccess2(e) {
 			window.location.href = "showmeapply.do";
 			break;
 	}
+	
+}
+
+/*
+ * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e){
+	var button = e.control;
 }

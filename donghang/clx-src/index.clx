@@ -29,15 +29,9 @@
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
-      <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply.do">
+      <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
-      </cl:submission>
-      <cl:submission std:sid="submission-2cdc36d6" id="sms2" action="apply.do">
-        <cl:listener std:sid="listener-825daa6d" name="submit-success" handler="onSms2SubmitSuccess2"/>
-      </cl:submission>
-      <cl:submission std:sid="submission-5608a4b7" id="sms3">
-        <cl:listener std:sid="listener-5b50217d" name="submit-success" handler="onSms3SubmitSuccess"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -54,7 +48,7 @@
           <cl:xylayoutdata std:sid="xyl-data-1853db54" top="20px" left="1372px" width="70px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-15c4f97b" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value="회원가입  ">
-          <cl:listener std:sid="listener-cbf97b08" name="click" handler="onButtonClick"/>
+          <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
           <cl:xylayoutdata std:sid="xyl-data-84d04ae6" top="20px" left="1441px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-cbc3994d" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value=" 마이페이지 ">
@@ -69,28 +63,28 @@
       </cl:img>
       <cl:img std:sid="image-8edd5818" src="theme/images/pivot/back.jpg">
         <cl:responsivexylayoutdata std:sid="rxyl-data-0f355155">
-          <cl:xylayoutdata std:sid="sxyl-data-c14d0853" top="251px" left="269px" width="1127px" height="606px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+          <cl:xylayoutdata std:sid="sxyl-data-c14d0853" top="289px" left="230px" width="1127px" height="606px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
       </cl:img>
-      <cl:textarea std:sid="t-area-29d6598f" id="txa1" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; white-space:normal; border-left-style:none; font-weight:bold; font-size:1.8rem; border-bottom-style:none; border-top-style:none;" value="IT다">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-f5e41f30">
-          <cl:xylayoutdata std:sid="sxyl-data-42afced9" top="103px" left="269px" width="140px" height="61px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        </cl:responsivexylayoutdata>
-      </cl:textarea>
-      <cl:textarea std:sid="t-area-579ad5b9" id="txa2" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; white-space:normal; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" value="Accompany">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-b41ce134">
-          <cl:xylayoutdata std:sid="sxyl-data-4c9c71a9" top="153px" left="269px" width="183px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        </cl:responsivexylayoutdata>
-      </cl:textarea>
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.7rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
-        <cl:listener std:sid="listener-0bd487f7" name="selection-change" handler="onNav1SelectionChange"/>
         <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
+        <cl:listener std:sid="listener-bcbb6471" name="selection-change" handler="onNav1SelectionChange2"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-d1f8f1a9">
           <cl:xylayoutdata std:sid="sxyl-data-3294b4a1" top="84px" left="540px" width="1133px" height="142px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
+      <cl:output std:sid="output-7e7d16d7" style="color:#4682A9; font-weight:bolder; font-size:2rem;" value="ITda">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-88ef79dd">
+          <cl:xylayoutdata std:sid="sxyl-data-d8bb5aba" top="102px" left="269px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
+      <cl:output std:sid="output-657ac17b" style="color:#4682A9; font-weight:bold; font-size:1.6rem;" value="Accompany">
+        <cl:responsivexylayoutdata std:sid="rxyl-data-55cc1f06">
+          <cl:xylayoutdata std:sid="sxyl-data-62ce87d1" top="144px" left="269px" width="153px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
+        </cl:responsivexylayoutdata>
+      </cl:output>
       <cl:responsivexylayout std:sid="r-xylayout-b4787a27"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>
