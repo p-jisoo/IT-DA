@@ -33,9 +33,9 @@ public class EduApplyBoardController {
 		System.out.println(param.getValue("BOARD_TITLE"));
 		
 		EduApplyBoardVO vo= new EduApplyBoardVO();
-		vo.setBoardTitle(title);
-		vo.setBoardContent(content);
-		vo.setCategory(category);
+		vo.setEduBoardTitle(title);
+		vo.setEduApplyBoardContent(content); 
+		vo.setEduApplyBoardCategory(category);
 		System.out.println(vo +"controller");
 		eduApplyBoardService.createBoard(vo);
 	}
