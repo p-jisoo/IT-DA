@@ -11,5 +11,19 @@
  */
 function onGroupBeforeDraw(e){
 	var group = e.control;
-	
+	var submission = app.lookup("sms1");
+	submission.send();
+}
+
+/*
+ * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
+ * Page index를 선택하여 선택된 페이지가 변경된 후에 발생하는 이벤트.
+ */
+function onPageSelectionChange(e){
+	var page = app.lookup("page");
+	var currentPageIndex = page.currentPageIndex;
+	var dataMap = app.lookup("dm1");
+	dataMap.setValue("nowpage", currentPageIndex);
+	var submission = app.lookup("pageInd");
+	submission.send();
 }
