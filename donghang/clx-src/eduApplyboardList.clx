@@ -30,6 +30,46 @@
         </cl:datacolumnlist>
         <cl:datarowlist/>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-ccc1be66" id="dsSlct">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-009db351" name="label"/>
+          <cl:datacolumn std:sid="d-column-1e76d3b6" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[전체]]></cl:datavalue>
+            <cl:datavalue columnname="value">value3</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[제목]]></cl:datavalue>
+            <cl:datavalue columnname="value">value1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[작성자]]></cl:datavalue>
+            <cl:datavalue columnname="value">value2</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-230973ae" id="tpSlct">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-7d691aba" name="label"/>
+          <cl:datacolumn std:sid="d-column-40fddb7d" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[전체]]></cl:datavalue>
+            <cl:datavalue columnname="value">value1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[모집중]]></cl:datavalue>
+            <cl:datavalue columnname="value">value2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[모집마감]]></cl:datavalue>
+            <cl:datavalue columnname="value">value3</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-8e27a01d" id="dm1">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-a83d57a3" name="nowpage"/>
@@ -44,15 +84,17 @@
         <cl:requestdata dataid="dm1"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
+      <cl:submission std:sid="submission-c81cf120" id="sms2"/>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-ce86803d">
+    <cl:listener std:sid="listener-2d0108d2" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-922b7e01">
       <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
       <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:grid std:sid="grid-61c7ca21" id="grd1" style="border-left-style:none;" datasetid="ds2">
-        <cl:xylayoutdata std:sid="xyl-data-2eb214fe" top="48px" left="196px" width="1393px" height="658px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-2eb214fe" top="338px" left="211px" width="1226px" height="484px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:detailstyle style="text-align:left;"/>
         <cl:gridcolumn std:sid="g-column-c4b83e82"/>
         <cl:gridcolumn std:sid="g-column-5f09081a"/>
@@ -98,8 +140,31 @@
       </cl:grid>
       <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" totalrowcount="11" pagerowcount="5" viewpagecount="4" visiblefirstbutton="false" visiblelastbutton="false">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="845px" left="667px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="868px" left="667px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:pageindexer>
+      <cl:group std:sid="group-ea39192a">
+        <cl:xylayoutdata std:sid="xyl-data-f2b0e079" top="259px" left="395px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:searchinput std:sid="s-input-b376f132">
+          <cl:formdata std:sid="f-data-e7f93872" row="0" col="1"/>
+        </cl:searchinput>
+        <cl:button std:sid="button-d1106101" value="Button">
+          <cl:formdata std:sid="f-data-4f212139" row="0" col="2"/>
+        </cl:button>
+        <cl:combobox std:sid="c-box-37bd0e42" id="cmb1">
+          <cl:formdata std:sid="f-data-41e3c1dd" row="0" col="0"/>
+          <cl:itemset datasetid="dsSlct" label="label" value="value"/>
+        </cl:combobox>
+        <cl:formlayout std:sid="f-layout-d7e48c92" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+          <cl:rows length="1" unit="FRACTION"/>
+          <cl:columns length="1" unit="FRACTION"/>
+          <cl:columns length="768" unit="PIXEL"/>
+          <cl:columns length="1" unit="FRACTION"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:listbox std:sid="l-box-5558ba13" id="lbx1">
+        <cl:xylayoutdata std:sid="xyl-data-cc6212fc" top="228px" left="216px" width="169px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:itemset datasetid="tpSlct" label="label" value="value"/>
+      </cl:listbox>
       <cl:xylayout std:sid="xylayout-27bafe77"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-bec286de"/>

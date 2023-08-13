@@ -1,6 +1,7 @@
 package com.tomato.donghang.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,6 @@ public interface EduApplyBoardMapper {
 	List<EduApplyBoardVO> findBoardListByPage(Pagination pagination);
 
 	long findAllBoardCount();
+
+	List<EduApplyBoardVO> findBoardListByPageTest(Map<String, Object> map);
 }
