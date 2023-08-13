@@ -11,7 +11,11 @@
  */
 function onGroupBeforeDraw(e){
 	var group = e.control;
-	var submission = app.lookup("sms1");
+	var page = app.lookup("page");
+	var currentPageIndex = page.currentPageIndex;
+	var dataMap = app.lookup("dm1");
+	dataMap.setValue("nowpage", currentPageIndex);
+	var submission = app.lookup("pageInd");
 	submission.send();
 }
 
@@ -26,4 +30,23 @@ function onPageSelectionChange(e){
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("pageInd");
 	submission.send();
+}
+
+/*
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
+ */
+function onSms1SubmitDone(e){
+	var sms1 = e.control;
+	var pageIndexer = app.lookup("page");
+	console.log(sms1.xhr.responseText);
+}
+
+/*
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
+ */
+function onPageIndSubmitDone(e){
+	var pageInd = e.control;
+	
 }

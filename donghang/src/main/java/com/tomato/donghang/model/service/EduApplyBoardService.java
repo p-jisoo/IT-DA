@@ -11,4 +11,6 @@ public interface EduApplyBoardService {
 	void createBoard(EduApplyBoardVO vo);
 
 	List<Map<String, Object>> findBaordList();
+
+	List<Map<String, Object>> findBaordListBy(String value);
 }

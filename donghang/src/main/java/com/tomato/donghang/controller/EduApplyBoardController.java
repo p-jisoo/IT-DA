@@ -61,7 +61,9 @@ public class EduApplyBoardController {
 	
 	@PostMapping("/ui/findBoardListByPage.do")
 	public View findBoardListByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-	
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		List<Map<String, Object>> data = eduApplyBoardService.findBaordListBy(param.getValue("nowpage"));
+		dataRequest.setResponse("ds2", data);
 		return new JSONDataView();
 	}
 	
