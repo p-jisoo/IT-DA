@@ -40,11 +40,18 @@ function onSms1SubmitError(e){
 function onButtonClick2(e){
 	var button = e.control;
 	var submission = app.lookup("sms2");
-	submission.send();
-	
+	submission.send();	
 }
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms2SubmitSuccess(e ){
+	cpr.foundation.Workflow 
+	var sms2 = e.control;
+	
 
-
+}
 
 /*
  * "우편번호 확인" 버튼에서 click 이벤트 발생 시 호출.
@@ -77,4 +84,5 @@ function onButtonClick3(e){
     }).open()	;
  });
 }
+
 

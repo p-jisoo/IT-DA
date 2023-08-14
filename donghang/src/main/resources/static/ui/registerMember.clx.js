@@ -53,11 +53,18 @@
 			function onButtonClick2(e){
 				var button = e.control;
 				var submission = app.lookup("sms2");
-				submission.send();
-				
+				submission.send();	
 			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms2SubmitSuccess(e ){
+				cpr.foundation.Workflow 
+				var sms2 = e.control;
+				
 
-
+			}
 
 			/*
 			 * "우편번호 확인" 버튼에서 click 이벤트 발생 시 호출.
@@ -137,7 +144,11 @@
 			
 			var submission_2 = new cpr.protocols.Submission("sms2");
 			submission_2.action = "checkIdMember";
+			submission_2.addRequestData(dataMap_2);
 			submission_2.addResponseData(dataMap_2, false);
+			if(typeof onSms2SubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
+			}
 			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
@@ -667,7 +678,6 @@
 				inputBox_4.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "address");
 				container.addChild(inputBox_4, {
 					positions: [
 						{
@@ -1013,28 +1023,28 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "257px",
+						"top": "258px",
 						"left": "910px",
 						"width": "530px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "257px",
+						"top": "258px",
 						"left": "910px",
 						"width": "530px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "257px",
+						"top": "258px",
 						"left": "444px",
 						"width": "259px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "257px",
+						"top": "258px",
 						"left": "311px",
 						"width": "181px",
 						"height": "746px"

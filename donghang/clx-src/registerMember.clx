@@ -28,6 +28,8 @@
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-586f4bd3" id="sms2" action="checkIdMember">
+        <cl:listener std:sid="listener-0263c94d" name="submit-success" handler="onSms2SubmitSuccess"/>
+        <cl:requestdata dataid="dm2"/>
         <cl:responsedata dataid="dm2"/>
       </cl:submission>
     </cl:model>
@@ -75,7 +77,7 @@
     </cl:button>
     <cl:group std:sid="group-b8167950">
       <cl:responsivexylayoutdata std:sid="rxyl-data-7ad16296">
-        <cl:xylayoutdata std:sid="sxyl-data-90d4ae06" top="257px" left="910px" width="530px" height="746px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-90d4ae06" top="258px" left="910px" width="530px" height="746px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
       <cl:inputbox std:sid="i-box-d24606ea" id="ipb1" style="font-size:1.2rem;" placeholder="아이디">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userId"/>
@@ -112,7 +114,6 @@
         </cl:responsivexylayoutdata>
       </cl:output>
       <cl:inputbox std:sid="i-box-1841ede3" id="PostCode" style="font-size:1.2rem;" placeholder="우편번호">
-        <cl:datamapbind property="value" datacontrolid="dm1" columnname="address"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-b3994632">
           <cl:xylayoutdata std:sid="sxyl-data-8d9e4f6e" top="293px" left="0px" width="295px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         </cl:responsivexylayoutdata>

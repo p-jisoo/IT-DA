@@ -1,5 +1,7 @@
 package com.tomato.donghang.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -88,4 +90,17 @@ public class MemberController {
 		}
 		return new JSONDataView();
 	}
+
+	@PostMapping("ui/checkIdMember")
+	public View checkIdMember(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+		ParameterGroup data=dataRequest.getParameterGroup("dm2");
+		String id=data.getValue("userId");
+		
+		MemberVO vo=mapperMapper.checkIdMember(id);
+		
+		
+		return null;
+			
+	}	
 }
+
