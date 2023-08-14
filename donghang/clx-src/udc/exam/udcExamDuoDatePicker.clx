@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-af996d9b" version="1.0.3388">
+  <head std:sid="head-cd9f72fe">
+    <screen std:sid="screen-304cbc1f" id="default" name="default" minwidth="1024px" width="1024px" height="768px" customHeight="600" customWidth="800"/>
+    <screen std:sid="screen-6be8d9f7" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-05da58fe" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-2fc47b15"/>
+    <cl:appspec title="FromTo피커">
+      <cl:property name="format" type="string" default="YYYYMMDD"/>
+      <cl:property name="mask" type="string" default="YYYY-MM-DD"/>
+      <cl:property name="enabledDateExp" type="expression"/>
+      <cl:property name="fromValue" type="string" bindable="true" translatable="false"/>
+      <cl:property name="toValue" type="string" bindable="true"/>
+      <cl:property name="dateInputClass" type="string"/>
+      <cl:property name="calendarClass" type="string"/>
+      <cl:property name="useTimeFormat" type="boolean" default="false"/>
+      <cl:property name="selectOption" type="enumeration" default="date" std:desc="date : 과년도 동일일자, dayofWeek : 과년도 요일, day : 일자구간, month : 월구간">
+        <cl:available-value>dayofweek</cl:available-value>
+        <cl:available-value>date</cl:available-value>
+        <cl:available-value>day</cl:available-value>
+        <cl:available-value>month</cl:available-value>
+      </cl:property>
+      <cl:property name="useAutoSelect" type="boolean" default="false"/>
+      <cl:event name="before-value-change" type="cpr.events.CValueChangeEvent"/>
+      <cl:event name="value-change" type="cpr.events.CValueChangeEvent"/>
+      <cl:event name="open" type="cpr.events.CUIEvent"/>
+      <cl:event name="close" type="cpr.events.CUIEvent"/>
+      <cl:event name="clear" type="cpr.events.CUIEvent"/>
+    </cl:appspec>
+  </head>
+  <body std:sid="body-8f868f75" style="top:0px; left:0px; width:300px; height:30px;" class="datepickers">
+    <cl:listener std:sid="listener-b591418b" name="load" handler="onBodyLoad"/>
+    <cl:dateinput std:sid="d-input-c6b3bcd4" id="dtiFrom" hidebutton="true" placeholder="시작일">
+      <cl:listener std:sid="listener-3c918a04" name="click" handler="onDtiClick"/>
+      <cl:apppropbind property="value" app-property="fromValue"/>
+      <cl:apppropbind property="format" app-property="format"/>
+      <cl:apppropbind property="mask" app-property="mask"/>
+      <cl:expbind property="class" category="CLASS" expression="@getClassValid(@dateInputClass) != &quot;&quot; ? @dateInputClass : &quot;datepicker&quot;"/>
+      <cl:formdata std:sid="f-data-62f67d1c" row="0" col="0"/>
+    </cl:dateinput>
+    <cl:dateinput std:sid="d-input-868dab46" id="dtiTo" hidebutton="true" placeholder="종료일" showclearbutton="true">
+      <cl:listener std:sid="listener-53833d3b" name="click" handler="onDtiClick"/>
+      <cl:listener std:sid="listener-e5bd7b6e" name="clear" handler="onDtiToClear"/>
+      <cl:apppropbind property="value" app-property="toValue"/>
+      <cl:apppropbind property="format" app-property="format"/>
+      <cl:apppropbind property="mask" app-property="mask"/>
+      <cl:expbind property="class" category="CLASS" expression="@getClassValid(@dateInputClass) != &quot;&quot; ? @dateInputClass : &quot;datepicker&quot;"/>
+      <cl:formdata std:sid="f-data-56d6f8ce" row="0" col="2"/>
+    </cl:dateinput>
+    <cl:button std:sid="button-d8ed9338" id="btnClear" class="btn-p-0" value="X">
+      <cl:listener std:sid="listener-00abc2a9" name="click" handler="onBtnClearClick"/>
+      <cl:formdata std:sid="f-data-7debb691" row="0" col="3"/>
+    </cl:button>
+    <cl:output std:sid="output-4117034c" id="opt1" class="text-center" value="-">
+      <cl:formdata std:sid="f-data-92172749" row="0" col="1"/>
+    </cl:output>
+    <cl:formlayout std:sid="f-layout-eda5e894" scrollable="false" hspace="0px" vspace="0px">
+      <cl:rows length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="20" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="30" unit="PIXEL" autoSizing="false" hidden="true" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+    </cl:formlayout>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

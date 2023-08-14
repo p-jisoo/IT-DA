@@ -5,130 +5,119 @@
     <screen std:sid="screen-26683f91" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="false" useCustomHeight="false" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-ca531e1b" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
     <screen std:sid="screen-9e15770c" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
-    <cl:model std:sid="model-5d8ada86"/>
+    <cl:model std:sid="model-5d8ada86">
+      <cl:dataset std:sid="d-set-17567465" id="boardList">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-29d9733b" name="BOARD_NO" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-080c4119" name="BOARD_TITLE"/>
+          <cl:datacolumn std:sid="d-column-ed6737d5" name="BOARD_CONTENT" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-ed420559" name="CATEGORY"/>
+          <cl:datacolumn std:sid="d-column-1981625c" name="APPLY_STATUS"/>
+          <cl:datacolumn comment="" std:sid="d-column-19ab5c2f" name="USER_ID" datatype="string"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-81dc0af2" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-35ec5269" name="BOARD_TITLE"/>
+          <cl:datacolumn std:sid="d-column-c8b6343f" name="BOARD_CONTENT"/>
+          <cl:datacolumn std:sid="d-column-75055703" name="CATEGORY"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-31ee007d" id="createsms" action="createBoard.do">
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-d498b017">
-    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9;" value="목록">
-      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="79px" left="20px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:datamapcontext datacontrolid="dm1"/>
+    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
+      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="779px" left="1340px" width="180px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-b07d382a" style="background-color:#4682A9;" value="신청하기">
-      <cl:listener std:sid="listener-333a98be" name="animationend" handler="onButtonAnimationend"/>
-      <cl:xylayoutdata std:sid="xyl-data-a89fe144" top="79px" left="1477px" width="206px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:button std:sid="button-c5c47a2b" style="background-color:#4682A9;" value="♡관심목록 담기">
-      <cl:xylayoutdata std:sid="xyl-data-74ee683d" top="79px" left="1693px" width="206px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:grid std:sid="grid-f1dcea3c" id="grd1">
-      <cl:xylayoutdata std:sid="xyl-data-ec290871" top="687px" bottom="21px" left="19px" width="1883px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
-      <cl:gridcolumn std:sid="g-column-4efd311d"/>
-      <cl:gridcolumn std:sid="g-column-ebbaa9bc" width="169px"/>
-      <cl:gridcolumn std:sid="g-column-d8476740"/>
-      <cl:gridcolumn std:sid="g-column-8406ae54"/>
-      <cl:gridcolumn std:sid="g-column-7aa591a1"/>
-      <cl:gridcolumn std:sid="g-column-1ad5a84f"/>
-      <cl:gridcolumn std:sid="g-column-0b5a073d"/>
-      <cl:gridcolumn std:sid="g-column-c743a678"/>
-      <cl:gridheader std:sid="gh-band-8fd695aa">
-        <cl:gridrow std:sid="g-row-10b1589d"/>
-        <cl:gridcell std:sid="gh-cell-23b10fc9" rowindex="0" colindex="0" text="봉사기간"/>
-        <cl:gridcell std:sid="gh-cell-3f0f9abe" rowindex="0" colindex="1" text="봉사시간"/>
-        <cl:gridcell std:sid="gh-cell-1e983118" rowindex="0" colindex="2" text="모집기간"/>
-        <cl:gridcell std:sid="gh-cell-6587b087" rowindex="0" colindex="3" text="모집인원"/>
-        <cl:gridcell std:sid="gh-cell-fcdb4e97" rowindex="0" colindex="4" text="신청인원"/>
-        <cl:gridcell std:sid="gh-cell-bb3b6c40" rowindex="0" colindex="5" text="봉사자유형"/>
-        <cl:gridcell std:sid="gh-cell-66eae364" rowindex="0" colindex="6" text="봉사장소"/>
-        <cl:gridcell std:sid="gh-cell-eca16987" rowindex="0" colindex="7" text="활동구분"/>
-      </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-a8e02a00">
-        <cl:gridrow std:sid="g-row-ba00b0fc"/>
-        <cl:gridcell std:sid="gd-cell-0a5c301a" rowindex="0" colindex="0" columnname="2023.07.26 ~ 2023.08.18"/>
-        <cl:gridcell std:sid="gd-cell-9a3b341a" rowindex="0" colindex="1" columnname="&#xD;&#xA;10시 0분 ~ 18시 0분"/>
-        <cl:gridcell std:sid="gd-cell-ed62171b" rowindex="0" colindex="2" columnname="&#xD;&#xA;2023.07.24 ~ 2023.08.17"/>
-        <cl:gridcell std:sid="gd-cell-52deaa36" rowindex="0" colindex="3" columnname="2 명 / 일"/>
-        <cl:gridcell std:sid="gd-cell-93d1e4b1" rowindex="0" colindex="4" columnname="7 명"/>
-        <cl:gridcell std:sid="gd-cell-8eea805b" rowindex="0" colindex="5" columnname="성인 "/>
-        <cl:gridcell std:sid="gd-cell-ec3efdf1" rowindex="0" colindex="6" columnname="금천구 4호점 우리동네키움센터 실내외 활동공간"/>
-        <cl:gridcell std:sid="gd-cell-c8966c83" rowindex="0" colindex="7" columnname="오프라인"/>
-      </cl:griddetail>
-    </cl:grid>
-    <cl:group std:sid="group-97fe9667" class="cl-form-group">
-      <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="175px" left="21px" width="1879px" height="218px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:output std:sid="output-0c6f2079" value="교육기간">
+    <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
+      <cl:datamapcontext datacontrolid="dm1"/>
+      <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="308px" left="201px" width="1511px" height="163px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-0c6f2079" style="font-size:16px; text-align:center;" value="교육기간">
         <cl:formdata std:sid="f-data-276edfc2" row="0" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-e1402406" value="모집기간">
-        <cl:formdata std:sid="f-data-5d8761cd" row="1" col="0"/>
+      <cl:output std:sid="output-e1402406" style="font-size:16px; text-align:center;" value="모집기간">
+        <cl:formdata std:sid="f-data-14a49451" row="0" col="2"/>
       </cl:output>
-      <cl:output std:sid="output-ee651a14" value="모집인원">
-        <cl:formdata std:sid="f-data-e7c41f16" row="2" col="0"/>
+      <cl:output std:sid="output-ee651a14" style="font-size:16px; text-align:center;" value="모집인원">
+        <cl:formdata std:sid="f-data-62adef05" row="1" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-f03c88d4" value="봉사장소">
-        <cl:formdata std:sid="f-data-67cfb962" row="3" col="0"/>
+      <cl:output std:sid="output-f03c88d4" style="font-size:16px; text-align:center;" value="봉사장소">
+        <cl:formdata std:sid="f-data-0da382f9" row="2" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-2e671e6b" value="교육시간">
-        <cl:formdata std:sid="f-data-107b5b6b" row="0" col="2"/>
-      </cl:output>
-      <cl:output std:sid="output-ada5ddc1" value="교육분야">
+      <cl:output std:sid="output-ada5ddc1" style="font-size:16px; text-align:center;" value="교육분야">
         <cl:formdata std:sid="f-data-a45bf52d" row="1" col="2"/>
       </cl:output>
-      <cl:output std:sid="output-116e751c" value="신청인원">
-        <cl:formdata std:sid="f-data-86f204e3" row="2" col="2"/>
+      <cl:output std:sid="output-2b6b742b" style="font-size:16px; text-align:center;" value="활동구분">
+        <cl:formdata std:sid="f-data-e3032fb0" row="2" col="2"/>
       </cl:output>
-      <cl:output std:sid="output-2b6b742b" value="활동구분">
-        <cl:formdata std:sid="f-data-7e7a46ef" row="3" col="2"/>
-      </cl:output>
-      <cl:inputbox std:sid="i-box-0341b352" id="ipb1" value="2023.07.26 ~ 2023.08.18">
-        <cl:formdata std:sid="f-data-0378c004" row="0" col="1"/>
+      <cl:inputbox std:sid="i-box-e1cd74e3" id="ipb3" style="font-size:16px;" value="2 명">
+        <cl:formdata std:sid="f-data-1f845c32" row="1" col="1"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-98fe0655" id="ipb2" value="2023.07.24 ~ 2023.08.17">
-        <cl:formdata std:sid="f-data-df1541a8" row="1" col="1"/>
+      <cl:inputbox std:sid="i-box-7f1edb04" id="ipb4" style="font-size:16px;" value="금천구 4호점 우리동네키움센터">
+        <cl:formdata std:sid="f-data-fa44c3a7" row="2" col="1"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-e1cd74e3" id="ipb3" value="2 명 / 일">
-        <cl:formdata std:sid="f-data-ae86461f" row="2" col="1"/>
-      </cl:inputbox>
-      <cl:inputbox std:sid="i-box-7f1edb04" id="ipb4" value="금천구 4호점 우리동네키움센터">
-        <cl:formdata std:sid="f-data-4d99ccc7" row="3" col="1"/>
-      </cl:inputbox>
-      <cl:inputbox std:sid="i-box-62417247" id="ipb7" value="10시 0분 ~ 18시 0분">
-        <cl:formdata std:sid="f-data-f8bd187c" row="0" col="3"/>
-      </cl:inputbox>
-      <cl:inputbox std:sid="i-box-76447741" id="ipb8" value="교육 > 방과후 교육">
+      <cl:inputbox std:sid="i-box-76447741" id="ipb8" style="font-size:16px;" placeholder="교육 분야를 입력하세요">
+        <cl:relativebind property="value" columnname="CATEGORY"/>
+        <cl:datamapcontext datacontrolid="dm1"/>
         <cl:formdata std:sid="f-data-c675058e" row="1" col="3"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-101fd2a6" id="ipb9" value="7 명">
-        <cl:formdata std:sid="f-data-400788fd" row="2" col="3"/>
+      <cl:inputbox std:sid="i-box-e49aa10a" id="ipb10" style="font-size:16px;" value="오프라인">
+        <cl:formdata std:sid="f-data-99d4541f" row="2" col="3"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-e49aa10a" id="ipb10" value="오프라인">
-        <cl:formdata std:sid="f-data-e6badf82" row="3" col="3"/>
-      </cl:inputbox>
+      <cl:udc std:sid="ud-control-c2256dea" type="udc.exam.udcExamDuoDatePicker">
+        <cl:formdata std:sid="f-data-b2ad299e" row="0" col="1"/>
+        <cl:property name="selectOption" value="day" type="enumeration"/>
+        <cl:property name="useAutoSelect" value="true" type="boolean"/>
+      </cl:udc>
+      <cl:udc std:sid="ud-control-f992c891" type="udc.exam.udcExamDuoDatePicker">
+        <cl:formdata std:sid="f-data-018d9d85" row="0" col="3"/>
+        <cl:property name="selectOption" value="day" type="enumeration"/>
+        <cl:property name="useAutoSelect" value="true" type="boolean"/>
+      </cl:udc>
       <cl:formlayout std:sid="f-layout-6bffee7b" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
-        <cl:rows length="40" unit="PIXEL"/>
-        <cl:rows length="40" unit="PIXEL"/>
-        <cl:rows length="40" unit="PIXEL"/>
-        <cl:rows length="40" unit="PIXEL"/>
+        <cl:rows length="45" unit="PIXEL"/>
+        <cl:rows length="45" unit="PIXEL"/>
+        <cl:rows length="45" unit="PIXEL"/>
         <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
         <cl:columns length="1" unit="FRACTION"/>
         <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:inputbox std:sid="i-box-e522a1c6" id="ipb13" value="개인 교육">
-      <cl:xylayoutdata std:sid="xyl-data-4ed873d8" top="119px" left="20px" width="407px" height="48px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:inputbox std:sid="i-box-e522a1c6" id="ipb13" style="font-size:18px; text-align:center;" value="개인 교육">
+      <cl:xylayoutdata std:sid="xyl-data-4ed873d8" top="249px" left="201px" width="267px" height="48px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-4e2db08c" id="ipb5" value="봉사내용">
-      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="403px" left="20px" width="1882px" height="273px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:inputbox std:sid="i-box-4e2db08c" id="ipb5" style="font-size:18px;" placeholder="내용을 입력하세요">
+      <cl:relativebind property="value" columnname="BOARD_CONTENT"/>
+      <cl:datamapcontext datacontrolid="dm1"/>
+      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="478px" left="200px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" value="봉사활동 제목">
-      <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="118px" left="437px" width="1463px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" style="font-size:18px;" placeholder="제목을 입력하세요">
+      <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
+      <cl:listener std:sid="listener-24e36e3d" name="before-value-change" handler="onIpb6BeforeValueChange"/>
+      <cl:listener std:sid="listener-ddcec956" name="clear" handler="onIpb6Clear"/>
+      <cl:relativebind property="value" columnname="BOARD_TITLE"/>
+      <cl:datamapcontext datacontrolid="dm1"/>
+      <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="248px" left="475px" width="1236px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-b29210f3" id="ipb11" value="개인 교육">
-      <cl:xylayoutdata std:sid="xyl-data-125d8d28" top="20px" left="20px" width="1880px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:inputbox std:sid="i-box-b29210f3" id="ipb11" style="font-size:18px;" value="개인교육" placeholder="교육">
+      <cl:xylayoutdata std:sid="xyl-data-125d8d28" top="180px" left="201px" width="1510px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
+    <cl:button std:sid="button-03e35b43" style="background-color:#4682A9; font-size:18px;" value="등록">
+      <cl:listener std:sid="listener-81e5f34b" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="779px" left="1530px" width="180px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>
     <std:hruler/>
-    <std:vruler/>
+    <std:vruler>
+      <std:guide position="828"/>
+    </std:vruler>
   </std:studiosetting>
 </html>
