@@ -33,8 +33,17 @@
 			});
 			
 			// Layout
-			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
-			container.setLayout(xYLayout_1);
+			var formLayout_1 = new cpr.controls.layouts.FormLayout();
+			formLayout_1.scrollable = false;
+			formLayout_1.topMargin = "5px";
+			formLayout_1.rightMargin = "5px";
+			formLayout_1.bottomMargin = "5px";
+			formLayout_1.leftMargin = "5px";
+			formLayout_1.horizontalSpacing = "5px";
+			formLayout_1.verticalSpacing = "5px";
+			formLayout_1.setColumns(["1fr", "1fr", "1fr", "1fr", "1fr", "1fr", "1fr"]);
+			formLayout_1.setRows(["1fr", "1fr"]);
+			container.setLayout(formLayout_1);
 			
 			// UI Configuration
 		}

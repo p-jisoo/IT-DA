@@ -9,7 +9,17 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-76c24b97">
-    <cl:xylayout std:sid="xylayout-c2409682"/>
+    <cl:formlayout std:sid="f-layout-0ecd0755" scrollable="false" hspace="5px" vspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+      <cl:rows length="1" unit="FRACTION"/>
+      <cl:rows length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+      <cl:columns length="1" unit="FRACTION"/>
+    </cl:formlayout>
   </body>
   <std:studiosetting>
     <std:hruler/>

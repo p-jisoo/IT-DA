@@ -68,7 +68,7 @@
     </cl:group>
     <cl:embeddedapp std:sid="e-app-6a6e8137" id="ea1">
       <cl:responsivexylayoutdata std:sid="rxyl-data-80e70d43">
-        <cl:xylayoutdata std:sid="sxyl-data-f169e944" top="150px" right="50px" left="50px" height="866px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-f169e944" top="150px" right="50px" left="50px" height="870px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:embeddedapp>
     <cl:responsivexylayout std:sid="r-xylayout-7a1701c0"/>

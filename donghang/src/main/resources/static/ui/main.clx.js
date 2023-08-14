@@ -493,28 +493,28 @@
 						"top": "150px",
 						"right": "50px",
 						"left": "50px",
-						"height": "866px"
+						"height": "870px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "150px",
 						"right": "50px",
 						"left": "50px",
-						"height": "866px"
+						"height": "870px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
 						"top": "150px",
 						"right": "24px",
 						"left": "24px",
-						"height": "866px"
+						"height": "870px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "150px",
 						"right": "17px",
 						"left": "17px",
-						"height": "866px"
+						"height": "870px"
 					}
 				]
 			});
