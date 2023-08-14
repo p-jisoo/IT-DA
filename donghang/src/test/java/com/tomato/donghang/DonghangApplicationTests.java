@@ -24,9 +24,8 @@ class DonghangApplicationTests {
 		String title = "asdf";
 		String content = "asdf";
 		String category = "asdf";
-		vo.setBoardTitle(title);
-		vo.setBoardContent(content);
-		vo.setCategory(category);
+		vo.setEduBoardTitle(title);
+		vo.setEduApplyBoardContent(content);
 		//int count = eduApplyBoardMapper.createBoard(vo);
 	}
 	
