@@ -46,6 +46,15 @@
 			function onSms1SubmitError(e){
 				var sms1 = e.control;
 				alert("회원 정보를 다시 확인해주시기 바랍니다.");
+			}
+
+			/*
+			 * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+				window.location.href="registerMember.clx"
 			};
 			// End - User Script
 			
@@ -406,6 +415,9 @@
 				"background-color" : "#4682A9",
 				"font-size" : "25px"
 			});
+			if(typeof onButtonClick2 == "function") {
+				button_2.addEventListener("click", onButtonClick2);
+			}
 			container.addChild(button_2, {
 				positions: [
 					{

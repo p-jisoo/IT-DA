@@ -92,6 +92,7 @@
       </cl:responsivexylayoutdata>
     </cl:img>
     <cl:button std:sid="button-a9c82518" style="background-color:#4682A9; font-size:25px;" value="회원가입">
+      <cl:listener std:sid="listener-b8221625" name="click" handler="onButtonClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-a2557ae2">
         <cl:xylayoutdata std:sid="sxyl-data-7a09791d" top="583px" right="658px" left="1082px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>

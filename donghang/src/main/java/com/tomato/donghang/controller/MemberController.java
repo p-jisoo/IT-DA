@@ -27,7 +27,6 @@ public class MemberController {
 
 	@GetMapping("ui/register")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		log.info("도착");
 		return new UIView("ui/registerMember.clx");
 	}
 
