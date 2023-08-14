@@ -19,5 +19,5 @@ public interface EduApplyBoardMapper {
 
 	long findAllBoardCount();
 
-	List<EduApplyBoardVO> findBoardListByPageTest(Map<String, Object> map);
+	List<EduApplyBoardVO> findBoardListWithStatusByPage(Map<String, Object> map);
 }

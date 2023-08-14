@@ -25,11 +25,20 @@ function onGroupBeforeDraw(e){
  */
 function onPageSelectionChange(e){
 	var page = app.lookup("page");
+	var listBox = app.lookup("lbx1");
+	var submission2 = app.lookup("sms2");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm1");
+	var dataMap2 = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("pageInd");
-	submission.send();
+	if(listBox.getSelectedDataSetIndices()[0]==0){
+		submission.send();
+	}else {
+		dataMap2.setValue("status", listBox.getSelectedDataSetIndices()[0]);
+		submission2.send();
+		console.log(listBox.getSelectedDataSetIndices()[0]);
+	}
 }
 
 /*
@@ -57,5 +66,29 @@ function onPageIndSubmitDone(e){
  */
 function onBodyLoad(e){
 	var listBox = app.lookup("lbx1");
+	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
+	comboBox.selectItemByValue("value1");
+}
+
+/*
+ * "Button" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick(e){
+	var button = e.control;
+	var searchInput = app.lookup("searchCtl");
+	var dataMap = app.lookup("dm2");
+	var inputValue = searchInput.value.replace(/\s/g, "");
+	var listBox = app.lookup("lbx1");
+	var submission = app.lookup("pageInd");
+	var submission2 = app.lookup("sms2");
+	console.log("리스트박스",listBox.getSelectedDataSetIndices()[0].valueOf());
+	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
+		dataMap.setValue("status", listBox.getSelectedDataSetIndices()[0]);
+		console.log(listBox.getSelectedDataSetIndices()[0]);
+		submission.send();
+	}else{
+		submission2.send();
+	}
 }

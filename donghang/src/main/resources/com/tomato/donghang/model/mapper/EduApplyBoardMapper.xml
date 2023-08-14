@@ -40,7 +40,7 @@
 		WHERE rnum BETWEEN #{startRowNumber} and #{endRowNumber}
 	</select>
 	
-	<select id="findBoardListByPageTest" parameterType="HashMap"
+	<select id="findBoardListWithStatusByPage" parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		SELECT
 		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
@@ -49,10 +49,10 @@
 		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
 		FROM edu_apply_board
 		<where>
-		<if test = "_parameter.containsValue('모집중') ">
+		<if test = "_parameter.containsValue(1) ">
 			edu_apply_board_status ='모집중'
 		</if>
-		<if test = "_parameter.containsValue('모집마감') ">
+		<if test = "_parameter.containsValue(2) ">
 			edu_apply_board_status ='모집마감'
 		</if>
 		</where>
