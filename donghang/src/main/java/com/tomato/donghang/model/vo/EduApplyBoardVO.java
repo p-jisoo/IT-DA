@@ -16,5 +16,4 @@ public class EduApplyBoardVO {
     private String eduApplyBoardStatus;
     private String eduApplyBoardCategory;
     private String eduApplyBoardContent;
-    
 }

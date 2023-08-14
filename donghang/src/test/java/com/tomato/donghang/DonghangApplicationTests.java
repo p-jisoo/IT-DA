@@ -20,7 +20,6 @@ class DonghangApplicationTests {
 	EduApplyBoardMapper eduApplyBoardMapper;
 	@Test
 	public void eduApplyBoardServiceDI() {
-	
 		//int count = eduApplyBoardMapper.createBoard(vo);
 	}
 	
