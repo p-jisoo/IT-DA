@@ -346,6 +346,7 @@
 					"rowIndex": 0
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				inputBox_2.secret = true;
 				inputBox_2.placeholder = "비밀번호";
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
@@ -356,6 +357,7 @@
 					"rowIndex": 1
 				});
 				var inputBox_3 = new cpr.controls.InputBox("ipb3");
+				inputBox_3.secret = true;
 				inputBox_3.placeholder = "비밀번호";
 				inputBox_3.style.css({
 					"font-size" : "1.2rem"

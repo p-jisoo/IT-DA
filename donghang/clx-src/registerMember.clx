@@ -66,11 +66,11 @@
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userId"/>
         <cl:formdata std:sid="f-data-60ac0fbb" row="0" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-98040259" id="ipb2" style="font-size:1.2rem;" placeholder="비밀번호">
+      <cl:inputbox std:sid="i-box-98040259" id="ipb2" style="font-size:1.2rem;" secret="true" placeholder="비밀번호">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:formdata std:sid="f-data-2e362218" row="1" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-5fb498e1" id="ipb3" style="font-size:1.2rem;" placeholder="비밀번호">
+      <cl:inputbox std:sid="i-box-5fb498e1" id="ipb3" style="font-size:1.2rem;" secret="true" placeholder="비밀번호">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:formdata std:sid="f-data-737ffd71" row="2" col="0"/>
       </cl:inputbox>
