@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.tomato.donghang.model.mapper.EduApplyBoardMapper">
+	<sql id="selectEduBoard">
+		SELECT EBOARD_NO, EDU_BOARD_TITLE, EDU_BOARD_START_PERIOD,
+		EDU_BOARD_END_PERIOD,EDU_BOARD_APPLY_START_PERIOD,EDU_BOARD_APPLY_END_PERIOD,
+		EDU_BOARD_APPLY_MEMBER_COUNT,EDU_APPLY_BOARD_CATEGORY,EDU_APPLY_BOARD_STATUS,EDU_APPLY_BOARD_CONTENT
+		FROM EDU_APPLY_BOARD
+	</sql>
+	<insert id="createBoard"
+		parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		<!-- INSERT INTO EDU_APPLY_BOARD(BOARD_NO,BOARD_TITLE,BOARD_CONTENT,CATEGORY,USER_ID) 
+			VALUES(EDU_APPLY_BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{category},#{mebmerVO.id}); -->
+
+		INSERT INTO
+		EDU_APPLY_BOARD(BOARD_NO,BOARD_TITLE,BOARD_CONTENT,CATEGORY)
+		VALUES(EDU_APPLY_BOARD_SEQ.NEXTVAL,#{boardTitle},#{boardContent},#{category})
+		<!-- private String boardTitle; private String boardContent; private String 
+			catogory; private String applyStatus; private String memberVO; -->
+	</insert>
+	<select id="findAllBoardCount">
+		select count(*) from edu_apply_board
+	</select>
+
+	<select id="findBoardList"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		<include refid="selectEduBoard">
+		</include>
+	</select>
+	
+	<select id="findBoardListByPage" parameterType="com.tomato.donghang.model.Pagination"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		SELECT
+		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		FROM
+		(SELECT row_number() over(ORDER BY eboard_no DESC) as
+		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		FROM edu_apply_board)
+		WHERE rnum BETWEEN #{startRowNumber} and #{endRowNumber}
+	</select>
+	
+	<select id="findBoardListByPageTest" parameterType="HashMap"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		SELECT
+		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		FROM
+		(SELECT row_number() over(ORDER BY eboard_no DESC) as
+		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		FROM edu_apply_board
+		<where>
+		<if test = "_parameter.containsValue('모집중') ">
+			edu_apply_board_status ='모집중'
+		</if>
+		<if test = "_parameter.containsValue('모집마감') ">
+			edu_apply_board_status ='모집마감'
+		</if>
+		</where>
+		)
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+	</select>
+</mapper>
+

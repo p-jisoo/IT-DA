@@ -16,10 +16,74 @@
 			 * Created at 2023. 8. 9. 오후 2:50:05.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+
+			/*
+			 * "로그인" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				var submission = app.lookup("sms1");	
+				submission.send();
+						
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms1SubmitSuccess(e){
+				var sms1 = e.control;
+			//	var httpPostMethod = new cpr.protocols.HttpPostMethod("/");
+			//    httpPostMethod.submit();
+			 	window.location.href="/";
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onSms1SubmitError(e){
+				var sms1 = e.control;
+				alert("회원 정보를 다시 확인해주시기 바랍니다.");
+			};
 			// End - User Script
 			
 			// Header
+			var dataSet_1 = new cpr.data.DataSet("ds_member");
+			dataSet_1.parseData({
+				"columns" : [
+					{"name": "USER_ID"},
+					{"name": "PASSWORD"},
+					{"name": "ADDRESS"},
+					{"name": "USER_TEL"},
+					{"name": "USER_NAME"},
+					{"name": "NICKNAME"}
+				]
+			});
+			app.register(dataSet_1);
+			var dataMap_1 = new cpr.data.DataMap("dm1");
+			dataMap_1.parseData({
+				"columns" : [
+					{
+						"name": "user_id",
+						"dataType": "string"
+					},
+					{"name": "password"}
+				]
+			});
+			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("sms1");
+			submission_1.action = "loginMember";
+			submission_1.addRequestData(dataMap_1);
+			submission_1.addResponseData(dataSet_1, false);
+			if(typeof onSms1SubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onSms1SubmitSuccess);
+			}
+			if(typeof onSms1SubmitError == "function") {
+				submission_1.addEventListener("submit-error", onSms1SubmitError);
+			}
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -77,7 +141,8 @@
 			});
 			
 			var inputBox_1 = new cpr.controls.InputBox("ipb1");
-			inputBox_1.value = "회원 id";
+			inputBox_1.placeholder = "아이디\r\n";
+			inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
 			container.addChild(inputBox_1, {
 				positions: [
 					{
@@ -112,7 +177,8 @@
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("ipb2");
-			inputBox_2.value = "회원 password";
+			inputBox_2.placeholder = "비밀번호";
+			inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 			container.addChild(inputBox_2, {
 				positions: [
 					{
@@ -147,18 +213,21 @@
 			});
 			
 			var button_1 = new cpr.controls.Button();
-			button_1.value = "로그인 하기";
+			button_1.value = "로그인";
 			button_1.style.css({
 				"background-color" : "#4682A9",
 				"font-size" : "25px"
 			});
+			if(typeof onButtonClick == "function") {
+				button_1.addEventListener("click", onButtonClick);
+			}
 			container.addChild(button_1, {
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "584px",
-						"right": "660px",
-						"left": "1060px",
+						"top": "583px",
+						"right": "860px",
+						"left": "880px",
 						"height": "46px"
 					}, 
 					{
@@ -221,7 +290,7 @@
 			});
 			
 			var output_2 = new cpr.controls.Output();
-			output_2.value = "회원가입";
+			output_2.value = "비밀번호 찾기";
 			output_2.style.css({
 				"text-align" : "center"
 			});
@@ -229,47 +298,9 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "636px",
-						"right": "678px",
-						"left": "1092px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "516px",
-						"right": "230px",
-						"left": "694px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "520px",
-						"right": "117px",
-						"left": "334px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "520px",
-						"right": "40px",
-						"left": "114px",
-						"height": "20px"
-					}
-				]
-			});
-			
-			var output_3 = new cpr.controls.Output();
-			output_3.value = "비밀번호 찾기";
-			output_3.style.css({
-				"text-align" : "center"
-			});
-			container.addChild(output_3, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "636px",
-						"right": "837px",
-						"left": "933px",
+						"top": "639px",
+						"right": "658px",
+						"left": "1112px",
 						"height": "20px"
 					}, 
 					{
@@ -296,18 +327,18 @@
 				]
 			});
 			
-			var output_4 = new cpr.controls.Output();
-			output_4.value = "아이디 찾기";
-			output_4.style.css({
+			var output_3 = new cpr.controls.Output();
+			output_3.value = "아이디 찾기";
+			output_3.style.css({
 				"text-align" : "center"
 			});
-			container.addChild(output_4, {
+			container.addChild(output_3, {
 				positions: [
 					{
 						"media": "all and (min-width: 1920px)",
-						"top": "636px",
-						"right": "984px",
-						"left": "786px",
+						"top": "639px",
+						"right": "805px",
+						"left": "965px",
 						"height": "20px"
 					}, 
 					{
@@ -365,6 +396,45 @@
 						"right": "82px",
 						"left": "70px",
 						"height": "65px"
+					}
+				]
+			});
+			
+			var button_2 = new cpr.controls.Button();
+			button_2.value = "회원가입";
+			button_2.style.css({
+				"background-color" : "#4682A9",
+				"font-size" : "25px"
+			});
+			container.addChild(button_2, {
+				positions: [
+					{
+						"media": "all and (min-width: 1920px)",
+						"top": "583px",
+						"right": "658px",
+						"left": "1082px",
+						"height": "46px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "583px",
+						"right": "658px",
+						"left": "1082px",
+						"height": "46px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "583px",
+						"right": "321px",
+						"left": "528px",
+						"height": "46px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "583px",
+						"right": "225px",
+						"left": "370px",
+						"height": "46px"
 					}
 				]
 			});

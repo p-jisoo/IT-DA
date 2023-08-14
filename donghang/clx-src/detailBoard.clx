@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-16e57a83" version="1.0.4584">
+  <head std:sid="head-2f7ea532">
+    <screen std:sid="screen-0119df6f" id="notebook" name="notebook" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-26683f91" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="false" useCustomHeight="false" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-ca531e1b" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-9e15770c" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <cl:model std:sid="model-5d8ada86"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-d498b017">
+    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9;" value="목록">
+      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="79px" left="20px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-b07d382a" style="background-color:#4682A9;" value="신청하기">
+      <cl:listener std:sid="listener-333a98be" name="animationend" handler="onButtonAnimationend"/>
+      <cl:xylayoutdata std:sid="xyl-data-a89fe144" top="79px" left="1477px" width="206px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-c5c47a2b" style="background-color:#4682A9;" value="♡관심목록 담기">
+      <cl:xylayoutdata std:sid="xyl-data-74ee683d" top="79px" left="1693px" width="206px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:grid std:sid="grid-f1dcea3c" id="grd1">
+      <cl:xylayoutdata std:sid="xyl-data-ec290871" top="687px" bottom="21px" left="19px" width="1883px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:gridcolumn std:sid="g-column-4efd311d"/>
+      <cl:gridcolumn std:sid="g-column-ebbaa9bc" width="169px"/>
+      <cl:gridcolumn std:sid="g-column-d8476740"/>
+      <cl:gridcolumn std:sid="g-column-8406ae54"/>
+      <cl:gridcolumn std:sid="g-column-7aa591a1"/>
+      <cl:gridcolumn std:sid="g-column-1ad5a84f"/>
+      <cl:gridcolumn std:sid="g-column-0b5a073d"/>
+      <cl:gridcolumn std:sid="g-column-c743a678"/>
+      <cl:gridheader std:sid="gh-band-8fd695aa">
+        <cl:gridrow std:sid="g-row-10b1589d"/>
+        <cl:gridcell std:sid="gh-cell-23b10fc9" rowindex="0" colindex="0" text="봉사기간"/>
+        <cl:gridcell std:sid="gh-cell-3f0f9abe" rowindex="0" colindex="1" text="봉사시간"/>
+        <cl:gridcell std:sid="gh-cell-1e983118" rowindex="0" colindex="2" text="모집기간"/>
+        <cl:gridcell std:sid="gh-cell-6587b087" rowindex="0" colindex="3" text="모집인원"/>
+        <cl:gridcell std:sid="gh-cell-fcdb4e97" rowindex="0" colindex="4" text="신청인원"/>
+        <cl:gridcell std:sid="gh-cell-bb3b6c40" rowindex="0" colindex="5" text="봉사자유형"/>
+        <cl:gridcell std:sid="gh-cell-66eae364" rowindex="0" colindex="6" text="봉사장소"/>
+        <cl:gridcell std:sid="gh-cell-eca16987" rowindex="0" colindex="7" text="활동구분"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-a8e02a00">
+        <cl:gridrow std:sid="g-row-ba00b0fc"/>
+        <cl:gridcell std:sid="gd-cell-0a5c301a" rowindex="0" colindex="0" columnname="2023.07.26 ~ 2023.08.18"/>
+        <cl:gridcell std:sid="gd-cell-9a3b341a" rowindex="0" colindex="1" columnname="&#xD;&#xA;10시 0분 ~ 18시 0분"/>
+        <cl:gridcell std:sid="gd-cell-ed62171b" rowindex="0" colindex="2" columnname="&#xD;&#xA;2023.07.24 ~ 2023.08.17"/>
+        <cl:gridcell std:sid="gd-cell-52deaa36" rowindex="0" colindex="3" columnname="2 명 / 일"/>
+        <cl:gridcell std:sid="gd-cell-93d1e4b1" rowindex="0" colindex="4" columnname="7 명"/>
+        <cl:gridcell std:sid="gd-cell-8eea805b" rowindex="0" colindex="5" columnname="성인 "/>
+        <cl:gridcell std:sid="gd-cell-ec3efdf1" rowindex="0" colindex="6" columnname="금천구 4호점 우리동네키움센터 실내외 활동공간"/>
+        <cl:gridcell std:sid="gd-cell-c8966c83" rowindex="0" colindex="7" columnname="오프라인"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:group std:sid="group-97fe9667" class="cl-form-group">
+      <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="175px" left="21px" width="1879px" height="218px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-0c6f2079" value="교육기간">
+        <cl:formdata std:sid="f-data-276edfc2" row="0" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-e1402406" value="모집기간">
+        <cl:formdata std:sid="f-data-5d8761cd" row="1" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-ee651a14" value="모집인원">
+        <cl:formdata std:sid="f-data-e7c41f16" row="2" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-f03c88d4" value="봉사장소">
+        <cl:formdata std:sid="f-data-67cfb962" row="3" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-2e671e6b" value="교육시간">
+        <cl:formdata std:sid="f-data-107b5b6b" row="0" col="2"/>
+      </cl:output>
+      <cl:output std:sid="output-ada5ddc1" value="교육분야">
+        <cl:formdata std:sid="f-data-a45bf52d" row="1" col="2"/>
+      </cl:output>
+      <cl:output std:sid="output-116e751c" value="신청인원">
+        <cl:formdata std:sid="f-data-86f204e3" row="2" col="2"/>
+      </cl:output>
+      <cl:output std:sid="output-2b6b742b" value="활동구분">
+        <cl:formdata std:sid="f-data-7e7a46ef" row="3" col="2"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-0341b352" id="ipb1" value="2023.07.26 ~ 2023.08.18">
+        <cl:formdata std:sid="f-data-0378c004" row="0" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-98fe0655" id="ipb2" value="2023.07.24 ~ 2023.08.17">
+        <cl:formdata std:sid="f-data-df1541a8" row="1" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-e1cd74e3" id="ipb3" value="2 명 / 일">
+        <cl:formdata std:sid="f-data-ae86461f" row="2" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-7f1edb04" id="ipb4" value="금천구 4호점 우리동네키움센터">
+        <cl:formdata std:sid="f-data-4d99ccc7" row="3" col="1"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-62417247" id="ipb7" value="10시 0분 ~ 18시 0분">
+        <cl:formdata std:sid="f-data-f8bd187c" row="0" col="3"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-76447741" id="ipb8" value="교육 > 방과후 교육">
+        <cl:formdata std:sid="f-data-c675058e" row="1" col="3"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-101fd2a6" id="ipb9" value="7 명">
+        <cl:formdata std:sid="f-data-400788fd" row="2" col="3"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-e49aa10a" id="ipb10" value="오프라인">
+        <cl:formdata std:sid="f-data-e6badf82" row="3" col="3"/>
+      </cl:inputbox>
+      <cl:formlayout std:sid="f-layout-6bffee7b" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="40" unit="PIXEL"/>
+        <cl:rows length="40" unit="PIXEL"/>
+        <cl:rows length="40" unit="PIXEL"/>
+        <cl:rows length="40" unit="PIXEL"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:inputbox std:sid="i-box-e522a1c6" id="ipb13" value="개인 교육">
+      <cl:xylayoutdata std:sid="xyl-data-4ed873d8" top="119px" left="20px" width="407px" height="48px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:inputbox std:sid="i-box-4e2db08c" id="ipb5" value="봉사내용">
+      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="403px" left="20px" width="1882px" height="273px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" value="봉사활동 제목">
+      <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="118px" left="437px" width="1463px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:inputbox std:sid="i-box-b29210f3" id="ipb11" value="개인 교육">
+      <cl:xylayoutdata std:sid="xyl-data-125d8d28" top="20px" left="20px" width="1880px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:xylayout std:sid="xylayout-5097d20a"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

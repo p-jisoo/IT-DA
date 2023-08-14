@@ -7,5 +7,5 @@ public class CommentBoardVO {
 	private long commentNo;
 	private String contentComment;
 	private MemberVO memberVO;
-	private EduApplyBoradVO eduApplyBoradVO;
+	private EduApplyBoardVO eduApplyBoradVO;
 }
