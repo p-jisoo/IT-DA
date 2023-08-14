@@ -14,4 +14,10 @@ public class MemberVO {
 	private String userTel;
 	private String userName;
 	private String nickName;
+	public MemberVO(String userId, String password) {
+		super();
+		this.userId = userId;
+		this.password = password;
+	}
+	
 }

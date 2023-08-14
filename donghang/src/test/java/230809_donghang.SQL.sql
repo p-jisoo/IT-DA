@@ -9,7 +9,7 @@ CREATE TABLE MEMBER(
 	CONSTRAINT PK_MEMBER PRIMARY KEY (USER_ID)
 )
 
-select * from member;
+select * from member where user_id='java' and password='a';
 
 INSERT INTO MEMBER(USER_ID,PASSWORD,ADDRESS,USER_TEL,USER_NAME,NICKNAME)
 VALUES('1234','1234','수원','123456789','동행이름','동행닉');

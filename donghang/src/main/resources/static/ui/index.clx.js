@@ -63,6 +63,16 @@
 			function onButtonClick2(e) {
 				var button = e.control;
 				window.location.href="register";													
+			}
+
+			/*
+			 * "  로그인   " 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				window.location.href="login";
+				
 			};
 			// End - User Script
 			
@@ -91,13 +101,6 @@
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
 			app.register(submission_1);
-			
-			var submission_2 = new cpr.protocols.Submission("sms2");
-			submission_2.action = "register";
-			if(typeof onSms2SubmitSuccess2 == "function") {
-				submission_2.addEventListener("submit-success", onSms2SubmitSuccess2);
-			}
-			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1024px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -133,6 +136,9 @@
 						"border-bottom-style" : "none",
 						"border-top-style" : "none"
 					});
+					if(typeof onButtonClick == "function") {
+						button_1.addEventListener("click", onButtonClick);
+					}
 					container.addChild(button_1, {
 						positions: [
 							{
@@ -198,6 +204,7 @@
 						]
 					});
 					var button_3 = new cpr.controls.Button();
+					button_3.visible = false;
 					button_3.value = " 마이페이지 ";
 					button_3.style.css({
 						"background-color" : "#FFFFFF",

@@ -33,9 +33,6 @@
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
       </cl:submission>
-      <cl:submission std:sid="submission-b47f7720" id="sms2" action="register">
-        <cl:listener std:sid="listener-020825c0" name="submit-success" handler="onSms2SubmitSuccess2"/>
-      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
@@ -49,6 +46,7 @@
           <cl:xylayoutdata std:sid="sxyl-data-751b4d86" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         </cl:responsivexylayoutdata>
         <cl:button std:sid="button-14d0131e" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value="  로그인   ">
+          <cl:listener std:sid="listener-1ff823f6" name="click" handler="onButtonClick"/>
           <cl:responsivexylayoutdata std:sid="rxyl-data-8a172b03">
             <cl:xylayoutdata std:sid="sxyl-data-702e5e55" top="20px" left="1372px" width="70px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
           </cl:responsivexylayoutdata>
@@ -59,7 +57,7 @@
             <cl:xylayoutdata std:sid="sxyl-data-352084e3" top="20px" left="1441px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
           </cl:responsivexylayoutdata>
         </cl:button>
-        <cl:button std:sid="button-cbc3994d" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" value=" 마이페이지 ">
+        <cl:button std:sid="button-cbc3994d" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
           <cl:responsivexylayoutdata std:sid="rxyl-data-eb648c4a">
             <cl:xylayoutdata std:sid="sxyl-data-1bc36404" top="20px" left="1269px" width="104px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
           </cl:responsivexylayoutdata>
