@@ -31,7 +31,7 @@ function onSms1SubmitSuccess2(e) {
 			window.location.href = "/";
 			break;
 		case "1":
-			window.location.href = "showmeapply.do";
+			window.location.href = "toBaordList.do";
 			break;
 		case "2":
 			window.location.href = "showmeapply.do";
