@@ -43,7 +43,19 @@
 			 */
 			function onSms1SubmitError(e){
 				var sms1 = e.control;
-				alert("모든 정보를 입력해주세요.");
+				var initValue={
+					
+					"msg" : "회원가입 안내창"
+				}
+				
+				app.openDialog("appURI", {width : 400, height : 300}, function(dialog){
+					dialog.ready(function(dialogApp){
+						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+						dialogApp.initValue = initValue;
+					});
+				}).then(function(returnValue){
+					alert(JSON.stringify(returnValue));
+				});
 			}
 
 			/*
@@ -52,6 +64,9 @@
 			 */
 			function onButtonClick2(e){
 				var button = e.control;
+				var id = app.lookup("ipb1").value;
+				var dataMap = app.lookup("CheckId");
+				dataMap.setValue("userId", id);
 				var submission = app.lookup("sms2");
 				submission.send();	
 			}
@@ -60,10 +75,16 @@
 			 * 통신이 성공하면 발생합니다.
 			 */
 			function onSms2SubmitSuccess(e ){
-				cpr.foundation.Workflow 
 				var sms2 = e.control;
+				var metadata = sms2.getMetadata("checkId");
+				if(metadata !="null"){
+					var chkId = app.lookup("ipb1");
+					chkId.value="";
+					chkId.redraw();
+					var chkIdMsg = app.lookup("checkId");
+					chkIdMsg.visible=true;
+				}
 				
-
 			}
 
 			/*
@@ -126,7 +147,7 @@
 			});
 			app.register(dataMap_1);
 			
-			var dataMap_2 = new cpr.data.DataMap("dm2");
+			var dataMap_2 = new cpr.data.DataMap("CheckId");
 			dataMap_2.parseData({
 				"columns" : [{"name": "userId"}]
 			});
@@ -150,7 +171,8 @@
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
 			}
 			app.register(submission_2);
-			app.supportMedia("all and (min-width: 1920px)", "new-screen");
+			app.supportMedia("all and (min-width: 1980px)", "register");
+			app.supportMedia("all and (min-width: 1920px) and (max-width: 1979px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 			app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -158,6 +180,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"text-align" : "center",
 				"color" : "#91C8E4",
 				"width" : "100%",
 				"height" : "100%"
@@ -179,7 +202,14 @@
 			container.addChild(image_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
+						"media": "all and (min-width: 1980px)",
+						"top": "21px",
+						"left": "34px",
+						"width": "111px",
+						"height": "146px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 						"top": "21px",
 						"left": "43px",
 						"width": "142px",
@@ -219,7 +249,14 @@
 			container.addChild(output_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
+						"media": "all and (min-width: 1980px)",
+						"top": "72px",
+						"left": "167px",
+						"width": "84px",
+						"height": "44px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 						"top": "72px",
 						"left": "214px",
 						"width": "107px",
@@ -259,7 +296,14 @@
 			container.addChild(output_2, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
+						"media": "all and (min-width: 1980px)",
+						"top": "114px",
+						"left": "167px",
+						"width": "120px",
+						"height": "41px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 						"top": "114px",
 						"left": "214px",
 						"width": "153px",
@@ -303,66 +347,39 @@
 				container.addChild(output_3, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
-							"top": "172px",
-							"left": "148px",
+							"media": "all and (min-width: 1980px)",
+							"top": "20px",
+							"left": "43px",
+							"width": "256px",
+							"height": "65px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "20px",
+							"left": "55px",
 							"width": "179px",
 							"height": "65px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "172px",
-							"left": "148px",
+							"top": "20px",
+							"left": "55px",
 							"width": "179px",
 							"height": "65px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "172px",
-							"left": "72px",
+							"top": "20px",
+							"left": "27px",
 							"width": "87px",
 							"height": "65px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "172px",
-							"left": "51px",
+							"top": "20px",
+							"left": "19px",
 							"width": "61px",
 							"height": "65px"
-						}
-					]
-				});
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "theme/images/img/register_donghang.png";
-				container.addChild(image_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1920px)",
-							"top": "40px",
-							"left": "160px",
-							"width": "167px",
-							"height": "109px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "40px",
-							"left": "160px",
-							"width": "167px",
-							"height": "109px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "40px",
-							"left": "78px",
-							"width": "82px",
-							"height": "109px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "40px",
-							"left": "55px",
-							"width": "57px",
-							"height": "109px"
 						}
 					]
 				});
@@ -370,32 +387,39 @@
 			container.addChild(group_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
-						"top": "6px",
-						"left": "861px",
+						"media": "all and (min-width: 1980px)",
+						"top": "40px",
+						"left": "651px",
+						"width": "479px",
+						"height": "107px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+						"top": "40px",
+						"left": "494px",
 						"width": "375px",
-						"height": "242px"
+						"height": "107px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "6px",
-						"left": "861px",
+						"top": "40px",
+						"left": "494px",
 						"width": "375px",
-						"height": "242px"
+						"height": "107px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "6px",
-						"left": "420px",
+						"top": "40px",
+						"left": "241px",
 						"width": "183px",
-						"height": "242px"
+						"height": "107px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "6px",
-						"left": "294px",
+						"top": "40px",
+						"left": "169px",
 						"width": "128px",
-						"height": "242px"
+						"height": "107px"
 					}
 				]
 			});
@@ -412,30 +436,37 @@
 			container.addChild(button_1, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
-						"top": "1003px",
-						"left": "910px",
+						"media": "all and (min-width: 1980px)",
+						"top": "1267px",
+						"left": "651px",
+						"width": "234px",
+						"height": "79px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+						"top": "955px",
+						"left": "494px",
 						"width": "213px",
 						"height": "79px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "1003px",
-						"left": "910px",
+						"top": "955px",
+						"left": "494px",
 						"width": "213px",
 						"height": "79px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "1003px",
-						"left": "444px",
+						"top": "955px",
+						"left": "241px",
 						"width": "104px",
 						"height": "79px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "1003px",
-						"left": "311px",
+						"top": "955px",
+						"left": "169px",
 						"width": "73px",
 						"height": "79px"
 					}
@@ -447,15 +478,24 @@
 			group_2.setLayout(responsiveXYLayout_3);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				inputBox_1.placeholder = "아이디";
+				inputBox_1.placeholder = "아이디를 입력해주세요";
 				inputBox_1.style.css({
-					"font-size" : "1.2rem"
+					"font-weight" : "normal",
+					"font-size" : "1.2rem",
+					"font-style" : "normal"
 				});
 				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "userId");
 				container.addChild(inputBox_1, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "2px",
+							"left": "0px",
+							"width": "246px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "2px",
 							"left": "0px",
 							"width": "315px",
@@ -486,13 +526,24 @@
 				});
 				var button_2 = new cpr.controls.Button();
 				button_2.value = "중복확인";
+				button_2.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
 				if(typeof onButtonClick2 == "function") {
 					button_2.addEventListener("click", onButtonClick2);
 				}
 				container.addChild(button_2, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "21px",
+							"left": "276px",
+							"width": "102px",
+							"height": "36px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "21px",
 							"left": "325px",
 							"width": "130px",
@@ -522,14 +573,22 @@
 					]
 				});
 				var output_4 = new cpr.controls.Output("checkId");
-				output_4.value = "아이디를 입력하세요.";
+				output_4.visible = false;
+				output_4.value = "이미 사용중인 아이디입니다.";
 				output_4.style.css({
 					"color" : "#ED3838"
 				});
 				container.addChild(output_4, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "56px",
+							"left": "0px",
+							"width": "246px",
+							"height": "41px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "56px",
 							"left": "0px",
 							"width": "315px",
@@ -568,7 +627,14 @@
 				container.addChild(inputBox_2, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "130px",
+							"left": "-1px",
+							"width": "379px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "106px",
 							"left": "0px",
 							"width": "450px",
@@ -607,7 +673,14 @@
 				container.addChild(inputBox_3, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "194px",
+							"left": "-1px",
+							"width": "379px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "170px",
 							"left": "0px",
 							"width": "450px",
@@ -644,7 +717,14 @@
 				container.addChild(output_5, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "248px",
+							"left": "-1px",
+							"width": "246px",
+							"height": "41px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "224px",
 							"left": "0px",
 							"width": "315px",
@@ -681,7 +761,14 @@
 				container.addChild(inputBox_4, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "339px",
+							"left": "-1px",
+							"width": "230px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "293px",
 							"left": "0px",
 							"width": "295px",
@@ -712,13 +799,24 @@
 				});
 				var button_3 = new cpr.controls.Button();
 				button_3.value = "우편번호 확인";
+				button_3.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
 				if(typeof onButtonClick3 == "function") {
 					button_3.addEventListener("click", onButtonClick3);
 				}
 				container.addChild(button_3, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "358px",
+							"left": "253px",
+							"width": "126px",
+							"height": "36px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "312px",
 							"left": "325px",
 							"width": "130px",
@@ -765,7 +863,14 @@
 				container.addChild(inputBox_5, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "403px",
+							"left": "-1px",
+							"width": "380px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "357px",
 							"left": "0px",
 							"width": "450px",
@@ -803,7 +908,14 @@
 				container.addChild(inputBox_6, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "466px",
+							"left": "-1px",
+							"width": "380px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "420px",
 							"left": "0px",
 							"width": "450px",
@@ -842,7 +954,14 @@
 				container.addChild(maskEditor_1, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "592px",
+							"left": "0px",
+							"width": "228px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "501px",
 							"left": "0px",
 							"width": "450px",
@@ -880,7 +999,14 @@
 				container.addChild(inputBox_7, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "656px",
+							"left": "0px",
+							"width": "378px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "565px",
 							"left": "0px",
 							"width": "450px",
@@ -918,7 +1044,14 @@
 				container.addChild(inputBox_8, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "720px",
+							"left": "0px",
+							"width": "246px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "629px",
 							"left": "0px",
 							"width": "315px",
@@ -949,10 +1082,21 @@
 				});
 				var button_4 = new cpr.controls.Button();
 				button_4.value = "중복확인";
+				button_4.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
 				container.addChild(button_4, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "739px",
+							"left": "276px",
+							"width": "102px",
+							"height": "36px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "648px",
 							"left": "325px",
 							"width": "130px",
@@ -989,7 +1133,14 @@
 				container.addChild(output_6, {
 					positions: [
 						{
-							"media": "all and (min-width: 1920px)",
+							"media": "all and (min-width: 1980px)",
+							"top": "774px",
+							"left": "0px",
+							"width": "246px",
+							"height": "41px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "683px",
 							"left": "0px",
 							"width": "315px",
@@ -1022,31 +1173,38 @@
 			container.addChild(group_2, {
 				positions: [
 					{
-						"media": "all and (min-width: 1920px)",
+						"media": "all and (min-width: 1980px)",
 						"top": "258px",
-						"left": "910px",
-						"width": "530px",
+						"left": "651px",
+						"width": "980px",
+						"height": "999px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+						"top": "166px",
+						"left": "494px",
+						"width": "726px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "258px",
-						"left": "910px",
-						"width": "530px",
+						"top": "166px",
+						"left": "494px",
+						"width": "726px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "258px",
-						"left": "444px",
-						"width": "259px",
+						"top": "166px",
+						"left": "241px",
+						"width": "354px",
 						"height": "746px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "258px",
-						"left": "311px",
-						"width": "181px",
+						"top": "166px",
+						"left": "169px",
+						"width": "248px",
 						"height": "746px"
 					}
 				]

@@ -1,6 +1,7 @@
 package com.tomato.donghang.controller;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,14 +94,20 @@ public class MemberController {
 
 	@PostMapping("ui/checkIdMember")
 	public View checkIdMember(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
-		ParameterGroup data=dataRequest.getParameterGroup("dm2");
+		ParameterGroup data=dataRequest.getParameterGroup("CheckId");
 		String id=data.getValue("userId");
-		
-		MemberVO vo=mapperMapper.checkIdMember(id);
-		
-		
-		return null;
-			
+		String findId=null;
+		MemberVO vo=memberMapper.checkIdMember(id);
+		if(vo==null) {
+			findId="null";
+		}else {
+			findId=vo.getUserId();
+		}
+		Map<String ,Object> map=new HashMap<>();
+		System.out.println("findId = "+findId);
+		map.put("checkId", findId);
+		dataRequest.setMetadata(true, map);
+		return new JSONDataView();
 	}	
 }
 

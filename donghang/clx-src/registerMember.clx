@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b82936a5" version="1.0.4584">
   <head std:sid="head-4325bccb">
-    <screen std:sid="screen-1e19ae71" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
-    <screen std:sid="screen-63dae67b" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-e51ca67a" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-8e62cdfc" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-dea0bce8" id="register" name="register" minwidth="1980px" width="1980px" height="2000px" active="true"/>
+    <screen std:sid="screen-5fb889da" id="new-screen" name="new-screen" minwidth="1920px" maxwidth="1979px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-4d272edc" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-1be6e369" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-159e07e3" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-c545dd26">
       <cl:dataset std:sid="d-set-0f98711c" id="ds1"/>
       <cl:datamap std:sid="d-map-2482e273" id="dm1">
@@ -17,7 +18,7 @@
           <cl:datacolumn std:sid="d-column-f6b453af" name="nickName" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-bd09f969" id="dm2">
+      <cl:datamap std:sid="d-map-bd09f969" id="CheckId">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-2ddc9b52" name="userId"/>
         </cl:datacolumnlist>
@@ -29,99 +30,109 @@
       </cl:submission>
       <cl:submission std:sid="submission-586f4bd3" id="sms2" action="checkIdMember">
         <cl:listener std:sid="listener-0263c94d" name="submit-success" handler="onSms2SubmitSuccess"/>
-        <cl:requestdata dataid="dm2"/>
-        <cl:responsedata dataid="dm2"/>
+        <cl:requestdata dataid="CheckId"/>
+        <cl:responsedata dataid="CheckId"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
-  <body std:sid="body-bde335ed" style="color:#91C8E4;">
+  <body std:sid="body-bde335ed" style="color:#91C8E4; text-align:center;">
     <cl:img std:sid="image-20cfac83" src="theme/images/pivot/logodonghang .png">
       <cl:listener std:sid="listener-b38a1f32" name="value-change" handler="onImageValueChange"/>
       <cl:listener std:sid="listener-507c6459" name="item-click" handler="onImageItemClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-0dfc504c">
         <cl:xylayoutdata std:sid="sxyl-data-16039858" top="21px" left="43px" width="142px" height="146px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-dcd6b547" top="21px" left="34px" width="111px" height="146px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
     </cl:img>
     <cl:output std:sid="output-7e7d16d7" style="color:#4682A9; font-weight:bolder; font-size:2rem;" value="ITda">
       <cl:responsivexylayoutdata std:sid="rxyl-data-111cd881">
         <cl:xylayoutdata std:sid="sxyl-data-a4798402" top="72px" left="214px" width="107px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-0b0937a4" top="72px" left="167px" width="84px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-657ac17b" style="color:#4682A9; font-weight:bold; font-size:1.6rem;" value="Accompany">
       <cl:responsivexylayoutdata std:sid="rxyl-data-09f017da">
         <cl:xylayoutdata std:sid="sxyl-data-28a8cbef" top="114px" left="214px" width="153px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-a8e3c84e" top="114px" left="167px" width="120px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:group std:sid="group-39caef39">
       <cl:responsivexylayoutdata std:sid="rxyl-data-d3b93d5b">
-        <cl:xylayoutdata std:sid="sxyl-data-3dd893bc" top="6px" left="861px" width="375px" height="242px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-3dd893bc" top="40px" left="494px" width="375px" height="107px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-049649fb" top="40px" left="651px" width="479px" height="107px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
       <cl:output std:sid="output-3c911c54" style="font-weight:bold; font-size:2.7rem; font-style:normal;" value="회원가입">
         <cl:responsivexylayoutdata std:sid="rxyl-data-3e9544d2">
-          <cl:xylayoutdata std:sid="sxyl-data-afeadb0a" top="172px" left="148px" width="179px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-afeadb0a" top="20px" left="55px" width="179px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-a9a8828d" top="20px" left="43px" width="256px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:output>
-      <cl:img std:sid="image-01e9f640" src="theme/images/img/register_donghang.png">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-c3ec501b">
-          <cl:xylayoutdata std:sid="sxyl-data-a3102d96" top="40px" left="160px" width="167px" height="109px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
-        </cl:responsivexylayoutdata>
-      </cl:img>
       <cl:responsivexylayout std:sid="r-xylayout-f46d7541"/>
     </cl:group>
     <cl:button std:sid="button-8a400df8" style="font-weight:bold; font-size:1.7rem;" value="회원가입">
       <cl:listener std:sid="listener-fb43d51f" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f51ae92c">
-        <cl:xylayoutdata std:sid="sxyl-data-ac96571a" top="1003px" left="910px" width="213px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-ac96571a" top="955px" left="494px" width="213px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-30e9b640" top="1267px" left="651px" width="234px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:group std:sid="group-b8167950">
       <cl:responsivexylayoutdata std:sid="rxyl-data-7ad16296">
-        <cl:xylayoutdata std:sid="sxyl-data-90d4ae06" top="258px" left="910px" width="530px" height="746px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-90d4ae06" top="166px" left="494px" width="726px" height="746px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-236f61bc" top="258px" left="651px" width="980px" height="999px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
       </cl:responsivexylayoutdata>
-      <cl:inputbox std:sid="i-box-d24606ea" id="ipb1" style="font-size:1.2rem;" placeholder="아이디">
+      <cl:inputbox std:sid="i-box-d24606ea" id="ipb1" style="font-weight:normal; font-size:1.2rem; font-style:normal;" placeholder="아이디를 입력해주세요">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userId"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-986eaade">
           <cl:xylayoutdata std:sid="sxyl-data-a47f0bdc" top="2px" left="0px" width="315px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-3118c6dc" top="2px" left="0px" width="246px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:button std:sid="button-f91702dd" value="중복확인">
+      <cl:button std:sid="button-f91702dd" style="font-weight:bold; font-size:1.15rem;" value="중복확인">
         <cl:listener std:sid="listener-8d9fe1c8" name="click" handler="onButtonClick2"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-ab3d161a">
           <cl:xylayoutdata std:sid="sxyl-data-aef1fae0" top="21px" left="325px" width="130px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-19449a2a" top="21px" left="276px" width="102px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:button>
-      <cl:output std:sid="output-2168bb17" id="checkId" style="color:#ED3838;" value="아이디를 입력하세요.">
+      <cl:output std:sid="output-2168bb17" id="checkId" style="color:#ED3838;" visible="false" value="이미 사용중인 아이디입니다.">
         <cl:responsivexylayoutdata std:sid="rxyl-data-88129faf">
           <cl:xylayoutdata std:sid="sxyl-data-a3c61ac7" top="56px" left="0px" width="315px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-7907b882" top="56px" left="0px" width="246px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:output>
       <cl:inputbox std:sid="i-box-28c95846" id="ipb2" style="font-size:1.2rem;" secret="true" placeholder="비밀번호">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-0f2009b4">
           <cl:xylayoutdata std:sid="sxyl-data-068585c6" top="106px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-c7dfae27" top="130px" left="-1px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-f9067487" id="ipb3" style="font-size:1.2rem;" secret="true" placeholder="비밀번호 재확인">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-f461ecc8">
           <cl:xylayoutdata std:sid="sxyl-data-743416e8" top="170px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-f21ab181" top="194px" left="-1px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
       <cl:output std:sid="output-385e8cc5" style="color:#ED3838;" value="비밀번호를 입력하세요.">
         <cl:responsivexylayoutdata std:sid="rxyl-data-7d288775">
           <cl:xylayoutdata std:sid="sxyl-data-9736fd7a" top="224px" left="0px" width="315px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-87189e2d" top="248px" left="-1px" width="246px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:output>
       <cl:inputbox std:sid="i-box-1841ede3" id="PostCode" style="font-size:1.2rem;" placeholder="우편번호">
         <cl:responsivexylayoutdata std:sid="rxyl-data-b3994632">
           <cl:xylayoutdata std:sid="sxyl-data-8d9e4f6e" top="293px" left="0px" width="295px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-e280293b" top="339px" left="-1px" width="230px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:button std:sid="button-f9a9fd60" value="우편번호 확인">
+      <cl:button std:sid="button-f9a9fd60" style="font-weight:bold; font-size:1.15rem;" value="우편번호 확인">
         <cl:listener std:sid="listener-e472551e" name="click" handler="onButtonClick3"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-91a12c67">
           <cl:xylayoutdata std:sid="sxyl-data-2c5a67b0" top="312px" left="325px" width="130px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-2af64a32" top="358px" left="253px" width="126px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:button>
       <cl:inputbox std:sid="i-box-2175f836" id="Address" style="font-size:1.2rem;" placeholder="도로명 주소, 지번 주소">
@@ -131,40 +142,47 @@
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="address"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-85109a85">
           <cl:xylayoutdata std:sid="sxyl-data-8fe721b5" top="357px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-aaac1412" top="403px" left="-1px" width="380px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-1f48838f" id="detailAddress" style="font-size:1.2rem;" placeholder="상세 주소">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="address"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-2821d3b3">
           <cl:xylayoutdata std:sid="sxyl-data-949337fc" top="420px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-f9dd96ca" top="466px" left="-1px" width="380px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
       <cl:maskeditor std:sid="m-editor-7007f487" id="mse1" style="font-size:1.2rem;" mask="XXX-XXXX-XXXX" autoskip="true">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userTel"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-92023227">
           <cl:xylayoutdata std:sid="sxyl-data-08cd3d03" top="501px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-34603555" top="592px" left="0px" width="228px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:maskeditor>
       <cl:inputbox std:sid="i-box-04f202bb" id="ipb7" style="font-size:1.2rem;" placeholder="이름">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-5fb1f2a8">
           <cl:xylayoutdata std:sid="sxyl-data-1feb8bbf" top="565px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-77370d08" top="656px" left="0px" width="378px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-2ad871c9" id="ipb8" style="font-size:1.2rem;" placeholder="닉네임">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="nickName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-88889b6a">
           <cl:xylayoutdata std:sid="sxyl-data-d40070e2" top="629px" left="0px" width="315px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-daf4e7ed" top="720px" left="0px" width="246px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:button std:sid="button-14af6504" value="중복확인">
+      <cl:button std:sid="button-14af6504" style="font-weight:bold; font-size:1.15rem;" value="중복확인">
         <cl:responsivexylayoutdata std:sid="rxyl-data-d6565ea7">
           <cl:xylayoutdata std:sid="sxyl-data-24ebb0dc" top="648px" left="325px" width="130px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-0cd80a38" top="739px" left="276px" width="102px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:button>
       <cl:output std:sid="output-93df2aaf" style="color:#ED3838;" value="닉네임을 입력하세요.">
         <cl:responsivexylayoutdata std:sid="rxyl-data-53c5d4cb">
           <cl:xylayoutdata std:sid="sxyl-data-91bd966a" top="683px" left="0px" width="315px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-a1964fdf" top="774px" left="0px" width="246px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:output>
       <cl:responsivexylayout std:sid="r-xylayout-83f74bf2"/>

@@ -30,7 +30,19 @@ function onSms1SubmitSuccess2(e){
  */
 function onSms1SubmitError(e){
 	var sms1 = e.control;
-	alert("모든 정보를 입력해주세요.");
+	var initValue={
+		
+		"msg" : "회원가입 안내창"
+	}
+	
+	app.openDialog("appURI", {width : 400, height : 300}, function(dialog){
+		dialog.ready(function(dialogApp){
+			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+			dialogApp.initValue = initValue;
+		});
+	}).then(function(returnValue){
+		alert(JSON.stringify(returnValue));
+	});
 }
 
 /*
@@ -39,6 +51,9 @@ function onSms1SubmitError(e){
  */
 function onButtonClick2(e){
 	var button = e.control;
+	var id = app.lookup("ipb1").value;
+	var dataMap = app.lookup("CheckId");
+	dataMap.setValue("userId", id);
 	var submission = app.lookup("sms2");
 	submission.send();	
 }
@@ -47,10 +62,16 @@ function onButtonClick2(e){
  * 통신이 성공하면 발생합니다.
  */
 function onSms2SubmitSuccess(e ){
-	cpr.foundation.Workflow 
 	var sms2 = e.control;
+	var metadata = sms2.getMetadata("checkId");
+	if(metadata !="null"){
+		var chkId = app.lookup("ipb1");
+		chkId.value="";
+		chkId.redraw();
+		var chkIdMsg = app.lookup("checkId");
+		chkIdMsg.visible=true;
+	}
 	
-
 }
 
 /*
