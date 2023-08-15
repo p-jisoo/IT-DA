@@ -14,6 +14,7 @@
 
 function onGroupBeforeDraw(e){	
 	var page = app.lookup("page");
+	var dataSet = app.lookup("ds2");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
@@ -83,13 +84,33 @@ function onButtonClick(e){
  * 아이템 클릭시 발생하는 이벤트.
  */
 function onLbx1ItemClick(e){
+	var pageIndexer = app.lookup("page");
 	var searchInput = app.lookup("searchCtl");
 	var dataMap = app.lookup("dm2");
-	var inputValue = searchInput.value.replace(/\s/g, "");
+	var inputValue = searchInput.value.replace(/\s/g, ""); //공백많이 넣더라도 하나로취급
 	var listBox = app.lookup("lbx1");
 	var submission = app.lookup("sms2");
 	var dataSet = app.lookup("tpSlct");
 	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 	console.log(listBox.getSelectedDataSetIndices()[0]);
-	submission.send();
+	if(pageIndexer.currentPageIndex>1){
+		dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+		}
+		submission.send();
 }
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms2SubmitSuccess2(e){
+	var sms2 = e.control;
+	var page = app.lookup("page");
+	var dataSet = app.lookup("ds2");
+	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
+}
+
+/*
+ * 페이지 인덱서에서 before-selection-change 이벤트 발생 시 호출.
+ * Page index를 선택하여 선택된 페이지가 변경되기 전에 발생하는 이벤트. 다음 이벤트로 selection-change를 발생합니다.
+ */

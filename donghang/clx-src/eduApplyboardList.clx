@@ -91,6 +91,7 @@
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
       <cl:submission std:sid="submission-c81cf120" id="sms2" action="findBoardListWithStatusByPage.do">
+        <cl:listener std:sid="listener-227b8dfc" name="submit-success" handler="onSms2SubmitSuccess2"/>
         <cl:requestdata dataid="dm2"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
@@ -149,7 +150,7 @@
       </cl:grid>
       <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" visiblefirstbutton="false" visiblelastbutton="false">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:datasetbind property="totalRowCount" category="PROPERTY" datacontrolid="ds2" columnname="TOTAL_BOARD_COUNT"/>
+        <cl:listener std:sid="listener-82e0fe2a" name="before-selection-change" handler="onPageBeforeSelectionChange"/>
         <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="868px" left="667px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:pageindexer>
       <cl:group std:sid="group-ea39192a">
