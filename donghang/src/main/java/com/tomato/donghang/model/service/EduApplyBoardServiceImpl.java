@@ -57,7 +57,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		String NextPage = null;
 		int applyStatus = 0;
 		List<EduApplyBoardVO> list = null;
-		if(param.getValue("status")==null) {
+		if(param.getValue("status")==null || param.getValue("status")=="") {
 			applyStatus= 0;
 		}
 		else {

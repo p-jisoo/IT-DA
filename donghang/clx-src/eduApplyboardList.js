@@ -37,6 +37,7 @@ function onPageSelectionChange(e){
 	}else {
 		dataMap2.setValue("status", listBox.getSelectedDataSetIndices()[0]);
 		submission2.send();
+		console.log("여기탄다");
 		console.log(listBox.getSelectedDataSetIndices()[0]);
 	}
 }
@@ -83,12 +84,34 @@ function onButtonClick(e){
 	var listBox = app.lookup("lbx1");
 	var submission = app.lookup("pageInd");
 	var submission2 = app.lookup("sms2");
+	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
+		dataMap.setValue("status", listBox.getSelectedDataSetIndices()[0]);
+		console.log(listBox.getSelectedDataSetIndices()[0]);
+		submission2.send();
+	}else{
+		submission.send();
+	}
+}
+
+/*
+ * 리스트 박스에서 item-click 이벤트 발생 시 호출.
+ * 아이템 클릭시 발생하는 이벤트.
+ */
+function onLbx1ItemClick(e){
+	var lbx1 = e.control;
+	var button = e.control;
+	var searchInput = app.lookup("searchCtl");
+	var dataMap = app.lookup("dm2");
+	var inputValue = searchInput.value.replace(/\s/g, "");
+	var listBox = app.lookup("lbx1");
+	var submission = app.lookup("pageInd");
+	var submission2 = app.lookup("sms2");
 	console.log("리스트박스",listBox.getSelectedDataSetIndices()[0].valueOf());
 	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
 		dataMap.setValue("status", listBox.getSelectedDataSetIndices()[0]);
 		console.log(listBox.getSelectedDataSetIndices()[0]);
-		submission.send();
-	}else{
 		submission2.send();
+	}else{
+		submission.send();
 	}
 }

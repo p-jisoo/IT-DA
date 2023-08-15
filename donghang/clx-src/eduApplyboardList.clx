@@ -172,6 +172,7 @@
         </cl:formlayout>
       </cl:group>
       <cl:listbox std:sid="l-box-5558ba13" id="lbx1">
+        <cl:listener std:sid="listener-d81d4c85" name="item-click" handler="onLbx1ItemClick"/>
         <cl:xylayoutdata std:sid="xyl-data-cc6212fc" top="228px" left="216px" width="169px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:itemset datasetid="tpSlct" label="label" value="value"/>
       </cl:listbox>
