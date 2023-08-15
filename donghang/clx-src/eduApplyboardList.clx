@@ -78,7 +78,7 @@
       <cl:datamap std:sid="d-map-8a43c128" id="dm2">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-d814187d" name="nowpage"/>
-          <cl:datacolumn std:sid="d-column-55ab4645" name="status" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-55ab4645" name="status" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-032599b6" id="sms1" action="findBaordList.do">
@@ -147,8 +147,9 @@
           </cl:gridcell>
         </cl:griddetail>
       </cl:grid>
-      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" totalrowcount="11" pagerowcount="5" viewpagecount="4" visiblefirstbutton="false" visiblelastbutton="false">
+      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" visiblefirstbutton="false" visiblelastbutton="false">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
+        <cl:datasetbind property="totalRowCount" category="PROPERTY" datacontrolid="ds2" columnname="TOTAL_BOARD_COUNT"/>
         <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="868px" left="667px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:pageindexer>
       <cl:group std:sid="group-ea39192a">

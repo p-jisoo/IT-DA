@@ -42,7 +42,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("APPLY_STATUS", evo.getEduApplyBoardStatus());
 			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
 			data.add(row);
-			log.debug("findBoardList {}" , data);
 		}
 		return data;
 	}
@@ -50,20 +49,17 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	@Override
 	public List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param) {
 		long nowPage = 0;
-		long totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		Pagination pagination;
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		String PrevPage = null;
 		String NextPage = null;
-		int applyStatus = 0;
+		String applyStatus =  param.getValue("status");
 		List<EduApplyBoardVO> list = null;
-		if(param.getValue("status")==null || param.getValue("status")=="") {
-			applyStatus= 0;
+		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
+			applyStatus= "";
 		}
-		else {
-			applyStatus = Integer.parseInt(param.getValue("status"));
-		}	
-		 
+		
+		long totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		
 		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
 			 pagination = new Pagination(totalBoardCount);
@@ -88,7 +84,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("pagination", pagination);
 	    map.put("status", applyStatus);
-	    log.info("map 정보 {}",map.get("status"));
 	    list = eduApplyBoardMapper.findBoardListWithStatusByPage(map);
 		for(EduApplyBoardVO evo : list) {
 			Map<String, Object> row = new HashMap<String, Object>();
@@ -106,9 +101,4 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		return data;
 	}
 
-	@Override
-	public List<Map<String, Object>> findBaordListPage(ParameterGroup param) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

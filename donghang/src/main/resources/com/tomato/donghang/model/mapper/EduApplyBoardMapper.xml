@@ -22,24 +22,23 @@
 	<select id="findAllBoardCount">
 		select count(*) from edu_apply_board
 	</select>
-
+	
+	<select id="findBoardCountByStatus" parameterType="String" resultType="long">
+		select count(*) from edu_apply_board
+		<where>
+			<if test="status!=null and status!=''">
+			edu_apply_board_status = #{status}
+			</if>
+		</where>
+	</select>
+	
+	
 	<select id="findBoardList"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		<include refid="selectEduBoard">
 		</include>
 	</select>
-	
-	<select id="findBoardListByPage" parameterType="com.tomato.donghang.model.Pagination"
-		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		SELECT
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
-		FROM
-		(SELECT row_number() over(ORDER BY eboard_no DESC) as
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
-		FROM edu_apply_board)
-		WHERE rnum BETWEEN #{startRowNumber} and #{endRowNumber}
-	</select>
-	
+		
 	<select id="findBoardListWithStatusByPage" parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		SELECT
@@ -49,10 +48,10 @@
 		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
 		FROM edu_apply_board
 		<where>
-		<if test = "_parameter.containsValue(1) ">
+		<if test = "_parameter.containsValue('모집중') ">
 			edu_apply_board_status ='모집중'
 		</if>
-		<if test = "_parameter.containsValue(2) ">
+		<if test = "_parameter.containsValue('모집마감') ">
 			edu_apply_board_status ='모집마감'
 		</if>
 		</where>
