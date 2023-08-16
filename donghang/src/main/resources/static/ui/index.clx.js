@@ -192,28 +192,28 @@
 								"media": "all and (min-width: 1980px)",
 								"top": "20px",
 								"left": "1920px",
-								"width": "207px",
+								"width": "135px",
 								"height": "44px"
 							}, 
 							{
 								"media": "all and (min-width: 1024px) and (max-width: 1979px)",
 								"top": "20px",
 								"left": "993px",
-								"width": "107px",
+								"width": "70px",
 								"height": "44px"
 							}, 
 							{
 								"media": "all and (min-width: 500px) and (max-width: 1023px)",
 								"top": "20px",
 								"left": "485px",
-								"width": "52px",
+								"width": "34px",
 								"height": "44px"
 							}, 
 							{
 								"media": "all and (max-width: 499px)",
 								"top": "20px",
 								"left": "339px",
-								"width": "37px",
+								"width": "24px",
 								"height": "44px"
 							}
 						]
@@ -396,28 +396,28 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "73px",
-							"right": "2090px",
+							"right": "1908px",
 							"left": "708px",
 							"height": "142px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
 							"top": "73px",
-							"right": "1081px",
+							"right": "987px",
 							"left": "366px",
 							"height": "142px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "73px",
-							"right": "528px",
+							"right": "482px",
 							"left": "179px",
 							"height": "142px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "73px",
-							"right": "369px",
+							"right": "337px",
 							"left": "125px",
 							"height": "142px"
 						}

@@ -22,7 +22,7 @@
 			 * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("sms1");
 				submission.send();
@@ -32,28 +32,31 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms1SubmitSuccess2(e){
+			function onSms1SubmitSuccess2(e) {
 				var sms1 = e.control;
-				window.location.href="/";
+				window.location.href = "/";
 			}
 
 			/*
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
 			 */
-			function onSms1SubmitError(e){
+			function onSms1SubmitError(e) {
 				var sms1 = e.control;
-				var initValue={
+				var initValue = {
 					
-					"msg" : "회원가입 안내창"
+					"msg": "회원가입 안내창"
 				}
 				
-				app.openDialog("appURI", {width : 400, height : 300}, function(dialog){
-					dialog.ready(function(dialogApp){
+				app.openDialog("appURI", {
+					width: 400,
+					height: 300
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
 						// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
 						dialogApp.initValue = initValue;
 					});
-				}).then(function(returnValue){
+				}).then(function(returnValue) {
 					alert(JSON.stringify(returnValue));
 				});
 			}
@@ -62,86 +65,171 @@
 			 * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
 				var id = app.lookup("ipb1").value;
 				var dataMap = app.lookup("CheckId");
 				dataMap.setValue("userId", id);
 				var submission = app.lookup("sms2");
-				submission.send();	
+				submission.send();
 			}
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms2SubmitSuccess(e ){
+			function onSms2SubmitSuccess(e) {
 				var sms2 = e.control;
 				var metadata = sms2.getMetadata("checkId");
-				if(metadata !="null"){
+				var id = app.lookup("ipb1");
+				var chkId = app.lookup("checkId");
+				
+				if (id.length == 0) {
+					chkId.text = "아이디를 입력해주세요."
+					chkId.style.css("color", "#ED3838");
+					return false;
+				} else if (id.length < 8 || id.length > 16) {
+					chkId.text = "8~16자리로 입력해주세요.";
+					chkId.style.css("color", "#ED3838");
+					return false;
+			//	}else if(id.length(/\s/) != -1){
+			//		chkId.text = "공백없이 입력해주세요."
+			//		chkId.style.css("color", "#ED3838");
+			//		return false;
+			//	}else if(id. < 0 || eng < 0 || spe < 0 ){
+			//  		chkId.text ="영문,숫자, 특수문자를 혼합하여 입력해주세요.";
+			//  		chkId.style.css("color", "#ED3838");	
+			// 		 return false;
+			}
+					
+				if (metadata != "null") {
 					var chkId = app.lookup("ipb1");
-					chkId.value="";
+					chkId.value = "";
 					chkId.redraw();
 					var chkIdMsg = app.lookup("checkId");
-					chkIdMsg.text="이미 사용중인 아이디입니다.";
+					chkIdMsg.text = "이미 사용중인 아이디입니다.";
 					chkIdMsg.style.css("color", "#ED3838");
-				}else{
+					  return false;
+				} else {
 					var chkIdnull = app.lookup("ipb1");
 					var chkMsg = app.lookup("checkId");
-					chkMsg.text="사용가능한 아이디입니다."
+					chkMsg.text = "사용가능한 아이디입니다."
 					chkMsg.style.css("color", "#00B237");
-				}  
+					return true;
+				}
 				
 			}
 
+			/*
+			 * 인풋 박스에서 value-change 이벤트 발생 시 호출.
+			 * 변경된 value가 저장된 후에 발생하는 이벤트.
+			 */
+
+			function onPasswordValueChange(e) {
+				var pwd = app.lookup("password");
+				var pwdChk = app.lookup("passwordChk");
+				var pwdMsg = app.lookup("pwdMsg");
+				if (pwd.length == 0) {
+					pwdMsg.text = "비밀번호를 입력해주세요."
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				} else if (pwd.length < 8 || pwd.length > 16) {
+					pwdMsg.text = "8~16자리로 입력해주세요.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				}
+			//	}else if(pwd.length(/\s/) != -1){
+			//		pwdMsg.text = "공백없이 입력해주세요."
+			//		pwdMsg.style.css("color", "#ED3838");
+			//		return false;
+			//		}
+				
+				if (pwd.text === pwdChk.text) {
+					pwdMsg.text = "비밀번호가 일치합니다.";
+					pwdMsg.style.css("color", "#00B237");
+					return true;
+					
+				} else {
+					pwdMsg.text = "비밀번호가 서로 일치하지않습니다.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				}
+				
+			}
+
+			/*
+			 * 인풋 박스에서 value-change 이벤트 발생 시 호출.
+			 * 변경된 value가 저장된 후에 발생하는 이벤트.
+			 */
+			function onPasswordChkValueChange(e) {
+				console.log("확인");
+				var pwdChk = app.lookup("passwordChk");
+				var pwd = app.lookup("password");
+				var pwdMsg = app.lookup("pwdMsg");
+				
+				if (pwdChk.length == 0 && pwd.length == 0) {
+					pwdMsg.text = "비밀번호를 입력해주세요.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				}else if(pwdChk.length == 0 ){
+					pwdMsg.text = "비밀번호 재확인을 입력해주세요.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				} else if (pwd.length < 8 || pwd.length > 16) {
+					pwdMsg.text = "8~16자리로 입력해주세요.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				} 
+				if (pwdChk.text === pwd.text) {
+					pwdMsg.text = "비밀번호가 일치합니다.";
+					pwdMsg.style.css("color", "#00B237");
+					return true;
+				} else {
+					pwdMsg.text = "비밀번호가 서로 일치하지않습니다.";
+					pwdMsg.style.css("color", "#ED3838");
+					return false;
+				}
+			}
 
 			/*
 			 * "우편번호 확인" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
-			 	cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
-					.then(function(input){
-					    new daum.Postcode({
-			        oncomplete: function(data) {
-			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-			        	var inputBox = app.lookup("Address");
-			            var inputBox2 = app.lookup("PostCode");
-			        	var addr= "";
-			              	console.log(addr);
-			         	  //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-			                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-			                    addr = data.roadAddress;
-			                  inputBox.value=addr;
-			                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-			                    addr = data.jibunAddress;
-			                    inputBox.value=addr;
-			                }
-			               
-			           	inputBox2.value = data.zonecode;
-			              		                  		
-			        }
-			    }).open()	;
-			 });
+				cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
+					.then(function(input) {
+						new daum.Postcode({
+							oncomplete: function(data) {
+								// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+								// 예제를 참고하여 다양한 활용법을 확인해 보세요.
+								var inputBox = app.lookup("Address");
+								var inputBox2 = app.lookup("PostCode");
+								var addr = "";
+								console.log(addr);
+								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									addr = data.roadAddress;
+									inputBox.value = addr;
+								} else { // 사용자가 지번 주소를 선택했을 경우(J)
+									addr = data.jibunAddress;
+									inputBox.value = addr;
+								}
+								
+								inputBox2.value = data.zonecode;
+								
+							}
+						}).open();
+					});
 			}
 
 			/*
-			 * 인풋 박스에서 keyup 이벤트 발생 시 호출.
-			 * 사용자가 키에서 손을 뗄 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
+			 * "인증하기 " 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onPasswordChkKeyup(e){
-				var passwordChk = e.control;
-				var pwdChk = app.lookup("passwordChk").value;
-				console.log("pwdchk");
-				var pwd = app.lookup("password").value;
-				var pwdMsg = app.lookup("pwdMsg");
-				if(pwdChk==pwd){
-					pwdMsg.text="비밀번호가 일치합니다.";
-					
-				}else{
-					pwdMsg.text="비밀번호가 서로 일치하지않습니다.";
-				}
+			function onButtonClick4(e) {
+				var button = e.control;
+				var maskEditor = app.lookup("Tel_mask").value;
+				
 			};
 			// End - User Script
 			
@@ -377,7 +465,7 @@
 				output_3.value = "회원가입";
 				output_3.style.css({
 					"font-weight" : "bold",
-					"font-size" : "2.7rem",
+					"font-size" : "3rem",
 					"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
 					"font-style" : "normal"
 				});
@@ -385,38 +473,38 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "20px",
+							"top": "21px",
 							"left": "20px",
-							"width": "256px",
-							"height": "65px"
+							"width": "269px",
+							"height": "88px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "20px",
-							"left": "55px",
-							"width": "179px",
-							"height": "65px"
+							"top": "21px",
+							"left": "38px",
+							"width": "504px",
+							"height": "88px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "20px",
-							"left": "55px",
-							"width": "179px",
-							"height": "65px"
+							"top": "21px",
+							"left": "20px",
+							"width": "269px",
+							"height": "88px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "20px",
-							"left": "27px",
-							"width": "87px",
-							"height": "65px"
+							"top": "21px",
+							"left": "10px",
+							"width": "131px",
+							"height": "88px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "20px",
-							"left": "19px",
-							"width": "61px",
-							"height": "65px"
+							"top": "21px",
+							"left": "7px",
+							"width": "92px",
+							"height": "88px"
 						}
 					]
 				});
@@ -425,10 +513,10 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1980px)",
-						"top": "40px",
-						"left": "651px",
-						"width": "479px",
-						"height": "107px"
+						"top": "175px",
+						"left": "1067px",
+						"width": "321px",
+						"height": "110px"
 					}, 
 					{
 						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
@@ -474,10 +562,10 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1980px)",
-						"top": "1270px",
-						"left": "643px",
-						"width": "234px",
-						"height": "79px"
+						"top": "1345px",
+						"left": "1078px",
+						"width": "250px",
+						"height": "92px"
 					}, 
 					{
 						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
@@ -519,6 +607,7 @@
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
 				inputBox_1.placeholder = "아이디를 입력해주세요.";
+				inputBox_1.autoSkip = true;
 				inputBox_1.style.css({
 					"font-weight" : "normal",
 					"font-size" : "1.1rem",
@@ -533,7 +622,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "48px",
-							"left": "0px",
+							"left": "180px",
 							"width": "245px",
 							"height": "55px"
 						}, 
@@ -580,8 +669,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "67px",
-							"left": "265px",
+							"top": "58px",
+							"left": "455px",
 							"width": "102px",
 							"height": "36px"
 						}, 
@@ -616,7 +705,7 @@
 					]
 				});
 				var output_4 = new cpr.controls.Output("checkId");
-				output_4.value = "8~16자리로 입력해주세요.";
+				output_4.value = "아이디를 입력해주세요.         영어 대소문자/8~16자";
 				output_4.style.css({
 					"color" : "#ED3838",
 					"font-size" : "1.1rem"
@@ -625,10 +714,10 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "102px",
-							"left": "0px",
-							"width": "246px",
-							"height": "41px"
+							"top": "98px",
+							"left": "180px",
+							"width": "215px",
+							"height": "62px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
@@ -661,24 +750,25 @@
 					]
 				});
 				var inputBox_2 = new cpr.controls.InputBox("password");
+				inputBox_2.fieldLabel = "13";
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "비밀번호";
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
 				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
-				if(typeof onIpb2ValueChange == "function") {
-					inputBox_2.addEventListener("value-change", onIpb2ValueChange);
-				}
 				if(typeof onIpb2Keyup == "function") {
 					inputBox_2.addEventListener("keyup", onIpb2Keyup);
+				}
+				if(typeof onPasswordValueChange == "function") {
+					inputBox_2.addEventListener("value-change", onPasswordValueChange);
 				}
 				container.addChild(inputBox_2, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "185px",
-							"left": "0px",
+							"left": "180px",
 							"width": "379px",
 							"height": "55px"
 						}, 
@@ -718,7 +808,6 @@
 				inputBox_3.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_3.addEventListener("value-change", onPasswordChkValueChange);
 				}
@@ -727,7 +816,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "249px",
-							"left": "0px",
+							"left": "180px",
 							"width": "379px",
 							"height": "55px"
 						}, 
@@ -762,7 +851,7 @@
 					]
 				});
 				var output_5 = new cpr.controls.Output("pwdMsg");
-				output_5.value = "비밀번호를 입력하세요.";
+				output_5.value = "비밀번호를 입력해주세요.             영어대소문자/8~16자";
 				output_5.style.css({
 					"color" : "#ED3838",
 					"font-size" : "1.1rem"
@@ -772,9 +861,9 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "303px",
-							"left": "0px",
-							"width": "246px",
-							"height": "41px"
+							"left": "180px",
+							"width": "286px",
+							"height": "56px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
@@ -817,7 +906,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "400px",
-							"left": "0px",
+							"left": "180px",
 							"width": "230px",
 							"height": "55px"
 						}, 
@@ -865,7 +954,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "419px",
-							"left": "244px",
+							"left": "424px",
 							"width": "144px",
 							"height": "36px"
 						}, 
@@ -920,7 +1009,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "464px",
-							"left": "0px",
+							"left": "180px",
 							"width": "380px",
 							"height": "55px"
 						}, 
@@ -959,13 +1048,12 @@
 				inputBox_6.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_6.bind("value").toDataMap(app.lookup("dm1"), "address");
 				container.addChild(inputBox_6, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "527px",
-							"left": "0px",
+							"left": "180px",
 							"width": "380px",
 							"height": "55px"
 						}, 
@@ -999,7 +1087,7 @@
 						}
 					]
 				});
-				var maskEditor_1 = new cpr.controls.MaskEditor("mse1");
+				var maskEditor_1 = new cpr.controls.MaskEditor("Tel_mask");
 				maskEditor_1.mask = "XXX-XXXX-XXXX";
 				maskEditor_1.autoSkip = true;
 				maskEditor_1.style.css({
@@ -1011,7 +1099,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "653px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1051,40 +1139,43 @@
 					"font-weight" : "bold",
 					"font-size" : "1.15rem"
 				});
+				if(typeof onButtonClick4 == "function") {
+					button_4.addEventListener("click", onButtonClick4);
+				}
 				container.addChild(button_4, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "672px",
-							"left": "276px",
+							"left": "455px",
 							"width": "118px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "672px",
-							"left": "518px",
+							"left": "853px",
 							"width": "221px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "672px",
-							"left": "276px",
+							"left": "455px",
 							"width": "118px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "672px",
-							"left": "135px",
+							"left": "222px",
 							"width": "58px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "672px",
-							"left": "94px",
+							"left": "156px",
 							"width": "40px",
 							"height": "36px"
 						}
@@ -1101,35 +1192,35 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "712px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "712px",
-							"left": "0px",
+							"left": "338px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "712px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "712px",
-							"left": "0px",
+							"left": "88px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "712px",
-							"left": "0px",
+							"left": "62px",
 							"width": "91px",
 							"height": "55px"
 						}
@@ -1146,35 +1237,35 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "847px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "847px",
-							"left": "0px",
+							"left": "338px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "847px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "847px",
-							"left": "0px",
+							"left": "88px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "847px",
-							"left": "0px",
+							"left": "62px",
 							"width": "91px",
 							"height": "55px"
 						}
@@ -1191,35 +1282,35 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "911px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "911px",
-							"left": "0px",
+							"left": "338px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "911px",
-							"left": "0px",
+							"left": "180px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "911px",
-							"left": "0px",
+							"left": "88px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "911px",
-							"left": "0px",
+							"left": "62px",
 							"width": "91px",
 							"height": "55px"
 						}
@@ -1230,9 +1321,9 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1980px)",
-						"top": "231px",
-						"left": "643px",
-						"width": "820px",
+						"top": "296px",
+						"left": "900px",
+						"width": "916px",
 						"height": "1004px"
 					}, 
 					{
@@ -1262,6 +1353,366 @@
 						"left": "169px",
 						"width": "248px",
 						"height": "746px"
+					}
+				]
+			});
+			
+			var group_3 = new cpr.controls.Container();
+			var responsiveXYLayout_4 = new cpr.controls.layouts.ResponsiveXYLayout();
+			group_3.setLayout(responsiveXYLayout_4);
+			(function(container){
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "*아이디";
+				output_6.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_6, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "106px",
+							"left": "121px",
+							"width": "206px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "106px",
+							"left": "227px",
+							"width": "386px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "106px",
+							"left": "121px",
+							"width": "206px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "106px",
+							"left": "59px",
+							"width": "101px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "106px",
+							"left": "41px",
+							"width": "70px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "*비밀번호";
+				output_7.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_7, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "247px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "247px",
+							"left": "227px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "247px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "247px",
+							"left": "59px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "247px",
+							"left": "41px",
+							"width": "71px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_8 = new cpr.controls.Output();
+				output_8.value = "*비밀번호 재확인";
+				output_8.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_8, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "311px",
+							"left": "121px",
+							"width": "281px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "311px",
+							"left": "227px",
+							"width": "527px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "311px",
+							"left": "121px",
+							"width": "281px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "311px",
+							"left": "59px",
+							"width": "137px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "311px",
+							"left": "41px",
+							"width": "96px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_9 = new cpr.controls.Output();
+				output_9.value = "*주소";
+				output_9.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_9, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "458px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "458px",
+							"left": "227px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "458px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "458px",
+							"left": "59px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "458px",
+							"left": "41px",
+							"width": "71px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_10 = new cpr.controls.Output();
+				output_10.value = "*전화번호";
+				output_10.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_10, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "720px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "720px",
+							"left": "227px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "720px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "720px",
+							"left": "59px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "720px",
+							"left": "41px",
+							"width": "71px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_11 = new cpr.controls.Output();
+				output_11.value = "*성함";
+				output_11.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_11, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "893px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "893px",
+							"left": "227px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "893px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "893px",
+							"left": "59px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "893px",
+							"left": "41px",
+							"width": "71px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_12 = new cpr.controls.Output();
+				output_12.value = "*닉네임";
+				output_12.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_12, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "957px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "957px",
+							"left": "227px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "957px",
+							"left": "121px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "957px",
+							"left": "59px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "957px",
+							"left": "41px",
+							"width": "71px",
+							"height": "46px"
+						}
+					]
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				positions: [
+					{
+						"media": "all and (min-width: 1980px)",
+						"top": "250px",
+						"left": "324px",
+						"width": "432px",
+						"height": "1050px"
+					}, 
+					{
+						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+						"top": "250px",
+						"left": "608px",
+						"width": "810px",
+						"height": "1050px"
+					}, 
+					{
+						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+						"top": "250px",
+						"left": "324px",
+						"width": "432px",
+						"height": "1050px"
+					}, 
+					{
+						"media": "all and (min-width: 500px) and (max-width: 1023px)",
+						"top": "250px",
+						"left": "158px",
+						"width": "211px",
+						"height": "1050px"
+					}, 
+					{
+						"media": "all and (max-width: 499px)",
+						"top": "250px",
+						"left": "111px",
+						"width": "148px",
+						"height": "1050px"
 					}
 				]
 			});

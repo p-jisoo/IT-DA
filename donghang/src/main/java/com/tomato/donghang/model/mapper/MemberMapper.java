@@ -14,5 +14,4 @@ public interface MemberMapper {
 	List<EduApplyBoardVO> findAllBoardList();
 	MemberVO checkIdMember(String id);
 	
-
 }
