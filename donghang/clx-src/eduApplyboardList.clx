@@ -86,7 +86,6 @@
         <cl:responsedata dataid="ds1"/>
       </cl:submission>
       <cl:submission std:sid="submission-fe8370bb" id="pageInd" action="findBoardListByPage.do">
-        <cl:listener std:sid="listener-e771d9fa" name="submit-done" handler="onPageIndSubmitDone"/>
         <cl:requestdata dataid="dm1"/>
         <cl:responsedata dataid="ds2"/>
       </cl:submission>
@@ -103,55 +102,46 @@
     <cl:group std:sid="group-922b7e01">
       <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
       <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-61c7ca21" id="grd1" style="border-left-style:none;" datasetid="ds2">
-        <cl:xylayoutdata std:sid="xyl-data-2eb214fe" top="338px" left="211px" width="1226px" height="484px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:grid std:sid="grid-61c7ca21" id="grd1" style="border-right-style:none; border-left-style:none; border-bottom-style:none;" datasetid="ds2">
+        <cl:xylayoutdata std:sid="xyl-data-2eb214fe" top="338px" left="211px" width="1226px" height="559px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:detailstyle style="text-align:left;"/>
         <cl:gridcolumn std:sid="g-column-c4b83e82"/>
         <cl:gridcolumn std:sid="g-column-5f09081a"/>
         <cl:gridcolumn std:sid="g-column-e07d3af3"/>
         <cl:gridcolumn std:sid="g-column-b2a256ea"/>
         <cl:gridcolumn std:sid="g-column-89880a2a"/>
-        <cl:gridheader std:sid="gh-band-67d11d2f">
-          <cl:gridrow std:sid="g-row-23501053"/>
-          <cl:gridcell std:sid="gh-cell-e6b1a275" rowindex="0" colindex="0" targetcolumnname="BOARD_NO" sortable="false" filterable="false" text="BOARD_NO"/>
-          <cl:gridcell std:sid="gh-cell-09d23a40" rowindex="0" colindex="1" targetcolumnname="BOARD_TITLE" sortable="false" filterable="false" text="BOARD_TITLE"/>
-          <cl:gridcell std:sid="gh-cell-a45c196d" rowindex="0" colindex="2" targetcolumnname="PERIOD" sortable="false" filterable="false" text="PERIOD"/>
-          <cl:gridcell std:sid="gh-cell-4a129b9a" rowindex="0" colindex="3" targetcolumnname="BOARD_CATEGORY" sortable="false" filterable="false" text="BOARD_CATEGORY"/>
-          <cl:gridcell std:sid="gh-cell-fbb13710" rowindex="0" colindex="4" targetcolumnname="APPLY_STATUS" sortable="false" filterable="false" text="APPLY_STATUS"/>
-        </cl:gridheader>
         <cl:griddetail std:sid="gd-band-021ffdcb">
-          <cl:gridrow std:sid="g-row-e2674b97"/>
-          <cl:gridcell std:sid="gd-cell-56aae1c0" rowindex="0" colindex="0" columnname="BOARD_NO">
-            <cl:output std:sid="output-61ff6ac2">
+          <cl:gridrow std:sid="g-row-e2674b97" height="108px"/>
+          <cl:gridcell std:sid="gd-cell-56aae1c0" rowindex="0" colindex="0" style="border-right-style:none;" columnname="BOARD_NO">
+            <cl:output std:sid="output-61ff6ac2" style="border-right-style:none;">
               <cl:celldata std:sid="c-data-7ea65aa4"/>
             </cl:output>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-b57299ba" rowindex="0" colindex="1" columnname="BOARD_TITLE">
-            <cl:output std:sid="output-8ae1b315">
+          <cl:gridcell std:sid="gd-cell-b57299ba" rowindex="0" colindex="1" style="border-right-style:none;" columnname="BOARD_TITLE">
+            <cl:output std:sid="output-8ae1b315" style="border-right-style:none;">
               <cl:celldata std:sid="c-data-7dc04dfc"/>
             </cl:output>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-c45315bc" rowindex="0" colindex="2" columnname="PERIOD">
-            <cl:output std:sid="output-171aafe4">
+          <cl:gridcell std:sid="gd-cell-c45315bc" rowindex="0" colindex="2" style="border-right-style:none;" columnname="PERIOD">
+            <cl:output std:sid="output-171aafe4" style="border-right-style:none;">
               <cl:celldata std:sid="c-data-2a704439"/>
             </cl:output>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-c416145f" rowindex="0" colindex="3" columnname="BOARD_CATEGORY">
-            <cl:output std:sid="output-06993863">
+          <cl:gridcell std:sid="gd-cell-c416145f" rowindex="0" colindex="3" style="border-right-style:none;" columnname="BOARD_CATEGORY">
+            <cl:output std:sid="output-06993863" style="border-right-style:none;">
               <cl:celldata std:sid="c-data-74004e91"/>
             </cl:output>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-ba347316" rowindex="0" colindex="4" columnname="APPLY_STATUS">
-            <cl:output std:sid="output-2a619e27">
+          <cl:gridcell std:sid="gd-cell-ba347316" rowindex="0" colindex="4" style="border-right-style:none;" columnname="APPLY_STATUS">
+            <cl:output std:sid="output-2a619e27" style="border-right-style:none;">
               <cl:celldata std:sid="c-data-73fb694e"/>
             </cl:output>
           </cl:gridcell>
         </cl:griddetail>
       </cl:grid>
-      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" visiblefirstbutton="false" visiblelastbutton="false">
+      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" visiblefirstbutton="false" visiblelastbutton="false" visibleprevbutton="false" visiblenextbutton="false">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:listener std:sid="listener-82e0fe2a" name="before-selection-change" handler="onPageBeforeSelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="868px" left="667px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="941px" left="674px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:pageindexer>
       <cl:group std:sid="group-ea39192a">
         <cl:xylayoutdata std:sid="xyl-data-f2b0e079" top="259px" left="395px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -178,6 +168,9 @@
         <cl:xylayoutdata std:sid="xyl-data-cc6212fc" top="228px" left="216px" width="169px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:itemset datasetid="tpSlct" label="label" value="value"/>
       </cl:listbox>
+      <cl:button std:sid="button-819c3ff9" value="신청">
+        <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="906px" left="1296px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
       <cl:xylayout std:sid="xylayout-27bafe77"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-bec286de"/>

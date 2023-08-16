@@ -15,11 +15,13 @@
 function onGroupBeforeDraw(e){	
 	var page = app.lookup("page");
 	var dataSet = app.lookup("ds2");
+	var dataSet = app.lookup("ds2");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
 	submission.send();
+	
 }
 
 /*
@@ -108,9 +110,20 @@ function onSms2SubmitSuccess2(e){
 	var page = app.lookup("page");
 	var dataSet = app.lookup("ds2");
 	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
+	console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
+	console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
+	if(dataSet.getValue(0, "PREVPAGE")==="1"){
+		page.visiblePrevButton = true;
+	}else{
+		page.visiblePrevButton = false;
+	}
+	if(dataSet.getValue(0, "NEXTPAGE")==="1"){
+		page.visibleNextButton =true;
+	}else{
+		page.visibleNextButton =false;
+	}
+	page.redraw();	
+	
 }
 
-/*
- * 페이지 인덱서에서 before-selection-change 이벤트 발생 시 호출.
- * Page index를 선택하여 선택된 페이지가 변경되기 전에 발생하는 이벤트. 다음 이벤트로 selection-change를 발생합니다.
- */
+

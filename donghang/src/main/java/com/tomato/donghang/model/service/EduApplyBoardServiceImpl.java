@@ -38,8 +38,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("BOARD_NO", evo.getEboardNo());
 			row.put("BOARD_TITLE", evo.getEduBoardTitle());
 			row.put("PERIOD", evo.getEduBoardApplyStartPeriod());
-			row.put("BOARD_CATEGORY", evo.getEduApplyBoardCategory());
-			row.put("APPLY_STATUS", evo.getEduApplyBoardStatus());
+			row.put("BOARD_CATEGORY", evo.getEduBoardCategory());
+			row.put("APPLY_STATUS", evo.getEduBoardStatus());
 			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
 			data.add(row);
 		}
@@ -51,8 +51,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		long nowPage = 0;
 		Pagination pagination;
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-		String PrevPage = null;
-		String NextPage = null;
+		String PrevPage = "0";
+		String NextPage = "0";
 		String applyStatus =  param.getValue("status");
 		List<EduApplyBoardVO> list = null;
 		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
@@ -90,8 +90,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("BOARD_NO", evo.getEboardNo());
 			row.put("BOARD_TITLE", evo.getEduBoardTitle());
 			row.put("PERIOD", evo.getEduBoardStartPeriod());
-			row.put("BOARD_CATEGORY", evo.getEduApplyBoardCategory());
-			row.put("APPLY_STATUS", evo.getEduApplyBoardStatus());
+			row.put("BOARD_CATEGORY", evo.getEduBoardCategory());
+			row.put("APPLY_STATUS", evo.getEduBoardStatus());
 			row.put("NOW_PAGE", nowPage);
 			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
 			row.put("PREVPAGE", PrevPage);

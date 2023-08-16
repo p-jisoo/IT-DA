@@ -28,7 +28,7 @@
 		select count(*) from edu_apply_board
 		<where>
 			<if test="status!=null and status!=''">
-				edu_apply_board_status = #{status}
+				edu_board_status = #{status}
 			</if>
 		</where>
 	</select>
@@ -47,26 +47,26 @@
 		rnum,EDU_BOARD_NO,
 		EDU_BOARD_TITLE,
 		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_APPLY_MEMBER_COUNT,
-		EDU_APPLY_BOARD_CATEGORY,
-		EDU_APPLY_BOARD_CONTENT,
-		EDU_APPLY_BOARD_STATUS
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT,
+		EDU_BOARD_STATUS
 		FROM
 		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
 		rnum,EDU_BOARD_NO,
 		EDU_BOARD_TITLE,
-		EDU_APPLY_BOARD_STATUS,
+		EDU_BOARD_STATUS,
 		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_APPLY_MEMBER_COUNT,
-		EDU_APPLY_BOARD_CATEGORY,
-		EDU_APPLY_BOARD_CONTENT
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
 			<if test="_parameter.containsValue('모집중') ">
-				edu_apply_board_status ='모집중'
+				edu_board_status ='모집중'
 			</if>
 			<if test="_parameter.containsValue('모집마감') ">
-				edu_apply_board_status ='모집마감'
+				edu_board_status ='모집마감'
 			</if>
 		</where>
 		)

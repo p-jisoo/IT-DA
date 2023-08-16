@@ -12,8 +12,8 @@ public class EduApplyBoardVO {
     private String eduBoardEndPeriod;
     private String eduBoardApplyStartPeriod;
     private String eduBoardApplyEndPeriod;
-    private int eduBoardApplyMemberCount;
-    private String eduApplyBoardStatus;
-    private String eduApplyBoardCategory;
-    private String eduApplyBoardContent;
+    private int eduBoardMemberCount;
+    private String eduBoardStatus;
+    private String eduBoardCategory;
+    private String eduBoardContent;
 }
