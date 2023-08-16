@@ -69,10 +69,17 @@ function onSms2SubmitSuccess(e ){
 		chkId.value="";
 		chkId.redraw();
 		var chkIdMsg = app.lookup("checkId");
-		chkIdMsg.visible=true;
-	}
+		chkIdMsg.text="이미 사용중인 아이디입니다.";
+		chkIdMsg.style.css("color", "#ED3838");
+	}else{
+		var chkIdnull = app.lookup("ipb1");
+		var chkMsg = app.lookup("checkId");
+		chkMsg.text="사용가능한 아이디입니다."
+		chkMsg.style.css("color", "#00B237");
+	}  
 	
 }
+
 
 /*
  * "우편번호 확인" 버튼에서 click 이벤트 발생 시 호출.
@@ -106,4 +113,20 @@ function onButtonClick3(e){
  });
 }
 
-
+/*
+ * 인풋 박스에서 keyup 이벤트 발생 시 호출.
+ * 사용자가 키에서 손을 뗄 때 발생하는 이벤트. 키코드 관련 상수는 {@link cpr.events.KeyCode}에서 참조할 수 있습니다.
+ */
+function onPasswordChkKeyup(e){
+	var passwordChk = e.control;
+	var pwdChk = app.lookup("passwordChk").value;
+	console.log("pwdchk");
+	var pwd = app.lookup("password").value;
+	var pwdMsg = app.lookup("pwdMsg");
+	if(pwdChk==pwd){
+		pwdMsg.text="비밀번호가 일치합니다.";
+		
+	}else{
+		pwdMsg.text="비밀번호가 서로 일치하지않습니다.";
+	}
+}

@@ -104,7 +104,6 @@ public class MemberController {
 			findId=vo.getUserId();
 		}
 		Map<String ,Object> map=new HashMap<>();
-		System.out.println("findId = "+findId);
 		map.put("checkId", findId);
 		dataRequest.setMetadata(true, map);
 		return new JSONDataView();
