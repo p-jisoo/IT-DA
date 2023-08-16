@@ -6,7 +6,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class EduApplyBoardVO {
-	private long eboard_no;
+	private long eduBoardNo;
 	private String eduBoardTitle;
 	private String eduBoardStartPeriod;
 	private String eduBoardEndPeriod;
@@ -16,7 +16,8 @@ public class EduApplyBoardVO {
 	private String eduApplyBoardStatus;
 	private String eduApplyBoardCategory;
 	private String eduApplyBoardContent;
-//	EBOARD_NO NUMBER,
+	//private MemberVO memberVO;
+//	EDU_BOARD_NO NUMBER,
 //	--교육 제목
 //	EDU_BOARD_TITLE VARCHAR2(100),
 //	--교육기간
