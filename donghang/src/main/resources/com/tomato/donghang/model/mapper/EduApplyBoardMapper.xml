@@ -22,41 +22,56 @@
 	<select id="findAllBoardCount">
 		select count(*) from edu_apply_board
 	</select>
-	
-	<select id="findBoardCountByStatus" parameterType="String" resultType="long">
+
+	<select id="findBoardCountByStatus" parameterType="String"
+		resultType="long">
 		select count(*) from edu_apply_board
 		<where>
 			<if test="status!=null and status!=''">
-			edu_apply_board_status = #{status}
+				edu_apply_board_status = #{status}
 			</if>
 		</where>
 	</select>
-	
-	
+
+
 	<select id="findBoardList"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		<include refid="selectEduBoard">
 		</include>
 	</select>
-		
-	<select id="findBoardListWithStatusByPage" parameterType="HashMap"
+
+	<select id="findBoardListWithStatusByPage"
+		parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		SELECT
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_APPLY_MEMBER_COUNT,
+		EDU_APPLY_BOARD_CATEGORY,
+		EDU_APPLY_BOARD_CONTENT,
+		EDU_APPLY_BOARD_STATUS
 		FROM
-		(SELECT row_number() over(ORDER BY eboard_no DESC) as
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_APPLY_BOARD_STATUS,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_APPLY_MEMBER_COUNT,
+		EDU_APPLY_BOARD_CATEGORY,
+		EDU_APPLY_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
-		<if test = "_parameter.containsValue('모집중') ">
-			edu_apply_board_status ='모집중'
-		</if>
-		<if test = "_parameter.containsValue('모집마감') ">
-			edu_apply_board_status ='모집마감'
-		</if>
+			<if test="_parameter.containsValue('모집중') ">
+				edu_apply_board_status ='모집중'
+			</if>
+			<if test="_parameter.containsValue('모집마감') ">
+				edu_apply_board_status ='모집마감'
+			</if>
 		</where>
 		)
-		WHERE rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and
+		#{pagination.endRowNumber}
 	</select>
 </mapper>
 
