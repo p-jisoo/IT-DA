@@ -62,6 +62,43 @@
 		EDU_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
+		<foreach item="val" index="key" collection="map">
+			<if test="_parameter.containsValue('모집중') ">
+				edu_board_status ='모집중'
+			</if>
+			<if test="_parameter.containsValue('모집마감') ">
+				edu_board_status ='모집마감'
+			</if>
+			 </foreach>
+		</where>
+		
+		)
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and
+		#{pagination.endRowNumber}
+	</select>
+	
+		<select id="findBoardListPageAndSearch"
+		parameterType="HashMap"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		SELECT
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT,
+		EDU_BOARD_STATUS
+		FROM
+		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
+		FROM edu_apply_board
+		<where>
 			<if test="_parameter.containsValue('모집중') ">
 				edu_board_status ='모집중'
 			</if>
@@ -73,5 +110,6 @@
 		WHERE rnum BETWEEN #{pagination.startRowNumber} and
 		#{pagination.endRowNumber}
 	</select>
+	
 </mapper>
 
