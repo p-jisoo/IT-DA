@@ -43,3 +43,13 @@ function onButtonClick2(e){
 	var button = e.control;
 	window.location.href="registerMember.clx"
 }
+
+/*
+ * 이미지에서 value-change 이벤트 발생 시 호출.
+ * Image의 value(src)를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
+ */
+function onImageValueChange(e){
+	var image = e.control;
+	var img = app.lookup("imgHome");
+	window.location.href="/";
+}

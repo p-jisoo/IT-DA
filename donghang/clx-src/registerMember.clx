@@ -46,9 +46,10 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-bde335ed" style="color:#91C8E4; text-align:center;">
-    <cl:img std:sid="image-20cfac83" src="theme/images/pivot/logodonghang .png">
+    <cl:img std:sid="image-20cfac83" id="imgHome" src="theme/images/pivot/logodonghang .png">
       <cl:listener std:sid="listener-b38a1f32" name="value-change" handler="onImageValueChange"/>
       <cl:listener std:sid="listener-507c6459" name="item-click" handler="onImageItemClick2"/>
+      <cl:listener std:sid="listener-0e4a7fc8" name="click" handler="onImageClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-0dfc504c">
         <cl:xylayoutdata std:sid="sxyl-data-16039858" top="21px" left="43px" width="142px" height="146px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         <cl:xylayoutdata std:sid="sxyl-data-dcd6b547" top="21px" left="34px" width="111px" height="146px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
@@ -180,13 +181,13 @@
           <cl:xylayoutdata std:sid="sxyl-data-e3a61ed2" top="712px" left="180px" width="266px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-04f202bb" id="ipb7" style="font-size:1.2rem;" placeholder="이름을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-04f202bb" id="userName" style="font-size:1.2rem;" placeholder="이름을 입력해주세요.">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-4f1222fa">
           <cl:xylayoutdata std:sid="sxyl-data-e5e4d910" top="847px" left="180px" width="266px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-2ad871c9" id="ipb8" style="font-size:1.2rem;" placeholder="닉네임을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-2ad871c9" id="nickName" style="font-size:1.2rem;" placeholder="닉네임을 입력해주세요.">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="nickName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-6d788f26">
           <cl:xylayoutdata std:sid="sxyl-data-2b1a83dc" top="911px" left="180px" width="266px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>

@@ -30,24 +30,39 @@ function onSms1SubmitSuccess2(e) {
  */
 function onSms1SubmitError(e) {
 	var sms1 = e.control;
-	var initValue = {
-		
-		"msg": "회원가입 안내창"
+	var pwd = app.lookup("password");
+	var pwdChk = app.lookup("passwordChk");
+	var adr = app.lookup("Address");
+	var id = app.lookup("ipb1");
+	var detailAdr = app.lookup("detailAddress");
+	var name = app.lookup("userName");
+	var nickName = app.lookup("nickName");
+	if (id.length == 0) {
+		alert("아이디를 입력해주세요.");
+	} else if (id.length < 8 || id.length > 16) {
+		alert("아이디를 8~16자리로 입력해주세요.");
 	}
-	
-	app.openDialog("appURI", {
-		width: 400,
-		height: 300
-	}, function(dialog) {
-		dialog.ready(function(dialogApp) {
-			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-			dialogApp.initValue = initValue;
-		});
-	}).then(function(returnValue) {
-		alert(JSON.stringify(returnValue));
-	});
+	if (pwd.length == 0) {
+		alert("비밀번호를 입력해주세요.");
+	}
+	if (pwd.value != pwdChk.value) {
+		alert("비밀번호가 일치하지 않습니다.");
+	} else if (pwd.length < 8 || pwd.length > 16) {
+		alert("비밀번호를 8~16자리로 입력해주세요");
+	}
+	if (adr.length == 0) {
+		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+	}
+	if (detailAdr.length == 0) {
+		alert("상세주소를 입력해주세요.");
+	}
+	if (name.length == 0) {
+		alert("이름을 입력해주세요.");
+	}
+	if (nickName.length == 0) {
+		alert("닉네임을 입력해주세요");
+	}
 }
-
 /*
  * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -78,16 +93,16 @@ function onSms2SubmitSuccess(e) {
 		chkId.text = "8~16자리로 입력해주세요.";
 		chkId.style.css("color", "#ED3838");
 		return false;
-//	}else if(id.length(/\s/) != -1){
-//		chkId.text = "공백없이 입력해주세요."
-//		chkId.style.css("color", "#ED3838");
-//		return false;
-//	}else if(id. < 0 || eng < 0 || spe < 0 ){
-//  		chkId.text ="영문,숫자, 특수문자를 혼합하여 입력해주세요.";
-//  		chkId.style.css("color", "#ED3838");	
-// 		 return false;
-}
-		
+		//	}else if(id.length(/\s/) != -1){
+		//		chkId.text = "공백없이 입력해주세요."
+		//		chkId.style.css("color", "#ED3838");
+		//		return false;
+		//	}else if(id. < 0 || eng < 0 || spe < 0 ){
+		//  		chkId.text ="영문,숫자, 특수문자를 혼합하여 입력해주세요.";
+		//  		chkId.style.css("color", "#ED3838");	
+		// 		 return false;
+	}
+	
 	if (metadata != "null") {
 		var chkId = app.lookup("ipb1");
 		chkId.value = "";
@@ -95,7 +110,7 @@ function onSms2SubmitSuccess(e) {
 		var chkIdMsg = app.lookup("checkId");
 		chkIdMsg.text = "이미 사용중인 아이디입니다.";
 		chkIdMsg.style.css("color", "#ED3838");
-		  return false;
+		return false;
 	} else {
 		var chkIdnull = app.lookup("ipb1");
 		var chkMsg = app.lookup("checkId");
@@ -124,11 +139,11 @@ function onPasswordValueChange(e) {
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
 	}
-//	}else if(pwd.length(/\s/) != -1){
-//		pwdMsg.text = "공백없이 입력해주세요."
-//		pwdMsg.style.css("color", "#ED3838");
-//		return false;
-//		}
+	//	}else if(pwd.length(/\s/) != -1){
+	//		pwdMsg.text = "공백없이 입력해주세요."
+	//		pwdMsg.style.css("color", "#ED3838");
+	//		return false;
+	//		}
 	
 	if (pwd.text === pwdChk.text) {
 		pwdMsg.text = "비밀번호가 일치합니다.";
@@ -157,7 +172,7 @@ function onPasswordChkValueChange(e) {
 		pwdMsg.text = "비밀번호를 입력해주세요.";
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
-	}else if(pwdChk.length == 0 ){
+	} else if (pwdChk.length == 0) {
 		pwdMsg.text = "비밀번호 재확인을 입력해주세요.";
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
@@ -165,7 +180,7 @@ function onPasswordChkValueChange(e) {
 		pwdMsg.text = "8~16자리로 입력해주세요.";
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
-	} 
+	}
 	if (pwdChk.text === pwd.text) {
 		pwdMsg.text = "비밀번호가 일치합니다.";
 		pwdMsg.style.css("color", "#00B237");
@@ -175,6 +190,7 @@ function onPasswordChkValueChange(e) {
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
 	}
+	
 }
 
 /*
@@ -219,3 +235,12 @@ function onButtonClick4(e) {
 	
 }
 
+/*
+ * 이미지에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onImageClick(e) {
+	var image = e.control;
+	var img = app.lookup("imgHome");
+	window.location.href = "/";
+}
