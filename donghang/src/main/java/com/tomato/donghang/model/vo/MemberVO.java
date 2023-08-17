@@ -19,5 +19,9 @@ public class MemberVO {
 		this.userId = userId;
 		this.password = password;
 	}
+	public MemberVO(String userId) {
+		super();
+		this.userId = userId;
+	}
 	
 }

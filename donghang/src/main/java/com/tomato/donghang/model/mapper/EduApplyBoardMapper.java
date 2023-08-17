@@ -13,6 +13,8 @@ public interface EduApplyBoardMapper {
 
 	void createBoard(EduApplyBoardVO vo);
 	
+	void updateBoard(EduApplyBoardVO vo);
+	
 	List<EduApplyBoardVO> findBoardList();
 
 	long findAllBoardCount();
@@ -20,4 +22,6 @@ public interface EduApplyBoardMapper {
 	List<EduApplyBoardVO> findBoardListWithStatusByPage(Map<String, Object> map);
 
 	long findBoardCountByStatus(String status);
+
+
 }

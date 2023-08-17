@@ -12,5 +12,6 @@ public interface MemberMapper {
 	void updateMember(MemberVO vo);
 	MemberVO loginMember(MemberVO memberVO);
 	List<EduApplyBoardVO> findAllBoardList();
-
+	MemberVO checkIdMember(String id);
+	
 }

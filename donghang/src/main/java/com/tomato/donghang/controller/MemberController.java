@@ -1,5 +1,8 @@
 package com.tomato.donghang.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,7 +30,6 @@ public class MemberController {
 
 	@GetMapping("ui/register")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		log.info("도착");
 		return new UIView("ui/registerMember.clx");
 	}
 
@@ -89,4 +91,22 @@ public class MemberController {
 		}
 		return new JSONDataView();
 	}
+
+	@PostMapping("ui/checkIdMember")
+	public View checkIdMember(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+		ParameterGroup data=dataRequest.getParameterGroup("CheckId");
+		String id=data.getValue("userId");
+		String findId=null;
+		MemberVO vo=memberMapper.checkIdMember(id);
+		if(vo==null) {
+			findId="null";
+		}else {
+			findId=vo.getUserId();
+		}
+		Map<String ,Object> map=new HashMap<>();
+		map.put("checkId", findId);
+		dataRequest.setMetadata(true, map);
+		return new JSONDataView();
+	}	
 }
+

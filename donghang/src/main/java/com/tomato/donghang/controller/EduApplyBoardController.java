@@ -1,6 +1,5 @@
 package com.tomato.donghang.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,29 +27,35 @@ import lombok.extern.slf4j.Slf4j;
 public class EduApplyBoardController {
 	private final EduApplyBoardService eduApplyBoardService;
 	@PostMapping("/ui/testajax.do")
-	//@ResponseBody => RestController 이므로 필요없음 
-	public String testAjax() { // @RequestParam 생략가능
-		System.out.println("1");
-		return "hello ajax"; // RestController 즉 ajax 응답 
+	public String testAjax() { 
+		return "hello ajax";  
 	}
 	
-	@GetMapping("/ui/toBaordList.do")
+	@GetMapping("/ui/toBoardList.do")
 	public View BoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
 	
-	
 	@PostMapping("/ui/createBoard.do")
-	public void createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) { 
+	public View createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		System.out.println("paramCreate : "+ param);
+		eduApplyBoardService.createBoard(param);	
+		return new UIView("/ui/eduApplyboardList.clx");
 	}
+	@PostMapping("/ui/updateBoard.do")
+	public View updateBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		System.out.println("paramUpdate : "+ param);
+		eduApplyBoardService.updateBoard(param);	
+		return new UIView("/ui/eduApplyboardList.clx");
+	}
+
 	@GetMapping("/ui/eduApplyboardList")
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
-	
-	
-	
-	
+
 	@PostMapping("/ui/findBaordList.do")
 	public View findBoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		List<Map<String, Object>> data = eduApplyBoardService.findBaordList();
@@ -72,5 +77,4 @@ public class EduApplyBoardController {
 		dataRequest.setResponse("ds2", data);
 		return new JSONDataView();
 	}
-	
 }
