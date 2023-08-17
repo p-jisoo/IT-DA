@@ -13,11 +13,11 @@ public interface EduApplyBoardMapper {
 
 	void createBoard(EduApplyBoardVO vo);
 	
+	void updateBoard(EduApplyBoardVO vo);
+	
 	List<EduApplyBoardVO> findBoardList();
 
 	List<EduApplyBoardVO> findBoardListByPage(Pagination pagination);
 
 	long findAllBoardCount();
-
-	List<EduApplyBoardVO> findBoardListByPageTest(Map<String, Object> map);
 }
