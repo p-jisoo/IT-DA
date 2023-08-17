@@ -14,6 +14,6 @@ public interface MemberMapper {
 	MemberVO loginMember(MemberVO memberVO);
 	List<EduApplyBoardVO> findAllBoardList();
 	MemberVO checkIdMember(String id);
-	MemberVO loginSession(String id, String password);
+	
 	
 }

@@ -30,40 +30,66 @@
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
-      <cl:datamap std:sid="d-map-01c8d363" id="loginSession">
+      <cl:dataset std:sid="d-set-663dd3fb" id="loginSession">
         <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-3deb78ac" name="userId"/>
-          <cl:datacolumn std:sid="d-column-79a27b56" name="password"/>
+          <cl:datacolumn std:sid="d-column-88199245" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-5f4a54c7" name="PASSWORD"/>
+          <cl:datacolumn std:sid="d-column-cd4a0d10" name="ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-bc947260" name="USER_TEL"/>
+          <cl:datacolumn std:sid="d-column-6c00f17f" name="UESR_NAME"/>
+          <cl:datacolumn std:sid="d-column-b1d4f80a" name="NICKNAME"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-d2215ae0" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-9ba26657" name="USER_NAME"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
       </cl:submission>
-      <cl:submission std:sid="submission-2cb8f70b" id="sms2" action="loginSession">
+      <cl:submission std:sid="submission-bb0a5232" id="세션확인" action="loginSessionMember">
+        <cl:listener std:sid="listener-8c83f229" name="submit-success" handler="onSms2SubmitSuccess"/>
         <cl:responsedata dataid="loginSession"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-f4456268" id="로그아웃" action="logoutMember">
+        <cl:listener std:sid="listener-79d8c3f0" name="submit-success" handler="onSms3SubmitSuccess"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-25285432" id="누구누구님" action="who">
+        <cl:responsedata dataid="dm1"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-bda8ceea">
+    <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-1fb5e24e">
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
       <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="0px" right="-1080px" bottom="-1980px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:group std:sid="group-f2a4904e">
         <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-        <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
-          <cl:listener std:sid="listener-1ff823f6" name="click" handler="onButtonClick"/>
-          <cl:xylayoutdata std:sid="xyl-data-729b14cd" top="20px" left="1787px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
+        <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
           <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-          <cl:xylayoutdata std:sid="xyl-data-2fd70b05" top="20px" left="1920px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-2fd70b05" top="20px" left="1916px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
-        <cl:button std:sid="button-cbc3994d" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
-          <cl:xylayoutdata std:sid="xyl-data-7d7f5660" top="20px" left="1587px" width="201px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
+          <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
+          <cl:xylayoutdata std:sid="xyl-data-7d7f5660" top="20px" left="1655px" width="157px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
+        <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
+          <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
+          <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
+          <cl:xylayoutdata std:sid="xyl-data-0ecc54cf" top="20px" left="1791px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:button>
+        <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1.15rem;" visible="false" value="님 환영합니다.">
+          <cl:xylayoutdata std:sid="xyl-data-c7092cb0" top="22px" left="1420px" width="158px" height="39px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:output>
+        <cl:output std:sid="output-27de7d37" id="name" style="font-weight:bold; font-size:1.15rem;" visible="false" value="">
+          <cl:listener std:sid="listener-6f66c423" name="value-change" handler="onNameValueChange"/>
+          <cl:xylayoutdata std:sid="xyl-data-e16ff0ec" top="22px" left="1341px" width="80px" height="39px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        </cl:output>
         <cl:xylayout std:sid="xylayout-f982d0ea"/>
       </cl:group>
       <cl:img std:sid="image-4c8c343d" src="theme/images/pivot/logodonghang .png">

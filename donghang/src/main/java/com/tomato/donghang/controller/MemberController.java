@@ -20,6 +20,7 @@ import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.mapper.MemberMapper;
 import com.tomato.donghang.model.vo.MemberVO;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -56,24 +57,26 @@ public class MemberController {
 
 	}
 
+	// 로그인
 	@PostMapping("ui/loginMember")
 	public View loginMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("dm1");
 		String id = data.getValue("user_id");
 		String password = data.getValue("password");
-		MemberVO memberVO=new MemberVO(id,password);
-		System.out.println("id="+id+"password"+password);
+		MemberVO memberVO = new MemberVO(id, password);
+		// System.out.println("id="+id+"password"+password);
 		MemberVO vo = memberMapper.loginMember(memberVO);
-		System.out.println(vo);
+		// System.out.println(vo);
 		if (vo != null) {
-			HttpSession session =request.getSession();
+			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
 			dataRequest.setResponse("ds_member", vo);
-		
+
 		}
 		return new JSONDataView();
 	}
 
+	// 회원정보 수정
 	@PostMapping("ui/updateMember")
 	public View updateMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
@@ -87,36 +90,50 @@ public class MemberController {
 		MemberVO vo = new MemberVO(id, password, address, userTel, userName, userNick);
 		memberMapper.updateMember(vo);
 		if (vo != null) {
-		session.setAttribute("mvo", vo);
+			session.setAttribute("mvo", vo);
 		}
 		return new JSONDataView();
 	}
 
+	// 아이디 중복체크
 	@PostMapping("ui/checkIdMember")
-	public View checkIdMember(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
-		ParameterGroup data=dataRequest.getParameterGroup("CheckId");
-		String id=data.getValue("userId");
-		String findId=null;
-		MemberVO vo=memberMapper.checkIdMember(id);
-		if(vo==null) {
-			findId="null";
-		}else {
-			findId=vo.getUserId();
+	public View checkIdMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		ParameterGroup data = dataRequest.getParameterGroup("CheckId");
+		String id = data.getValue("userId");
+		String findId = null;
+		MemberVO vo = memberMapper.checkIdMember(id);
+		if (vo == null) {
+			findId = "null";
+		} else {
+			findId = vo.getUserId();
 		}
-		Map<String ,Object> map=new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("checkId", findId);
 		dataRequest.setMetadata(true, map);
 		return new JSONDataView();
-	}	
-	@PostMapping("ui/loginSession")
-	public View loginSession(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
-		ParameterGroup data= dataRequest.getParameterGroup("loginSession");
-		String id=data.getValue("userId");
-		String password=data.getValue("password");
-		MemberVO vo=memberMapper.loginSession(id,password);
+	}
+
+	// 세션값 확인
+	@PostMapping("ui/loginSessionMember")
+	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession();
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		System.out.println("로그인 후=" + vo);
+		if (vo != null) {
+			dataRequest.setResponse("loginSession", vo);
+			System.out.println(session);
+		}
+		return new JSONDataView();
+	}
+
+	//
+	@GetMapping("ui/logoutMember")
+	public View logoutMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequset) {
+		HttpSession session = request.getSession(false);
+		if (session != null || session.getAttribute("mvo") != null) {
+			session.invalidate();
 		
-		return null;
-		
+		}
+		return new JSONDataView();
 	}
 }
-

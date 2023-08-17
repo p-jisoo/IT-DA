@@ -66,17 +66,84 @@
 			}
 
 			/*
-			 * "  로그인   " 버튼에서 click 이벤트 발생 시 호출.
+			 * "  로그인   " 버튼(login)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
-				var button = e.control;
+			function onLoginClick(e){
+				var login = e.control;
 				window.location.href="login";
-				var submission = app.lookup("sms2");
+			}
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			//
+			//
+			//function f_getUserInfo() {
+			//    var result = "USER_ID : " + util.Auth.getUserInfo(app, "USER_ID") + "\n" +
+			//        "USER_NAME : " + util.Auth.getUserInfo(app, "USER_NM");
+			//        console.log("1");
+			//    return result;
+			// 
+			//}
+
+			function onBodyLoad(e){
+			//	f_getUserInfo();
 				var login = app.lookup("login");
+				var submission = app.lookup("세션확인");
 				submission.send();
 				
 				
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms2SubmitSuccess(e){
+				var sms2 = e.control;
+				var login = app.lookup("login");
+				var myPage = app.lookup("mypage");
+				var helloWelcome = app.lookup("welcom");
+				var register = app.lookup("btn_register");
+				var name = app.lookup("name");
+			//	var submission = app.lookup("누구누구님");
+			//	submission.send();
+				
+			//	name.
+				register.visible=false;
+				helloWelcome.visible=true;
+				myPage.visible=true;
+				login.value="로그아웃";
+				//console.log("이름 바뀜?");
+			}
+
+			/*
+			 * "  로그인   " 버튼(login)에서 value-change 이벤트 발생 시 호출.
+			 * Button의 value를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
+			 */
+			function onLoginValueChange(e){
+				var login = e.control;
+				var logout = app.lookup("login");
+				var submission = app.lookup("로그아웃");
+				submission.send();
+				
+				
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms3SubmitSuccess(e){
+				var sms3 = e.control;
+				var login = app.lookup("login");
+				login.value="로그인";
+				window.location.href="/";
+			}
+
+
 			};
 			// End - User Script
 			
@@ -95,12 +162,22 @@
 				]
 			});
 			app.register(dataSet_1);
-			var dataMap_1 = new cpr.data.DataMap("loginSession");
-			dataMap_1.parseData({
+			
+			var dataSet_2 = new cpr.data.DataSet("loginSession");
+			dataSet_2.parseData({
 				"columns" : [
-					{"name": "userId"},
-					{"name": "password"}
+					{"name": "USER_ID"},
+					{"name": "PASSWORD"},
+					{"name": "ADDRESS"},
+					{"name": "USER_TEL"},
+					{"name": "UESR_NAME"},
+					{"name": "NICKNAME"}
 				]
+			});
+			app.register(dataSet_2);
+			var dataMap_1 = new cpr.data.DataMap("dm1");
+			dataMap_1.parseData({
+				"columns" : [{"name": "USER_NAME"}]
 			});
 			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("sms1");
@@ -114,10 +191,25 @@
 			}
 			app.register(submission_1);
 			
-			var submission_2 = new cpr.protocols.Submission("sms2");
-			submission_2.action = "loginSession";
-			submission_2.addResponseData(dataMap_1, false);
+			var submission_2 = new cpr.protocols.Submission("세션확인");
+			submission_2.action = "loginSessionMember";
+			submission_2.addResponseData(dataSet_2, false);
+			if(typeof onSms2SubmitSuccess == "function") {
+				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
+			}
 			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("로그아웃");
+			submission_3.action = "logoutMember";
+			if(typeof onSms3SubmitSuccess == "function") {
+				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
+			}
+			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("누구누구님");
+			submission_4.action = "who";
+			submission_4.addResponseData(dataMap_1, false);
+			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1980px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1979px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -143,66 +235,104 @@
 				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
 				group_2.setLayout(xYLayout_3);
 				(function(container){
-					var button_1 = new cpr.controls.Button("login");
-					button_1.value = "  로그인   ";
+					var button_1 = new cpr.controls.Button("btn_register");
+					button_1.value = "회원가입  ";
 					button_1.style.css({
 						"background-color" : "#FFFFFF",
 						"border-right-style" : "none",
 						"color" : "#4682A9",
 						"border-left-style" : "none",
 						"font-weight" : "bold",
+						"font-size" : "1.15rem",
 						"border-bottom-style" : "none",
 						"background-image" : "none",
 						"border-top-style" : "none"
 					});
-					if(typeof onButtonClick == "function") {
-						button_1.addEventListener("click", onButtonClick);
+					if(typeof onButtonClick2 == "function") {
+						button_1.addEventListener("click", onButtonClick2);
 					}
 					container.addChild(button_1, {
 						"top": "20px",
-						"left": "1787px",
+						"left": "1916px",
 						"width": "135px",
 						"height": "44px"
 					});
-					var button_2 = new cpr.controls.Button("btn_register");
-					button_2.value = "회원가입  ";
+					var button_2 = new cpr.controls.Button("mypage");
+					button_2.visible = false;
+					button_2.value = " 마이페이지 ";
 					button_2.style.css({
 						"background-color" : "#FFFFFF",
 						"border-right-style" : "none",
 						"color" : "#4682A9",
 						"border-left-style" : "none",
 						"font-weight" : "bold",
+						"font-size" : "1.15rem",
 						"border-bottom-style" : "none",
 						"background-image" : "none",
 						"border-top-style" : "none"
 					});
-					if(typeof onButtonClick2 == "function") {
-						button_2.addEventListener("click", onButtonClick2);
+					if(typeof onButtonClick == "function") {
+						button_2.addEventListener("click", onButtonClick);
 					}
 					container.addChild(button_2, {
 						"top": "20px",
-						"left": "1920px",
-						"width": "135px",
+						"left": "1655px",
+						"width": "157px",
 						"height": "44px"
 					});
-					var button_3 = new cpr.controls.Button();
-					button_3.visible = false;
-					button_3.value = " 마이페이지 ";
+					var button_3 = new cpr.controls.Button("login");
+					button_3.value = "  로그인   ";
 					button_3.style.css({
 						"background-color" : "#FFFFFF",
 						"border-right-style" : "none",
 						"color" : "#4682A9",
 						"border-left-style" : "none",
 						"font-weight" : "bold",
+						"font-size" : "1.15rem",
 						"border-bottom-style" : "none",
 						"background-image" : "none",
 						"border-top-style" : "none"
 					});
+					if(typeof onLoginClick == "function") {
+						button_3.addEventListener("click", onLoginClick);
+					}
+					if(typeof onLoginValueChange == "function") {
+						button_3.addEventListener("value-change", onLoginValueChange);
+					}
 					container.addChild(button_3, {
 						"top": "20px",
-						"left": "1587px",
-						"width": "201px",
+						"left": "1791px",
+						"width": "135px",
 						"height": "44px"
+					});
+					var output_1 = new cpr.controls.Output("welcom");
+					output_1.visible = false;
+					output_1.value = "님 환영합니다.";
+					output_1.style.css({
+						"font-weight" : "bold",
+						"font-size" : "1.15rem"
+					});
+					container.addChild(output_1, {
+						"top": "22px",
+						"left": "1420px",
+						"width": "158px",
+						"height": "39px"
+					});
+					var output_2 = new cpr.controls.Output("name");
+					output_2.visible = false;
+					output_2.value = "";
+					output_2.style.css({
+						"font-weight" : "bold",
+						"font-size" : "1.15rem"
+					});
+					if(typeof onNameValueChange == "function") {
+						output_2.addEventListener("value-change", onNameValueChange);
+					}
+					container.addChild(output_2, {
+						"top": "22px",
+						"left": "1341px",
+						"width": "80px",
+						"height": "39px"
 					});
 				})(group_2);
 				if(typeof onGroupClick2 == "function") {
@@ -261,27 +391,27 @@
 					"left": "708px",
 					"height": "142px"
 				});
-				var output_1 = new cpr.controls.Output();
-				output_1.value = "ITda";
-				output_1.style.css({
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "ITda";
+				output_3.style.css({
 					"color" : "#4682A9",
 					"font-weight" : "bolder",
 					"font-size" : "2rem"
 				});
-				container.addChild(output_1, {
+				container.addChild(output_3, {
 					"top": "92px",
 					"left": "288px",
 					"width": "207px",
 					"height": "44px"
 				});
-				var output_2 = new cpr.controls.Output();
-				output_2.value = "Accompany";
-				output_2.style.css({
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "Accompany";
+				output_4.style.css({
 					"color" : "#4682A9",
 					"font-weight" : "bold",
 					"font-size" : "1.6rem"
 				});
-				container.addChild(output_2, {
+				container.addChild(output_4, {
 					"top": "134px",
 					"left": "288px",
 					"width": "296px",
@@ -297,6 +427,9 @@
 				"bottom": "-1980px",
 				"left": "0px"
 			});
+			if(typeof onBodyLoad == "function"){
+				app.addEventListener("load", onBodyLoad);
+			}
 		}
 	});
 	app.title = "index";
