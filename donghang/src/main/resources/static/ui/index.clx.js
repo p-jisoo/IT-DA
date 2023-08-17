@@ -91,7 +91,7 @@
 			function onBodyLoad(e){
 			//	f_getUserInfo();
 				var login = app.lookup("login");
-				var submission = app.lookup("세션확인");
+				var submission = app.lookup("sessioncheck");
 				submission.send();
 				
 				
@@ -126,8 +126,12 @@
 			function onLoginValueChange(e){
 				var login = e.control;
 				var logout = app.lookup("login");
-				var submission = app.lookup("로그아웃");
-				submission.send();
+				var submission = app.lookup("logout");
+				logout.addEventListener("click", function(e){
+					submission.send();
+					
+				});
+				
 				
 				
 			}
@@ -141,9 +145,6 @@
 				var login = app.lookup("login");
 				login.value="로그인";
 				window.location.href="/";
-			}
-
-
 			};
 			// End - User Script
 			
@@ -191,7 +192,7 @@
 			}
 			app.register(submission_1);
 			
-			var submission_2 = new cpr.protocols.Submission("세션확인");
+			var submission_2 = new cpr.protocols.Submission("sessioncheck");
 			submission_2.action = "loginSessionMember";
 			submission_2.addResponseData(dataSet_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
@@ -199,14 +200,14 @@
 			}
 			app.register(submission_2);
 			
-			var submission_3 = new cpr.protocols.Submission("로그아웃");
+			var submission_3 = new cpr.protocols.Submission("logout");
 			submission_3.action = "logoutMember";
 			if(typeof onSms3SubmitSuccess == "function") {
 				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
 			}
 			app.register(submission_3);
 			
-			var submission_4 = new cpr.protocols.Submission("누구누구님");
+			var submission_4 = new cpr.protocols.Submission("who");
 			submission_4.action = "who";
 			submission_4.addResponseData(dataMap_1, false);
 			app.register(submission_4);

@@ -116,7 +116,7 @@ public class MemberController {
 	// 세션값 확인
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
 		System.out.println("로그인 후=" + vo);
 		if (vo != null) {
@@ -127,7 +127,7 @@ public class MemberController {
 	}
 
 	//
-	@GetMapping("ui/logoutMember")
+	@PostMapping("ui/logoutMember")
 	public View logoutMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequset) {
 		HttpSession session = request.getSession(false);
 		if (session != null || session.getAttribute("mvo") != null) {

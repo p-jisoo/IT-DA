@@ -78,7 +78,7 @@ function onLoginClick(e){
 function onBodyLoad(e){
 //	f_getUserInfo();
 	var login = app.lookup("login");
-	var submission = app.lookup("세션확인");
+	var submission = app.lookup("sessioncheck");
 	submission.send();
 	
 	
@@ -113,8 +113,12 @@ function onSms2SubmitSuccess(e){
 function onLoginValueChange(e){
 	var login = e.control;
 	var logout = app.lookup("login");
-	var submission = app.lookup("로그아웃");
-	submission.send();
+	var submission = app.lookup("logout");
+	logout.addEventListener("click", function(e){
+		submission.send();
+		
+	});
+	
 	
 	
 }
@@ -131,4 +135,4 @@ function onSms3SubmitSuccess(e){
 }
 
 
-}
+
