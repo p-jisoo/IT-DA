@@ -62,14 +62,12 @@
 		EDU_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
-		<foreach item="val" index="key" collection="map">
 			<if test="_parameter.containsValue('모집중') ">
 				edu_board_status ='모집중'
 			</if>
 			<if test="_parameter.containsValue('모집마감') ">
 				edu_board_status ='모집마감'
 			</if>
-			 </foreach>
 		</where>
 		
 		)
