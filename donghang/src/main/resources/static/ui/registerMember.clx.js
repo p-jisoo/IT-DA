@@ -34,6 +34,22 @@
 			 */
 			function onSms1SubmitSuccess2(e) {
 				var sms1 = e.control;
+			//		var initValue = {
+			//		"msg": "회원가입 안내창"
+			//	}
+			//	app.openDialog("appURI", {
+			//		width: 400,
+			//		height: 300
+			//	}, function(dialog) {
+			//		dialog.ready(function(dialogApp) {
+			//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+			//			dialogApp.initValue = initValue;
+			//		});
+			//	}).then(function(returnValue) {
+			//		alert(JSON.stringify(returnValue));
+			//	});
+			//}
+
 				window.location.href = "/";
 			}
 
@@ -48,32 +64,45 @@
 				var adr = app.lookup("Address");
 				var id = app.lookup("ipb1");
 				var detailAdr = app.lookup("detailAddress");
+				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nickName = app.lookup("nickName");
 				if (id.length == 0) {
 					alert("아이디를 입력해주세요.");
+					return false;
 				} else if (id.length < 8 || id.length > 16) {
 					alert("아이디를 8~16자리로 입력해주세요.");
+					return false;
 				}
 				if (pwd.length == 0) {
 					alert("비밀번호를 입력해주세요.");
+					return false;
 				}
 				if (pwd.value != pwdChk.value) {
 					alert("비밀번호가 일치하지 않습니다.");
+					return false;
 				} else if (pwd.length < 8 || pwd.length > 16) {
 					alert("비밀번호를 8~16자리로 입력해주세요");
+					return false;
 				}
 				if (adr.length == 0) {
 					alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+					return false;
 				}
 				if (detailAdr.length == 0) {
 					alert("상세주소를 입력해주세요.");
+					return false;
+				}if (Tel.length < 0 || Tel.length > 11) {
+					alert("전화번호를 입력해주세요.");
+					return false;
 				}
-				if (name.length == 0) {
+				if (name.length == 10) {
 					alert("이름을 입력해주세요.");
+					return false;
 				}
 				if (nickName.length == 0) {
 					alert("닉네임을 입력해주세요");
+					return false;
 				}
 			}
 			/*
@@ -106,6 +135,9 @@
 					chkId.text = "8~16자리로 입력해주세요.";
 					chkId.style.css("color", "#ED3838");
 					return false;
+
+					
+					
 					//	}else if(id.length(/\s/) != -1){
 					//		chkId.text = "공백없이 입력해주세요."
 					//		chkId.style.css("color", "#ED3838");
@@ -115,7 +147,7 @@
 					//  		chkId.style.css("color", "#ED3838");	
 					// 		 return false;
 				}
-				
+
 				if (metadata != "null") {
 					var chkId = app.lookup("ipb1");
 					chkId.value = "";
@@ -236,16 +268,6 @@
 							}
 						}).open();
 					});
-			}
-
-			/*
-			 * "인증하기 " 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onButtonClick4(e) {
-				var button = e.control;
-				var maskEditor = app.lookup("Tel_mask").value;
-				
 			}
 
 			/*
@@ -371,8 +393,8 @@
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "21px",
-						"left": "43px",
-						"width": "142px",
+						"left": "21px",
+						"width": "69px",
 						"height": "146px"
 					}, 
 					{
@@ -385,8 +407,8 @@
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "21px",
-						"left": "15px",
-						"width": "49px",
+						"left": "7px",
+						"width": "24px",
 						"height": "146px"
 					}
 				]
@@ -418,8 +440,8 @@
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "72px",
-						"left": "214px",
-						"width": "107px",
+						"left": "104px",
+						"width": "52px",
 						"height": "44px"
 					}, 
 					{
@@ -432,8 +454,8 @@
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "72px",
-						"left": "73px",
-						"width": "37px",
+						"left": "36px",
+						"width": "18px",
 						"height": "44px"
 					}
 				]
@@ -452,7 +474,7 @@
 						"media": "all and (min-width: 1980px)",
 						"top": "114px",
 						"left": "167px",
-						"width": "120px",
+						"width": "157px",
 						"height": "41px"
 					}, 
 					{
@@ -465,8 +487,8 @@
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "114px",
-						"left": "214px",
-						"width": "153px",
+						"left": "104px",
+						"width": "75px",
 						"height": "41px"
 					}, 
 					{
@@ -479,8 +501,8 @@
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "114px",
-						"left": "73px",
-						"width": "52px",
+						"left": "36px",
+						"width": "26px",
 						"height": "41px"
 					}
 				]
@@ -517,8 +539,8 @@
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "21px",
-							"left": "20px",
-							"width": "269px",
+							"left": "10px",
+							"width": "131px",
 							"height": "88px"
 						}, 
 						{
@@ -531,8 +553,8 @@
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "21px",
-							"left": "7px",
-							"width": "92px",
+							"left": "3px",
+							"width": "45px",
 							"height": "88px"
 						}
 					]
@@ -557,8 +579,8 @@
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "40px",
-						"left": "494px",
-						"width": "375px",
+						"left": "241px",
+						"width": "183px",
 						"height": "107px"
 					}, 
 					{
@@ -571,8 +593,8 @@
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "40px",
-						"left": "169px",
-						"width": "128px",
+						"left": "82px",
+						"width": "63px",
 						"height": "107px"
 					}
 				]
@@ -591,8 +613,8 @@
 				positions: [
 					{
 						"media": "all and (min-width: 1980px)",
-						"top": "1345px",
-						"left": "1078px",
+						"top": "1342px",
+						"left": "1060px",
 						"width": "250px",
 						"height": "92px"
 					}, 
@@ -606,8 +628,8 @@
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 						"top": "955px",
-						"left": "494px",
-						"width": "213px",
+						"left": "241px",
+						"width": "104px",
 						"height": "79px"
 					}, 
 					{
@@ -620,8 +642,8 @@
 					{
 						"media": "all and (max-width: 499px)",
 						"top": "955px",
-						"left": "169px",
-						"width": "73px",
+						"left": "82px",
+						"width": "36px",
 						"height": "79px"
 					}
 				]
@@ -651,7 +673,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "48px",
-							"left": "180px",
+							"left": "300px",
 							"width": "245px",
 							"height": "55px"
 						}, 
@@ -666,7 +688,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "2px",
 							"left": "0px",
-							"width": "315px",
+							"width": "154px",
 							"height": "55px"
 						}, 
 						{
@@ -680,7 +702,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "2px",
 							"left": "0px",
-							"width": "108px",
+							"width": "53px",
 							"height": "55px"
 						}
 					]
@@ -699,7 +721,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "58px",
-							"left": "455px",
+							"left": "555px",
 							"width": "102px",
 							"height": "36px"
 						}, 
@@ -713,8 +735,8 @@
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "21px",
-							"left": "325px",
-							"width": "130px",
+							"left": "159px",
+							"width": "63px",
 							"height": "36px"
 						}, 
 						{
@@ -727,8 +749,8 @@
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "21px",
-							"left": "111px",
-							"width": "44px",
+							"left": "54px",
+							"width": "22px",
 							"height": "36px"
 						}
 					]
@@ -744,8 +766,8 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "98px",
-							"left": "180px",
-							"width": "215px",
+							"left": "300px",
+							"width": "235px",
 							"height": "62px"
 						}, 
 						{
@@ -759,7 +781,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "56px",
 							"left": "0px",
-							"width": "315px",
+							"width": "154px",
 							"height": "41px"
 						}, 
 						{
@@ -773,7 +795,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "56px",
 							"left": "0px",
-							"width": "108px",
+							"width": "53px",
 							"height": "41px"
 						}
 					]
@@ -797,7 +819,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "185px",
-							"left": "180px",
+							"left": "300px",
 							"width": "379px",
 							"height": "55px"
 						}, 
@@ -812,7 +834,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "106px",
 							"left": "0px",
-							"width": "450px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
@@ -826,7 +848,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "106px",
 							"left": "0px",
-							"width": "154px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
@@ -845,7 +867,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "249px",
-							"left": "180px",
+							"left": "300px",
 							"width": "379px",
 							"height": "55px"
 						}, 
@@ -860,7 +882,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "170px",
 							"left": "0px",
-							"width": "450px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
@@ -874,7 +896,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "170px",
 							"left": "0px",
-							"width": "154px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
@@ -890,7 +912,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "303px",
-							"left": "180px",
+							"left": "300px",
 							"width": "286px",
 							"height": "56px"
 						}, 
@@ -905,7 +927,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "224px",
 							"left": "0px",
-							"width": "315px",
+							"width": "154px",
 							"height": "41px"
 						}, 
 						{
@@ -919,7 +941,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "224px",
 							"left": "0px",
-							"width": "108px",
+							"width": "53px",
 							"height": "41px"
 						}
 					]
@@ -935,7 +957,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "400px",
-							"left": "180px",
+							"left": "300px",
 							"width": "230px",
 							"height": "55px"
 						}, 
@@ -950,7 +972,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "293px",
 							"left": "0px",
-							"width": "295px",
+							"width": "144px",
 							"height": "55px"
 						}, 
 						{
@@ -964,7 +986,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "293px",
 							"left": "0px",
-							"width": "101px",
+							"width": "49px",
 							"height": "55px"
 						}
 					]
@@ -983,7 +1005,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "419px",
-							"left": "424px",
+							"left": "555px",
 							"width": "144px",
 							"height": "36px"
 						}, 
@@ -997,8 +1019,8 @@
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "312px",
-							"left": "325px",
-							"width": "130px",
+							"left": "159px",
+							"width": "63px",
 							"height": "36px"
 						}, 
 						{
@@ -1011,8 +1033,8 @@
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "312px",
-							"left": "111px",
-							"width": "44px",
+							"left": "54px",
+							"width": "22px",
 							"height": "36px"
 						}
 					]
@@ -1038,7 +1060,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "464px",
-							"left": "180px",
+							"left": "300px",
 							"width": "380px",
 							"height": "55px"
 						}, 
@@ -1053,7 +1075,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "357px",
 							"left": "0px",
-							"width": "450px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
@@ -1067,7 +1089,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "357px",
 							"left": "0px",
-							"width": "154px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
@@ -1082,7 +1104,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "527px",
-							"left": "180px",
+							"left": "300px",
 							"width": "380px",
 							"height": "55px"
 						}, 
@@ -1097,7 +1119,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "420px",
 							"left": "0px",
-							"width": "450px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
@@ -1111,7 +1133,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "420px",
 							"left": "0px",
-							"width": "154px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
@@ -1128,7 +1150,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "653px",
-							"left": "180px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1143,7 +1165,7 @@
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "501px",
 							"left": "0px",
-							"width": "450px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
@@ -1157,7 +1179,7 @@
 							"media": "all and (max-width: 499px)",
 							"top": "501px",
 							"left": "0px",
-							"width": "154px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
@@ -1175,37 +1197,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "672px",
-							"left": "455px",
+							"top": "663px",
+							"left": "585px",
 							"width": "118px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "672px",
-							"left": "853px",
+							"top": "663px",
+							"left": "1097px",
 							"width": "221px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "672px",
-							"left": "455px",
-							"width": "118px",
+							"top": "663px",
+							"left": "286px",
+							"width": "58px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "672px",
-							"left": "222px",
+							"top": "663px",
+							"left": "286px",
 							"width": "58px",
 							"height": "36px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "672px",
-							"left": "156px",
-							"width": "40px",
+							"top": "663px",
+							"left": "98px",
+							"width": "20px",
 							"height": "36px"
 						}
 					]
@@ -1221,36 +1243,36 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "712px",
-							"left": "180px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "712px",
-							"left": "338px",
+							"left": "563px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "712px",
-							"left": "180px",
-							"width": "266px",
+							"left": "146px",
+							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "712px",
-							"left": "88px",
+							"left": "146px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "712px",
-							"left": "62px",
-							"width": "91px",
+							"left": "50px",
+							"width": "44px",
 							"height": "55px"
 						}
 					]
@@ -1266,36 +1288,36 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "847px",
-							"left": "180px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "847px",
-							"left": "338px",
+							"left": "563px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "847px",
-							"left": "180px",
-							"width": "266px",
+							"left": "146px",
+							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "847px",
-							"left": "88px",
+							"left": "146px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "847px",
-							"left": "62px",
-							"width": "91px",
+							"left": "50px",
+							"width": "44px",
 							"height": "55px"
 						}
 					]
@@ -1311,85 +1333,40 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "911px",
-							"left": "180px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
 							"top": "911px",
-							"left": "338px",
+							"left": "563px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
 							"top": "911px",
-							"left": "180px",
-							"width": "266px",
+							"left": "146px",
+							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
 							"top": "911px",
-							"left": "88px",
+							"left": "146px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
 							"top": "911px",
-							"left": "62px",
-							"width": "91px",
+							"left": "50px",
+							"width": "44px",
 							"height": "55px"
 						}
 					]
 				});
-			})(group_2);
-			container.addChild(group_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1980px)",
-						"top": "296px",
-						"left": "900px",
-						"width": "916px",
-						"height": "1004px"
-					}, 
-					{
-						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-						"top": "166px",
-						"left": "494px",
-						"width": "726px",
-						"height": "746px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "166px",
-						"left": "494px",
-						"width": "726px",
-						"height": "746px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "166px",
-						"left": "241px",
-						"width": "354px",
-						"height": "746px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "166px",
-						"left": "169px",
-						"width": "248px",
-						"height": "746px"
-					}
-				]
-			});
-			
-			var group_3 = new cpr.controls.Container();
-			var responsiveXYLayout_4 = new cpr.controls.layouts.ResponsiveXYLayout();
-			group_3.setLayout(responsiveXYLayout_4);
-			(function(container){
 				var output_6 = new cpr.controls.Output();
 				output_6.value = "*아이디";
 				output_6.style.css({
@@ -1400,37 +1377,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "106px",
-							"left": "121px",
+							"top": "53px",
+							"left": "-5px",
 							"width": "206px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "106px",
-							"left": "227px",
+							"top": "53px",
+							"left": "-9px",
 							"width": "386px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "106px",
-							"left": "121px",
-							"width": "206px",
+							"top": "53px",
+							"left": "-2px",
+							"width": "101px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "106px",
-							"left": "59px",
+							"top": "53px",
+							"left": "-2px",
 							"width": "101px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "106px",
-							"left": "41px",
-							"width": "70px",
+							"top": "53px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
@@ -1445,37 +1422,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "247px",
-							"left": "121px",
+							"top": "194px",
+							"left": "-5px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "247px",
-							"left": "227px",
+							"top": "194px",
+							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "247px",
-							"left": "121px",
-							"width": "208px",
+							"top": "194px",
+							"left": "-2px",
+							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "247px",
-							"left": "59px",
+							"top": "194px",
+							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "247px",
-							"left": "41px",
-							"width": "71px",
+							"top": "194px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
@@ -1490,37 +1467,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "311px",
-							"left": "121px",
+							"top": "258px",
+							"left": "-5px",
 							"width": "281px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "311px",
-							"left": "227px",
+							"top": "258px",
+							"left": "-9px",
 							"width": "527px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "311px",
-							"left": "121px",
-							"width": "281px",
+							"top": "258px",
+							"left": "-2px",
+							"width": "137px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "311px",
-							"left": "59px",
+							"top": "258px",
+							"left": "-2px",
 							"width": "137px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "311px",
-							"left": "41px",
-							"width": "96px",
+							"top": "258px",
+							"left": "-1px",
+							"width": "47px",
 							"height": "46px"
 						}
 					]
@@ -1535,37 +1512,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "458px",
-							"left": "121px",
+							"top": "405px",
+							"left": "-5px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "458px",
-							"left": "227px",
+							"top": "405px",
+							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "458px",
-							"left": "121px",
-							"width": "208px",
+							"top": "405px",
+							"left": "-2px",
+							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "458px",
-							"left": "59px",
+							"top": "405px",
+							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "458px",
-							"left": "41px",
-							"width": "71px",
+							"top": "405px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
@@ -1580,37 +1557,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "720px",
-							"left": "121px",
+							"top": "667px",
+							"left": "-5px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "720px",
-							"left": "227px",
+							"top": "667px",
+							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "720px",
-							"left": "121px",
-							"width": "208px",
+							"top": "667px",
+							"left": "-2px",
+							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "720px",
-							"left": "59px",
+							"top": "667px",
+							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "720px",
-							"left": "41px",
-							"width": "71px",
+							"top": "667px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
@@ -1625,37 +1602,37 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "893px",
-							"left": "121px",
+							"top": "840px",
+							"left": "-5px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "893px",
-							"left": "227px",
+							"top": "840px",
+							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "893px",
-							"left": "121px",
-							"width": "208px",
+							"top": "840px",
+							"left": "-2px",
+							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "893px",
-							"left": "59px",
+							"top": "840px",
+							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "893px",
-							"left": "41px",
-							"width": "71px",
+							"top": "840px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
@@ -1670,78 +1647,78 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "957px",
-							"left": "121px",
+							"top": "904px",
+							"left": "-5px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "957px",
-							"left": "227px",
+							"top": "904px",
+							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "957px",
-							"left": "121px",
-							"width": "208px",
+							"top": "904px",
+							"left": "-2px",
+							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "957px",
-							"left": "59px",
+							"top": "904px",
+							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "957px",
-							"left": "41px",
-							"width": "71px",
+							"top": "904px",
+							"left": "-1px",
+							"width": "35px",
 							"height": "46px"
 						}
 					]
 				});
-			})(group_3);
-			container.addChild(group_3, {
+			})(group_2);
+			container.addChild(group_2, {
 				positions: [
 					{
 						"media": "all and (min-width: 1980px)",
-						"top": "250px",
-						"left": "324px",
-						"width": "432px",
-						"height": "1050px"
+						"top": "293px",
+						"left": "772px",
+						"width": "949px",
+						"height": "1004px"
 					}, 
 					{
 						"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-						"top": "250px",
-						"left": "608px",
-						"width": "810px",
-						"height": "1050px"
+						"top": "166px",
+						"left": "494px",
+						"width": "726px",
+						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "250px",
-						"left": "324px",
-						"width": "432px",
-						"height": "1050px"
+						"top": "166px",
+						"left": "241px",
+						"width": "354px",
+						"height": "746px"
 					}, 
 					{
 						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "250px",
-						"left": "158px",
-						"width": "211px",
-						"height": "1050px"
+						"top": "166px",
+						"left": "241px",
+						"width": "354px",
+						"height": "746px"
 					}, 
 					{
 						"media": "all and (max-width: 499px)",
-						"top": "250px",
-						"left": "111px",
-						"width": "148px",
-						"height": "1050px"
+						"top": "166px",
+						"left": "82px",
+						"width": "121px",
+						"height": "746px"
 					}
 				]
 			});

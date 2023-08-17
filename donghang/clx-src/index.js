@@ -49,7 +49,7 @@ function onSms1SubmitSuccess2(e) {
  */
 function onButtonClick2(e) {
 	var button = e.control;
-	window.location.href="register";													
+	window.location.href="register.do";													
 }
 
 /*
@@ -59,5 +59,9 @@ function onButtonClick2(e) {
 function onButtonClick(e){
 	var button = e.control;
 	window.location.href="login";
+	var submission = app.lookup("sms2");
+	var login = app.lookup("login");
+	submission.send();
+	
 	
 }

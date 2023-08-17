@@ -28,7 +28,7 @@ public class MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
 
-	@GetMapping("ui/register")
+	@GetMapping("ui/register.do")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		return new UIView("ui/registerMember.clx");
 	}
@@ -108,5 +108,15 @@ public class MemberController {
 		dataRequest.setMetadata(true, map);
 		return new JSONDataView();
 	}	
+	@PostMapping("ui/loginSession")
+	public View loginSession(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+		ParameterGroup data= dataRequest.getParameterGroup("loginSession");
+		String id=data.getValue("userId");
+		String password=data.getValue("password");
+		MemberVO vo=memberMapper.loginSession(id,password);
+		
+		return null;
+		
+	}
 }
 

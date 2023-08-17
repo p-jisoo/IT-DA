@@ -62,7 +62,7 @@
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				window.location.href="register";													
+				window.location.href="register.do";													
 			}
 
 			/*
@@ -72,6 +72,10 @@
 			function onButtonClick(e){
 				var button = e.control;
 				window.location.href="login";
+				var submission = app.lookup("sms2");
+				var login = app.lookup("login");
+				submission.send();
+				
 				
 			};
 			// End - User Script
@@ -91,6 +95,14 @@
 				]
 			});
 			app.register(dataSet_1);
+			var dataMap_1 = new cpr.data.DataMap("loginSession");
+			dataMap_1.parseData({
+				"columns" : [
+					{"name": "userId"},
+					{"name": "password"}
+				]
+			});
+			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
 			submission_1.action = "apply";
@@ -101,6 +113,11 @@
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
 			app.register(submission_1);
+			
+			var submission_2 = new cpr.protocols.Submission("sms2");
+			submission_2.action = "loginSession";
+			submission_2.addResponseData(dataMap_1, false);
+			app.register(submission_2);
 			app.supportMedia("all and (min-width: 1980px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1979px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -119,14 +136,14 @@
 			
 			// UI Configuration
 			var group_1 = new cpr.controls.Container();
-			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
-			group_1.setLayout(responsiveXYLayout_1);
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_2);
 			(function(container){
 				var group_2 = new cpr.controls.Container();
-				var responsiveXYLayout_2 = new cpr.controls.layouts.ResponsiveXYLayout();
-				group_2.setLayout(responsiveXYLayout_2);
+				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
+				group_2.setLayout(xYLayout_3);
 				(function(container){
-					var button_1 = new cpr.controls.Button();
+					var button_1 = new cpr.controls.Button("login");
 					button_1.value = "  로그인   ";
 					button_1.style.css({
 						"background-color" : "#FFFFFF",
@@ -135,42 +152,17 @@
 						"border-left-style" : "none",
 						"font-weight" : "bold",
 						"border-bottom-style" : "none",
+						"background-image" : "none",
 						"border-top-style" : "none"
 					});
 					if(typeof onButtonClick == "function") {
 						button_1.addEventListener("click", onButtonClick);
 					}
 					container.addChild(button_1, {
-						positions: [
-							{
-								"media": "all and (min-width: 1980px)",
-								"top": "20px",
-								"left": "1787px",
-								"width": "135px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-								"top": "20px",
-								"left": "924px",
-								"width": "70px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 500px) and (max-width: 1023px)",
-								"top": "20px",
-								"left": "451px",
-								"width": "34px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (max-width: 499px)",
-								"top": "20px",
-								"left": "316px",
-								"width": "24px",
-								"height": "44px"
-							}
-						]
+						"top": "20px",
+						"left": "1787px",
+						"width": "135px",
+						"height": "44px"
 					});
 					var button_2 = new cpr.controls.Button("btn_register");
 					button_2.value = "회원가입  ";
@@ -181,42 +173,17 @@
 						"border-left-style" : "none",
 						"font-weight" : "bold",
 						"border-bottom-style" : "none",
+						"background-image" : "none",
 						"border-top-style" : "none"
 					});
 					if(typeof onButtonClick2 == "function") {
 						button_2.addEventListener("click", onButtonClick2);
 					}
 					container.addChild(button_2, {
-						positions: [
-							{
-								"media": "all and (min-width: 1980px)",
-								"top": "20px",
-								"left": "1920px",
-								"width": "135px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-								"top": "20px",
-								"left": "993px",
-								"width": "70px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 500px) and (max-width: 1023px)",
-								"top": "20px",
-								"left": "485px",
-								"width": "34px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (max-width: 499px)",
-								"top": "20px",
-								"left": "339px",
-								"width": "24px",
-								"height": "44px"
-							}
-						]
+						"top": "20px",
+						"left": "1920px",
+						"width": "135px",
+						"height": "44px"
 					});
 					var button_3 = new cpr.controls.Button();
 					button_3.visible = false;
@@ -228,143 +195,40 @@
 						"border-left-style" : "none",
 						"font-weight" : "bold",
 						"border-bottom-style" : "none",
+						"background-image" : "none",
 						"border-top-style" : "none"
 					});
 					container.addChild(button_3, {
-						positions: [
-							{
-								"media": "all and (min-width: 1980px)",
-								"top": "20px",
-								"left": "1587px",
-								"width": "201px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-								"top": "20px",
-								"left": "821px",
-								"width": "104px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (min-width: 500px) and (max-width: 1023px)",
-								"top": "20px",
-								"left": "401px",
-								"width": "51px",
-								"height": "44px"
-							}, 
-							{
-								"media": "all and (max-width: 499px)",
-								"top": "20px",
-								"left": "281px",
-								"width": "36px",
-								"height": "44px"
-							}
-						]
+						"top": "20px",
+						"left": "1587px",
+						"width": "201px",
+						"height": "44px"
 					});
 				})(group_2);
 				if(typeof onGroupClick2 == "function") {
 					group_2.addEventListener("click", onGroupClick2);
 				}
 				container.addChild(group_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "0px",
-							"right": "0px",
-							"left": "0px",
-							"height": "74px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "0px",
-							"right": "0px",
-							"left": "0px",
-							"height": "74px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "0px",
-							"right": "0px",
-							"left": "0px",
-							"height": "74px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "0px",
-							"right": "0px",
-							"left": "0px",
-							"height": "74px"
-						}
-					]
+					"top": "0px",
+					"right": "0px",
+					"left": "0px",
+					"height": "74px"
 				});
 				var image_1 = new cpr.controls.Image();
 				image_1.src = "theme/images/pivot/logodonghang .png";
 				container.addChild(image_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "73px",
-							"left": "101px",
-							"width": "170px",
-							"height": "102px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "73px",
-							"left": "52px",
-							"width": "88px",
-							"height": "102px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "73px",
-							"left": "25px",
-							"width": "43px",
-							"height": "102px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "73px",
-							"left": "18px",
-							"width": "30px",
-							"height": "102px"
-						}
-					]
+					"top": "73px",
+					"left": "101px",
+					"width": "170px",
+					"height": "102px"
 				});
 				var image_2 = new cpr.controls.Image();
 				image_2.src = "theme/images/pivot/back.jpg";
 				container.addChild(image_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "271px",
-							"left": "348px",
-							"width": "1444px",
-							"height": "502px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "271px",
-							"left": "180px",
-							"width": "747px",
-							"height": "502px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "271px",
-							"left": "88px",
-							"width": "365px",
-							"height": "502px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "271px",
-							"left": "62px",
-							"width": "255px",
-							"height": "502px"
-						}
-					]
+					"top": "271px",
+					"left": "348px",
+					"width": "1444px",
+					"height": "502px"
 				});
 				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
 				navigationBar_1.barItemSpacing = 150;
@@ -392,36 +256,10 @@
 					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
 				}
 				container.addChild(navigationBar_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "73px",
-							"right": "1908px",
-							"left": "708px",
-							"height": "142px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "73px",
-							"right": "987px",
-							"left": "366px",
-							"height": "142px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "73px",
-							"right": "482px",
-							"left": "179px",
-							"height": "142px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "73px",
-							"right": "337px",
-							"left": "125px",
-							"height": "142px"
-						}
-					]
+					"top": "73px",
+					"right": "1908px",
+					"left": "708px",
+					"height": "142px"
 				});
 				var output_1 = new cpr.controls.Output();
 				output_1.value = "ITda";
@@ -431,36 +269,10 @@
 					"font-size" : "2rem"
 				});
 				container.addChild(output_1, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "92px",
-							"left": "288px",
-							"width": "207px",
-							"height": "44px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "92px",
-							"left": "149px",
-							"width": "107px",
-							"height": "44px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "92px",
-							"left": "73px",
-							"width": "52px",
-							"height": "44px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "92px",
-							"left": "51px",
-							"width": "37px",
-							"height": "44px"
-						}
-					]
+					"top": "92px",
+					"left": "288px",
+					"width": "207px",
+					"height": "44px"
 				});
 				var output_2 = new cpr.controls.Output();
 				output_2.value = "Accompany";
@@ -470,36 +282,10 @@
 					"font-size" : "1.6rem"
 				});
 				container.addChild(output_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "134px",
-							"left": "288px",
-							"width": "296px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1979px)",
-							"top": "134px",
-							"left": "149px",
-							"width": "153px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "134px",
-							"left": "73px",
-							"width": "75px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "134px",
-							"left": "51px",
-							"width": "52px",
-							"height": "41px"
-						}
-					]
+					"top": "134px",
+					"left": "288px",
+					"width": "296px",
+					"height": "41px"
 				});
 			})(group_1);
 			if(typeof onGroupClick == "function") {

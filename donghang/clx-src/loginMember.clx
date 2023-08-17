@@ -65,6 +65,7 @@
     </cl:button>
     <cl:img std:sid="image-b7dd0b62" id="imgHome" src="theme/images/logo_donghang.png">
       <cl:listener std:sid="listener-f17e6354" name="value-change" handler="onImageValueChange"/>
+      <cl:listener std:sid="listener-050f4db9" name="click" handler="onImgHomeClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-3718f6e8">
         <cl:xylayoutdata std:sid="sxyl-data-70633836" top="78px" right="340px" left="462px" height="167px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-bd3fd0cd" top="50px" right="133px" left="231px" height="167px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>

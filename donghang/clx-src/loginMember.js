@@ -13,6 +13,8 @@ function onButtonClick(e){
 	var button = e.control;
 	var submission = app.lookup("sms1");	
 	submission.send();
+	
+	
 			
 }
 /*
@@ -41,15 +43,16 @@ function onSms1SubmitError(e){
  */
 function onButtonClick2(e){
 	var button = e.control;
-	window.location.href="registerMember.clx"
+	window.location.href="registerMember.clx";
 }
 
+
 /*
- * 이미지에서 value-change 이벤트 발생 시 호출.
- * Image의 value(src)를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
+ * 이미지에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onImageValueChange(e){
-	var image = e.control;
+function onImgHomeClick(e){
+	var imgHome = e.control;
 	var img = app.lookup("imgHome");
 	window.location.href="/";
 }

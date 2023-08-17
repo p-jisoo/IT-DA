@@ -8,10 +8,12 @@ import com.tomato.donghang.model.vo.EduApplyBoardVO;
 @Mapper
 public interface MemberMapper {
 
+	
 	int registerMember(MemberVO vo);
 	void updateMember(MemberVO vo);
 	MemberVO loginMember(MemberVO memberVO);
 	List<EduApplyBoardVO> findAllBoardList();
 	MemberVO checkIdMember(String id);
+	MemberVO loginSession(String id, String password);
 	
 }
