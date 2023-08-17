@@ -63,7 +63,8 @@
         <cl:xylayoutdata std:sid="sxyl-data-d11af4a5" top="583px" right="860px" left="880px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:button>
-    <cl:img std:sid="image-b7dd0b62" src="theme/images/logo_donghang.png">
+    <cl:img std:sid="image-b7dd0b62" id="imgHome" src="theme/images/logo_donghang.png">
+      <cl:listener std:sid="listener-f17e6354" name="value-change" handler="onImageValueChange"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-3718f6e8">
         <cl:xylayoutdata std:sid="sxyl-data-70633836" top="78px" right="340px" left="462px" height="167px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-bd3fd0cd" top="50px" right="133px" left="231px" height="167px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>
@@ -92,6 +93,7 @@
       </cl:responsivexylayoutdata>
     </cl:img>
     <cl:button std:sid="button-a9c82518" style="background-color:#4682A9; font-size:25px;" value="회원가입">
+      <cl:listener std:sid="listener-b8221625" name="click" handler="onButtonClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-a2557ae2">
         <cl:xylayoutdata std:sid="sxyl-data-7a09791d" top="583px" right="658px" left="1082px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
