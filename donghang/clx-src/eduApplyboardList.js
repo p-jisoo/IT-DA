@@ -9,14 +9,19 @@
  * 그룹에서 before-draw 이벤트 발생 시 호출.
  * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
  */
-function onGroupBeforeDraw(e){
-	var group = e.control;
+
+
+
+function onGroupBeforeDraw(e){	
 	var page = app.lookup("page");
+	var dataSet = app.lookup("ds2");
+	var dataSet = app.lookup("ds2");
 	var currentPageIndex = page.currentPageIndex;
-	var dataMap = app.lookup("dm1");
+	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
-	var submission = app.lookup("pageInd");
+	var submission = app.lookup("sms2");
 	submission.send();
+	
 }
 
 /*
@@ -26,9 +31,12 @@ function onGroupBeforeDraw(e){
 function onPageSelectionChange(e){
 	var page = app.lookup("page");
 	var currentPageIndex = page.currentPageIndex;
-	var dataMap = app.lookup("dm1");
+	var listBox = app.lookup("lbx1");
+	var dataMap = app.lookup("dm2");
+	var submission = app.lookup("sms2");
+	var dataSet = app.lookup("tpSlct");
+	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 	dataMap.setValue("nowpage", currentPageIndex);
-	var submission = app.lookup("pageInd");
 	submission.send();
 }
 
@@ -42,14 +50,8 @@ function onSms1SubmitDone(e){
 	console.log(sms1.xhr.responseText);
 }
 
-/*
- * 서브미션에서 submit-done 이벤트 발생 시 호출.
- * 응답처리가 모두 종료되면 발생합니다.
- */
-function onPageIndSubmitDone(e){
-	var pageInd = e.control;
-	
-}
+
+
 
 /*
  * 루트 컨테이너에서 load 이벤트 발생 시 호출.
@@ -57,5 +59,71 @@ function onPageIndSubmitDone(e){
  */
 function onBodyLoad(e){
 	var listBox = app.lookup("lbx1");
+	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
+	comboBox.selectItemByValue("value1");
 }
+
+/*
+ * "Button" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick(e){
+	var dataSet = app.lookup("tpSlct");
+	var searchInput = app.lookup("searchCtl");
+	var dataMap = app.lookup("dm2");
+	var inputValue = searchInput.value.replace(/\s/g, "");
+	var listBox = app.lookup("lbx1");
+	var submission = app.lookup("sms2");
+	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
+		dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+	}
+	submission.send();
+}
+
+/*
+ * 리스트 박스에서 item-click 이벤트 발생 시 호출.
+ * 아이템 클릭시 발생하는 이벤트.
+ */
+function onLbx1ItemClick(e){
+	var pageIndexer = app.lookup("page");
+	var searchInput = app.lookup("searchCtl");
+	var dataMap = app.lookup("dm2");
+	var inputValue = searchInput.value.replace(/\s/g, ""); //공백많이 넣더라도 하나로취급
+	var listBox = app.lookup("lbx1");
+	var submission = app.lookup("sms2");
+	var dataSet = app.lookup("tpSlct");
+	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+	console.log(listBox.getSelectedDataSetIndices()[0]);
+	if(pageIndexer.currentPageIndex>1){
+		dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+		}
+		submission.send();
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms2SubmitSuccess2(e){
+	var sms2 = e.control;
+	var page = app.lookup("page");
+	var dataSet = app.lookup("ds2");
+	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
+	console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
+	console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
+	if(dataSet.getValue(0, "PREVPAGE")==="1"){
+		page.visiblePrevButton = true;
+	}else{
+		page.visiblePrevButton = false;
+	}
+	if(dataSet.getValue(0, "NEXTPAGE")==="1"){
+		page.visibleNextButton =true;
+	}else{
+		page.visibleNextButton =false;
+	}
+	page.redraw();	
+	
+}
+
+

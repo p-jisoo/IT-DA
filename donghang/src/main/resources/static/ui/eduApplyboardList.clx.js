@@ -22,14 +22,19 @@
 			 * 그룹에서 before-draw 이벤트 발생 시 호출.
 			 * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
 			 */
-			function onGroupBeforeDraw(e){
-				var group = e.control;
+
+
+
+			function onGroupBeforeDraw(e){	
 				var page = app.lookup("page");
+				var dataSet = app.lookup("ds2");
+				var dataSet = app.lookup("ds2");
 				var currentPageIndex = page.currentPageIndex;
-				var dataMap = app.lookup("dm1");
+				var dataMap = app.lookup("dm2");
 				dataMap.setValue("nowpage", currentPageIndex);
-				var submission = app.lookup("pageInd");
+				var submission = app.lookup("sms2");
 				submission.send();
+				
 			}
 
 			/*
@@ -39,9 +44,12 @@
 			function onPageSelectionChange(e){
 				var page = app.lookup("page");
 				var currentPageIndex = page.currentPageIndex;
-				var dataMap = app.lookup("dm1");
+				var listBox = app.lookup("lbx1");
+				var dataMap = app.lookup("dm2");
+				var submission = app.lookup("sms2");
+				var dataSet = app.lookup("tpSlct");
+				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 				dataMap.setValue("nowpage", currentPageIndex);
-				var submission = app.lookup("pageInd");
 				submission.send();
 			}
 
@@ -55,14 +63,8 @@
 				console.log(sms1.xhr.responseText);
 			}
 
-			/*
-			 * 서브미션에서 submit-done 이벤트 발생 시 호출.
-			 * 응답처리가 모두 종료되면 발생합니다.
-			 */
-			function onPageIndSubmitDone(e){
-				var pageInd = e.control;
-				
-			}
+
+
 
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
@@ -70,7 +72,71 @@
 			 */
 			function onBodyLoad(e){
 				var listBox = app.lookup("lbx1");
+				var comboBox = app.lookup("cmb1");
 				listBox.selectItemByValue("value1");
+				comboBox.selectItemByValue("value1");
+			}
+
+			/*
+			 * "Button" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var dataSet = app.lookup("tpSlct");
+				var searchInput = app.lookup("searchCtl");
+				var dataMap = app.lookup("dm2");
+				var inputValue = searchInput.value.replace(/\s/g, "");
+				var listBox = app.lookup("lbx1");
+				var submission = app.lookup("sms2");
+				if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
+					dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+				}
+				submission.send();
+			}
+
+			/*
+			 * 리스트 박스에서 item-click 이벤트 발생 시 호출.
+			 * 아이템 클릭시 발생하는 이벤트.
+			 */
+			function onLbx1ItemClick(e){
+				var pageIndexer = app.lookup("page");
+				var searchInput = app.lookup("searchCtl");
+				var dataMap = app.lookup("dm2");
+				var inputValue = searchInput.value.replace(/\s/g, ""); //공백많이 넣더라도 하나로취급
+				var listBox = app.lookup("lbx1");
+				var submission = app.lookup("sms2");
+				var dataSet = app.lookup("tpSlct");
+				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+				console.log(listBox.getSelectedDataSetIndices()[0]);
+				if(pageIndexer.currentPageIndex>1){
+					dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+					}
+					submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms2SubmitSuccess2(e){
+				var sms2 = e.control;
+				var page = app.lookup("page");
+				var dataSet = app.lookup("ds2");
+				page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
+				console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
+				console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
+				if(dataSet.getValue(0, "PREVPAGE")==="1"){
+					page.visiblePrevButton = true;
+				}else{
+					page.visiblePrevButton = false;
+				}
+				if(dataSet.getValue(0, "NEXTPAGE")==="1"){
+					page.visibleNextButton =true;
+				}else{
+					page.visibleNextButton =false;
+				}
+				page.redraw();	
+				
 			};
 			// End - User Script
 			
@@ -129,9 +195,9 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"label": "전체", "value": "value3"},
-					{"label": "제목", "value": "value1"},
-					{"label": "작성자", "value": "value2"}
+					{"label": "전체", "value": "value1"},
+					{"label": "제목", "value": "value2"},
+					{"label": "작성자", "value": "value3"}
 				]
 			});
 			app.register(dataSet_3);
@@ -154,6 +220,18 @@
 				"columns" : [{"name": "nowpage"}]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("dm2");
+			dataMap_2.parseData({
+				"columns" : [
+					{"name": "nowpage"},
+					{
+						"name": "status",
+						"dataType": "string"
+					}
+				]
+			});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "findBaordList.do";
 			submission_1.addResponseData(dataSet_1, false);
@@ -166,12 +244,15 @@
 			submission_2.action = "findBoardListByPage.do";
 			submission_2.addRequestData(dataMap_1);
 			submission_2.addResponseData(dataSet_2, false);
-			if(typeof onPageIndSubmitDone == "function") {
-				submission_2.addEventListener("submit-done", onPageIndSubmitDone);
-			}
 			app.register(submission_2);
 			
 			var submission_3 = new cpr.protocols.Submission("sms2");
+			submission_3.action = "findBoardListWithStatusByPage.do";
+			submission_3.addRequestData(dataMap_2);
+			submission_3.addResponseData(dataSet_2, false);
+			if(typeof onSms2SubmitSuccess2 == "function") {
+				submission_3.addEventListener("submit-success", onSms2SubmitSuccess2);
+			}
 			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
@@ -204,119 +285,106 @@
 						{"width": "100px"},
 						{"width": "100px"}
 					],
-					"header": {
-						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "BOARD_NO";
-									cell.text = "BOARD_NO";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "BOARD_TITLE";
-									cell.text = "BOARD_TITLE";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 2},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "PERIOD";
-									cell.text = "PERIOD";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 3},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "BOARD_CATEGORY";
-									cell.text = "BOARD_CATEGORY";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 4},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "APPLY_STATUS";
-									cell.text = "APPLY_STATUS";
-								}
-							}
-						]
-					},
 					"detail": {
-						"rows": [{"height": "24px"}],
+						"rows": [{"height": "108px"}],
 						"cells": [
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 0},
 								"configurator": function(cell){
 									cell.columnName = "BOARD_NO";
+									cell.style.css({
+										"border-right-style" : "none"
+									});
 									cell.control = (function(){
 										var output_1 = new cpr.controls.Output();
+										output_1.style.css({
+											"border-right-style" : "none"
+										});
 										output_1.bind("value").toDataColumn("BOARD_NO");
 										return output_1;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 1},
 								"configurator": function(cell){
 									cell.columnName = "BOARD_TITLE";
+									cell.style.css({
+										"border-right-style" : "none"
+									});
 									cell.control = (function(){
 										var output_2 = new cpr.controls.Output();
+										output_2.style.css({
+											"border-right-style" : "none"
+										});
 										output_2.bind("value").toDataColumn("BOARD_TITLE");
 										return output_2;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 2},
 								"configurator": function(cell){
 									cell.columnName = "PERIOD";
+									cell.style.css({
+										"border-right-style" : "none"
+									});
 									cell.control = (function(){
 										var output_3 = new cpr.controls.Output();
+										output_3.style.css({
+											"border-right-style" : "none"
+										});
 										output_3.bind("value").toDataColumn("PERIOD");
 										return output_3;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 3},
 								"configurator": function(cell){
 									cell.columnName = "BOARD_CATEGORY";
+									cell.style.css({
+										"border-right-style" : "none"
+									});
 									cell.control = (function(){
 										var output_4 = new cpr.controls.Output();
+										output_4.style.css({
+											"border-right-style" : "none"
+										});
 										output_4.bind("value").toDataColumn("BOARD_CATEGORY");
 										return output_4;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 4},
 								"configurator": function(cell){
 									cell.columnName = "APPLY_STATUS";
+									cell.style.css({
+										"border-right-style" : "none"
+									});
 									cell.control = (function(){
 										var output_5 = new cpr.controls.Output();
+										output_5.style.css({
+											"border-right-style" : "none"
+										});
 										output_5.bind("value").toDataColumn("APPLY_STATUS");
 										return output_5;
 									})();
+									cell.controlConstraint = {};
 								}
 							}
 						]
 					}
 				});
 				grid_1.style.css({
-					"border-left-style" : "none"
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"border-bottom-style" : "none"
 				});
 				grid_1.style.detail.css({
 					"text-align" : "left"
@@ -325,20 +393,23 @@
 					"top": "338px",
 					"left": "211px",
 					"width": "1226px",
-					"height": "484px"
+					"height": "559px"
 				});
 				var pageIndexer_1 = new cpr.controls.PageIndexer("page");
 				pageIndexer_1.pageRowCount = 5;
 				pageIndexer_1.viewPageCount = 4;
+				pageIndexer_1.step = -1;
 				pageIndexer_1.visibleFirstButton = false;
 				pageIndexer_1.visibleLastButton = false;
-				pageIndexer_1.init(11, 1, 1);
+				pageIndexer_1.visiblePrevButton = false;
+				pageIndexer_1.visibleNextButton = false;
+				pageIndexer_1.init(1, 1, 1);
 				if(typeof onPageSelectionChange == "function") {
 					pageIndexer_1.addEventListener("selection-change", onPageSelectionChange);
 				}
 				container.addChild(pageIndexer_1, {
-					"top": "868px",
-					"left": "667px",
+					"top": "941px",
+					"left": "674px",
 					"width": "340px",
 					"height": "65px"
 				});
@@ -355,13 +426,16 @@
 				formLayout_1.setRows(["1fr"]);
 				group_2.setLayout(formLayout_1);
 				(function(container){
-					var searchInput_1 = new cpr.controls.SearchInput();
+					var searchInput_1 = new cpr.controls.SearchInput("searchCtl");
 					container.addChild(searchInput_1, {
 						"colIndex": 1,
 						"rowIndex": 0
 					});
 					var button_1 = new cpr.controls.Button();
 					button_1.value = "Button";
+					if(typeof onButtonClick == "function") {
+						button_1.addEventListener("click", onButtonClick);
+					}
 					container.addChild(button_1, {
 						"colIndex": 2,
 						"rowIndex": 0
@@ -391,11 +465,22 @@
 						"value": "value"
 					})
 				})(listBox_1);
+				if(typeof onLbx1ItemClick == "function") {
+					listBox_1.addEventListener("item-click", onLbx1ItemClick);
+				}
 				container.addChild(listBox_1, {
 					"top": "228px",
 					"left": "216px",
 					"width": "169px",
 					"height": "90px"
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "신청";
+				container.addChild(button_2, {
+					"top": "906px",
+					"left": "1296px",
+					"width": "141px",
+					"height": "55px"
 				});
 			})(group_1);
 			if(typeof onGroupBeforeDraw == "function") {
