@@ -17,7 +17,7 @@
           <cl:datacolumn std:sid="d-column-f6b453af" name="nickName" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-03e5db67" id="sms1" action="registerMember">
+      <cl:submission std:sid="submission-03e5db67" id="sms1" action="updateMember">
         <cl:listener std:sid="listener-28d0fd53" name="submit-success" handler="onSms1SubmitSuccess2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
@@ -46,9 +46,9 @@
       <cl:responsivexylayoutdata std:sid="rxyl-data-d3b93d5b">
         <cl:xylayoutdata std:sid="sxyl-data-3dd893bc" top="72px" left="878px" width="484px" height="389px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
-      <cl:output std:sid="output-3c911c54" style="font-weight:bold; font-size:2.7rem; font-style:normal;" value="회원가입">
+      <cl:output std:sid="output-3c911c54" style="font-weight:bold; font-size:2.7rem; font-style:normal;" value="회원정보 수정">
         <cl:responsivexylayoutdata std:sid="rxyl-data-3e9544d2">
-          <cl:xylayoutdata std:sid="sxyl-data-afeadb0a" top="299px" left="143px" width="179px" height="49px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+          <cl:xylayoutdata std:sid="sxyl-data-afeadb0a" top="242px" left="84px" width="294px" height="130px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         </cl:responsivexylayoutdata>
       </cl:output>
       <cl:img std:sid="image-01e9f640" src="theme/images/img/register_donghang.png">
@@ -66,11 +66,11 @@
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userId"/>
         <cl:formdata std:sid="f-data-60ac0fbb" row="0" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-98040259" id="ipb2" style="font-size:1.2rem;" secret="true" placeholder="비밀번호">
+      <cl:inputbox std:sid="i-box-98040259" id="ipb2" style="font-size:1.2rem;" placeholder="비밀번호">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:formdata std:sid="f-data-2e362218" row="1" col="0"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-5fb498e1" id="ipb3" style="font-size:1.2rem;" secret="true" placeholder="비밀번호">
+      <cl:inputbox std:sid="i-box-5fb498e1" id="ipb3" style="font-size:1.2rem;" placeholder="비밀번호">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:formdata std:sid="f-data-737ffd71" row="2" col="0"/>
       </cl:inputbox>
@@ -102,10 +102,10 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:button std:sid="button-8a400df8" style="font-weight:bold; font-size:1.7rem;" value="회원가입">
+    <cl:button std:sid="button-8a400df8" style="font-weight:bold; font-size:1.7rem;" value="수정하기">
       <cl:listener std:sid="listener-fb43d51f" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-f51ae92c">
-        <cl:xylayoutdata std:sid="sxyl-data-ac96571a" top="905px" left="1029px" width="213px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+        <cl:xylayoutdata std:sid="sxyl-data-ac96571a" top="905px" left="1008px" width="213px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:button>
     <cl:responsivexylayout std:sid="r-xylayout-4dd05140"/>

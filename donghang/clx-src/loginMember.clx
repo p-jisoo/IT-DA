@@ -5,7 +5,30 @@
     <screen std:sid="screen-7b402583" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-c9c77803" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
     <screen std:sid="screen-b6f1223b" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
-    <cl:model std:sid="model-27ae2b8d"/>
+    <cl:model std:sid="model-27ae2b8d">
+      <cl:dataset std:sid="d-set-1c4d134e" id="ds_member">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-c1d16a52" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-8b62f355" name="PASSWORD"/>
+          <cl:datacolumn std:sid="d-column-e686c636" name="ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-f5070b55" name="USER_TEL"/>
+          <cl:datacolumn std:sid="d-column-867c6fa9" name="USER_NAME"/>
+          <cl:datacolumn std:sid="d-column-ab57cc3f" name="NICKNAME"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-c22c6eb5" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-915a4481" name="user_id" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-3d4c35d4" name="password"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-894df2a6" id="sms1" action="loginMember">
+        <cl:listener std:sid="listener-f8d0c1f4" name="submit-success" handler="onSms1SubmitSuccess"/>
+        <cl:listener std:sid="listener-c7d90414" name="submit-error" handler="onSms1SubmitError"/>
+        <cl:requestdata dataid="dm1"/>
+        <cl:responsedata dataid="ds_member"/>
+      </cl:submission>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-909e54a7">
@@ -16,14 +39,16 @@
         <cl:xylayoutdata std:sid="sxyl-data-aab4768f" top="376px" right="664px" left="778px" height="65px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:output>
-    <cl:inputbox std:sid="i-box-06f7e7ca" id="ipb1" value="회원 id">
+    <cl:inputbox std:sid="i-box-06f7e7ca" id="ipb1" placeholder="아이디&#xD;&#xA;">
+      <cl:datamapbind property="value" datacontrolid="dm1" columnname="user_id"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-451fcc59">
         <cl:xylayoutdata std:sid="sxyl-data-12aa9982" top="329px" right="230px" left="346px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-b93bea18" top="330px" right="117px" left="205px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>
         <cl:xylayoutdata std:sid="sxyl-data-30736fd8" top="449px" right="660px" left="778px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-794f0928" id="ipb2" value="회원 password">
+    <cl:inputbox std:sid="i-box-794f0928" id="ipb2" placeholder="비밀번호">
+      <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-cda9553c">
         <cl:xylayoutdata std:sid="sxyl-data-9e26f922" top="397px" right="230px" left="345px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-dacced29" top="398px" right="116px" left="205px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>
@@ -31,6 +56,7 @@
       </cl:responsivexylayoutdata>
     </cl:inputbox>
     <cl:button std:sid="button-8efd09e7" style="background-color:#4682A9; font-size:25px;" value="로그인">
+      <cl:listener std:sid="listener-0eb88fc3" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-36a278bc">
         <cl:xylayoutdata std:sid="sxyl-data-d4cbe97e" top="462px" right="230px" left="528px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-342fdacc" top="465px" right="120px" left="292px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>
