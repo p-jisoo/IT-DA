@@ -83,7 +83,7 @@ function onSms1SubmitError(e) {
 		alert("전화번호를 입력해주세요.");
 		return false;
 	}
-	if (name.length == 10) {
+	if (name.length == 0) {
 		alert("이름을 입력해주세요.");
 		return false;
 	}

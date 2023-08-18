@@ -20,7 +20,6 @@ import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.mapper.MemberMapper;
 import com.tomato.donghang.model.vo.MemberVO;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -57,7 +56,7 @@ public class MemberController {
 
 	}
 
-	// 로그인
+	// 로그인 기능
 	@PostMapping("ui/loginMember")
 	public View loginMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("dm1");
@@ -76,7 +75,7 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
-	// 회원정보 수정
+	// 회원정보 수정 기능
 	@PostMapping("ui/updateMember")
 	public View updateMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
@@ -95,7 +94,7 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
-	// 아이디 중복체크
+	// 아이디 중복체크 기능
 	@PostMapping("ui/checkIdMember")
 	public View checkIdMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("CheckId");
@@ -113,7 +112,7 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
-	// 세션값 확인
+	// 세션값 확인 기능
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
@@ -121,7 +120,6 @@ public class MemberController {
 		System.out.println("로그인 후=" + vo);
 		if (vo != null) {
 			dataRequest.setResponse("loginSession", vo);
-			System.out.println(session);
 		}
 		return new JSONDataView();
 	}
@@ -132,7 +130,41 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session != null || session.getAttribute("mvo") != null) {
 			session.invalidate();
-		
+
+		}
+		return new JSONDataView();
+	}
+
+	// 메인화면에 세션값이 들어와 있을 때 " 000 님 환영합니다 " 을 보여주기위한 기능
+	@PostMapping("ui/whoName")
+	public View whoName(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);//
+		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		String name = vo.getUserName();
+		System.out.println("**************************************");
+		System.out.println("로그인 후 유저 이름 세션값 ==" + name);
+		System.out.println("**************************************");
+		Map<String, String> datamap = new HashMap<>();
+		datamap.put("userName", name);
+		if (name != null) {
+			dataRequest.setResponse("dm1", datamap);
+		}
+		return new JSONDataView();
+
+	}
+
+	// 회원 탈퇴 기능
+	@PostMapping("ui/deleteMember")
+	public View deleteMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("mvo") == null) {
+			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
+		} else  {
+			ParameterGroup data = dataRequest.getParameterGroup("deleteIdPassword");// 비밀번호 요청을 받아야함
+			String password = data.getValue("PASSWORD");
+			MemberVO vo = new MemberVO();
+			MemberVO memberVO = memberMapper.deleteMember(vo);
+			System.out.println(memberVO);
 		}
 		return new JSONDataView();
 	}

@@ -74,26 +74,15 @@
 				window.location.href="login";
 			}
 
-			/*
-			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
-			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
-			 */
-			//
-			//
-			//function f_getUserInfo() {
-			//    var result = "USER_ID : " + util.Auth.getUserInfo(app, "USER_ID") + "\n" +
-			//        "USER_NAME : " + util.Auth.getUserInfo(app, "USER_NM");
-			//        console.log("1");
-			//    return result;
-			// 
-			//}
-
 			function onBodyLoad(e){
-			//	f_getUserInfo();
-				var login = app.lookup("login");
-				var submission = app.lookup("sessioncheck");
-				submission.send();
 				
+				
+				var login = app.lookup("login");
+				var whoName = app.lookup("whoName");
+				var submission = app.lookup("sessioncheck");
+				var submission2 = app.lookup("who");
+				submission.send();
+				submission2.send();
 				
 			}
 
@@ -107,16 +96,39 @@
 				var myPage = app.lookup("mypage");
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
-				var name = app.lookup("name");
-			//	var submission = app.lookup("누구누구님");
-			//	submission.send();
-				
-			//	name.
+			//	var welcome2 = new cpr.controls.Output("welcom");
+			//					welcome2.visible = true;
+			//					welcome2.value = "";
+			//					welcome2.style.css({
+			//						"font-weight" : "bold",
+			//						"font-size" : "1.15rem"
+			//					});
+			//					container.addChild(welcome2, {
+			//						"top": "22px",
+			//						"left": "1340px",
+			//						"width": "158px",
+			//						"height": "39px"
+			//					});
+			//	
 				register.visible=false;
 				helloWelcome.visible=true;
 				myPage.visible=true;
 				login.value="로그아웃";
-				//console.log("이름 바뀜?");
+				
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onWhoSubmitSuccess(e){
+				var who = e.control;
+			//	var metadata = who.getMetadata("voname");
+			//	app.lookup("dm1").setValue("userName", metadata[0].userName);
+				console.log(app.lookup("dm1").getValue("userName"));
+				var whoNm = app.lookup("whoName");
+			//	var obj=JSON.parse(who.getResponseData("dm1"));
+			//console.log(obj.whoName);
+				app.lookup("whoName").redraw();
 			}
 
 			/*
@@ -145,6 +157,29 @@
 				var login = app.lookup("login");
 				login.value="로그인";
 				window.location.href="/";
+			}
+
+			/*
+			 * "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick3(e){
+				var button = e.control;
+				window.location.href="deleteMember.clx"
+			}
+
+			/*
+			 * 서브미션에서 receive-json 이벤트 발생 시 호출.
+			 * 응답 프로토콜이 json일 때 서버로 부터 받은 JSON 문자열을 JSONObject로 파싱에 성공했을 때 발생합니다.
+			 */
+			function onWhoReceiveJson(e){
+				var who = e.control;
+				var res = submission.xhr.responseText;
+				var jsonVal;
+				try {
+					jsonVal = JSON.parse(res);
+				} catch (e) {
+				}
 			};
 			// End - User Script
 			
@@ -171,14 +206,14 @@
 					{"name": "PASSWORD"},
 					{"name": "ADDRESS"},
 					{"name": "USER_TEL"},
-					{"name": "UESR_NAME"},
+					{"name": "userName"},
 					{"name": "NICKNAME"}
 				]
 			});
 			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
-				"columns" : [{"name": "USER_NAME"}]
+				"columns" : [{"name": "userName"}]
 			});
 			app.register(dataMap_1);
 			var submission_1 = new cpr.protocols.Submission("sms1");
@@ -208,8 +243,14 @@
 			app.register(submission_3);
 			
 			var submission_4 = new cpr.protocols.Submission("who");
-			submission_4.action = "who";
+			submission_4.action = "whoName";
 			submission_4.addResponseData(dataMap_1, false);
+			if(typeof onWhoSubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onWhoSubmitSuccess);
+			}
+			if(typeof onWhoReceiveJson == "function") {
+				submission_4.addEventListener("receive-json", onWhoReceiveJson);
+			}
 			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1980px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1979px)", "default");
@@ -313,27 +354,41 @@
 						"font-weight" : "bold",
 						"font-size" : "1.15rem"
 					});
+					if(typeof onWelcomValueChange == "function") {
+						output_1.addEventListener("value-change", onWelcomValueChange);
+					}
 					container.addChild(output_1, {
 						"top": "22px",
 						"left": "1420px",
 						"width": "158px",
 						"height": "39px"
 					});
-					var output_2 = new cpr.controls.Output("name");
-					output_2.visible = false;
-					output_2.value = "";
+					var button_4 = new cpr.controls.Button("temporary_btn");
+					button_4.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
+					if(typeof onButtonClick3 == "function") {
+						button_4.addEventListener("click", onButtonClick3);
+					}
+					container.addChild(button_4, {
+						"top": "19px",
+						"left": "762px",
+						"width": "357px",
+						"height": "45px"
+					});
+					var output_2 = new cpr.controls.Output("whoName");
 					output_2.style.css({
 						"font-weight" : "bold",
-						"font-size" : "1.15rem"
+						"font-size" : "1.15rem",
+						"text-align" : "center"
 					});
-					if(typeof onNameValueChange == "function") {
-						output_2.addEventListener("value-change", onNameValueChange);
+					output_2.bind("value").toDataMap(app.lookup("dm1"), "userName");
+					if(typeof onOutputValueChange == "function") {
+						output_2.addEventListener("value-change", onOutputValueChange);
 					}
 					container.addChild(output_2, {
-						"top": "22px",
-						"left": "1341px",
-						"width": "80px",
-						"height": "39px"
+						"top": "19px",
+						"left": "1343px",
+						"width": "78px",
+						"height": "46px"
 					});
 				})(group_2);
 				if(typeof onGroupClick2 == "function") {
@@ -423,10 +478,10 @@
 				group_1.addEventListener("click", onGroupClick);
 			}
 			container.addChild(group_1, {
-				"top": "0px",
-				"right": "-1080px",
-				"bottom": "-1980px",
-				"left": "0px"
+				"top": "-2px",
+				"right": "-1100px",
+				"bottom": "-1978px",
+				"left": "20px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

@@ -61,26 +61,15 @@ function onLoginClick(e){
 	window.location.href="login";
 }
 
-/*
- * 루트 컨테이너에서 load 이벤트 발생 시 호출.
- * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
- */
-//
-//
-//function f_getUserInfo() {
-//    var result = "USER_ID : " + util.Auth.getUserInfo(app, "USER_ID") + "\n" +
-//        "USER_NAME : " + util.Auth.getUserInfo(app, "USER_NM");
-//        console.log("1");
-//    return result;
-// 
-//}
-
 function onBodyLoad(e){
-//	f_getUserInfo();
-	var login = app.lookup("login");
-	var submission = app.lookup("sessioncheck");
-	submission.send();
 	
+	
+	var login = app.lookup("login");
+	var whoName = app.lookup("whoName");
+	var submission = app.lookup("sessioncheck");
+	var submission2 = app.lookup("who");
+	submission.send();
+	submission2.send();
 	
 }
 
@@ -94,16 +83,39 @@ function onSms2SubmitSuccess(e){
 	var myPage = app.lookup("mypage");
 	var helloWelcome = app.lookup("welcom");
 	var register = app.lookup("btn_register");
-	var name = app.lookup("name");
-//	var submission = app.lookup("누구누구님");
-//	submission.send();
-	
-//	name.
+//	var welcome2 = new cpr.controls.Output("welcom");
+//					welcome2.visible = true;
+//					welcome2.value = "";
+//					welcome2.style.css({
+//						"font-weight" : "bold",
+//						"font-size" : "1.15rem"
+//					});
+//					container.addChild(welcome2, {
+//						"top": "22px",
+//						"left": "1340px",
+//						"width": "158px",
+//						"height": "39px"
+//					});
+//	
 	register.visible=false;
 	helloWelcome.visible=true;
 	myPage.visible=true;
 	login.value="로그아웃";
-	//console.log("이름 바뀜?");
+	
+}
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onWhoSubmitSuccess(e){
+	var who = e.control;
+//	var metadata = who.getMetadata("voname");
+//	app.lookup("dm1").setValue("userName", metadata[0].userName);
+	console.log(app.lookup("dm1").getValue("userName"));
+	var whoNm = app.lookup("whoName");
+//	var obj=JSON.parse(who.getResponseData("dm1"));
+//console.log(obj.whoName);
+	app.lookup("whoName").redraw();
 }
 
 /*
@@ -134,5 +146,25 @@ function onSms3SubmitSuccess(e){
 	window.location.href="/";
 }
 
+/*
+ * "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick3(e){
+	var button = e.control;
+	window.location.href="deleteMember.clx"
+}
 
-
+/*
+ * 서브미션에서 receive-json 이벤트 발생 시 호출.
+ * 응답 프로토콜이 json일 때 서버로 부터 받은 JSON 문자열을 JSONObject로 파싱에 성공했을 때 발생합니다.
+ */
+function onWhoReceiveJson(e){
+	var who = e.control;
+	var res = submission.xhr.responseText;
+	var jsonVal;
+	try {
+		jsonVal = JSON.parse(res);
+	} catch (e) {
+	}
+}
