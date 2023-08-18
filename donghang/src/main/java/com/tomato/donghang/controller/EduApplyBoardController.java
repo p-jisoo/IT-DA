@@ -67,14 +67,14 @@ public class EduApplyBoardController {
 	public View findBoardListByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm1");
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListWithStatusByPage(param);
-		dataRequest.setResponse("ds2", data);
+		dataRequest.setResponse("ds1", data);
 		return new JSONDataView();
 	}
 	@PostMapping("/ui/findBoardListWithStatusByPage.do")
 	public View findBoardListWithStatusByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm2");
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListWithStatusByPage(param);
-		dataRequest.setResponse("ds2", data);
+		dataRequest.setResponse("ds3", data);
 		return new JSONDataView();
 	}
 }

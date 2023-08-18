@@ -23,5 +23,7 @@ public interface EduApplyBoardMapper {
 
 	long findBoardCountByStatus(String status);
 
+	List<Map<String, Object>> findBoardListPageAndSearchTest(Map<String, Object> map);
+
 
 }

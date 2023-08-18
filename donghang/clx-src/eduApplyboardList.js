@@ -14,14 +14,11 @@
 
 function onGroupBeforeDraw(e){	
 	var page = app.lookup("page");
-	var dataSet = app.lookup("ds2");
-	var dataSet = app.lookup("ds2");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
 	submission.send();
-	
 }
 
 /*
@@ -108,7 +105,7 @@ function onLbx1ItemClick(e){
 function onSms2SubmitSuccess2(e){
 	var sms2 = e.control;
 	var page = app.lookup("page");
-	var dataSet = app.lookup("ds2");
+	var dataSet = app.lookup("ds3");
 	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 	console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 	console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));

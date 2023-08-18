@@ -54,15 +54,13 @@ WHERE EDU_BOARD_NO='1'
 		select count(*) from edu_apply_board
 	</select>
 
-	<select id="findBoardCountByStatus" parameterType="String"
+<select id="findBoardCountByStatus" parameterType="String"
 		resultType="long">
-		select count(*) from edu_apply_board
-		<where>
-			<if test="status!=null and status!=''">
-				edu_board_status = #{status}
-			</if>
-		</where>
-	</select>
+		select count(*)
+		from EDU_BOARD_MEMBER_COUNT
+		where 
+		EDU_BOARD_STATUS = #{status}
+</select>
 
 
 	<select id="findBoardList"
@@ -71,41 +69,8 @@ WHERE EDU_BOARD_NO='1'
 		</include>
 	</select>
 
-	<select id="findBoardListWithStatusByPage"
-		parameterType="HashMap"
-		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		SELECT
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT,
-		EDU_BOARD_STATUS
-		FROM
-		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_STATUS,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT
-		FROM edu_apply_board
-		<where>
-			<if test="_parameter.containsValue('모집중') ">
-				edu_board_status ='모집중'
-			</if>
-			<if test="_parameter.containsValue('모집마감') ">
-				edu_board_status ='모집마감'
-			</if>
-		</where>
-		
-		)
-		WHERE rnum BETWEEN #{pagination.startRowNumber} and
-		#{pagination.endRowNumber}
-	</select>
-	
+
+
 		<select id="findBoardListPageAndSearch"
 		parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
@@ -128,16 +93,48 @@ WHERE EDU_BOARD_NO='1'
 		EDU_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
-			<if test="_parameter.containsValue('모집중') ">
-				edu_board_status ='모집중'
+			<foreach item="val" index="key" collection="map">
+			<if test="status != '' and status !=null ">
+				edu_board_status =#{status}
 			</if>
-			<if test="_parameter.containsValue('모집마감') ">
-				edu_board_status ='모집마감'
-			</if>
+			</foreach>
 		</where>
 		)
 		WHERE rnum BETWEEN #{pagination.startRowNumber} and
 		#{pagination.endRowNumber}
 	</select>
+	<select id="findBoardListPageAndSearchTest" parameterType="map" resultType="Hashmap">
+SELECT 
+    r.rnum,
+    e.EDU_BOARD_NO,
+    e.EDU_BOARD_TITLE,
+    e.EDU_BOARD_ADDRESS,
+    r.EDU_BOARD_STATUS,
+    r.TOTAL_COUNT
+FROM
+    EDU_APPLY_BOARD e
+INNER JOIN
+(SELECT
+    row_number() over(ORDER BY EDU_BOARD_NO DESC) as rnum,
+    EDU_BOARD_NO,
+    EDU_BOARD_STATUS,
+    COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+FROM
+    EDU_BOARD_MEMBER_COUNT
+<where>
+			<if test="status != '' and status !=null ">
+				EDU_BOARD_STATUS = #{status}
+			</if>
+</where>
+GROUP BY
+     EDU_BOARD_NO,
+     EDU_BOARD_STATUS
+    ) r
+ON
+e.EDU_BOARD_NO = r.EDU_BOARD_NO
+WHERE 
+rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+</select>
+	
+	
 </mapper>
-

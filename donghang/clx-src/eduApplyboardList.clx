@@ -70,6 +70,20 @@
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-6ec9fd52" id="ds3">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-5323fdd0" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-cf63296d" name="EDU_BOARD_TITLE"/>
+          <cl:datacolumn std:sid="d-column-a0063ca8" name="TOTAL_COUNT"/>
+          <cl:datacolumn std:sid="d-column-3c16f51a" name="BOARD_CATEGORY"/>
+          <cl:datacolumn std:sid="d-column-66128ba2" name="EDU_BOARD_STATUS"/>
+          <cl:datacolumn std:sid="d-column-be86c0a7" name="NOW_PAGE"/>
+          <cl:datacolumn std:sid="d-column-46a3dcfb" name="TOTAL_BOARD_COUNT"/>
+          <cl:datacolumn std:sid="d-column-047902f8" name="PREVPAGE"/>
+          <cl:datacolumn std:sid="d-column-16ee386c" name="NEXTPAGE"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist/>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-8e27a01d" id="dm1">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-a83d57a3" name="nowpage"/>
@@ -92,7 +106,7 @@
       <cl:submission std:sid="submission-c81cf120" id="sms2" action="findBoardListWithStatusByPage.do">
         <cl:listener std:sid="listener-227b8dfc" name="submit-success" handler="onSms2SubmitSuccess2"/>
         <cl:requestdata dataid="dm2"/>
-        <cl:responsedata dataid="ds2"/>
+        <cl:responsedata dataid="ds3"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>

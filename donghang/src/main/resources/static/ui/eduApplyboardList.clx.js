@@ -27,14 +27,11 @@
 
 			function onGroupBeforeDraw(e){	
 				var page = app.lookup("page");
-				var dataSet = app.lookup("ds2");
-				var dataSet = app.lookup("ds2");
 				var currentPageIndex = page.currentPageIndex;
 				var dataMap = app.lookup("dm2");
 				dataMap.setValue("nowpage", currentPageIndex);
 				var submission = app.lookup("sms2");
 				submission.send();
-				
 			}
 
 			/*
@@ -121,7 +118,7 @@
 			function onSms2SubmitSuccess2(e){
 				var sms2 = e.control;
 				var page = app.lookup("page");
-				var dataSet = app.lookup("ds2");
+				var dataSet = app.lookup("ds3");
 				page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 				console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 				console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
@@ -215,6 +212,23 @@
 				]
 			});
 			app.register(dataSet_4);
+			
+			var dataSet_5 = new cpr.data.DataSet("ds3");
+			dataSet_5.parseData({
+				"columns": [
+					{"name": "EDU_BOARD_NO"},
+					{"name": "EDU_BOARD_TITLE"},
+					{"name": "TOTAL_COUNT"},
+					{"name": "BOARD_CATEGORY"},
+					{"name": "EDU_BOARD_STATUS"},
+					{"name": "NOW_PAGE"},
+					{"name": "TOTAL_BOARD_COUNT"},
+					{"name": "PREVPAGE"},
+					{"name": "NEXTPAGE"}
+				],
+				"rows": []
+			});
+			app.register(dataSet_5);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
 				"columns" : [{"name": "nowpage"}]
@@ -249,7 +263,7 @@
 			var submission_3 = new cpr.protocols.Submission("sms2");
 			submission_3.action = "findBoardListWithStatusByPage.do";
 			submission_3.addRequestData(dataMap_2);
-			submission_3.addResponseData(dataSet_2, false);
+			submission_3.addResponseData(dataSet_5, false);
 			if(typeof onSms2SubmitSuccess2 == "function") {
 				submission_3.addEventListener("submit-success", onSms2SubmitSuccess2);
 			}
