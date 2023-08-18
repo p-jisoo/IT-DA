@@ -15,7 +15,7 @@ update member set user_id=#{userId},password=#{password},address=#{address}
 <select id="checkIdMember" resultType="com.tomato.donghang.model.vo.MemberVO" parameterType="String">
 select * from member where user_id=#{id}
 </select>
-<delete id="deletemember"  parameterType="com.tomato.donghang.model.vo.MemberVO">
-delete form member where password=#{password}
+<delete id="deleteMember"  parameterType="String">
+delete from member where password=#{password}
 </delete>
 </mapper>

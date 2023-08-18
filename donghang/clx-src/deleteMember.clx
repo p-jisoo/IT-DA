@@ -6,7 +6,7 @@
     <screen std:sid="screen-b8f4b4e7" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
     <screen std:sid="screen-0d5539b3" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-27ae2b8d">
-      <cl:datamap std:sid="d-map-7afc79d1" id="deleteIdPassword">
+      <cl:datamap std:sid="d-map-7afc79d1" id="deletePassword">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-36952ffc" name="PASSWORD"/>
         </cl:datacolumnlist>
@@ -14,7 +14,8 @@
       <cl:submission std:sid="submission-f83acb75" id="deletePasswordSbm" action="deleteMember">
         <cl:listener std:sid="listener-e0542846" name="submit-success" handler="onDeletePasswordSbmSubmitSuccess"/>
         <cl:listener std:sid="listener-9353a957" name="submit-error" handler="onDeletePasswordSbmSubmitError"/>
-        <cl:requestdata dataid="deleteIdPassword"/>
+        <cl:requestdata dataid="deletePassword"/>
+        <cl:responsedata dataid="deletePassword"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -24,7 +25,7 @@
       <cl:xylayoutdata std:sid="xyl-data-8e232a7f" top="422px" left="861px" width="290px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:inputbox std:sid="i-box-06f7e7ca" id="password" placeholder="비밀번호">
-      <cl:datamapbind property="value" datacontrolid="deleteIdPassword" columnname="PASSWORD"/>
+      <cl:datamapbind property="value" datacontrolid="deletePassword" columnname="PASSWORD"/>
       <cl:xylayoutdata std:sid="xyl-data-ff235244" top="517px" left="762px" width="392px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:inputbox std:sid="i-box-794f0928" id="passwordChk" placeholder="비밀번호 재확인">

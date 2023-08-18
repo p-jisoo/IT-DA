@@ -10,7 +10,7 @@
  */
 function onImageClick(e){
 	var image = e.control;
-	window.location.href="deleteMemberPopup.clx";
+	window.location.href="/";
 }
 
 /*
@@ -29,11 +29,15 @@ function onButtonClick(e){
  */
 function onDeletePasswordSbmSubmitSuccess(e){
 	var deletePasswordSbm = e.control;
-	var pwd = app.lookup("password");
-	var pwdChk = app.lookup("passwordChk");
-//	if(pwd.value== pwdChk){
-		
+	var pwd = app.lookup("password").value;
+	var pwdChk = app.lookup("passwordChk").value;
+	console.log(pwd);
+	console.log(pwdChk);
+	if(pwd === pwdChk){
+	alert("아이디가 삭제되었습니다.");
+		return true;
 	}
+	window.location.href="/";
 }
 
 /*
@@ -47,5 +51,7 @@ function onDeletePasswordSbmSubmitError(e){
 	if(pwd.value !=pwdChk.value){
 		alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
 		return false;
+			
 		}
+		//window.location.href="deleteMember.clx"
 }

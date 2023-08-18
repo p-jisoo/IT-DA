@@ -23,7 +23,7 @@
 			 */
 			function onImageClick(e){
 				var image = e.control;
-				window.location.href="deleteMemberPopup.clx";
+				window.location.href="/";
 			}
 
 			/*
@@ -42,11 +42,15 @@
 			 */
 			function onDeletePasswordSbmSubmitSuccess(e){
 				var deletePasswordSbm = e.control;
-				var pwd = app.lookup("password");
-				var pwdChk = app.lookup("passwordChk");
-			//	if(pwd.value== pwdChk){
-					
+				var pwd = app.lookup("password").value;
+				var pwdChk = app.lookup("passwordChk").value;
+				console.log(pwd);
+				console.log(pwdChk);
+				if(pwd === pwdChk){
+				alert("아이디가 삭제되었습니다.");
+					return true;
 				}
+				window.location.href="/";
 			}
 
 			/*
@@ -60,12 +64,14 @@
 				if(pwd.value !=pwdChk.value){
 					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
 					return false;
+						
 					}
+					//window.location.href="deleteMember.clx"
 			};
 			// End - User Script
 			
 			// Header
-			var dataMap_1 = new cpr.data.DataMap("deleteIdPassword");
+			var dataMap_1 = new cpr.data.DataMap("deletePassword");
 			dataMap_1.parseData({
 				"columns" : [{"name": "PASSWORD"}]
 			});
@@ -73,6 +79,7 @@
 			var submission_1 = new cpr.protocols.Submission("deletePasswordSbm");
 			submission_1.action = "deleteMember";
 			submission_1.addRequestData(dataMap_1);
+			submission_1.addResponseData(dataMap_1, false);
 			if(typeof onDeletePasswordSbmSubmitSuccess == "function") {
 				submission_1.addEventListener("submit-success", onDeletePasswordSbmSubmitSuccess);
 			}
@@ -112,7 +119,7 @@
 			
 			var inputBox_1 = new cpr.controls.InputBox("password");
 			inputBox_1.placeholder = "비밀번호";
-			inputBox_1.bind("value").toDataMap(app.lookup("deleteIdPassword"), "PASSWORD");
+			inputBox_1.bind("value").toDataMap(app.lookup("deletePassword"), "PASSWORD");
 			container.addChild(inputBox_1, {
 				"top": "517px",
 				"left": "762px",

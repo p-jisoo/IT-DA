@@ -155,16 +155,3 @@ function onButtonClick3(e){
 	window.location.href="deleteMember.clx"
 }
 
-/*
- * 서브미션에서 receive-json 이벤트 발생 시 호출.
- * 응답 프로토콜이 json일 때 서버로 부터 받은 JSON 문자열을 JSONObject로 파싱에 성공했을 때 발생합니다.
- */
-function onWhoReceiveJson(e){
-	var who = e.control;
-	var res = submission.xhr.responseText;
-	var jsonVal;
-	try {
-		jsonVal = JSON.parse(res);
-	} catch (e) {
-	}
-}
