@@ -119,6 +119,7 @@
 				var sms2 = e.control;
 				var page = app.lookup("page");
 				var dataSet = app.lookup("ds3");
+				console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 				page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 				console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 				console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
@@ -286,129 +287,11 @@
 			
 			// UI Configuration
 			var group_1 = new cpr.controls.Container();
+			var dataRowContext_1 = new cpr.bind.DataRowContext(app.lookup("ds3"), 0);
+			group_1.setBindContext(dataRowContext_1);
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var grid_1 = new cpr.controls.Grid("grd1");
-				grid_1.init({
-					"dataSet": app.lookup("ds2"),
-					"columns": [
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"}
-					],
-					"detail": {
-						"rows": [{"height": "108px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_NO";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_1 = new cpr.controls.Output();
-										output_1.style.css({
-											"border-right-style" : "none"
-										});
-										output_1.bind("value").toDataColumn("BOARD_NO");
-										return output_1;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_TITLE";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_2 = new cpr.controls.Output();
-										output_2.style.css({
-											"border-right-style" : "none"
-										});
-										output_2.bind("value").toDataColumn("BOARD_TITLE");
-										return output_2;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 2},
-								"configurator": function(cell){
-									cell.columnName = "PERIOD";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_3 = new cpr.controls.Output();
-										output_3.style.css({
-											"border-right-style" : "none"
-										});
-										output_3.bind("value").toDataColumn("PERIOD");
-										return output_3;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 3},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_CATEGORY";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_4 = new cpr.controls.Output();
-										output_4.style.css({
-											"border-right-style" : "none"
-										});
-										output_4.bind("value").toDataColumn("BOARD_CATEGORY");
-										return output_4;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 4},
-								"configurator": function(cell){
-									cell.columnName = "APPLY_STATUS";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_5 = new cpr.controls.Output();
-										output_5.style.css({
-											"border-right-style" : "none"
-										});
-										output_5.bind("value").toDataColumn("APPLY_STATUS");
-										return output_5;
-									})();
-									cell.controlConstraint = {};
-								}
-							}
-						]
-					}
-				});
-				grid_1.style.css({
-					"border-right-style" : "none",
-					"border-left-style" : "none",
-					"border-bottom-style" : "none"
-				});
-				grid_1.style.detail.css({
-					"text-align" : "left"
-				});
-				container.addChild(grid_1, {
-					"top": "338px",
-					"left": "211px",
-					"width": "1226px",
-					"height": "559px"
-				});
 				var pageIndexer_1 = new cpr.controls.PageIndexer("page");
 				pageIndexer_1.pageRowCount = 5;
 				pageIndexer_1.viewPageCount = 4;
@@ -455,6 +338,7 @@
 						"rowIndex": 0
 					});
 					var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+					comboBox_1.preventInput = true;
 					(function(comboBox_1){
 						comboBox_1.setItemSet(app.lookup("dsSlct"), {
 							"label": "label",
@@ -495,6 +379,154 @@
 					"left": "1296px",
 					"width": "141px",
 					"height": "55px"
+				});
+				var grid_1 = new cpr.controls.Grid("grd1");
+				grid_1.init({
+					"dataSet": app.lookup("ds3"),
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_NO";
+									cell.text = "EDU_BOARD_NO";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_TITLE";
+									cell.text = "EDU_BOARD_TITLE";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "TOTAL_COUNT";
+									cell.text = "TOTAL_COUNT";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "BOARD_CATEGORY";
+									cell.text = "BOARD_CATEGORY";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_STATUS";
+									cell.text = "EDU_BOARD_STATUS";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "TOTAL_BOARD_COUNT";
+									cell.text = "TOTAL_BOARD_COUNT";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_NO";
+									cell.control = (function(){
+										var inputBox_1 = new cpr.controls.InputBox("ipb1");
+										inputBox_1.bind("value").toDataColumn("EDU_BOARD_NO");
+										return inputBox_1;
+									})();
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_TITLE";
+									cell.control = (function(){
+										var inputBox_2 = new cpr.controls.InputBox("ipb2");
+										inputBox_2.bind("value").toDataColumn("EDU_BOARD_TITLE");
+										return inputBox_2;
+									})();
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.columnName = "TOTAL_COUNT";
+									cell.control = (function(){
+										var inputBox_3 = new cpr.controls.InputBox("ipb3");
+										inputBox_3.bind("value").toDataColumn("TOTAL_COUNT");
+										return inputBox_3;
+									})();
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.columnName = "BOARD_CATEGORY";
+									cell.control = (function(){
+										var inputBox_4 = new cpr.controls.InputBox("ipb4");
+										inputBox_4.bind("value").toDataColumn("BOARD_CATEGORY");
+										return inputBox_4;
+									})();
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_STATUS";
+									cell.control = (function(){
+										var inputBox_5 = new cpr.controls.InputBox("ipb5");
+										inputBox_5.bind("value").toDataColumn("EDU_BOARD_STATUS");
+										return inputBox_5;
+									})();
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.columnName = "TOTAL_BOARD_COUNT";
+									cell.control = (function(){
+										var inputBox_6 = new cpr.controls.InputBox("ipb6");
+										inputBox_6.bind("value").toDataColumn("TOTAL_BOARD_COUNT");
+										return inputBox_6;
+									})();
+								}
+							}
+						]
+					}
+				});
+				container.addChild(grid_1, {
+					"top": "379px",
+					"left": "223px",
+					"width": "1183px",
+					"height": "315px"
 				});
 			})(group_1);
 			if(typeof onGroupBeforeDraw == "function") {

@@ -12,7 +12,6 @@ import lombok.ToString;
 public class EduApplyBoardMemberCountVO {
 	private long memberCountId;
     private int memberCount;
-    private String eduBoardStatus;
     private MemberVO memberVO;
     private EduApplyBoardVO eduApplyBoardVO;
 }

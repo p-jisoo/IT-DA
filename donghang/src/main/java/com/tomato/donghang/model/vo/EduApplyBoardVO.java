@@ -20,5 +20,6 @@ public class EduApplyBoardVO {
 	    private String eduBoardAddress;
 	    private String eduBoardCategory;
 	    private String eduBoardContent;
+	    private String eduBoardStatus;
 	    private MemberVO memberVO;
 }

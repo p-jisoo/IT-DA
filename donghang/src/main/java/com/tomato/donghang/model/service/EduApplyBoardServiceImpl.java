@@ -117,6 +117,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			applyStatus= "";
 			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		}else {
+			log.info("status{}", param.getValue("status"));
 			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		}
 		

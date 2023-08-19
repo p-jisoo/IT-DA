@@ -106,6 +106,7 @@ function onSms2SubmitSuccess2(e){
 	var sms2 = e.control;
 	var page = app.lookup("page");
 	var dataSet = app.lookup("ds3");
+	console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 	console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 	console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));

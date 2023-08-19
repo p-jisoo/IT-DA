@@ -57,7 +57,7 @@ WHERE EDU_BOARD_NO='1'
 <select id="findBoardCountByStatus" parameterType="String"
 		resultType="long">
 		select count(*)
-		from EDU_BOARD_MEMBER_COUNT
+		from EDU_APPLY_BOARD
 		where 
 		EDU_BOARD_STATUS = #{status}
 </select>
@@ -68,14 +68,13 @@ WHERE EDU_BOARD_NO='1'
 		<include refid="selectEduBoard">
 		</include>
 	</select>
-
-
-
+	
 		<select id="findBoardListPageAndSearch"
 		parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		SELECT
-		rnum,EDU_BOARD_NO,
+		EDU_BOARD_NO,
+		rnum,
 		EDU_BOARD_TITLE,
 		EDU_BOARD_START_PERIOD,
 		EDU_BOARD_MEMBER_COUNT,
@@ -104,37 +103,48 @@ WHERE EDU_BOARD_NO='1'
 		#{pagination.endRowNumber}
 	</select>
 	<select id="findBoardListPageAndSearchTest" parameterType="map" resultType="Hashmap">
-SELECT 
-    r.rnum,
-    e.EDU_BOARD_NO,
-    e.EDU_BOARD_TITLE,
-    e.EDU_BOARD_ADDRESS,
-    r.EDU_BOARD_STATUS,
-    r.TOTAL_COUNT
-FROM
-    EDU_APPLY_BOARD e
-INNER JOIN
-(SELECT
-    row_number() over(ORDER BY EDU_BOARD_NO DESC) as rnum,
-    EDU_BOARD_NO,
-    EDU_BOARD_STATUS,
-    COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
-FROM
-    EDU_BOARD_MEMBER_COUNT
-<where>
+select 
+EDU_BOARD_NO,
+EDU_BOARD_TITLE,
+EDU_BOARD_CONTENT,
+EDU_BOARD_STATUS,
+EDU_BOARD_ADDRESS,
+EDU_BOARD_STATUS,
+TOTAL_COUNT
+EDU_BOARD_MAX_MEMBER_COUNT
+from
+	(SELECT 
+		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
+	    e.EDU_BOARD_NO,
+	    e.EDU_BOARD_TITLE,
+	    e.EDU_BOARD_CONTENT,
+	    e.EDU_BOARD_ADDRESS,
+	    e.EDU_BOARD_STATUS,
+	    NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
+	    e.EDU_BOARD_MAX_MEMBER_COUNT
+	FROM
+	    EDU_APPLY_BOARD e
+	LEFT OUTER JOIN 
+	(SELECT
+		EDU_BOARD_NO,
+	    COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+	FROM
+	    EDU_BOARD_MEMBER_COUNT
+	GROUP BY
+	     EDU_BOARD_NO
+	    ) r
+	ON
+	e.EDU_BOARD_NO = r.EDU_BOARD_NO
+	<where>
 			<if test="status != '' and status !=null ">
 				EDU_BOARD_STATUS = #{status}
 			</if>
-</where>
-GROUP BY
-     EDU_BOARD_NO,
-     EDU_BOARD_STATUS
-    ) r
-ON
-e.EDU_BOARD_NO = r.EDU_BOARD_NO
+	</where>
+	)
 WHERE 
 rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 </select>
+	
 	
 	
 </mapper>
