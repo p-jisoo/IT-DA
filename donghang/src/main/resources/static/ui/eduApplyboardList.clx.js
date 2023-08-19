@@ -23,9 +23,11 @@
 			 * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
 			 */
 
-
-
-			function onGroupBeforeDraw(e){	
+			/*
+			 * 루트 컨테이너에서 init 이벤트 발생 시 호출.
+			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+			 */
+			function onBodyInit(e){
 				var page = app.lookup("page");
 				var currentPageIndex = page.currentPageIndex;
 				var dataMap = app.lookup("dm2");
@@ -33,6 +35,8 @@
 				var submission = app.lookup("sms2");
 				submission.send();
 			}
+
+
 
 			/*
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
@@ -80,14 +84,18 @@
 			 */
 			function onButtonClick(e){
 				var dataSet = app.lookup("tpSlct");
+				var dataSet2 = app.lookup("dsSlct");
 				var searchInput = app.lookup("searchCtl");
-				var dataMap = app.lookup("dm2");
+				var comboBox = app.lookup("cmb1");
+				var dataMap = app.lookup("dm3");
 				var inputValue = searchInput.value.replace(/\s/g, "");
 				var listBox = app.lookup("lbx1");
-				var submission = app.lookup("sms2");
-				if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
-					dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
-				}
+				var submission = app.lookup("sms3");
+				console.log(dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("type", dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("keyword", inputValue);
+				console.log(inputValue);
 				submission.send();
 			}
 
@@ -111,12 +119,9 @@
 					submission.send();
 			}
 
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onSms2SubmitSuccess2(e){
-				var sms2 = e.control;
+
+
+			function submissionSC(){
 				var page = app.lookup("page");
 				var dataSet = app.lookup("ds3");
 				console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
@@ -134,7 +139,25 @@
 					page.visibleNextButton =false;
 				}
 				page.redraw();	
-				
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms2SubmitSuccess2(e){
+				var sms2 = e.control;
+				submissionSC();
+				console.log("호출");
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms3SubmitSuccess(e){
+				var sms3 = e.control;
+				submissionSC();
+				var dataSet = app.lookup("ds3");
 			};
 			// End - User Script
 			
@@ -193,8 +216,8 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"label": "전체", "value": "value1"},
-					{"label": "제목", "value": "value2"},
+					{"label": "제목", "value": "value1"},
+					{"label": "내용", "value": "value2"},
 					{"label": "작성자", "value": "value3"}
 				]
 			});
@@ -247,6 +270,20 @@
 				]
 			});
 			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("dm3");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "nowpage"},
+					{
+						"name": "status",
+						"dataType": "string"
+					},
+					{"name": "type"},
+					{"name": "keyword"}
+				]
+			});
+			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "findBaordList.do";
 			submission_1.addResponseData(dataSet_1, false);
@@ -269,6 +306,15 @@
 				submission_3.addEventListener("submit-success", onSms2SubmitSuccess2);
 			}
 			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("sms3");
+			submission_4.action = "findBoardListPageAndSearchKeyword.do";
+			submission_4.addRequestData(dataMap_3);
+			submission_4.addResponseData(dataSet_5, false);
+			if(typeof onSms3SubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onSms3SubmitSuccess);
+			}
+			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -462,6 +508,7 @@
 										inputBox_1.bind("value").toDataColumn("EDU_BOARD_NO");
 										return inputBox_1;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -473,6 +520,7 @@
 										inputBox_2.bind("value").toDataColumn("EDU_BOARD_TITLE");
 										return inputBox_2;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -484,6 +532,7 @@
 										inputBox_3.bind("value").toDataColumn("TOTAL_COUNT");
 										return inputBox_3;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -495,6 +544,7 @@
 										inputBox_4.bind("value").toDataColumn("BOARD_CATEGORY");
 										return inputBox_4;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -506,6 +556,7 @@
 										inputBox_5.bind("value").toDataColumn("EDU_BOARD_STATUS");
 										return inputBox_5;
 									})();
+									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -517,6 +568,7 @@
 										inputBox_6.bind("value").toDataColumn("TOTAL_BOARD_COUNT");
 										return inputBox_6;
 									})();
+									cell.controlConstraint = {};
 								}
 							}
 						]
@@ -540,6 +592,9 @@
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
+			}
+			if(typeof onBodyInit == "function"){
+				app.addEventListener("init", onBodyInit);
 			}
 		}
 	});

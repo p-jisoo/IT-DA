@@ -102,22 +102,24 @@ WHERE EDU_BOARD_NO='1'
 		WHERE rnum BETWEEN #{pagination.startRowNumber} and
 		#{pagination.endRowNumber}
 	</select>
-	<select id="findBoardListPageAndSearchTest" parameterType="map" resultType="Hashmap">
+	<select id="findBoardListPageAndSearchThing" parameterType="map" resultType="Hashmap">
 select 
-EDU_BOARD_NO,
-EDU_BOARD_TITLE,
-EDU_BOARD_CONTENT,
-EDU_BOARD_STATUS,
-EDU_BOARD_ADDRESS,
-EDU_BOARD_STATUS,
-TOTAL_COUNT
-EDU_BOARD_MAX_MEMBER_COUNT
+	EDU_BOARD_NO,
+	EDU_BOARD_TITLE,
+	EDU_BOARD_CONTENT,
+	USER_ID,
+	EDU_BOARD_STATUS,
+	EDU_BOARD_ADDRESS,
+	EDU_BOARD_STATUS,
+	TOTAL_COUNT,
+	EDU_BOARD_MAX_MEMBER_COUNT
 from
 	(SELECT 
 		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
 	    e.EDU_BOARD_NO,
 	    e.EDU_BOARD_TITLE,
 	    e.EDU_BOARD_CONTENT,
+	    e.USER_ID,
 	    e.EDU_BOARD_ADDRESS,
 	    e.EDU_BOARD_STATUS,
 	    NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
@@ -145,6 +147,62 @@ WHERE
 rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 </select>
 	
-	
+		<select id="findBoardListPageAndSearchTest" parameterType="map" resultType="Hashmap">
+select 
+	EDU_BOARD_NO,
+	EDU_BOARD_TITLE,
+	EDU_BOARD_CONTENT,
+	USER_ID,
+	EDU_BOARD_STATUS,
+	EDU_BOARD_ADDRESS,
+	EDU_BOARD_STATUS,
+	TOTAL_COUNT,
+	EDU_BOARD_MAX_MEMBER_COUNT
+from
+	(SELECT 
+		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
+	    e.EDU_BOARD_NO,
+	    e.EDU_BOARD_TITLE,
+	    e.EDU_BOARD_CONTENT,
+	    e.USER_ID,
+	    e.EDU_BOARD_ADDRESS,
+	    e.EDU_BOARD_STATUS,
+	    NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
+	    e.EDU_BOARD_MAX_MEMBER_COUNT
+	FROM
+	    EDU_APPLY_BOARD e
+	LEFT OUTER JOIN 
+	(SELECT
+		EDU_BOARD_NO,
+	    COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+	FROM
+	    EDU_BOARD_MEMBER_COUNT
+	GROUP BY
+	     EDU_BOARD_NO
+	    ) r
+	ON
+	e.EDU_BOARD_NO = r.EDU_BOARD_NO
+	<where>
+			<if test="status != '' and status !=null ">
+				EDU_BOARD_STATUS = #{status}
+			</if>
+	</where>
+	<if test="type != null and keyword != null">
+        <trim prefix=" AND (" suffix=")">
+                <if test="type=='제목'.toString()">
+                  (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
+                </if>
+                <if test="type=='내용'.toString()">
+                  (EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+                </if>
+                <if test="type=='작성자'.toString()">
+                  (USER_ID LIKE '%'||#{keyword}||'%')
+                </if>
+        </trim>
+      </if>
+	)
+WHERE 
+rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+</select>
 	
 </mapper>

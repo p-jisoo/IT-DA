@@ -37,11 +37,11 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="label"><![CDATA[전체]]></cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[제목]]></cl:datavalue>
             <cl:datavalue columnname="value"><![CDATA[value1]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label"><![CDATA[제목]]></cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[내용]]></cl:datavalue>
             <cl:datavalue columnname="value"><![CDATA[value2]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
@@ -95,6 +95,14 @@
           <cl:datacolumn std:sid="d-column-55ab4645" name="status" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-cf2a68f4" id="dm3">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-0235167d" name="nowpage"/>
+          <cl:datacolumn std:sid="d-column-77433327" name="status" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-d12a0f50" name="type"/>
+          <cl:datacolumn std:sid="d-column-6bfde26a" name="keyword"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-032599b6" id="sms1" action="findBaordList.do">
         <cl:listener std:sid="listener-26e4ec14" name="submit-done" handler="onSms1SubmitDone"/>
         <cl:responsedata dataid="ds1"/>
@@ -108,11 +116,17 @@
         <cl:requestdata dataid="dm2"/>
         <cl:responsedata dataid="ds3"/>
       </cl:submission>
+      <cl:submission std:sid="submission-6ffe3424" id="sms3" action="findBoardListPageAndSearchKeyword.do">
+        <cl:listener std:sid="listener-70b6609b" name="submit-success" handler="onSms3SubmitSuccess"/>
+        <cl:requestdata dataid="dm3"/>
+        <cl:responsedata dataid="ds3"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-ce86803d">
     <cl:listener std:sid="listener-2d0108d2" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-c09a5ab1" name="init" handler="onBodyInit"/>
     <cl:group std:sid="group-922b7e01">
       <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
       <cl:datarowcontext datacontrolid="ds3" rowindex="0"/>
@@ -170,32 +184,32 @@
           <cl:gridrow std:sid="g-row-ce51981e"/>
           <cl:gridcell std:sid="gd-cell-918f15a9" rowindex="0" colindex="0" columnname="EDU_BOARD_NO">
             <cl:inputbox std:sid="i-box-39bc178d" id="ipb1">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-69891c74"/>
             </cl:inputbox>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-afc77505" rowindex="0" colindex="1" columnname="EDU_BOARD_TITLE">
             <cl:inputbox std:sid="i-box-3331e7c4" id="ipb2">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-9bb8071d"/>
             </cl:inputbox>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-384a8c19" rowindex="0" colindex="2" columnname="TOTAL_COUNT">
             <cl:inputbox std:sid="i-box-c7eb018a" id="ipb3">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-026ea9fa"/>
             </cl:inputbox>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-51b3c511" rowindex="0" colindex="3" columnname="BOARD_CATEGORY">
             <cl:inputbox std:sid="i-box-856b234b" id="ipb4">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-7e0db8f8"/>
             </cl:inputbox>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-380ba2f6" rowindex="0" colindex="4" columnname="EDU_BOARD_STATUS">
             <cl:inputbox std:sid="i-box-32b40e4a" id="ipb5">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-bbef40c9"/>
             </cl:inputbox>
           </cl:gridcell>
           <cl:gridcell std:sid="gd-cell-cca5e58c" rowindex="0" colindex="5" columnname="TOTAL_BOARD_COUNT">
             <cl:inputbox std:sid="i-box-9360903a" id="ipb6">
-              <cl:celldata/>
+              <cl:celldata std:sid="c-data-1ff2188b"/>
             </cl:inputbox>
           </cl:gridcell>
         </cl:griddetail>

@@ -73,10 +73,17 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/findBoardListWithStatusByPage.do")
 	public View findBoardListWithStatusByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm2");
-		log.info("param {}",param.getValue("status"));
-		log.info("nowpage {}",param.getValue("nowpage"));
+		log.debug("param {}",param.getValue("status"));
+		log.debug("nowpage {}",param.getValue("nowpage"));
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListWithStatusByPage(param);
 		dataRequest.setResponse("ds3", data);
+		return new JSONDataView();
+	}
+	@PostMapping("/ui/findBoardListPageAndSearchKeyword.do")
+	public View findBoardListPageAndSearchKeyword(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("dm3");
+		log.info("param {}",param.getValue("type"));
+		log.info("nowpage {}",param.getValue("keyword"));
 		return new JSONDataView();
 	}
 }

@@ -146,9 +146,66 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("pagination", pagination);
 	    map.put("status", applyStatus);
-	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchTest(map);
+	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchThing(map);
 	    List<Map<String, Object>> newData = new ArrayList<>();
 	    log.info("첫data {}", data.get(0));
+		for(Map<String, Object> evo : data) {
+			evo.put("NOW_PAGE", nowPage);
+			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
+			evo.put("PREVPAGE", PrevPage);
+			evo.put("NEXTPAGE", NextPage);
+			newData.add(evo);
+		}
+		data = newData;
+		log.info("data {}", data);
+		return data;
+	}
+	
+	@Override
+	public List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param) {
+		long nowPage = 0;
+		Pagination pagination;
+		String PrevPage = "0";
+		String NextPage = "0";
+		String type = param.getValue("type");
+		String keyword = param.getValue("keyword");
+		String applyStatus =  param.getValue("status");
+		long totalBoardCount = 0;	
+		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
+			applyStatus= "";
+			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
+		}else {
+			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
+		}
+		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
+			 pagination = new Pagination(totalBoardCount);
+		}else {
+			nowPage = Long.parseLong(param.getValue("nowpage"));
+			 pagination = new Pagination(totalBoardCount,nowPage);
+		}
+		//파리미터로 넘어온  nowpage의 값 null체크
+		
+		if(pagination.isPreviousPageGroup()) {
+			 PrevPage = "1";
+		}else{
+			 PrevPage = "0";
+		}
+		if(pagination.isNextPageGroup()) {
+			NextPage = "1";
+		}else{
+			NextPage = "0";
+		}
+		//NextPage 와 PrePage의 값 설정
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+	    map.put("status", applyStatus);
+	    map.put("type", type);
+	    map.put("keyword", keyword);
+	    log.info("map {}", map);
+	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(map);
+	    List<Map<String, Object>> newData = new ArrayList<>();
+	    log.info("실행data {}", data.get(0));
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
 			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);

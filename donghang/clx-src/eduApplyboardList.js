@@ -10,9 +10,11 @@
  * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
  */
 
-
-
-function onGroupBeforeDraw(e){	
+/*
+ * 루트 컨테이너에서 init 이벤트 발생 시 호출.
+ * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+ */
+function onBodyInit(e){
 	var page = app.lookup("page");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
@@ -20,6 +22,8 @@ function onGroupBeforeDraw(e){
 	var submission = app.lookup("sms2");
 	submission.send();
 }
+
+
 
 /*
  * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
@@ -67,14 +71,18 @@ function onBodyLoad(e){
  */
 function onButtonClick(e){
 	var dataSet = app.lookup("tpSlct");
+	var dataSet2 = app.lookup("dsSlct");
 	var searchInput = app.lookup("searchCtl");
-	var dataMap = app.lookup("dm2");
+	var comboBox = app.lookup("cmb1");
+	var dataMap = app.lookup("dm3");
 	var inputValue = searchInput.value.replace(/\s/g, "");
 	var listBox = app.lookup("lbx1");
-	var submission = app.lookup("sms2");
-	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
-		dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
-	}
+	var submission = app.lookup("sms3");
+	console.log(dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("type", dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("keyword", inputValue);
+	console.log(inputValue);
 	submission.send();
 }
 
@@ -98,12 +106,9 @@ function onLbx1ItemClick(e){
 		submission.send();
 }
 
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onSms2SubmitSuccess2(e){
-	var sms2 = e.control;
+
+
+function submissionSC(){
 	var page = app.lookup("page");
 	var dataSet = app.lookup("ds3");
 	console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
@@ -121,7 +126,25 @@ function onSms2SubmitSuccess2(e){
 		page.visibleNextButton =false;
 	}
 	page.redraw();	
-	
+}
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms2SubmitSuccess2(e){
+	var sms2 = e.control;
+	submissionSC();
+	console.log("호출");
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms3SubmitSuccess(e){
+	var sms3 = e.control;
+	submissionSC();
+	var dataSet = app.lookup("ds3");
 }
 
 

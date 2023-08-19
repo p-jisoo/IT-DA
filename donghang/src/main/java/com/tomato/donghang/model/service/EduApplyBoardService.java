@@ -15,4 +15,5 @@ public interface EduApplyBoardService {
 
 	List<Map<String, Object>> findBaordList();
 	List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param);
+	List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param);
 }
