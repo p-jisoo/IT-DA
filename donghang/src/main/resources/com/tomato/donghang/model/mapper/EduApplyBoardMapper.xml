@@ -150,7 +150,7 @@ rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	
 		<select id="findBoardListPageAndSearchKeyword" parameterType="map" resultType="Hashmap">
 select 
-	rnum,
+	LAST_VALUE(knum) OVER() AS COUNTING,
 	EDU_BOARD_NO,
 	EDU_BOARD_TITLE,
 	USER_ID,
@@ -162,6 +162,7 @@ select
 from
 	(SELECT 
 		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
+		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as knum,
 	    e.EDU_BOARD_NO,
 	    e.EDU_BOARD_TITLE,
 	    e.EDU_BOARD_CONTENT,

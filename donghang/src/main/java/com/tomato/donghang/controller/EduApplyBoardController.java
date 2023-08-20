@@ -86,6 +86,8 @@ public class EduApplyBoardController {
 		log.info("nowpage {}",param.getValue("keyword"));
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
+		dataRequest.setParameter("keyword", param.getValue("keyword"));
+		System.out.println(dataRequest.getParameter("keyword"));
 		return new JSONDataView();
 	}
 }

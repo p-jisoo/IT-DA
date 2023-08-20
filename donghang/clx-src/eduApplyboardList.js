@@ -20,7 +20,9 @@ function onBodyInit(e){
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
+	
 	submission.send();
+	
 }
 
 
@@ -63,6 +65,7 @@ function onBodyLoad(e){
 	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
 	comboBox.selectItemByValue("value1");
+	
 }
 
 /*
@@ -144,19 +147,120 @@ function onSms2SubmitSuccess2(e){
 function onSms3SubmitSuccess(e){
 	var sms3 = e.control; //
 	var responseDatas = sms3.getResponseData("ds3");
+	var grid = app.lookup("grd1");
+	var grid2 = app.lookup("grd2");
 	submissionSC(); 
 	var datakey = null;
 	var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
+	
 	var any =JSON.parse(responseText); //text를 json객체로 변환 
 	if(any.ds3.length==0){
 		showSearchDataNotExist();
+	}else{
+		if(grid2){
+			grid2.visible=false;
+			grid.visible=true;
+		}
 	}
 }
 
+
 function showSearchDataNotExist(){
+	var container = app.getContainer();
+	var dataMap = app.lookup("dm3");
 	var grid = app.lookup("grd1");
-	grid.visible = false;
-	
-	
-}
+	var value = dataMap.getValue("keyword");
+	var dataSet = app.lookup("ds4");
+	var grid_2 = new cpr.controls.Grid("grd2");
+				grid_2.init({
+					"dataSet": app.lookup("ds4"),
+					"hScroll": "hidden",
+					"vScroll": "hidden",
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "textarea";
+									cell.text = "EDU_BOARD_NO";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.text = "EDU_BOARD_TITLE";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.text = "TOTAL_COUNT";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.text = "BOARD_CATEGORY";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.text = "EDU_BOARD_STATUS";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.text = "TOTAL_BOARD_COUNT";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "350px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0, "rowSpan": 1, "colSpan": 6},
+							"configurator": function(cell){
+								cell.columnName = "textarea";
+								cell.control = (function(){
+									var textArea_1 = new cpr.controls.TextArea("txa1");
+									textArea_1.style.css({
+										"font-size" : "23px"
+									});
+									textArea_1.bind("value").toDataColumn("textarea");
+									return textArea_1;
+								})();
+								cell.controlConstraint = {};
+							}
+						}]
+					}
+				});
+				if(typeof onGrd2SelectionChange == "function") {
+					grid_2.addEventListener("selection-change", onGrd2SelectionChange);
+				}
+				container.addChild(grid_2, {
+					"top": "369px",
+					"left": "224px",
+					"width": "1239px",
+					"height": "362px"
+				});
+
+	dataSet.setValue(0, "textarea",`${value}에 대한 검색결과가 없습니다.\r\n\r\n단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. \r\n검색 옵션을 변경해서 다시 검색해 보세요.`)
+	grid.visible=false;
+	grid_2.redraw();
+			};
+
+
 

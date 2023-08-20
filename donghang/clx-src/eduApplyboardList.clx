@@ -84,6 +84,16 @@
         </cl:datacolumnlist>
         <cl:datarowlist/>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-176d34bf" id="ds4">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-62a59e7f" name="textarea"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="textarea"><![CDATA["단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. 네이버 맞춤법 검사기\r\n검색 옵션을 변경해서 다시 검색해 보세요."]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-8e27a01d" id="dm1">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-a83d57a3" name="nowpage"/>
@@ -164,7 +174,7 @@
         <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="906px" left="1296px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
       <cl:grid std:sid="grid-9b3ec17d" id="grd1" datasetid="ds3">
-        <cl:xylayoutdata std:sid="xyl-data-5c02a114" top="379px" left="223px" width="1183px" height="315px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-3cce4769" top="369px" left="224px" width="1239px" height="362px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         <cl:gridcolumn std:sid="g-column-4b63b87b"/>
         <cl:gridcolumn std:sid="g-column-db72d021"/>
         <cl:gridcolumn std:sid="g-column-5c5611d7"/>
@@ -220,6 +230,8 @@
   </body>
   <std:studiosetting>
     <std:hruler/>
-    <std:vruler/>
+    <std:vruler>
+      <std:guide position="270"/>
+    </std:vruler>
   </std:studiosetting>
 </html>

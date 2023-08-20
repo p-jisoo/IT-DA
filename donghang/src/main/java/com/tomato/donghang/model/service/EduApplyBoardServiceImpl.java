@@ -205,6 +205,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    map.put("keyword", keyword);
 	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(map);
+	    log.info("총개수 내놔라 {}" ,data.get(0));
 	    if(data.size()==0) {
 	    	return data;
 	    }
