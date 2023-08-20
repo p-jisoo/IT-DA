@@ -84,6 +84,8 @@ public class EduApplyBoardController {
 		ParameterGroup param = dataRequest.getParameterGroup("dm3");
 		log.info("param {}",param.getValue("type"));
 		log.info("nowpage {}",param.getValue("keyword"));
+		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
+		dataRequest.setResponse("ds3", data);
 		return new JSONDataView();
 	}
 }

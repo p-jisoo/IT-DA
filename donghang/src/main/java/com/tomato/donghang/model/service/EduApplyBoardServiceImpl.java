@@ -1,5 +1,6 @@
 package com.tomato.donghang.model.service;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -204,6 +205,10 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    map.put("keyword", keyword);
 	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(map);
+	    if(data.size()==0) {
+	    	return data;
+	    }
+	    log.info("총 게시물 수 {}", data);
 	    List<Map<String, Object>> newData = new ArrayList<>();
 	    log.info("실행data {}", data.get(0));
 		for(Map<String, Object> evo : data) {

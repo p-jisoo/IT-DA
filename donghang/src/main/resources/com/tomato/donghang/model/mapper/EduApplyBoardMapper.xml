@@ -69,6 +69,8 @@ WHERE EDU_BOARD_NO='1'
 		</include>
 	</select>
 	
+	
+	
 		<select id="findBoardListPageAndSearch"
 		parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
@@ -106,7 +108,6 @@ WHERE EDU_BOARD_NO='1'
 select 
 	EDU_BOARD_NO,
 	EDU_BOARD_TITLE,
-	EDU_BOARD_CONTENT,
 	USER_ID,
 	EDU_BOARD_STATUS,
 	EDU_BOARD_ADDRESS,
@@ -147,11 +148,11 @@ WHERE
 rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 </select>
 	
-		<select id="findBoardListPageAndSearchTest" parameterType="map" resultType="Hashmap">
+		<select id="findBoardListPageAndSearchKeyword" parameterType="map" resultType="Hashmap">
 select 
+	rnum,
 	EDU_BOARD_NO,
 	EDU_BOARD_TITLE,
-	EDU_BOARD_CONTENT,
 	USER_ID,
 	EDU_BOARD_STATUS,
 	EDU_BOARD_ADDRESS,
@@ -182,13 +183,11 @@ from
 	    ) r
 	ON
 	e.EDU_BOARD_NO = r.EDU_BOARD_NO
-	<where>
+	 <trim prefix="WHERE">
 			<if test="status != '' and status !=null ">
-				EDU_BOARD_STATUS = #{status}
+				EDU_BOARD_STATUS = #{status} AND
 			</if>
-	</where>
-	<if test="type != null and keyword != null">
-        <trim prefix=" AND (" suffix=")">
+			<if test="type != null and keyword != null">
                 <if test="type=='제목'.toString()">
                   (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
                 </if>
@@ -198,8 +197,9 @@ from
                 <if test="type=='작성자'.toString()">
                   (USER_ID LIKE '%'||#{keyword}||'%')
                 </if>
-        </trim>
       </if>
+		</trim>
+	
 	)
 WHERE 
 rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}

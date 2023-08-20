@@ -142,9 +142,21 @@ function onSms2SubmitSuccess2(e){
  * 통신이 성공하면 발생합니다.
  */
 function onSms3SubmitSuccess(e){
-	var sms3 = e.control;
-	submissionSC();
-	var dataSet = app.lookup("ds3");
+	var sms3 = e.control; //
+	var responseDatas = sms3.getResponseData("ds3");
+	submissionSC(); 
+	var datakey = null;
+	var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
+	var any =JSON.parse(responseText); //text를 json객체로 변환 
+	if(any.ds3.length==0){
+		showSearchDataNotExist();
+	}
 }
 
+function showSearchDataNotExist(){
+	var grid = app.lookup("grd1");
+	grid.visible = false;
+	
+	
+}
 
