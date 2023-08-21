@@ -48,8 +48,8 @@
 				var page = app.lookup("page");
 				var currentPageIndex = page.currentPageIndex;
 				var listBox = app.lookup("lbx1");
-				var dataMap = app.lookup("dm2");
-				var submission = app.lookup("sms2");
+				var dataMap = app.lookup("dm3");
+				var submission = app.lookup("sms3");
 				var dataSet = app.lookup("tpSlct");
 				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 				dataMap.setValue("nowpage", currentPageIndex);
@@ -94,6 +94,10 @@
 				var inputValue = searchInput.value.replace(/\s/g, "");
 				var listBox = app.lookup("lbx1");
 				var submission = app.lookup("sms3");
+				var pageIndexer = app.lookup("page");
+				if(pageIndexer.currentPageIndex>1){
+					dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+					}
 				console.log(dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
 				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 				dataMap.setValue("type", dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
@@ -170,10 +174,8 @@
 				if(any.ds3.length==0){
 					showSearchDataNotExist();
 				}else{
-					if(grid2){
-						grid2.visible=false;
-						grid.visible=true;
-					}
+					grid.visible=true;
+					grid2.visible=false;
 				}
 			}
 
@@ -182,9 +184,13 @@
 				var container = app.getContainer();
 				var dataMap = app.lookup("dm3");
 				var grid = app.lookup("grd1");
+				var grid2 = app.lookup("grd2");
 				var value = dataMap.getValue("keyword");
 				var dataSet = app.lookup("ds4");
-				var grid_2 = new cpr.controls.Grid("grd2");
+				if(grid2){
+					grid2.visible=true;
+				}else{
+					var grid_2 = new cpr.controls.Grid("grd2");
 							grid_2.init({
 								"dataSet": app.lookup("ds4"),
 								"hScroll": "hidden",
@@ -269,10 +275,9 @@
 								"width": "1239px",
 								"height": "362px"
 							});
-
+				}
 				dataSet.setValue(0, "textarea",`${value}에 대한 검색결과가 없습니다.\r\n\r\n단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. \r\n검색 옵션을 변경해서 다시 검색해 보세요.`)
 				grid.visible=false;
-				grid_2.redraw();
 						};;
 			// End - User Script
 			

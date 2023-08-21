@@ -1,6 +1,6 @@
 package com.tomato.donghang.model.service;
 
-import java.io.Console;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -158,7 +158,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			newData.add(evo);
 		}
 		data = newData;
-		log.info("data {}", data);
+		log.warn("data {}", data);
 		return data;
 	}
 	
@@ -171,13 +171,16 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		String type = param.getValue("type");
 		String keyword = param.getValue("keyword");
 		String applyStatus =  param.getValue("status");
-		long totalBoardCount = 0;	
+		Map<String, String> map = new HashMap<>();
 		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
-			applyStatus= "";
-			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
-		}else {
-			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
+			applyStatus=null;
 		}
+		map.put("status", applyStatus);
+		map.put("keyword", keyword);
+		map.put("type", type);
+		long totalBoardCount = 0;	
+		   log.warn("mapkeyword {}", map);
+		totalBoardCount = eduApplyBoardMapper.findBoardCountByStatusWithSearch(map);
 		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
 			 pagination = new Pagination(totalBoardCount);
 		}else {
@@ -198,20 +201,19 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		}
 		//NextPage 와 PrePage의 값 설정
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("pagination", pagination);
-	    map.put("status", applyStatus);
-	    map.put("type", type);
-	    map.put("keyword", keyword);
+		Map<String, Object> po = new HashMap<>();
+		po.put("pagination", pagination);
+	    po.put("status", applyStatus);
+	    po.put("type", type);
+	    po.put("keyword", keyword);
 	    log.info("map {}", map);
-	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(map);
-	    log.info("총개수 내놔라 {}" ,data.get(0));
+	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
+	    log.info("data {}", data);
 	    if(data.size()==0) {
 	    	return data;
 	    }
 	    log.info("총 게시물 수 {}", data);
 	    List<Map<String, Object>> newData = new ArrayList<>();
-	    log.info("실행data {}", data.get(0));
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
 			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
@@ -220,7 +222,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			newData.add(evo);
 		}
 		data = newData;
-		log.info("data {}", data);
 		return data;
 	}
 }
