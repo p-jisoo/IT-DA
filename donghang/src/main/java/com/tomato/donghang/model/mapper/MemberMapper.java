@@ -10,7 +10,7 @@ public interface MemberMapper {
 
 	
 	int registerMember(MemberVO vo);
-	void updateMember(MemberVO vo);
+	MemberVO updateMember(MemberVO vo);
 	MemberVO loginMember(MemberVO memberVO);
 	List<EduApplyBoardVO> findAllBoardList();
 	MemberVO checkIdMember(String id);

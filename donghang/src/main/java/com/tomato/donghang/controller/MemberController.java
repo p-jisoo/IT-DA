@@ -79,20 +79,28 @@ public class MemberController {
 	@PostMapping("ui/updateMember")
 	public View updateMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
-		ParameterGroup data = dataRequest.getParameterGroup("dm1");
-		String id = data.getValue("userId");
-		String password = data.getValue("password");
-		String address = data.getValue("address");
-		String userTel = data.getValue("userTel");
-		String userName = data.getValue("userName");
-		String userNick = data.getValue("userNick");
-		MemberVO vo = new MemberVO(id, password, address, userTel, userName, userNick);
-		memberMapper.updateMember(vo);
-		if (vo != null) {
+		if (session == null || session.getAttribute("mvo") == null) {
+			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
+		} else {
+
+			ParameterGroup data = dataRequest.getParameterGroup("dm1");
+			String id = data.getValue("userId");
+			String password = data.getValue("password");
+			String address = data.getValue("address");
+			String userTel = data.getValue("userTel");
+			String userName = data.getValue("userName");
+			String nickName = data.getValue("nickName");
+			System.out.println("업데이트 전 = "+id+","+ password+","+address+","+","+userTel+","+userName+","+nickName);
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName);
+			System.out.println("업데이트 후 = "+vo);
+			MemberVO memberVO=memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
-		}
+			}
 		return new JSONDataView();
-	}
+		}
+	
+	
 
 	// 아이디 중복체크 기능
 	@PostMapping("ui/checkIdMember")
@@ -158,20 +166,20 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
-		} else  {
+		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("deletePassword");// 비밀번호 요청을 받아야함
-			MemberVO vo1=(MemberVO) session.getAttribute("mvo");
-			String pwd=vo1.getPassword();
+			MemberVO vo1 = (MemberVO) session.getAttribute("mvo");
+			String pwd = vo1.getPassword();
 			System.out.println("******************");
 			System.out.println("비밀번호 세션 값 ==" + pwd);
 			System.out.println("******************");
-			Map<String,String> datamap=new HashMap<>();
+			Map<String, String> datamap = new HashMap<>();
 			datamap.put("PASSWORD", pwd);
-			dataRequest.setResponse("deletePassword", datamap);	
+			dataRequest.setResponse("deletePassword", datamap);
 			String password = data.getValue("PASSWORD");
-			memberMapper.deleteMember(password);		
-			
+			memberMapper.deleteMember(password);
+
 		}
-			return new JSONDataView();
+		return new JSONDataView();
 	}
 }

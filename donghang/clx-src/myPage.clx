@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-e33c0105" version="1.0.4584">
+  <head std:sid="head-033dfb50">
+    <screen std:sid="screen-a64d8bd3" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
+    <screen std:sid="screen-217f813f" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-2411e3f6" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-b93ae41a" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-bcda2a7c"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-7005a20b">
+    <cl:grid std:sid="grid-59af5f0a" id="grd1" style="border-right-style:none; color:#000000; border-top-width:10px; border-left-style:none; border-right-width:10px; border-bottom-width:10px; border-left-width:10px; border-top-style:none;">
+      <cl:xylayoutdata std:sid="xyl-data-33c08e5b" top="392px" left="379px" width="1371px" height="95px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-65423a2c"/>
+      <cl:griddetail std:sid="gd-band-2a29b0b1">
+        <cl:gridrow std:sid="g-row-6d6850ef"/>
+        <cl:gridcell std:sid="gd-cell-54fa6d35" rowindex="0" colindex="0"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:img std:sid="image-d0e5e7fc" src="theme/images/img/face-donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-938ea92d" top="241px" left="244px" width="125px" height="115px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1.15rem; text-align:center;" removeOnBuild="true">
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
+      <cl:xylayoutdata std:sid="xyl-data-a1065da1" top="342px" left="448px" width="150px" height="14px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:2rem;" value="님 환영합니다.">
+      <cl:xylayoutdata std:sid="xyl-data-94f4e03d" top="335px" left="643px" width="195px" height="26px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:xylayout std:sid="xylayout-4d698902"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler>
+      <std:guide position="136"/>
+    </std:vruler>
+  </std:studiosetting>
+</html>

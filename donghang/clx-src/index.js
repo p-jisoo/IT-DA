@@ -155,3 +155,20 @@ function onButtonClick3(e){
 	window.location.href="deleteMember.clx"
 }
 
+/*
+ * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e){
+	var button = e.control;
+	window.location.href="updateMember.clx"
+}
+
+/*
+ * "마이페이지" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick5(e){
+	var button = e.control;
+	window.location.href="myPage.clx"
+}
