@@ -70,7 +70,6 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
 			dataRequest.setResponse("ds_member", vo);
-
 		}
 		return new JSONDataView();
 	}
@@ -94,7 +93,7 @@ public class MemberController {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName);
 			System.out.println("업데이트 후 = "+vo);
-			MemberVO memberVO=memberMapper.updateMember(vo);
+			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
 			}
 		return new JSONDataView();
@@ -168,18 +167,34 @@ public class MemberController {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("deletePassword");// 비밀번호 요청을 받아야함
-			MemberVO vo1 = (MemberVO) session.getAttribute("mvo");
-			String pwd = vo1.getPassword();
+			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+			String pwd = mvo.getPassword();
+			String userId=mvo.getUserId();
 			System.out.println("******************");
 			System.out.println("비밀번호 세션 값 ==" + pwd);
 			System.out.println("******************");
-			Map<String, String> datamap = new HashMap<>();
-			datamap.put("PASSWORD", pwd);
-			dataRequest.setResponse("deletePassword", datamap);
 			String password = data.getValue("PASSWORD");
-			memberMapper.deleteMember(password);
-
+			memberMapper.deleteMember(userId,password);
 		}
 		return new JSONDataView();
 	}
+	// 비밀번호 찾기 첫번째 페이지(아이디 인증)
+	@PostMapping("ui/selectIdMember")
+	public View selectIdMember(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
+		ParameterGroup data=dataRequset.getParameterGroup("CheckId");
+		String id=data.getValue("userId");
+		System.out.println("컬럼value값 확인 ="+id);
+		MemberVO vo=memberMapper.selectIdMember(id);
+		System.out.println("아이디 존재함 = "+vo);
+		if(vo!=null) {
+		}else {
+			return new UIView("ui/index.clx");
+		}
+		return new JSONDataView();
+		
+	}
 }
+
+	
+
+

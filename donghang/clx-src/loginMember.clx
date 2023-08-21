@@ -73,6 +73,8 @@
       </cl:responsivexylayoutdata>
     </cl:img>
     <cl:output std:sid="output-6e9ebbd6" style="text-align:center;" value="비밀번호 찾기">
+      <cl:listener std:sid="listener-b10a4c3c" name="value-change" handler="onOutputValueChange"/>
+      <cl:listener std:sid="listener-ac91859d" name="click" handler="onOutputClick2"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-76203226">
         <cl:xylayoutdata std:sid="sxyl-data-9947fb97" top="516px" right="340px" left="584px" height="20px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-0200b22e" top="520px" right="170px" left="281px" height="20px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>
@@ -80,6 +82,7 @@
       </cl:responsivexylayoutdata>
     </cl:output>
     <cl:output std:sid="output-e191fb35" style="text-align:center;" value="아이디 찾기">
+      <cl:listener std:sid="listener-a107e1c7" name="click" handler="onOutputClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-0aa72b0d">
         <cl:xylayoutdata std:sid="sxyl-data-79883fa1" top="516px" right="450px" left="474px" height="20px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>
         <cl:xylayoutdata std:sid="sxyl-data-745c83a9" top="520px" right="224px" left="227px" height="20px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="tablet"/>

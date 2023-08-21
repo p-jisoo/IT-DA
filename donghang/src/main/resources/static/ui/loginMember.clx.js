@@ -38,7 +38,7 @@
 				var sms1 = e.control;
 			//	var httpPostMethod = new cpr.protocols.HttpPostMethod("/");
 			//    httpPostMethod.submit();
-			 	window.location.href="/";
+			 window.location.href="/";
 			}
 
 			/*
@@ -68,6 +68,24 @@
 				var imgHome = e.control;
 				var img = app.lookup("imgHome");
 				window.location.href="/";
+			}
+
+			/*
+			 * "아이디 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onOutputClick(e){
+				var output = e.control;
+				wi
+			}
+
+			/*
+			 * "비밀번호 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onOutputClick2(e){
+				var output = e.control;
+				window.location.href="selectPassword.clx"
 			};
 			// End - User Script
 			
@@ -322,6 +340,12 @@
 			output_2.style.css({
 				"text-align" : "center"
 			});
+			if(typeof onOutputValueChange == "function") {
+				output_2.addEventListener("value-change", onOutputValueChange);
+			}
+			if(typeof onOutputClick2 == "function") {
+				output_2.addEventListener("click", onOutputClick2);
+			}
 			container.addChild(output_2, {
 				positions: [
 					{
@@ -360,6 +384,9 @@
 			output_3.style.css({
 				"text-align" : "center"
 			});
+			if(typeof onOutputClick == "function") {
+				output_3.addEventListener("click", onOutputClick);
+			}
 			container.addChild(output_3, {
 				positions: [
 					{

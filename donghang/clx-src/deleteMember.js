@@ -35,7 +35,6 @@ function onDeletePasswordSbmSubmitSuccess(e){
 	console.log(pwdChk);
 	if(pwd === pwdChk){
 	alert("아이디가 삭제되었습니다.");
-		return true;
 	}
 	window.location.href="/";
 }

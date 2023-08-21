@@ -49,18 +49,10 @@ function onSms1SubmitError(e) {
 	var pwd = app.lookup("password");
 	var pwdChk = app.lookup("passwordChk");
 	var adr = app.lookup("Address");
-	var id = app.lookup("ipb1");
 	var detailAdr = app.lookup("detailAddress");
 	var Tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
-	var nickName = app.lookup("nickName");
-	if (id.length == 0) {
-		alert("아이디를 입력해주세요.");
-		return false;
-	} else if (id.length < 8 || id.length > 16) {
-		alert("아이디를 8~16자리로 입력해주세요.");
-		return false;
-	}
+	var nickName = app.lookup("nickName")
 	if (pwd.length == 0) {
 		alert("비밀번호를 입력해주세요.");
 		return false;
@@ -92,66 +84,6 @@ function onSms1SubmitError(e) {
 		return false;
 	}
 }
-/*
- * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick2(e) {
-	var button = e.control;
-	var id = app.lookup("ipb1").value;
-	var dataMap = app.lookup("CheckId");
-	dataMap.setValue("userId", id);
-	var submission = app.lookup("sms2");
-	submission.send();
-}
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-//function onSms2SubmitSuccess(e) {
-//	var sms2 = e.control;
-//	var metadata = sms2.getMetadata("checkId");
-//	var id = app.lookup("ipb1");
-//	var chkId = app.lookup("checkId");
-//	
-//	if (id.length == 0) {
-//		chkId.text = "아이디를 입력해주세요."
-//		chkId.style.css("color", "#ED3838");
-//		return false;
-//	} else if (id.length < 8 || id.length > 16) {
-//		chkId.text = "8~16자리로 입력해주세요.";
-//		chkId.style.css("color", "#ED3838");
-//		return false;
-//
-//		
-//		
-//		//	}else if(id.length(/\s/) != -1){
-//		//		chkId.text = "공백없이 입력해주세요."
-//		//		chkId.style.css("color", "#ED3838");
-//		//		return false;
-//		//	}else if(id. < 0 || eng < 0 || spe < 0 ){
-//		//  		chkId.text ="영문,숫자, 특수문자를 혼합하여 입력해주세요.";
-//		//  		chkId.style.css("color", "#ED3838");	
-//		// 		 return false;
-//	}
-//
-//	if (metadata != "null") {
-//		var chkId = app.lookup("ipb1");
-//		chkId.value = "";
-//		chkId.redraw();
-//		var chkIdMsg = app.lookup("checkId");
-//		chkIdMsg.text = "이미 사용중인 아이디입니다.";
-//		chkIdMsg.style.css("color", "#ED3838");
-//		return false;
-//	} else {
-//		var chkIdnull = app.lookup("ipb1");
-//		var chkMsg = app.lookup("checkId");
-//		chkMsg.text = "사용가능한 아이디입니다."
-//		chkMsg.style.css("color", "#00B237");
-//		return true;
-//	}
-//	
-//}
 
 /*
  * 인풋 박스에서 value-change 이벤트 발생 시 호출.
@@ -267,11 +199,5 @@ function onImageClick(e) {
 	window.location.href = "/";
 }
 
-/*
- * 인풋 박스에서 value-change 이벤트 발생 시 호출.
- * 변경된 value가 저장된 후에 발생하는 이벤트.
- */
-function onIpb1ValueChange2(e){
-	var ipb1 = e.control;
-	
-}
+
+

@@ -62,18 +62,10 @@
 				var pwd = app.lookup("password");
 				var pwdChk = app.lookup("passwordChk");
 				var adr = app.lookup("Address");
-				var id = app.lookup("ipb1");
 				var detailAdr = app.lookup("detailAddress");
 				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
-				var nickName = app.lookup("nickName");
-				if (id.length == 0) {
-					alert("아이디를 입력해주세요.");
-					return false;
-				} else if (id.length < 8 || id.length > 16) {
-					alert("아이디를 8~16자리로 입력해주세요.");
-					return false;
-				}
+				var nickName = app.lookup("nickName")
 				if (pwd.length == 0) {
 					alert("비밀번호를 입력해주세요.");
 					return false;
@@ -105,66 +97,6 @@
 					return false;
 				}
 			}
-			/*
-			 * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-			function onButtonClick2(e) {
-				var button = e.control;
-				var id = app.lookup("ipb1").value;
-				var dataMap = app.lookup("CheckId");
-				dataMap.setValue("userId", id);
-				var submission = app.lookup("sms2");
-				submission.send();
-			}
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			//function onSms2SubmitSuccess(e) {
-			//	var sms2 = e.control;
-			//	var metadata = sms2.getMetadata("checkId");
-			//	var id = app.lookup("ipb1");
-			//	var chkId = app.lookup("checkId");
-			//	
-			//	if (id.length == 0) {
-			//		chkId.text = "아이디를 입력해주세요."
-			//		chkId.style.css("color", "#ED3838");
-			//		return false;
-			//	} else if (id.length < 8 || id.length > 16) {
-			//		chkId.text = "8~16자리로 입력해주세요.";
-			//		chkId.style.css("color", "#ED3838");
-			//		return false;
-			//
-			//		
-			//		
-			//		//	}else if(id.length(/\s/) != -1){
-			//		//		chkId.text = "공백없이 입력해주세요."
-			//		//		chkId.style.css("color", "#ED3838");
-			//		//		return false;
-			//		//	}else if(id. < 0 || eng < 0 || spe < 0 ){
-			//		//  		chkId.text ="영문,숫자, 특수문자를 혼합하여 입력해주세요.";
-			//		//  		chkId.style.css("color", "#ED3838");	
-			//		// 		 return false;
-			//	}
-			//
-			//	if (metadata != "null") {
-			//		var chkId = app.lookup("ipb1");
-			//		chkId.value = "";
-			//		chkId.redraw();
-			//		var chkIdMsg = app.lookup("checkId");
-			//		chkIdMsg.text = "이미 사용중인 아이디입니다.";
-			//		chkIdMsg.style.css("color", "#ED3838");
-			//		return false;
-			//	} else {
-			//		var chkIdnull = app.lookup("ipb1");
-			//		var chkMsg = app.lookup("checkId");
-			//		chkMsg.text = "사용가능한 아이디입니다."
-			//		chkMsg.style.css("color", "#00B237");
-			//		return true;
-			//	}
-			//	
-			//}
 
 			/*
 			 * 인풋 박스에서 value-change 이벤트 발생 시 호출.
@@ -278,15 +210,6 @@
 				var image = e.control;
 				var img = app.lookup("imgHome");
 				window.location.href = "/";
-			}
-
-			/*
-			 * 인풋 박스에서 value-change 이벤트 발생 시 호출.
-			 * 변경된 value가 저장된 후에 발생하는 이벤트.
-			 */
-			function onIpb1ValueChange2(e){
-				var ipb1 = e.control;
-				
 			};
 			// End - User Script
 			
@@ -665,108 +588,109 @@
 			var responsiveXYLayout_3 = new cpr.controls.layouts.ResponsiveXYLayout();
 			group_2.setLayout(responsiveXYLayout_3);
 			(function(container){
-				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				inputBox_1.readOnly = true;
-				inputBox_1.placeholder = "아이디를 입력해주세요.";
-				inputBox_1.autoSkip = true;
+				var inputBox_1 = new cpr.controls.InputBox("password");
+				inputBox_1.fieldLabel = "13";
+				inputBox_1.secret = true;
+				inputBox_1.placeholder = "비밀번호";
 				inputBox_1.style.css({
-					"font-weight" : "normal",
-					"font-size" : "1.1rem",
-					"font-style" : "normal"
+					"font-size" : "1.2rem"
 				});
-				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "userId");
-				if(typeof onIpb1ValueChange2 == "function") {
-					inputBox_1.addEventListener("value-change", onIpb1ValueChange2);
+				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "password");
+				if(typeof onIpb2Keyup == "function") {
+					inputBox_1.addEventListener("keyup", onIpb2Keyup);
+				}
+				if(typeof onPasswordValueChange == "function") {
+					inputBox_1.addEventListener("value-change", onPasswordValueChange);
 				}
 				container.addChild(inputBox_1, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "48px",
-							"left": "300px",
-							"width": "245px",
+							"top": "43px",
+							"left": "307px",
+							"width": "379px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "2px",
+							"top": "106px",
 							"left": "0px",
-							"width": "315px",
+							"width": "450px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "2px",
+							"top": "106px",
 							"left": "0px",
-							"width": "154px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "2px",
+							"top": "106px",
 							"left": "0px",
-							"width": "154px",
+							"width": "220px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "2px",
+							"top": "106px",
 							"left": "0px",
-							"width": "53px",
+							"width": "75px",
 							"height": "55px"
 						}
 					]
 				});
-				var button_2 = new cpr.controls.Button();
-				button_2.value = "중복확인";
-				button_2.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1.15rem"
+				var inputBox_2 = new cpr.controls.InputBox("passwordChk");
+				inputBox_2.secret = true;
+				inputBox_2.placeholder = "비밀번호 재확인";
+				inputBox_2.style.css({
+					"font-size" : "1.2rem"
 				});
-				if(typeof onButtonClick2 == "function") {
-					button_2.addEventListener("click", onButtonClick2);
+				if(typeof onPasswordChkValueChange == "function") {
+					inputBox_2.addEventListener("value-change", onPasswordChkValueChange);
 				}
-				container.addChild(button_2, {
+				container.addChild(inputBox_2, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "58px",
-							"left": "555px",
-							"width": "102px",
-							"height": "36px"
+							"top": "107px",
+							"left": "307px",
+							"width": "379px",
+							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "21px",
-							"left": "325px",
-							"width": "130px",
-							"height": "36px"
+							"top": "170px",
+							"left": "0px",
+							"width": "450px",
+							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "21px",
-							"left": "159px",
-							"width": "63px",
-							"height": "36px"
+							"top": "170px",
+							"left": "0px",
+							"width": "220px",
+							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "21px",
-							"left": "159px",
-							"width": "63px",
-							"height": "36px"
+							"top": "170px",
+							"left": "0px",
+							"width": "220px",
+							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "21px",
-							"left": "54px",
-							"width": "22px",
-							"height": "36px"
+							"top": "170px",
+							"left": "0px",
+							"width": "75px",
+							"height": "55px"
 						}
 					]
 				});
-				var output_4 = new cpr.controls.Output("checkId");
-				output_4.value = "아이디를 입력해주세요.         영어 대소문자/8~16자";
+				var output_4 = new cpr.controls.Output("pwdMsg");
+				output_4.value = "비밀번호를 입력해주세요.             영어대소문자/8~16자";
 				output_4.style.css({
 					"color" : "#ED3838",
 					"font-size" : "1.1rem"
@@ -775,154 +699,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "98px",
-							"left": "300px",
-							"width": "235px",
-							"height": "62px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "56px",
-							"left": "0px",
-							"width": "315px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "56px",
-							"left": "0px",
-							"width": "154px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "56px",
-							"left": "0px",
-							"width": "154px",
-							"height": "41px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "56px",
-							"left": "0px",
-							"width": "53px",
-							"height": "41px"
-						}
-					]
-				});
-				var inputBox_2 = new cpr.controls.InputBox("password");
-				inputBox_2.fieldLabel = "13";
-				inputBox_2.secret = true;
-				inputBox_2.placeholder = "비밀번호";
-				inputBox_2.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
-				if(typeof onIpb2Keyup == "function") {
-					inputBox_2.addEventListener("keyup", onIpb2Keyup);
-				}
-				if(typeof onPasswordValueChange == "function") {
-					inputBox_2.addEventListener("value-change", onPasswordValueChange);
-				}
-				container.addChild(inputBox_2, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "185px",
-							"left": "300px",
-							"width": "379px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "106px",
-							"left": "0px",
-							"width": "450px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "106px",
-							"left": "0px",
-							"width": "220px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "106px",
-							"left": "0px",
-							"width": "220px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "106px",
-							"left": "0px",
-							"width": "75px",
-							"height": "55px"
-						}
-					]
-				});
-				var inputBox_3 = new cpr.controls.InputBox("passwordChk");
-				inputBox_3.secret = true;
-				inputBox_3.placeholder = "비밀번호 재확인";
-				inputBox_3.style.css({
-					"font-size" : "1.2rem"
-				});
-				if(typeof onPasswordChkValueChange == "function") {
-					inputBox_3.addEventListener("value-change", onPasswordChkValueChange);
-				}
-				container.addChild(inputBox_3, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "249px",
-							"left": "300px",
-							"width": "379px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "170px",
-							"left": "0px",
-							"width": "450px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "170px",
-							"left": "0px",
-							"width": "220px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "170px",
-							"left": "0px",
-							"width": "220px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "170px",
-							"left": "0px",
-							"width": "75px",
-							"height": "55px"
-						}
-					]
-				});
-				var output_5 = new cpr.controls.Output("pwdMsg");
-				output_5.value = "비밀번호를 입력해주세요.             영어대소문자/8~16자";
-				output_5.style.css({
-					"color" : "#ED3838",
-					"font-size" : "1.1rem"
-				});
-				container.addChild(output_5, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "303px",
-							"left": "300px",
+							"top": "161px",
+							"left": "307px",
 							"width": "286px",
 							"height": "56px"
 						}, 
@@ -956,17 +734,17 @@
 						}
 					]
 				});
-				var inputBox_4 = new cpr.controls.InputBox("PostCode");
-				inputBox_4.readOnly = true;
-				inputBox_4.placeholder = "우편번호";
-				inputBox_4.style.css({
+				var inputBox_3 = new cpr.controls.InputBox("PostCode");
+				inputBox_3.readOnly = true;
+				inputBox_3.placeholder = "우편번호";
+				inputBox_3.style.css({
 					"font-size" : "1.2rem"
 				});
-				container.addChild(inputBox_4, {
+				container.addChild(inputBox_3, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "400px",
+							"top": "309px",
 							"left": "300px",
 							"width": "230px",
 							"height": "55px"
@@ -1001,20 +779,20 @@
 						}
 					]
 				});
-				var button_3 = new cpr.controls.Button();
-				button_3.value = "우편번호 확인";
-				button_3.style.css({
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "우편번호 확인";
+				button_2.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.15rem"
 				});
 				if(typeof onButtonClick3 == "function") {
-					button_3.addEventListener("click", onButtonClick3);
+					button_2.addEventListener("click", onButtonClick3);
 				}
-				container.addChild(button_3, {
+				container.addChild(button_2, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "419px",
+							"top": "328px",
 							"left": "555px",
 							"width": "144px",
 							"height": "36px"
@@ -1049,27 +827,27 @@
 						}
 					]
 				});
-				var inputBox_5 = new cpr.controls.InputBox("Address");
-				inputBox_5.readOnly = true;
-				inputBox_5.placeholder = "도로명 주소, 지번 주소";
-				inputBox_5.style.css({
+				var inputBox_4 = new cpr.controls.InputBox("Address");
+				inputBox_4.readOnly = true;
+				inputBox_4.placeholder = "도로명 주소, 지번 주소";
+				inputBox_4.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_5.bind("value").toDataMap(app.lookup("dm1"), "address");
+				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "address");
 				if(typeof onRoadAddressChange == "function") {
-					inputBox_5.addEventListener("change", onRoadAddressChange);
+					inputBox_4.addEventListener("change", onRoadAddressChange);
 				}
 				if(typeof onRoadAddressKeydown == "function") {
-					inputBox_5.addEventListener("keydown", onRoadAddressKeydown);
+					inputBox_4.addEventListener("keydown", onRoadAddressKeydown);
 				}
 				if(typeof onRoadAddressKeyup2 == "function") {
-					inputBox_5.addEventListener("keyup", onRoadAddressKeyup2);
+					inputBox_4.addEventListener("keyup", onRoadAddressKeyup2);
 				}
-				container.addChild(inputBox_5, {
+				container.addChild(inputBox_4, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "464px",
+							"top": "373px",
 							"left": "300px",
 							"width": "380px",
 							"height": "55px"
@@ -1104,16 +882,16 @@
 						}
 					]
 				});
-				var inputBox_6 = new cpr.controls.InputBox("detailAddress");
-				inputBox_6.placeholder = "상세 주소";
-				inputBox_6.style.css({
+				var inputBox_5 = new cpr.controls.InputBox("detailAddress");
+				inputBox_5.placeholder = "상세 주소";
+				inputBox_5.style.css({
 					"font-size" : "1.2rem"
 				});
-				container.addChild(inputBox_6, {
+				container.addChild(inputBox_5, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "527px",
+							"top": "436px",
 							"left": "300px",
 							"width": "380px",
 							"height": "55px"
@@ -1159,8 +937,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "653px",
-							"left": "300px",
+							"top": "572px",
+							"left": "307px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1194,21 +972,21 @@
 						}
 					]
 				});
-				var button_4 = new cpr.controls.Button();
-				button_4.value = "인증하기 ";
-				button_4.style.css({
+				var button_3 = new cpr.controls.Button();
+				button_3.value = "인증하기 ";
+				button_3.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.15rem"
 				});
 				if(typeof onButtonClick4 == "function") {
-					button_4.addEventListener("click", onButtonClick4);
+					button_3.addEventListener("click", onButtonClick4);
 				}
-				container.addChild(button_4, {
+				container.addChild(button_3, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "663px",
-							"left": "585px",
+							"top": "582px",
+							"left": "592px",
 							"width": "118px",
 							"height": "36px"
 						}, 
@@ -1242,106 +1020,106 @@
 						}
 					]
 				});
-				var inputBox_7 = new cpr.controls.InputBox("ipb4");
-				inputBox_7.placeholder = "인증번호";
-				inputBox_7.style.css({
+				var inputBox_6 = new cpr.controls.InputBox("ipb4");
+				inputBox_6.placeholder = "인증번호";
+				inputBox_6.style.css({
 					"font-weight" : "normal",
 					"font-size" : "1.2rem"
 				});
+				container.addChild(inputBox_6, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "631px",
+							"left": "307px",
+							"width": "266px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "712px",
+							"left": "563px",
+							"width": "499px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "712px",
+							"left": "146px",
+							"width": "130px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "712px",
+							"left": "146px",
+							"width": "130px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "712px",
+							"left": "50px",
+							"width": "44px",
+							"height": "55px"
+						}
+					]
+				});
+				var inputBox_7 = new cpr.controls.InputBox("userName");
+				inputBox_7.placeholder = "이름을 입력해주세요.";
+				inputBox_7.style.css({
+					"font-size" : "1.2rem"
+				});
+				inputBox_7.bind("value").toDataMap(app.lookup("dm1"), "userName");
 				container.addChild(inputBox_7, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "712px",
+							"top": "781px",
 							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "712px",
+							"top": "847px",
 							"left": "563px",
 							"width": "499px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "712px",
+							"top": "847px",
 							"left": "146px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "712px",
+							"top": "847px",
 							"left": "146px",
 							"width": "130px",
 							"height": "55px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "712px",
+							"top": "847px",
 							"left": "50px",
 							"width": "44px",
 							"height": "55px"
 						}
 					]
 				});
-				var inputBox_8 = new cpr.controls.InputBox("userName");
-				inputBox_8.placeholder = "이름을 입력해주세요.";
+				var inputBox_8 = new cpr.controls.InputBox("nickName");
+				inputBox_8.placeholder = "닉네임을 입력해주세요.";
 				inputBox_8.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_8.bind("value").toDataMap(app.lookup("dm1"), "userName");
+				inputBox_8.bind("value").toDataMap(app.lookup("dm1"), "nickName");
 				container.addChild(inputBox_8, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "847px",
-							"left": "300px",
-							"width": "266px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "847px",
-							"left": "563px",
-							"width": "499px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "847px",
-							"left": "146px",
-							"width": "130px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "847px",
-							"left": "146px",
-							"width": "130px",
-							"height": "55px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "847px",
-							"left": "50px",
-							"width": "44px",
-							"height": "55px"
-						}
-					]
-				});
-				var inputBox_9 = new cpr.controls.InputBox("nickName");
-				inputBox_9.placeholder = "닉네임을 입력해주세요.";
-				inputBox_9.style.css({
-					"font-size" : "1.2rem"
-				});
-				inputBox_9.bind("value").toDataMap(app.lookup("dm1"), "nickName");
-				container.addChild(inputBox_9, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
 							"top": "911px",
 							"left": "300px",
 							"width": "266px",
@@ -1377,63 +1155,18 @@
 						}
 					]
 				});
-				var output_6 = new cpr.controls.Output();
-				output_6.value = "*아이디";
-				output_6.style.css({
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "*비밀번호";
+				output_5.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.5rem"
 				});
-				container.addChild(output_6, {
+				container.addChild(output_5, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "53px",
-							"left": "-5px",
-							"width": "206px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "53px",
-							"left": "-9px",
-							"width": "386px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "53px",
-							"left": "-2px",
-							"width": "101px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "53px",
-							"left": "-2px",
-							"width": "101px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "53px",
-							"left": "-1px",
-							"width": "35px",
-							"height": "46px"
-						}
-					]
-				});
-				var output_7 = new cpr.controls.Output();
-				output_7.value = "*비밀번호";
-				output_7.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1.5rem"
-				});
-				container.addChild(output_7, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "194px",
-							"left": "-5px",
+							"top": "52px",
+							"left": "2px",
 							"width": "208px",
 							"height": "46px"
 						}, 
@@ -1467,18 +1200,18 @@
 						}
 					]
 				});
-				var output_8 = new cpr.controls.Output();
-				output_8.value = "*비밀번호 재확인";
-				output_8.style.css({
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "*비밀번호 재확인";
+				output_6.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.5rem"
 				});
-				container.addChild(output_8, {
+				container.addChild(output_6, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "258px",
-							"left": "-5px",
+							"top": "116px",
+							"left": "2px",
 							"width": "281px",
 							"height": "46px"
 						}, 
@@ -1512,8 +1245,98 @@
 						}
 					]
 				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "*주소";
+				output_7.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_7, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "314px",
+							"left": "2px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "405px",
+							"left": "-9px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "405px",
+							"left": "-2px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "405px",
+							"left": "-2px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "405px",
+							"left": "-1px",
+							"width": "35px",
+							"height": "46px"
+						}
+					]
+				});
+				var output_8 = new cpr.controls.Output();
+				output_8.value = "*전화번호";
+				output_8.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_8, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "586px",
+							"left": "2px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "667px",
+							"left": "-9px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "667px",
+							"left": "-2px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "667px",
+							"left": "-2px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "667px",
+							"left": "-1px",
+							"width": "35px",
+							"height": "46px"
+						}
+					]
+				});
 				var output_9 = new cpr.controls.Output();
-				output_9.value = "*주소";
+				output_9.value = "*성함";
 				output_9.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.5rem"
@@ -1522,35 +1345,35 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "405px",
-							"left": "-5px",
+							"top": "774px",
+							"left": "2px",
 							"width": "208px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "405px",
+							"top": "840px",
 							"left": "-9px",
 							"width": "390px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "405px",
+							"top": "840px",
 							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "405px",
+							"top": "840px",
 							"left": "-2px",
 							"width": "102px",
 							"height": "46px"
 						}, 
 						{
 							"media": "all and (max-width: 499px)",
-							"top": "405px",
+							"top": "840px",
 							"left": "-1px",
 							"width": "35px",
 							"height": "46px"
@@ -1558,7 +1381,7 @@
 					]
 				});
 				var output_10 = new cpr.controls.Output();
-				output_10.value = "*전화번호";
+				output_10.value = "*닉네임";
 				output_10.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.5rem"
@@ -1567,98 +1390,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "667px",
-							"left": "-5px",
-							"width": "208px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "667px",
-							"left": "-9px",
-							"width": "390px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "667px",
-							"left": "-2px",
-							"width": "102px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "667px",
-							"left": "-2px",
-							"width": "102px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "667px",
-							"left": "-1px",
-							"width": "35px",
-							"height": "46px"
-						}
-					]
-				});
-				var output_11 = new cpr.controls.Output();
-				output_11.value = "*성함";
-				output_11.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1.5rem"
-				});
-				container.addChild(output_11, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
-							"top": "840px",
-							"left": "-5px",
-							"width": "208px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
-							"top": "840px",
-							"left": "-9px",
-							"width": "390px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-							"top": "840px",
-							"left": "-2px",
-							"width": "102px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (min-width: 500px) and (max-width: 1023px)",
-							"top": "840px",
-							"left": "-2px",
-							"width": "102px",
-							"height": "46px"
-						}, 
-						{
-							"media": "all and (max-width: 499px)",
-							"top": "840px",
-							"left": "-1px",
-							"width": "35px",
-							"height": "46px"
-						}
-					]
-				});
-				var output_12 = new cpr.controls.Output();
-				output_12.value = "*닉네임";
-				output_12.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1.5rem"
-				});
-				container.addChild(output_12, {
-					positions: [
-						{
-							"media": "all and (min-width: 1980px)",
 							"top": "904px",
-							"left": "-5px",
+							"left": "2px",
 							"width": "208px",
 							"height": "46px"
 						}, 

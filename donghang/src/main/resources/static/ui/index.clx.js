@@ -75,8 +75,6 @@
 			}
 
 			function onBodyLoad(e){
-				
-				
 				var login = app.lookup("login");
 				var whoName = app.lookup("whoName");
 				var submission = app.lookup("sessioncheck");
@@ -390,8 +388,8 @@
 					}
 					container.addChild(output_2, {
 						"top": "19px",
-						"left": "1343px",
-						"width": "78px",
+						"left": "1313px",
+						"width": "108px",
 						"height": "46px"
 					});
 					var button_5 = new cpr.controls.Button();
@@ -437,8 +435,8 @@
 				var image_2 = new cpr.controls.Image();
 				image_2.src = "theme/images/pivot/back.jpg";
 				container.addChild(image_2, {
-					"top": "271px",
-					"left": "348px",
+					"top": "265px",
+					"left": "359px",
 					"width": "1444px",
 					"height": "502px"
 				});

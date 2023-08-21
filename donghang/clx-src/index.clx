@@ -96,7 +96,7 @@
         <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1.15rem; text-align:center;">
           <cl:listener std:sid="listener-61c5cd62" name="value-change" handler="onOutputValueChange"/>
           <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1343px" width="78px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1313px" width="108px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:output>
         <cl:button std:sid="button-3b2b8523" value="회원정보 수정">
           <cl:listener std:sid="listener-df1694d5" name="click" handler="onButtonClick4"/>
@@ -112,7 +112,7 @@
         <cl:xylayoutdata std:sid="xyl-data-ec6a0f42" top="73px" left="101px" width="170px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:img std:sid="image-8edd5818" src="theme/images/pivot/back.jpg">
-        <cl:xylayoutdata std:sid="xyl-data-ac348f20" top="271px" left="348px" width="1444px" height="502px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-ac348f20" top="265px" left="359px" width="1444px" height="502px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>

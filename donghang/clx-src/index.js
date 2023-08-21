@@ -62,8 +62,6 @@ function onLoginClick(e){
 }
 
 function onBodyLoad(e){
-	
-	
 	var login = app.lookup("login");
 	var whoName = app.lookup("whoName");
 	var submission = app.lookup("sessioncheck");

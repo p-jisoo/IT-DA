@@ -8,7 +8,7 @@ values(#{userId},#{password},#{address},#{userTel},#{userName},#{nickName})
 <select id="loginMember" parameterType="com.tomato.donghang.model.vo.MemberVO" resultType="com.tomato.donghang.model.vo.MemberVO">
 select * from member where user_id=#{userId} and password=#{password}
 </select>
-<update id="updateMember"  parameterType="com.tomato.donghang.model.vo.MemberVO" resultType="com.tomato.donghang.model.vo.MemberVO">
+<update id="updateMember"  parameterType="com.tomato.donghang.model.vo.MemberVO">
 update member set password=#{password},address=#{address}
 ,user_tel=#{userTel},user_name=#{userName},nickname=#{nickName} where user_id=#{userId}
 </update> 
@@ -16,6 +16,9 @@ update member set password=#{password},address=#{address}
 select * from member where user_id=#{id}
 </select>
 <delete id="deleteMember"  parameterType="String">
-delete from member where password=#{password}
+DELETE FROM(SELECT * FROM MEMBER WHERE USER_ID=#{userId}) MEMBER WHERE PASSWORD=#{password}
 </delete>
+<select id="selectIdMember" resultType="com.tomato.donghang.model.vo.MemberVO" parameterType="String">
+select * from member where user_id=#{id}
+</select>
 </mapper>
