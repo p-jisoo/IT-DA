@@ -29,5 +29,7 @@ public interface EduApplyBoardMapper {
 
 	long findBoardCountByStatusWithSearch(Map<String, String> map);
 
+	void likePlus();
+
 
 }
