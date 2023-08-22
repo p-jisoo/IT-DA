@@ -286,6 +286,25 @@
 			function onButtonClick2(e){
 				var button = e.control;
 				window.location.href="createBoard.clx";
+			}
+
+			/*
+			 * 그리드에서 cell-click 이벤트 발생 시 호출.
+			 * Grid의 Cell 클릭시 발생하는 이벤트.
+			 */
+			function onGrd1CellClick(e){
+				var grd1 = e.control;
+				var grid = app.lookup("grd1");
+				var cellValue = grid.getCellValue(e.row.getIndex(),0);
+				console.log(grid.getCellValue(e.row.getIndex(),0));
+			}
+
+			/*
+			 * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onOptClick(e){
+				var opt = e.control;
 			};
 			// End - User Script
 			
@@ -569,12 +588,15 @@
 					"height": "55px"
 				});
 				var grid_1 = new cpr.controls.Grid("grd1");
+				grid_1.readOnly = true;
 				grid_1.init({
 					"dataSet": app.lookup("ds3"),
+					"selectionUnit": "cell",
+					"selectionMulti": "single",
+					"clickMode": "select",
 					"columns": [
 						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
+						{"width": "153px"},
 						{"width": "100px"},
 						{"width": "100px"},
 						{"width": "100px"}
@@ -614,21 +636,12 @@
 								"configurator": function(cell){
 									cell.filterable = false;
 									cell.sortable = false;
-									cell.targetColumnName = "BOARD_CATEGORY";
-									cell.text = "BOARD_CATEGORY";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 4},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
 									cell.targetColumnName = "EDU_BOARD_STATUS";
 									cell.text = "EDU_BOARD_STATUS";
 								}
 							},
 							{
-								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"constraint": {"rowIndex": 0, "colIndex": 4},
 								"configurator": function(cell){
 									cell.filterable = false;
 									cell.sortable = false;
@@ -650,7 +663,6 @@
 										inputBox_1.bind("value").toDataColumn("EDU_BOARD_NO");
 										return inputBox_1;
 									})();
-									cell.controlConstraint = {};
 								}
 							},
 							{
@@ -658,9 +670,13 @@
 								"configurator": function(cell){
 									cell.columnName = "EDU_BOARD_TITLE";
 									cell.control = (function(){
-										var inputBox_2 = new cpr.controls.InputBox("ipb2");
-										inputBox_2.bind("value").toDataColumn("EDU_BOARD_TITLE");
-										return inputBox_2;
+										var output_1 = new cpr.controls.Output("opt");
+										output_1.value = "Output";
+										if(typeof onOptClick == "function") {
+											output_1.addEventListener("click", onOptClick);
+										}
+										output_1.bind("value").toDataColumn("EDU_BOARD_TITLE");
+										return output_1;
 									})();
 									cell.controlConstraint = {};
 								}
@@ -670,52 +686,40 @@
 								"configurator": function(cell){
 									cell.columnName = "TOTAL_COUNT";
 									cell.control = (function(){
-										var inputBox_3 = new cpr.controls.InputBox("ipb3");
-										inputBox_3.bind("value").toDataColumn("TOTAL_COUNT");
-										return inputBox_3;
+										var inputBox_2 = new cpr.controls.InputBox("ipb2");
+										inputBox_2.bind("value").toDataColumn("TOTAL_COUNT");
+										return inputBox_2;
 									})();
-									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 3},
 								"configurator": function(cell){
-									cell.columnName = "BOARD_CATEGORY";
+									cell.columnName = "EDU_BOARD_STATUS";
 									cell.control = (function(){
-										var inputBox_4 = new cpr.controls.InputBox("ipb4");
-										inputBox_4.bind("value").toDataColumn("BOARD_CATEGORY");
-										return inputBox_4;
+										var button_3 = new cpr.controls.Button();
+										button_3.bind("value").toDataColumn("EDU_BOARD_STATUS");
+										return button_3;
 									})();
-									cell.controlConstraint = {};
 								}
 							},
 							{
 								"constraint": {"rowIndex": 0, "colIndex": 4},
 								"configurator": function(cell){
-									cell.columnName = "EDU_BOARD_STATUS";
-									cell.control = (function(){
-										var inputBox_5 = new cpr.controls.InputBox("ipb5");
-										inputBox_5.bind("value").toDataColumn("EDU_BOARD_STATUS");
-										return inputBox_5;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 5},
-								"configurator": function(cell){
 									cell.columnName = "TOTAL_BOARD_COUNT";
 									cell.control = (function(){
-										var inputBox_6 = new cpr.controls.InputBox("ipb6");
-										inputBox_6.bind("value").toDataColumn("TOTAL_BOARD_COUNT");
-										return inputBox_6;
+										var inputBox_3 = new cpr.controls.InputBox("ipb3");
+										inputBox_3.bind("value").toDataColumn("TOTAL_BOARD_COUNT");
+										return inputBox_3;
 									})();
-									cell.controlConstraint = {};
 								}
 							}
 						]
 					}
 				});
+				if(typeof onGrd1CellClick == "function") {
+					grid_1.addEventListener("cell-click", onGrd1CellClick);
+				}
 				container.addChild(grid_1, {
 					"top": "369px",
 					"left": "224px",

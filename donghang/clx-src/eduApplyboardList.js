@@ -274,3 +274,22 @@ function onButtonClick2(e){
 	var button = e.control;
 	window.location.href="createBoard.clx";
 }
+
+/*
+ * 그리드에서 cell-click 이벤트 발생 시 호출.
+ * Grid의 Cell 클릭시 발생하는 이벤트.
+ */
+function onGrd1CellClick(e){
+	var grd1 = e.control;
+	var grid = app.lookup("grd1");
+	var cellValue = grid.getCellValue(e.row.getIndex(),0);
+	console.log(grid.getCellValue(e.row.getIndex(),0));
+}
+
+/*
+ * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onOptClick(e){
+	var opt = e.control;
+}

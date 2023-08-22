@@ -175,53 +175,48 @@
         <cl:listener std:sid="listener-a395530b" name="click" handler="onButtonClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="906px" left="1296px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
-      <cl:grid std:sid="grid-9b3ec17d" id="grd1" datasetid="ds3">
+      <cl:grid std:sid="grid-9b3ec17d" id="grd1" readonly="true" datasetid="ds3" clickmode="select" selectionunit="cell" selectionmulti="single">
+        <cl:listener std:sid="listener-907564e7" name="cell-click" handler="onGrd1CellClick"/>
         <cl:xylayoutdata std:sid="xyl-data-3cce4769" top="369px" left="224px" width="1239px" height="362px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-4b63b87b"/>
-        <cl:gridcolumn std:sid="g-column-db72d021"/>
-        <cl:gridcolumn std:sid="g-column-5c5611d7"/>
-        <cl:gridcolumn std:sid="g-column-4209624a"/>
-        <cl:gridcolumn std:sid="g-column-b972804b"/>
-        <cl:gridcolumn std:sid="g-column-20070780"/>
-        <cl:gridheader std:sid="gh-band-9974a54f">
-          <cl:gridrow std:sid="g-row-199ace52"/>
-          <cl:gridcell std:sid="gh-cell-79589e62" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_NO" sortable="false" filterable="false" text="EDU_BOARD_NO"/>
-          <cl:gridcell std:sid="gh-cell-772fa372" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
-          <cl:gridcell std:sid="gh-cell-30192060" rowindex="0" colindex="2" targetcolumnname="TOTAL_COUNT" sortable="false" filterable="false" text="TOTAL_COUNT"/>
-          <cl:gridcell std:sid="gh-cell-79d9896b" rowindex="0" colindex="3" targetcolumnname="BOARD_CATEGORY" sortable="false" filterable="false" text="BOARD_CATEGORY"/>
-          <cl:gridcell std:sid="gh-cell-60a62a53" rowindex="0" colindex="4" targetcolumnname="EDU_BOARD_STATUS" sortable="false" filterable="false" text="EDU_BOARD_STATUS"/>
-          <cl:gridcell std:sid="gh-cell-bbca6b24" rowindex="0" colindex="5" targetcolumnname="TOTAL_BOARD_COUNT" sortable="false" filterable="false" text="TOTAL_BOARD_COUNT"/>
+        <cl:gridcolumn std:sid="g-column-646aa4f9"/>
+        <cl:gridcolumn std:sid="g-column-72b98a5c" width="153px"/>
+        <cl:gridcolumn std:sid="g-column-f8205c9d"/>
+        <cl:gridcolumn std:sid="g-column-5f69004c"/>
+        <cl:gridcolumn std:sid="g-column-86f7d0a2"/>
+        <cl:gridheader std:sid="gh-band-f90d9daf">
+          <cl:gridrow std:sid="g-row-f934a610"/>
+          <cl:gridcell std:sid="gh-cell-50e98a60" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_NO" sortable="false" filterable="false" text="EDU_BOARD_NO"/>
+          <cl:gridcell std:sid="gh-cell-753ecbfc" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
+          <cl:gridcell std:sid="gh-cell-29b1d75c" rowindex="0" colindex="2" targetcolumnname="TOTAL_COUNT" sortable="false" filterable="false" text="TOTAL_COUNT"/>
+          <cl:gridcell std:sid="gh-cell-74f692f8" rowindex="0" colindex="3" targetcolumnname="EDU_BOARD_STATUS" sortable="false" filterable="false" text="EDU_BOARD_STATUS"/>
+          <cl:gridcell std:sid="gh-cell-deec0fe4" rowindex="0" colindex="4" targetcolumnname="TOTAL_BOARD_COUNT" sortable="false" filterable="false" text="TOTAL_BOARD_COUNT"/>
         </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-d6dc693e">
-          <cl:gridrow std:sid="g-row-ce51981e"/>
-          <cl:gridcell std:sid="gd-cell-918f15a9" rowindex="0" colindex="0" columnname="EDU_BOARD_NO">
-            <cl:inputbox std:sid="i-box-39bc178d" id="ipb1">
-              <cl:celldata std:sid="c-data-69891c74"/>
+        <cl:griddetail std:sid="gd-band-7d38baf2">
+          <cl:gridrow std:sid="g-row-a8e60b53"/>
+          <cl:gridcell std:sid="gd-cell-760eac1c" rowindex="0" colindex="0" columnname="EDU_BOARD_NO">
+            <cl:inputbox std:sid="i-box-6a595b31" id="ipb1">
+              <cl:celldata/>
             </cl:inputbox>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-afc77505" rowindex="0" colindex="1" columnname="EDU_BOARD_TITLE">
-            <cl:inputbox std:sid="i-box-3331e7c4" id="ipb2">
-              <cl:celldata std:sid="c-data-9bb8071d"/>
+          <cl:gridcell std:sid="gd-cell-bd8b03d1" rowindex="0" colindex="1" columnname="EDU_BOARD_TITLE">
+            <cl:output std:sid="output-03c5faa7" id="opt" value="Output">
+              <cl:listener std:sid="listener-a898e420" name="click" handler="onOptClick"/>
+              <cl:celldata std:sid="c-data-5bfca6a5"/>
+            </cl:output>
+          </cl:gridcell>
+          <cl:gridcell std:sid="gd-cell-17fc4c9b" rowindex="0" colindex="2" columnname="TOTAL_COUNT">
+            <cl:inputbox std:sid="i-box-738e42d9" id="ipb2">
+              <cl:celldata/>
             </cl:inputbox>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-384a8c19" rowindex="0" colindex="2" columnname="TOTAL_COUNT">
-            <cl:inputbox std:sid="i-box-c7eb018a" id="ipb3">
-              <cl:celldata std:sid="c-data-026ea9fa"/>
-            </cl:inputbox>
+          <cl:gridcell std:sid="gd-cell-2686b0c2" rowindex="0" colindex="3" columnname="EDU_BOARD_STATUS">
+            <cl:button std:sid="button-8f917cf7">
+              <cl:celldata/>
+            </cl:button>
           </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-51b3c511" rowindex="0" colindex="3" columnname="BOARD_CATEGORY">
-            <cl:inputbox std:sid="i-box-856b234b" id="ipb4">
-              <cl:celldata std:sid="c-data-7e0db8f8"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-380ba2f6" rowindex="0" colindex="4" columnname="EDU_BOARD_STATUS">
-            <cl:inputbox std:sid="i-box-32b40e4a" id="ipb5">
-              <cl:celldata std:sid="c-data-bbef40c9"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-cca5e58c" rowindex="0" colindex="5" columnname="TOTAL_BOARD_COUNT">
-            <cl:inputbox std:sid="i-box-9360903a" id="ipb6">
-              <cl:celldata std:sid="c-data-1ff2188b"/>
+          <cl:gridcell std:sid="gd-cell-4b23c90c" rowindex="0" colindex="4" columnname="TOTAL_BOARD_COUNT">
+            <cl:inputbox std:sid="i-box-18bcabfc" id="ipb3">
+              <cl:celldata/>
             </cl:inputbox>
           </cl:gridcell>
         </cl:griddetail>
