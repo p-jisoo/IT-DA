@@ -51,6 +51,7 @@
       </cl:submission>
       <cl:submission std:sid="submission-bb0a5232" id="sessioncheck" action="loginSessionMember">
         <cl:listener std:sid="listener-8c83f229" name="submit-success" handler="onSms2SubmitSuccess"/>
+        <cl:listener std:sid="listener-051cba42" name="submit-done" handler="onSessioncheckSubmitDone"/>
         <cl:responsedata dataid="loginSession"/>
       </cl:submission>
       <cl:submission std:sid="submission-f4456268" id="logout" action="logoutMember">

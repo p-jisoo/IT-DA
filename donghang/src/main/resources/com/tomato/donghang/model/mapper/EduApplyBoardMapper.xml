@@ -76,24 +76,22 @@
 		parameterType="map" resultType="long">
 		select count(*)
 		from EDU_APPLY_BOARD
-		<trim prefix="WHERE">
+		<trim prefix="WHERE" prefixOverrides="AND">
 			<if test="status != '' and status !=null ">
-				EDU_BOARD_STATUS = #{status} AND
+				EDU_BOARD_STATUS = #{status} 
 			</if>
-			</trim>
-			<where>
 			<if test="type != null and keyword != null">
 				<if test="type=='제목'.toString()">
-					(EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
+				AND (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
 				</if>
 				<if test="type=='내용'.toString()">
-					(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+				AND	(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
 				</if>
 				<if test="type=='작성자'.toString()">
-					(USER_ID LIKE '%'||#{keyword}||'%')
+				AND	(USER_ID LIKE '%'||#{keyword}||'%')
 				</if>
 			</if>
-			</where>
+			</trim>
 	</select>
 
 
@@ -212,24 +210,22 @@
 		ON
 		e.EDU_BOARD_NO = r.EDU_BOARD_NO
 
-		<trim prefix="WHERE">
+		<trim prefix="WHERE" prefixOverrides="AND">
 			<if test="status != '' and status !=null ">
-				EDU_BOARD_STATUS = #{status} AND
+				EDU_BOARD_STATUS = #{status} 
 			</if>
-			</trim>
-			<where>
 			<if test="type != null and keyword != null">
 				<if test="type=='제목'.toString()">
-					(EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
+				AND (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
 				</if>
 				<if test="type=='내용'.toString()">
-					(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+				AND	(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
 				</if>
 				<if test="type=='작성자'.toString()">
-					(USER_ID LIKE '%'||#{keyword}||'%')
+				AND	(USER_ID LIKE '%'||#{keyword}||'%')
 				</if>
 			</if>
-			</where>
+			</trim>
 
 		)
 		WHERE
