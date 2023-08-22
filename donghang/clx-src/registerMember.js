@@ -21,6 +21,22 @@ function onButtonClick(e) {
  */
 function onSms1SubmitSuccess2(e) {
 	var sms1 = e.control;
+//		var initValue = {
+//		"msg": "회원가입 안내창"
+//	}
+//	app.openDialog("appURI", {
+//		width: 400,
+//		height: 300
+//	}, function(dialog) {
+//		dialog.ready(function(dialogApp) {
+//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+//			dialogApp.initValue = initValue;
+//		});
+//	}).then(function(returnValue) {
+//		alert(JSON.stringify(returnValue));
+//	});
+//}
+
 	window.location.href = "/";
 }
 
@@ -35,32 +51,45 @@ function onSms1SubmitError(e) {
 	var adr = app.lookup("Address");
 	var id = app.lookup("ipb1");
 	var detailAdr = app.lookup("detailAddress");
+	var Tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
 	var nickName = app.lookup("nickName");
 	if (id.length == 0) {
 		alert("아이디를 입력해주세요.");
+		return false;
 	} else if (id.length < 8 || id.length > 16) {
 		alert("아이디를 8~16자리로 입력해주세요.");
+		return false;
 	}
 	if (pwd.length == 0) {
 		alert("비밀번호를 입력해주세요.");
+		return false;
 	}
 	if (pwd.value != pwdChk.value) {
 		alert("비밀번호가 일치하지 않습니다.");
+		return false;
 	} else if (pwd.length < 8 || pwd.length > 16) {
 		alert("비밀번호를 8~16자리로 입력해주세요");
+		return false;
 	}
 	if (adr.length == 0) {
 		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+		return false;
 	}
 	if (detailAdr.length == 0) {
 		alert("상세주소를 입력해주세요.");
+		return false;
+	}if (Tel.length < 0 || Tel.length > 11) {
+		alert("전화번호를 입력해주세요.");
+		return false;
 	}
 	if (name.length == 0) {
 		alert("이름을 입력해주세요.");
+		return false;
 	}
 	if (nickName.length == 0) {
 		alert("닉네임을 입력해주세요");
+		return false;
 	}
 }
 /*
@@ -93,6 +122,9 @@ function onSms2SubmitSuccess(e) {
 		chkId.text = "8~16자리로 입력해주세요.";
 		chkId.style.css("color", "#ED3838");
 		return false;
+
+		
+		
 		//	}else if(id.length(/\s/) != -1){
 		//		chkId.text = "공백없이 입력해주세요."
 		//		chkId.style.css("color", "#ED3838");
@@ -102,7 +134,7 @@ function onSms2SubmitSuccess(e) {
 		//  		chkId.style.css("color", "#ED3838");	
 		// 		 return false;
 	}
-	
+
 	if (metadata != "null") {
 		var chkId = app.lookup("ipb1");
 		chkId.value = "";
@@ -223,16 +255,6 @@ function onButtonClick3(e) {
 				}
 			}).open();
 		});
-}
-
-/*
- * "인증하기 " 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick4(e) {
-	var button = e.control;
-	var maskEditor = app.lookup("Tel_mask").value;
-	
 }
 
 /*
