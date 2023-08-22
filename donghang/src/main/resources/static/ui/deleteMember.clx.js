@@ -16,10 +16,76 @@
 			 * Created at 2023. 8. 9. 오후 2:50:05.
 			 *
 			 * @author USER
-			 ************************************************/;
+			 ************************************************/
+			/*
+			 * 이미지에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onImageClick(e){
+				var image = e.control;
+				window.location.href="/";
+			}
+
+			/*
+			 * "탈퇴" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				var submission = app.lookup("deletePasswordSbm");
+				submission.send();
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onDeletePasswordSbmSubmitSuccess(e){
+				var deletePasswordSbm = e.control;
+				var pwd = app.lookup("password").value;
+				var pwdChk = app.lookup("passwordChk").value;
+				console.log(pwd);
+				console.log(pwdChk);
+				if(pwd === pwdChk){
+				alert("아이디가 삭제되었습니다.");
+				}
+				window.location.href="/";
+			}
+
+			/*
+			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
+			 * 통신 중 문제가 생기면 발생합니다.
+			 */
+			function onDeletePasswordSbmSubmitError(e){
+				var deletePasswordSbm = e.control;
+				var pwd = app.lookup("password");
+				var pwdChk = app.lookup("passwordChk");
+				if(pwd.value !=pwdChk.value){
+					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
+					return false;
+						
+					}
+					//window.location.href="deleteMember.clx"
+			};
 			// End - User Script
 			
 			// Header
+			var dataMap_1 = new cpr.data.DataMap("deletePassword");
+			dataMap_1.parseData({
+				"columns" : [{"name": "PASSWORD"}]
+			});
+			app.register(dataMap_1);
+			var submission_1 = new cpr.protocols.Submission("deletePasswordSbm");
+			submission_1.action = "deleteMember";
+			submission_1.addRequestData(dataMap_1);
+			submission_1.addResponseData(dataMap_1, false);
+			if(typeof onDeletePasswordSbmSubmitSuccess == "function") {
+				submission_1.addEventListener("submit-success", onDeletePasswordSbmSubmitSuccess);
+			}
+			if(typeof onDeletePasswordSbmSubmitError == "function") {
+				submission_1.addEventListener("submit-error", onDeletePasswordSbmSubmitError);
+			}
+			app.register(submission_1);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -50,19 +116,20 @@
 				"height": "65px"
 			});
 			
-			var inputBox_1 = new cpr.controls.InputBox("ipb1");
-			inputBox_1.value = "비밀번호";
+			var inputBox_1 = new cpr.controls.InputBox("password");
+			inputBox_1.placeholder = "비밀번호";
+			inputBox_1.bind("value").toDataMap(app.lookup("deletePassword"), "PASSWORD");
 			container.addChild(inputBox_1, {
-				"top": "497px",
+				"top": "517px",
 				"left": "762px",
 				"width": "392px",
 				"height": "58px"
 			});
 			
-			var inputBox_2 = new cpr.controls.InputBox("ipb2");
-			inputBox_2.value = "비밀번호 재확인";
+			var inputBox_2 = new cpr.controls.InputBox("passwordChk");
+			inputBox_2.placeholder = "비밀번호 재확인";
 			container.addChild(inputBox_2, {
-				"top": "565px",
+				"top": "585px",
 				"left": "761px",
 				"width": "393px",
 				"height": "58px"
@@ -74,8 +141,11 @@
 				"background-color" : "#84888A",
 				"font-size" : "25px"
 			});
+			if(typeof onButtonClick == "function") {
+				button_1.addEventListener("click", onButtonClick);
+			}
 			container.addChild(button_1, {
-				"top": "632px",
+				"top": "652px",
 				"left": "1001px",
 				"width": "150px",
 				"height": "46px"
@@ -83,6 +153,9 @@
 			
 			var image_1 = new cpr.controls.Image();
 			image_1.src = "theme/images/logo_donghang.png";
+			if(typeof onImageClick == "function") {
+				image_1.addEventListener("click", onImageClick);
+			}
 			container.addChild(image_1, {
 				"top": "212px",
 				"left": "836px",
