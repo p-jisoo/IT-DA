@@ -92,28 +92,3 @@ function onButtonClick4(e){
 	submission.send()
 	
 }
-
-/*
- * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick5(e){
-	var button = e.control;
-	var submission = app.lookup("selectCommentsms");
-	var dataMap = app.lookup("commentBoardMap");
-	
-	app.lookup("userId").redraw();
-	app.lookup("commentContent").redraw();
-	submission.send()
-}
-
-/*
- * "댓글 수정" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick6(e){
-	var button = e.control;
-	var submission = app.lookup("updateCommentsms");
-	var dataMap = app.lookup("commentBoardMap");
-	submission.send()
-}

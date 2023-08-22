@@ -8,50 +8,6 @@
 		EDU_BOARD_APPLY_MEMBER_COUNT,EDU_APPLY_BOARD_CATEGORY,EDU_APPLY_BOARD_STATUS,EDU_APPLY_BOARD_CONTENT
 		FROM EDU_APPLY_BOARD
 	</sql>
-	<insert id="createBoard"
-		parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		INSERT INTO EDU_APPLY_BOARD(
-		EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_END_PERIOD,
-		EDU_BOARD_APPLY_START_PERIOD,
-		EDU_BOARD_APPLY_END_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_ADDRESS,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT
-		)
-		VALUES(
-		EDU_APPLY_BOARD_SEQ.NEXTVAL,
-		#{eduBoardTitle},
-		#{eduBoardStartPeriod},
-		#{eduBoardEndPeriod},
-		#{eduBoardApplyStartPeriod},
-		#{eduBoardApplyEndPeriod},
-		#{eduBoardMemberCount},
-		#{eduBoardAddress},
-		#{eduBoardCategory},
-		#{eduBoardContent}
-		)
-		<!-- #{mebmerVO.id} -->
-	</insert>
-	<update id="updateBoard"
-		parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		UPDATE EDU_APPLY_BOARD
-		SET
-		EDU_BOARD_TITLE =#{eduBoardTitle},
-		EDU_BOARD_START_PERIOD=#{eduBoardStartPeriod},
-		EDU_BOARD_END_PERIOD=#{eduBoardEndPeriod},
-		EDU_BOARD_APPLY_START_PERIOD=#{eduBoardApplyStartPeriod},
-		EDU_BOARD_APPLY_END_PERIOD=#{eduBoardApplyEndPeriod},
-		EDU_BOARD_APPLY_MEMBER_COUNT=#{eduBoardMemberCount},
-		EDU_BOARD_CATEGORY=#{eduBoardCategory},
-		EDU_BOARD_ADDRESS=#{eduBoardAddress},
-		EDU_BOARD_CONTENT=#{eduBoardContent}
-		WHERE EDU_BOARD_NO='1'
-		)
-	</update>
 
 	<select id="findAllBoardCount">
 		select count(*) from edu_apply_board
@@ -231,5 +187,112 @@
 		WHERE
 		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	</select>
+<select id="selectBoard" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO" >
+SELECT EDU_BOARD_NO,
+EDU_BOARD_TITLE,
+EDU_BOARD_START_PERIOD,
+EDU_BOARD_END_PERIOD, 
+EDU_BOARD_APPLY_START_PERIOD,
+EDU_BOARD_APPLY_END_PERIOD,
+EDU_BOARD_MAX_MEMBER_COUNT,
+EDU_BOARD_ADDRESS,
+EDU_BOARD_CATEGORY,
+EDU_BOARD_CONTENT,
+EDU_BOARD_STATUS,
+USER_ID
+FROM EDU_APPLY_BOARD
+where EDU_BOARD_NO=1111
+</select>
+	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+INSERT INTO EDU_APPLY_BOARD(
+EDU_BOARD_NO,
+EDU_BOARD_TITLE,
+EDU_BOARD_START_PERIOD,
+EDU_BOARD_END_PERIOD, 
+EDU_BOARD_APPLY_START_PERIOD,
+EDU_BOARD_APPLY_END_PERIOD,
+EDU_BOARD_MAX_MEMBER_COUNT,
+EDU_BOARD_ADDRESS,
+EDU_BOARD_CATEGORY,
+EDU_BOARD_CONTENT,
+USER_ID
+)
+ VALUES(
+ EDU_APPLY_BOARD_SEQ.NEXTVAL,
+#{eduBoardTitle},
+#{eduBoardStartPeriod},
+#{eduBoardEndPeriod},
+#{eduBoardApplyStartPeriod},
+#{eduBoardApplyEndPeriod},
+#{eduBoardMaxMemberCount},
+#{eduBoardAddress},
+#{eduBoardCategory},
+#{eduBoardContent},
+#{memberVO.userId}
+)
+	</insert>
+	<update id="updateBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+UPDATE EDU_APPLY_BOARD 
+SET
+EDU_BOARD_TITLE =#{eduBoardTitle},
+EDU_BOARD_START_PERIOD=#{eduBoardStartPeriod},
+EDU_BOARD_END_PERIOD=#{eduBoardEndPeriod},
+EDU_BOARD_APPLY_START_PERIOD=#{eduBoardApplyStartPeriod},
+EDU_BOARD_APPLY_END_PERIOD=#{eduBoardApplyEndPeriod},
+EDU_BOARD_MAX_MEMBER_COUNT=#{eduBoardMaxMemberCount},
+EDU_BOARD_ADDRESS=#{eduBoardAddress},
+EDU_BOARD_CATEGORY=#{eduBoardCategory},
+EDU_BOARD_CONTENT=#{eduBoardContent}
+WHERE EDU_BOARD_NO=1
+</update>	
+<delete id="deleteBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+DELETE FROM EDU_APPLY_BOARD 
+WHERE EDU_BOARD_NO = 1
+</delete>
 
+
+<select id="selectCommentBoard" resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
+SELECT 
+EDU_APPLY_COMMENT_BOARD_NO,
+EDU_APPLY_COMMENT_CONTENT,
+EDU_BOARD_NO,
+USER_ID
+FROM
+EDU_APPLY_COMMENT_BOARD
+WHERE
+EDU_BOARD_NO='1111'
+AND
+USER_ID='b'
+</select>
+	<insert id="createCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" >
+INSERT INTO EDU_APPLY_COMMENT_BOARD(
+EDU_APPLY_COMMENT_BOARD_NO,
+EDU_APPLY_COMMENT_CONTENT,
+EDU_BOARD_NO,
+USER_ID
+)
+VALUES(
+EDU_APPLY_COMMENT_BOARD_SEQ.NEXTVAL,
+#{eduApplyCommentContent},
+'1111',
+'b'
+);
+	</insert>
+	<update id="updateCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
+UPDATE EDU_APPLY_COMMENT_BOARD 
+SET
+EDU_APPLY_COMMENT_CONTENT= #{eduApplyCommentContent}
+WHERE
+EDU_BOARD_NO='1111'
+AND
+USER_ID='b'
+</update>	
+
+<delete id="deleteCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
+DELETE FROM EDU_APPLY_COMMENT_BOARD 
+WHERE
+EDU_BOARD_NO='1111'
+AND
+USER_ID='b'
+</delete>
 </mapper>
