@@ -29,6 +29,7 @@ function onButtonClick(e){
 	dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 	}	
 	submission.send()
+	window.location.href="updateBoard.clx";
 }
 
 /*
@@ -70,6 +71,7 @@ function onButtonClick2(e){
 		var button = e.control;
 	var submission = app.lookup("deletesms");
 	submission.send()
+	window.location.href="eduApplyBoardList.do";
 }
 
 /*
@@ -116,4 +118,13 @@ function onButtonClick6(e){
 	var submission = app.lookup("updateCommentsms");
 	var dataMap = app.lookup("commentBoardMap");
 	submission.send()
+}
+
+/*
+ * "목록" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick7(e){
+	var button = e.control;
+	window.location.href="eduApplyBoardList.do";
 }

@@ -65,6 +65,7 @@
   <body std:sid="body-d498b017">
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
     <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
+      <cl:listener std:sid="listener-113ec845" name="click" handler="onButtonClick7"/>
       <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="770px" left="1148px" width="180px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
