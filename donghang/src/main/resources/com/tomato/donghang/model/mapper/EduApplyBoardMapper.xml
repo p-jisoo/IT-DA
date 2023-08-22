@@ -1,67 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tomato.donghang.model.mapper.EduApplyBoardMapper">
+<mapper
+	namespace="com.tomato.donghang.model.mapper.EduApplyBoardMapper">
 	<sql id="selectEduBoard">
 		SELECT EBOARD_NO, EDU_BOARD_TITLE, EDU_BOARD_START_PERIOD,
 		EDU_BOARD_END_PERIOD,EDU_BOARD_APPLY_START_PERIOD,EDU_BOARD_APPLY_END_PERIOD,
 		EDU_BOARD_APPLY_MEMBER_COUNT,EDU_APPLY_BOARD_CATEGORY,EDU_APPLY_BOARD_STATUS,EDU_APPLY_BOARD_CONTENT
 		FROM EDU_APPLY_BOARD
 	</sql>
-	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-INSERT INTO EDU_APPLY_BOARD(
-EDU_BOARD_NO,
-EDU_BOARD_TITLE,
-EDU_BOARD_START_PERIOD,
-EDU_BOARD_END_PERIOD, 
-EDU_BOARD_APPLY_START_PERIOD,
-EDU_BOARD_APPLY_END_PERIOD,
-EDU_BOARD_MEMBER_COUNT,
-EDU_BOARD_ADDRESS,
-EDU_BOARD_CATEGORY,
-EDU_BOARD_CONTENT
-)
- VALUES(
- EDU_APPLY_BOARD_SEQ.NEXTVAL,
-#{eduBoardTitle},
-#{eduBoardStartPeriod},
-#{eduBoardEndPeriod},
-#{eduBoardApplyStartPeriod},
-#{eduBoardApplyEndPeriod},
-#{eduBoardMemberCount},
-#{eduBoardAddress},
-#{eduBoardCategory},
-#{eduBoardContent}
-)
-<!-- #{mebmerVO.id} -->
+	<insert id="createBoard"
+		parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		INSERT INTO EDU_APPLY_BOARD(
+		EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_END_PERIOD,
+		EDU_BOARD_APPLY_START_PERIOD,
+		EDU_BOARD_APPLY_END_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_ADDRESS,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
+		)
+		VALUES(
+		EDU_APPLY_BOARD_SEQ.NEXTVAL,
+		#{eduBoardTitle},
+		#{eduBoardStartPeriod},
+		#{eduBoardEndPeriod},
+		#{eduBoardApplyStartPeriod},
+		#{eduBoardApplyEndPeriod},
+		#{eduBoardMemberCount},
+		#{eduBoardAddress},
+		#{eduBoardCategory},
+		#{eduBoardContent}
+		)
+		<!-- #{mebmerVO.id} -->
 	</insert>
-	<update id="updateBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-UPDATE EDU_APPLY_BOARD 
-SET
-EDU_BOARD_TITLE =#{eduBoardTitle},
-EDU_BOARD_START_PERIOD=#{eduBoardStartPeriod},
-EDU_BOARD_END_PERIOD=#{eduBoardEndPeriod},
-EDU_BOARD_APPLY_START_PERIOD=#{eduBoardApplyStartPeriod},
-EDU_BOARD_APPLY_END_PERIOD=#{eduBoardApplyEndPeriod},
-EDU_BOARD_APPLY_MEMBER_COUNT=#{eduBoardMemberCount},
-EDU_BOARD_CATEGORY=#{eduBoardCategory},
-EDU_BOARD_ADDRESS=#{eduBoardAddress},
-EDU_BOARD_CONTENT=#{eduBoardContent}
-WHERE EDU_BOARD_NO='1'
-)
-</update>	
-	
-<select id="findAllBoardCount">
-		select count(*) from edu_apply_board
-	</select>
+	<update id="updateBoard"
+		parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		UPDATE EDU_APPLY_BOARD
+		SET
+		EDU_BOARD_TITLE =#{eduBoardTitle},
+		EDU_BOARD_START_PERIOD=#{eduBoardStartPeriod},
+		EDU_BOARD_END_PERIOD=#{eduBoardEndPeriod},
+		EDU_BOARD_APPLY_START_PERIOD=#{eduBoardApplyStartPeriod},
+		EDU_BOARD_APPLY_END_PERIOD=#{eduBoardApplyEndPeriod},
+		EDU_BOARD_APPLY_MEMBER_COUNT=#{eduBoardMemberCount},
+		EDU_BOARD_CATEGORY=#{eduBoardCategory},
+		EDU_BOARD_ADDRESS=#{eduBoardAddress},
+		EDU_BOARD_CONTENT=#{eduBoardContent}
+		WHERE EDU_BOARD_NO='1'
+		)
+	</update>
 
-	<select id="findBoardCountByStatus" parameterType="String"
-		resultType="long">
+	<select id="findAllBoardCount">
 		select count(*) from edu_apply_board
-		<where>
-			<if test="status!=null and status!=''">
-				edu_board_status = #{status}
-			</if>
-		</where>
 	</select>
 
 
@@ -71,73 +64,172 @@ WHERE EDU_BOARD_NO='1'
 		</include>
 	</select>
 
-	<select id="findBoardListWithStatusByPage"
-		parameterType="HashMap"
-		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		SELECT
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT,
-		EDU_BOARD_STATUS
-		FROM
-		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_STATUS,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT
-		FROM edu_apply_board
-		<where>
-			<if test="_parameter.containsValue('모집중') ">
-				edu_board_status ='모집중'
-			</if>
-			<if test="_parameter.containsValue('모집마감') ">
-				edu_board_status ='모집마감'
-			</if>
-		</where>
-		
-		)
-		WHERE rnum BETWEEN #{pagination.startRowNumber} and
-		#{pagination.endRowNumber}
+	<select id="findBoardCountByStatus" parameterType="String"
+		resultType="long">
+		select count(*)
+		from EDU_APPLY_BOARD
+		where
+		EDU_BOARD_STATUS = #{status}
 	</select>
-	
-		<select id="findBoardListPageAndSearch"
-		parameterType="HashMap"
-		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-		SELECT
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT,
-		EDU_BOARD_STATUS
-		FROM
-		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
-		rnum,EDU_BOARD_NO,
-		EDU_BOARD_TITLE,
-		EDU_BOARD_STATUS,
-		EDU_BOARD_START_PERIOD,
-		EDU_BOARD_MEMBER_COUNT,
-		EDU_BOARD_CATEGORY,
-		EDU_BOARD_CONTENT
-		FROM edu_apply_board
-		<where>
-			<if test="_parameter.containsValue('모집중') ">
-				edu_board_status ='모집중'
-			</if>
-			<if test="_parameter.containsValue('모집마감') ">
-				edu_board_status ='모집마감'
-			</if>
-		</where>
-		)
-		WHERE rnum BETWEEN #{pagination.startRowNumber} and
-		#{pagination.endRowNumber}
-	</select>
-</mapper>
 
+	<select id="findBoardCountByStatusWithSearch"
+		parameterType="map" resultType="long">
+		select count(*)
+		from EDU_APPLY_BOARD
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="status != '' and status !=null ">
+				EDU_BOARD_STATUS = #{status} 
+			</if>
+			<if test="type != null and keyword != null">
+				<if test="type=='제목'.toString()">
+				AND (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
+				</if>
+				<if test="type=='내용'.toString()">
+				AND	(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+				</if>
+				<if test="type=='작성자'.toString()">
+				AND	(USER_ID LIKE '%'||#{keyword}||'%')
+				</if>
+			</if>
+			</trim>
+	</select>
+
+
+	<select id="findBoardListPageAndSearch" parameterType="HashMap"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		SELECT
+		EDU_BOARD_NO,
+		rnum,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT,
+		EDU_BOARD_STATUS
+		FROM
+		(SELECT row_number() over(ORDER BY EDU_BOARD_NO
+		DESC) as
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
+		FROM edu_apply_board
+		<where>
+			<foreach item="val" index="key" collection="map">
+				<if test="status != '' and status !=null ">
+					edu_board_status =#{status}
+				</if>
+			</foreach>
+		</where>
+		)
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and
+		#{pagination.endRowNumber}
+	</select>
+	<select id="findBoardListPageAndSearchThing" parameterType="map"
+		resultType="Hashmap">
+		select
+		EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		USER_ID,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_ADDRESS,
+		EDU_BOARD_STATUS,
+		TOTAL_COUNT,
+		EDU_BOARD_MAX_MEMBER_COUNT
+		from
+		(SELECT
+		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
+		e.EDU_BOARD_NO,
+		e.EDU_BOARD_TITLE,
+		e.EDU_BOARD_CONTENT,
+		e.USER_ID,
+		e.EDU_BOARD_ADDRESS,
+		e.EDU_BOARD_STATUS,
+		NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
+		e.EDU_BOARD_MAX_MEMBER_COUNT
+		FROM
+		EDU_APPLY_BOARD e
+		LEFT OUTER JOIN
+		(SELECT
+		EDU_BOARD_NO,
+		COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+		FROM
+		EDU_BOARD_MEMBER_COUNT
+		GROUP BY
+		EDU_BOARD_NO
+		) r
+		ON
+		e.EDU_BOARD_NO = r.EDU_BOARD_NO
+		<where>
+			<if test="status != '' and status !=null ">
+				EDU_BOARD_STATUS = #{status}
+			</if>
+		</where>
+		)
+		WHERE
+		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+	</select>
+
+	<select id="findBoardListPageAndSearchKeyword"
+		parameterType="map" resultType="Hashmap">
+		select
+		LAST_VALUE(rnum) OVER() AS COUNTING,
+		EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		USER_ID,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_ADDRESS,
+		EDU_BOARD_STATUS,
+		TOTAL_COUNT,
+		EDU_BOARD_MAX_MEMBER_COUNT
+		from
+		(SELECT
+		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
+		e.EDU_BOARD_NO,
+		e.EDU_BOARD_TITLE,
+		e.EDU_BOARD_CONTENT,
+		e.USER_ID,
+		e.EDU_BOARD_ADDRESS,
+		e.EDU_BOARD_STATUS,
+		NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
+		e.EDU_BOARD_MAX_MEMBER_COUNT
+		FROM
+		EDU_APPLY_BOARD e
+		LEFT OUTER JOIN
+		(SELECT
+		EDU_BOARD_NO,
+		COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+		FROM
+		EDU_BOARD_MEMBER_COUNT
+		GROUP BY
+		EDU_BOARD_NO
+		) r
+		ON
+		e.EDU_BOARD_NO = r.EDU_BOARD_NO
+
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="status != '' and status !=null ">
+				EDU_BOARD_STATUS = #{status} 
+			</if>
+			<if test="type != null and keyword != null">
+				<if test="type=='제목'.toString()">
+				AND (EDU_BOARD_TITLE LIKE '%'||#{keyword}||'%')
+				</if>
+				<if test="type=='내용'.toString()">
+				AND	(EDU_BOARD_CONTENT LIKE '%'||#{keyword}||'%')
+				</if>
+				<if test="type=='작성자'.toString()">
+				AND	(USER_ID LIKE '%'||#{keyword}||'%')
+				</if>
+			</if>
+			</trim>
+
+		)
+		WHERE
+		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+	</select>
+
+</mapper>

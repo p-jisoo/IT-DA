@@ -23,19 +23,22 @@
 			 * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
 			 */
 
-
-
-			function onGroupBeforeDraw(e){	
+			/*
+			 * 루트 컨테이너에서 init 이벤트 발생 시 호출.
+			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+			 */
+			function onBodyInit(e){
 				var page = app.lookup("page");
-				var dataSet = app.lookup("ds2");
-				var dataSet = app.lookup("ds2");
 				var currentPageIndex = page.currentPageIndex;
 				var dataMap = app.lookup("dm2");
 				dataMap.setValue("nowpage", currentPageIndex);
 				var submission = app.lookup("sms2");
+				
 				submission.send();
 				
 			}
+
+
 
 			/*
 			 * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
@@ -45,8 +48,8 @@
 				var page = app.lookup("page");
 				var currentPageIndex = page.currentPageIndex;
 				var listBox = app.lookup("lbx1");
-				var dataMap = app.lookup("dm2");
-				var submission = app.lookup("sms2");
+				var dataMap = app.lookup("dm3");
+				var submission = app.lookup("sms3");
 				var dataSet = app.lookup("tpSlct");
 				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 				dataMap.setValue("nowpage", currentPageIndex);
@@ -75,6 +78,7 @@
 				var comboBox = app.lookup("cmb1");
 				listBox.selectItemByValue("value1");
 				comboBox.selectItemByValue("value1");
+				
 			}
 
 			/*
@@ -83,14 +87,22 @@
 			 */
 			function onButtonClick(e){
 				var dataSet = app.lookup("tpSlct");
+				var dataSet2 = app.lookup("dsSlct");
 				var searchInput = app.lookup("searchCtl");
-				var dataMap = app.lookup("dm2");
+				var comboBox = app.lookup("cmb1");
+				var dataMap = app.lookup("dm3");
 				var inputValue = searchInput.value.replace(/\s/g, "");
 				var listBox = app.lookup("lbx1");
-				var submission = app.lookup("sms2");
-				if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
-					dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
-				}
+				var submission = app.lookup("sms3");
+				var pageIndexer = app.lookup("page");
+				if(pageIndexer.currentPageIndex>1){
+					dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+					}
+				console.log(dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("type", dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+				dataMap.setValue("keyword", inputValue);
+				console.log(inputValue);
 				submission.send();
 			}
 
@@ -114,14 +126,12 @@
 					submission.send();
 			}
 
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onSms2SubmitSuccess2(e){
-				var sms2 = e.control;
+
+
+			function submissionSC(){
 				var page = app.lookup("page");
-				var dataSet = app.lookup("ds2");
+				var dataSet = app.lookup("ds3");
+				console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 				page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 				console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 				console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
@@ -136,8 +146,139 @@
 					page.visibleNextButton =false;
 				}
 				page.redraw();	
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms2SubmitSuccess2(e){
+				var sms2 = e.control;
+				submissionSC();
+				console.log("호출");
+			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms3SubmitSuccess(e){
+				var sms3 = e.control; //
+				var responseDatas = sms3.getResponseData("ds3");
+				var grid = app.lookup("grd1");
+				var grid2 = app.lookup("grd2");
+				submissionSC(); 
+				var datakey = null;
+				var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
 				
-			};
+				var any =JSON.parse(responseText); //text를 json객체로 변환 
+				if(any.ds3.length==0){
+					showSearchDataNotExist();
+				}else{
+					grid.visible=true;
+					grid2.visible=false;
+				}
+			}
+
+
+			function showSearchDataNotExist(){
+				var container = app.getContainer();
+				var dataMap = app.lookup("dm3");
+				var grid = app.lookup("grd1");
+				var grid2 = app.lookup("grd2");
+				var value = dataMap.getValue("keyword");
+				var dataSet = app.lookup("ds4");
+				if(grid2){
+					grid2.visible=true;
+				}else{
+					var grid_2 = new cpr.controls.Grid("grd2");
+							grid_2.init({
+								"dataSet": app.lookup("ds4"),
+								"hScroll": "hidden",
+								"vScroll": "hidden",
+								"columns": [
+									{"width": "100px"},
+									{"width": "100px"},
+									{"width": "100px"},
+									{"width": "100px"},
+									{"width": "100px"},
+									{"width": "100px"}
+								],
+								"header": {
+									"rows": [{"height": "24px"}],
+									"cells": [
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 0},
+											"configurator": function(cell){
+												cell.filterable = false;
+												cell.sortable = false;
+												cell.targetColumnName = "textarea";
+												cell.text = "EDU_BOARD_NO";
+											}
+										},
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 1},
+											"configurator": function(cell){
+												cell.text = "EDU_BOARD_TITLE";
+											}
+										},
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 2},
+											"configurator": function(cell){
+												cell.text = "TOTAL_COUNT";
+											}
+										},
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 3},
+											"configurator": function(cell){
+												cell.text = "BOARD_CATEGORY";
+											}
+										},
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 4},
+											"configurator": function(cell){
+												cell.text = "EDU_BOARD_STATUS";
+											}
+										},
+										{
+											"constraint": {"rowIndex": 0, "colIndex": 5},
+											"configurator": function(cell){
+												cell.text = "TOTAL_BOARD_COUNT";
+											}
+										}
+									]
+								},
+								"detail": {
+									"rows": [{"height": "350px"}],
+									"cells": [{
+										"constraint": {"rowIndex": 0, "colIndex": 0, "rowSpan": 1, "colSpan": 6},
+										"configurator": function(cell){
+											cell.columnName = "textarea";
+											cell.control = (function(){
+												var textArea_1 = new cpr.controls.TextArea("txa1");
+												textArea_1.style.css({
+													"font-size" : "23px"
+												});
+												textArea_1.bind("value").toDataColumn("textarea");
+												return textArea_1;
+											})();
+											cell.controlConstraint = {};
+										}
+									}]
+								}
+							});
+							if(typeof onGrd2SelectionChange == "function") {
+								grid_2.addEventListener("selection-change", onGrd2SelectionChange);
+							}
+							container.addChild(grid_2, {
+								"top": "369px",
+								"left": "224px",
+								"width": "1239px",
+								"height": "362px"
+							});
+				}
+				dataSet.setValue(0, "textarea",`${value}에 대한 검색결과가 없습니다.\r\n\r\n단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. \r\n검색 옵션을 변경해서 다시 검색해 보세요.`)
+				grid.visible=false;
+						};;
 			// End - User Script
 			
 			// Header
@@ -195,8 +336,8 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"label": "전체", "value": "value1"},
-					{"label": "제목", "value": "value2"},
+					{"label": "제목", "value": "value1"},
+					{"label": "내용", "value": "value2"},
 					{"label": "작성자", "value": "value3"}
 				]
 			});
@@ -215,6 +356,30 @@
 				]
 			});
 			app.register(dataSet_4);
+			
+			var dataSet_5 = new cpr.data.DataSet("ds3");
+			dataSet_5.parseData({
+				"columns": [
+					{"name": "EDU_BOARD_NO"},
+					{"name": "EDU_BOARD_TITLE"},
+					{"name": "TOTAL_COUNT"},
+					{"name": "BOARD_CATEGORY"},
+					{"name": "EDU_BOARD_STATUS"},
+					{"name": "NOW_PAGE"},
+					{"name": "TOTAL_BOARD_COUNT"},
+					{"name": "PREVPAGE"},
+					{"name": "NEXTPAGE"}
+				],
+				"rows": []
+			});
+			app.register(dataSet_5);
+			
+			var dataSet_6 = new cpr.data.DataSet("ds4");
+			dataSet_6.parseData({
+				"columns": [{"name": "textarea"}],
+				"rows": [{"textarea": "\"단어의 철자가 정확한지 확인해 보세요.\\r\\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\\r\\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\\r\\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. 네이버 맞춤법 검사기\\r\\n검색 옵션을 변경해서 다시 검색해 보세요.\""}]
+			});
+			app.register(dataSet_6);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
 				"columns" : [{"name": "nowpage"}]
@@ -232,6 +397,20 @@
 				]
 			});
 			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("dm3");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "nowpage"},
+					{
+						"name": "status",
+						"dataType": "string"
+					},
+					{"name": "type"},
+					{"name": "keyword"}
+				]
+			});
+			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "findBaordList.do";
 			submission_1.addResponseData(dataSet_1, false);
@@ -249,11 +428,20 @@
 			var submission_3 = new cpr.protocols.Submission("sms2");
 			submission_3.action = "findBoardListWithStatusByPage.do";
 			submission_3.addRequestData(dataMap_2);
-			submission_3.addResponseData(dataSet_2, false);
+			submission_3.addResponseData(dataSet_5, false);
 			if(typeof onSms2SubmitSuccess2 == "function") {
 				submission_3.addEventListener("submit-success", onSms2SubmitSuccess2);
 			}
 			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("sms3");
+			submission_4.action = "findBoardListPageAndSearchKeyword.do";
+			submission_4.addRequestData(dataMap_3);
+			submission_4.addResponseData(dataSet_5, false);
+			if(typeof onSms3SubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onSms3SubmitSuccess);
+			}
+			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -272,129 +460,11 @@
 			
 			// UI Configuration
 			var group_1 = new cpr.controls.Container();
+			var dataRowContext_1 = new cpr.bind.DataRowContext(app.lookup("ds3"), 0);
+			group_1.setBindContext(dataRowContext_1);
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var grid_1 = new cpr.controls.Grid("grd1");
-				grid_1.init({
-					"dataSet": app.lookup("ds2"),
-					"columns": [
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"}
-					],
-					"detail": {
-						"rows": [{"height": "108px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_NO";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_1 = new cpr.controls.Output();
-										output_1.style.css({
-											"border-right-style" : "none"
-										});
-										output_1.bind("value").toDataColumn("BOARD_NO");
-										return output_1;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_TITLE";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_2 = new cpr.controls.Output();
-										output_2.style.css({
-											"border-right-style" : "none"
-										});
-										output_2.bind("value").toDataColumn("BOARD_TITLE");
-										return output_2;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 2},
-								"configurator": function(cell){
-									cell.columnName = "PERIOD";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_3 = new cpr.controls.Output();
-										output_3.style.css({
-											"border-right-style" : "none"
-										});
-										output_3.bind("value").toDataColumn("PERIOD");
-										return output_3;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 3},
-								"configurator": function(cell){
-									cell.columnName = "BOARD_CATEGORY";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_4 = new cpr.controls.Output();
-										output_4.style.css({
-											"border-right-style" : "none"
-										});
-										output_4.bind("value").toDataColumn("BOARD_CATEGORY");
-										return output_4;
-									})();
-									cell.controlConstraint = {};
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 4},
-								"configurator": function(cell){
-									cell.columnName = "APPLY_STATUS";
-									cell.style.css({
-										"border-right-style" : "none"
-									});
-									cell.control = (function(){
-										var output_5 = new cpr.controls.Output();
-										output_5.style.css({
-											"border-right-style" : "none"
-										});
-										output_5.bind("value").toDataColumn("APPLY_STATUS");
-										return output_5;
-									})();
-									cell.controlConstraint = {};
-								}
-							}
-						]
-					}
-				});
-				grid_1.style.css({
-					"border-right-style" : "none",
-					"border-left-style" : "none",
-					"border-bottom-style" : "none"
-				});
-				grid_1.style.detail.css({
-					"text-align" : "left"
-				});
-				container.addChild(grid_1, {
-					"top": "338px",
-					"left": "211px",
-					"width": "1226px",
-					"height": "559px"
-				});
 				var pageIndexer_1 = new cpr.controls.PageIndexer("page");
 				pageIndexer_1.pageRowCount = 5;
 				pageIndexer_1.viewPageCount = 4;
@@ -441,6 +511,7 @@
 						"rowIndex": 0
 					});
 					var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+					comboBox_1.preventInput = true;
 					(function(comboBox_1){
 						comboBox_1.setItemSet(app.lookup("dsSlct"), {
 							"label": "label",
@@ -482,6 +553,160 @@
 					"width": "141px",
 					"height": "55px"
 				});
+				var grid_1 = new cpr.controls.Grid("grd1");
+				grid_1.init({
+					"dataSet": app.lookup("ds3"),
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_NO";
+									cell.text = "EDU_BOARD_NO";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_TITLE";
+									cell.text = "EDU_BOARD_TITLE";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "TOTAL_COUNT";
+									cell.text = "TOTAL_COUNT";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "BOARD_CATEGORY";
+									cell.text = "BOARD_CATEGORY";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "EDU_BOARD_STATUS";
+									cell.text = "EDU_BOARD_STATUS";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "TOTAL_BOARD_COUNT";
+									cell.text = "TOTAL_BOARD_COUNT";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_NO";
+									cell.control = (function(){
+										var inputBox_1 = new cpr.controls.InputBox("ipb1");
+										inputBox_1.bind("value").toDataColumn("EDU_BOARD_NO");
+										return inputBox_1;
+									})();
+									cell.controlConstraint = {};
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_TITLE";
+									cell.control = (function(){
+										var inputBox_2 = new cpr.controls.InputBox("ipb2");
+										inputBox_2.bind("value").toDataColumn("EDU_BOARD_TITLE");
+										return inputBox_2;
+									})();
+									cell.controlConstraint = {};
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.columnName = "TOTAL_COUNT";
+									cell.control = (function(){
+										var inputBox_3 = new cpr.controls.InputBox("ipb3");
+										inputBox_3.bind("value").toDataColumn("TOTAL_COUNT");
+										return inputBox_3;
+									})();
+									cell.controlConstraint = {};
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.columnName = "BOARD_CATEGORY";
+									cell.control = (function(){
+										var inputBox_4 = new cpr.controls.InputBox("ipb4");
+										inputBox_4.bind("value").toDataColumn("BOARD_CATEGORY");
+										return inputBox_4;
+									})();
+									cell.controlConstraint = {};
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.columnName = "EDU_BOARD_STATUS";
+									cell.control = (function(){
+										var inputBox_5 = new cpr.controls.InputBox("ipb5");
+										inputBox_5.bind("value").toDataColumn("EDU_BOARD_STATUS");
+										return inputBox_5;
+									})();
+									cell.controlConstraint = {};
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.columnName = "TOTAL_BOARD_COUNT";
+									cell.control = (function(){
+										var inputBox_6 = new cpr.controls.InputBox("ipb6");
+										inputBox_6.bind("value").toDataColumn("TOTAL_BOARD_COUNT");
+										return inputBox_6;
+									})();
+									cell.controlConstraint = {};
+								}
+							}
+						]
+					}
+				});
+				container.addChild(grid_1, {
+					"top": "369px",
+					"left": "224px",
+					"width": "1239px",
+					"height": "362px"
+				});
 			})(group_1);
 			if(typeof onGroupBeforeDraw == "function") {
 				group_1.addEventListener("before-draw", onGroupBeforeDraw);
@@ -494,6 +719,9 @@
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
+			}
+			if(typeof onBodyInit == "function"){
+				app.addEventListener("init", onBodyInit);
 			}
 		}
 	});

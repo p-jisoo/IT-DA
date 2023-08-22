@@ -1,5 +1,6 @@
 package com.tomato.donghang.model.service;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	
 	@Override
 	public void createBoard(ParameterGroup param) {
+
 		//String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		String eduBoardTitle = param.getValue("EDU_BOARD_TITLE");
 		String eduBoardStartPeriod = param.getValue("EDU_BOARD_START_PERIOD");
@@ -44,9 +46,9 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		vo.setEduBoardApplyStartPeriod(eduBoardApplyStartPeriod);
 		vo.setEduBoardApplyEndPeriod(eduBoardApplyEndPeriod);
 		try {
-			vo.setEduBoardMemberCount(Integer.parseInt(eduBoardMemberCount));	
+			vo.setEduBoardMaxMemberCount(Integer.parseInt(eduBoardMemberCount));	
 		}catch(NumberFormatException e){
-			vo.setEduBoardMemberCount(Integer.parseInt("999"));
+			vo.setEduBoardMaxMemberCount(Integer.parseInt("999"));
 			}
 		vo.setEduBoardAddress(eduBoardAddress);
 		vo.setEduBoardCategory(eduBoardCategory);
@@ -75,9 +77,9 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		vo.setEduBoardApplyStartPeriod(eduBoardApplyStartPeriod);
 		vo.setEduBoardApplyEndPeriod(eduBoardApplyEndPeriod);
 		try {
-			vo.setEduBoardMemberCount(Integer.parseInt(eduBoardMemberCount));	
+			vo.setEduBoardMaxMemberCount(Integer.parseInt(eduBoardMemberCount));	
 		}catch(NumberFormatException e){
-			vo.setEduBoardMemberCount(Integer.parseInt("999"));
+			vo.setEduBoardMaxMemberCount(Integer.parseInt("999"));
 			}
 		vo.setEduBoardAddress(eduBoardAddress);
 		vo.setEduBoardCategory(eduBoardCategory);
@@ -88,6 +90,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	@Override
 	public List<Map<String, Object>> findBaordList() {
 		long totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
+		
 		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		List<EduApplyBoardVO> list = eduApplyBoardMapper.findBoardList();
 		for(EduApplyBoardVO evo : list) {
@@ -96,7 +99,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("BOARD_TITLE", evo.getEduBoardTitle());
 			row.put("PERIOD", evo.getEduBoardApplyStartPeriod());
 			row.put("BOARD_CATEGORY", evo.getEduBoardCategory());
-			row.put("APPLY_STATUS", evo.getEduBoardStatus());
+			//STATUS
 			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
 			data.add(row);
 		}
@@ -107,16 +110,19 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	public List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param) {
 		long nowPage = 0;
 		Pagination pagination;
-		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
 		String PrevPage = "0";
 		String NextPage = "0";
 		String applyStatus =  param.getValue("status");
-		List<EduApplyBoardVO> list = null;
+		long totalBoardCount = 0;	
 		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
 			applyStatus= "";
+			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
+		}else {
+			log.info("status{}", param.getValue("status"));
+			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		}
 		
-		long totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
+		
 		
 		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
 			 pagination = new Pagination(totalBoardCount);
@@ -141,20 +147,81 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("pagination", pagination);
 	    map.put("status", applyStatus);
-	    list = eduApplyBoardMapper.findBoardListWithStatusByPage(map);
-		for(EduApplyBoardVO evo : list) {
-			Map<String, Object> row = new HashMap<String, Object>();
-			row.put("BOARD_NO", evo.getEduBoardNo());
-			row.put("BOARD_TITLE", evo.getEduBoardTitle());
-			row.put("PERIOD", evo.getEduBoardStartPeriod());
-			row.put("BOARD_CATEGORY", evo.getEduBoardCategory());
-			row.put("APPLY_STATUS", evo.getEduBoardStatus());
-			row.put("NOW_PAGE", nowPage);
-			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
-			row.put("PREVPAGE", PrevPage);
-			row.put("NEXTPAGE", NextPage);
-			data.add(row);
+	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchThing(map);
+	    List<Map<String, Object>> newData = new ArrayList<>();
+	    log.info("첫data {}", data.get(0));
+		for(Map<String, Object> evo : data) {
+			evo.put("NOW_PAGE", nowPage);
+			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
+			evo.put("PREVPAGE", PrevPage);
+			evo.put("NEXTPAGE", NextPage);
+			newData.add(evo);
 		}
+		data = newData;
+		log.warn("data {}", data);
+		return data;
+	}
+	
+	@Override
+	public List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param) {
+		long nowPage = 0;
+		Pagination pagination;
+		String PrevPage = "0";
+		String NextPage = "0";
+		String type = param.getValue("type");
+		String keyword = param.getValue("keyword");
+		String applyStatus =  param.getValue("status");
+		Map<String, String> map = new HashMap<>();
+		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
+			applyStatus=null;
+		}
+		map.put("status", applyStatus);
+		map.put("keyword", keyword);
+		map.put("type", type);
+		long totalBoardCount = 0;	
+		   log.warn("mapkeyword {}", map);
+		totalBoardCount = eduApplyBoardMapper.findBoardCountByStatusWithSearch(map);
+		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
+			 pagination = new Pagination(totalBoardCount);
+		}else {
+			nowPage = Long.parseLong(param.getValue("nowpage"));
+			 pagination = new Pagination(totalBoardCount,nowPage);
+		}
+		//파리미터로 넘어온  nowpage의 값 null체크
+		
+		if(pagination.isPreviousPageGroup()) {
+			 PrevPage = "1";
+		}else{
+			 PrevPage = "0";
+		}
+		if(pagination.isNextPageGroup()) {
+			NextPage = "1";
+		}else{
+			NextPage = "0";
+		}
+		//NextPage 와 PrePage의 값 설정
+		
+		Map<String, Object> po = new HashMap<>();
+		po.put("pagination", pagination);
+	    po.put("status", applyStatus);
+	    po.put("type", type);
+	    po.put("keyword", keyword);
+	    log.info("map {}", map);
+	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
+	    log.info("data {}", data);
+	    if(data.size()==0) {
+	    	return data;
+	    }
+	    log.info("총 게시물 수 {}", data);
+	    List<Map<String, Object>> newData = new ArrayList<>();
+		for(Map<String, Object> evo : data) {
+			evo.put("NOW_PAGE", nowPage);
+			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
+			evo.put("PREVPAGE", PrevPage);
+			evo.put("NEXTPAGE", NextPage);
+			newData.add(evo);
+		}
+		data = newData;
 		return data;
 	}
 }

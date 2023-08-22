@@ -10,19 +10,22 @@
  * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
  */
 
-
-
-function onGroupBeforeDraw(e){	
+/*
+ * 루트 컨테이너에서 init 이벤트 발생 시 호출.
+ * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+ */
+function onBodyInit(e){
 	var page = app.lookup("page");
-	var dataSet = app.lookup("ds2");
-	var dataSet = app.lookup("ds2");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
+	
 	submission.send();
 	
 }
+
+
 
 /*
  * 페이지 인덱서에서 selection-change 이벤트 발생 시 호출.
@@ -32,8 +35,8 @@ function onPageSelectionChange(e){
 	var page = app.lookup("page");
 	var currentPageIndex = page.currentPageIndex;
 	var listBox = app.lookup("lbx1");
-	var dataMap = app.lookup("dm2");
-	var submission = app.lookup("sms2");
+	var dataMap = app.lookup("dm3");
+	var submission = app.lookup("sms3");
 	var dataSet = app.lookup("tpSlct");
 	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
 	dataMap.setValue("nowpage", currentPageIndex);
@@ -62,6 +65,7 @@ function onBodyLoad(e){
 	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
 	comboBox.selectItemByValue("value1");
+	
 }
 
 /*
@@ -70,14 +74,22 @@ function onBodyLoad(e){
  */
 function onButtonClick(e){
 	var dataSet = app.lookup("tpSlct");
+	var dataSet2 = app.lookup("dsSlct");
 	var searchInput = app.lookup("searchCtl");
-	var dataMap = app.lookup("dm2");
+	var comboBox = app.lookup("cmb1");
+	var dataMap = app.lookup("dm3");
 	var inputValue = searchInput.value.replace(/\s/g, "");
 	var listBox = app.lookup("lbx1");
-	var submission = app.lookup("sms2");
-	if(inputValue=='' && listBox.getSelectedDataSetIndices()[0].valueOf() !=0 ){
-		dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
-	}
+	var submission = app.lookup("sms3");
+	var pageIndexer = app.lookup("page");
+	if(pageIndexer.currentPageIndex>1){
+		dataMap.setValue("nowpage", dataMap.setValue("nowpage", pageIndexer.currentPageIndex=1));
+		}
+	console.log(dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("status", dataSet.getRowData(listBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("type", dataSet2.getRowData(comboBox.getSelectedDataSetIndices()[0]).label);
+	dataMap.setValue("keyword", inputValue);
+	console.log(inputValue);
 	submission.send();
 }
 
@@ -101,14 +113,12 @@ function onLbx1ItemClick(e){
 		submission.send();
 }
 
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onSms2SubmitSuccess2(e){
-	var sms2 = e.control;
+
+
+function submissionSC(){
 	var page = app.lookup("page");
-	var dataSet = app.lookup("ds2");
+	var dataSet = app.lookup("ds3");
+	console.log("total count",dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 	page.totalRowCount = Number(dataSet.getValue(0, "TOTAL_BOARD_COUNT"));
 	console.log("프리브",dataSet.getValue(0, "PREVPAGE"));
 	console.log("넥스트",dataSet.getValue(0, "NEXTPAGE"));
@@ -123,7 +133,139 @@ function onSms2SubmitSuccess2(e){
 		page.visibleNextButton =false;
 	}
 	page.redraw();	
-	
 }
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms2SubmitSuccess2(e){
+	var sms2 = e.control;
+	submissionSC();
+	console.log("호출");
+}
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms3SubmitSuccess(e){
+	var sms3 = e.control; //
+	var responseDatas = sms3.getResponseData("ds3");
+	var grid = app.lookup("grd1");
+	var grid2 = app.lookup("grd2");
+	submissionSC(); 
+	var datakey = null;
+	var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
+	
+	var any =JSON.parse(responseText); //text를 json객체로 변환 
+	if(any.ds3.length==0){
+		showSearchDataNotExist();
+	}else{
+		grid.visible=true;
+		grid2.visible=false;
+	}
+}
+
+
+function showSearchDataNotExist(){
+	var container = app.getContainer();
+	var dataMap = app.lookup("dm3");
+	var grid = app.lookup("grd1");
+	var grid2 = app.lookup("grd2");
+	var value = dataMap.getValue("keyword");
+	var dataSet = app.lookup("ds4");
+	if(grid2){
+		grid2.visible=true;
+	}else{
+		var grid_2 = new cpr.controls.Grid("grd2");
+				grid_2.init({
+					"dataSet": app.lookup("ds4"),
+					"hScroll": "hidden",
+					"vScroll": "hidden",
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.filterable = false;
+									cell.sortable = false;
+									cell.targetColumnName = "textarea";
+									cell.text = "EDU_BOARD_NO";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.text = "EDU_BOARD_TITLE";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 2},
+								"configurator": function(cell){
+									cell.text = "TOTAL_COUNT";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 3},
+								"configurator": function(cell){
+									cell.text = "BOARD_CATEGORY";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 4},
+								"configurator": function(cell){
+									cell.text = "EDU_BOARD_STATUS";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 5},
+								"configurator": function(cell){
+									cell.text = "TOTAL_BOARD_COUNT";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "350px"}],
+						"cells": [{
+							"constraint": {"rowIndex": 0, "colIndex": 0, "rowSpan": 1, "colSpan": 6},
+							"configurator": function(cell){
+								cell.columnName = "textarea";
+								cell.control = (function(){
+									var textArea_1 = new cpr.controls.TextArea("txa1");
+									textArea_1.style.css({
+										"font-size" : "23px"
+									});
+									textArea_1.bind("value").toDataColumn("textarea");
+									return textArea_1;
+								})();
+								cell.controlConstraint = {};
+							}
+						}]
+					}
+				});
+				if(typeof onGrd2SelectionChange == "function") {
+					grid_2.addEventListener("selection-change", onGrd2SelectionChange);
+				}
+				container.addChild(grid_2, {
+					"top": "369px",
+					"left": "224px",
+					"width": "1239px",
+					"height": "362px"
+				});
+	}
+	dataSet.setValue(0, "textarea",`${value}에 대한 검색결과가 없습니다.\r\n\r\n단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. \r\n검색 옵션을 변경해서 다시 검색해 보세요.`)
+	grid.visible=false;
+			};
+
 
 

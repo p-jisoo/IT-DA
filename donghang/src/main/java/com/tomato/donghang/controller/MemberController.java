@@ -123,21 +123,22 @@ public class MemberController {
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
-		MemberVO vo = (MemberVO) session.getAttribute("mvo");
-		System.out.println("로그인 후=" + vo);
-		if (vo != null) {
-			dataRequest.setResponse("loginSession", vo);
+		if(session==null) {
+			return new JSONDataView();
+		}else {
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			System.out.println("로그인 후=" + vo);
+			if (vo != null) {
+				dataRequest.setResponse("loginSession", vo);
+			}
+			return new JSONDataView();
 		}
-		return new JSONDataView();
 	}
-
-	//
 	@PostMapping("ui/logoutMember")
 	public View logoutMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequset) {
 		HttpSession session = request.getSession(false);
-		if (session != null || session.getAttribute("mvo") != null) {
+		if (session != null) {
 			session.invalidate();
-
 		}
 		return new JSONDataView();
 	}
@@ -146,7 +147,12 @@ public class MemberController {
 	@PostMapping("ui/whoName")
 	public View whoName(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);//
+		if(session ==null) {
+			return new JSONDataView();
+		}
+		log.info("session {} ", session);
 		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+		log.info("whoname  {}", vo);
 		String name = vo.getUserName();
 		System.out.println("**************************************");
 		System.out.println("로그인 후 유저 이름 세션값 ==" + name);

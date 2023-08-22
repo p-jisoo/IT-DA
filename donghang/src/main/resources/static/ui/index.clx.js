@@ -70,18 +70,12 @@
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onLoginClick(e){
-				var login = e.control;
 				window.location.href="login";
 			}
 
 			function onBodyLoad(e){
-				var login = app.lookup("login");
-				var whoName = app.lookup("whoName");
 				var submission = app.lookup("sessioncheck");
-				var submission2 = app.lookup("who");
 				submission.send();
-				submission2.send();
-				
 			}
 
 			/*
@@ -94,6 +88,7 @@
 				var myPage = app.lookup("mypage");
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
+				var output = app.lookup("whoName");
 			//	var welcome2 = new cpr.controls.Output("welcom");
 			//					welcome2.visible = true;
 			//					welcome2.value = "";
@@ -108,10 +103,21 @@
 			//						"height": "39px"
 			//					});
 			//	
+
+			var responseText = sms2.xhr.responseText;
+			var any = JSON.parse(responseText);
+			console.log(any.loginSession.userName);
+			if(any.loginSession.userName==""){
+				onLoginClick();
+				login.value="로그인";
+			}else{
+				output.value = any.loginSession.userName;
 				register.visible=false;
 				helloWelcome.visible=true;
 				myPage.visible=true;
-				login.value="로그아웃";
+				login.value="로그아웃인가?";
+			}
+
 				
 			}
 			/*
@@ -120,8 +126,6 @@
 			 */
 			function onWhoSubmitSuccess(e){
 				var who = e.control;
-			//	var metadata = who.getMetadata("voname");
-			//	app.lookup("dm1").setValue("userName", metadata[0].userName);
 				console.log(app.lookup("dm1").getValue("userName"));
 				var whoNm = app.lookup("whoName");
 			//	var obj=JSON.parse(who.getResponseData("dm1"));
@@ -139,7 +143,6 @@
 				var submission = app.lookup("logout");
 				logout.addEventListener("click", function(e){
 					submission.send();
-					
 				});
 				
 				
@@ -234,6 +237,9 @@
 			submission_2.addResponseData(dataSet_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
+			}
+			if(typeof onSessioncheckSubmitDone == "function") {
+				submission_2.addEventListener("submit-done", onSessioncheckSubmitDone);
 			}
 			app.register(submission_2);
 			

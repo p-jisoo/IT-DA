@@ -22,6 +22,14 @@ public interface EduApplyBoardMapper {
 	List<EduApplyBoardVO> findBoardListWithStatusByPage(Map<String, Object> map);
 
 	long findBoardCountByStatus(String status);
+	
+	List<Map<String, Object>> findBoardListPageAndSearchThing(Map<String, Object> map);
+
+	List<Map<String, Object>> findBoardListPageAndSearchKeyword(Map<String, Object> map);
+
+	long findBoardCountByStatusWithSearch(Map<String, String> map);
+
+	void likePlus();
 
 
 }
