@@ -7,13 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
+import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 
 @Mapper
 public interface EduApplyBoardMapper {
-
-	void createBoard(EduApplyBoardVO vo);
-	
-	void updateBoard(EduApplyBoardVO vo);
 	
 	List<EduApplyBoardVO> findBoardList();
 
@@ -30,6 +27,21 @@ public interface EduApplyBoardMapper {
 	long findBoardCountByStatusWithSearch(Map<String, String> map);
 
 	void likePlus();
-
+	
+	void createBoard(EduApplyBoardVO vo);
+	
+	void updateBoard(EduApplyBoardVO vo);
+	
+	void deleteBoard(EduApplyBoardVO vo);
+	
+	EduApplyBoardVO selectBoard();
+	
+	void createCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	void updateCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	EduApplyCommentBoardVO selectCommentBoard();
 
 }
