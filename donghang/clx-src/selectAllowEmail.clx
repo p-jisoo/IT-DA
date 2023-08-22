@@ -30,16 +30,16 @@
         <cl:xylayoutdata std:sid="xyl-data-fae443ee" top="404px" left="509px" width="126px" height="33px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
       <cl:output std:sid="output-d8165c2e" style="color:#A7A7A7; font-weight:normal; font-size:1rem;" value="아이디가 기억나지 않는다면?">
-        <cl:xylayoutdata std:sid="xyl-data-71221cf5" top="563px" left="232px" width="217px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-71221cf5" top="637px" left="225px" width="217px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-c37bf4dc" style="color:#4682A9; font-weight:bold; font-size:1rem;" value="아이디 찾기">
-        <cl:xylayoutdata std:sid="xyl-data-2600e091" top="563px" left="455px" width="96px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-2600e091" top="637px" left="448px" width="96px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-c8801df3" style="color:#91C8E4; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany    |">
-        <cl:xylayoutdata std:sid="xyl-data-53738a17" top="646px" left="215px" width="162px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-53738a17" top="720px" left="208px" width="162px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-0d4f45e2" style="color:#6F6F6F; font-weight:normal; font-size:1rem; text-align:left;" value="고객센터 : 010-8299-1244">
-        <cl:xylayoutdata std:sid="xyl-data-bc4b4e31" top="646px" left="378px" width="190px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-bc4b4e31" top="720px" left="371px" width="190px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-c47c4302" style="color:#333333; font-weight:normal;" value="01. 아이디 인증">
         <cl:xylayoutdata std:sid="xyl-data-eb3d6cf6" top="4px" left="550px" width="108px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -59,6 +59,15 @@
       <cl:output std:sid="output-5f985245" style="font-weight:bold; font-size:1rem;" value="이메일을 입력하고 인증번호 받기를 눌러주세요.">
         <cl:xylayoutdata std:sid="xyl-data-9b198419" top="342px" left="154px" width="465px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
+      <cl:inputbox std:sid="i-box-6127524a" id="ipb1" placeholder="인증번호를 입력해주세요.">
+        <cl:xylayoutdata std:sid="xyl-data-1a9edd3a" top="446px" left="154px" width="210px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:inputbox>
+      <cl:output std:sid="output-4b0b9cc8" visible="false" value="Output">
+        <cl:xylayoutdata std:sid="xyl-data-d3fc2089" top="495px" left="153px" width="209px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:button std:sid="button-c56f823d" style="background-color:#91C8E4; color:#FFFFFF; font-size:1.23rem; background-image:none;" value="다 음">
+        <cl:xylayoutdata std:sid="xyl-data-bd7b3cfc" top="549px" left="275px" width="212px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
       <cl:xylayout std:sid="xylayout-37e1b76d"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-faf95f7d"/>
