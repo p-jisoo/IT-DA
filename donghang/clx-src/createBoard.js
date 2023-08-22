@@ -28,6 +28,7 @@ function onButtonClick(e){
 	console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 	
 	submission.send()
+	window.location.href="eduApplyBoardList.clx";
 }
 
 /*
