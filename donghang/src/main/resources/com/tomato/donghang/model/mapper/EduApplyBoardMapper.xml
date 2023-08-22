@@ -50,11 +50,20 @@ WHERE EDU_BOARD_NO='1'
 )
 </update>	
 	
-	
-	
-	<select id="findAllBoardCount">
+<select id="findAllBoardCount">
 		select count(*) from edu_apply_board
 	</select>
+
+	<select id="findBoardCountByStatus" parameterType="String"
+		resultType="long">
+		select count(*) from edu_apply_board
+		<where>
+			<if test="status!=null and status!=''">
+				edu_board_status = #{status}
+			</if>
+		</where>
+	</select>
+
 
 	<select id="findBoardList"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
@@ -62,57 +71,73 @@ WHERE EDU_BOARD_NO='1'
 		</include>
 	</select>
 
-	<select id="findBoardListByPage" parameterType="com.tomato.donghang.model.Pagination"
-		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
-SELECT
-rnum,
-EDU_BOARD_NO,
-EDU_BOARD_TITLE,
-EDU_BOARD_START_PERIOD,
-EDU_BOARD_APPLY_MEMBER_COUNT,
-EDU_APPLY_BOARD_CATEGORY,
-EDU_APPLY_BOARD_CONTENT
-FROM
-(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
-rnum,EDU_BOARD_NO,
-EDU_BOARD_TITLE,
-EDU_BOARD_START_PERIOD,
-EDU_BOARD_APPLY_MEMBER_COUNT,
-EDU_APPLY_BOARD_CATEGORY,
-EDU_APPLY_BOARD_CONTENT
-FROM edu_apply_board
-)
-WHERE rnum BETWEEN 1 and 5
-	</select>
-	<!-- 
-EDU_BOARD_NO,
-EDU_BOARD_TITLE,
-EDU_BOARD_START_PERIOD,
-EDU_BOARD_END_PERIOD, 
-EDU_BOARD_APPLY_START_PERIOD,
-EDU_BOARD_APPLY_END_PERIOD,
-EDU_BOARD_APPLY_MEMBER_COUNT,
-EDU_APPLY_BOARD_CATEGORY,
-EDU_APPLY_BOARD_CONTENT
--->
-	<select id="findBoardListByPageTest" parameterType="HashMap"
+	<select id="findBoardListWithStatusByPage"
+		parameterType="HashMap"
 		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 		SELECT
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT,
+		EDU_BOARD_STATUS
 		FROM
-		(SELECT row_number() over(ORDER BY eboard_no DESC) as
-		rnum,eboard_no,edu_board_title,edu_apply_board_content,edu_apply_board_status,edu_apply_board_category,edu_board_start_period
+		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
 		FROM edu_apply_board
 		<where>
-		<if test = "_parameter.containsValue('모집중') ">
-			edu_apply_board_status ='모집중'
-		</if>
-		<if test = "_parameter.containsValue('모집마감') ">
-			edu_apply_board_status ='모집마감'
-		</if>
+			<if test="_parameter.containsValue('모집중') ">
+				edu_board_status ='모집중'
+			</if>
+			<if test="_parameter.containsValue('모집마감') ">
+				edu_board_status ='모집마감'
+			</if>
+		</where>
+		
+		)
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and
+		#{pagination.endRowNumber}
+	</select>
+	
+		<select id="findBoardListPageAndSearch"
+		parameterType="HashMap"
+		resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+		SELECT
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT,
+		EDU_BOARD_STATUS
+		FROM
+		(SELECT row_number() over(ORDER BY EDU_BOARD_NO DESC) as
+		rnum,EDU_BOARD_NO,
+		EDU_BOARD_TITLE,
+		EDU_BOARD_STATUS,
+		EDU_BOARD_START_PERIOD,
+		EDU_BOARD_MEMBER_COUNT,
+		EDU_BOARD_CATEGORY,
+		EDU_BOARD_CONTENT
+		FROM edu_apply_board
+		<where>
+			<if test="_parameter.containsValue('모집중') ">
+				edu_board_status ='모집중'
+			</if>
+			<if test="_parameter.containsValue('모집마감') ">
+				edu_board_status ='모집마감'
+			</if>
 		</where>
 		)
-		WHERE rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
+		WHERE rnum BETWEEN #{pagination.startRowNumber} and
+		#{pagination.endRowNumber}
 	</select>
 </mapper>
 

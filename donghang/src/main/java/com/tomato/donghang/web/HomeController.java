@@ -25,8 +25,8 @@ public class HomeController {
 		return menu;		
 		
 	}
-	@GetMapping("ui/showmeapply.do")
+	@GetMapping("ui/toBaordList.do")
 	public View shome(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		return new UIView("ui/apply.clx");
+		return new UIView("ui/eduApplyboardList.clx");
 	}
 }

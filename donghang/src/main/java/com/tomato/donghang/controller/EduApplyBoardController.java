@@ -53,7 +53,6 @@ public class EduApplyBoardController {
 
 	@GetMapping("/ui/eduApplyboardList")
 	public View eduApplyboardList() {
-		log.info("a");
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
 
@@ -67,7 +66,14 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/findBoardListByPage.do")
 	public View findBoardListByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm1");
-		List<Map<String, Object>> data = eduApplyBoardService.findBaordListBy(param.getValue("nowpage"));
+		List<Map<String, Object>> data = eduApplyBoardService.findBoardListWithStatusByPage(param);
+		dataRequest.setResponse("ds2", data);
+		return new JSONDataView();
+	}
+	@PostMapping("/ui/findBoardListWithStatusByPage.do")
+	public View findBoardListWithStatusByPage(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("dm2");
+		List<Map<String, Object>> data = eduApplyBoardService.findBoardListWithStatusByPage(param);
 		dataRequest.setResponse("ds2", data);
 		return new JSONDataView();
 	}

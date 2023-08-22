@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	private final EduApplyBoardMapper eduApplyBoardMapper;
 
-
+	
 	@Override
 	public void createBoard(ParameterGroup param) {
 		//String eduBoardNo = param.getValue("EDU_BOARD_NO");
@@ -99,25 +99,33 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("APPLY_STATUS", evo.getEduBoardStatus());
 			row.put("TOTAL_BOARD_COUNT", totalBoardCount);
 			data.add(row);
-			log.debug("findBoardList {}" , data);
 		}
 		return data;
 	}
 
 	@Override
-	public List<Map<String, Object>> findBaordListBy(String value) {
+	public List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param) {
 		long nowPage = 0;
-		long totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		Pagination pagination;
-		if(value==null || value=="") {
+		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+		String PrevPage = "0";
+		String NextPage = "0";
+		String applyStatus =  param.getValue("status");
+		List<EduApplyBoardVO> list = null;
+		if(param.getValue("status")==null || param.getValue("status")=="" || param.getValue("status").length()<3) {
+			applyStatus= "";
+		}
+		
+		long totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
+		
+		if(param.getValue("nowpage")==null || param.getValue("nowpage")=="") {
 			 pagination = new Pagination(totalBoardCount);
 		}else {
-			nowPage = Long.parseLong(value);
+			nowPage = Long.parseLong(param.getValue("nowpage"));
 			 pagination = new Pagination(totalBoardCount,nowPage);
 		}
-		List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-		String PrevPage = null;
-		String NextPage = null;
+		//파리미터로 넘어온  nowpage의 값 null체크
+		
 		if(pagination.isPreviousPageGroup()) {
 			 PrevPage = "1";
 		}else{
@@ -128,7 +136,12 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		}else{
 			NextPage = "0";
 		}
-		List<EduApplyBoardVO> list = eduApplyBoardMapper.findBoardListByPage(pagination);
+		//NextPage 와 PrePage의 값 설정
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("pagination", pagination);
+	    map.put("status", applyStatus);
+	    list = eduApplyBoardMapper.findBoardListWithStatusByPage(map);
 		for(EduApplyBoardVO evo : list) {
 			Map<String, Object> row = new HashMap<String, Object>();
 			row.put("BOARD_NO", evo.getEduBoardNo());
@@ -141,7 +154,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("PREVPAGE", PrevPage);
 			row.put("NEXTPAGE", NextPage);
 			data.add(row);
-			log.info("findBoardList {}" , data);
 		}
 		return data;
 	}

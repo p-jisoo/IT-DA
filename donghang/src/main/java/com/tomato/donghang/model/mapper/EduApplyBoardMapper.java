@@ -17,7 +17,11 @@ public interface EduApplyBoardMapper {
 	
 	List<EduApplyBoardVO> findBoardList();
 
-	List<EduApplyBoardVO> findBoardListByPage(Pagination pagination);
-
 	long findAllBoardCount();
+
+	List<EduApplyBoardVO> findBoardListWithStatusByPage(Map<String, Object> map);
+
+	long findBoardCountByStatus(String status);
+
+
 }
