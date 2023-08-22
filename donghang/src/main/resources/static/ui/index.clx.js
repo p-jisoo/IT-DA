@@ -349,7 +349,7 @@
 						button_4.addEventListener("click", onButtonClick3);
 					}
 					container.addChild(button_4, {
-						"top": "19px",
+						"top": "20px",
 						"left": "762px",
 						"width": "357px",
 						"height": "45px"
@@ -366,8 +366,8 @@
 					}
 					container.addChild(output_2, {
 						"top": "19px",
-						"left": "1313px",
-						"width": "108px",
+						"left": "1289px",
+						"width": "123px",
 						"height": "46px"
 					});
 					var button_5 = new cpr.controls.Button();
@@ -480,7 +480,7 @@
 				group_1.addEventListener("click", onGroupClick);
 			}
 			container.addChild(group_1, {
-				"top": "-2px",
+				"top": "0px",
 				"right": "-1100px",
 				"bottom": "-1978px",
 				"left": "20px"

@@ -25,10 +25,17 @@
 			function onButtonClick(e){
 				var button = e.control;
 				var submission = app.lookup("sms1");	
-				submission.send();
-				
-				
-						
+				var id = app.lookup("ipb1");
+				var pwd = app.lookup("ipb2");
+					if(id.length==0){
+						alert("아이디를 입력하세요")
+						return false;
+					}
+					if(pwd.length==0){
+						alert("비밀번호를 입력하세요");
+						return false;
+					}
+					submission.send();
 			}
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -38,7 +45,7 @@
 				var sms1 = e.control;
 			//	var httpPostMethod = new cpr.protocols.HttpPostMethod("/");
 			//    httpPostMethod.submit();
-			 window.location.href="/";
+				window.location.href="/"
 			}
 
 			/*
@@ -76,7 +83,7 @@
 			 */
 			function onOutputClick(e){
 				var output = e.control;
-				wi
+				window.location.href=""
 			}
 
 			/*
@@ -253,7 +260,7 @@
 				]
 			});
 			
-			var button_1 = new cpr.controls.Button();
+			var button_1 = new cpr.controls.Button("loginBtn");
 			button_1.value = "로그인";
 			button_1.style.css({
 				"background-color" : "#4682A9",

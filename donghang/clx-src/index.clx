@@ -64,7 +64,7 @@
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-1fb5e24e">
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="-2px" right="-1100px" bottom="-1978px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="0px" right="-1100px" bottom="-1978px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:group std:sid="group-f2a4904e">
         <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
@@ -87,12 +87,12 @@
         </cl:output>
         <cl:button std:sid="button-80b81e2e" id="temporary_btn" value="임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정">
           <cl:listener std:sid="listener-6d11a4cc" name="click" handler="onButtonClick3"/>
-          <cl:xylayoutdata std:sid="xyl-data-1455031b" top="19px" left="762px" width="357px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-1455031b" top="20px" left="762px" width="357px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1.15rem; text-align:center;">
           <cl:listener std:sid="listener-61c5cd62" name="value-change" handler="onOutputValueChange"/>
           <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1313px" width="108px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1289px" width="123px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:output>
         <cl:button std:sid="button-3b2b8523" value="회원정보 수정">
           <cl:listener std:sid="listener-df1694d5" name="click" handler="onButtonClick4"/>

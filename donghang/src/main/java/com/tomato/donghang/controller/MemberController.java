@@ -127,9 +127,11 @@ public class MemberController {
 			return new JSONDataView();
 		}else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("로그인 후=" + vo);
+			String id = vo.getUserId();
+			MemberVO mvo = memberMapper.selectIdMember(id);
+			System.out.println("로그인 후=" + mvo);
 			if (vo != null) {
-				dataRequest.setResponse("loginSession", vo);
+				dataRequest.setResponse("loginSession", mvo);
 			}
 			return new JSONDataView();
 		}
@@ -200,6 +202,7 @@ public class MemberController {
 		return new JSONDataView();
 		
 	}
+	
 }
 
 	

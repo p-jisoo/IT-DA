@@ -32,14 +32,19 @@
 			function onUpdateSessionSubmitSuccess(e){
 				var updateSession = e.control;
 				var id = app.lookup("userId");
-				var pwd = app.lookup("password");
-				var pwdChk = app.lookup("passwordChk");
 				var adr = app.lookup("Address");
+				var tel = app.lookup("Tel_mask");
+				var name = app.lookup("userName");
 				var nick = app.lookup("nickName");
 				var responseText = updateSession.xhr.responseText;
 				var any = JSON.parse(responseText);
 				console.log(any.loginSession);
-				any
+				id.value=any.loginSession.userId;
+				adr.value=any.loginSession.address;
+				tel.value=any.loginSession.userTel;
+				name.value=any.loginSession.userName;
+				nick.value=any.loginSession.nickName;
+				
 			}
 
 			/*
@@ -635,7 +640,6 @@
 				inputBox_1.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onIpb2Keyup == "function") {
 					inputBox_1.addEventListener("keyup", onIpb2Keyup);
 				}
@@ -687,7 +691,6 @@
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_2.addEventListener("value-change", onPasswordChkValueChange);
 				}

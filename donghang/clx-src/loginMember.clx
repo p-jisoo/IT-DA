@@ -55,7 +55,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-48d2b139" top="517px" right="660px" left="776px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:button std:sid="button-8efd09e7" style="background-color:#4682A9; font-size:25px;" value="로그인">
+    <cl:button std:sid="button-8efd09e7" id="loginBtn" style="background-color:#4682A9; font-size:25px;" value="로그인">
       <cl:listener std:sid="listener-0eb88fc3" name="click" handler="onButtonClick"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-36a278bc">
         <cl:xylayoutdata std:sid="sxyl-data-d4cbe97e" top="462px" right="230px" left="528px" height="46px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>

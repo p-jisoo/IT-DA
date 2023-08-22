@@ -19,14 +19,19 @@ function onBodyLoad2(e){
 function onUpdateSessionSubmitSuccess(e){
 	var updateSession = e.control;
 	var id = app.lookup("userId");
-	var pwd = app.lookup("password");
-	var pwdChk = app.lookup("passwordChk");
 	var adr = app.lookup("Address");
+	var tel = app.lookup("Tel_mask");
+	var name = app.lookup("userName");
 	var nick = app.lookup("nickName");
 	var responseText = updateSession.xhr.responseText;
 	var any = JSON.parse(responseText);
 	console.log(any.loginSession);
-	any
+	id.value=any.loginSession.userId;
+	adr.value=any.loginSession.address;
+	tel.value=any.loginSession.userTel;
+	name.value=any.loginSession.userName;
+	nick.value=any.loginSession.nickName;
+	
 }
 
 /*

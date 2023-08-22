@@ -33,46 +33,74 @@
 				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nickName = app.lookup("nickName");
-				if (id.length == 0) {
-					alert("아이디를 입력해주세요.");
-					return false;
-				}
-				else if (id.length < 8 || id.length > 16) {
-					alert("아이디를 8~16자리로 입력해주세요.");
-					return false;
-				}
-				else if (pwd.length == 0) {
-					alert("비밀번호를 입력해주세요.");
-					return false;
-				}
-				else if (pwd.value != pwdChk.value) {
-					alert("비밀번호가 일치하지 않습니다.");
-					return false;
-				} 
-				else if (pwd.length < 8 || pwd.length > 16) {
-					alert("비밀번호를 8~16자리로 입력해주세요");
-					return false;
-				}
-				else if (adr.length == 0) {
-					alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-					return false;
-				}
-				else if (detailAdr.length == 0) {
-					alert("상세주소를 입력해주세요.");
-					return false;
-				}else if (Tel.length < 0 || Tel.length > 11) {
-					alert("전화번호를 입력해주세요.");
-					return false;
-				}
-				else if(name.length == 0) {
-					alert("이름을 입력해주세요.");
-					return false;
-				}
-				else if (nickName.length == 0) {
-					alert("닉네임을 입력해주세요");
-					return false;
-				}
-				submission.send();
+			//	if (id.length == 0) {
+			//		alert("아이디를 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if (id.length < 8 || id.length > 16) {
+			//		alert("아이디를 8~16자리로 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if (pwd.length == 0) {
+			//		alert("비밀번호를 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if (pwd.value != pwdChk.value) {
+			//		alert("비밀번호가 일치하지 않습니다.");
+			//		return false;
+			//	} 
+			//	else if (pwd.length < 8 || pwd.length > 16) {
+			//		alert("비밀번호를 8~16자리로 입력해주세요");
+			//		return false;
+			//	}
+			//	else if (adr.length == 0) {
+			//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if (detailAdr.length == 0) {
+			//		alert("상세주소를 입력해주세요.");
+			//		return false;
+			//	}else if (Tel.length < 0 || Tel.length > 11) {
+			//		alert("전화번호를 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if(name.length == 0) {
+			//		alert("이름을 입력해주세요.");
+			//		return false;
+			//	}
+			//	else if (nickName.length == 0) {
+			//		alert("닉네임을 입력해주세요");
+			//		return false;
+			//	}
+			//	submission.send();
+			//		var initValue ={
+			//		"msg" : "exBuilder6"
+			//		
+			//	}
+				
+				app.openDialog("regiseterDialog",{
+			 width : 500, 
+			 height : 350
+			 }, function(dialog){
+				dialog.ready(function(dialogApp){
+				//	var btn = dialogApp.getAppInstance().lookup("loginBtn");
+					dialogApp.setAppProperty("textValue", "페이지에서 벗어나시겠습니까?");
+					dialogApp.setAppProperty("yes_btn", "YES");
+					dialogApp.setAppProperty("no_btn", "NO");
+					dialogApp.addEventListener("yesBtn", function(e){
+						
+						dialog.close();
+					});
+					dialogApp.addEventListener("flatBtnClick", function(e) {
+							//esc를 눌렀을경우, 다이얼로그를 닫습니다.
+								dialog.close();
+								
+							});
+							
+				});
+			}).then(function(returnValue){
+				;
+			});
 			}
 
 			/*
@@ -81,7 +109,6 @@
 			 */
 			function onSms1SubmitSuccess2(e) {
 				var sms1 = e.control;
-				window.location.href="/"
 			}
 
 			function onButtonClick2(e) {
@@ -633,6 +660,7 @@
 			group_2.setLayout(responsiveXYLayout_3);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				inputBox_1.placeholder = "아이디를 입력해주세요.";
 				inputBox_1.autoSkip = true;
 				inputBox_1.style.css({
 					"font-weight" : "normal",
@@ -778,6 +806,7 @@
 				var inputBox_2 = new cpr.controls.InputBox("password");
 				inputBox_2.fieldLabel = "13";
 				inputBox_2.secret = true;
+				inputBox_2.placeholder = "비밀번호를 입력해주세요.";
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -829,10 +858,10 @@
 				});
 				var inputBox_3 = new cpr.controls.InputBox("passwordChk");
 				inputBox_3.secret = true;
+				inputBox_3.placeholder = "비밀번호 재확인을 입력해주세요.";
 				inputBox_3.style.css({
 					"font-size" : "1.2rem"
 				});
-				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_3.addEventListener("value-change", onPasswordChkValueChange);
 				}
@@ -1015,6 +1044,7 @@
 				});
 				var inputBox_5 = new cpr.controls.InputBox("Address");
 				inputBox_5.readOnly = true;
+				inputBox_5.placeholder = "도로명주소 , 지번주소";
 				inputBox_5.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -1251,6 +1281,7 @@
 					]
 				});
 				var inputBox_8 = new cpr.controls.InputBox("userName");
+				inputBox_8.placeholder = "이름을 입력해주세요.";
 				inputBox_8.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -1295,6 +1326,7 @@
 					]
 				});
 				var inputBox_9 = new cpr.controls.InputBox("nickName");
+				inputBox_9.placeholder = "닉네임을 입력해주세요.";
 				inputBox_9.style.css({
 					"font-size" : "1.2rem"
 				});

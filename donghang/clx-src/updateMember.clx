@@ -116,7 +116,6 @@
       <cl:inputbox std:sid="i-box-28c95846" id="password" style="font-size:1.2rem;" fieldLabel="13" secret="true" placeholder="비밀번호">
         <cl:listener std:sid="listener-8f45d101" name="keyup" handler="onIpb2Keyup"/>
         <cl:listener std:sid="listener-3af7735c" name="value-change" handler="onPasswordValueChange"/>
-        <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-0f2009b4">
           <cl:xylayoutdata std:sid="sxyl-data-068585c6" top="106px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
           <cl:xylayoutdata std:sid="sxyl-data-c7dfae27" top="126px" left="307px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
@@ -125,7 +124,6 @@
       </cl:inputbox>
       <cl:inputbox std:sid="i-box-f9067487" id="passwordChk" style="font-size:1.2rem;" secret="true" placeholder="비밀번호 재확인">
         <cl:listener std:sid="listener-ede6801e" name="value-change" handler="onPasswordChkValueChange"/>
-        <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-f461ecc8">
           <cl:xylayoutdata std:sid="sxyl-data-743416e8" top="170px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
           <cl:xylayoutdata std:sid="sxyl-data-f21ab181" top="190px" left="307px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
