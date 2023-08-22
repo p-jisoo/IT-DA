@@ -30,7 +30,7 @@
       </cl:datamap>
       <cl:submission std:sid="submission-03e5db67" id="sms1" action="registerMember">
         <cl:listener std:sid="listener-28d0fd53" name="submit-success" handler="onSms1SubmitSuccess2"/>
-        <cl:listener std:sid="listener-2e97124d" name="submit-error" handler="onSms1SubmitError"/>
+        <cl:listener std:sid="listener-3fd0b5ed" name="submit-error" handler="onSms1SubmitError2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-586f4bd3" id="sms2" action="checkIdMember">
@@ -99,7 +99,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-236f61bc" top="293px" left="772px" width="949px" height="1004px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
         <cl:xylayoutdata std:sid="sxyl-data-3a92ec8a" top="166px" left="241px" width="354px" height="746px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
       </cl:responsivexylayoutdata>
-      <cl:inputbox std:sid="i-box-d24606ea" id="ipb1" style="font-weight:normal; font-size:1.1rem; font-style:normal;" placeholder="아이디를 입력해주세요." autoskip="true">
+      <cl:inputbox std:sid="i-box-d24606ea" id="ipb1" style="font-weight:normal; font-size:1.1rem; font-style:normal;" autoskip="true">
         <cl:listener std:sid="listener-b3853e31" name="value-change" handler="onIpb1ValueChange"/>
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userId"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-986eaade">
@@ -123,7 +123,7 @@
           <cl:xylayoutdata std:sid="sxyl-data-b5c0ff10" top="56px" left="0px" width="154px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
         </cl:responsivexylayoutdata>
       </cl:output>
-      <cl:inputbox std:sid="i-box-28c95846" id="password" style="font-size:1.2rem;" fieldLabel="13" secret="true" placeholder="비밀번호">
+      <cl:inputbox std:sid="i-box-28c95846" id="password" style="font-size:1.2rem;" fieldLabel="13" secret="true">
         <cl:listener std:sid="listener-8f45d101" name="keyup" handler="onIpb2Keyup"/>
         <cl:listener std:sid="listener-3af7735c" name="value-change" handler="onPasswordValueChange"/>
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
@@ -133,8 +133,9 @@
           <cl:xylayoutdata std:sid="sxyl-data-90d3bc28" top="106px" left="0px" width="220px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-f9067487" id="passwordChk" style="font-size:1.2rem;" secret="true" placeholder="비밀번호 재확인">
+      <cl:inputbox std:sid="i-box-f9067487" id="passwordChk" style="font-size:1.2rem;" secret="true">
         <cl:listener std:sid="listener-ede6801e" name="value-change" handler="onPasswordChkValueChange"/>
+        <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-f461ecc8">
           <cl:xylayoutdata std:sid="sxyl-data-743416e8" top="170px" left="0px" width="450px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
           <cl:xylayoutdata std:sid="sxyl-data-f21ab181" top="249px" left="300px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
@@ -163,7 +164,7 @@
           <cl:xylayoutdata std:sid="sxyl-data-6eec1287" top="312px" left="159px" width="63px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="tablet"/>
         </cl:responsivexylayoutdata>
       </cl:button>
-      <cl:inputbox std:sid="i-box-2175f836" id="Address" style="font-size:1.2rem;" readonly="true" placeholder="도로명 주소, 지번 주소">
+      <cl:inputbox std:sid="i-box-2175f836" id="Address" style="font-size:1.2rem;" readonly="true">
         <cl:listener std:sid="listener-f0042f63" name="change" handler="onRoadAddressChange"/>
         <cl:listener std:sid="listener-72096e63" name="keydown" handler="onRoadAddressKeydown"/>
         <cl:listener std:sid="listener-05d36fec" name="keyup" handler="onRoadAddressKeyup2"/>
@@ -204,7 +205,7 @@
           <cl:xylayoutdata std:sid="sxyl-data-6539286b" top="712px" left="563px" width="499px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-04f202bb" id="userName" style="font-size:1.2rem;" placeholder="이름을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-04f202bb" id="userName" style="font-size:1.2rem;">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="userName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-4f1222fa">
           <cl:xylayoutdata std:sid="sxyl-data-e5e4d910" top="847px" left="300px" width="266px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>
@@ -212,7 +213,7 @@
           <cl:xylayoutdata std:sid="sxyl-data-3715ce45" top="847px" left="563px" width="499px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
         </cl:responsivexylayoutdata>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-2ad871c9" id="nickName" style="font-size:1.2rem;" placeholder="닉네임을 입력해주세요.">
+      <cl:inputbox std:sid="i-box-2ad871c9" id="nickName" style="font-size:1.2rem;">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="nickName"/>
         <cl:responsivexylayoutdata std:sid="rxyl-data-6d788f26">
           <cl:xylayoutdata std:sid="sxyl-data-2b1a83dc" top="911px" left="300px" width="266px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="register"/>

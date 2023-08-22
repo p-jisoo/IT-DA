@@ -47,7 +47,7 @@
         <cl:xylayoutdata std:sid="sxyl-data-30736fd8" top="449px" right="660px" left="778px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="new-screen"/>
       </cl:responsivexylayoutdata>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-794f0928" id="ipb2" placeholder="비밀번호">
+    <cl:inputbox std:sid="i-box-794f0928" id="ipb2" secret="true" placeholder="비밀번호">
       <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
       <cl:responsivexylayoutdata std:sid="rxyl-data-cda9553c">
         <cl:xylayoutdata std:sid="sxyl-data-9e26f922" top="397px" right="230px" left="345px" height="58px" horizontalAnchor="BOTH" verticalAnchor="TOP" screenid="default"/>

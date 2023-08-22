@@ -12,40 +12,6 @@
 function onButtonClick(e) {
 	var button = e.control;
 	var submission = app.lookup("sms1");
-	submission.send();
-}
-
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onSms1SubmitSuccess2(e) {
-	var sms1 = e.control;
-//		var initValue = {
-//		"msg": "회원가입 안내창"
-//	}
-//	app.openDialog("appURI", {
-//		width: 400,
-//		height: 300
-//	}, function(dialog) {
-//		dialog.ready(function(dialogApp) {
-//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-//			dialogApp.initValue = initValue;
-//		});
-//	}).then(function(returnValue) {
-//		alert(JSON.stringify(returnValue));
-//	});
-//}
-
-	window.location.href = "/";
-}
-
-/*
- * 서브미션에서 submit-error 이벤트 발생 시 호출.
- * 통신 중 문제가 생기면 발생합니다.
- */
-function onSms1SubmitError(e) {
-	var sms1 = e.control;
 	var pwd = app.lookup("password");
 	var pwdChk = app.lookup("passwordChk");
 	var adr = app.lookup("Address");
@@ -57,45 +23,54 @@ function onSms1SubmitError(e) {
 	if (id.length == 0) {
 		alert("아이디를 입력해주세요.");
 		return false;
-	} else if (id.length < 8 || id.length > 16) {
+	}
+	else if (id.length < 8 || id.length > 16) {
 		alert("아이디를 8~16자리로 입력해주세요.");
 		return false;
 	}
-	if (pwd.length == 0) {
+	else if (pwd.length == 0) {
 		alert("비밀번호를 입력해주세요.");
 		return false;
 	}
-	if (pwd.value != pwdChk.value) {
+	else if (pwd.value != pwdChk.value) {
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
-	} else if (pwd.length < 8 || pwd.length > 16) {
+	} 
+	else if (pwd.length < 8 || pwd.length > 16) {
 		alert("비밀번호를 8~16자리로 입력해주세요");
 		return false;
 	}
-	if (adr.length == 0) {
+	else if (adr.length == 0) {
 		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
 		return false;
 	}
-	if (detailAdr.length == 0) {
+	else if (detailAdr.length == 0) {
 		alert("상세주소를 입력해주세요.");
 		return false;
-	}if (Tel.length < 0 || Tel.length > 11) {
+	}else if (Tel.length < 0 || Tel.length > 11) {
 		alert("전화번호를 입력해주세요.");
 		return false;
 	}
-	if (name.length == 0) {
+	else if(name.length == 0) {
 		alert("이름을 입력해주세요.");
 		return false;
 	}
-	if (nickName.length == 0) {
+	else if (nickName.length == 0) {
 		alert("닉네임을 입력해주세요");
 		return false;
 	}
+	submission.send();
 }
+
 /*
- * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
  */
+function onSms1SubmitSuccess2(e) {
+	var sms1 = e.control;
+	window.location.href="/"
+}
+
 function onButtonClick2(e) {
 	var button = e.control;
 	var id = app.lookup("ipb1").value;
@@ -118,7 +93,8 @@ function onSms2SubmitSuccess(e) {
 		chkId.text = "아이디를 입력해주세요."
 		chkId.style.css("color", "#ED3838");
 		return false;
-	} else if (id.length < 8 || id.length > 16) {
+		
+	}else if (id.length < 8 || id.length > 16) {
 		chkId.text = "8~16자리로 입력해주세요.";
 		chkId.style.css("color", "#ED3838");
 		return false;
@@ -166,7 +142,7 @@ function onPasswordValueChange(e) {
 		pwdMsg.text = "비밀번호를 입력해주세요."
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
-	} else if (pwd.length < 8 || pwd.length > 16) {
+	}else if (pwd.length < 8 || pwd.length > 16) {
 		pwdMsg.text = "8~16자리로 입력해주세요.";
 		pwdMsg.style.css("color", "#ED3838");
 		return false;
@@ -266,3 +242,4 @@ function onImageClick(e) {
 	var img = app.lookup("imgHome");
 	window.location.href = "/";
 }
+

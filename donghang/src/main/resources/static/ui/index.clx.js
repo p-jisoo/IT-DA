@@ -62,90 +62,73 @@
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				window.location.href="register.do";													
+				window.location.href = "register.do";
 			}
 
 			/*
 			 * "  로그인   " 버튼(login)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onLoginClick(e){
-				window.location.href="login";
+			function onLoginClick(e) {
+				window.location.href = "login";
 			}
 
-			function onBodyLoad(e){
+			function onBodyLoad(e) {
 				var submission = app.lookup("sessioncheck");
 				submission.send();
 			}
 
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 서브미션(sessionCheck로 변경)에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms2SubmitSuccess(e){
+			function onSms2SubmitSuccess(e) {
 				var sms2 = e.control;
 				var login = app.lookup("login");
 				var myPage = app.lookup("mypage");
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-			//	var welcome2 = new cpr.controls.Output("welcom");
-			//					welcome2.visible = true;
-			//					welcome2.value = "";
-			//					welcome2.style.css({
-			//						"font-weight" : "bold",
-			//						"font-size" : "1.15rem"
-			//					});
-			//					container.addChild(welcome2, {
-			//						"top": "22px",
-			//						"left": "1340px",
-			//						"width": "158px",
-			//						"height": "39px"
-			//					});
-			//	
-
-			var responseText = sms2.xhr.responseText;
-			var any = JSON.parse(responseText);
-			console.log(any.loginSession.userName);
-			if(any.loginSession.userName==""){
-				onLoginClick();
-				login.value="로그인";
-			}else{
-				output.value = any.loginSession.userName;
-				register.visible=false;
-				helloWelcome.visible=true;
-				myPage.visible=true;
-				login.value="로그아웃인가?";
-			}
-
+				
+				var responseText = sms2.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.loginSession.userName);
+				if (any.loginSession.userName == "") {
+					onLoginClick();
+					login.value = "로그인";
+				} else {
+					output.value = any.loginSession.userName;
+					register.visible = false;
+					helloWelcome.visible = true;
+					myPage.visible = true;
+					login.value = "로그아웃";
+				}
 				
 			}
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onWhoSubmitSuccess(e){
-				var who = e.control;
-				console.log(app.lookup("dm1").getValue("userName"));
-				var whoNm = app.lookup("whoName");
-			//	var obj=JSON.parse(who.getResponseData("dm1"));
-			//console.log(obj.whoName);
-				app.lookup("whoName").redraw();
-			}
+			//function onWhoSubmitSuccess(e) {
+			//	var who = e.control;
+			//	console.log(app.lookup("dm1").getValue("userName"));
+			//	var whoNm = app.lookup("whoName");
+			//	//	var obj=JSON.parse(who.getResponseData("dm1"));
+			//	//console.log(obj.whoName);
+			//	app.lookup("whoName").redraw();
+			//}
 
 			/*
 			 * "  로그인   " 버튼(login)에서 value-change 이벤트 발생 시 호출.
 			 * Button의 value를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
 			 */
-			function onLoginValueChange(e){
+			function onLoginValueChange(e) {
 				var login = e.control;
 				var logout = app.lookup("login");
 				var submission = app.lookup("logout");
-				logout.addEventListener("click", function(e){
+				logout.addEventListener("click", function(e) {
 					submission.send();
 				});
-				
-				
 				
 			}
 
@@ -153,38 +136,38 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms3SubmitSuccess(e){
+			function onSms3SubmitSuccess(e) {
 				var sms3 = e.control;
 				var login = app.lookup("login");
-				login.value="로그인";
-				window.location.href="/";
+				login.value = "로그인";
+				window.location.href = "/";
 			}
 
 			/*
 			 * "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
-				window.location.href="deleteMember.clx"
+				window.location.href = "deleteMember.clx"
 			}
 
 			/*
 			 * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick4(e){
+			function onButtonClick4(e) {
 				var button = e.control;
-				window.location.href="updateMember.clx"
+				window.location.href = "updateMember.clx"
 			}
 
 			/*
 			 * "마이페이지" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick5(e){
+			function onButtonClick5(e) {
 				var button = e.control;
-				window.location.href="myPage.clx"
+				window.location.href = "myPage.clx"
 			};
 			// End - User Script
 			
@@ -249,17 +232,6 @@
 				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
 			}
 			app.register(submission_3);
-			
-			var submission_4 = new cpr.protocols.Submission("who");
-			submission_4.action = "whoName";
-			submission_4.addResponseData(dataMap_1, false);
-			if(typeof onWhoSubmitSuccess == "function") {
-				submission_4.addEventListener("submit-success", onWhoSubmitSuccess);
-			}
-			if(typeof onWhoReceiveJson == "function") {
-				submission_4.addEventListener("receive-json", onWhoReceiveJson);
-			}
-			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1980px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1979px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");

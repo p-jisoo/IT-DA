@@ -24,11 +24,11 @@
     <cl:output std:sid="output-bbbb72d4" style="font-size:40px; text-align:center;" value="회원 정보 탈퇴">
       <cl:xylayoutdata std:sid="xyl-data-8e232a7f" top="422px" left="861px" width="290px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:inputbox std:sid="i-box-06f7e7ca" id="password" placeholder="비밀번호">
+    <cl:inputbox std:sid="i-box-06f7e7ca" id="password" secret="true" placeholder="비밀번호">
       <cl:datamapbind property="value" datacontrolid="deletePassword" columnname="PASSWORD"/>
       <cl:xylayoutdata std:sid="xyl-data-ff235244" top="517px" left="762px" width="392px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-794f0928" id="passwordChk" placeholder="비밀번호 재확인">
+    <cl:inputbox std:sid="i-box-794f0928" id="passwordChk" secret="true" placeholder="비밀번호 재확인">
       <cl:xylayoutdata std:sid="xyl-data-4770eb6f" top="585px" left="761px" width="393px" height="58px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:button std:sid="button-8efd09e7" style="background-color:#84888A; font-size:25px;" value="탈퇴">

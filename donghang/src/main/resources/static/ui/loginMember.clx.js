@@ -217,6 +217,7 @@
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("ipb2");
+			inputBox_2.secret = true;
 			inputBox_2.placeholder = "비밀번호";
 			inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 			container.addChild(inputBox_2, {

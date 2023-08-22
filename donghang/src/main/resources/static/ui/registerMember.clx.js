@@ -25,40 +25,6 @@
 			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("sms1");
-				submission.send();
-			}
-
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onSms1SubmitSuccess2(e) {
-				var sms1 = e.control;
-			//		var initValue = {
-			//		"msg": "회원가입 안내창"
-			//	}
-			//	app.openDialog("appURI", {
-			//		width: 400,
-			//		height: 300
-			//	}, function(dialog) {
-			//		dialog.ready(function(dialogApp) {
-			//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-			//			dialogApp.initValue = initValue;
-			//		});
-			//	}).then(function(returnValue) {
-			//		alert(JSON.stringify(returnValue));
-			//	});
-			//}
-
-				window.location.href = "/";
-			}
-
-			/*
-			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
-			 * 통신 중 문제가 생기면 발생합니다.
-			 */
-			function onSms1SubmitError(e) {
-				var sms1 = e.control;
 				var pwd = app.lookup("password");
 				var pwdChk = app.lookup("passwordChk");
 				var adr = app.lookup("Address");
@@ -70,45 +36,54 @@
 				if (id.length == 0) {
 					alert("아이디를 입력해주세요.");
 					return false;
-				} else if (id.length < 8 || id.length > 16) {
+				}
+				else if (id.length < 8 || id.length > 16) {
 					alert("아이디를 8~16자리로 입력해주세요.");
 					return false;
 				}
-				if (pwd.length == 0) {
+				else if (pwd.length == 0) {
 					alert("비밀번호를 입력해주세요.");
 					return false;
 				}
-				if (pwd.value != pwdChk.value) {
+				else if (pwd.value != pwdChk.value) {
 					alert("비밀번호가 일치하지 않습니다.");
 					return false;
-				} else if (pwd.length < 8 || pwd.length > 16) {
+				} 
+				else if (pwd.length < 8 || pwd.length > 16) {
 					alert("비밀번호를 8~16자리로 입력해주세요");
 					return false;
 				}
-				if (adr.length == 0) {
+				else if (adr.length == 0) {
 					alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
 					return false;
 				}
-				if (detailAdr.length == 0) {
+				else if (detailAdr.length == 0) {
 					alert("상세주소를 입력해주세요.");
 					return false;
-				}if (Tel.length < 0 || Tel.length > 11) {
+				}else if (Tel.length < 0 || Tel.length > 11) {
 					alert("전화번호를 입력해주세요.");
 					return false;
 				}
-				if (name.length == 0) {
+				else if(name.length == 0) {
 					alert("이름을 입력해주세요.");
 					return false;
 				}
-				if (nickName.length == 0) {
+				else if (nickName.length == 0) {
 					alert("닉네임을 입력해주세요");
 					return false;
 				}
+				submission.send();
 			}
+
 			/*
-			 * "중복확인" 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
 			 */
+			function onSms1SubmitSuccess2(e) {
+				var sms1 = e.control;
+				window.location.href="/"
+			}
+
 			function onButtonClick2(e) {
 				var button = e.control;
 				var id = app.lookup("ipb1").value;
@@ -131,7 +106,8 @@
 					chkId.text = "아이디를 입력해주세요."
 					chkId.style.css("color", "#ED3838");
 					return false;
-				} else if (id.length < 8 || id.length > 16) {
+					
+				}else if (id.length < 8 || id.length > 16) {
 					chkId.text = "8~16자리로 입력해주세요.";
 					chkId.style.css("color", "#ED3838");
 					return false;
@@ -179,7 +155,7 @@
 					pwdMsg.text = "비밀번호를 입력해주세요."
 					pwdMsg.style.css("color", "#ED3838");
 					return false;
-				} else if (pwd.length < 8 || pwd.length > 16) {
+				}else if (pwd.length < 8 || pwd.length > 16) {
 					pwdMsg.text = "8~16자리로 입력해주세요.";
 					pwdMsg.style.css("color", "#ED3838");
 					return false;
@@ -278,7 +254,7 @@
 				var image = e.control;
 				var img = app.lookup("imgHome");
 				window.location.href = "/";
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -325,8 +301,8 @@
 			if(typeof onSms1SubmitSuccess2 == "function") {
 				submission_1.addEventListener("submit-success", onSms1SubmitSuccess2);
 			}
-			if(typeof onSms1SubmitError == "function") {
-				submission_1.addEventListener("submit-error", onSms1SubmitError);
+			if(typeof onSms1SubmitError2 == "function") {
+				submission_1.addEventListener("submit-error", onSms1SubmitError2);
 			}
 			app.register(submission_1);
 			
@@ -657,7 +633,6 @@
 			group_2.setLayout(responsiveXYLayout_3);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
-				inputBox_1.placeholder = "아이디를 입력해주세요.";
 				inputBox_1.autoSkip = true;
 				inputBox_1.style.css({
 					"font-weight" : "normal",
@@ -803,7 +778,6 @@
 				var inputBox_2 = new cpr.controls.InputBox("password");
 				inputBox_2.fieldLabel = "13";
 				inputBox_2.secret = true;
-				inputBox_2.placeholder = "비밀번호";
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -855,10 +829,10 @@
 				});
 				var inputBox_3 = new cpr.controls.InputBox("passwordChk");
 				inputBox_3.secret = true;
-				inputBox_3.placeholder = "비밀번호 재확인";
 				inputBox_3.style.css({
 					"font-size" : "1.2rem"
 				});
+				inputBox_3.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_3.addEventListener("value-change", onPasswordChkValueChange);
 				}
@@ -1041,7 +1015,6 @@
 				});
 				var inputBox_5 = new cpr.controls.InputBox("Address");
 				inputBox_5.readOnly = true;
-				inputBox_5.placeholder = "도로명 주소, 지번 주소";
 				inputBox_5.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -1278,7 +1251,6 @@
 					]
 				});
 				var inputBox_8 = new cpr.controls.InputBox("userName");
-				inputBox_8.placeholder = "이름을 입력해주세요.";
 				inputBox_8.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -1323,7 +1295,6 @@
 					]
 				});
 				var inputBox_9 = new cpr.controls.InputBox("nickName");
-				inputBox_9.placeholder = "닉네임을 입력해주세요.";
 				inputBox_9.style.css({
 					"font-size" : "1.2rem"
 				});

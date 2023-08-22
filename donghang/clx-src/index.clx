@@ -57,11 +57,6 @@
       <cl:submission std:sid="submission-f4456268" id="logout" action="logoutMember">
         <cl:listener std:sid="listener-79d8c3f0" name="submit-success" handler="onSms3SubmitSuccess"/>
       </cl:submission>
-      <cl:submission std:sid="submission-25285432" id="who" action="whoName">
-        <cl:listener std:sid="listener-d870c820" name="submit-success" handler="onWhoSubmitSuccess"/>
-        <cl:listener std:sid="listener-eb3189a0" name="receive-json" handler="onWhoReceiveJson"/>
-        <cl:responsedata dataid="dm1"/>
-      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>

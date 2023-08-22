@@ -17,6 +17,30 @@
 			 *
 			 * @author USER
 			 ************************************************/
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad2(e){
+				var submission = app.lookup("updateSession");
+				submission.send();
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onUpdateSessionSubmitSuccess(e){
+				var updateSession = e.control;
+				var id = app.lookup("userId");
+				var pwd = app.lookup("password");
+				var pwdChk = app.lookup("passwordChk");
+				var adr = app.lookup("Address");
+				var nick = app.lookup("nickName");
+				var responseText = updateSession.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.loginSession);
+				any
+			}
 
 			/*
 			 * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
@@ -25,40 +49,7 @@
 			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("update");
-				submission.send();
-			}
-
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onSms1SubmitSuccess2(e) {
-				var sms1 = e.control;
-			//		var initValue = {
-			//		"msg": "회원가입 안내창"
-			//	}
-			//	app.openDialog("appURI", {
-			//		width: 400,
-			//		height: 300
-			//	}, function(dialog) {
-			//		dialog.ready(function(dialogApp) {
-			//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-			//			dialogApp.initValue = initValue;
-			//		});
-			//	}).then(function(returnValue) {
-			//		alert(JSON.stringify(returnValue));
-			//	});
-			//}
-
-				window.location.href = "/";
-			}
-
-			/*
-			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
-			 * 통신 중 문제가 생기면 발생합니다.
-			 */
-			function onSms1SubmitError(e) {
-				var sms1 = e.control;
+				var id = app.lookup("userId");
 				var pwd = app.lookup("password");
 				var pwdChk = app.lookup("passwordChk");
 				var adr = app.lookup("Address");
@@ -66,6 +57,7 @@
 				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nickName = app.lookup("nickName")
+				
 				if (pwd.length == 0) {
 					alert("비밀번호를 입력해주세요.");
 					return false;
@@ -96,7 +88,38 @@
 					alert("닉네임을 입력해주세요");
 					return false;
 				}
+				submission.send();
 			}
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSms1SubmitSuccess2(e) {
+				var sms1 = e.control;
+				var responseText = sms1.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.ds1);
+				
+			//		var initValue = {
+			//		"msg": "회원가입 안내창"
+			//	}
+			//	app.openDialog("appURI", {
+			//		width: 400,
+			//		height: 300
+			//	}, function(dialog) {
+			//		dialog.ready(function(dialogApp) {
+			//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
+			//			dialogApp.initValue = initValue;
+			//		});
+			//	}).then(function(returnValue) {
+			//		alert(JSON.stringify(returnValue));
+			//	});
+			//}
+				window.location.href = "/";
+				alert("회원정보가 수정되어있습니다.");
+			}
+
 
 			/*
 			 * 인풋 박스에서 value-change 이벤트 발생 시 호출.
@@ -214,8 +237,17 @@
 			// End - User Script
 			
 			// Header
-			var dataSet_1 = new cpr.data.DataSet("ds1");
-			dataSet_1.parseData({});
+			var dataSet_1 = new cpr.data.DataSet("loginSession");
+			dataSet_1.parseData({
+				"columns" : [
+					{"name": "userId"},
+					{"name": "password"},
+					{"name": "address"},
+					{"name": "userTel"},
+					{"name": "userName"},
+					{"name": "nickName"}
+				]
+			});
 			app.register(dataSet_1);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
@@ -275,6 +307,14 @@
 			submission_3.addRequestData(dataMap_3);
 			submission_3.addResponseData(dataMap_3, false);
 			app.register(submission_3);
+			
+			var submission_4 = new cpr.protocols.Submission("updateSession");
+			submission_4.action = "loginSessionMember";
+			submission_4.addResponseData(dataSet_1, false);
+			if(typeof onUpdateSessionSubmitSuccess == "function") {
+				submission_4.addEventListener("submit-success", onUpdateSessionSubmitSuccess);
+			}
+			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1980px)", "register");
 			app.supportMedia("all and (min-width: 1920px) and (max-width: 1979px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
@@ -606,7 +646,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "43px",
+							"top": "126px",
 							"left": "307px",
 							"width": "379px",
 							"height": "55px"
@@ -647,6 +687,7 @@
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
+				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_2.addEventListener("value-change", onPasswordChkValueChange);
 				}
@@ -654,7 +695,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "107px",
+							"top": "190px",
 							"left": "307px",
 							"width": "379px",
 							"height": "55px"
@@ -699,7 +740,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "161px",
+							"top": "244px",
 							"left": "307px",
 							"width": "286px",
 							"height": "56px"
@@ -744,7 +785,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "309px",
+							"top": "336px",
 							"left": "300px",
 							"width": "230px",
 							"height": "55px"
@@ -792,7 +833,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "328px",
+							"top": "355px",
 							"left": "555px",
 							"width": "144px",
 							"height": "36px"
@@ -847,7 +888,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "373px",
+							"top": "400px",
 							"left": "300px",
 							"width": "380px",
 							"height": "55px"
@@ -891,7 +932,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "436px",
+							"top": "463px",
 							"left": "300px",
 							"width": "380px",
 							"height": "55px"
@@ -937,7 +978,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "572px",
+							"top": "593px",
 							"left": "307px",
 							"width": "266px",
 							"height": "55px"
@@ -985,7 +1026,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "582px",
+							"top": "603px",
 							"left": "592px",
 							"width": "118px",
 							"height": "36px"
@@ -1030,7 +1071,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "631px",
+							"top": "652px",
 							"left": "307px",
 							"width": "266px",
 							"height": "55px"
@@ -1165,7 +1206,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "52px",
+							"top": "135px",
 							"left": "2px",
 							"width": "208px",
 							"height": "46px"
@@ -1210,7 +1251,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "116px",
+							"top": "199px",
 							"left": "2px",
 							"width": "281px",
 							"height": "46px"
@@ -1255,7 +1296,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "314px",
+							"top": "341px",
 							"left": "2px",
 							"width": "208px",
 							"height": "46px"
@@ -1300,7 +1341,7 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "586px",
+							"top": "607px",
 							"left": "2px",
 							"width": "208px",
 							"height": "46px"
@@ -1425,6 +1466,100 @@
 						}
 					]
 				});
+				var inputBox_9 = new cpr.controls.InputBox("userId");
+				inputBox_9.readOnly = true;
+				inputBox_9.placeholder = "아이디 변경불가";
+				inputBox_9.autoSkip = true;
+				inputBox_9.style.css({
+					"font-weight" : "normal",
+					"font-size" : "1.1rem",
+					"font-style" : "normal"
+				});
+				inputBox_9.bind("value").toDataSet(app.lookup("loginSession"), "userId", 0);
+				container.addChild(inputBox_9, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "44px",
+							"left": "307px",
+							"width": "245px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "44px",
+							"left": "576px",
+							"width": "459px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "44px",
+							"left": "307px",
+							"width": "245px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "44px",
+							"left": "150px",
+							"width": "120px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "44px",
+							"left": "105px",
+							"width": "84px",
+							"height": "55px"
+						}
+					]
+				});
+				var output_11 = new cpr.controls.Output();
+				output_11.value = "*아이디";
+				output_11.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_11, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "49px",
+							"left": "3px",
+							"width": "206px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "49px",
+							"left": "6px",
+							"width": "386px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "49px",
+							"left": "3px",
+							"width": "206px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "49px",
+							"left": "1px",
+							"width": "101px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "49px",
+							"left": "1px",
+							"width": "70px",
+							"height": "46px"
+						}
+					]
+				});
 			})(group_2);
 			container.addChild(group_2, {
 				positions: [
@@ -1465,6 +1600,9 @@
 					}
 				]
 			});
+			if(typeof onBodyLoad2 == "function"){
+				app.addEventListener("load", onBodyLoad2);
+			}
 		}
 	});
 	app.title = "updateMember";

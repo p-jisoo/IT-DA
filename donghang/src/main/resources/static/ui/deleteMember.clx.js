@@ -117,6 +117,7 @@
 			});
 			
 			var inputBox_1 = new cpr.controls.InputBox("password");
+			inputBox_1.secret = true;
 			inputBox_1.placeholder = "비밀번호";
 			inputBox_1.bind("value").toDataMap(app.lookup("deletePassword"), "PASSWORD");
 			container.addChild(inputBox_1, {
@@ -127,6 +128,7 @@
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("passwordChk");
+			inputBox_2.secret = true;
 			inputBox_2.placeholder = "비밀번호 재확인";
 			container.addChild(inputBox_2, {
 				"top": "585px",

@@ -45,10 +45,10 @@ public class MemberController {
 		MemberVO vo = new MemberVO(id, password, address, userTel, userName, nickName);
 		log.info("a");
 		memberMapper.registerMember(vo);
-
 		return new JSONDataView();
-
-	}
+	
+	}		
+		
 
 	@GetMapping("ui/login")
 	public View login() {
@@ -143,27 +143,27 @@ public class MemberController {
 		return new JSONDataView();
 	}
 
-	// 메인화면에 세션값이 들어와 있을 때 " 000 님 환영합니다 " 을 보여주기위한 기능
-	@PostMapping("ui/whoName")
-	public View whoName(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		HttpSession session = request.getSession(false);//
-		if(session ==null) {
-			return new JSONDataView();
-		}
-		log.info("session {} ", session);
-		MemberVO vo = (MemberVO) session.getAttribute("mvo");
-		log.info("whoname  {}", vo);
-		String name = vo.getUserName();
-		System.out.println("**************************************");
-		System.out.println("로그인 후 유저 이름 세션값 ==" + name);
-		System.out.println("**************************************");
-		Map<String, String> datamap = new HashMap<>();
-		datamap.put("userName", name);
-		if (name != null) {
-			dataRequest.setResponse("dm1", datamap);
-		}
-		return new JSONDataView();
-	}
+//	// 메인화면에 세션값이 들어와 있을 때 " 000 님 환영합니다 " 을 보여주기위한 기능
+//	@PostMapping("ui/whoName")
+//	public View whoName(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+//		HttpSession session = request.getSession(false);//
+//		if(session ==null) {
+//			return new JSONDataView();
+//		}
+//		log.info("session {} ", session);
+//		MemberVO vo = (MemberVO) session.getAttribute("mvo");
+//		log.info("whoname  {}", vo);
+//		String name = vo.getUserName();
+//		System.out.println("**************************************");
+//		System.out.println("로그인 후 유저 이름 세션값 ==" + name);
+//		System.out.println("**************************************");
+//		Map<String, String> datamap = new HashMap<>();
+//		datamap.put("userName", name);
+//		if (name != null) {
+//			dataRequest.setResponse("dm1", datamap);
+//		}
+//		return new JSONDataView();
+//	}
 
 	// 회원 탈퇴 기능
 	@PostMapping("ui/deleteMember")
@@ -181,6 +181,7 @@ public class MemberController {
 			System.out.println("******************");
 			String password = data.getValue("PASSWORD");
 			memberMapper.deleteMember(userId,password);
+			session.invalidate();
 		}
 		return new JSONDataView();
 	}
