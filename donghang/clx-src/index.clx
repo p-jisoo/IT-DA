@@ -14,7 +14,7 @@
         <cl:datarowlist>
           <cl:datarow>
             <cl:datavalue columnname="labal">HOME</cl:datavalue>
-            <cl:datavalue columnname="value">value1</cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[eduApplyboardList]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
             <cl:datavalue columnname="labal">교육신청</cl:datavalue>
@@ -22,11 +22,11 @@
           </cl:datarow>
           <cl:datarow>
             <cl:datavalue columnname="labal">자료</cl:datavalue>
-            <cl:datavalue columnname="value">value3</cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[detailBoard]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
             <cl:datavalue columnname="labal">봉사참여</cl:datavalue>
-            <cl:datavalue columnname="value">value4</cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[updateBoard]]></cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -69,7 +69,7 @@
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-1fb5e24e">
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="-2px" right="20px" bottom="22px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="21px" right="20px" bottom="-1px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:group std:sid="group-f2a4904e">
         <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="1092px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
@@ -112,14 +112,11 @@
       <cl:img std:sid="image-4c8c343d" src="theme/images/pivot/logodonghang .png">
         <cl:xylayoutdata std:sid="xyl-data-ec6a0f42" top="73px" left="101px" width="170px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
-      <cl:img std:sid="image-8edd5818" src="theme/images/pivot/back.jpg">
-        <cl:xylayoutdata std:sid="xyl-data-ac348f20" top="265px" left="359px" width="1444px" height="502px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:img>
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
         <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
-        <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="1114px" left="594px" height="142px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+        <cl:listener std:sid="listener-1fd62663" name="selection-change" handler="onNav1SelectionChange2"/>
+        <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="21px" left="594px" height="142px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
       <cl:output std:sid="output-7e7d16d7" style="color:#4682A9; font-weight:bolder; font-size:2rem;" value="ITda">
@@ -128,6 +125,9 @@
       <cl:output std:sid="output-657ac17b" style="color:#4682A9; font-weight:bold; font-size:1.6rem;" value="Accompany">
         <cl:xylayoutdata std:sid="xyl-data-8ec85627" top="134px" left="288px" width="296px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
+      <cl:embeddedapp std:sid="e-app-3eeeda72" id="ea1">
+        <cl:xylayoutdata std:sid="xyl-data-11a0bb90" top="225px" left="63px" width="1859px" height="815px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:embeddedapp>
       <cl:xylayout std:sid="xylayout-1530ee91"/>
     </cl:group>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>

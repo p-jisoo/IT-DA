@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-a0363c31" version="1.0.4110">
+  <head std:sid="head-23555e3b">
+    <screen std:sid="screen-fa328bb9" id="default" name="default" minwidth="1280px" width="1280px" height="760px" useCustomHeight="false" customHeight="1500" customWidth="800" active="true"/>
+    <screen std:sid="screen-079950ad" id="tablet" name="tablet" minwidth="860px" maxwidth="1279px" width="860px" height="600px"/>
+    <screen std:sid="screen-71544b37" id="mobile" name="mobile" maxwidth="859px" width="360px" height="760px"/>
+    <link std:sid="link-67766428" href="main.part.less" rel="stylesheet" type="text/css"/>
+    <cl:model std:sid="model-f68092d3">
+      <cl:dataset std:sid="d-set-8c61db4c" id="dsAllMenu">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-b7d0e3e2" name="MENU_NM"/>
+          <cl:datacolumn std:sid="d-column-1a75e7e3" name="MENU_ID"/>
+          <cl:datacolumn std:sid="d-column-ce8bf8b8" name="UP_MENU_ID"/>
+          <cl:datacolumn std:sid="d-column-18380ef4" name="TOP_MENU_ID"/>
+          <cl:datacolumn std:sid="d-column-b7879d44" name="CALL_PAGE"/>
+          <cl:datacolumn std:sid="d-column-9bdc2fe6" name="PGM_ID"/>
+          <cl:datacolumn std:sid="d-column-4c100870" name="ICON"/>
+          <cl:datacolumn std:sid="d-column-a2bd6f9f" name="MENU_KEY"/>
+          <cl:datacolumn std:sid="d-column-1d8b7278" name="MOBILE_YN"/>
+          <cl:datacolumn std:sid="d-column-7bb4293e" name="DESC"/>
+          <cl:datacolumn std:sid="d-column-f1e3e1d7" name="CLASS"/>
+          <cl:datacolumn std:sid="d-column-a5f7493c" name="MENU_DESC" datatype="expression" expression="&quot;[&quot; + MENU_NM + &quot;] &quot; + DESC&#xD;&#xA;"/>
+          <cl:datacolumn std:sid="d-column-e7bfcd7b" name="MENU_LOWERCASE" datatype="expression" expression="doLowerCase(MENU_NM)"/>
+          <cl:datacolumn std:sid="d-column-48c5ffc5" name="DESC_LOWERCASE" datatype="expression" expression="doLowerCase(DESC)"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-282f54ea" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-b75c3340" name="label"/>
+          <cl:datacolumn std:sid="d-column-65755003" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[첫번째]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[kosta/emb/Ex_Emb/emb_1]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[두번째]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[kosta/emb/Ex_Emb/emb_2]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[세번째]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[kosta/emb/Ex_Emb/emb_3]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:datamap comment="프로젝트 설정 컨피그" std:sid="d-map-7cabb165" id="dmGlobalConfig">
+        <cl:datacolumnlist>
+          <cl:datacolumn comment="mdi 최대 오픈 갯수" std:sid="d-column-6b206cb1" name="mdiWindowMaxCount"/>
+          <cl:datacolumn comment="디폴트 언어키" std:sid="d-column-b7683641" name="defaultLocale"/>
+          <cl:datacolumn comment="디비전 사용 여부" std:sid="d-column-3aa84c94" name="divideMdiUseYn"/>
+          <cl:datacolumn comment="알림(alert, confirm)시 레이어드팝업 사용 여부" std:sid="d-column-a57d9b90" name="useLayerdPop" defaultvalue="N"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-9d63e0c4" id="subOnLoad" action="data/main.json">
+        <cl:responsedata dataid="dsAllMenu"/>
+        <cl:responsedata dataid="dmGlobalConfig"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec title="eXBuilder6 샘플 가이드"/>
+  </head>
+  <body std:sid="body-138689a3">
+    <cl:listener std:sid="listener-2788a907" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-d5f9720f" name="init" handler="onBodyInit"/>
+    <cl:listener std:sid="listener-5593973c" name="screen-change" handler="onBodyScreenChange"/>
+    <cl:notifier std:sid="notifier-776736b7" id="notiToastr" maxnotifycount="1" delay="2000" animation="fadein" close="true" successdelay="2000" successclose="true" infodelay="2000" infoclose="true" warningdelay="2000" warningclose="true" dangerdelay="4000" dangerclose="true">
+      <cl:xylayoutdata std:sid="xyl-data-5d6fb087" right="20px" bottom="20px" width="350px" height="50px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+      <cl:itemstyle class="notiToastr"/>
+    </cl:notifier>
+    <cl:group std:sid="group-369c2cc2" id="grpLNB" class="aside">
+      <cl:xylayoutdata std:sid="xyl-data-bc4e3b85" top="0px" bottom="0px" left="0px" width="280px" horizontalAnchor="LEFT" verticalAnchor="BOTH"/>
+      <cl:img std:sid="image-90dfcc35" id="imgLogo" class="cursor-pointer" fieldLabel="eXCFrame 로고" tabindex="0" src="logo.png" alt="eXCFrame 로고">
+        <cl:listener std:sid="listener-e026db5f" name="click" handler="onImageLogoClick"/>
+        <cl:listener std:sid="listener-79a1c649" name="keydown" handler="onImgLogoKeydown"/>
+        <cl:xylayoutdata std:sid="xyl-data-99e26d31" top="28px" left="30px" width="177px" height="39px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:searchinput std:sid="s-input-82447622" id="srch1" class="global-search" hideclearbutton="true">
+        <cl:listener std:sid="listener-5cf3d7e1" name="search" handler="onSearchInputSearch"/>
+        <cl:xylayoutdata std:sid="xyl-data-bb0499aa" top="121px" right="30px" left="30px" height="40px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      </cl:searchinput>
+      <cl:sidenavigation std:sid="s-navigation-8fb92413" id="sideNav1" class="sidemenu" indent="0">
+        <cl:listener std:sid="listener-d9c245d4" name="item-click" handler="onSideNav1ItemClick2"/>
+        <cl:xylayoutdata std:sid="xyl-data-2f0bdc9a" top="200px" right="0px" bottom="108px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+        <cl:treeitemset datasetid="ds1" label="label" value="value"/>
+        <cl:itemstyle>
+          <cl:expbind property="class" category="CLASS" expression="CLASS"/>
+        </cl:itemstyle>
+      </cl:sidenavigation>
+      <cl:output std:sid="output-cc76371a" class="caption fs-sm" value="copyright(c) 2022 &#xD;&#xA;Tomatosystem All reserved.">
+        <cl:xylayoutdata std:sid="xyl-data-5163d550" bottom="36px" left="34px" width="156px" height="32px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-9d49e9dd" scrollable="false"/>
+    </cl:group>
+    <cl:group std:sid="group-8a2d8d39" id="grpHeader" class="header">
+      <cl:xylayoutdata std:sid="xyl-data-6ce66e37" top="0px" right="0px" left="280px" height="60px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:group std:sid="group-9806c542" id="grpMnu">
+        <cl:xylayoutdata std:sid="xyl-data-641070f6" top="18px" left="0px" width="48px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:button comment="메뉴 토글" std:sid="button-3a2f2459" id="btnMnuToggle" class="btn-nav-menu" value="">
+          <cl:listener std:sid="listener-dfb2a71d" name="click" handler="onBtnMnuToggleClick"/>
+          <cl:flowlayoutdata std:sid="f-data-30f949d0" width="24px" height="24px"/>
+        </cl:button>
+        <cl:button comment="메뉴 오픈" std:sid="button-e330a03b" id="btnMnuOpen" class="btn-nav-menu" visible="false" value="">
+          <cl:listener std:sid="listener-bd220fda" name="click" handler="onBtnMnuOpenClick"/>
+          <cl:flowlayoutdata std:sid="f-data-7aade83d" width="24px" height="24px"/>
+        </cl:button>
+        <cl:flowlayout std:sid="f-layout-7afa38d1" scrollable="false" hspacing="0" vspacing="0" linewrap="false"/>
+      </cl:group>
+      <cl:group std:sid="group-401d283a">
+        <cl:xylayoutdata std:sid="xyl-data-0b2e62b3" right="40px" width="124px" height="24px" horizontalAnchor="RIGHT" verticalAnchor="CENTER"/>
+        <cl:button comment="프로젝트 다운로드 가이드" std:sid="button-39b4267d" id="btnDownload" class="btn-nav-download" fieldLabel="프로젝트 다운로드 가이드" tooltip="프로젝트 다운로드 가이드" value="">
+          <cl:listener std:sid="listener-53029d92" name="click" handler="onBtnDownloadClick"/>
+          <cl:flowlayoutdata std:sid="f-data-c357e56b" width="24px" height="24px"/>
+        </cl:button>
+        <cl:button comment="테마" std:sid="button-874907db" id="btnDarkMode" class="btn-nav-dark" fieldLabel="테마 변경하기" tooltip="테마 변경하기" value="">
+          <cl:listener std:sid="listener-e6f34c9d" name="click" handler="onBtnDarkModeClick"/>
+          <cl:flowlayoutdata std:sid="f-data-39570095" width="24px" height="24px"/>
+        </cl:button>
+        <cl:flowlayout std:sid="f-layout-25fbb34b" scrollable="false" hspacing="26" vspacing="0" halign="right"/>
+      </cl:group>
+      <cl:xylayout std:sid="xylayout-04643240" scrollable="false"/>
+    </cl:group>
+    <cl:group std:sid="group-bf7f3a64" id="grpMdiWrapper" class="body">
+      <cl:xylayoutdata std:sid="xyl-data-cab3255a" top="60px" right="0px" bottom="0px" left="280px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:mdifolder std:sid="mdifolder-02a317e5" id="mdiCn" class="tab-content" childcombinatorclass="content" headercheckable="true">
+        <cl:listener std:sid="listener-092f234e" name="close" handler="onMdiCnClose"/>
+        <cl:listener std:sid="listener-32625650" name="content-load" handler="onMdiCnContentLoad"/>
+        <cl:xylayoutdata std:sid="xyl-data-64ca0f07" top="20px" right="20px" bottom="20px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+        <cl:tabitem std:sid="t-item-9b30c726" name="default" selected="true" text="대시보드" visible="false">
+          <std:metadata>
+            <std:property key="is-active-item" value="true"/>
+          </std:metadata>
+          <cl:embeddedapp std:sid="e-app-8c522131" id="ea1">
+            <std:metadata>
+              <std:property key="locked" value="true"/>
+            </std:metadata>
+          </cl:embeddedapp>
+        </cl:tabitem>
+        <cl:group std:sid="group-715492dd" clipcontent="false">
+          <cl:headercontroldata std:sid="thc-data-fe9bfc4b" width="35" position="heading"/>
+          <cl:button std:sid="button-d66b2783" id="btnTabHome" class="cl-tabfolder-item" value="" icon="com/ic_home.png">
+            <cl:listener std:sid="listener-ae569312" name="click" handler="onBtnTabHomeClick"/>
+            <cl:xylayoutdata std:sid="xyl-data-ce5a20d9" top="0px" right="-1px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+          </cl:button>
+          <cl:xylayout std:sid="xylayout-c985a330" scrollable="false"/>
+        </cl:group>
+        <cl:group std:sid="group-7cea0b96" class="tab-utils" clipcontent="false">
+          <cl:headercontroldata std:sid="thc-data-9326e81d" width="105" position="right"/>
+          <cl:button comment="확대/축소" std:sid="button-a16b9ef7" id="btnZoom" class="btn-zoom" value="" icon="com/ic_btn_zoom.png">
+            <cl:listener std:sid="listener-4748e022" name="click" handler="onBtnZoomClick"/>
+            <cl:xylayoutdata std:sid="xyl-data-6f4470d3" top="0px" right="70px" bottom="0px" width="36px" horizontalAnchor="RIGHT" verticalAnchor="BOTH"/>
+          </cl:button>
+          <cl:button comment="새로고침" std:sid="button-0f6ea548" id="btnRefresh" class="btn-refresh" value="" icon="com/ic_btn_refresh.png">
+            <cl:listener std:sid="listener-e913372f" name="click" handler="onBtnRefreshClick"/>
+            <cl:xylayoutdata std:sid="xyl-data-537207ba" top="0px" right="35px" bottom="0px" width="36px" horizontalAnchor="RIGHT" verticalAnchor="BOTH"/>
+          </cl:button>
+          <cl:button comment="닫기" std:sid="button-3ab1f2bc" id="btnClose" class="btn-close" value="" icon="com/ic_btn_close.png">
+            <cl:listener std:sid="listener-cc747205" name="click" handler="onBtnCloseClick"/>
+            <cl:xylayoutdata std:sid="xyl-data-9d1f6444" top="0px" right="0px" bottom="0px" width="36px" horizontalAnchor="RIGHT" verticalAnchor="BOTH"/>
+          </cl:button>
+          <cl:xylayout std:sid="xylayout-ca5815d2" scrollable="false"/>
+        </cl:group>
+      </cl:mdifolder>
+      <cl:group std:sid="group-d0d3a679" id="grpZoom" class="floating-box" visible="false">
+        <cl:xylayoutdata std:sid="xyl-data-3c4fcc9c" top="60px" right="90px" width="140px" height="36px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+        <cl:button std:sid="button-99ab5008" id="btnZoomMinus" class="btn-p-0" value="-">
+          <cl:listener std:sid="listener-c564386a" name="click" handler="onBtnZoomPlusMinusClick"/>
+          <cl:formdata std:sid="f-data-4babb2bc" row="0" col="0"/>
+        </cl:button>
+        <cl:button std:sid="button-30660461" id="btnZoomPlus" class="btn-p-0" value="+">
+          <cl:listener std:sid="listener-7c9b7d68" name="click" handler="onBtnZoomPlusMinusClick"/>
+          <cl:formdata std:sid="f-data-f71894d7" row="0" col="2"/>
+        </cl:button>
+        <cl:numbereditor std:sid="n-editor-2c438bb0" id="nbePercent" class="no-status" enabled="false" value="100">
+          <cl:formdata std:sid="f-data-d10f8e4b" row="0" col="1"/>
+        </cl:numbereditor>
+        <cl:formlayout std:sid="f-layout-416c6879" scrollable="false" hspace="6px" vspace="6px" top-margin="1fr" right-margin="10px" bottom-margin="1fr" left-margin="10px">
+          <cl:rows length="24" unit="PIXEL"/>
+          <cl:columns length="24"/>
+          <cl:columns length="1" unit="FRACTION"/>
+          <cl:columns length="24"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:xylayout std:sid="xylayout-f14a882e" scrollable="false" animationduration="0.35"/>
+    </cl:group>
+    <cl:listbox std:sid="l-box-ea64f42a" id="lbxStyle" visible="false">
+      <cl:listener std:sid="listener-cee48457" name="item-click" handler="onLbxStyleItemClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-3da540b5" top="50px" left="1165px" width="100px" height="66px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:item std:sid="item-929f89a8" label="다크테마" value="theme"/>
+      <cl:item std:sid="item-bcd66b88" label="색상반전" value="invert"/>
+    </cl:listbox>
+    <cl:xylayout std:sid="xylayout-785f5251" animationduration="0.35"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
