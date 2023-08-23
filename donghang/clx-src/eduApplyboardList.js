@@ -180,6 +180,7 @@ function onGrd1CellClick(e){
 	var grid = app.lookup("grd1");
 	var cellValue = grid.getCellValue(e.row.getIndex(),0);
 	console.log(grid.getCellValue(e.row.getIndex(),0));
+	console.log(app.getRootAppInstance());
 }
 
 /*

@@ -144,7 +144,7 @@
       <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" visiblefirstbutton="false" visiblelastbutton="false" visibleprevbutton="false" visiblenextbutton="false">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="941px" left="674px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="846px" left="674px" width="497px" height="159px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:pageindexer>
       <cl:group std:sid="group-ea39192a">
         <cl:xylayoutdata std:sid="xyl-data-f2b0e079" top="259px" left="395px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

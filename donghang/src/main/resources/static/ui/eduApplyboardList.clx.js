@@ -193,6 +193,7 @@
 				var grid = app.lookup("grd1");
 				var cellValue = grid.getCellValue(e.row.getIndex(),0);
 				console.log(grid.getCellValue(e.row.getIndex(),0));
+				console.log(app.getRootAppInstance());
 			}
 
 			/*
@@ -405,10 +406,10 @@
 					pageIndexer_1.addEventListener("selection-change", onPageSelectionChange);
 				}
 				container.addChild(pageIndexer_1, {
-					"top": "941px",
+					"top": "846px",
 					"left": "674px",
-					"width": "340px",
-					"height": "65px"
+					"width": "497px",
+					"height": "159px"
 				});
 				var group_2 = new cpr.controls.Container();
 				var formLayout_1 = new cpr.controls.layouts.FormLayout();
