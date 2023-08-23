@@ -4,7 +4,6 @@
  *
  * @author USER
  ************************************************/
-
 /*
  * "로그인" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -34,7 +33,6 @@ function onSms1SubmitSuccess(e){
 //    httpPostMethod.submit();
 	window.location.href="/"
 }
-
 /*
  * 서브미션에서 submit-error 이벤트 발생 시 호출.
  * 통신 중 문제가 생기면 발생합니다.
@@ -52,7 +50,7 @@ function onButtonClick2(e){
 	var button = e.control;
 	window.location.href="registerMember.clx";
 }
-
+	
 
 /*
  * 이미지에서 click 이벤트 발생 시 호출.
@@ -73,8 +71,9 @@ function onOutputClick(e){
 	window.location.href=""
 }
 
+
 /*
- * "비밀번호 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
+ * "/ 비밀번호 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
 function onOutputClick2(e){

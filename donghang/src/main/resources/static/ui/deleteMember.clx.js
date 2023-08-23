@@ -103,19 +103,6 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var output_1 = new cpr.controls.Output();
-			output_1.value = "회원 정보 탈퇴";
-			output_1.style.css({
-				"font-size" : "40px",
-				"text-align" : "center"
-			});
-			container.addChild(output_1, {
-				"top": "422px",
-				"left": "861px",
-				"width": "290px",
-				"height": "65px"
-			});
-			
 			var inputBox_1 = new cpr.controls.InputBox("password");
 			inputBox_1.secret = true;
 			inputBox_1.placeholder = "비밀번호";
@@ -153,28 +140,42 @@
 				"height": "46px"
 			});
 			
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "theme/images/logo_donghang.png";
-			if(typeof onImageClick == "function") {
-				image_1.addEventListener("click", onImageClick);
-			}
+			var image_1 = new cpr.controls.Image("imgHome");
+			image_1.src = "theme/images/img/logo2_donghang.png";
 			container.addChild(image_1, {
-				"top": "212px",
-				"left": "836px",
-				"width": "200px",
-				"height": "200px"
+				"top": "156px",
+				"left": "854px",
+				"width": "206px",
+				"height": "191px"
 			});
 			
-			var image_2 = new cpr.controls.Image();
-			image_2.src = "theme/images/deleteMember_donghang.png";
-			image_2.style.css({
-				"background-size" : "auto"
+			var output_1 = new cpr.controls.Output();
+			output_1.value = "ITda    Accompany";
+			output_1.style.css({
+				"font-weight" : "bold",
+				"font-size" : "2rem",
+				"font-style" : "normal",
+				"text-align" : "center"
 			});
-			container.addChild(image_2, {
-				"top": "422px",
-				"left": "761px",
-				"width": "88px",
-				"height": "65px"
+			container.addChild(output_1, {
+				"top": "357px",
+				"left": "800px",
+				"width": "325px",
+				"height": "46px"
+			});
+			
+			var output_2 = new cpr.controls.Output();
+			output_2.value = "디지털 약자를 위한 교육 서비스 플랫폼";
+			output_2.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1rem",
+				"text-align" : "center"
+			});
+			container.addChild(output_2, {
+				"top": "413px",
+				"left": "769px",
+				"width": "387px",
+				"height": "33px"
 			});
 		}
 	});

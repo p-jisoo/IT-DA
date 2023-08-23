@@ -17,7 +17,6 @@
 			 *
 			 * @author USER
 			 ************************************************/
-
 			/*
 			 * "로그인" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -47,7 +46,6 @@
 			//    httpPostMethod.submit();
 				window.location.href="/"
 			}
-
 			/*
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
@@ -65,7 +63,7 @@
 				var button = e.control;
 				window.location.href="registerMember.clx";
 			}
-
+				
 
 			/*
 			 * 이미지에서 click 이벤트 발생 시 호출.
@@ -86,8 +84,9 @@
 				window.location.href=""
 			}
 
+
 			/*
-			 * "비밀번호 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
+			 * "/ 비밀번호 찾기" 아웃풋에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onOutputClick2(e){
@@ -152,11 +151,17 @@
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var image_1 = new cpr.controls.Image();
+				var image_1 = new cpr.controls.Image("imgHome");
 				image_1.src = "theme/images/img/logo2_donghang.png";
+				if(typeof onImageValueChange == "function") {
+					image_1.addEventListener("value-change", onImageValueChange);
+				}
+				if(typeof onImgHomeClick == "function") {
+					image_1.addEventListener("click", onImgHomeClick);
+				}
 				container.addChild(image_1, {
-					"top": "20px",
-					"left": "307px",
+					"top": "31px",
+					"left": "306px",
 					"width": "206px",
 					"height": "191px"
 				});
@@ -169,18 +174,23 @@
 					"text-align" : "center"
 				});
 				container.addChild(output_1, {
-					"top": "221px",
-					"left": "260px",
-					"width": "320px",
+					"top": "232px",
+					"left": "252px",
+					"width": "325px",
 					"height": "46px"
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
 				inputBox_1.placeholder = "아이디를 입력하세요.";
 				inputBox_1.style.css({
-					"border-radius" : "8px"
+					"border-radius" : "8px",
+					"border-bottom-color" : "#acacac",
+					"border-left-color" : "#acacac",
+					"border-top-color" : "#acacac",
+					"border-right-color" : "#acacac"
 				});
+				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
 				container.addChild(inputBox_1, {
-					"top": "410px",
+					"top": "376px",
 					"left": "263px",
 					"width": "314px",
 					"height": "61px"
@@ -188,10 +198,15 @@
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
 				inputBox_2.placeholder = "비밀번호를 입력하세요.";
 				inputBox_2.style.css({
-					"border-radius" : "8px"
+					"border-radius" : "8px",
+					"border-bottom-color" : "#acacac",
+					"border-left-color" : "#acacac",
+					"border-top-color" : "#acacac",
+					"border-right-color" : "#acacac"
 				});
+				inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 				container.addChild(inputBox_2, {
-					"top": "482px",
+					"top": "448px",
 					"left": "263px",
 					"width": "313px",
 					"height": "61px"
@@ -202,54 +217,178 @@
 					"font-weight" : "bold",
 					"text-align" : "center"
 				});
+				button_1.style.icon.css({
+					"padding-top" : "0px"
+				});
+				if(typeof onButtonClick == "function") {
+					button_1.addEventListener("click", onButtonClick);
+				}
 				container.addChild(button_1, {
-					"top": "567px",
-					"left": "310px",
-					"width": "102px",
+					"top": "549px",
+					"left": "263px",
+					"width": "145px",
 					"height": "33px"
 				});
 				var group_2 = new cpr.controls.Container();
 				group_2.style.css({
-					"background-color" : "#686868"
+					"background-color" : "#ACACAC"
 				});
 				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
 				group_2.setLayout(xYLayout_3);
 				container.addChild(group_2, {
-					"top": "361px",
-					"left": "220px",
+					"top": "343px",
+					"left": "221px",
 					"width": "400px",
 					"height": "2px"
 				});
 				var group_3 = new cpr.controls.Container();
 				group_3.style.css({
-					"background-color" : "#686868"
+					"background-color" : "#ACACAC"
 				});
 				var xYLayout_4 = new cpr.controls.layouts.XYLayout();
 				group_3.setLayout(xYLayout_4);
 				container.addChild(group_3, {
-					"top": "631px",
-					"left": "220px",
+					"top": "613px",
+					"left": "221px",
 					"width": "400px",
 					"height": "2px"
 				});
 				var group_4 = new cpr.controls.Container();
 				group_4.style.css({
-					"background-color" : "#6F6F6F"
+					"background-color" : "#ACACAC",
+					"background-image" : "none"
 				});
 				var xYLayout_5 = new cpr.controls.layouts.XYLayout();
 				group_4.setLayout(xYLayout_5);
 				container.addChild(group_4, {
-					"top": "362px",
-					"left": "220px",
+					"top": "344px",
+					"left": "221px",
 					"width": "2px",
 					"height": "270px"
 				});
+				var group_5 = new cpr.controls.Container();
+				group_5.style.css({
+					"background-color" : "#ACACAC",
+					"background-image" : "none"
+				});
+				var xYLayout_6 = new cpr.controls.layouts.XYLayout();
+				group_5.setLayout(xYLayout_6);
+				container.addChild(group_5, {
+					"top": "344px",
+					"left": "619px",
+					"width": "2px",
+					"height": "270px"
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "회원가입";
+				button_2.style.css({
+					"font-weight" : "bold",
+					"text-align" : "center"
+				});
+				button_2.style.icon.css({
+					"padding-top" : "0px"
+				});
+				if(typeof onButtonClick2 == "function") {
+					button_2.addEventListener("click", onButtonClick2);
+				}
+				container.addChild(button_2, {
+					"top": "549px",
+					"left": "436px",
+					"width": "145px",
+					"height": "33px"
+				});
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "아이디가 기억나지 않는다면?";
+				output_2.style.css({
+					"color" : "#A7A7A7",
+					"font-weight" : "normal",
+					"font-size" : "1rem"
+				});
+				container.addChild(output_2, {
+					"top": "692px",
+					"left": "205px",
+					"width": "234px",
+					"height": "45px"
+				});
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "아이디 찾기";
+				output_3.style.css({
+					"color" : "#4682A9",
+					"font-weight" : "bold",
+					"font-size" : "1rem"
+				});
+				if(typeof onOutputClick == "function") {
+					output_3.addEventListener("click", onOutputClick);
+				}
+				container.addChild(output_3, {
+					"top": "692px",
+					"left": "430px",
+					"width": "96px",
+					"height": "45px"
+				});
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "ITda Accompany    |";
+				output_4.style.css({
+					"color" : "#91C8E4",
+					"font-weight" : "normal",
+					"font-size" : "1rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_4, {
+					"top": "747px",
+					"left": "241px",
+					"width": "162px",
+					"height": "21px"
+				});
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "고객센터 : 010-8299-1244";
+				output_5.style.css({
+					"color" : "#6F6F6F",
+					"font-weight" : "normal",
+					"font-size" : "1rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_5, {
+					"top": "747px",
+					"left": "404px",
+					"width": "200px",
+					"height": "21px"
+				});
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "디지털 약자를 위한 교육 서비스 플랫폼";
+				output_6.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"text-align" : "center"
+				});
+				container.addChild(output_6, {
+					"top": "288px",
+					"left": "221px",
+					"width": "387px",
+					"height": "33px"
+				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "/   비밀번호 찾기";
+				output_7.style.css({
+					"color" : "#4682A9",
+					"font-weight" : "bold",
+					"font-size" : "1rem"
+				});
+				if(typeof onOutputClick2 == "function") {
+					output_7.addEventListener("click", onOutputClick2);
+				}
+				container.addChild(output_7, {
+					"top": "692px",
+					"left": "525px",
+					"width": "139px",
+					"height": "45px"
+				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "56px",
-				"left": "542px",
-				"width": "856px",
-				"height": "713px"
+				"top": "6px",
+				"left": "544px",
+				"width": "825px",
+				"height": "778px"
 			});
 		}
 	});
