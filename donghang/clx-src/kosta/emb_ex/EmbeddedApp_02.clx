@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-bfc4a739" version="1.0.0.0">
+  <head std:sid="head-0d1bf7aa">
+    <title>EmbeddedApp_02</title>
+    <screen std:sid="screen-f57855a8" id="default" name="default" minwidth="1024px" width="1024px" height="768px"/>
+    <screen std:sid="screen-4d2e5d08" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-6d8abda4" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-ac297507"/>
+    <cl:appspec>
+      <cl:property name="appId" type="string" default="임베디드앱02"/>
+    </cl:appspec>
+  </head>
+  <body std:sid="body-af91e769" style="border-right-style:solid; border-top-width:1px; border-bottom-color:blue; border-right-width:1px; border-left-color:blue; border-right-color:blue; border-left-width:1px; border-top-style:solid; top:0px; left:0px; border-left-style:solid; width:800px; border-bottom-width:1px; border-top-color:blue; border-bottom-style:solid; height:600px;">
+    <cl:listener std:sid="listener-8828c82f" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-8e597b67" name="init" handler="onBodyInit"/>
+    <cl:output std:sid="output-7c726d13" id="output5" style="font-size:2rem;" class="h3" value="두번째 페이지">
+      <cl:xylayoutdata std:sid="xyl-data-8795fbe2" top="10px" right="20px" left="20px" height="42px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:group std:sid="group-2fb3e509" id="group1" class="content-form-box">
+      <cl:xylayoutdata std:sid="xyl-data-3f42df85" top="66px" right="20px" left="20px" height="161px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-d43658a4" id="output1" style="text-align:center;" class="card-title" value="initValue">
+        <cl:formdata std:sid="f-data-fe3e6fa1" row="0" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-0a6eb07d" id="output2" style="text-align:center;" class="card-title" value="부모 앱의 앱 속성">
+        <cl:formdata std:sid="f-data-5218acaf" row="2" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-aa4a1261" id="output3" style="text-align:center;" class="card-title" value="앱 속성">
+        <cl:formdata std:sid="f-data-28c07927" row="1" col="0"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-a4f9f022" id="inputbox1" style="color:#1676fb; font-size:18px;" placeholder="앱 속성 값을 입력하세요.">
+        <cl:apppropbind property="value" app-property="appId"/>
+        <cl:formdata std:sid="f-data-271eb518" row="1" col="1" rowspan="1" colspan="2"/>
+      </cl:inputbox>
+      <cl:output std:sid="output-3beffd74" id="opt2" style="color:#ff63a5; padding-left:10px; font-size:18px;" class="text-left" value="">
+        <cl:formdata std:sid="f-data-5eb660b4" row="2" col="2" rowspan="1" colspan="1"/>
+      </cl:output>
+      <cl:output std:sid="output-bc6b5f5a" id="output4" style="text-align:center;" class="card-title" value="앱 함수">
+        <cl:formdata std:sid="f-data-7833c2c8" row="3" col="0"/>
+      </cl:output>
+      <cl:output std:sid="output-296fed4d" id="opt3" style="color:#816bff; padding-left:10px; font-size:18px;" class="text-left" value="">
+        <cl:formdata std:sid="f-data-5feb3df3" row="3" col="1" rowspan="1" colspan="2"/>
+      </cl:output>
+      <cl:button std:sid="button-7bedd05a" id="button1" value="값 가져오기">
+        <cl:listener std:sid="listener-75776505" name="click" handler="onButton1Click"/>
+        <cl:formdata std:sid="f-data-78702add" row="2" col="1"/>
+      </cl:button>
+      <cl:group std:sid="group-9500a71d" id="group2" style="border-radius:0px;" class="content-form-box">
+        <cl:formdata std:sid="f-data-878388db" row="0" col="1" rowspan="1" colspan="2"/>
+        <cl:output std:sid="output-18113d8e" id="output6" style="text-align:center;" class="card-title" value="value">
+          <cl:formdata std:sid="f-data-0edda94f" row="0" col="0"/>
+        </cl:output>
+        <cl:output std:sid="output-fa85433c" id="output7" style="text-align:center;" class="card-title" value="appId">
+          <cl:formdata std:sid="f-data-b45804aa" row="0" col="2"/>
+        </cl:output>
+        <cl:output std:sid="output-21c4fd30" id="opt4" style="padding-left:10px; font-size:18px;" class="text-left" value="">
+          <cl:formdata std:sid="f-data-18f651ea" row="0" col="3"/>
+        </cl:output>
+        <cl:output std:sid="output-e3e89749" id="opt1" style="padding-left:10px; font-size:18px;" class="text-left" value="">
+          <cl:formdata std:sid="f-data-59a68032" row="0" col="1"/>
+        </cl:output>
+        <cl:formlayout std:sid="f-layout-a3681695" scrollable="false" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+          <cl:rows length="1" unit="FRACTION" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+          <cl:columns length="100" unit="PIXEL" autoSizing="false" shadetype="CUSTOM" shadecolor="#e7f0fa" minlength="0"/>
+          <cl:columns length="1" unit="FRACTION" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+          <cl:columns length="100" unit="PIXEL" autoSizing="false" shadetype="CUSTOM" shadecolor="#e7f0fa" minlength="0"/>
+          <cl:columns length="1" unit="FRACTION" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        </cl:formlayout>
+      </cl:group>
+      <cl:formlayout std:sid="f-layout-409b0e50" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:columns length="200" unit="PIXEL" autoSizing="false" shadetype="BY_CLASS" shadecolor="#000000" minlength="0"/>
+        <cl:columns length="100" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-639c77c4"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

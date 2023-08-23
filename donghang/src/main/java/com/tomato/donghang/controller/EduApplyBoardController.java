@@ -16,7 +16,6 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.service.EduApplyBoardService;
-import com.tomato.donghang.model.vo.EduApplyBoardVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

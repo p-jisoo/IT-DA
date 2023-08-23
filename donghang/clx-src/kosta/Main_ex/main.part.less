@@ -1,0 +1,987 @@
+
+/************************************************
+ * 헤더
+ ************************************************/
+
+.cl-container.header {
+	background-color: #ffffff;
+	
+	.cl-button {
+		background-image: none;
+		background-color: transparent;
+		border: none;
+		border-radius: 0px;
+		text-shadow: none;
+		
+		// 메뉴 버튼
+		&.btn-nav-menu {
+			background-image: url("./com/ic_menu.png");
+			
+			&.on {
+				background-image: url("./com/ic_menu_on.png");
+			}
+		}
+		
+		// 다운로드 버튼
+		&.btn-nav-download {
+			background-image: url("./com/ic_download.png");
+		}
+		
+		// 플러그인 버튼 (연관 페이지)
+		&.btn-nav-plugin {
+			background-image: url("./com/ic_plug.png");
+		}
+		
+		// 테마 변경 버튼
+		&.btn-nav-dark {
+			background-image: url("./com/ic_moon.png");
+			
+			&.on {
+				background-image: url("./com/ic_sun.png");
+			}
+		}
+	}
+}
+
+
+/************************************************
+ * 어사이드
+ ************************************************/
+ 
+.cl-container.aside {
+	background-color: #ffffff;
+	
+	// 메뉴 검색
+	.cl-searchinput.global-search {
+		background-image: none;
+		border-radius: 0px;
+		background-size: auto;
+		.cl-text {
+			padding: 0px 10px !important;
+		}
+		
+		.cl-searchinput-search {
+			background-image: url("./com/ic_btn_search.png");
+			background-position: left center;
+			background-size: auto;
+			width: 30px;
+		}
+	}
+	
+	// 메뉴
+	.cl-sidenavigation.sidemenu {
+		background-color: transparent;
+		border: none;
+		border-radius: 0px;
+		
+		.cl-sidenavigation-item {
+			height: auto;
+			min-height: 32px;
+			padding: 0px 10px 0px 10px;
+			
+			.cl-icon {
+				background-size: auto;
+				width: 18px;
+				height: 18px;
+			}
+			
+			.cl-text {
+				padding: 0px 0px 0px 10px;
+				white-space: normal;
+				text-overflow: initial;
+				word-break: break-all;
+			}
+			
+			.cl-expand-icon {
+				background-image: url("./com/ic_plus.png");
+				background-size: auto;
+				width: 19px;
+				height: 19px;
+			}
+			
+			&.cl-folder {
+				&.cl-expanded .cl-expand-icon {
+					background-image: url("./com/ic_minus.png");
+				}
+			}
+			
+			&:not(.cl-level-1) {
+				.cl-icon {
+					display: none;
+				}
+				
+				.cl-text {
+					padding-left: 0px;
+				}
+			}
+			
+			&:hover,
+			&.cl-hover,
+			&:focus {
+				background-color: transparent;
+				color: #4d91ff;
+			}
+			
+			&.cl-selected {
+				background-color: transparent;
+				color: #4d91ff;
+			}
+			
+			// 메뉴별 아이콘
+			&.cl-level-1 {
+				background-repeat: no-repeat;
+				background-position: left center;
+				background-size: 7px 100%;
+				font-size: 16px;
+				min-height: 38px;
+				padding: 0px 20px;
+				
+				.cl-icon {
+					width: 24px;
+				}
+				
+				.cl-expand-icon {
+					background-image: url("./com/ic_arrow.png");
+				}
+				
+				+ .cl-list {
+					background-color: #f7f7f7;
+					margin: 5px 15px;
+					padding: 10px 0px 10px 5px;
+				}
+				
+				&:not(.cl-first) {
+					margin-top: 10px;
+				}
+				
+				&.cl-selected {
+					background-image: linear-gradient(#4d91ff, #4d91ff);
+					background-color: transparent;
+					color: #4d91ff;
+					
+					.cl-expand-icon {
+						background-image: url("./com/ic_arrow_on.png");
+					}
+				}
+				
+				&.control {
+					.cl-icon {
+						background-image: url("./com/ic_menu_01.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_01_on.png");
+						}
+					}
+				}
+				
+				&.module {
+					.cl-icon {
+						background-image: url("./com/ic_menu_02.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_02_on.png");
+						}
+					}
+				}
+				
+				&.page {
+					.cl-icon {
+						background-image: url("./com/ic_menu_03.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_03_on.png");
+						}
+					}
+				}
+				
+				&.application {
+					.cl-icon {
+						background-image: url("./com/ic_menu_04.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_04_on.png");
+						}
+					}
+				}
+				
+				&.list {
+					.cl-icon {
+						background-image: url("./com/ic_menu_05.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_05_on.png");
+						}
+					}
+				}
+				
+				&.shape {
+					.cl-icon {
+						background-image: url("./com/ic_menu_06.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_06_on.png");
+						}
+					}
+				}
+				
+				&.lab {
+					.cl-icon {
+						background-image: url("./com/ic_menu_07.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_07_on.png");
+						}
+					}
+				}
+				
+				&.global {
+					.cl-icon {
+						background-image: url("./com/ic_menu_08.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_08_on.png");
+						}
+					}
+				}
+				
+				&.monitor {
+					.cl-icon {
+						background-image: url("./com/ic_menu_09.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_09_on.png");
+						}
+					}
+				}
+				
+				&.talk {
+					.cl-icon {
+						background-image: url("./com/ic_menu_10.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_10_on.png");
+						}
+					}
+				}
+				
+				&.security {
+					.cl-icon {
+						background-image: url("./com/ic_menu_11.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_11_on.png");
+						}
+					}
+				}
+				
+				&.figure {
+					.cl-icon {
+						background-image: url("./com/ic_menu_12.png");
+					}
+					
+					&.cl-selected {
+						.cl-icon {
+							background-image: url("./com/ic_menu_12_on.png");
+						}
+					}
+				}
+				
+			}
+			
+			&.cl-level-2 {
+				font-size: 14px;
+
+				.cl-expand-icon {
+					background-image: url("./com/ic_plus.png");
+				}
+				
+				+ .cl-list {
+					margin: 5px 0px 10px;
+				}
+				
+				&.cl-folder {
+					&.cl-expanded .cl-expand-icon {
+						background-image: url("./com/ic_minus.png");
+					}
+				}
+				
+				&.cl-selected {
+					background-color: transparent;
+					color: #222222;
+				}
+			}
+			
+			&.cl-level-3 {
+				font-size: 13px;
+				
+				.cl-text {
+					position: relative;
+					padding-left: 13px;
+					
+					&:before {
+						content: "";
+						position: absolute;
+						width: 3px;
+						height: 3px;
+						left: 5px;
+						top: 8px;
+						background-color: #404040;
+						border-radius: 50%;
+					}
+				}
+				
+				&.cl-selected {
+					.cl-text:before {
+						background-color: #4d91ff;
+					}
+				}
+			}
+			
+			&.cl-level-4 {
+				font-size: 12px;
+				
+				.cl-text {
+					padding-left: 23px;
+					
+					&:before {
+						content: "";
+						position: absolute;
+						width: 3px;
+						height: 1px;
+						left: 25px;
+						top: 16px;
+						background-color: #404040;
+					}
+				}
+				
+				+ .cl-list {
+					padding: 0px 0px 5px;
+				}
+			}
+			
+			&.cl-level-5 {
+				font-size: 11px;
+				min-height: 21px;
+				
+				.cl-text {
+					position: relative;
+					padding-left: 35px;
+					
+					&:before {
+						content: "ㄴ";
+						position: absolute;
+						left: 22px;
+						top: 0px;
+						color: #999999;
+					}
+				}
+				
+				&.cl-selected {
+					.cl-text:before {
+						background-color: #4d91ff;
+					}
+				}
+			}
+		}
+	}
+	
+	// 카피라이트
+	.cl-output.caption {
+		color: #999999;
+		font-size: 12px;
+	}
+}
+
+
+/************************************************
+ * 콘텐트
+ ************************************************/
+
+.cl-container.body {
+	background-color: #f0f6ff;
+}
+
+.cl-mdifolder.tab-content {
+	> .content {
+		> .cl-tabfolder-header.content {
+			height: 36px;
+			
+			> .content {
+				margin-right: -1px;
+			}
+			
+			.cl-empty-area {
+				background-color: #ffffff;
+				border-top: 1px solid #d6d6d6;
+			}
+			
+			.cl-tabfolder-prev,
+			.cl-tabfolder-next {
+				background-color: #ffffff;
+				border: 1px solid #d6d6d6 !important;
+				width: 36px;
+				z-index: 0;
+				
+				&.cl-disabled {
+					background-color: #ffffff;
+				}
+			}
+			
+			.cl-tabfolder-prev {
+				background-image: url("./com/ic_prev.png");
+				
+				&:hover, &:focus {
+					background-image: url("./com/ic_prev_on.png");
+				}
+				
+				&.cl-disabled {
+					background-image: url("./com/ic_prev_off.png");
+				}
+			}
+			
+			.cl-tabfolder-next {
+				background-image: url("./com/ic_next.png");
+				
+				&:hover, &:focus {
+					background-image: url("./com/ic_next_on.png");
+				}
+				margin-left: -1px;
+				
+				&.cl-disabled {
+					background-image: url("./com/ic_next_off.png");
+				}
+			}
+			
+			.cl-tabfolder-item {
+				background-color: #ffffff;
+				border: 1px solid #d6d6d6;
+				color: #777777;
+				font-size: 15px;
+				padding: 4px 15px;
+				
+				.cl-text {
+					&:focus {
+						text-decoration: none;
+					}
+				}
+				
+				.cl-checkbox {
+					.cl-checkbox-icon {
+						background-image: url("./com/ic_unlock.png");
+						margin: 0px;
+						width: 14px;
+					}
+					
+					&.cl-checked {
+						.cl-checkbox-icon {
+							background-image: url("./com/ic_lock.png");
+						}
+					}
+				}
+				
+				.cl-tabfolder-button {
+					background-image: url("./com/ic_tab_close.png");
+					background-size: auto;
+					background-position: center;
+					margin-left: 8px;
+					width: 8px;
+				}
+				
+				&:not(.cl-selected):hover {
+					background-color: #f0f0f0;
+					border-color: #d6d6d6;
+					color: #222222;
+				}
+				
+				&.cl-selected {
+					background-color: #4d91ff;
+					border-color: #4d91ff;
+					color: #ffffff;
+					
+					.cl-checkbox {
+						.cl-checkbox-icon {
+							background-image: url("./com/ic_unlock_on.png");
+						}
+						
+						&.cl-checked {
+							.cl-checkbox-icon {
+								background-image: url("./com/ic_lock_on.png");
+							}
+						}
+					}
+					
+					.cl-tabfolder-button {
+						background-image: url("./com/ic_tab_close_on.png");
+					}
+				}
+			}
+			
+			+ .cl-tabfolder-body {
+				.cl-embeddedapp {
+					overflow: auto !important;
+				}
+				border: 1px solid #d6d6d6;
+				border-top-width: 0px;
+			}
+		}
+	}
+}
+
+.cl-button.cl-tabfolder-item {
+	background-image: none !important;
+	background-color: #ffffff;
+	border-radius: 0px;
+	padding: 0px !important;
+	text-shadow: none;
+	
+	.cl-icon {
+		width: 16px;
+		height: 16px;
+		margin: 0px;
+	}
+	
+	&.cl-selected {
+		.cl-icon {
+			background-image: url("./com/ic_home_on.png") !important;
+		}
+	}
+}
+
+.cl-container.tab-utils {
+	.cl-button {
+		background-image: none;
+		background-color: #ffffff;
+		border: 1px solid #d6d6d6;
+		border-radius: 0px;
+		padding: 0px;
+		text-shadow: none;
+		
+		.cl-icon {
+			background-size: auto;
+			margin: 0px;
+			width: 16px;
+			height: 16px;
+		}
+		
+		&.btn-refresh {
+			&:not(.cl-disabled):hover,
+			&:focus,
+			&.cl-focus,
+			&:not(.cl-disabled).cl-activated,
+			&:not(.cl-disabled):active {
+				.cl-icon {
+					background-image: url("./com/ic_btn_refresh_on.png") !important;
+				}
+			}
+		}
+		
+		&.btn-close {
+			&:not(.cl-disabled):hover,
+			&:focus,
+			&.cl-focus,
+			&:not(.cl-disabled).cl-activated,
+			&:not(.cl-disabled):active {
+				.cl-icon {
+					background-image: url("./com/ic_btn_close_on.png") !important;
+				}
+			}
+		}
+		
+		&.btn-zoom {
+			&:not(.cl-disabled):hover,
+			&:focus,
+			&.cl-focus,
+			&:not(.cl-disabled).cl-activated,
+			&:not(.cl-disabled):active {
+				.cl-icon {
+					background-image: url("./com/ic_btn_zoom_on.png") !important;
+				}
+			}
+		}
+	}
+}
+
+.cl-container.floating-box {
+	background-color: #ffffff;
+	border: 1px solid #d6d6d6;
+	border-radius: 4px;
+	box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, .16);
+	
+	.cl-button {
+		background-image: none;
+		background-color: transparent;
+		border: none;
+		border-radius: 0px;
+		
+		&.btn-p-0 {
+			background-color: #ffffff;
+			border: 1px solid #888888;
+			border-radius: 3px;
+		}
+	}
+	
+	.cl-numbereditor.no-status {
+		background-color: #ffffff;
+		border: none;
+		border-radius: 0px;
+		color: #222222;
+		text-align: center;
+	}
+}
+
+/************************************************
+ * 테마
+ ************************************************/
+ 
+.is-dark {
+	.cl-container.header {
+		background-color: #222225;
+		
+		.cl-button.btn-nav-menu {
+			background-image: url("./com/dark/ic_menu.png");
+			
+			&.on {
+				background-image: url("./com/dark/ic_menu_on.png");
+			}
+		}
+		
+		.text-gray-800 {
+			color: #d4d4d4;
+		}
+
+		.cl-button.btn-nav-download {
+			background-image: url("./com/dark/ic_download.png");
+		}
+		
+		.cl-button.btn-nav-plugin {
+			background-image: url("./com/dark/ic_plug.png");
+		}
+		
+		.cl-button.btn-nav-dark {
+			background-image: url("./com/dark/ic_moon.png");
+			
+			&.on {
+				background-image: url("./com/ic_sun.png");
+			}
+		}
+	}
+	
+	.cl-container.aside {
+		background-color: #222225;
+
+		.cl-searchinput.global-search {
+			background-color: #3b3b40;
+			border: none;
+			color: #d4d4d4;
+			
+			.cl-searchinput-search {
+				background-image: url("./com/dark/ic_btn_search.png");
+			}
+		}
+		
+		.cl-sidenavigation.sidemenu {
+			color: #d4d4d4;
+			
+			.cl-sidenavigation-item {
+				
+				.cl-expand-icon {
+					background-image: url("./com/dark/ic_plus.png");
+				}
+				
+				&.cl-folder {
+					&.cl-expanded .cl-expand-icon {
+						background-image: url("./com/dark/ic_minus.png");
+					}
+				}
+			
+				&:hover,
+				&.cl-hover,
+				&:focus {
+					background-color: transparent;
+					color: #4d91ff;
+				}
+				
+				&.cl-selected {
+					background-color: transparent;
+					color: #4d91ff;
+				}
+				
+				// 메뉴별 아이콘
+				&.cl-level-1 {
+					.cl-expand-icon {
+						background-image: url("./com/dark/ic_arrow.png");
+					}
+					
+					+ .cl-list {
+						background-color: #2e3032;
+					}
+					
+					&.cl-selected {
+						background-color: transparent;
+						color: #4d91ff;
+						
+						.cl-expand-icon {
+							background-image: url("./com/ic_arrow_on.png");
+						}
+					}
+					
+					&.control {
+						.cl-icon {
+							background-image: url("./com/dark/ic_menu_01.png");
+						}
+						
+						&.cl-selected {
+							.cl-icon {
+								background-image: url("./com/ic_menu_01_on.png");
+							}
+						}
+					}
+					
+					&.module {
+						.cl-icon {
+							background-image: url("./com/dark/ic_menu_02.png");
+						}
+						
+						&.cl-selected {
+							.cl-icon {
+								background-image: url("./com/ic_menu_02_on.png");
+							}
+						}
+					}
+					
+					&.page {
+						.cl-icon {
+							background-image: url("./com/dark/ic_menu_03.png");
+						}
+						
+						&.cl-selected {
+							.cl-icon {
+								background-image: url("./com/ic_menu_03_on.png");
+							}
+						}
+					}
+					
+					&.application {
+						.cl-icon {
+							background-image: url("./com/dark/ic_menu_04.png");
+						}
+						
+						&.cl-selected {
+							.cl-icon {
+								background-image: url("./com/ic_menu_04_on.png");
+							}
+						}
+					}
+				}
+				
+				&.cl-level-2 {
+					.cl-expand-icon {
+						background-image: url("./com/dark/ic_plus.png");
+					}
+					
+					&.cl-folder {
+						&.cl-expanded .cl-expand-icon {
+							background-image: url("./com/dark/ic_minus.png");
+						}
+					}
+					.cl-expand-icon {
+						background-image: url("./com/dark/ic_plus.png");
+					}
+					
+					&.cl-folder {
+						&.cl-expanded .cl-expand-icon {
+							background-image: url("./com/dark/ic_minus.png");
+						}
+					}
+					
+					&.cl-selected {
+						background-color: transparent;
+						color: #d4d4d4;
+					}
+				}
+				
+				&.cl-level-3 {
+					.cl-text {
+						&:before {
+							content: "";
+							position: absolute;
+							width: 3px;
+							height: 3px;
+							top: 7px; //calc(50% - 2px);
+							left: 0px;
+							background-color: #d4d4d4;
+							border-radius: 50%;
+						}
+					}
+					
+					&.cl-selected {
+						.cl-text {
+							&:before {
+								content: "";
+								background-color: #ffffff;
+							}
+						}
+					}
+				}
+				
+				&.cl-level-4 {
+					.cl-text:before {
+						background-color: #d4d4d4;
+					}
+				}
+				
+				&.cl-level-5 {
+					.cl-text:before {
+						color: #d4d4d4;
+					}
+				}
+			}
+		}
+	}
+	
+	.cl-container.body {
+		background-color: #3b3b40;
+	}
+}
+
+/****************************************************
+ * 대시보드
+ ***************************************************/
+.cl-container.dashboard{
+	.cl-text{
+		text-align: center !important;
+	}
+	
+	.cl-output{
+		overflow: visible !important;
+		&.db-title5{
+			font-size: 27px;
+			font-weight: 700;
+			color: #2c3039;
+		}
+		&.db-sub-title{
+			font-size: 18px;
+			font-weight: bold;
+			letter-spacing: -1px;
+		}
+		&.db-sub-text{
+			font-size: 16px;
+			line-height: 1.4;	
+			letter-spacing: -1px;
+		}
+	}
+	
+	span{
+		&.db-title1{
+			font-size: 28px;
+			line-height: 1;
+		}
+		&.db-title2{
+			display: block;
+			margin-top: 15px;
+			font-size: 61px;
+			font-weight: bold;
+			line-height: 1;
+		}
+		&.db-title3{
+			font-size: 25px;
+			font-weight: 500;
+			color: #ffffff;
+			letter-spacing: -1px;
+		}
+		&.db-title4{
+			display: block;
+			margin-top: 5px;
+			font-size: 20px;
+			color: #ffffff;
+			letter-spacing: -1px;
+		}
+	}
+	.cl-button{
+		&.btn-next{
+			background-image: url('./com/dashboard/btnNext.png');
+			border-radius: 50%;
+			border: none;
+			&:active{
+				background-image: url('./com/dashboard/btnNext.png');
+			}
+		}
+		&.btn-prev{
+			&:active{
+				background-image: url('./com/dashboard/btnPrev.png');
+			}
+			background-image: url('./com/dashboard/btnPrev.png');
+			border-radius: 50%;
+			border: none;
+		}
+	}
+	
+	.background01{
+		background-image: url("./com/dashboard/bgVisual01_01.png");
+	}
+	
+	.background02{
+		background-image: url("./com/dashboard/bgVisual02_01.png");
+	}
+	
+	.background03{
+		background-image: url("./com/dashboard/bgVisual03_01.png");
+	}
+}
+
+
+/****************************************************
+ * 메인 - 알림 메시지
+ ***************************************************/
+ .cl-notifier-item.notiToastr {
+ 	padding: 2px 10px;
+ 	
+ 	/* 노티파이어 아이템 텍스트 */
+ 	.cl-text {
+ 		padding-left: 10px;
+ 		white-space: pre-wrap;
+ 	}
+ 	
+ 	/* 노티파이어 아이템 아이콘 */
+	.cl-notifier-icon {
+		background-size: auto;
+		width: 24px;
+		height: 24px;
+	}
+	
+	/* 노티파이어 아이템 기본 스타일 */
+	&.cl-notifier-default {
+		background-color: #f0f0f0;
+		border-color: #d6d6d6;
+		color: #222222;
+	}
+	
+	/* 노티파이어 아이템 info 스타일 */
+	&.cl-notifier-info {
+		background-color: #f7faff;
+		border-color: #3387ff;
+		color: #222222;
+	}
+ }

@@ -1115,7 +1115,7 @@ body.cl-has-modal {
   border-top: double 3px #333;
 }
 .cl-grid .cl-nodatamsg {
-  background-image: url("images/slash.svg");
+  background-image: url("controls/..theme/controls/images/slash.svg");
   background-repeat: no-repeat;
   background-position: center center;
 }

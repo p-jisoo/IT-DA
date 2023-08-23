@@ -20,9 +20,7 @@ function onBodyInit(e){
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
-	
 	submission.send();
-	
 }
 
 
@@ -150,13 +148,7 @@ function onSms2SubmitSuccess2(e){
  */
 function onSms3SubmitSuccess(e){
 	var sms3 = e.control; //
-	var responseDatas = sms3.getResponseData("ds3");
-	var dataMap = app.lookup("dm3");
-	var value = dataMap.getValue("keyword");
-	var grid = app.lookup("grd1");
-	var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
-	var any =JSON.parse(responseText); //text를 json객체로 변환 
-	grid.redraw();
+	submissionSC();
 	
 }
 
@@ -187,6 +179,4 @@ function onGrd1CellClick(e){
  * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onOptClick(e){
-	var opt = e.control;
-}
+
