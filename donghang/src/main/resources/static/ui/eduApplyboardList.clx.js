@@ -18,21 +18,19 @@
 			 * @author USER
 			 ************************************************/
 
-			/*
-			 * 그룹에서 before-draw 이벤트 발생 시 호출.
-			 * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
-			 */
 
 			/*
 			 * 루트 컨테이너에서 init 이벤트 발생 시 호출.
 			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
 			 */
 			function onBodyInit(e){
+				var submission2 = app.lookup("loginCheck");
 				var page = app.lookup("page");
 				var currentPageIndex = page.currentPageIndex;
 				var dataMap = app.lookup("dm2");
 				dataMap.setValue("nowpage", currentPageIndex);
 				var submission = app.lookup("sms2");
+				submission2.send();
 				submission.send();
 			}
 
@@ -72,6 +70,14 @@
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad(e){
+				var host = app.getHost();
+				var grid = app.lookup("grd1");
+				var hostAppInstance = host.getAppInstance();
+				grid.addEventListener("cell-click", function(e){
+					var control = hostAppInstance.lookup("ea1");
+					console.log(control.getAppInstance());
+				});
+				
 				var listBox = app.lookup("lbx1");
 				var comboBox = app.lookup("cmb1");
 				listBox.selectItemByValue("value1");
@@ -162,15 +168,10 @@
 			function onSms3SubmitSuccess(e){
 				var sms3 = e.control; //
 				submissionSC();
-				
+				console.log("sms3 호출");
 			}
 
 
-
-			/*
-			 * "신청" 버튼에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
 			function onButtonClick2(e){
 				var button = e.control;
 				window.location.href="createBoard.clx";
@@ -186,12 +187,30 @@
 				var cellValue = grid.getCellValue(e.row.getIndex(),0);
 				console.log(grid.getCellValue(e.row.getIndex(),0));
 				console.log(app.getRootAppInstance());
+				
 			}
 
 			/*
 			 * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */;
+			 */
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onLoginCheckSubmitSuccess(e){
+				var loginCheck = e.control;
+				var button = app.lookup("applyCtl");
+				var login = JSON.parse(loginCheck.xhr.responseText);
+				if(login.name){
+					console.log("로그인");
+				}else{
+					console.log("로그인못함");
+					button.dispose();
+				}
+				
+			};
 			// End - User Script
 			
 			// Header
@@ -324,6 +343,12 @@
 				]
 			});
 			app.register(dataMap_3);
+			
+			var dataMap_4 = new cpr.data.DataMap("dm4");
+			dataMap_4.parseData({
+				"columns" : [{"name": "name"}]
+			});
+			app.register(dataMap_4);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.action = "findBaordList.do";
 			submission_1.addResponseData(dataSet_1, false);
@@ -359,6 +384,13 @@
 			var submission_5 = new cpr.protocols.Submission("createBoardSms");
 			submission_5.action = "createBoardUI.do";
 			app.register(submission_5);
+			
+			var submission_6 = new cpr.protocols.Submission("loginCheck");
+			submission_6.action = "loginCheck.do";
+			if(typeof onLoginCheckSubmitSuccess == "function") {
+				submission_6.addEventListener("submit-success", onLoginCheckSubmitSuccess);
+			}
+			app.register(submission_6);
 			app.supportMedia("all and (min-width: 1920px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -544,7 +576,7 @@
 				"height": "65px"
 			});
 			
-			var button_2 = new cpr.controls.Button();
+			var button_2 = new cpr.controls.Button("applyCtl");
 			button_2.value = "신청";
 			if(typeof onButtonClick2 == "function") {
 				button_2.addEventListener("click", onButtonClick2);

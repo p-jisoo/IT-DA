@@ -113,6 +113,11 @@
           <cl:datacolumn std:sid="d-column-6bfde26a" name="keyword"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-4227869a" id="dm4">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-70bac135" name="name"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-032599b6" id="sms1" action="findBaordList.do">
         <cl:listener std:sid="listener-26e4ec14" name="submit-done" handler="onSms1SubmitDone"/>
         <cl:responsedata dataid="ds1"/>
@@ -132,6 +137,9 @@
         <cl:responsedata dataid="ds3"/>
       </cl:submission>
       <cl:submission std:sid="submission-0c975c00" id="createBoardSms" action="createBoardUI.do"/>
+      <cl:submission std:sid="submission-5233918a" id="loginCheck" action="loginCheck.do">
+        <cl:listener std:sid="listener-4c4eb532" name="submit-success" handler="onLoginCheckSubmitSuccess"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
@@ -189,7 +197,7 @@
       <cl:xylayoutdata std:sid="xyl-data-53b96300" top="610px" left="557px" width="851px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:nextstyle style="font-size:30px;"/>
     </cl:pageindexer>
-    <cl:button std:sid="button-819c3ff9" value="신청">
+    <cl:button std:sid="button-819c3ff9" id="applyCtl" value="신청">
       <cl:listener std:sid="listener-a395530b" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-fd040385" top="547px" left="1415px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
