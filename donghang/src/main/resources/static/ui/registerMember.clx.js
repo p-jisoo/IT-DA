@@ -76,13 +76,14 @@
 						alert("이메일을 입력해주세요");
 						return false;
 					}
-				app.openDialog("", {
+				app.openDialog("regiseterDialog", {
 					width: 500,
 					height: 350,
 					headerVisible: false
 				}, function(dialog) {
 					dialog.ready(function(dialogApp) {
-						dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
+					dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
+						
 						dialogApp.addEventListener("click", function(e) {
 									
 						});	
@@ -354,7 +355,7 @@
 			var output_1 = new cpr.controls.Output();
 			output_1.value = "ITda";
 			output_1.style.css({
-				"color" : "#4682A9",
+				"color" : "#000000",
 				"font-weight" : "bolder",
 				"font-size" : "2rem"
 			});
@@ -368,7 +369,7 @@
 			var output_2 = new cpr.controls.Output();
 			output_2.value = "Accompany";
 			output_2.style.css({
-				"color" : "#4682A9",
+				"color" : "#000000",
 				"font-weight" : "bold",
 				"font-size" : "1.6rem"
 			});
@@ -462,7 +463,7 @@
 					"height": "36px"
 				});
 				var output_4 = new cpr.controls.Output("checkId");
-				output_4.value = "영어, 특수문자 8~16자로 입력해주세요.";
+				output_4.value = "영어, 숫자, 특수문자로 8~16자로 입력해주세요.";
 				output_4.style.css({
 					"color" : "#ED3838",
 					"font-size" : "1.1rem",
@@ -471,7 +472,7 @@
 				container.addChild(output_4, {
 					"top": "114px",
 					"left": "300px",
-					"width": "340px",
+					"width": "372px",
 					"height": "60px"
 				});
 				var inputBox_2 = new cpr.controls.InputBox("password");
@@ -510,7 +511,7 @@
 					"height": "55px"
 				});
 				var output_5 = new cpr.controls.Output("pwdMsg");
-				output_5.value = "영어, 특수문자 8~16자로 입력해주세요.";
+				output_5.value = "영어, 숫자, 특수문자로 8~16자로 입력해주세요.";
 				output_5.style.css({
 					"color" : "#ED3838",
 					"font-size" : "1.1rem",
@@ -519,7 +520,7 @@
 				container.addChild(output_5, {
 					"top": "317px",
 					"left": "300px",
-					"width": "335px",
+					"width": "371px",
 					"height": "51px"
 				});
 				var inputBox_4 = new cpr.controls.InputBox("PostCode");

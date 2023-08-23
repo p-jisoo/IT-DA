@@ -82,16 +82,16 @@
         </cl:button>
         <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
           <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-          <cl:xylayoutdata std:sid="xyl-data-7b94e932" top="20px" left="1426px" width="115px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-7b94e932" top="20px" left="1388px" width="105px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
           <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
-          <cl:xylayoutdata std:sid="xyl-data-b1c244b0" top="18px" left="1208px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-b1c244b0" top="20px" left="1180px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
           <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
           <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
-          <cl:xylayoutdata std:sid="xyl-data-f25d4cf1" top="20px" left="1312px" width="115px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-f25d4cf1" top="20px" left="1299px" width="90px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님 환영합니다.">
           <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>

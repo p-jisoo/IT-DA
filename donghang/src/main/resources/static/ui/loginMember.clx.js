@@ -148,127 +148,108 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var output_1 = new cpr.controls.Output();
-			output_1.value = "회원 로그인";
-			output_1.style.css({
-				"font-size" : "40px",
-				"text-align" : "center"
-			});
-			container.addChild(output_1, {
-				"top": "376px",
-				"right": "664px",
-				"left": "778px",
-				"height": "65px"
-			});
-			
-			var inputBox_1 = new cpr.controls.InputBox("ipb1");
-			inputBox_1.placeholder = "아이디\r\n";
-			inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
-			container.addChild(inputBox_1, {
-				"top": "449px",
-				"right": "660px",
-				"left": "778px",
-				"height": "58px"
-			});
-			
-			var inputBox_2 = new cpr.controls.InputBox("ipb2");
-			inputBox_2.secret = true;
-			inputBox_2.placeholder = "비밀번호";
-			inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
-			container.addChild(inputBox_2, {
-				"top": "517px",
-				"right": "660px",
-				"left": "776px",
-				"height": "58px"
-			});
-			
-			var button_1 = new cpr.controls.Button("loginBtn");
-			button_1.value = "로그인";
-			button_1.style.css({
-				"background-color" : "#4682A9",
-				"font-size" : "25px"
-			});
-			if(typeof onButtonClick == "function") {
-				button_1.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_1, {
-				"top": "583px",
-				"right": "860px",
-				"left": "880px",
-				"height": "46px"
-			});
-			
-			var image_1 = new cpr.controls.Image("imgHome");
-			image_1.src = "theme/images/logo_donghang.png";
-			if(typeof onImageValueChange == "function") {
-				image_1.addEventListener("value-change", onImageValueChange);
-			}
-			if(typeof onImgHomeClick == "function") {
-				image_1.addEventListener("click", onImgHomeClick);
-			}
-			container.addChild(image_1, {
-				"top": "165px",
-				"right": "812px",
-				"left": "908px",
-				"height": "200px"
-			});
-			
-			var output_2 = new cpr.controls.Output();
-			output_2.value = "비밀번호 찾기";
-			output_2.style.css({
-				"text-align" : "center"
-			});
-			if(typeof onOutputValueChange == "function") {
-				output_2.addEventListener("value-change", onOutputValueChange);
-			}
-			if(typeof onOutputClick2 == "function") {
-				output_2.addEventListener("click", onOutputClick2);
-			}
-			container.addChild(output_2, {
-				"top": "639px",
-				"right": "658px",
-				"left": "1112px",
-				"height": "20px"
-			});
-			
-			var output_3 = new cpr.controls.Output();
-			output_3.value = "아이디 찾기";
-			output_3.style.css({
-				"text-align" : "center"
-			});
-			if(typeof onOutputClick == "function") {
-				output_3.addEventListener("click", onOutputClick);
-			}
-			container.addChild(output_3, {
-				"top": "639px",
-				"right": "805px",
-				"left": "965px",
-				"height": "20px"
-			});
-			
-			var image_2 = new cpr.controls.Image();
-			image_2.src = "theme/images/login_donghang.png";
-			container.addChild(image_2, {
-				"top": "376px",
-				"right": "1022px",
-				"left": "833px",
-				"height": "65px"
-			});
-			
-			var button_2 = new cpr.controls.Button();
-			button_2.value = "회원가입";
-			button_2.style.css({
-				"background-color" : "#4682A9",
-				"font-size" : "25px"
-			});
-			if(typeof onButtonClick2 == "function") {
-				button_2.addEventListener("click", onButtonClick2);
-			}
-			container.addChild(button_2, {
-				"top": "583px",
-				"right": "658px",
-				"left": "1082px",
-				"height": "46px"
+			var group_1 = new cpr.controls.Container();
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_2);
+			(function(container){
+				var image_1 = new cpr.controls.Image();
+				image_1.src = "theme/images/img/logo2_donghang.png";
+				container.addChild(image_1, {
+					"top": "20px",
+					"left": "307px",
+					"width": "206px",
+					"height": "191px"
+				});
+				var output_1 = new cpr.controls.Output();
+				output_1.value = "ITda    Accompany";
+				output_1.style.css({
+					"font-weight" : "bold",
+					"font-size" : "2rem",
+					"font-style" : "normal",
+					"text-align" : "center"
+				});
+				container.addChild(output_1, {
+					"top": "221px",
+					"left": "260px",
+					"width": "320px",
+					"height": "46px"
+				});
+				var inputBox_1 = new cpr.controls.InputBox("ipb1");
+				inputBox_1.placeholder = "아이디를 입력하세요.";
+				inputBox_1.style.css({
+					"border-radius" : "8px"
+				});
+				container.addChild(inputBox_1, {
+					"top": "410px",
+					"left": "263px",
+					"width": "314px",
+					"height": "61px"
+				});
+				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				inputBox_2.placeholder = "비밀번호를 입력하세요.";
+				inputBox_2.style.css({
+					"border-radius" : "8px"
+				});
+				container.addChild(inputBox_2, {
+					"top": "482px",
+					"left": "263px",
+					"width": "313px",
+					"height": "61px"
+				});
+				var button_1 = new cpr.controls.Button();
+				button_1.value = "로그인";
+				button_1.style.css({
+					"font-weight" : "bold",
+					"text-align" : "center"
+				});
+				container.addChild(button_1, {
+					"top": "567px",
+					"left": "310px",
+					"width": "102px",
+					"height": "33px"
+				});
+				var group_2 = new cpr.controls.Container();
+				group_2.style.css({
+					"background-color" : "#686868"
+				});
+				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
+				group_2.setLayout(xYLayout_3);
+				container.addChild(group_2, {
+					"top": "361px",
+					"left": "220px",
+					"width": "400px",
+					"height": "2px"
+				});
+				var group_3 = new cpr.controls.Container();
+				group_3.style.css({
+					"background-color" : "#686868"
+				});
+				var xYLayout_4 = new cpr.controls.layouts.XYLayout();
+				group_3.setLayout(xYLayout_4);
+				container.addChild(group_3, {
+					"top": "631px",
+					"left": "220px",
+					"width": "400px",
+					"height": "2px"
+				});
+				var group_4 = new cpr.controls.Container();
+				group_4.style.css({
+					"background-color" : "#6F6F6F"
+				});
+				var xYLayout_5 = new cpr.controls.layouts.XYLayout();
+				group_4.setLayout(xYLayout_5);
+				container.addChild(group_4, {
+					"top": "362px",
+					"left": "220px",
+					"width": "2px",
+					"height": "270px"
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"top": "56px",
+				"left": "542px",
+				"width": "856px",
+				"height": "713px"
 			});
 		}
 	});

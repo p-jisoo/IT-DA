@@ -25,7 +25,7 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-9f70a723">
-    <cl:group std:sid="group-017e6b17" style="background-color:#FFFFFF; background-image:none;">
+    <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; background-image:none;">
       <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
       <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#4682A9; color:#F6F4EB; font-weight:bold; font-size:1.5rem; background-image:none;" value="yes">
@@ -33,10 +33,11 @@
         <cl:xylayoutdata std:sid="xyl-data-0ef10480" bottom="1px" left="0px" width="250px" height="80px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
       </cl:button>
       <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#4682A9; font-weight:bold; font-size:1.5rem; background-image:none;" value="cancle">
+        <cl:listener std:sid="listener-8d1dd4a2" name="click" handler="onNo_btnClick"/>
         <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="1px" width="250px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
       </cl:button>
       <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원가입을 하시겠습니까?">
-        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="81px" left="73px" width="342px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="96px" left="72px" width="342px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>

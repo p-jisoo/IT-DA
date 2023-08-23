@@ -311,8 +311,8 @@
 					}
 					container.addChild(button_4, {
 						"top": "20px",
-						"left": "1426px",
-						"width": "115px",
+						"left": "1388px",
+						"width": "105px",
 						"height": "40px"
 					});
 					var button_5 = new cpr.controls.Button("mypage");
@@ -333,8 +333,8 @@
 						button_5.addEventListener("click", onButtonClick);
 					}
 					container.addChild(button_5, {
-						"top": "18px",
-						"left": "1208px",
+						"top": "20px",
+						"left": "1180px",
 						"width": "120px",
 						"height": "40px"
 					});
@@ -359,8 +359,8 @@
 					}
 					container.addChild(button_6, {
 						"top": "20px",
-						"left": "1312px",
-						"width": "115px",
+						"left": "1299px",
+						"width": "90px",
 						"height": "40px"
 					});
 					var output_1 = new cpr.controls.Output("welcom");

@@ -63,13 +63,14 @@ function onButtonClick(e) {
 			alert("이메일을 입력해주세요");
 			return false;
 		}
-	app.openDialog("", {
+	app.openDialog("regiseterDialog", {
 		width: 500,
 		height: 350,
 		headerVisible: false
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {
-			dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
+		dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
+			
 			dialogApp.addEventListener("click", function(e) {
 						
 			});	

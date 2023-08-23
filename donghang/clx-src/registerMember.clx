@@ -47,10 +47,10 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-bde335ed" style="color:#91C8E4; text-align:center;">
-    <cl:output std:sid="output-7e7d16d7" style="color:#4682A9; font-weight:bolder; font-size:2rem;" value="ITda">
+    <cl:output std:sid="output-7e7d16d7" style="color:#000000; font-weight:bolder; font-size:2rem;" value="ITda">
       <cl:xylayoutdata std:sid="xyl-data-cd015327" top="72px" left="167px" width="84px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-657ac17b" style="color:#4682A9; font-weight:bold; font-size:1.6rem;" value="Accompany">
+    <cl:output std:sid="output-657ac17b" style="color:#000000; font-weight:bold; font-size:1.6rem;" value="Accompany">
       <cl:xylayoutdata std:sid="xyl-data-d6d2d764" top="114px" left="167px" width="157px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:group std:sid="group-39caef39">
@@ -75,8 +75,8 @@
         <cl:listener std:sid="listener-8d9fe1c8" name="click" handler="onButtonClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-6de796b9" top="58px" left="555px" width="102px" height="36px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
-      <cl:output std:sid="output-2168bb17" id="checkId" style="color:#ED3838; font-size:1.1rem; text-align:left;" value="영어, 특수문자 8~16자로 입력해주세요.">
-        <cl:xylayoutdata std:sid="xyl-data-40de1472" top="114px" left="300px" width="340px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-2168bb17" id="checkId" style="color:#ED3838; font-size:1.1rem; text-align:left;" value="영어, 숫자, 특수문자로 8~16자로 입력해주세요.">
+        <cl:xylayoutdata std:sid="xyl-data-40de1472" top="114px" left="300px" width="372px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-28c95846" id="password" style="font-size:1.2rem;" fieldLabel="13" secret="true" placeholder="비밀번호를 입력해주세요.">
         <cl:listener std:sid="listener-8f45d101" name="keyup" handler="onIpb2Keyup"/>
@@ -88,8 +88,8 @@
         <cl:listener std:sid="listener-ede6801e" name="value-change" handler="onPasswordChkValueChange"/>
         <cl:xylayoutdata std:sid="xyl-data-3da1acd8" top="249px" left="300px" width="379px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
-      <cl:output std:sid="output-385e8cc5" id="pwdMsg" style="color:#ED3838; font-size:1.1rem; text-align:left;" value="영어, 특수문자 8~16자로 입력해주세요.">
-        <cl:xylayoutdata std:sid="xyl-data-1a87f983" top="317px" left="300px" width="335px" height="51px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-385e8cc5" id="pwdMsg" style="color:#ED3838; font-size:1.1rem; text-align:left;" value="영어, 숫자, 특수문자로 8~16자로 입력해주세요.">
+        <cl:xylayoutdata std:sid="xyl-data-1a87f983" top="317px" left="300px" width="371px" height="51px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-1841ede3" id="PostCode" style="font-size:1.2rem;" readonly="true" placeholder="우편번호">
         <cl:xylayoutdata std:sid="xyl-data-2454e4c2" top="390px" left="300px" width="230px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
