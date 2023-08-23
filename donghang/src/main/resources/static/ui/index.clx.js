@@ -23,11 +23,38 @@
 			 */
 			function onNav1ItemClick(e) {
 				var nav1 = e.control;
-				var submission = app.lookup("sms1");
-				var navigationBar = app.lookup("nav1");
-				var count = navigationBar.getSelectedIndices().toString()
-				submission.setParameters("menu", count);
-				submission.send();
+			//	var submission = app.lookup("sms1");
+			//	var navigationBar = app.lookup("nav1");
+			//	var count = navigationBar.getSelectedIndices().toString()
+			//	submission.setParameters("menu", count);
+			//	submission.send();
+				var vcEmb = app.lookup("ea1");
+				
+				// 선택한 아이템에 대한 값 
+				var vsAppId = e.item.value;
+				
+				// 입력값에 선택된 앱이 존재하지 않는 경우
+				if(vsAppId == null) {
+					return alert("추가될 App이 존재하지 않습니다.");
+				}
+				
+				/*앱을 로드하고 로드된 앱을 임베디드 앱에 설정합니다.*/
+				cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
+					/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+					if(vcEmb.getEmbeddedAppInstance()){
+						vcEmb.getEmbeddedAppInstance().dispose();
+					}
+					/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+					if(loadedApp){						
+						/*초기값을 전달합니다.*/			
+						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+							embApp.initValue =  e.item.label;
+						})
+						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+						vcEmb.app = loadedApp;
+					}
+				}); 
+				
 			}
 
 			/*
@@ -185,6 +212,15 @@
 			function onButtonClick5(e){
 				var button = e.control;
 				window.location.href="myPage.clx"
+			}
+
+			/*
+			 * 내비게이션 바에서 selection-change 이벤트 발생 시 호출.
+			 * 선택된 Item 값이 저장된 후에 발생하는 이벤트.
+			 */
+			function onNav1SelectionChange2(e){
+				var nav1 = e.control;
+				
 			};
 			// End - User Script
 			
@@ -196,10 +232,10 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"labal": "HOME", "value": "value1"},
+					{"labal": "HOME", "value": "eduApplyboardList"},
 					{"labal": "교육신청", "value": "value2"},
-					{"labal": "자료", "value": "value3"},
-					{"labal": "봉사참여", "value": "value4"}
+					{"labal": "자료", "value": "detailBoard"},
+					{"labal": "봉사참여", "value": "updateBoard"}
 				]
 			});
 			app.register(dataSet_1);
@@ -438,14 +474,6 @@
 					"width": "170px",
 					"height": "102px"
 				});
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "theme/images/pivot/back.jpg";
-				container.addChild(image_2, {
-					"top": "265px",
-					"left": "359px",
-					"width": "1444px",
-					"height": "502px"
-				});
 				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
 				navigationBar_1.barItemSpacing = 150;
 				navigationBar_1.style.css({
@@ -468,12 +496,12 @@
 				if(typeof onNav1Click2 == "function") {
 					navigationBar_1.addEventListener("click", onNav1Click2);
 				}
-				if(typeof onNav1SelectionChange == "function") {
-					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
+				if(typeof onNav1SelectionChange2 == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
 				}
 				container.addChild(navigationBar_1, {
 					"top": "73px",
-					"right": "1114px",
+					"right": "21px",
 					"left": "594px",
 					"height": "142px"
 				});
@@ -503,14 +531,21 @@
 					"width": "296px",
 					"height": "41px"
 				});
+				var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
+				container.addChild(embeddedApp_1, {
+					"top": "225px",
+					"left": "63px",
+					"width": "1859px",
+					"height": "815px"
+				});
 			})(group_1);
 			if(typeof onGroupClick == "function") {
 				group_1.addEventListener("click", onGroupClick);
 			}
 			container.addChild(group_1, {
-				"top": "-2px",
+				"top": "21px",
 				"right": "20px",
-				"bottom": "22px",
+				"bottom": "-1px",
 				"left": "20px"
 			});
 			if(typeof onBodyLoad == "function"){

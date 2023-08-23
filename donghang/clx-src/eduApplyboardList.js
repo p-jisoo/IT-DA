@@ -20,9 +20,7 @@ function onBodyInit(e){
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
-	
 	submission.send();
-	
 }
 
 
@@ -272,5 +270,5 @@ function showSearchDataNotExist(){
  */
 function onButtonClick2(e){
 	var button = e.control;
-	window.location.href="createBoard.clx";
+	window.location.href="createBoardUI.do";
 }
