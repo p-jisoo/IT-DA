@@ -509,8 +509,8 @@
 			}
 			container.addChild(group_1, {
 				"top": "-2px",
-				"right": "-1100px",
-				"bottom": "-1978px",
+				"right": "20px",
+				"bottom": "22px",
 				"left": "20px"
 			});
 			if(typeof onBodyLoad == "function"){
