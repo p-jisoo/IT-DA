@@ -84,7 +84,7 @@
 				if(true){
 					image.src = "theme/images/heart-fillsvg.svg";
 				}
-			/*	
+			/*
 			 * "목록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
@@ -92,6 +92,9 @@
 				var button = e.control;
 				window.location.href= 'toBoardList.do'
 			};
+			// End - User Script
+			
+			// Header
 			var dataSet_1 = new cpr.data.DataSet("boardList");
 			dataSet_1.parseData({
 				"columns" : [
