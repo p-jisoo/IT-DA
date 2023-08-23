@@ -63,7 +63,6 @@ function onBodyLoad(e){
 	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
 	comboBox.selectItemByValue("value1");
-	
 }
 
 /*

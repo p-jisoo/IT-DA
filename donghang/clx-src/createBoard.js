@@ -28,7 +28,7 @@ function onButtonClick(e){
 	console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 	
 	submission.send()
-	window.location.href="eduApplyBoardList.clx";
+	window.location.href="toBoardList.do";
 }
 
 /*
@@ -71,4 +71,11 @@ function onBodyLoad(e){
 	if(true){
 		image.src = "theme/images/heart-fillsvg.svg";
 	}
+/*
+ * "목록" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e){
+	var button = e.control;
+	window.location.href= 'toBoardList.do'
 }
