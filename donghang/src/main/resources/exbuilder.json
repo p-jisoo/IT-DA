@@ -10,7 +10,7 @@
     "height": 150.0
   },
   "runtime-css": [
-    "/resource/css/cleopatra.css"
+   "/ui/theme/cleopatra-theme.css"
   ],
   "runtime-lib": [
     "/resource/cleopatra.js",

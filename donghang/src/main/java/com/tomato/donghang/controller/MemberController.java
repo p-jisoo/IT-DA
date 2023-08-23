@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.View;
 
+import com.cleopatra.export.source.Metadata;
 import com.cleopatra.protocol.data.DataRequest;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
@@ -42,13 +43,19 @@ public class MemberController {
 		String userTel = data.getValue("userTel");
 		String userName = data.getValue("userName");
 		String nickName = data.getValue("nickName");
-		MemberVO vo = new MemberVO(id, password, address, userTel, userName, nickName);
-		log.info("a");
-		memberMapper.registerMember(vo);
+		String email=data.getValue("email");
+		System.out.println(id+" "+password);
+		MemberVO vo = new MemberVO(id, password, address, userTel, userName, nickName, email);
+		log.info("회원가입한 정보 {}"+vo);
+		memberMapper.registerMember(vo);		
+		
+		Map<String, Object> map=new HashMap<>();// map 선언
+		map.put("registerSuccess", "true"); // map에 key(registerSucess)와 value의 true값을 넣어줍니다. 
+		dataRequest.setMetadata(true, map); // 여기에 map이 꼭들어가야함. value자리에 map을 꼭 넣어줘야한다!!
+	
 		return new JSONDataView();
 	
 	}		
-		
 
 	@GetMapping("ui/login")
 	public View login() {
@@ -81,7 +88,6 @@ public class MemberController {
 		if (session == null || session.getAttribute("mvo") == null) {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
 		} else {
-
 			ParameterGroup data = dataRequest.getParameterGroup("dm1");
 			String id = data.getValue("userId");
 			String password = data.getValue("password");
@@ -89,9 +95,12 @@ public class MemberController {
 			String userTel = data.getValue("userTel");
 			String userName = data.getValue("userName");
 			String nickName = data.getValue("nickName");
-			System.out.println("업데이트 전 = "+id+","+ password+","+address+","+","+userTel+","+userName+","+nickName);
+			String email=data.getValue("email");
+			System.out.println("입력된값 = "+id+","+ password+","+address+","+","+userTel+","+userName+","+nickName+","+email);
+			
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName);
+			System.out.println("업데이트 전 = "+mvo);
+			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName,email);
 			System.out.println("업데이트 후 = "+vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
@@ -136,6 +145,7 @@ public class MemberController {
 			return new JSONDataView();
 		}
 	}
+	// 로그아웃 기능 구현
 	@PostMapping("ui/logoutMember")
 	public View logoutMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequset) {
 		HttpSession session = request.getSession(false);
@@ -144,29 +154,7 @@ public class MemberController {
 		}
 		return new JSONDataView();
 	}
-
-//	// 메인화면에 세션값이 들어와 있을 때 " 000 님 환영합니다 " 을 보여주기위한 기능
-//	@PostMapping("ui/whoName")
-//	public View whoName(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-//		HttpSession session = request.getSession(false);//
-//		if(session ==null) {
-//			return new JSONDataView();
-//		}
-//		log.info("session {} ", session);
-//		MemberVO vo = (MemberVO) session.getAttribute("mvo");
-//		log.info("whoname  {}", vo);
-//		String name = vo.getUserName();
-//		System.out.println("**************************************");
-//		System.out.println("로그인 후 유저 이름 세션값 ==" + name);
-//		System.out.println("**************************************");
-//		Map<String, String> datamap = new HashMap<>();
-//		datamap.put("userName", name);
-//		if (name != null) {
-//			dataRequest.setResponse("dm1", datamap);
-//		}
-//		return new JSONDataView();
-//	}
-
+	
 	// 회원 탈퇴 기능
 	@PostMapping("ui/deleteMember")
 	public View deleteMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse response) {

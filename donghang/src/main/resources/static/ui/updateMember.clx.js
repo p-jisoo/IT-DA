@@ -36,6 +36,7 @@
 				var tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nick = app.lookup("nickName");
+				var email = app.lookup("email");
 				var responseText = updateSession.xhr.responseText;
 				var any = JSON.parse(responseText);
 				console.log(any.loginSession);
@@ -44,11 +45,12 @@
 				tel.value=any.loginSession.userTel;
 				name.value=any.loginSession.userName;
 				nick.value=any.loginSession.nickName;
+				email.value=any.loginSession.email
 				
 			}
 
 			/*
-			 * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
+			 * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick(e) {
@@ -62,6 +64,7 @@
 				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nickName = app.lookup("nickName")
+				var email = app.lookup("email");
 				
 				if (pwd.length == 0) {
 					alert("비밀번호를 입력해주세요.");
@@ -93,6 +96,9 @@
 					alert("닉네임을 입력해주세요");
 					return false;
 				}
+				if(email.length==0){
+					alert("이메일을 입력해주세요.")
+				}
 				submission.send();
 			}
 
@@ -105,24 +111,8 @@
 				var responseText = sms1.xhr.responseText;
 				var any = JSON.parse(responseText);
 				console.log(any.ds1);
-				
-			//		var initValue = {
-			//		"msg": "회원가입 안내창"
-			//	}
-			//	app.openDialog("appURI", {
-			//		width: 400,
-			//		height: 300
-			//	}, function(dialog) {
-			//		dialog.ready(function(dialogApp) {
-			//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-			//			dialogApp.initValue = initValue;
-			//		});
-			//	}).then(function(returnValue) {
-			//		alert(JSON.stringify(returnValue));
-			//	});
-			//}
 				window.location.href = "/";
-				alert("회원정보가 수정되어있습니다.");
+				alert("회원정보가 수정되었습니다.");
 			}
 
 
@@ -250,7 +240,8 @@
 					{"name": "address"},
 					{"name": "userTel"},
 					{"name": "userName"},
-					{"name": "nickName"}
+					{"name": "nickName"},
+					{"name": "email"}
 				]
 			});
 			app.register(dataSet_1);
@@ -272,7 +263,8 @@
 					{
 						"name": "nickName",
 						"dataType": "string"
-					}
+					},
+					{"name": "email"}
 				]
 			});
 			app.register(dataMap_1);
@@ -636,10 +628,11 @@
 				var inputBox_1 = new cpr.controls.InputBox("password");
 				inputBox_1.fieldLabel = "13";
 				inputBox_1.secret = true;
-				inputBox_1.placeholder = "비밀번호";
+				inputBox_1.placeholder = "비밀번호를 입력하세요.";
 				inputBox_1.style.css({
 					"font-size" : "1.2rem"
 				});
+				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "password");
 				if(typeof onIpb2Keyup == "function") {
 					inputBox_1.addEventListener("keyup", onIpb2Keyup);
 				}
@@ -687,7 +680,7 @@
 				});
 				var inputBox_2 = new cpr.controls.InputBox("passwordChk");
 				inputBox_2.secret = true;
-				inputBox_2.placeholder = "비밀번호 재확인";
+				inputBox_2.placeholder = "비밀번호 재확인을 입력하세요.";
 				inputBox_2.style.css({
 					"font-size" : "1.2rem"
 				});
@@ -734,18 +727,19 @@
 					]
 				});
 				var output_4 = new cpr.controls.Output("pwdMsg");
-				output_4.value = "비밀번호를 입력해주세요.             영어대소문자/8~16자";
+				output_4.value = "영어, 숫자, 특수기호로 8~16자 입력해주세요.";
 				output_4.style.css({
 					"color" : "#ED3838",
-					"font-size" : "1.1rem"
+					"font-size" : "1.1rem",
+					"text-align" : "left"
 				});
 				container.addChild(output_4, {
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "244px",
+							"top": "254px",
 							"left": "307px",
-							"width": "286px",
+							"width": "409px",
 							"height": "56px"
 						}, 
 						{
@@ -982,7 +976,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "593px",
-							"left": "307px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1075,7 +1069,7 @@
 						{
 							"media": "all and (min-width: 1980px)",
 							"top": "652px",
-							"left": "307px",
+							"left": "300px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1119,8 +1113,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "781px",
-							"left": "300px",
+							"top": "758px",
+							"left": "297px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1164,8 +1158,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "911px",
-							"left": "300px",
+							"top": "830px",
+							"left": "297px",
 							"width": "266px",
 							"height": "55px"
 						}, 
@@ -1389,8 +1383,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "774px",
-							"left": "2px",
+							"top": "751px",
+							"left": "-1px",
 							"width": "208px",
 							"height": "46px"
 						}, 
@@ -1434,8 +1428,8 @@
 					positions: [
 						{
 							"media": "all and (min-width: 1980px)",
-							"top": "904px",
-							"left": "2px",
+							"top": "823px",
+							"left": "-1px",
 							"width": "208px",
 							"height": "46px"
 						}, 
@@ -1474,6 +1468,7 @@
 				inputBox_9.placeholder = "아이디 변경불가";
 				inputBox_9.autoSkip = true;
 				inputBox_9.style.css({
+					"color" : "#ED3838",
 					"font-weight" : "normal",
 					"font-size" : "1.1rem",
 					"font-style" : "normal"
@@ -1559,6 +1554,97 @@
 							"top": "49px",
 							"left": "1px",
 							"width": "70px",
+							"height": "46px"
+						}
+					]
+				});
+				var inputBox_10 = new cpr.controls.InputBox("email");
+				inputBox_10.placeholder = "________________@____";
+				inputBox_10.style.css({
+					"font-size" : "1.2rem",
+					"text-align" : "left"
+				});
+				inputBox_10.bind("value").toDataMap(app.lookup("dm1"), "email");
+				container.addChild(inputBox_10, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "915px",
+							"left": "297px",
+							"width": "266px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "915px",
+							"left": "557px",
+							"width": "499px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "915px",
+							"left": "297px",
+							"width": "266px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "915px",
+							"left": "145px",
+							"width": "130px",
+							"height": "55px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "915px",
+							"left": "102px",
+							"width": "91px",
+							"height": "55px"
+						}
+					]
+				});
+				var output_12 = new cpr.controls.Output();
+				output_12.value = "이메일";
+				output_12.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.5rem"
+				});
+				container.addChild(output_12, {
+					positions: [
+						{
+							"media": "all and (min-width: 1980px)",
+							"top": "920px",
+							"left": "3px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1920px) and (max-width: 1979px)",
+							"top": "920px",
+							"left": "6px",
+							"width": "390px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 1024px) and (max-width: 1919px)",
+							"top": "920px",
+							"left": "3px",
+							"width": "208px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (min-width: 500px) and (max-width: 1023px)",
+							"top": "920px",
+							"left": "1px",
+							"width": "102px",
+							"height": "46px"
+						}, 
+						{
+							"media": "all and (max-width: 499px)",
+							"top": "920px",
+							"left": "1px",
+							"width": "71px",
 							"height": "46px"
 						}
 					]

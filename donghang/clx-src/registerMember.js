@@ -11,7 +11,6 @@
  */
 function onButtonClick(e) {
 	var button = e.control;
-	var submission = app.lookup("sms1");
 	var pwd = app.lookup("password");
 	var pwdChk = app.lookup("passwordChk");
 	var adr = app.lookup("Address");
@@ -20,88 +19,71 @@ function onButtonClick(e) {
 	var Tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
 	var nickName = app.lookup("nickName");
-	//	if (id.length == 0) {
-	//		alert("아이디를 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if (id.length < 8 || id.length > 16) {
-	//		alert("아이디를 8~16자리로 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if (pwd.length == 0) {
-	//		alert("비밀번호를 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if (pwd.value != pwdChk.value) {
-	//		alert("비밀번호가 일치하지 않습니다.");
-	//		return false;
-	//	} 
-	//	else if (pwd.length < 8 || pwd.length > 16) {
-	//		alert("비밀번호를 8~16자리로 입력해주세요");
-	//		return false;
-	//	}
-	//	else if (adr.length == 0) {
-	//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if (detailAdr.length == 0) {
-	//		alert("상세주소를 입력해주세요.");
-	//		return false;
-	//	}else if (Tel.length < 0 || Tel.length > 11) {
-	//		alert("전화번호를 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if(name.length == 0) {
-	//		alert("이름을 입력해주세요.");
-	//		return false;
-	//	}
-	//	else if (nickName.length == 0) {
-	//		alert("닉네임을 입력해주세요");
-	//		return false;
-	//	}
-	//	
-	//		var initValue ={
-	//		"msg" : "exBuilder6"
-	//		
-	//	}
-	
-	app.openDialog("regiseterDialog", {
+	var email = app.lookup("email");
+		if (id.length == 0) {
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		else if (id.length < 8 || id.length > 16) {
+			alert("아이디를 8~16자리로 입력해주세요.");
+			return false;		
+		}
+		else if (pwd.length == 0) {
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}
+		else if (pwd.value != pwdChk.value) {
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		} 
+		else if (pwd.length < 8 || pwd.length > 16) {
+			alert("비밀번호를 8~16자리로 입력해주세요");
+			return false;
+		}
+		else if (adr.length == 0) {
+			alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+			return false;
+		}
+		else if (detailAdr.length == 0) {
+			alert("상세주소를 입력해주세요.");
+			return false;
+		}else if (Tel.length < 0 || Tel.length > 11) {
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
+		else if(name.length == 0) {
+			alert("이름을 입력해주세요.");
+			return false;
+		}
+		else if (nickName.length == 0) {
+			alert("닉네임을 입력해주세요");
+			return false;
+		}
+		else if(email.length==0){
+			alert("이메일을 입력해주세요");
+			return false;
+		}
+	app.openDialog("", {
 		width: 500,
 		height: 350,
 		headerVisible: false
 	}, function(dialog) {
 		dialog.ready(function(dialogApp) {
-			//	var btn = dialogApp.getAppInstance().lookup("loginBtn");
-			//dialog.style.overlay.css("background-color", "aqua");
-			//dialog.style.css("border","solid 3px blue");
-			dialog.style.css("root","solid 10px blue");
-			dialogApp.setAppProperty("textValue", "페이지에서 벗어나시겠습니까?");
-			dialogApp.setAppProperty("yes_btn", "YES");
-			dialogApp.setAppProperty("no_btn", "NO")
+			dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
 			dialogApp.addEventListener("click", function(e) {
-				submission.send();
-				dialog.close();
-			});
-			dialogApp.addEventListener("click", function(e) {
-				
-				dialog.close();
-				
-			});
-			
+						
+			});	
 		});
 	}).then(function(returnValue) {
-		;
+		console.log(returnValue);
+		if(returnValue == "true"){
+			window.location.href="/";
+		}
 	});
-}
-
+	}
 /*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
+ *  중복확인 버튼을 눌렀을 시 발생하는 이벤트
  */
-function onSms1SubmitSuccess2(e) {
-	var sms1 = e.control;
-}
-
 function onButtonClick2(e) {
 	var button = e.control;
 	var id = app.lookup("ipb1").value;
@@ -266,8 +248,8 @@ function onButtonClick3(e) {
  * 이미지에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onImageClick(e) {
-	var image = e.control;
+function onImgHomeClick(e){
+	var imgHome = e.control;
 	var img = app.lookup("imgHome");
 	window.location.href = "/";
 }

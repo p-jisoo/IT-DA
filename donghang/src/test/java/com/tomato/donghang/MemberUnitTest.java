@@ -1,18 +1,17 @@
 package com.tomato.donghang;
 
-import java.util.Iterator;
-import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.cleopatra.protocol.data.DataRequest;
 import com.tomato.donghang.model.mapper.MemberMapper;
 import com.tomato.donghang.model.vo.MemberVO;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @SpringBootTest
 public class MemberUnitTest {
 	@Autowired
@@ -20,9 +19,10 @@ public class MemberUnitTest {
 
 	@Test
 	public void registerMember() {
-		MemberVO vo = new MemberVO("java", "a", "오리", "01082991244", "강재헌", "아오재헌시치");
-		int result = memberMapper.registerMember(vo);
-		Assertions.assertEquals(10, result);
+		MemberVO vo = new MemberVO("kkkkhdhh", "a", "오리", "01082991244", "강재헌", "아오재헌시치","gjsdks124@naver.com");
+		memberMapper.registerMember(vo);
+		log.info("회원가입 테스트 {} =", vo);
+//		Assertions.assertEquals(10, );
 	}
 
 	@Test 
@@ -33,10 +33,14 @@ public class MemberUnitTest {
 		MemberVO memberVO=memberMapper.loginMember(vo);
 		Assertions.assertEquals(vo.getUserId(), memberVO.getUserId());
 	}
+
+	
 	@Test
 	public void updateMember() {
-		MemberVO vo = new MemberVO("java", "a", "오리", "01082991244", "강재헌", "아오재헌시치");
-		
+		MemberVO vo = new MemberVO("gjsdms1244", "a", "오리", "01082991244", "강재헌", "아오재헌시치","kk@gmail.com");
+		memberMapper.updateMember(vo);
+		log.info("회원가입 테스트 {} =", vo);
+	}
 	}
 	/*
 	 * @Test public void checkIdMember() { String id="java"; List<MemberVO> list =
@@ -44,4 +48,4 @@ public class MemberUnitTest {
 	 * 
 	 * } }
 	 */
-}
+

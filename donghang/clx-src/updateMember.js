@@ -23,6 +23,7 @@ function onUpdateSessionSubmitSuccess(e){
 	var tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
 	var nick = app.lookup("nickName");
+	var email = app.lookup("email");
 	var responseText = updateSession.xhr.responseText;
 	var any = JSON.parse(responseText);
 	console.log(any.loginSession);
@@ -31,11 +32,12 @@ function onUpdateSessionSubmitSuccess(e){
 	tel.value=any.loginSession.userTel;
 	name.value=any.loginSession.userName;
 	nick.value=any.loginSession.nickName;
+	email.value=any.loginSession.email
 	
 }
 
 /*
- * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
+ * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
 function onButtonClick(e) {
@@ -49,6 +51,7 @@ function onButtonClick(e) {
 	var Tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
 	var nickName = app.lookup("nickName")
+	var email = app.lookup("email");
 	
 	if (pwd.length == 0) {
 		alert("비밀번호를 입력해주세요.");
@@ -80,6 +83,9 @@ function onButtonClick(e) {
 		alert("닉네임을 입력해주세요");
 		return false;
 	}
+	if(email.length==0){
+		alert("이메일을 입력해주세요.")
+	}
 	submission.send();
 }
 
@@ -92,24 +98,8 @@ function onSms1SubmitSuccess2(e) {
 	var responseText = sms1.xhr.responseText;
 	var any = JSON.parse(responseText);
 	console.log(any.ds1);
-	
-//		var initValue = {
-//		"msg": "회원가입 안내창"
-//	}
-//	app.openDialog("appURI", {
-//		width: 400,
-//		height: 300
-//	}, function(dialog) {
-//		dialog.ready(function(dialogApp) {
-//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-//			dialogApp.initValue = initValue;
-//		});
-//	}).then(function(returnValue) {
-//		alert(JSON.stringify(returnValue));
-//	});
-//}
 	window.location.href = "/";
-	alert("회원정보가 수정되어있습니다.");
+	alert("회원정보가 수정되었습니다.");
 }
 
 

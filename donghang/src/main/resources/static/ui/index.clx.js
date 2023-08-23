@@ -311,7 +311,7 @@
 					}
 					container.addChild(button_4, {
 						"top": "20px",
-						"left": "1414px",
+						"left": "1426px",
 						"width": "115px",
 						"height": "40px"
 					});
@@ -333,9 +333,9 @@
 						button_5.addEventListener("click", onButtonClick);
 					}
 					container.addChild(button_5, {
-						"top": "20px",
-						"left": "1176px",
-						"width": "137px",
+						"top": "18px",
+						"left": "1208px",
+						"width": "120px",
 						"height": "40px"
 					});
 					var button_6 = new cpr.controls.Button("login");
@@ -379,6 +379,22 @@
 						"width": "138px",
 						"height": "34px"
 					});
+					var output_2 = new cpr.controls.Output("whoName");
+					output_2.style.css({
+						"font-weight" : "bold",
+						"font-size" : "1rem",
+						"text-align" : "center"
+					});
+					output_2.bind("value").toDataMap(app.lookup("dm1"), "userName");
+					if(typeof onOutputValueChange == "function") {
+						output_2.addEventListener("value-change", onOutputValueChange);
+					}
+					container.addChild(output_2, {
+						"top": "17px",
+						"left": "852px",
+						"width": "130px",
+						"height": "41px"
+					});
 				})(group_2);
 				if(typeof onGroupClick2 == "function") {
 					group_2.addEventListener("click", onGroupClick2);
@@ -416,31 +432,31 @@
 				}
 				container.addChild(navigationBar_1, {
 					"top": "73px",
-					"right": "491px",
+					"right": "369px",
 					"left": "580px",
 					"height": "154px"
 				});
-				var output_2 = new cpr.controls.Output();
-				output_2.value = "ITda";
-				output_2.style.css({
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "ITda";
+				output_3.style.css({
 					"color" : "#262626",
 					"font-weight" : "bolder",
 					"font-size" : "1.3rem"
 				});
-				container.addChild(output_2, {
+				container.addChild(output_3, {
 					"top": "84px",
 					"left": "274px",
 					"width": "207px",
 					"height": "44px"
 				});
-				var output_3 = new cpr.controls.Output();
-				output_3.value = "Accompany";
-				output_3.style.css({
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "Accompany";
+				output_4.style.css({
 					"color" : "black",
 					"font-weight" : "bold",
 					"font-size" : "1.3rem"
 				});
-				container.addChild(output_3, {
+				container.addChild(output_4, {
 					"top": "127px",
 					"left": "274px",
 					"width": "296px",
@@ -458,68 +474,51 @@
 				image_2.src = "theme/images/img/boyfriend_donghang.png";
 				container.addChild(image_2, {
 					"top": "342px",
-					"left": "510px",
-					"width": "257px",
-					"height": "276px"
+					"left": "546px",
+					"width": "223px",
+					"height": "247px"
 				});
 				var image_3 = new cpr.controls.Image();
 				image_3.src = "theme/images/img/woman_donghang.png";
 				container.addChild(image_3, {
 					"top": "342px",
-					"left": "835px",
-					"width": "257px",
-					"height": "276px"
+					"left": "808px",
+					"width": "223px",
+					"height": "247px"
 				});
 				var image_4 = new cpr.controls.Image();
 				image_4.src = "theme/images/img/baby_donghang.png";
 				container.addChild(image_4, {
 					"top": "547px",
 					"left": "689px",
-					"width": "239px",
-					"height": "208px"
+					"width": "205px",
+					"height": "179px"
 				});
 				var image_5 = new cpr.controls.Image();
 				image_5.src = "theme/images/img/talk_donghang.png";
 				container.addChild(image_5, {
 					"top": "381px",
-					"left": "1101px",
-					"width": "111px",
-					"height": "117px"
+					"left": "1081px",
+					"width": "77px",
+					"height": "88px"
 				});
 				var image_6 = new cpr.controls.Image();
 				image_6.src = "theme/images/img/view_donghang.png";
 				container.addChild(image_6, {
-					"top": "293px",
-					"left": "480px",
-					"width": "65px",
-					"height": "89px"
+					"top": "267px",
+					"left": "491px",
+					"width": "78px",
+					"height": "63px"
 				});
 			})(group_1);
 			if(typeof onGroupClick == "function") {
 				group_1.addEventListener("click", onGroupClick);
 			}
 			container.addChild(group_1, {
-				"top": "21px",
-				"right": "-88px",
-				"bottom": "-2px",
-				"left": "-24px"
-			});
-			
-			var output_4 = new cpr.controls.Output("whoName");
-			output_4.style.css({
-				"font-weight" : "bold",
-				"font-size" : "1rem",
-				"text-align" : "center"
-			});
-			output_4.bind("value").toDataMap(app.lookup("dm1"), "userName");
-			if(typeof onOutputValueChange == "function") {
-				output_4.addEventListener("value-change", onOutputValueChange);
-			}
-			container.addChild(output_4, {
-				"top": "40px",
-				"left": "823px",
-				"width": "130px",
-				"height": "41px"
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
