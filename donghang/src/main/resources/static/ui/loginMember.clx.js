@@ -144,8 +144,8 @@
 			});
 			
 			// Layout
-			var responsiveXYLayout_1 = new cpr.controls.layouts.ResponsiveXYLayout();
-			container.setLayout(responsiveXYLayout_1);
+			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
+			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
 			var output_1 = new cpr.controls.Output();
@@ -155,72 +155,20 @@
 				"text-align" : "center"
 			});
 			container.addChild(output_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "376px",
-						"right": "664px",
-						"left": "778px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "256px",
-						"right": "230px",
-						"left": "472px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "255px",
-						"right": "118px",
-						"left": "265px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "255px",
-						"right": "40px",
-						"left": "91px",
-						"height": "65px"
-					}
-				]
+				"top": "376px",
+				"right": "664px",
+				"left": "778px",
+				"height": "65px"
 			});
 			
 			var inputBox_1 = new cpr.controls.InputBox("ipb1");
 			inputBox_1.placeholder = "아이디\r\n";
 			inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "user_id");
 			container.addChild(inputBox_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "449px",
-						"right": "660px",
-						"left": "778px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "329px",
-						"right": "230px",
-						"left": "346px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "330px",
-						"right": "117px",
-						"left": "205px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "330px",
-						"right": "40px",
-						"left": "70px",
-						"height": "58px"
-					}
-				]
+				"top": "449px",
+				"right": "660px",
+				"left": "778px",
+				"height": "58px"
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("ipb2");
@@ -228,36 +176,10 @@
 			inputBox_2.placeholder = "비밀번호";
 			inputBox_2.bind("value").toDataMap(app.lookup("dm1"), "password");
 			container.addChild(inputBox_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "517px",
-						"right": "660px",
-						"left": "776px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "397px",
-						"right": "230px",
-						"left": "345px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "398px",
-						"right": "116px",
-						"left": "205px",
-						"height": "58px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "398px",
-						"right": "40px",
-						"left": "70px",
-						"height": "58px"
-					}
-				]
+				"top": "517px",
+				"right": "660px",
+				"left": "776px",
+				"height": "58px"
 			});
 			
 			var button_1 = new cpr.controls.Button("loginBtn");
@@ -270,36 +192,10 @@
 				button_1.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "583px",
-						"right": "860px",
-						"left": "880px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "462px",
-						"right": "230px",
-						"left": "528px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "465px",
-						"right": "120px",
-						"left": "292px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "465px",
-						"right": "41px",
-						"left": "100px",
-						"height": "46px"
-					}
-				]
+				"top": "583px",
+				"right": "860px",
+				"left": "880px",
+				"height": "46px"
 			});
 			
 			var image_1 = new cpr.controls.Image("imgHome");
@@ -311,36 +207,10 @@
 				image_1.addEventListener("click", onImgHomeClick);
 			}
 			container.addChild(image_1, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "165px",
-						"right": "812px",
-						"left": "908px",
-						"height": "200px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "78px",
-						"right": "340px",
-						"left": "462px",
-						"height": "167px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "50px",
-						"right": "133px",
-						"left": "231px",
-						"height": "167px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "50px",
-						"right": "45px",
-						"left": "79px",
-						"height": "167px"
-					}
-				]
+				"top": "165px",
+				"right": "812px",
+				"left": "908px",
+				"height": "200px"
 			});
 			
 			var output_2 = new cpr.controls.Output();
@@ -355,36 +225,10 @@
 				output_2.addEventListener("click", onOutputClick2);
 			}
 			container.addChild(output_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "639px",
-						"right": "658px",
-						"left": "1112px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "516px",
-						"right": "340px",
-						"left": "584px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "520px",
-						"right": "170px",
-						"left": "281px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "520px",
-						"right": "58px",
-						"left": "96px",
-						"height": "20px"
-					}
-				]
+				"top": "639px",
+				"right": "658px",
+				"left": "1112px",
+				"height": "20px"
 			});
 			
 			var output_3 = new cpr.controls.Output();
@@ -396,71 +240,19 @@
 				output_3.addEventListener("click", onOutputClick);
 			}
 			container.addChild(output_3, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "639px",
-						"right": "805px",
-						"left": "965px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "516px",
-						"right": "450px",
-						"left": "474px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "520px",
-						"right": "224px",
-						"left": "227px",
-						"height": "20px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "520px",
-						"right": "77px",
-						"left": "78px",
-						"height": "20px"
-					}
-				]
+				"top": "639px",
+				"right": "805px",
+				"left": "965px",
+				"height": "20px"
 			});
 			
 			var image_2 = new cpr.controls.Image();
 			image_2.src = "theme/images/login_donghang.png";
 			container.addChild(image_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "376px",
-						"right": "1011px",
-						"left": "844px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "256px",
-						"right": "561px",
-						"left": "343px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "255px",
-						"right": "240px",
-						"left": "205px",
-						"height": "65px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "255px",
-						"right": "82px",
-						"left": "70px",
-						"height": "65px"
-					}
-				]
+				"top": "376px",
+				"right": "1022px",
+				"left": "833px",
+				"height": "65px"
 			});
 			
 			var button_2 = new cpr.controls.Button();
@@ -473,36 +265,10 @@
 				button_2.addEventListener("click", onButtonClick2);
 			}
 			container.addChild(button_2, {
-				positions: [
-					{
-						"media": "all and (min-width: 1920px)",
-						"top": "583px",
-						"right": "658px",
-						"left": "1082px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (min-width: 1024px) and (max-width: 1919px)",
-						"top": "583px",
-						"right": "658px",
-						"left": "1082px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (min-width: 500px) and (max-width: 1023px)",
-						"top": "583px",
-						"right": "321px",
-						"left": "528px",
-						"height": "46px"
-					}, 
-					{
-						"media": "all and (max-width: 499px)",
-						"top": "583px",
-						"right": "225px",
-						"left": "370px",
-						"height": "46px"
-					}
-				]
+				"top": "583px",
+				"right": "658px",
+				"left": "1082px",
+				"height": "46px"
 			});
 		}
 	});

@@ -33,74 +33,78 @@
 				var Tel = app.lookup("Tel_mask");
 				var name = app.lookup("userName");
 				var nickName = app.lookup("nickName");
-			//	if (id.length == 0) {
-			//		alert("아이디를 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if (id.length < 8 || id.length > 16) {
-			//		alert("아이디를 8~16자리로 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if (pwd.length == 0) {
-			//		alert("비밀번호를 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if (pwd.value != pwdChk.value) {
-			//		alert("비밀번호가 일치하지 않습니다.");
-			//		return false;
-			//	} 
-			//	else if (pwd.length < 8 || pwd.length > 16) {
-			//		alert("비밀번호를 8~16자리로 입력해주세요");
-			//		return false;
-			//	}
-			//	else if (adr.length == 0) {
-			//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if (detailAdr.length == 0) {
-			//		alert("상세주소를 입력해주세요.");
-			//		return false;
-			//	}else if (Tel.length < 0 || Tel.length > 11) {
-			//		alert("전화번호를 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if(name.length == 0) {
-			//		alert("이름을 입력해주세요.");
-			//		return false;
-			//	}
-			//	else if (nickName.length == 0) {
-			//		alert("닉네임을 입력해주세요");
-			//		return false;
-			//	}
-			//	submission.send();
-			//		var initValue ={
-			//		"msg" : "exBuilder6"
-			//		
-			//	}
+				//	if (id.length == 0) {
+				//		alert("아이디를 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if (id.length < 8 || id.length > 16) {
+				//		alert("아이디를 8~16자리로 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if (pwd.length == 0) {
+				//		alert("비밀번호를 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if (pwd.value != pwdChk.value) {
+				//		alert("비밀번호가 일치하지 않습니다.");
+				//		return false;
+				//	} 
+				//	else if (pwd.length < 8 || pwd.length > 16) {
+				//		alert("비밀번호를 8~16자리로 입력해주세요");
+				//		return false;
+				//	}
+				//	else if (adr.length == 0) {
+				//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if (detailAdr.length == 0) {
+				//		alert("상세주소를 입력해주세요.");
+				//		return false;
+				//	}else if (Tel.length < 0 || Tel.length > 11) {
+				//		alert("전화번호를 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if(name.length == 0) {
+				//		alert("이름을 입력해주세요.");
+				//		return false;
+				//	}
+				//	else if (nickName.length == 0) {
+				//		alert("닉네임을 입력해주세요");
+				//		return false;
+				//	}
+				//	
+				//		var initValue ={
+				//		"msg" : "exBuilder6"
+				//		
+				//	}
 				
-				app.openDialog("regiseterDialog",{
-			 width : 500, 
-			 height : 350
-			 }, function(dialog){
-				dialog.ready(function(dialogApp){
-				//	var btn = dialogApp.getAppInstance().lookup("loginBtn");
-					dialogApp.setAppProperty("textValue", "페이지에서 벗어나시겠습니까?");
-					dialogApp.setAppProperty("yes_btn", "YES");
-					dialogApp.setAppProperty("no_btn", "NO");
-					dialogApp.addEventListener("yesBtn", function(e){
-						
-						dialog.close();
-					});
-					dialogApp.addEventListener("flatBtnClick", function(e) {
-							//esc를 눌렀을경우, 다이얼로그를 닫습니다.
-								dialog.close();
-								
-							});
+				app.openDialog("regiseterDialog", {
+					width: 500,
+					height: 350,
+					headerVisible: false
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
+						//	var btn = dialogApp.getAppInstance().lookup("loginBtn");
+						//dialog.style.overlay.css("background-color", "aqua");
+						//dialog.style.css("border","solid 3px blue");
+						dialog.style.css("root","solid 10px blue");
+						dialogApp.setAppProperty("textValue", "페이지에서 벗어나시겠습니까?");
+						dialogApp.setAppProperty("yes_btn", "YES");
+						dialogApp.setAppProperty("no_btn", "NO")
+						dialogApp.addEventListener("click", function(e) {
+							submission.send();
+							dialog.close();
+						});
+						dialogApp.addEventListener("click", function(e) {
 							
+							dialog.close();
+							
+						});
+						
+					});
+				}).then(function(returnValue) {
+					;
 				});
-			}).then(function(returnValue){
-				;
-			});
 			}
 
 			/*
@@ -134,12 +138,10 @@
 					chkId.style.css("color", "#ED3838");
 					return false;
 					
-				}else if (id.length < 8 || id.length > 16) {
+				} else if (id.length < 8 || id.length > 16) {
 					chkId.text = "8~16자리로 입력해주세요.";
 					chkId.style.css("color", "#ED3838");
 					return false;
-
-					
 					
 					//	}else if(id.length(/\s/) != -1){
 					//		chkId.text = "공백없이 입력해주세요."
@@ -150,7 +152,7 @@
 					//  		chkId.style.css("color", "#ED3838");	
 					// 		 return false;
 				}
-
+				
 				if (metadata != "null") {
 					var chkId = app.lookup("ipb1");
 					chkId.value = "";
@@ -182,7 +184,7 @@
 					pwdMsg.text = "비밀번호를 입력해주세요."
 					pwdMsg.style.css("color", "#ED3838");
 					return false;
-				}else if (pwd.length < 8 || pwd.length > 16) {
+				} else if (pwd.length < 8 || pwd.length > 16) {
 					pwdMsg.text = "8~16자리로 입력해주세요.";
 					pwdMsg.style.css("color", "#ED3838");
 					return false;
@@ -281,7 +283,7 @@
 				var image = e.control;
 				var img = app.lookup("imgHome");
 				window.location.href = "/";
-			};
+			}
 			// End - User Script
 			
 			// Header
