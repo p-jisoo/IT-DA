@@ -76,7 +76,6 @@
 				var comboBox = app.lookup("cmb1");
 				listBox.selectItemByValue("value1");
 				comboBox.selectItemByValue("value1");
-				
 			}
 
 			/*
@@ -479,19 +478,23 @@
 				pageIndexer_1.pageRowCount = 5;
 				pageIndexer_1.viewPageCount = 4;
 				pageIndexer_1.step = -1;
-				pageIndexer_1.visibleFirstButton = false;
-				pageIndexer_1.visibleLastButton = false;
-				pageIndexer_1.visiblePrevButton = false;
-				pageIndexer_1.visibleNextButton = false;
+				pageIndexer_1.pageIndexWidth = "100px";
+				pageIndexer_1.style.prev.css({
+					"font-size" : "30px",
+					"line-height" : "30px"
+				});
+				pageIndexer_1.style.index.css({
+					"font-size" : "30px"
+				});
 				pageIndexer_1.init(1, 1, 1);
 				if(typeof onPageSelectionChange == "function") {
 					pageIndexer_1.addEventListener("selection-change", onPageSelectionChange);
 				}
 				container.addChild(pageIndexer_1, {
-					"top": "941px",
-					"left": "674px",
-					"width": "340px",
-					"height": "65px"
+					"top": "932px",
+					"left": "204px",
+					"width": "1312px",
+					"height": "72px"
 				});
 				var group_2 = new cpr.controls.Container();
 				var formLayout_1 = new cpr.controls.layouts.FormLayout();
@@ -561,8 +564,8 @@
 					button_2.addEventListener("click", onButtonClick2);
 				}
 				container.addChild(button_2, {
-					"top": "906px",
-					"left": "1296px",
+					"top": "782px",
+					"left": "1362px",
 					"width": "141px",
 					"height": "55px"
 				});

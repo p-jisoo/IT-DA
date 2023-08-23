@@ -41,7 +41,7 @@
 				console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 				
 				submission.send()
-				window.location.href="eduApplyBoardList.clx";
+				window.location.href="toBoardList.do";
 			}
 
 			/*
@@ -72,6 +72,15 @@
 							}
 						}).open();
 					});
+			}
+
+			/*
+			 * "목록" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick2(e){
+				var button = e.control;
+				window.location.href= 'toBoardList.do'
 			};
 			// End - User Script
 			
@@ -159,11 +168,14 @@
 				"background-color" : "#4682A9",
 				"font-size" : "18px"
 			});
+			if(typeof onButtonClick2 == "function") {
+				button_1.addEventListener("click", onButtonClick2);
+			}
 			container.addChild(button_1, {
-				"top": "779px",
-				"left": "1340px",
+				"top": "602px",
+				"left": "1360px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var group_1 = new cpr.controls.Container();
@@ -338,8 +350,8 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "308px",
-				"left": "201px",
+				"top": "131px",
+				"left": "221px",
 				"width": "1511px",
 				"height": "163px"
 			});
@@ -354,8 +366,8 @@
 			inputBox_5.setBindContext(dataMapContext_5);
 			inputBox_5.bind("value").toDataColumn("EDU_BOARD_CONTENT");
 			container.addChild(inputBox_5, {
-				"top": "478px",
-				"left": "200px",
+				"top": "301px",
+				"left": "220px",
 				"width": "1510px",
 				"height": "283px"
 			});
@@ -379,8 +391,8 @@
 				inputBox_6.addEventListener("clear", onIpb6Clear);
 			}
 			container.addChild(inputBox_6, {
-				"top": "248px",
-				"left": "200px",
+				"top": "71px",
+				"left": "220px",
 				"width": "1509px",
 				"height": "50px"
 			});
@@ -395,10 +407,10 @@
 				button_3.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_3, {
-				"top": "779px",
-				"left": "1530px",
+				"top": "602px",
+				"left": "1550px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var output_6 = new cpr.controls.Output();
@@ -420,8 +432,8 @@
 				"border-bottom-style" : "solid"
 			});
 			container.addChild(output_6, {
-				"top": "198px",
-				"left": "201px",
+				"top": "21px",
+				"left": "221px",
 				"width": "1512px",
 				"height": "40px"
 			});

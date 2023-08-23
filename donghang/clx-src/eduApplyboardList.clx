@@ -142,9 +142,11 @@
       <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
       <cl:datarowcontext datacontrolid="ds3" rowindex="0"/>
       <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" visiblefirstbutton="false" visiblelastbutton="false" visibleprevbutton="false" visiblenextbutton="false">
+      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" pageindexwidth="100px">
         <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="941px" left="674px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="932px" left="204px" width="1312px" height="72px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:prevstyle style="font-size:30px; line-height:30px;"/>
+        <cl:indexstyle style="font-size:30px;"/>
       </cl:pageindexer>
       <cl:group std:sid="group-ea39192a">
         <cl:xylayoutdata std:sid="xyl-data-f2b0e079" top="259px" left="395px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -173,7 +175,7 @@
       </cl:listbox>
       <cl:button std:sid="button-819c3ff9" value="신청">
         <cl:listener std:sid="listener-a395530b" name="click" handler="onButtonClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="906px" left="1296px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="782px" left="1362px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
       <cl:grid std:sid="grid-9b3ec17d" id="grd1" datasetid="ds3">
         <cl:xylayoutdata std:sid="xyl-data-3cce4769" top="369px" left="224px" width="1239px" height="362px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
