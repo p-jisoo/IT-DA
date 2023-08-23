@@ -2,6 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.tomato.donghang.model.mapper.EduApplyBoardMapper">
+<resultMap type="com.tomato.donghang.model.vo.EduApplyBoardVO" id="EduApplyBoardResultMap">
+<id column="EDU_BOARD_NO" property="eduBoardNo"/>
+<result column="EDU_BOARD_TITLE" property="eduBoardTitle"/>
+<result column="EDU_BOARD_START_PERIOD DATE" property="eduBoardStartPeriod"/>
+<result column="EDU_BOARD_END_PERIOD" property="eduBoardEndPeriod"/>
+<result column="EDU_BOARD_APPLY_START_PERIOD" property="eduBoardApplyStartPeriod"/>
+<result column="EDU_BOARD_APPLY_END_PERIOD" property="eduBoardApplyEndPeriod"/>
+<result column="EDU_BOARD_MAX_MEMBER_COUNT" property="eduBoardMaxMemberCount"/>
+<result column="EDU_BOARD_ADDRESS" property="eduBoardAddress"/>
+<result column="EDU_BOARD_CATEGORY" property="eduBoardCategory"/>
+<result column="EDU_BOARD_CONTENT" property="eduBoardContent"/>
+<result column="EDU_BOARD_STATUS" property="eduBoardStatus"/>
+<association property="member" resultMap="memberResultMap"/>
+</resultMap>
+<resultMap type="com.tomato.donghang.model.vo.MemberVO" id="memberResultMap" >
+	<id column="USER_ID" property="userId"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="USER_TEL" property="userTel"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="NICKNAME" property="nickName"/>
+</resultMap>	
+	
+	
+	
 	<sql id="selectEduBoard">
 		SELECT EBOARD_NO, EDU_BOARD_TITLE, EDU_BOARD_START_PERIOD,
 		EDU_BOARD_END_PERIOD,EDU_BOARD_APPLY_START_PERIOD,EDU_BOARD_APPLY_END_PERIOD,
