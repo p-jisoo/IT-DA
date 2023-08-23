@@ -46,6 +46,10 @@ public class EduApplyBoardController {
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
+	@GetMapping("/ui/detailBoardUI.do")
+	public View detailBoardUI() {
+		return new UIView("/ui/detailBoard.clx");
+	}
 
 	@PostMapping("/ui/findBaordList.do")
 	public View findBoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {

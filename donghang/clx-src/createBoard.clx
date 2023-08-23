@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-16e57a83" version="1.0.4584">
   <head std:sid="head-2f7ea532">
-    <screen std:sid="screen-0119df6f" id="notebook" name="notebook" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
-    <screen std:sid="screen-26683f91" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="false" useCustomHeight="false" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-ca531e1b" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-9e15770c" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-98ed6a5a" id="notebook" name="notebook" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-dc9a7c45" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="true"/>
+    <screen std:sid="screen-a47487b9" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-c8e794d9" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-5d8ada86">
       <cl:dataset std:sid="d-set-17567465" id="boardList">
         <cl:datacolumnlist>
@@ -45,11 +45,12 @@
     <cl:listener std:sid="listener-2c93b283" name="load" handler="onBodyLoad"/>
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
     <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
-      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="779px" left="1340px" width="180px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:listener std:sid="listener-bb245d76" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="602px" left="1360px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-      <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="308px" left="201px" width="1511px" height="163px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="131px" left="221px" width="1511px" height="163px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:output std:sid="output-0c6f2079" style="font-size:16px; text-align:center;" value="교육기간">
         <cl:formdata std:sid="f-data-276edfc2" row="0" col="0"/>
       </cl:output>
@@ -116,7 +117,7 @@
     <cl:inputbox std:sid="i-box-4e2db08c" id="ipb5" style="font-size:18px; text-align:left;" placeholder="     내용을 입력하세요">
       <cl:relativebind property="value" columnname="EDU_BOARD_CONTENT"/>
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="478px" left="200px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="301px" left="220px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요">
       <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
@@ -124,14 +125,14 @@
       <cl:listener std:sid="listener-ddcec956" name="clear" handler="onIpb6Clear"/>
       <cl:relativebind property="value" columnname="EDU_BOARD_TITLE"/>
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-      <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="248px" left="200px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="71px" left="220px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
     <cl:button std:sid="button-03e35b43" style="background-color:#4682A9; font-size:18px;" value="등록">
       <cl:listener std:sid="listener-70eb8f60" name="click" handler="onButtonClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="779px" left="1530px" width="180px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="602px" left="1550px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid;" value="&#x9;교육 모집 등록">
-      <cl:xylayoutdata std:sid="xyl-data-2c660263" top="198px" left="201px" width="1512px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-2c660263" top="21px" left="221px" width="1512px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:img std:sid="image-f85b0d04" id="heart" src="theme/images/heart.svg">
       <cl:xylayoutdata std:sid="xyl-data-ca7242fa" top="138px" left="1662px" width="47px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
