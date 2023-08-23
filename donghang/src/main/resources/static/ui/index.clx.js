@@ -302,8 +302,8 @@
 						button_1.addEventListener("click", onButtonClick2);
 					}
 					container.addChild(button_1, {
-						"top": "20px",
-						"left": "1916px",
+						"top": "19px",
+						"left": "1819px",
 						"width": "135px",
 						"height": "44px"
 					});
@@ -325,8 +325,8 @@
 						button_2.addEventListener("click", onButtonClick);
 					}
 					container.addChild(button_2, {
-						"top": "20px",
-						"left": "1655px",
+						"top": "19px",
+						"left": "1558px",
 						"width": "157px",
 						"height": "44px"
 					});
@@ -350,8 +350,8 @@
 						button_3.addEventListener("value-change", onLoginValueChange);
 					}
 					container.addChild(button_3, {
-						"top": "20px",
-						"left": "1791px",
+						"top": "19px",
+						"left": "1694px",
 						"width": "135px",
 						"height": "44px"
 					});
@@ -394,7 +394,7 @@
 					}
 					container.addChild(output_2, {
 						"top": "19px",
-						"left": "1313px",
+						"left": "1302px",
 						"width": "108px",
 						"height": "46px"
 					});
@@ -426,7 +426,7 @@
 				}
 				container.addChild(group_2, {
 					"top": "0px",
-					"right": "0px",
+					"right": "1092px",
 					"left": "0px",
 					"height": "74px"
 				});
@@ -473,8 +473,8 @@
 				}
 				container.addChild(navigationBar_1, {
 					"top": "73px",
-					"right": "1908px",
-					"left": "708px",
+					"right": "1114px",
+					"left": "594px",
 					"height": "142px"
 				});
 				var output_3 = new cpr.controls.Output();
@@ -509,8 +509,8 @@
 			}
 			container.addChild(group_1, {
 				"top": "-2px",
-				"right": "-1100px",
-				"bottom": "-1978px",
+				"right": "20px",
+				"bottom": "22px",
 				"left": "20px"
 			});
 			if(typeof onBodyLoad == "function"){

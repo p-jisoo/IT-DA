@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6f3833e2" version="1.0.4584">
   <head std:sid="head-264c019c">
-    <screen std:sid="screen-f14d5993" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-a63af46d" id="default" name="default" minwidth="1024px" maxwidth="1979px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-f14d5993" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-a63af46d" id="default" name="default" minwidth="1024px" maxwidth="1979px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-e1e76162" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
     <screen std:sid="screen-db5ab81b" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-db7e769b">
@@ -69,22 +69,22 @@
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:group std:sid="group-1fb5e24e">
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="-2px" right="-1100px" bottom="-1978px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="-2px" right="20px" bottom="22px" left="20px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:group std:sid="group-f2a4904e">
         <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="1092px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
           <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-          <cl:xylayoutdata std:sid="xyl-data-2fd70b05" top="20px" left="1916px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-2fd70b05" top="19px" left="1819px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
           <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
-          <cl:xylayoutdata std:sid="xyl-data-7d7f5660" top="20px" left="1655px" width="157px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-7d7f5660" top="19px" left="1558px" width="157px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1.15rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
           <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
           <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
-          <cl:xylayoutdata std:sid="xyl-data-0ecc54cf" top="20px" left="1791px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-0ecc54cf" top="19px" left="1694px" width="135px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:button>
         <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1.15rem;" visible="false" value="님 환영합니다.">
           <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
@@ -97,7 +97,7 @@
         <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1.15rem; text-align:center;">
           <cl:listener std:sid="listener-61c5cd62" name="value-change" handler="onOutputValueChange"/>
           <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1313px" width="108px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+          <cl:xylayoutdata std:sid="xyl-data-1bf33ef1" top="19px" left="1302px" width="108px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:output>
         <cl:button std:sid="button-3b2b8523" value="회원정보 수정">
           <cl:listener std:sid="listener-df1694d5" name="click" handler="onButtonClick4"/>
@@ -119,7 +119,7 @@
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
         <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
         <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="1908px" left="708px" height="142px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="1114px" left="594px" height="142px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
       <cl:output std:sid="output-7e7d16d7" style="color:#4682A9; font-weight:bolder; font-size:2rem;" value="ITda">

@@ -71,7 +71,7 @@ function onButtonClick2(e){
 		var button = e.control;
 	var submission = app.lookup("deletesms");
 	submission.send()
-	window.location.href="eduApplyBoardList.do";
+	window.location.href="eduApplyBoardList.clx";
 }
 
 /*
@@ -126,5 +126,5 @@ function onButtonClick6(e){
  */
 function onButtonClick7(e){
 	var button = e.control;
-	window.location.href="eduApplyBoardList.do";
+	window.location.href="eduApplyBoardList.clx";
 }
