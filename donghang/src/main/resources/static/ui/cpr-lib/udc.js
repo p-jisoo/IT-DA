@@ -1162,6 +1162,9 @@
 				var dateInput_1 = new cpr.controls.DateInput("dtiFrom");
 				dateInput_1.hideButton = true;
 				dateInput_1.placeholder = "시작일";
+				dateInput_1.style.css({
+					"text-align" : "center"
+				});
 				dateInput_1.bind("value").toAppProperty("fromValue");
 				dateInput_1.bind("format").toAppProperty("format");
 				dateInput_1.bind("mask").toAppProperty("mask");
@@ -1178,6 +1181,9 @@
 				dateInput_2.hideButton = true;
 				dateInput_2.placeholder = "종료일";
 				dateInput_2.showClearButton = true;
+				dateInput_2.style.css({
+					"text-align" : "center"
+				});
 				dateInput_2.bind("value").toAppProperty("toValue");
 				dateInput_2.bind("format").toAppProperty("format");
 				dateInput_2.bind("mask").toAppProperty("mask");
@@ -1207,6 +1213,9 @@
 				var output_1 = new cpr.controls.Output("opt1");
 				output_1.value = "-";
 				output_1.style.setClasses(["text-center"]);
+				output_1.style.css({
+					"text-align" : "center"
+				});
 				container.addChild(output_1, {
 					"colIndex": 1,
 					"rowIndex": 0

@@ -113,6 +113,11 @@
           <cl:datacolumn std:sid="d-column-6bfde26a" name="keyword"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-4227869a" id="dm4">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-70bac135" name="name"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-032599b6" id="sms1" action="findBaordList.do">
         <cl:listener std:sid="listener-26e4ec14" name="submit-done" handler="onSms1SubmitDone"/>
         <cl:responsedata dataid="ds1"/>
@@ -132,101 +137,86 @@
         <cl:responsedata dataid="ds3"/>
       </cl:submission>
       <cl:submission std:sid="submission-0c975c00" id="createBoardSms" action="createBoardUI.do"/>
+      <cl:submission std:sid="submission-5233918a" id="loginCheck" action="loginCheck.do">
+        <cl:listener std:sid="listener-4c4eb532" name="submit-success" handler="onLoginCheckSubmitSuccess"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-ce86803d">
     <cl:listener std:sid="listener-2d0108d2" name="load" handler="onBodyLoad"/>
     <cl:listener std:sid="listener-c09a5ab1" name="init" handler="onBodyInit"/>
-    <cl:group std:sid="group-922b7e01">
-      <cl:listener std:sid="listener-0d516af5" name="before-draw" handler="onGroupBeforeDraw"/>
-      <cl:datarowcontext datacontrolid="ds3" rowindex="0"/>
-      <cl:xylayoutdata std:sid="xyl-data-ce956080" top="35px" left="20px" width="1880px" height="1025px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" visiblefirstbutton="false" visiblelastbutton="false" visibleprevbutton="false" visiblenextbutton="false">
-        <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-7dc46c06" top="941px" left="674px" width="340px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:pageindexer>
-      <cl:group std:sid="group-ea39192a">
-        <cl:xylayoutdata std:sid="xyl-data-f2b0e079" top="259px" left="395px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:searchinput std:sid="s-input-b376f132" id="searchCtl">
-          <cl:formdata std:sid="f-data-e7f93872" row="0" col="1"/>
-        </cl:searchinput>
-        <cl:button std:sid="button-d1106101" value="Button">
-          <cl:listener std:sid="listener-cdef198a" name="click" handler="onButtonClick"/>
-          <cl:formdata std:sid="f-data-4f212139" row="0" col="2"/>
-        </cl:button>
-        <cl:combobox std:sid="c-box-37bd0e42" id="cmb1" preventinput="true">
-          <cl:formdata std:sid="f-data-41e3c1dd" row="0" col="0"/>
-          <cl:itemset datasetid="dsSlct" label="label" value="value"/>
-        </cl:combobox>
-        <cl:formlayout std:sid="f-layout-d7e48c92" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
-          <cl:rows length="1" unit="FRACTION"/>
-          <cl:columns length="1" unit="FRACTION"/>
-          <cl:columns length="768" unit="PIXEL"/>
-          <cl:columns length="1" unit="FRACTION"/>
-        </cl:formlayout>
-      </cl:group>
-      <cl:listbox std:sid="l-box-5558ba13" id="lbx1">
-        <cl:listener std:sid="listener-d81d4c85" name="item-click" handler="onLbx1ItemClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-cc6212fc" top="228px" left="216px" width="169px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:itemset datasetid="tpSlct" label="label" value="value"/>
-      </cl:listbox>
-      <cl:button std:sid="button-819c3ff9" value="신청">
-        <cl:listener std:sid="listener-a395530b" name="click" handler="onButtonClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-a9eb9e16" top="906px" left="1296px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:grid std:sid="grid-9b3ec17d" id="grd1" datasetid="ds3">
-        <cl:xylayoutdata std:sid="xyl-data-3cce4769" top="369px" left="224px" width="1239px" height="362px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        <cl:gridcolumn std:sid="g-column-4b63b87b"/>
-        <cl:gridcolumn std:sid="g-column-db72d021"/>
-        <cl:gridcolumn std:sid="g-column-5c5611d7"/>
-        <cl:gridcolumn std:sid="g-column-4209624a"/>
-        <cl:gridcolumn std:sid="g-column-b972804b"/>
-        <cl:gridcolumn std:sid="g-column-20070780"/>
-        <cl:gridheader std:sid="gh-band-9974a54f">
-          <cl:gridrow std:sid="g-row-199ace52"/>
-          <cl:gridcell std:sid="gh-cell-79589e62" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_NO" sortable="false" filterable="false" text="EDU_BOARD_NO"/>
-          <cl:gridcell std:sid="gh-cell-772fa372" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
-          <cl:gridcell std:sid="gh-cell-30192060" rowindex="0" colindex="2" targetcolumnname="TOTAL_COUNT" sortable="false" filterable="false" text="TOTAL_COUNT"/>
-          <cl:gridcell std:sid="gh-cell-79d9896b" rowindex="0" colindex="3" targetcolumnname="BOARD_CATEGORY" sortable="false" filterable="false" text="BOARD_CATEGORY"/>
-          <cl:gridcell std:sid="gh-cell-60a62a53" rowindex="0" colindex="4" targetcolumnname="EDU_BOARD_STATUS" sortable="false" filterable="false" text="EDU_BOARD_STATUS"/>
-          <cl:gridcell std:sid="gh-cell-bbca6b24" rowindex="0" colindex="5" targetcolumnname="TOTAL_BOARD_COUNT" sortable="false" filterable="false" text="TOTAL_BOARD_COUNT"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-d6dc693e">
-          <cl:gridrow std:sid="g-row-ce51981e"/>
-          <cl:gridcell std:sid="gd-cell-918f15a9" rowindex="0" colindex="0" columnname="EDU_BOARD_NO">
-            <cl:inputbox std:sid="i-box-39bc178d" id="ipb1">
-              <cl:celldata std:sid="c-data-69891c74"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-afc77505" rowindex="0" colindex="1" columnname="EDU_BOARD_TITLE">
-            <cl:inputbox std:sid="i-box-3331e7c4" id="ipb2">
-              <cl:celldata std:sid="c-data-9bb8071d"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-384a8c19" rowindex="0" colindex="2" columnname="TOTAL_COUNT">
-            <cl:inputbox std:sid="i-box-c7eb018a" id="ipb3">
-              <cl:celldata std:sid="c-data-026ea9fa"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-51b3c511" rowindex="0" colindex="3" columnname="BOARD_CATEGORY">
-            <cl:inputbox std:sid="i-box-856b234b" id="ipb4">
-              <cl:celldata std:sid="c-data-7e0db8f8"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-380ba2f6" rowindex="0" colindex="4" columnname="EDU_BOARD_STATUS">
-            <cl:inputbox std:sid="i-box-32b40e4a" id="ipb5">
-              <cl:celldata std:sid="c-data-bbef40c9"/>
-            </cl:inputbox>
-          </cl:gridcell>
-          <cl:gridcell std:sid="gd-cell-cca5e58c" rowindex="0" colindex="5" columnname="TOTAL_BOARD_COUNT">
-            <cl:inputbox std:sid="i-box-9360903a" id="ipb6">
-              <cl:celldata std:sid="c-data-1ff2188b"/>
-            </cl:inputbox>
-          </cl:gridcell>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:xylayout std:sid="xylayout-27bafe77"/>
+    <cl:grid std:sid="grid-9b3ec17d" id="grd1" readonly="true" datasetid="ds3" nodatamessage=" " clickmode="select" selectionunit="cell" selectionmulti="single">
+      <cl:listener std:sid="listener-907564e7" name="cell-click" handler="onGrd1CellClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-59733eb4" top="178px" left="312px" width="1239px" height="362px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-646aa4f9"/>
+      <cl:gridcolumn std:sid="g-column-72b98a5c" width="153px"/>
+      <cl:gridcolumn std:sid="g-column-f8205c9d"/>
+      <cl:gridcolumn std:sid="g-column-5f69004c"/>
+      <cl:gridcolumn std:sid="g-column-86f7d0a2"/>
+      <cl:gridheader std:sid="gh-band-f90d9daf">
+        <cl:gridrow std:sid="g-row-f934a610"/>
+        <cl:gridcell std:sid="gh-cell-50e98a60" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_NO" sortable="false" filterable="false" text="EDU_BOARD_NO"/>
+        <cl:gridcell std:sid="gh-cell-753ecbfc" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gh-cell-29b1d75c" rowindex="0" colindex="2" targetcolumnname="TOTAL_COUNT" sortable="false" filterable="false" text="TOTAL_COUNT"/>
+        <cl:gridcell std:sid="gh-cell-74f692f8" rowindex="0" colindex="3" targetcolumnname="EDU_BOARD_STATUS" sortable="false" filterable="false" text="EDU_BOARD_STATUS"/>
+        <cl:gridcell std:sid="gh-cell-deec0fe4" rowindex="0" colindex="4" targetcolumnname="TOTAL_BOARD_COUNT" sortable="false" filterable="false" text="TOTAL_BOARD_COUNT"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-7d38baf2">
+        <cl:gridrow std:sid="g-row-a8e60b53"/>
+        <cl:gridcell std:sid="gd-cell-760eac1c" rowindex="0" colindex="0" columnname="EDU_BOARD_NO">
+          <cl:inputbox std:sid="i-box-6a595b31" id="ipb1">
+            <cl:celldata std:sid="c-data-b9c5fe8a"/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-bd8b03d1" rowindex="0" colindex="1" columnname="EDU_BOARD_TITLE">
+          <cl:output std:sid="output-03c5faa7" id="opt" value="Output">
+            <cl:listener std:sid="listener-a898e420" name="click" handler="onOptClick"/>
+            <cl:celldata std:sid="c-data-5bfca6a5"/>
+          </cl:output>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-17fc4c9b" rowindex="0" colindex="2" columnname="TOTAL_COUNT">
+          <cl:inputbox std:sid="i-box-738e42d9" id="ipb2">
+            <cl:celldata std:sid="c-data-f713a29e"/>
+          </cl:inputbox>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-2686b0c2" rowindex="0" colindex="3" columnname="EDU_BOARD_STATUS">
+          <cl:button std:sid="button-8f917cf7">
+            <cl:celldata std:sid="c-data-194cf8f1"/>
+          </cl:button>
+        </cl:gridcell>
+        <cl:gridcell std:sid="gd-cell-4b23c90c" rowindex="0" colindex="4" columnname="TOTAL_BOARD_COUNT">
+          <cl:inputbox std:sid="i-box-18bcabfc" id="ipb3">
+            <cl:celldata std:sid="c-data-bd485fc8"/>
+          </cl:inputbox>
+        </cl:gridcell>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:pageindexer std:sid="p-indexer-774ce1cf" id="page" pagerowcount="5" viewpagecount="4" step="-1" visiblefirstbutton="false" visiblelastbutton="false" visibleprevbutton="false" visiblenextbutton="false" pageindexwidth="50px">
+      <cl:listener std:sid="listener-c9934b61" name="selection-change" handler="onPageSelectionChange"/>
+      <cl:xylayoutdata std:sid="xyl-data-53b96300" top="610px" left="557px" width="851px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:nextstyle style="font-size:30px;"/>
+    </cl:pageindexer>
+    <cl:button std:sid="button-819c3ff9" id="applyCtl" value="신청">
+      <cl:listener std:sid="listener-a395530b" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-fd040385" top="547px" left="1415px" width="141px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:listbox std:sid="l-box-5558ba13" id="lbx1">
+      <cl:listener std:sid="listener-d81d4c85" name="item-click" handler="onLbx1ItemClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-41080d5c" top="75px" left="306px" width="169px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:itemset datasetid="tpSlct" label="label" value="value"/>
+    </cl:listbox>
+    <cl:group std:sid="group-ea39192a">
+      <cl:xylayoutdata std:sid="xyl-data-c8d62ef8" top="112px" left="482px" width="1036px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:searchinput std:sid="s-input-b376f132" id="searchCtl">
+        <cl:formdata std:sid="f-data-dbee39f2" row="0" col="1"/>
+      </cl:searchinput>
+      <cl:formlayout std:sid="f-layout-d7e48c92" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+        <cl:rows length="1" unit="FRACTION"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="768" unit="PIXEL"/>
+        <cl:columns length="1" unit="FRACTION"/>
+      </cl:formlayout>
     </cl:group>
     <cl:xylayout std:sid="xylayout-bec286de"/>
   </body>

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-23660d99" version="1.0.4074">
+  <head std:sid="head-07c5d18c">
+    <std:metadata>
+      <std:property key="template-file" value="templates/예제/예제_서브페이지.clx"/>
+    </std:metadata>
+    <screen std:sid="screen-0f6d63cd" id="default" name="default" minwidth="1280px" width="1280px" height="760px"/>
+    <screen std:sid="screen-232b04d3" id="tablet" name="tablet" minwidth="800px" maxwidth="1279px" width="800px" height="760px"/>
+    <screen std:sid="screen-2ac11b02" id="mobile" name="mobile" maxwidth="799px" width="360px" height="760px"/>
+    <cl:model std:sid="model-5a2070ac">
+      <cl:dataset std:sid="d-set-78f14de5" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-570ea127" name="column1"/>
+          <cl:datacolumn std:sid="d-column-71351041" name="column2"/>
+          <cl:datacolumn std:sid="d-column-f8aad0bf" name="column3"/>
+          <cl:datacolumn std:sid="d-column-ea853a08" name="column4"/>
+          <cl:datacolumn std:sid="d-column-969854c5" name="column5"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column11</cl:datavalue>
+            <cl:datavalue columnname="column2">column21</cl:datavalue>
+            <cl:datavalue columnname="column3">column31</cl:datavalue>
+            <cl:datavalue columnname="column4">column41</cl:datavalue>
+            <cl:datavalue columnname="column5">column51</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column12</cl:datavalue>
+            <cl:datavalue columnname="column2">column22</cl:datavalue>
+            <cl:datavalue columnname="column3">column32</cl:datavalue>
+            <cl:datavalue columnname="column4">column42</cl:datavalue>
+            <cl:datavalue columnname="column5">column52</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column13</cl:datavalue>
+            <cl:datavalue columnname="column2">column23</cl:datavalue>
+            <cl:datavalue columnname="column3">column33</cl:datavalue>
+            <cl:datavalue columnname="column4">column43</cl:datavalue>
+            <cl:datavalue columnname="column5">column53</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column14</cl:datavalue>
+            <cl:datavalue columnname="column2">column24</cl:datavalue>
+            <cl:datavalue columnname="column3">column34</cl:datavalue>
+            <cl:datavalue columnname="column4">column44</cl:datavalue>
+            <cl:datavalue columnname="column5">column54</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column15</cl:datavalue>
+            <cl:datavalue columnname="column2">column25</cl:datavalue>
+            <cl:datavalue columnname="column3">column35</cl:datavalue>
+            <cl:datavalue columnname="column4">column45</cl:datavalue>
+            <cl:datavalue columnname="column5">column55</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="column1">column16</cl:datavalue>
+            <cl:datavalue columnname="column2">column26</cl:datavalue>
+            <cl:datavalue columnname="column3">column36</cl:datavalue>
+            <cl:datavalue columnname="column4">column46</cl:datavalue>
+            <cl:datavalue columnname="column5">column56</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec title="동적 스크립트"/>
+  </head>
+  <body std:sid="body-8413b667" class="subpage">
+    <cl:listener std:sid="listener-88a2fa1c" name="load" handler="onBodyLoad"/>
+    <cl:output std:sid="output-19eb3b2f" id="opt1" value="컨트롤을 미리 그려놓는것이 아니라 동적으로 컨트롤들을 화면에 추가하거나 컨트롤을 이동시킬 수 있습니다.&#xD;&#xA;디자인탭에서 마우스 우클릭 보기 컴파일된 결과보기를 통해 해당 컨트롤의 추가방식을 스크립트로 확인할 수 있습니다.">
+      <cl:verticaldata std:sid="v-data-66b5f140" width="1240px" height="48px" autosize="height"/>
+    </cl:output>
+    <cl:group std:sid="group-a31cbf6a" id="grp1">
+      <cl:verticaldata std:sid="v-data-d156dacf" width="1240px" height="3259px" autosize="height"/>
+      <cl:group std:sid="group-fd522747" id="grp2" class="content-box">
+        <cl:verticaldata std:sid="v-data-2010f8d2" width="400px" height="806px" autosize="height"/>
+        <cl:output std:sid="output-e6e467e7" id="opt4" class="content-tit" value="버튼 컨트롤 동적생성">
+          <cl:verticaldata std:sid="v-data-ce09e51f" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-cbd446b1" id="grp3" class="card">
+          <cl:verticaldata std:sid="v-data-188f04d6" width="400px" height="671px" autosize="height"/>
+          <cl:output std:sid="output-22671d00" id="opt5" class="opt-tmpl" value="• 스크립트를 통해 다수의 컨트롤을 동적으로 생성할 수 있습니다.">
+            <cl:verticaldata std:sid="v-data-108da887" width="1158px" height="44px" autosize="height"/>
+          </cl:output>
+          <cl:group std:sid="group-bb7a2ab1" id="group5">
+            <cl:verticaldata std:sid="v-data-4ff8ebc0" width="1212px" height="40px" autosize="none"/>
+            <cl:button std:sid="button-d3481fed" id="button3" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="버튼0 위치 이동">
+              <cl:listener std:sid="listener-a11727c3" name="click" handler="onButton3Click"/>
+              <cl:formdata std:sid="f-data-c7a81e31" valign="FILL" row="0" col="2"/>
+            </cl:button>
+            <cl:button std:sid="button-080cf561" id="btn1" class="btn-gray" value="동적 버튼 컨트롤 3개 추가">
+              <cl:listener std:sid="listener-51983afa" name="click" handler="onBtn1Click"/>
+              <cl:formdata std:sid="f-data-0c88088c" valign="FILL" row="0" col="1"/>
+            </cl:button>
+            <cl:formlayout std:sid="f-layout-34b04f0a" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+              <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+              <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+            </cl:formlayout>
+          </cl:group>
+          <cl:group std:sid="group-012988f3" id="grpLayout1" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#cccccc; border-right-width:1px; border-left-style:solid; border-bottom-width:1px; border-left-color:#cccccc; border-top-color:#cccccc; border-bottom-style:solid; border-right-color:#cccccc; border-left-width:1px; border-top-style:solid;">
+            <cl:verticaldata std:sid="v-data-11b1c074" width="400px" height="150px"/>
+            <cl:xylayout std:sid="xylayout-fd3f73e4"/>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-cbf1cbd6" spacing="5" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-6b21807f" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:group std:sid="group-913de93d" id="grp4" class="content-box">
+        <cl:verticaldata std:sid="v-data-d829a44f" width="1240px" height="745px" autosize="height"/>
+        <cl:output std:sid="output-3e0fd2dd" id="opt6" class="content-tit" value="그리드 컨트롤 동적 생성">
+          <cl:verticaldata std:sid="v-data-d8d88afd" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-156710b6" id="grp5" class="card">
+          <cl:verticaldata std:sid="v-data-8cbf0f8b" width="400px" height="673px" autosize="height"/>
+          <cl:output std:sid="output-04af5b3e" id="opt7" class="opt-tmpl" value="• 데이터셋 ds1 데이터를 보여주는 그리드컨트롤 동적 생성&#xD;&#xA;• 컴파일된 결과보기에서 나오는 형태를 스크립트로 작성하여 동적 생성 가능">
+            <cl:verticaldata std:sid="v-data-25ccedaa" width="100px" height="94px" autosize="height"/>
+          </cl:output>
+          <cl:group std:sid="group-50583b51" id="group2">
+            <cl:verticaldata std:sid="v-data-8a6e38a2" width="1158px" height="40px" autosize="none"/>
+            <cl:button std:sid="button-19112ce2" id="button2" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="그리드 컨트롤 삭제">
+              <cl:listener std:sid="listener-a022c336" name="click" handler="onButton2Click"/>
+              <cl:formdata std:sid="f-data-59da8966" valign="FILL" row="0" col="2"/>
+            </cl:button>
+            <cl:button std:sid="button-bdda041e" id="btn2" class="btn-gray" value="그리드 컨트롤 동적 생성">
+              <cl:listener std:sid="listener-e74bbbe5" name="click" handler="onBtn2Click"/>
+              <cl:formdata std:sid="f-data-f7f6125b" valign="FILL" row="0" col="1"/>
+            </cl:button>
+            <cl:formlayout std:sid="f-layout-847bea27" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+              <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+              <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+            </cl:formlayout>
+          </cl:group>
+          <cl:group std:sid="group-07189766" id="grpLayout2" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#cccccc; border-right-width:1px; border-left-style:solid; border-bottom-width:1px; border-left-color:#cccccc; border-top-color:#cccccc; border-bottom-style:solid; border-right-color:#cccccc; border-left-width:1px; border-top-style:solid;">
+            <cl:verticaldata std:sid="v-data-10127e65" width="1158px" height="150px" syncminheight="true" autosize="height"/>
+            <cl:verticallayout std:sid="v-layout-c2279a8e"/>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-d77c6337" spacing="5" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-e6eaa501" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:group std:sid="group-5b03f34e" id="grp8" class="content-box">
+        <cl:verticaldata std:sid="v-data-e1bf8cd1" width="1240px" height="703px" autosize="height"/>
+        <cl:output std:sid="output-fe608f4f" id="opt8" class="content-tit" value="동적 레이아웃 생성 및 컨스트레인트 지정">
+          <cl:verticaldata std:sid="v-data-db3a284e" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-1b9221bb" id="grp9" class="card">
+          <cl:verticaldata std:sid="v-data-fe534517" width="400px" height="591px" autosize="height"/>
+          <cl:output std:sid="output-0df4c2f2" id="opt9" class="opt-tmpl" value="• 특정 레이아웃도 동적으로 생성하여 특정 위치에 컨트롤을 배치할 수 있습니다.">
+            <cl:verticaldata std:sid="v-data-1d86811e" width="100px" height="61px" autosize="height"/>
+          </cl:output>
+          <cl:tabfolder std:sid="t-folder-68387568" id="tab1">
+            <cl:verticaldata std:sid="v-data-3444dc26" width="1224px" height="410px" autosize="none"/>
+            <cl:tabitem std:sid="t-item-d3f0b0e2" selected="true" text="XY 레이아웃">
+              <cl:group std:sid="group-76a55ca7" id="grp10">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:group std:sid="group-e265e02c" id="group4">
+                  <cl:xylayoutdata std:sid="xyl-data-c8664451" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+                  <cl:group std:sid="group-fd6d939f" id="grpXy" class="border bg-gray-dim layoutEx">
+                    <cl:formdata std:sid="f-data-1c537fd1" row="1" col="0"/>
+                    <cl:xylayout std:sid="xylayout-1f4e7e73"/>
+                  </cl:group>
+                  <cl:group std:sid="group-aa9dc852" id="group6">
+                    <cl:formdata std:sid="f-data-633616c7" row="0" col="0" rowspan="1" colspan="1"/>
+                    <cl:button std:sid="button-db50952e" id="button5" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="&quot;버튼1&quot; 컨트롤 위치 변경">
+                      <cl:listener std:sid="listener-7b398d7b" name="click" handler="onButton5Click3"/>
+                      <cl:formdata std:sid="f-data-4742e275" valign="FILL" row="0" col="2"/>
+                    </cl:button>
+                    <cl:button std:sid="button-e59ee29d" id="btn4" class="btn-gray" value="동적 XY 레이아웃 생성">
+                      <cl:listener std:sid="listener-a9b4acdb" name="click" handler="onBtn4Click3"/>
+                      <cl:formdata std:sid="f-data-467345a8" valign="FILL" row="0" col="1"/>
+                    </cl:button>
+                    <cl:formlayout std:sid="f-layout-476e800e" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+                      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                    </cl:formlayout>
+                  </cl:group>
+                  <cl:formlayout std:sid="f-layout-a1ea03ea" scrollable="false" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                    <cl:rows length="40" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                    <cl:rows length="1" unit="FRACTION"/>
+                    <cl:columns length="1" unit="FRACTION"/>
+                  </cl:formlayout>
+                </cl:group>
+                <cl:xylayout std:sid="xylayout-023b6877"/>
+              </cl:group>
+            </cl:tabitem>
+            <cl:tabitem std:sid="t-item-9d50345b" text="반응형 XY 레이아웃">
+              <cl:group std:sid="group-f17d04cf" id="grp11">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:group std:sid="group-3531aab8" id="group7">
+                  <cl:xylayoutdata std:sid="xyl-data-302d9371" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+                  <cl:group std:sid="group-51c09f4b" id="grpResXy" class="border bg-gray-dim layoutEx">
+                    <cl:formdata std:sid="f-data-dbfc394b" row="1" col="0"/>
+                    <cl:responsivexylayout std:sid="r-xylayout-b1e0169b"/>
+                  </cl:group>
+                  <cl:group std:sid="group-25473375" id="group8">
+                    <cl:formdata std:sid="f-data-d0bc6957" row="0" col="0" rowspan="1" colspan="1"/>
+                    <cl:button std:sid="button-7605ab18" id="button6" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="&quot;버튼1&quot; 컨트롤 위치 변경">
+                      <cl:listener std:sid="listener-df148821" name="click" handler="onButton6Click"/>
+                      <cl:formdata std:sid="f-data-467dfc85" row="0" col="2"/>
+                    </cl:button>
+                    <cl:button std:sid="button-472e38d1" id="btn5" class="btn-gray" value="동적 반응형 XY 레이아웃 생성">
+                      <cl:listener std:sid="listener-f9dc0a6b" name="click" handler="onBtn5Click"/>
+                      <cl:formdata std:sid="f-data-3d5b5678" row="0" col="1"/>
+                    </cl:button>
+                    <cl:formlayout std:sid="f-layout-e60b6b2f" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+                      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                    </cl:formlayout>
+                  </cl:group>
+                  <cl:formlayout std:sid="f-layout-c9dab3be" scrollable="false" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                    <cl:rows length="40" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                    <cl:rows length="1" unit="FRACTION"/>
+                    <cl:columns length="1" unit="FRACTION"/>
+                  </cl:formlayout>
+                </cl:group>
+                <cl:xylayout std:sid="xylayout-bc64e875"/>
+              </cl:group>
+            </cl:tabitem>
+            <cl:tabitem std:sid="t-item-e341e2da" text="폼 레이아웃">
+              <std:metadata>
+                <std:property key="is-active-item" value="true"/>
+              </std:metadata>
+              <cl:group std:sid="group-9943a6d1" id="grp12">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:group std:sid="group-4fc60ccd" id="group9">
+                  <cl:xylayoutdata std:sid="xyl-data-be8f5c2a" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+                  <cl:group std:sid="group-03419294" id="grpForm" class="border bg-gray-dim layoutEx">
+                    <cl:formdata std:sid="f-data-22214398" row="1" col="0"/>
+                    <cl:xylayout std:sid="xylayout-4e377158"/>
+                  </cl:group>
+                  <cl:group std:sid="group-7c756e5d" id="group10">
+                    <cl:formdata std:sid="f-data-37937ba0" row="0" col="0" rowspan="1" colspan="1"/>
+                    <cl:button std:sid="button-4d11e55e" id="btn6" class="btn-light" value="동적 폼 레이아웃 생성">
+                      <cl:listener std:sid="listener-f4f1bea4" name="click" handler="onBtn4Click"/>
+                      <cl:formdata std:sid="f-data-f52a77b6" row="0" col="1"/>
+                    </cl:button>
+                    <cl:button std:sid="button-5b4f338b" id="button1" style="padding-left:10px; padding-right:10px;" class="btn-gray" value="&quot;버튼2&quot; 컨트롤 위치 변경">
+                      <cl:listener std:sid="listener-6f851d93" name="click" handler="onButton1Click"/>
+                      <cl:formdata std:sid="f-data-ed48c958" row="0" col="2"/>
+                    </cl:button>
+                    <cl:button std:sid="button-7f4be25f" id="button7" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="두번째 행 숨김">
+                      <cl:listener std:sid="listener-f8dc71f0" name="click" handler="onButton5Click"/>
+                      <cl:formdata std:sid="f-data-78db051e" row="0" col="3"/>
+                    </cl:button>
+                    <cl:formlayout std:sid="f-layout-742569a7" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+                      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                    </cl:formlayout>
+                  </cl:group>
+                  <cl:formlayout std:sid="f-layout-908f4bef" scrollable="false" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                    <cl:rows length="40" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                    <cl:rows length="1" unit="FRACTION"/>
+                    <cl:columns length="1" unit="FRACTION"/>
+                  </cl:formlayout>
+                </cl:group>
+                <cl:xylayout std:sid="xylayout-309e0503"/>
+              </cl:group>
+            </cl:tabitem>
+            <cl:tabitem std:sid="t-item-7ca385c0" text="버티컬 레이아웃">
+              <cl:group std:sid="group-77d64842" id="grp13">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:group std:sid="group-e879a8cf" id="group11">
+                  <cl:xylayoutdata std:sid="xyl-data-a05729fb" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+                  <cl:group std:sid="group-cffa56d2" id="grpVertical" class="border bg-gray-dim layoutEx">
+                    <cl:formdata std:sid="f-data-819b5edd" row="1" col="0"/>
+                    <cl:xylayout std:sid="xylayout-b961c136"/>
+                  </cl:group>
+                  <cl:group std:sid="group-9ed2cbff" id="group12">
+                    <cl:formdata std:sid="f-data-6353f0f4" row="0" col="0" rowspan="1" colspan="1"/>
+                    <cl:button std:sid="button-3c58f638" id="btn7" class="btn-light" value="동적 버티컬 레이아웃 생성">
+                      <cl:listener std:sid="listener-dd5826b5" name="click" handler="onBtn7Click"/>
+                      <cl:formdata std:sid="f-data-dd504135" row="0" col="1"/>
+                    </cl:button>
+                    <cl:button std:sid="button-3a1a45c0" id="button8" style="padding-left:10px; padding-right:10px;" class="btn-gray" value="그룹에 첫번째 자식으로 컨트롤 추가">
+                      <cl:listener std:sid="listener-eb58e833" name="click" handler="onButton8Click"/>
+                      <cl:formdata std:sid="f-data-e427f6a4" row="0" col="2"/>
+                    </cl:button>
+                    <cl:button std:sid="button-55a9114d" id="button9" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="그룹에 마지막 자식으로 컨트롤 추가">
+                      <cl:listener std:sid="listener-0de01d62" name="click" handler="onButton9Click"/>
+                      <cl:formdata std:sid="f-data-1fb94b13" row="0" col="3"/>
+                    </cl:button>
+                    <cl:combobox std:sid="c-box-e39fb39e" id="combobox1" placeholder="버티컬 레이아웃 distribution 지정">
+                      <cl:listener std:sid="listener-f729341b" name="selection-change" handler="onCombobox1SelectionChange"/>
+                      <cl:formdata std:sid="f-data-0de1ed11" row="0" col="4"/>
+                      <cl:item std:sid="t-item-82076f84" label="fill(default)" value="fill"/>
+                      <cl:item std:sid="t-item-7a28f4b5" label="leading" value="leading"/>
+                      <cl:item std:sid="t-item-776a7dc6" label="trailing" value="trailing"/>
+                      <cl:item std:sid="t-item-3cadce2d" label="center" value="center"/>
+                    </cl:combobox>
+                    <cl:formlayout std:sid="f-layout-0e8cf510" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+                      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                    </cl:formlayout>
+                  </cl:group>
+                  <cl:formlayout std:sid="f-layout-23b8f7e0" scrollable="false" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                    <cl:rows length="40" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                    <cl:rows length="1" unit="FRACTION"/>
+                    <cl:columns length="1" unit="FRACTION"/>
+                  </cl:formlayout>
+                </cl:group>
+                <cl:xylayout std:sid="xylayout-24ae1384"/>
+              </cl:group>
+            </cl:tabitem>
+            <cl:tabitem std:sid="t-item-34497321" text="플로우 레이아웃">
+              <cl:group std:sid="group-9e72e783" id="grp14">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:group std:sid="group-d808d14e" id="group13">
+                  <cl:xylayoutdata std:sid="xyl-data-c3ae4111" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+                  <cl:group std:sid="group-dff3e124" id="grpFlow" class="border bg-gray-dim layoutEx">
+                    <cl:formdata std:sid="f-data-c49cc921" row="1" col="0"/>
+                    <cl:xylayout std:sid="xylayout-952219af"/>
+                  </cl:group>
+                  <cl:group std:sid="group-74b9ede8" id="group14">
+                    <cl:formdata std:sid="f-data-09890912" row="0" col="0" rowspan="1" colspan="1"/>
+                    <cl:button std:sid="button-c0723c2b" id="btn8" class="btn-light" value="동적 플로우 레이아웃 생성">
+                      <cl:listener std:sid="listener-4ecfb730" name="click" handler="onBtn8Click"/>
+                      <cl:formdata std:sid="f-data-6ef5513f" row="0" col="1"/>
+                    </cl:button>
+                    <cl:button std:sid="button-32a517a1" id="button10" style="padding-left:10px; padding-right:10px;" class="btn-gray" value="그룹에 첫번째 자식으로 컨트롤 추가">
+                      <cl:listener std:sid="listener-67c2516a" name="click" handler="onButton10Click"/>
+                      <cl:formdata std:sid="f-data-90f7957c" row="0" col="2"/>
+                    </cl:button>
+                    <cl:button std:sid="button-b7347c3f" id="button11" style="padding-left:10px; padding-right:10px;" class="btn-dark" value="&quot;버튼5&quot; 컨트롤 줄 바꿈 허용안함">
+                      <cl:listener std:sid="listener-14fb0926" name="click" handler="onButton11Click"/>
+                      <cl:formdata std:sid="f-data-81f35d70" row="0" col="3"/>
+                    </cl:button>
+                    <cl:formlayout std:sid="f-layout-2e914d3f" scrollable="false" hspace="5px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
+                      <cl:rows length="30" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                      <cl:columns length="193" unit="PIXEL" autoSizing="true" minlength="0"/>
+                    </cl:formlayout>
+                  </cl:group>
+                  <cl:formlayout std:sid="f-layout-f7453c6b" scrollable="false" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                    <cl:rows length="40" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                    <cl:rows length="1" unit="FRACTION"/>
+                    <cl:columns length="1" unit="FRACTION"/>
+                  </cl:formlayout>
+                </cl:group>
+                <cl:xylayout std:sid="xylayout-b7d44419"/>
+              </cl:group>
+            </cl:tabitem>
+          </cl:tabfolder>
+          <cl:verticallayout std:sid="v-layout-df130d58" spacing="5" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-252c37ca" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:htmlsnippet std:sid="htmlsnippet-82cee4dd" value="&lt;style>&#xD;&#xA;.cl-container.content-box {&#xD;&#xA;&#x9;&#x9;background-color: #f5f8fa;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-tit {&#xD;&#xA;&#x9;&#x9;&#x9;font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #4d91ff;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&amp;.Notice{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;color : #EFA747;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-notice-title {&#xD;&#xA;&#x9;&#x9;   font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #7A001B;&#xD;&#xA;&#x9;&#x9;    &#xD;&#xA;&#x9;&#x9;   }&#x9;&#xD;&#xA;&#x9;&#x9;.cl-container.box {&#xD;&#xA;&#x9;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;.cl-output.box-tit {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;background-color: #e6edf9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-size: 14px;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;text-align: center;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.content-info{&#xD;&#xA;&#x9;&#x9;&#x9;background-color : #FEFBDB;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;.content-notice{&#xD;&#xA;&#x9;&#x9;&#x9;background-color :  #FFCCD7;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// 카드&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;border-radius: 0px;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.opt-tmpl{&#xD;&#xA;&#x9;&#x9;&#x9;line-height: 2.0;&#xD;&#xA;&#x9;&#x9;    color: #3B454F;&#xD;&#xA;&#x9;&#x9;    font-size : 16px;&#xD;&#xA;&#x9;&#x9;    -webkit-user-select: text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;}&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;border-radius: 4px;&#xD;&#xA;}&#x9;&#x9;&#xD;&#xA;&#x9;&lt;/style>">
+        <cl:verticaldata std:sid="v-data-4453ead0" width="100px" height="20px"/>
+      </cl:htmlsnippet>
+      <cl:verticallayout std:sid="v-layout-93d3025b" spacing="10"/>
+    </cl:group>
+    <cl:verticallayout std:sid="v-layout-7a09ceeb" spacing="25" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

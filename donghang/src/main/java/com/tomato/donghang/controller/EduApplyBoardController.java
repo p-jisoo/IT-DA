@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.service.EduApplyBoardService;
-import com.tomato.donghang.model.vo.EduApplyBoardVO;
+import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,6 +47,10 @@ public class EduApplyBoardController {
 	@GetMapping("/ui/eduApplyboardList")
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
+	}
+	@GetMapping("/ui/detailBoardUI.do")
+	public View detailBoardUI() {
+		return new UIView("/ui/detailBoard.clx");
 	}
 
 	@PostMapping("/ui/findBaordList.do")
@@ -82,6 +87,29 @@ public class EduApplyBoardController {
 		System.out.println(dataRequest.getParameter("keyword"));
 		return new JSONDataView();
 	}
+	
+
+	@PostMapping("ui/loginCheck.do")
+	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		if(session==null) {
+			return new JSONDataView();
+		}else {
+			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			System.out.println("로그인 후=" + vo);
+			if (vo != null) {
+				dataRequest.setResponse("name", vo.getUserName());
+			}
+			return new JSONDataView();
+		}
+	}
+	
+	//List
+	
+	
+	
+	
+	
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		System.out.println("selectBoardByBoardNo Test");
