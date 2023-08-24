@@ -127,7 +127,7 @@ public class MemberController {
 			return new JSONDataView();
 		}else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("로그인 후=" + vo);
+			log.info("vo {}", vo);
 			if (vo != null) {
 				dataRequest.setResponse("loginSession", vo);
 			}
