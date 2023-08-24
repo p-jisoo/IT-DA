@@ -34,7 +34,7 @@ public interface EduApplyBoardMapper {
 	
 	void deleteBoard(EduApplyBoardVO vo);
 	
-	EduApplyBoardVO selectBoard();
+	EduApplyBoardVO selectBoard(EduApplyBoardVO evo);
 	
 	void createCommentBoard(EduApplyCommentBoardVO ecvo);
 	
@@ -42,6 +42,6 @@ public interface EduApplyBoardMapper {
 	
 	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
 	
-	EduApplyCommentBoardVO selectCommentBoard();
+	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
 
 }

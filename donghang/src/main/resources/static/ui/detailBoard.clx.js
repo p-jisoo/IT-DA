@@ -27,13 +27,28 @@
 				for (step = 0; step < 3; step++) {
 					console.log("Walking east one step");
 				}
-				
-				//Board 기존값
+			}
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad2(e){
 				var submission = app.lookup("selectsms");
 				submission.send();
-				//Comment 기존값
 				var submission2 = app.lookup("selectCommentsms");
+				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+				var commentBoardMap = app.lookup("commentBoardMap");
+				
+				eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
+				
+				commentBoardMap.setValue("EDU_BOARD_NO", '1111');
+				commentBoardMap.setValue("USER_ID", '1234');
+				
 				submission2.send();
+			//	var host = app.getHost();
+			//	host.initValue.value;
+			//	//컨트롤러로 boardNo 값 보내기
+				
 			}
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -184,8 +199,6 @@
 				
 				app.lookup("userId").redraw();
 				app.lookup("commentContent").redraw();
-				var grid = app.lookup("grd1");
-				grid.redraw();
 				
 				submission.send()
 			}
@@ -209,16 +222,6 @@
 			function onButtonClick7(e) {
 				var button = e.control;
 				window.location.href = "toBoardList.do";
-			}
-
-			/*
-			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
-			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
-			 */
-			function onBodyLoad2(e){
-				var host = app.getHost();
-				host.initValue.value;
-				//컨트롤러로 boardNo 값 보내기
 			};
 			// End - User Script
 			
@@ -272,8 +275,9 @@
 					{"name": "EDU_BOARD_CONTENT"},
 					{
 						"name": "USER_ID",
-						"defaultValue": "1234"
-					}
+						"defaultValue": ""
+					},
+					{"name": "EDU_BOARD_NO"}
 				]
 			});
 			app.register(dataMap_1);
@@ -289,12 +293,12 @@
 					{
 						"name": "EDU_BOARD_NO",
 						"dataType": "string",
-						"defaultValue": "1111"
+						"defaultValue": ""
 					},
 					{
 						"name": "USER_ID",
 						"dataType": "string",
-						"defaultValue": "1234"
+						"defaultValue": ""
 					}
 				]
 			});
@@ -311,6 +315,7 @@
 			var submission_3 = new cpr.protocols.Submission("selectsms");
 			submission_3.method = "post";
 			submission_3.action = "selectBoardByBoardNo.do";
+			submission_3.addRequestData(dataMap_1);
 			submission_3.addResponseData(dataMap_1, false);
 			if(typeof onSelectsmsSubmitSuccess == "function") {
 				submission_3.addEventListener("submit-success", onSelectsmsSubmitSuccess);
@@ -328,6 +333,7 @@
 			
 			var submission_6 = new cpr.protocols.Submission("selectCommentsms");
 			submission_6.action = "selectCommentBoardByBoardNo.do";
+			submission_6.addRequestData(dataMap_2);
 			submission_6.addResponseData(dataMap_2, false);
 			app.register(submission_6);
 			
