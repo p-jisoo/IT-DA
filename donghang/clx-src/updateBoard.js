@@ -26,6 +26,7 @@ function onBodyInit(e) {
 function onSelectsmsSubmitSuccess(e) {
 	var selectsms = e.control;
 	
+	
 	//board
 	var title = app.lookup("title");
 	var category = app.lookup("category")
@@ -38,12 +39,14 @@ function onSelectsmsSubmitSuccess(e) {
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", category.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", memberCount.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", content.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker1.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker2.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", address.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();

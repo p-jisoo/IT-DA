@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.tomato.donghang.model.mapper.EduApplyBoardMapper">
+
 	<sql id="selectEduBoard">
 		SELECT EBOARD_NO, EDU_BOARD_TITLE, EDU_BOARD_START_PERIOD,
 		EDU_BOARD_END_PERIOD,EDU_BOARD_APPLY_START_PERIOD,EDU_BOARD_APPLY_END_PERIOD,
@@ -187,7 +188,37 @@
 		WHERE
 		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	</select>
-<select id="selectBoard" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO" >
+	
+<!-- hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok -->
+<resultMap type="com.tomato.donghang.model.vo.EduApplyBoardVO" id="boardResultMap">
+    <result property="eduBoardNo" column="EDU_BOARD_NO"/>
+    <result property="eduBoardTitle" column="EDU_BOARD_TITLE"/>
+    <result property="eduBoardStartPeriod" column="EDU_BOARD_START_PERIOD"/>
+    <result property="eduBoardEndPeriod" column="EDU_BOARD_END_PERIOD"/>
+    <result property="eduBoardApplyStartPeriod" column="EDU_BOARD_APPLY_START_PERIOD"/>
+    <result property="eduBoardApplyEndPeriod" column="EDU_BOARD_APPLY_END_PERIOD"/>
+    <result property="eduBoardMaxMemberCount" column="EDU_BOARD_MAX_MEMBER_COUNT"/>
+    <result property="eduBoardAddress" column="EDU_BOARD_ADDRESS"/>
+    <result property="eduBoardCategory" column="EDU_BOARD_CATEGORY"/>
+    <result property="eduBoardContent" column="EDU_BOARD_CONTENT"/>
+    <result property="eduBoardStatus" column="EDU_BOARD_STATUS"/>
+    <association property="memberVO" javaType="com.tomato.donghang.model.vo.MemberVO">
+        <result property="userId" column="USER_ID"/>
+    </association>
+</resultMap>
+
+<resultMap type="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" id="commentBoardResultMap">
+    <result property="eduApplyCommentBoardNo" column="EDU_APPLY_COMMENT_BOARD_NO"/>
+    <result property="eduApplyCommentContent" column="EDU_APPLY_COMMENT_CONTENT"/>
+    <association property="memberVO" javaType="com.tomato.donghang.model.vo.MemberVO">
+        <result property="userId" column="USER_ID"/>
+    </association>
+<association property="eduApplyBoardVO" javaType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+    	<result property="eduBoardNo" column="EDU_BOARD_NO"/>
+    </association>
+</resultMap>
+	
+<select id="selectBoard" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO" resultMap="boardResultMap">
 SELECT EDU_BOARD_NO,
 EDU_BOARD_TITLE,
 EDU_BOARD_START_PERIOD,
@@ -201,7 +232,7 @@ EDU_BOARD_CONTENT,
 EDU_BOARD_STATUS,
 USER_ID
 FROM EDU_APPLY_BOARD
-where EDU_BOARD_NO=1111
+where EDU_BOARD_NO=#{eduBoardNo}
 </select>
 	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 INSERT INTO EDU_APPLY_BOARD(
@@ -251,7 +282,7 @@ WHERE EDU_BOARD_NO = 1
 </delete>
 
 
-<select id="selectCommentBoard" resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
+<select id="selectCommentBoard" resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" resultMap="commentBoardResultMap">
 SELECT 
 EDU_APPLY_COMMENT_BOARD_NO,
 EDU_APPLY_COMMENT_CONTENT,
@@ -260,9 +291,9 @@ USER_ID
 FROM
 EDU_APPLY_COMMENT_BOARD
 WHERE
-EDU_BOARD_NO='1111'
+EDU_BOARD_NO=#{eduBoardNo}
 AND
-USER_ID='b'
+USER_ID=#{memberVO.userId}
 </select>
 	<insert id="createCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" >
 INSERT INTO EDU_APPLY_COMMENT_BOARD(
@@ -275,7 +306,7 @@ VALUES(
 EDU_APPLY_COMMENT_BOARD_SEQ.NEXTVAL,
 #{eduApplyCommentContent},
 '1111',
-'b'
+'1234'
 );
 	</insert>
 	<update id="updateCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
@@ -295,4 +326,7 @@ EDU_BOARD_NO='1111'
 AND
 USER_ID='b'
 </delete>
+
+
+<!--hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok-->
 </mapper>

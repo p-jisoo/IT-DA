@@ -54,12 +54,14 @@
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				
 				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", category.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", memberCount.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", content.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker1.fromValue);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker2.fromValue);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", address.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 				
 				app.lookup("title").redraw();
 				app.lookup("category").redraw();
@@ -80,7 +82,6 @@
 				
 				app.lookup("userId").redraw();
 				app.lookup("commentContent").redraw();
-				app.lookup("grd1").redraw();
 				
 			}
 			/*
@@ -205,19 +206,19 @@
 			 * "목록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick7(e){
+			function onButtonClick7(e) {
 				var button = e.control;
-				window.location.href="eduApplyBoardList.clx";
+				window.location.href = "toBoardList.do";
 			}
 
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
-			function onBodyLoad(e){
-			var host = app.getHost();
-				 host.initValue.value;
-				console.log("게시판번호",host.initValue);
+			function onBodyLoad2(e){
+				var host = app.getHost();
+				host.initValue.value;
+				//컨트롤러로 boardNo 값 보내기
 			};
 			// End - User Script
 			
@@ -288,12 +289,12 @@
 					{
 						"name": "EDU_BOARD_NO",
 						"dataType": "string",
-						"defaultValue": ""
+						"defaultValue": "1111"
 					},
 					{
 						"name": "USER_ID",
 						"dataType": "string",
-						"defaultValue": ""
+						"defaultValue": "1234"
 					}
 				]
 			});
@@ -345,8 +346,6 @@
 				"width" : "100%",
 				"height" : "100%"
 			});
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			container.setBindContext(dataMapContext_1);
 			
 			// Layout
 			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
@@ -374,8 +373,8 @@
 			group_1.style.css({
 				"font-size" : "18px"
 			});
-			var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			group_1.setBindContext(dataMapContext_2);
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			group_1.setBindContext(dataMapContext_1);
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
 			formLayout_1.topMargin = "5px";
@@ -449,8 +448,8 @@
 					"font-size" : "16px",
 					"text-align" : "center"
 				});
-				var dataMapContext_3 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-				inputBox_1.setBindContext(dataMapContext_3);
+				var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+				inputBox_1.setBindContext(dataMapContext_2);
 				inputBox_1.bind("value").toDataColumn("EDU_BOARD_MAX_MEMBER_COUNT");
 				if(typeof onIpb3Click == "function") {
 					inputBox_1.addEventListener("click", onIpb3Click);
@@ -465,8 +464,8 @@
 					"font-size" : "16px",
 					"text-align" : "center"
 				});
-				var dataMapContext_4 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-				inputBox_2.setBindContext(dataMapContext_4);
+				var dataMapContext_3 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+				inputBox_2.setBindContext(dataMapContext_3);
 				inputBox_2.bind("value").toDataColumn("EDU_BOARD_CATEGORY");
 				container.addChild(inputBox_2, {
 					"colIndex": 3,
@@ -476,6 +475,7 @@
 				userDefinedControl_1.useAutoSelect = true;
 				userDefinedControl_1.selectOption = "day";
 				userDefinedControl_1.style.css({
+					"font-size" : "16px",
 					"text-align" : "center"
 				});
 				userDefinedControl_1.bind("fromValue").toDataColumn("EDU_BOARD_START_PERIOD");
@@ -485,6 +485,9 @@
 					"rowIndex": 0
 				});
 				var userDefinedControl_2 = new udc.exam.udcExamDuoDatePicker("udccomduodatepicker2");
+				userDefinedControl_2.style.css({
+					"font-size" : "16px"
+				});
 				userDefinedControl_2.bind("fromValue").toDataColumn("EDU_BOARD_APPLY_START_PERIOD");
 				userDefinedControl_2.bind("toValue").toDataColumn("EDU_BOARD_APPLY_END_PERIOD");
 				container.addChild(userDefinedControl_2, {
@@ -507,7 +510,7 @@
 					var inputBox_3 = new cpr.controls.InputBox("address");
 					inputBox_3.placeholder = "주소를 입력 해주세요";
 					inputBox_3.style.css({
-						"font-size" : "18px",
+						"font-size" : "16px",
 						"text-align" : "center"
 					});
 					inputBox_3.bind("value").toDataColumn("EDU_BOARD_ADDRESS");
@@ -518,7 +521,7 @@
 					var inputBox_4 = new cpr.controls.InputBox("detailAdress");
 					inputBox_4.placeholder = "상세 주소를 입력 해주세요";
 					inputBox_4.style.css({
-						"font-size" : "18px",
+						"font-size" : "16px",
 						"text-align" : "center"
 					});
 					container.addChild(inputBox_4, {
@@ -557,11 +560,11 @@
 			var inputBox_5 = new cpr.controls.InputBox("content");
 			inputBox_5.placeholder = "     내용을 입력하세요";
 			inputBox_5.style.css({
-				"font-size" : "18px",
+				"font-size" : "16px",
 				"text-align" : "left"
 			});
-			var dataMapContext_5 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			inputBox_5.setBindContext(dataMapContext_5);
+			var dataMapContext_4 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			inputBox_5.setBindContext(dataMapContext_4);
 			inputBox_5.bind("value").toDataColumn("EDU_BOARD_CONTENT");
 			container.addChild(inputBox_5, {
 				"top": "294px",
@@ -576,8 +579,8 @@
 				"font-size" : "18px",
 				"text-align" : "left"
 			});
-			var dataMapContext_6 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			inputBox_6.setBindContext(dataMapContext_6);
+			var dataMapContext_5 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			inputBox_6.setBindContext(dataMapContext_5);
 			inputBox_6.bind("value").toDataColumn("EDU_BOARD_TITLE");
 			if(typeof onIpb6ValueChange == "function") {
 				inputBox_6.addEventListener("value-change", onIpb6ValueChange);
@@ -658,55 +661,10 @@
 				button_5.addEventListener("click", onButtonClick4);
 			}
 			container.addChild(button_5, {
-				"top": "22px",
-				"left": "148px",
+				"top": "622px",
+				"left": "370px",
 				"width": "100px",
 				"height": "20px"
-			});
-			
-			var group_3 = new cpr.controls.Container();
-			group_3.style.setClasses(["cl-form-group"]);
-			var formLayout_3 = new cpr.controls.layouts.FormLayout();
-			formLayout_3.scrollable = false;
-			formLayout_3.topMargin = "5px";
-			formLayout_3.rightMargin = "5px";
-			formLayout_3.bottomMargin = "5px";
-			formLayout_3.leftMargin = "5px";
-			formLayout_3.horizontalSpacing = "10px";
-			formLayout_3.verticalSpacing = "10px";
-			formLayout_3.horizontalSeparatorWidth = 1;
-			formLayout_3.verticalSeparatorWidth = 1;
-			formLayout_3.setColumns(["100px", "1387px"]);
-			formLayout_3.setUseColumnShade(0, true);
-			formLayout_3.setRows(["1fr"]);
-			group_3.setLayout(formLayout_3);
-			(function(container){
-				var inputBox_7 = new cpr.controls.InputBox("userId");
-				inputBox_7.readOnly = true;
-				inputBox_7.placeholder = "USER_ID";
-				inputBox_7.style.css({
-					"text-align" : "center"
-				});
-				inputBox_7.bind("value").toDataMap(app.lookup("commentBoardMap"), "USER_ID");
-				container.addChild(inputBox_7, {
-					"colIndex": 0,
-					"rowIndex": 0,
-					"colSpan": 1,
-					"rowSpan": 1
-				});
-				var inputBox_8 = new cpr.controls.InputBox("commentContent");
-				inputBox_8.placeholder = "댓글을 입력해주세요";
-				inputBox_8.bind("value").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
-				container.addChild(inputBox_8, {
-					"colIndex": 1,
-					"rowIndex": 0
-				});
-			})(group_3);
-			container.addChild(group_3, {
-				"top": "701px",
-				"left": "260px",
-				"width": "1319px",
-				"height": "50px"
 			});
 			
 			var output_7 = new cpr.controls.Output();
@@ -736,124 +694,107 @@
 			});
 			
 			var button_6 = new cpr.controls.Button();
-			button_6.value = "댓글쓰기";
-			button_6.style.css({
-				"background-color" : "#4682A9",
-				"font-size" : "18px"
-			});
+			button_6.value = "댓글 등록";
 			container.addChild(button_6, {
-				"top": "701px",
-				"left": "1589px",
-				"width": "180px",
-				"height": "40px"
+				"top": "778px",
+				"left": "1450px",
+				"width": "100px",
+				"height": "20px"
 			});
 			
 			var button_7 = new cpr.controls.Button();
-			button_7.value = "댓글 등록";
+			button_7.value = "댓글 삭제";
 			container.addChild(button_7, {
-				"top": "761px",
-				"left": "1453px",
+				"top": "777px",
+				"left": "1559px",
 				"width": "100px",
 				"height": "20px"
 			});
 			
 			var button_8 = new cpr.controls.Button();
-			button_8.value = "댓글 삭제";
+			button_8.value = "댓글 수정";
+			if(typeof onButtonClick6 == "function") {
+				button_8.addEventListener("click", onButtonClick6);
+			}
 			container.addChild(button_8, {
-				"top": "760px",
-				"left": "1562px",
+				"top": "777px",
+				"left": "1669px",
 				"width": "100px",
 				"height": "20px"
 			});
 			
 			var button_9 = new cpr.controls.Button();
-			button_9.value = "댓글 수정";
-			if(typeof onButtonClick6 == "function") {
-				button_9.addEventListener("click", onButtonClick6);
+			button_9.value = "댓글 기존 값";
+			if(typeof onButtonClick5 == "function") {
+				button_9.addEventListener("click", onButtonClick5);
 			}
 			container.addChild(button_9, {
-				"top": "760px",
-				"left": "1672px",
+				"top": "622px",
+				"left": "260px",
 				"width": "100px",
 				"height": "20px"
 			});
 			
-			var button_10 = new cpr.controls.Button();
-			button_10.value = "댓글 기존 값";
-			if(typeof onButtonClick5 == "function") {
-				button_10.addEventListener("click", onButtonClick5);
-			}
-			container.addChild(button_10, {
-				"top": "668px",
-				"left": "120px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var group_4 = new cpr.controls.Container();
-			var dataMapContext_7 = new cpr.bind.DataMapContext(app.lookup("commentBoardMap"));
-			group_4.setBindContext(dataMapContext_7);
-			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
-			group_4.setLayout(verticalLayout_1);
+			var group_3 = new cpr.controls.Container();
+			group_3.style.setClasses(["cl-form-group"]);
+			var formLayout_3 = new cpr.controls.layouts.FormLayout();
+			formLayout_3.scrollable = false;
+			formLayout_3.topMargin = "5px";
+			formLayout_3.rightMargin = "5px";
+			formLayout_3.bottomMargin = "5px";
+			formLayout_3.leftMargin = "5px";
+			formLayout_3.horizontalSpacing = "10px";
+			formLayout_3.verticalSpacing = "10px";
+			formLayout_3.horizontalSeparatorWidth = 1;
+			formLayout_3.verticalSeparatorWidth = 1;
+			formLayout_3.setColumns(["200px", "1fr", "180px"]);
+			formLayout_3.setRows(["60px"]);
+			group_3.setLayout(formLayout_3);
 			(function(container){
-				var grid_1 = new cpr.controls.Grid("grd1");
-				grid_1.init({
-					"autoFit": "1",
-					"columns": [
-						{"width": "100px"},
-						{"width": "100px"}
-					],
-					"header": {
-						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.text = "사용자 아이디";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.text = "내용";
-								}
-							}
-						]
-					},
-					"detail": {
-						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.columnName = "USER_ID";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.columnName = "EDU_APPLY_COMMENT_CONTENT";
-									cell.columnType = "normal";
-									cell.bind("fieldLabel").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
-								}
-							}
-						]
-					}
+				var inputBox_7 = new cpr.controls.InputBox("userId");
+				inputBox_7.readOnly = true;
+				inputBox_7.placeholder = "USER_ID";
+				inputBox_7.style.css({
+					"font-size" : "16px",
+					"text-align" : "center"
 				});
-				container.addChild(grid_1, {
-					"autoSize": "none",
-					"width": "1510px",
-					"height": "200px"
+				inputBox_7.bind("value").toDataMap(app.lookup("commentBoardMap"), "USER_ID");
+				container.addChild(inputBox_7, {
+					"colIndex": 0,
+					"rowIndex": 0
 				});
-			})(group_4);
-			container.addChild(group_4, {
-				"top": "791px",
-				"left": "262px",
-				"width": "1506px",
-				"height": "493px"
+				var button_10 = new cpr.controls.Button();
+				button_10.value = "댓글쓰기";
+				button_10.style.css({
+					"background-color" : "#4682A9",
+					"font-size" : "18px"
+				});
+				container.addChild(button_10, {
+					"colIndex": 2,
+					"rowIndex": 0
+				});
+				var inputBox_8 = new cpr.controls.InputBox("commentContent");
+				inputBox_8.placeholder = "댓글을 입력해주세요";
+				inputBox_8.style.css({
+					"font-size" : "16px"
+				});
+				inputBox_8.bind("value").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
+				container.addChild(inputBox_8, {
+					"colIndex": 1,
+					"rowIndex": 0
+				});
+			})(group_3);
+			container.addChild(group_3, {
+				"top": "700px",
+				"left": "248px",
+				"width": "1521px",
+				"height": "68px"
 			});
-			if(typeof onBodyLoad == "function"){
-				app.addEventListener("load", onBodyLoad);
+			if(typeof onBodyInit == "function"){
+				app.addEventListener("init", onBodyInit);
+			}
+			if(typeof onBodyLoad2 == "function"){
+				app.addEventListener("load", onBodyLoad2);
 			}
 		}
 	});

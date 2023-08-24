@@ -21,6 +21,16 @@
           <cl:datacolumn std:sid="d-column-6e1708a8" name="EDU_BOARD_CONTENT"/>
         </cl:datacolumnlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-663dd3fb" id="loginSession">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-88199245" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-5f4a54c7" name="PASSWORD"/>
+          <cl:datacolumn std:sid="d-column-cd4a0d10" name="ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-bc947260" name="USER_TEL"/>
+          <cl:datacolumn std:sid="d-column-6c00f17f" name="userName"/>
+          <cl:datacolumn std:sid="d-column-b1d4f80a" name="NICKNAME"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-81dc0af2" id="eduApplyBoardMap">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-35ec5269" name="EDU_BOARD_TITLE" datatype="string"/>
@@ -31,18 +41,23 @@
           <cl:datacolumn std:sid="d-column-8b9fe827" name="EDU_BOARD_MAX_MEMBER_COUNT" datatype="string"/>
           <cl:datacolumn std:sid="d-column-f5b6df4a" name="EDU_BOARD_ADDRESS"/>
           <cl:datacolumn std:sid="d-column-062ab587" name="EDU_BOARD_CATEGORY"/>
-          <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
-          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue="1234"/>
+          <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT" defaultvalue=""/>
+          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-31ee007d" id="createsms" action="createBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-bb0a5232" id="sessioncheck" action="loginSessionMember">
+        <cl:listener std:sid="listener-33382513" name="submit-success" handler="onSessioncheckSubmitSuccess"/>
+        <cl:responsedata dataid="loginSession"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-2c93b283" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-c09f7496" name="init" handler="onBodyInit"/>
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
     <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
       <cl:listener std:sid="listener-bb245d76" name="click" handler="onButtonClick2"/>
