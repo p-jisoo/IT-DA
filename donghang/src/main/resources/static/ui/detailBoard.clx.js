@@ -33,16 +33,17 @@
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad2(e){
-				//Board 기존값
 				var submission = app.lookup("selectsms");
 				submission.send();
-				//Comment 기존값
 				var submission2 = app.lookup("selectCommentsms");
-				var commentBoardMap = app.lookup("commentBoardMap");
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+				var commentBoardMap = app.lookup("commentBoardMap");
+				
+				eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
+				
 				commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 				commentBoardMap.setValue("USER_ID", '1234');
-				//eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
+				
 				submission2.send();
 			//	var host = app.getHost();
 			//	host.initValue.value;
@@ -275,7 +276,8 @@
 					{
 						"name": "USER_ID",
 						"defaultValue": ""
-					}
+					},
+					{"name": "EDU_BOARD_NO"}
 				]
 			});
 			app.register(dataMap_1);

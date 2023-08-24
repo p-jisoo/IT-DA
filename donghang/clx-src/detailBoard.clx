@@ -33,6 +33,7 @@
           <cl:datacolumn std:sid="d-column-062ab587" name="EDU_BOARD_CATEGORY"/>
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
           <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
+          <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">

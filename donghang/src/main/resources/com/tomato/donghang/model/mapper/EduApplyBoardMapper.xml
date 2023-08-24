@@ -219,7 +219,8 @@
 </resultMap>
 	
 <select id="selectBoard" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO" resultMap="boardResultMap">
-SELECT EDU_BOARD_NO,
+SELECT 
+EDU_BOARD_NO,
 EDU_BOARD_TITLE,
 EDU_BOARD_START_PERIOD,
 EDU_BOARD_END_PERIOD, 
@@ -232,7 +233,7 @@ EDU_BOARD_CONTENT,
 EDU_BOARD_STATUS,
 USER_ID
 FROM EDU_APPLY_BOARD
-where EDU_BOARD_NO=1111
+where EDU_BOARD_NO=#{eduBoardNo}
 </select>
 	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 INSERT INTO EDU_APPLY_BOARD(
@@ -291,7 +292,7 @@ USER_ID
 FROM
 EDU_APPLY_COMMENT_BOARD
 WHERE
-EDU_BOARD_NO=#{eduBoardNo}
+EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
 AND
 USER_ID=#{memberVO.userId}
 </select>

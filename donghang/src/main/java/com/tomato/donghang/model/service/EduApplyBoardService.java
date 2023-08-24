@@ -19,7 +19,7 @@ public interface EduApplyBoardService {
 
 	void deleteBoard(ParameterGroup param);
 	
-	Map<String, Object> selectBoard();
+	Map<String, Object> selectBoard(ParameterGroup param);
 	
 	void createCommentBoard(ParameterGroup param);
 	
@@ -27,7 +27,8 @@ public interface EduApplyBoardService {
 	
 	void deleteCommentBoard(ParameterGroup param);
 	
-	Map<String, Object> selectCommentBoardMap(ParameterGroup param);
+	Map<String, Object> selectCommentBoard(ParameterGroup param);
+	
 	
 	
 }

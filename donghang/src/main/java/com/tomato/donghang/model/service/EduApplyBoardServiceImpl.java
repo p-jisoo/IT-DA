@@ -162,23 +162,26 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		return data;
 	}
 	@Override
-	public Map<String, Object> selectBoard() {
-//		public Board selectBoard(SqlSession session, int no) {
-//			return session.selectOne("member.selectBoard",no);
-//		}
-		EduApplyBoardVO evo = eduApplyBoardMapper.selectBoard();
+	public Map<String, Object> selectBoard(ParameterGroup param) {
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		EduApplyBoardVO evo = new EduApplyBoardVO();
+		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
+		
+		
+		
+		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
 		System.out.println("serviceImpl evo : " + evo);
 		Map<String, Object> dataMap = new HashMap<>();
-		dataMap.put("EDU_BOARD_TITLE", evo.getEduBoardTitle());
-		dataMap.put("EDU_BOARD_START_PERIOD", evo.getEduBoardStartPeriod());
-		dataMap.put("EDU_BOARD_END_PERIOD", evo.getEduBoardEndPeriod());
-		dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo.getEduBoardApplyStartPeriod());
-		dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo.getEduBoardApplyEndPeriod());
-		dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo.getEduBoardMaxMemberCount());
-		dataMap.put("EDU_BOARD_ADDRESS", evo.getEduBoardAddress());
-		dataMap.put("EDU_BOARD_CATEGORY", evo.getEduBoardCategory());
-		dataMap.put("EDU_BOARD_CONTENT", evo.getEduBoardContent());
-		dataMap.put("USER_ID,", evo.getMemberVO().getUserId());
+		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
+		dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
+		dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
+		dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo2.getEduBoardApplyStartPeriod());
+		dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo2.getEduBoardApplyEndPeriod());
+		dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo2.getEduBoardMaxMemberCount());
+		dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
+		dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
+		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
+		dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
 		System.out.println("serviceImpl MAP" + dataMap);
 		
 		return dataMap;
@@ -296,17 +299,26 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
-	public Map<String, Object> selectCommentBoardMap(ParameterGroup param) {
+	public Map<String, Object> selectCommentBoard(ParameterGroup param) {
+		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
 		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		String userId = param.getValue("USER_ID");
-		log.info("userId {}",userId);
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", Long.parseLong(eduBoardNo));
-		map.put("userId", userId);
-		log.info("map {}",map);
-		Map<String, Object> dataMap=eduApplyBoardMapper.selectCommentBoardMap(map);
+		EduApplyBoardVO evo = new EduApplyBoardVO();
+		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
+		MemberVO mvo = new MemberVO();
+		mvo.setUserId(userId);
 		
-		System.out.println("serviceImpl MAP : " + dataMap);
+		ecvo.setEduApplyBoardVO(evo);
+		ecvo.setMemberVO(mvo);
+		System.out.println("ecvo " + ecvo);
+		EduApplyCommentBoardVO ecvo2=eduApplyBoardMapper.selectCommentBoard(ecvo);
+		System.out.println("ecvo2"+ ecvo2);
+		Map<String, Object> dataMap = new HashMap<>();
+		dataMap.put("EDU_APPLY_COMMENT_CONTENT", ecvo2.getEduApplyCommentContent());
+		dataMap.put("EDU_BOARD_NO", ecvo2.getEduApplyBoardVO().getEduBoardNo());
+		dataMap.put("USER_ID", ecvo2.getMemberVO().getUserId());
+		
+		System.out.println("serviceImpl MAP : " + ecvo2);
 		return dataMap;
 	}
 

@@ -113,7 +113,7 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
-		Map<String, Object> dataMap=eduApplyBoardService.selectBoard();
+		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");
@@ -156,7 +156,7 @@ public class EduApplyBoardController {
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
 		System.out.println("param "+param);
-		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoardMap(param);
+		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard(param);
 		System.out.println("dataMap "+dataMap);
 		dataRequest.setResponse("commentBoardMap", dataMap);
 		return  new JSONDataView();
