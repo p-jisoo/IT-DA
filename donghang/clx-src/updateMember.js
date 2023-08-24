@@ -69,7 +69,15 @@ function onButtonClick2(e){
 		headerVisible: false
 	}, function(dialog){
 		dialog.ready(function(dialogApp){
-			dialog.initValue={param1 : id.value, param2 : pwd.value, param3 : adr.value}
+			dialog.initValue={
+			param1 : id.value, 
+			param2 : pwd.value, 
+			param3 : adr.value,
+			param4 : Tel.value, 
+			param5 : name.value, 
+			param6 : nickName.value,
+			param7 : email.value
+			}
 		});
 	}).then(function(returnValue){
 		;

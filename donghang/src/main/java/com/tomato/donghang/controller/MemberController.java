@@ -109,6 +109,11 @@ public class MemberController {
 			System.out.println("업데이트 후 = " + vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
+			
+//			Map<String, Object> map =new HashMap<>();
+//			map.put("updateSuccess", true);
+//			dataRequest.setMetadata(true, map);
+			
 		}
 		return new JSONDataView();
 	}

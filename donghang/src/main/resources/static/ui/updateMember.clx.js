@@ -82,7 +82,15 @@
 					headerVisible: false
 				}, function(dialog){
 					dialog.ready(function(dialogApp){
-						dialog.initValue={param1 : id.value, param2 : pwd.value, param3 : adr.value}
+						dialog.initValue={
+						param1 : id.value, 
+						param2 : pwd.value, 
+						param3 : adr.value,
+						param4 : Tel.value, 
+						param5 : name.value, 
+						param6 : nickName.value,
+						param7 : email.value
+						}
 					});
 				}).then(function(returnValue){
 					;
@@ -609,7 +617,7 @@
 				container.addChild(inputBox_8, {
 					"top": "58px",
 					"left": "300px",
-					"width": "191px",
+					"width": "247px",
 					"height": "42px"
 				});
 				var output_8 = new cpr.controls.Output();

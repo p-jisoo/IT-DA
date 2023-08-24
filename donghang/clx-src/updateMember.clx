@@ -126,7 +126,7 @@
       </cl:output>
       <cl:inputbox std:sid="i-box-d24606ea" id="userId" style="border-radius:0.5rem; color:#ED3838; font-weight:normal; font-size:0.9rem; font-style:normal;" readonly="true" placeholder="아이디 변경불가" autoskip="true">
         <cl:datasetbind property="value" datacontrolid="loginSession" columnname="userId" rowindex="0"/>
-        <cl:xylayoutdata std:sid="xyl-data-dd032dec" top="58px" left="300px" width="191px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-dd032dec" top="58px" left="300px" width="247px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:output std:sid="output-35b515ef" style="font-weight:bold; font-size:1.05rem; text-align:left;" value="*아이디">
         <cl:xylayoutdata std:sid="xyl-data-26e28aa9" top="61px" left="0px" width="107px" height="33px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

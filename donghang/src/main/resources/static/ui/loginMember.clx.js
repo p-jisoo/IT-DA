@@ -207,6 +207,7 @@
 					"height": "61px"
 				});
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
+				inputBox_2.secret = true;
 				inputBox_2.placeholder = "비밀번호를 입력하세요.";
 				inputBox_2.style.css({
 					"border-radius" : "0.6rem",

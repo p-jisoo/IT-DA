@@ -46,7 +46,7 @@
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="user_id"/>
         <cl:xylayoutdata std:sid="xyl-data-ddaa4cb4" top="376px" left="263px" width="314px" height="61px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-b3fd9d15" id="ipb2" style="border-radius:0.6rem; border-bottom-color:#acacac; border-left-color:#acacac; border-top-color:#acacac; border-right-color:#acacac;" placeholder="비밀번호를 입력하세요.">
+      <cl:inputbox std:sid="i-box-b3fd9d15" id="ipb2" style="border-radius:0.6rem; border-bottom-color:#acacac; border-left-color:#acacac; border-top-color:#acacac; border-right-color:#acacac;" secret="true" placeholder="비밀번호를 입력하세요.">
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
         <cl:xylayoutdata std:sid="xyl-data-9e6422e9" top="448px" left="263px" width="313px" height="61px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>

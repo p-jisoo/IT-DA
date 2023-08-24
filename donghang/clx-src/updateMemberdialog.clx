@@ -17,7 +17,7 @@
           <cl:datacolumn std:sid="d-column-6988d705" name="email"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="registerMember">
+      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="updateMember">
         <cl:listener std:sid="listener-4c7f0117" name="submit-success" handler="onSms1SubmitSuccess2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
@@ -39,8 +39,8 @@
       <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원 정보를 수정하시겠습니까?">
         <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="141px" left="55px" width="385px" height="97px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:img std:sid="image-81aba43e" src="theme/images/img/updatedialogo_donghang.png">
-        <cl:xylayoutdata std:sid="xyl-data-027eedaa" top="31px" left="162px" width="158px" height="111px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-81aba43e" src="theme/images/img/updatedialog_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-027eedaa" top="46px" left="192px" width="111px" height="96px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>

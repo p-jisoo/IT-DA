@@ -15,7 +15,7 @@ function onYes_btnClick(e){
 	var initValue = app.getHost().initValue;
 	//console.log(initValue);
 	//각각 value값 가져오기
-	var userId=initValue.param1;
+	var userId=initValue.param1; //제외 해줄예정
 	var password=initValue.param2;
 	var	 address= initValue.param3;
 	var userTel=initValue.param4;
@@ -40,18 +40,21 @@ function onYes_btnClick(e){
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onSms1SubmitSuccess2(e){
-	var sms1 = e.control;
-	var metadata = sms1.getMetadata("registerSuccess");
-	//map의 키를 가져온다!
-	
-	console.log(metadata);
-	// metadata가 true 일때 메타데이터를 닫아준다.
-	if(metadata == "true"){
-		app.close(metadata);
-	}
-	
-}
+//function onSms1SubmitSuccess2(e){
+//	var sms1 = e.control;
+//	var metadata = sms1.getMetadata("updateSuccess");
+//	//map의 키를 가져온다!
+//	var responseText = sms1.xhr.responseText;
+//	var any = JSON.parse(responseText);
+//	console.log(any.ds1);
+//
+//	console.log(metadata);
+//	// metadata가 true 일때 메타데이터를 닫아준다.
+//	if(metadata == "true"){
+//		app.close(metadata);
+//	}
+//	
+//}
 
 /*
  * "cancle" 버튼(no_btn)에서 click 이벤트 발생 시 호출.
