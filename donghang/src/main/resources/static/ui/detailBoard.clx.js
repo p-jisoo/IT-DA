@@ -27,24 +27,36 @@
 				for (step = 0; step < 3; step++) {
 					console.log("Walking east one step");
 				}
+
 			}
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
 			 */
 			function onBodyLoad2(e){
+
 				var submission = app.lookup("selectsms");
-				submission.send();
 				var submission2 = app.lookup("selectCommentsms");
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				var commentBoardMap = app.lookup("commentBoardMap");
+					var host = app.getHost();
+					host.initValue.value
+				console.log(host.initValue);
+				var initValue = host.initValue;
+				//컨트롤러로 boardNo 값 보내기
+				eduApplyBoardMap.setValue("EDU_BOARD_NO",initValue);
+				commentBoardMap.setValue("EDU_BOARD_NO",initValue);
 				
-				eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
+				commentBoardMap.setValue("USER_ID", "1234");
 				
-				commentBoardMap.setValue("EDU_BOARD_NO", '1111');
-				commentBoardMap.setValue("USER_ID", '1234');
+				submission.send();
+				submission2.send();	
+			//	var eduApplyBoardMemeberCountMap = app.lookup("eduApplyBoardMemeberCountMap");
+			//	eduApplyBoardMemeberCountMap.setValue("MEMBER_COUNT_ID", value);
+			//	eduApplyBoardMemeberCountMap.setValue("USER_ID", value);
+			//	eduApplyBoardMemeberCountMap.setValue("EDU_BOARD_NO", value);
 				
-				submission2.send();
+				
 			//	var host = app.getHost();
 			//	host.initValue.value;
 			//	//컨트롤러로 boardNo 값 보내기
@@ -222,6 +234,27 @@
 			function onButtonClick7(e) {
 				var button = e.control;
 				window.location.href = "toBoardList.do";
+			}
+
+			/*
+			 * "참여하기" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick8(e){
+				var button = e.control;
+				var submission = app.lookup("selectMemberCount");
+				var eduApplyBoardMemeberCountMap = app.lookup("eduApplyBoardMemeberCountMap");
+				submission.send();
+				
+				
+				var value = eduApplyBoardMemeberCountMap.getValue("TOTAL_COUNT");
+				var value2 = eduApplyBoardMemeberCountMap.getValue("EDU_BOARD_MAX_MEMBER_COUNT");
+				if(value==value2){
+					var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+					eduApplyBoardMap.setValue("EDU_BOARD_STATUS", "모집마감");
+					var submission2 = app.lookup("updateMemberCount");
+					submission2.send();
+				}
 			};
 			// End - User Script
 			
@@ -277,7 +310,8 @@
 						"name": "USER_ID",
 						"defaultValue": ""
 					},
-					{"name": "EDU_BOARD_NO"}
+					{"name": "EDU_BOARD_NO"},
+					{"name": "EDU_BOARD_STATUS"}
 				]
 			});
 			app.register(dataMap_1);
@@ -303,6 +337,21 @@
 				]
 			});
 			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("eduApplyBoardMemeberCountMap");
+			dataMap_3.parseData({
+				"columns" : [
+					{"name": "EDU_BOARD_NO"},
+					{"name": "USER_ID"},
+					{"name": "EDU_BOARD_STATUS"},
+					{
+						"name": "TOTAL_COUNT",
+						"dataType": "string"
+					},
+					{"name": "EDU_BOARD_MAX_MEMBER_COUNT"}
+				]
+			});
+			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("updatesms");
 			submission_1.action = "updateBoard.do";
 			submission_1.addRequestData(dataMap_1);
@@ -313,7 +362,6 @@
 			app.register(submission_2);
 			
 			var submission_3 = new cpr.protocols.Submission("selectsms");
-			submission_3.method = "post";
 			submission_3.action = "selectBoardByBoardNo.do";
 			submission_3.addRequestData(dataMap_1);
 			submission_3.addResponseData(dataMap_1, false);
@@ -341,6 +389,17 @@
 			submission_7.action = "createComment.do";
 			submission_7.addRequestData(dataMap_2);
 			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("selectMemberCount");
+			submission_8.action = "selectMemberCount.do";
+			submission_8.addRequestData(dataMap_3);
+			submission_8.addResponseData(dataMap_3, false);
+			app.register(submission_8);
+			
+			var submission_9 = new cpr.protocols.Submission("updateMemberCount");
+			submission_9.action = "updateMemberCount.do";
+			submission_9.addRequestData(dataMap_3);
+			app.register(submission_9);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -795,6 +854,22 @@
 				"left": "248px",
 				"width": "1521px",
 				"height": "68px"
+			});
+			
+			var button_11 = new cpr.controls.Button();
+			button_11.value = "참여하기";
+			button_11.style.css({
+				"background-color" : "#4682A9",
+				"font-size" : "18px"
+			});
+			if(typeof onButtonClick8 == "function") {
+				button_11.addEventListener("click", onButtonClick8);
+			}
+			container.addChild(button_11, {
+				"top": "644px",
+				"left": "1589px",
+				"width": "180px",
+				"height": "40px"
 			});
 			if(typeof onBodyInit == "function"){
 				app.addEventListener("init", onBodyInit);

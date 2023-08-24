@@ -44,4 +44,9 @@ public interface EduApplyBoardMapper {
 	
 	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
 
+	Map<String, Object> selectMemberCount(Map<String, Object> map);
+
+	Map<String, Object> updateMemberCount(Map<String, Object> map);
+
+
 }

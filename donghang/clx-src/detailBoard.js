@@ -14,24 +14,36 @@ function onBodyInit(e) {
 	for (step = 0; step < 3; step++) {
 		console.log("Walking east one step");
 	}
+
 }
 /*
  * 루트 컨테이너에서 load 이벤트 발생 시 호출.
  * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
  */
 function onBodyLoad2(e){
+
 	var submission = app.lookup("selectsms");
-	submission.send();
 	var submission2 = app.lookup("selectCommentsms");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
+		var host = app.getHost();
+		host.initValue.value
+	console.log(host.initValue);
+	var initValue = host.initValue;
+	//컨트롤러로 boardNo 값 보내기
+	eduApplyBoardMap.setValue("EDU_BOARD_NO",initValue);
+	commentBoardMap.setValue("EDU_BOARD_NO",initValue);
 	
-	eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
+	commentBoardMap.setValue("USER_ID", "1234");
 	
-	commentBoardMap.setValue("EDU_BOARD_NO", '1111');
-	commentBoardMap.setValue("USER_ID", '1234');
+	submission.send();
+	submission2.send();	
+//	var eduApplyBoardMemeberCountMap = app.lookup("eduApplyBoardMemeberCountMap");
+//	eduApplyBoardMemeberCountMap.setValue("MEMBER_COUNT_ID", value);
+//	eduApplyBoardMemeberCountMap.setValue("USER_ID", value);
+//	eduApplyBoardMemeberCountMap.setValue("EDU_BOARD_NO", value);
 	
-	submission2.send();
+	
 //	var host = app.getHost();
 //	host.initValue.value;
 //	//컨트롤러로 boardNo 값 보내기
@@ -211,4 +223,23 @@ function onButtonClick7(e) {
 	window.location.href = "toBoardList.do";
 }
 
-
+/*
+ * "참여하기" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick8(e){
+	var button = e.control;
+	var submission = app.lookup("selectMemberCount");
+	var eduApplyBoardMemeberCountMap = app.lookup("eduApplyBoardMemeberCountMap");
+	submission.send();
+	
+	
+	var value = eduApplyBoardMemeberCountMap.getValue("TOTAL_COUNT");
+	var value2 = eduApplyBoardMemeberCountMap.getValue("EDU_BOARD_MAX_MEMBER_COUNT");
+	if(value==value2){
+		var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+		eduApplyBoardMap.setValue("EDU_BOARD_STATUS", "모집마감");
+		var submission2 = app.lookup("updateMemberCount");
+		submission2.send();
+	}
+}

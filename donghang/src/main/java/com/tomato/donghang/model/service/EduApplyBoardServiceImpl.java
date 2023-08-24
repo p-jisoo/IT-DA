@@ -163,15 +163,15 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
+		System.out.println("selectBoard param "+ param );
 		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		EduApplyBoardVO evo = new EduApplyBoardVO();
 		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-		
-		
-		
+		System.out.println("evo : "+evo);
 		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
 		System.out.println("serviceImpl evo : " + evo);
 		Map<String, Object> dataMap = new HashMap<>();
+		
 		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
 		dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
 		dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
@@ -182,6 +182,9 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
 		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
 		dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
+		dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
+		dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
+		
 		System.out.println("serviceImpl MAP" + dataMap);
 		
 		return dataMap;
@@ -310,15 +313,12 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		
 		ecvo.setEduApplyBoardVO(evo);
 		ecvo.setMemberVO(mvo);
-		System.out.println("ecvo " + ecvo);
 		EduApplyCommentBoardVO ecvo2=eduApplyBoardMapper.selectCommentBoard(ecvo);
-		System.out.println("ecvo2"+ ecvo2);
 		Map<String, Object> dataMap = new HashMap<>();
 		dataMap.put("EDU_APPLY_COMMENT_CONTENT", ecvo2.getEduApplyCommentContent());
 		dataMap.put("EDU_BOARD_NO", ecvo2.getEduApplyBoardVO().getEduBoardNo());
 		dataMap.put("USER_ID", ecvo2.getMemberVO().getUserId());
 		
-		System.out.println("serviceImpl MAP : " + ecvo2);
 		return dataMap;
 	}
 
@@ -400,4 +400,32 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		System.out.println("serviceImpl : " + ecvo);
 		eduApplyBoardMapper.deleteCommentBoard(ecvo);
 	}
+
+	@Override
+	public Map<String, Object> selectMemberCount(ParameterGroup param) {
+
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", Long.parseLong(eduBoardNo));
+		System.out.println("map " + map);
+		Map<String, Object> dataMap=eduApplyBoardMapper.selectMemberCount(map);
+
+		
+		System.out.println("serviceImpl MAP : " + dataMap);
+		return dataMap;
+	}
+	@Override
+	
+	public void updateMemberCount(ParameterGroup param){
+	String eduBoardNo = param.getValue("EDU_BOARD_NO");
+	
+	Map<String, Object> map = new HashMap<>();
+	map.put("eduBoardNo", Long.parseLong(eduBoardNo));
+	System.out.println("map " + map);
+	Map<String, Object> dataMap=eduApplyBoardMapper.updateMemberCount(map);
+	map.get("TOTAL_COUNT");
+	dataMap.put("TOTAL_COUNT", map.get(("TOTAL_COUNT")+1));
+	
+	System.out.println("serviceImpl MAP : " + dataMap);
+}
 }

@@ -29,6 +29,12 @@ public interface EduApplyBoardService {
 	
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
 	
+	Map<String, Object> selectMemberCount(ParameterGroup param);
+	
+	void updateMemberCount(ParameterGroup param);
+	
+	
+	
 	
 	
 }

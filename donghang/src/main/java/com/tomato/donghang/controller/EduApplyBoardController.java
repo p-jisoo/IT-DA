@@ -109,10 +109,11 @@ public class EduApplyBoardController {
 	
 	
 	
-	
+/****************hyeok************************************/	
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		System.out.println("selectBoardByBoardNo : " +param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
@@ -155,9 +156,7 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-		System.out.println("param "+param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard(param);
-		System.out.println("dataMap "+dataMap);
 		dataRequest.setResponse("commentBoardMap", dataMap);
 		return  new JSONDataView();
 	}
@@ -183,5 +182,21 @@ public class EduApplyBoardController {
 		eduApplyBoardService.deleteCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
-	
+	@PostMapping("/ui/selectMemberCount.do")
+	public View selectMemberCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMemeberCountMap");
+		System.out.println("param "+param);
+		Map<String, Object> dataMap=eduApplyBoardService.selectMemberCount(param);
+		System.out.println("dataMap "+dataMap);
+		dataRequest.setResponse("eduApplyBoardMemeberCountMap", dataMap);
+		return  new JSONDataView();
+	}
+	@PostMapping("/ui/updateMemberCount.do")
+	public View updateMemberCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMemeberCountMap");
+		System.out.println("param "+param);
+		eduApplyBoardService.updateMemberCount(param);
+		return new UIView("/ui/detailBoard.clx");
+	}
+	/****************hyeok************************************/	
 }

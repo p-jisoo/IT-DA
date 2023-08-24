@@ -34,6 +34,7 @@
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
           <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-bf4d3a6b" name="EDU_BOARD_STATUS"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -43,11 +44,20 @@
           <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-be2e8633" id="eduApplyBoardMemeberCountMap">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-02e1bfd6" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-d7ea9e4a" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-2af64739" name="EDU_BOARD_STATUS"/>
+          <cl:datacolumn std:sid="d-column-ec0755e6" name="TOTAL_COUNT" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-f9aae723" name="EDU_BOARD_MAX_MEMBER_COUNT"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-e948c9ec" id="deletesms" action="deleteBoard.do"/>
-      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" method="post" action="selectBoardByBoardNo.do">
+      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" action="selectBoardByBoardNo.do">
         <cl:listener std:sid="listener-9b328656" name="submit-success" handler="onSelectsmsSubmitSuccess"/>
         <cl:requestdata dataid="eduApplyBoardMap"/>
         <cl:responsedata dataid="eduApplyBoardMap"/>
@@ -62,6 +72,13 @@
       </cl:submission>
       <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createComment.do">
         <cl:requestdata dataid="commentBoardMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-63bc7e6f" id="selectMemberCount" action="selectMemberCount.do">
+        <cl:requestdata dataid="eduApplyBoardMemeberCountMap"/>
+        <cl:responsedata dataid="eduApplyBoardMemeberCountMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-cbb8b307" id="updateMemberCount" action="updateMemberCount.do">
+        <cl:requestdata dataid="eduApplyBoardMemeberCountMap"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -209,6 +226,10 @@
         <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
       </cl:formlayout>
     </cl:group>
+    <cl:button std:sid="button-9bf09277" style="background-color:#4682A9; font-size:18px;" value="참여하기">
+      <cl:listener std:sid="listener-a0717770" name="click" handler="onButtonClick8"/>
+      <cl:xylayoutdata std:sid="xyl-data-3fcab0ad" top="644px" left="1589px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>
