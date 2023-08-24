@@ -4,48 +4,46 @@
  *
  * @author USER
  ************************************************/
+/*
+ * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+ * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+ */
+function onBodyLoad2(e){
+	var submission = app.lookup("updateSession");
+	submission.send();
+}
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onUpdateSessionSubmitSuccess(e){
+	var updateSession = e.control;
+	var id = app.lookup("userId");
+	var adr = app.lookup("Address");
+	var tel = app.lookup("Tel_mask");
+	var name = app.lookup("userName");
+	var nick = app.lookup("nickName");
+	var email = app.lookup("email");
+	var responseText = updateSession.xhr.responseText;
+	var any = JSON.parse(responseText);
+	console.log(any.loginSession);
+	id.value=any.loginSession.userId;
+	adr.value=any.loginSession.address;
+	tel.value=any.loginSession.userTel;
+	name.value=any.loginSession.userName;
+	nick.value=any.loginSession.nickName;
+	email.value=any.loginSession.email
+	
+}
 
 /*
- * "회원가입" 버튼에서 click 이벤트 발생 시 호출.
+ * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
 function onButtonClick(e) {
 	var button = e.control;
 	var submission = app.lookup("update");
-	submission.send();
-}
-
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onSms1SubmitSuccess2(e) {
-	var sms1 = e.control;
-//		var initValue = {
-//		"msg": "회원가입 안내창"
-//	}
-//	app.openDialog("appURI", {
-//		width: 400,
-//		height: 300
-//	}, function(dialog) {
-//		dialog.ready(function(dialogApp) {
-//			// 필요한 경우, 다이얼로그의 앱이 초기화 된 후, 앱 속성을 전달하십시오.
-//			dialogApp.initValue = initValue;
-//		});
-//	}).then(function(returnValue) {
-//		alert(JSON.stringify(returnValue));
-//	});
-//}
-
-	window.location.href = "/";
-}
-
-/*
- * 서브미션에서 submit-error 이벤트 발생 시 호출.
- * 통신 중 문제가 생기면 발생합니다.
- */
-function onSms1SubmitError(e) {
-	var sms1 = e.control;
+	var id = app.lookup("userId");
 	var pwd = app.lookup("password");
 	var pwdChk = app.lookup("passwordChk");
 	var adr = app.lookup("Address");
@@ -53,6 +51,8 @@ function onSms1SubmitError(e) {
 	var Tel = app.lookup("Tel_mask");
 	var name = app.lookup("userName");
 	var nickName = app.lookup("nickName")
+	var email = app.lookup("email");
+	
 	if (pwd.length == 0) {
 		alert("비밀번호를 입력해주세요.");
 		return false;
@@ -83,7 +83,25 @@ function onSms1SubmitError(e) {
 		alert("닉네임을 입력해주세요");
 		return false;
 	}
+	if(email.length==0){
+		alert("이메일을 입력해주세요.")
+	}
+	submission.send();
 }
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSms1SubmitSuccess2(e) {
+	var sms1 = e.control;
+	var responseText = sms1.xhr.responseText;
+	var any = JSON.parse(responseText);
+	console.log(any.ds1);
+	window.location.href = "/";
+	alert("회원정보가 수정되었습니다.");
+}
+
 
 /*
  * 인풋 박스에서 value-change 이벤트 발생 시 호출.
@@ -193,11 +211,7 @@ function onButtonClick3(e) {
  * 이미지에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onImageClick(e) {
-	var image = e.control;
-	var img = app.lookup("imgHome");
+function onImgHomeClick(e){
+	var imgHome = e.control;
 	window.location.href = "/";
 }
-
-
-

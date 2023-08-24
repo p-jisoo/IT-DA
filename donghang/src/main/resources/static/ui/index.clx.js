@@ -17,22 +17,6 @@
 			 *
 			 * @author USER
 			 ************************************************/
-			/*
-			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
-			 * 아이템 클릭시 발생하는 이벤트.
-			 */
-			function onNav1ItemClick(e) {
-				var nav1 = e.control;
-			//	var submission = app.lookup("sms1");
-			//	var navigationBar = app.lookup("nav1");
-			//	var count = navigationBar.getSelectedIndices().toString()
-			//	submission.setParameters("menu", count);
-			//	submission.send();
-				
-				// 선택한 아이템에 대한 값 
-				emded(e);
-			}
-
 
 			function emded(e){
 				var vcEmb = app.lookup("ea1");
@@ -60,6 +44,19 @@
 						app1.getInstances()
 					}
 				}); 
+			}
+			/*
+			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
+			 * 아이템 클릭시 발생하는 이벤트.
+			 */
+			function onNav1ItemClick(e) {
+				var nav1 = e.control;
+			//	var submission = app.lookup("sms1");
+			//	var navigationBar = app.lookup("nav1");
+			//	var count = navigationBar.getSelectedIndices().toString()
+			//	submission.setParameters("menu", count);
+			//	submission.send();
+			emded(e);
 			}
 
 			/*
@@ -94,90 +91,60 @@
 			 */
 			function onButtonClick2(e) {
 				var button = e.control;
-				window.location.href="register.do";													
+				window.location.href = "register.do";
 			}
 
 			/*
 			 * "  로그인   " 버튼(login)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onLoginClick(e){
-				window.location.href="login";
+			function onLoginClick(e) {
+				window.location.href = "login";
 			}
 
-			function onBodyLoad(e){
+			function onBodyLoad(e) {
 				var submission = app.lookup("sessioncheck");
 				submission.send();
 			}
 
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 서브미션(sessionCheck로 변경)에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms2SubmitSuccess(e){
+			function onSms2SubmitSuccess(e) {
 				var sms2 = e.control;
 				var login = app.lookup("login");
 				var myPage = app.lookup("mypage");
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-			//	var welcome2 = new cpr.controls.Output("welcom");
-			//					welcome2.visible = true;
-			//					welcome2.value = "";
-			//					welcome2.style.css({
-			//						"font-weight" : "bold",
-			//						"font-size" : "1.15rem"
-			//					});
-			//					container.addChild(welcome2, {
-			//						"top": "22px",
-			//						"left": "1340px",
-			//						"width": "158px",
-			//						"height": "39px"
-			//					});
-			//	
-
-			var responseText = sms2.xhr.responseText;
-			var any = JSON.parse(responseText);
-			console.log(any.loginSession.userName);
-			if(any.loginSession.userName==""){
-				onLoginClick();
-				login.value="로그인";
-			}else{
-				output.value = any.loginSession.userName;
-				register.visible=false;
-				helloWelcome.visible=true;
-				myPage.visible=true;
-				login.value="로그아웃인가?";
-			}
-
+				
+				var responseText = sms2.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.loginSession.userName);
+				if (any.loginSession.userName == "") {
+					onLoginClick();
+					login.value = "로그인";
+				} else {
+					output.value = any.loginSession.userName;
+					register.visible = false;
+					helloWelcome.visible = true;
+					myPage.visible = true;
+					login.value = "로그아웃";
+				}
 				
 			}
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onWhoSubmitSuccess(e){
-				var who = e.control;
-				console.log(app.lookup("dm1").getValue("userName"));
-				var whoNm = app.lookup("whoName");
-			//	var obj=JSON.parse(who.getResponseData("dm1"));
-			//console.log(obj.whoName);
-				app.lookup("whoName").redraw();
-			}
-
 			/*
 			 * "  로그인   " 버튼(login)에서 value-change 이벤트 발생 시 호출.
 			 * Button의 value를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
 			 */
-			function onLoginValueChange(e){
+			function onLoginValueChange(e) {
 				var login = e.control;
 				var logout = app.lookup("login");
 				var submission = app.lookup("logout");
-				logout.addEventListener("click", function(e){
+				logout.addEventListener("click", function(e) {
 					submission.send();
 				});
-				
-				
 				
 			}
 
@@ -185,47 +152,38 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms3SubmitSuccess(e){
+			function onSms3SubmitSuccess(e) {
 				var sms3 = e.control;
 				var login = app.lookup("login");
-				login.value="로그인";
-				window.location.href="/";
+				login.value = "로그인";
+				window.location.href = "/";
 			}
 
 			/*
 			 * "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
-				window.location.href="deleteMember.clx"
+				window.location.href = "deleteMember.clx"
 			}
 
 			/*
 			 * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick4(e){
+			function onButtonClick4(e) {
 				var button = e.control;
-				window.location.href="updateMember.clx"
+				window.location.href = "updateMember.clx"
 			}
 
 			/*
 			 * "마이페이지" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick5(e){
+			function onButtonClick5(e) {
 				var button = e.control;
-				window.location.href="myPage.clx"
-			}
-
-			/*
-			 * 내비게이션 바에서 selection-change 이벤트 발생 시 호출.
-			 * 선택된 Item 값이 저장된 후에 발생하는 이벤트.
-			 */
-			function onNav1SelectionChange2(e){
-				var nav1 = e.control;
-				
+				window.location.href = "myPage.clx"
 			};
 			// End - User Script
 			
@@ -237,10 +195,10 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"labal": "HOME", "value": "eduApplyboardList"},
-					{"labal": "교육신청", "value": "value2"},
-					{"labal": "자료", "value": "detailBoard"},
-					{"labal": "봉사참여", "value": "updateBoard"}
+					{"labal": "HOME", "value": "home"},
+					{"labal": "교육게시판", "value": "eduApplyboardList"},
+					{"labal": "교육신청", "value": "createBoard"},
+					{"labal": "마이페이지", "value": "myPage"}
 				]
 			});
 			app.register(dataSet_1);
@@ -290,17 +248,6 @@
 				submission_3.addEventListener("submit-success", onSms3SubmitSuccess);
 			}
 			app.register(submission_3);
-			
-			var submission_4 = new cpr.protocols.Submission("who");
-			submission_4.action = "whoName";
-			submission_4.addResponseData(dataMap_1, false);
-			if(typeof onWhoSubmitSuccess == "function") {
-				submission_4.addEventListener("submit-success", onWhoSubmitSuccess);
-			}
-			if(typeof onWhoReceiveJson == "function") {
-				submission_4.addEventListener("receive-json", onWhoReceiveJson);
-			}
-			app.register(submission_4);
 			app.supportMedia("all and (min-width: 1980px)", "new-screen");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1979px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -318,224 +265,243 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
-			container.addChild(embeddedApp_1, {
-				"top": "198px",
-				"left": "19px",
-				"width": "1887px",
-				"height": "863px"
+			var group_1 = new cpr.controls.Container();
+			group_1.style.css({
+				"font-size" : "1rem"
 			});
-			
-			var image_1 = new cpr.controls.Image();
-			image_1.src = "theme/images/pivot/logodonghang .png";
-			container.addChild(image_1, {
-				"top": "87px",
-				"left": "305px",
-				"width": "170px",
-				"height": "102px"
-			});
-			
-			var button_1 = new cpr.controls.Button();
-			button_1.value = "마이페이지";
-			if(typeof onButtonClick5 == "function") {
-				button_1.addEventListener("click", onButtonClick5);
-			}
-			container.addChild(button_1, {
-				"top": "-21px",
-				"left": "86px",
-				"width": "164px",
-				"height": "44px"
-			});
-			
-			var output_1 = new cpr.controls.Output();
-			output_1.value = "ITda";
-			output_1.style.css({
-				"color" : "#4682A9",
-				"font-weight" : "bolder",
-				"font-size" : "2rem"
-			});
-			container.addChild(output_1, {
-				"top": "41px",
-				"left": "19px",
-				"width": "207px",
-				"height": "44px"
-			});
-			
-			var output_2 = new cpr.controls.Output();
-			output_2.value = "Accompany";
-			output_2.style.css({
-				"color" : "#4682A9",
-				"font-weight" : "bold",
-				"font-size" : "1.6rem"
-			});
-			container.addChild(output_2, {
-				"top": "20px",
-				"left": "539px",
-				"width": "296px",
-				"height": "41px"
-			});
-			
-			var button_2 = new cpr.controls.Button("temporary_btn");
-			button_2.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
-			if(typeof onButtonClick3 == "function") {
-				button_2.addEventListener("click", onButtonClick3);
-			}
-			container.addChild(button_2, {
-				"top": "19px",
-				"left": "118px",
-				"width": "357px",
-				"height": "45px"
-			});
-			
-			var button_3 = new cpr.controls.Button();
-			button_3.value = "회원정보 수정";
-			if(typeof onButtonClick4 == "function") {
-				button_3.addEventListener("click", onButtonClick4);
-			}
-			container.addChild(button_3, {
-				"top": "-13px",
-				"left": "258px",
-				"width": "139px",
-				"height": "43px"
-			});
-			
-			var output_3 = new cpr.controls.Output("whoName");
-			output_3.style.css({
-				"font-weight" : "bold",
-				"font-size" : "1.15rem",
-				"text-align" : "center"
-			});
-			output_3.bind("value").toDataMap(app.lookup("dm1"), "userName");
-			if(typeof onOutputValueChange == "function") {
-				output_3.addEventListener("value-change", onOutputValueChange);
-			}
-			container.addChild(output_3, {
-				"top": "18px",
-				"left": "996px",
-				"width": "108px",
-				"height": "46px"
-			});
-			
-			var output_4 = new cpr.controls.Output("welcom");
-			output_4.visible = false;
-			output_4.value = "님 환영합니다.";
-			output_4.style.css({
-				"font-weight" : "bold",
-				"font-size" : "1.15rem"
-			});
-			if(typeof onWelcomValueChange == "function") {
-				output_4.addEventListener("value-change", onWelcomValueChange);
-			}
-			container.addChild(output_4, {
-				"top": "18px",
-				"left": "1114px",
-				"width": "158px",
-				"height": "39px"
-			});
-			
-			var button_4 = new cpr.controls.Button("mypage");
-			button_4.visible = false;
-			button_4.value = " 마이페이지 ";
-			button_4.style.css({
-				"background-color" : "#FFFFFF",
-				"border-right-style" : "none",
-				"color" : "#4682A9",
-				"border-left-style" : "none",
-				"font-weight" : "bold",
-				"font-size" : "1.15rem",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onButtonClick == "function") {
-				button_4.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_4, {
-				"top": "20px",
-				"left": "1282px",
-				"width": "157px",
-				"height": "44px"
-			});
-			
-			var button_5 = new cpr.controls.Button("login");
-			button_5.value = "  로그인   ";
-			button_5.style.css({
-				"background-color" : "#FFFFFF",
-				"border-right-style" : "none",
-				"color" : "#4682A9",
-				"border-left-style" : "none",
-				"font-weight" : "bold",
-				"font-size" : "1.15rem",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onLoginClick == "function") {
-				button_5.addEventListener("click", onLoginClick);
-			}
-			if(typeof onLoginValueChange == "function") {
-				button_5.addEventListener("value-change", onLoginValueChange);
-			}
-			container.addChild(button_5, {
-				"top": "20px",
-				"left": "1572px",
-				"width": "135px",
-				"height": "46px"
-			});
-			
-			var button_6 = new cpr.controls.Button("btn_register");
-			button_6.value = "회원가입  ";
-			button_6.style.css({
-				"background-color" : "#FFFFFF",
-				"border-right-style" : "none",
-				"color" : "#4682A9",
-				"border-left-style" : "none",
-				"font-weight" : "bold",
-				"font-size" : "1.15rem",
-				"border-bottom-style" : "none",
-				"background-image" : "none",
-				"border-top-style" : "none"
-			});
-			if(typeof onButtonClick2 == "function") {
-				button_6.addEventListener("click", onButtonClick2);
-			}
-			container.addChild(button_6, {
-				"top": "20px",
-				"left": "1438px",
-				"width": "135px",
-				"height": "44px"
-			});
-			
-			var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
-			navigationBar_1.barItemSpacing = 150;
-			navigationBar_1.style.css({
-				"border-right-style" : "none",
-				"border-left-style" : "none",
-				"font-weight" : "bold",
-				"font-size" : "1.3rem",
-				"border-bottom-style" : "none",
-				"border-top-style" : "none"
-			});
-			(function(navigationBar_1){
-				navigationBar_1.setItemSet(app.lookup("ds1"), {
-					"label": "labal",
-					"value": "value"
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_2);
+			(function(container){
+				var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
+				container.addChild(embeddedApp_1, {
+					"top": "234px",
+					"left": "20px",
+					"width": "1880px",
+					"height": "824px"
 				});
-			})(navigationBar_1);
-			if(typeof onNav1ItemClick == "function") {
-				navigationBar_1.addEventListener("item-click", onNav1ItemClick);
+				var group_2 = new cpr.controls.Container();
+				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
+				group_2.setLayout(xYLayout_3);
+				(function(container){
+					var button_1 = new cpr.controls.Button();
+					button_1.value = "회원정보 수정";
+					if(typeof onButtonClick4 == "function") {
+						button_1.addEventListener("click", onButtonClick4);
+					}
+					container.addChild(button_1, {
+						"top": "20px",
+						"left": "411px",
+						"width": "139px",
+						"height": "43px"
+					});
+					var button_2 = new cpr.controls.Button();
+					button_2.value = "마이페이지";
+					if(typeof onButtonClick5 == "function") {
+						button_2.addEventListener("click", onButtonClick5);
+					}
+					container.addChild(button_2, {
+						"top": "20px",
+						"left": "239px",
+						"width": "164px",
+						"height": "44px"
+					});
+					var button_3 = new cpr.controls.Button("temporary_btn");
+					button_3.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
+					if(typeof onButtonClick3 == "function") {
+						button_3.addEventListener("click", onButtonClick3);
+					}
+					container.addChild(button_3, {
+						"top": "19px",
+						"left": "584px",
+						"width": "221px",
+						"height": "45px"
+					});
+					var button_4 = new cpr.controls.Button("btn_register");
+					button_4.value = "회원가입  ";
+					button_4.style.css({
+						"background-color" : "#FFFFFF",
+						"border-right-style" : "none",
+						"color" : "#4682A9",
+						"border-left-style" : "none",
+						"font-weight" : "bold",
+						"font-size" : "1rem",
+						"border-bottom-style" : "none",
+						"background-image" : "none",
+						"border-top-style" : "none"
+					});
+					if(typeof onButtonClick2 == "function") {
+						button_4.addEventListener("click", onButtonClick2);
+					}
+					container.addChild(button_4, {
+						"top": "20px",
+						"left": "1388px",
+						"width": "105px",
+						"height": "40px"
+					});
+					var button_5 = new cpr.controls.Button("mypage");
+					button_5.visible = false;
+					button_5.value = " 마이페이지 ";
+					button_5.style.css({
+						"background-color" : "#FFFFFF",
+						"border-right-style" : "none",
+						"color" : "#4682A9",
+						"border-left-style" : "none",
+						"font-weight" : "bold",
+						"font-size" : "1rem",
+						"border-bottom-style" : "none",
+						"background-image" : "none",
+						"border-top-style" : "none"
+					});
+					if(typeof onButtonClick == "function") {
+						button_5.addEventListener("click", onButtonClick);
+					}
+					container.addChild(button_5, {
+						"top": "20px",
+						"left": "1180px",
+						"width": "120px",
+						"height": "40px"
+					});
+					var button_6 = new cpr.controls.Button("login");
+					button_6.value = "  로그인   ";
+					button_6.style.css({
+						"background-color" : "#FFFFFF",
+						"border-right-style" : "none",
+						"color" : "#4682A9",
+						"border-left-style" : "none",
+						"font-weight" : "bold",
+						"font-size" : "1rem",
+						"border-bottom-style" : "none",
+						"background-image" : "none",
+						"border-top-style" : "none"
+					});
+					if(typeof onLoginClick == "function") {
+						button_6.addEventListener("click", onLoginClick);
+					}
+					if(typeof onLoginValueChange == "function") {
+						button_6.addEventListener("value-change", onLoginValueChange);
+					}
+					container.addChild(button_6, {
+						"top": "20px",
+						"left": "1299px",
+						"width": "90px",
+						"height": "40px"
+					});
+					var output_1 = new cpr.controls.Output("welcom");
+					output_1.visible = false;
+					output_1.value = "님 환영합니다.";
+					output_1.style.css({
+						"font-weight" : "bold",
+						"font-size" : "1rem"
+					});
+					if(typeof onWelcomValueChange == "function") {
+						output_1.addEventListener("value-change", onWelcomValueChange);
+					}
+					container.addChild(output_1, {
+						"top": "23px",
+						"left": "992px",
+						"width": "138px",
+						"height": "34px"
+					});
+					var output_2 = new cpr.controls.Output("whoName");
+					output_2.style.css({
+						"font-weight" : "bold",
+						"font-size" : "1rem",
+						"text-align" : "center"
+					});
+					output_2.bind("value").toDataMap(app.lookup("dm1"), "userName");
+					if(typeof onOutputValueChange == "function") {
+						output_2.addEventListener("value-change", onOutputValueChange);
+					}
+					container.addChild(output_2, {
+						"top": "17px",
+						"left": "852px",
+						"width": "130px",
+						"height": "41px"
+					});
+				})(group_2);
+				if(typeof onGroupClick2 == "function") {
+					group_2.addEventListener("click", onGroupClick2);
+				}
+				container.addChild(group_2, {
+					"top": "0px",
+					"right": "0px",
+					"left": "0px",
+					"height": "74px"
+				});
+				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
+				navigationBar_1.barItemSpacing = 150;
+				navigationBar_1.style.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"font-weight" : "bold",
+					"font-size" : "1.3rem",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none"
+				});
+				(function(navigationBar_1){
+					navigationBar_1.setItemSet(app.lookup("ds1"), {
+						"label": "labal",
+						"value": "value"
+					});
+				})(navigationBar_1);
+				if(typeof onNav1ItemClick == "function") {
+					navigationBar_1.addEventListener("item-click", onNav1ItemClick);
+				}
+				if(typeof onNav1Click2 == "function") {
+					navigationBar_1.addEventListener("click", onNav1Click2);
+				}
+				if(typeof onNav1SelectionChange == "function") {
+					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
+				}
+				container.addChild(navigationBar_1, {
+					"top": "73px",
+					"right": "369px",
+					"left": "580px",
+					"height": "154px"
+				});
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "ITda";
+				output_3.style.css({
+					"color" : "#262626",
+					"font-weight" : "bolder",
+					"font-size" : "1.3rem"
+				});
+				container.addChild(output_3, {
+					"top": "84px",
+					"left": "274px",
+					"width": "207px",
+					"height": "44px"
+				});
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "Accompany";
+				output_4.style.css({
+					"color" : "black",
+					"font-weight" : "bold",
+					"font-size" : "1.3rem"
+				});
+				container.addChild(output_4, {
+					"top": "127px",
+					"left": "274px",
+					"width": "296px",
+					"height": "41px"
+				});
+				var image_1 = new cpr.controls.Image();
+				image_1.src = "theme/images/img/logo2_donghang.png";
+				container.addChild(image_1, {
+					"top": "73px",
+					"left": "129px",
+					"width": "135px",
+					"height": "102px"
+				});
+			})(group_1);
+			if(typeof onGroupClick == "function") {
+				group_1.addEventListener("click", onGroupClick);
 			}
-			if(typeof onNav1Click2 == "function") {
-				navigationBar_1.addEventListener("click", onNav1Click2);
-			}
-			if(typeof onNav1SelectionChange2 == "function") {
-				navigationBar_1.addEventListener("selection-change", onNav1SelectionChange2);
-			}
-			container.addChild(navigationBar_1, {
-				"top": "84px",
-				"right": "217px",
-				"left": "539px",
-				"height": "108px"
+			container.addChild(group_1, {
+				"top": "0px",
+				"right": "0px",
+				"bottom": "0px",
+				"left": "0px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

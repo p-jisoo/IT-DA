@@ -211,6 +211,14 @@
       <cl:searchinput std:sid="s-input-b376f132" id="searchCtl">
         <cl:formdata std:sid="f-data-dbee39f2" row="0" col="1"/>
       </cl:searchinput>
+      <cl:combobox std:sid="c-box-376d78dd" id="cmb1">
+        <cl:formdata std:sid="f-data-3cb820ff" row="0" col="0"/>
+        <cl:itemset datasetid="dsSlct" label="label" value="value"/>
+      </cl:combobox>
+      <cl:button std:sid="button-cd0c64f9" value="Button">
+        <cl:listener std:sid="listener-1c570486" name="click" handler="onButtonClick"/>
+        <cl:formdata std:sid="f-data-42d1669c" row="0" col="2"/>
+      </cl:button>
       <cl:formlayout std:sid="f-layout-d7e48c92" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
         <cl:rows length="1" unit="FRACTION"/>
         <cl:columns length="1" unit="FRACTION"/>
