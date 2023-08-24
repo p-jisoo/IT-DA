@@ -34,17 +34,15 @@
 			 */
 			function onBodyLoad2(e){
 				var submission = app.lookup("selectsms");
-				submission.send();
 				var submission2 = app.lookup("selectCommentsms");
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				var commentBoardMap = app.lookup("commentBoardMap");
-				
 				eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
-				
+				submission.send();
 				commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 				commentBoardMap.setValue("USER_ID", '1234');
-				
 				submission2.send();
+
 			//	var host = app.getHost();
 			//	host.initValue.value;
 			//	//컨트롤러로 boardNo 값 보내기
@@ -56,7 +54,6 @@
 			 */
 			function onSelectsmsSubmitSuccess(e) {
 				var selectsms = e.control;
-				
 				//board
 				var title = app.lookup("title");
 				var category = app.lookup("category")
@@ -67,6 +64,8 @@
 				var address = app.lookup("address")
 				
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+				
+				
 				
 				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
 				eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
@@ -97,6 +96,19 @@
 				
 				app.lookup("userId").redraw();
 				app.lookup("commentContent").redraw();
+				
+				
+				
+				//like
+				var image = app.lookup("like");
+				var responseText = selectsms.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log("좋아요",any.eduApplyBoardMap.isLike);
+				if(any.eduApplyBoardMap.isLike=1){
+					image.src ="theme/images/heart-fillsvg.svg";
+				}
+				
+				
 				
 			}
 			/*
@@ -277,7 +289,11 @@
 						"name": "USER_ID",
 						"defaultValue": ""
 					},
-					{"name": "EDU_BOARD_NO"}
+					{"name": "EDU_BOARD_NO"},
+					{
+						"name": "IsLike",
+						"dataType": "number"
+					}
 				]
 			});
 			app.register(dataMap_1);
@@ -303,6 +319,10 @@
 				]
 			});
 			app.register(dataMap_2);
+			
+			var dataMap_3 = new cpr.data.DataMap("dm1");
+			dataMap_3.parseData({});
+			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("updatesms");
 			submission_1.action = "updateBoard.do";
 			submission_1.addRequestData(dataMap_1);
@@ -341,6 +361,9 @@
 			submission_7.action = "createComment.do";
 			submission_7.addRequestData(dataMap_2);
 			app.register(submission_7);
+			
+			var submission_8 = new cpr.protocols.Submission("checkLike");
+			app.register(submission_8);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -795,6 +818,15 @@
 				"left": "248px",
 				"width": "1521px",
 				"height": "68px"
+			});
+			
+			var image_1 = new cpr.controls.Image("like");
+			image_1.src = "theme/images/heart.svg";
+			container.addChild(image_1, {
+				"top": "239px",
+				"left": "202px",
+				"width": "47px",
+				"height": "46px"
 			});
 			if(typeof onBodyInit == "function"){
 				app.addEventListener("init", onBodyInit);

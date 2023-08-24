@@ -48,11 +48,6 @@ public class EduApplyBoardController {
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
-	@GetMapping("/ui/detailBoardUI.do")
-	public View detailBoardUI() {
-		return new UIView("/ui/detailBoard.clx");
-	}
-
 	@PostMapping("/ui/findBaordList.do")
 	public View findBoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		List<Map<String, Object>> data = eduApplyBoardService.findBaordList();
@@ -79,8 +74,8 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/findBoardListPageAndSearchKeyword.do")
 	public View findBoardListPageAndSearchKeyword(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm3");
-		log.info("param {}",param.getValue("type"));
-		log.info("nowpage {}",param.getValue("keyword"));
+		log.debug("param {}",param.getValue("type"));
+		log.debug("nowpage {}",param.getValue("keyword"));
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
 		dataRequest.setParameter("keyword", param.getValue("keyword"));
@@ -113,7 +108,17 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
+//		HttpSession session = request.getSession(false); 세션 들어왔을때 테스트
+//		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");    유저 세션 체크
+//		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
+		String userId = "c"; //memberVO.getUserId();
+
+//		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
+		long eduBoardNo = 3; // eduBoardNo체크
+		long likeCount = eduApplyBoardService.likeCount(userId, eduBoardNo);
+		dataMap.put("IsLike", likeCount);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");
@@ -184,4 +189,6 @@ public class EduApplyBoardController {
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
 	
+
+
 }

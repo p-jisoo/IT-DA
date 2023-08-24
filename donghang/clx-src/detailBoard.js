@@ -21,17 +21,15 @@ function onBodyInit(e) {
  */
 function onBodyLoad2(e){
 	var submission = app.lookup("selectsms");
-	submission.send();
 	var submission2 = app.lookup("selectCommentsms");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
-	
 	eduApplyBoardMap.setValue("EDU_BOARD_NO", '1111');
-	
+	submission.send();
 	commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 	commentBoardMap.setValue("USER_ID", '1234');
-	
 	submission2.send();
+
 //	var host = app.getHost();
 //	host.initValue.value;
 //	//컨트롤러로 boardNo 값 보내기
@@ -43,7 +41,6 @@ function onBodyLoad2(e){
  */
 function onSelectsmsSubmitSuccess(e) {
 	var selectsms = e.control;
-	
 	//board
 	var title = app.lookup("title");
 	var category = app.lookup("category")
@@ -54,6 +51,8 @@ function onSelectsmsSubmitSuccess(e) {
 	var address = app.lookup("address")
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	
+	
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
@@ -84,6 +83,19 @@ function onSelectsmsSubmitSuccess(e) {
 	
 	app.lookup("userId").redraw();
 	app.lookup("commentContent").redraw();
+	
+	
+	
+	//like
+	var image = app.lookup("like");
+	var responseText = selectsms.xhr.responseText;
+	var any = JSON.parse(responseText);
+	console.log("좋아요",any.eduApplyBoardMap.isLike);
+	if(any.eduApplyBoardMap.isLike=1){
+		image.src ="theme/images/heart-fillsvg.svg";
+	}
+	
+	
 	
 }
 /*

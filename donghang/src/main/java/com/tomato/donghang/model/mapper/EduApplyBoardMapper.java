@@ -44,4 +44,6 @@ public interface EduApplyBoardMapper {
 	
 	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
 
+	int isLike(Map<String, Object> map);
+
 }

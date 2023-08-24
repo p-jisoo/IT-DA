@@ -189,6 +189,30 @@
 		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	</select>
 	
+	<select id="isLike" parameterType="map" resultType="int">
+	       SELECT 
+	COUNT(e.EDU_BOARD_NO) LIKE_COUNT
+FROM
+	EDU_APPLY_BOARD e
+LEFT OUTER JOIN 
+	(SELECT 
+		EDU_BOARD_NO,
+		USER_ID
+	FROM 
+		LIKE_BOARD
+	GROUP BY 
+		EDU_BOARD_NO,
+		USER_ID) l
+ON
+	e.EDU_BOARD_NO = l.EDU_BOARD_NO
+WHERE 
+	e.edu_board_no = #{eduBoardNo} AND l.user_id = #{userId}
+	GROUP BY 
+	e.EDU_BOARD_NO
+	</select>
+	
+	
+	
 <!-- hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok -->
 <resultMap type="com.tomato.donghang.model.vo.EduApplyBoardVO" id="boardResultMap">
     <result property="eduBoardNo" column="EDU_BOARD_NO"/>

@@ -34,6 +34,7 @@
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
           <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-2df14696" name="IsLike" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -43,6 +44,7 @@
           <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-651fbea1" id="dm1"/>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
       </cl:submission>
@@ -63,6 +65,7 @@
       <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createComment.do">
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
+      <cl:submission std:sid="submission-c626fad1" id="checkLike"/>
     </cl:model>
     <cl:appspec/>
   </head>
@@ -209,6 +212,9 @@
         <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
       </cl:formlayout>
     </cl:group>
+    <cl:img std:sid="image-dbd43441" id="like" src="theme/images/heart.svg">
+      <cl:xylayoutdata std:sid="xyl-data-3010a57a" top="239px" left="202px" width="47px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>

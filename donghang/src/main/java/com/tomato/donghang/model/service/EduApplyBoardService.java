@@ -28,6 +28,8 @@ public interface EduApplyBoardService {
 	void deleteCommentBoard(ParameterGroup param);
 	
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
+
+	long likeCount(String userId, long eduBoardNo);
 	
 	
 	
