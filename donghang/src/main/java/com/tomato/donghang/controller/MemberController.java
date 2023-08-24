@@ -1,5 +1,6 @@
 package com.tomato.donghang.controller;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.View;
 
-import com.cleopatra.export.source.Metadata;
 import com.cleopatra.protocol.data.DataRequest;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
@@ -43,19 +43,19 @@ public class MemberController {
 		String userTel = data.getValue("userTel");
 		String userName = data.getValue("userName");
 		String nickName = data.getValue("nickName");
-		String email=data.getValue("email");
-		System.out.println(id+" "+password);
+		String email = data.getValue("email");
+		System.out.println(id + " " + password);
 		MemberVO vo = new MemberVO(id, password, address, userTel, userName, nickName, email);
-		log.info("회원가입한 정보 {}"+vo);
-		memberMapper.registerMember(vo);		
-		
-		Map<String, Object> map=new HashMap<>();// map 선언
-		map.put("registerSuccess", "true"); // map에 key(registerSucess)와 value의 true값을 넣어줍니다. 
+		log.info("회원가입한 정보 {}" + vo);
+		memberMapper.registerMember(vo);
+
+		Map<String, Object> map = new HashMap<>();// map 선언
+		map.put("registerSuccess", "true"); // map에 key(registerSucess)와 value의 true값을 넣어줍니다.
 		dataRequest.setMetadata(true, map); // 여기에 map이 꼭들어가야함. value자리에 map을 꼭 넣어줘야한다!!
-	
+
 		return new JSONDataView();
-	
-	}		
+
+	}
 
 	@GetMapping("ui/login")
 	public View login() {
@@ -95,20 +95,19 @@ public class MemberController {
 			String userTel = data.getValue("userTel");
 			String userName = data.getValue("userName");
 			String nickName = data.getValue("nickName");
-			String email=data.getValue("email");
-			System.out.println("입력된값 = "+id+","+ password+","+address+","+","+userTel+","+userName+","+nickName+","+email);
-			
+			String email = data.getValue("email");
+			System.out.println("입력된값 = " + id + "," + password + "," + address + "," + "," + userTel + "," + userName
+					+ "," + nickName + "," + email);
+
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("업데이트 전 = "+mvo);
-			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName,email);
-			System.out.println("업데이트 후 = "+vo);
+			System.out.println("업데이트 전 = " + mvo);
+			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName, email);
+			System.out.println("업데이트 후 = " + vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
 		}
 		return new JSONDataView();
-		}
-	
-	
+	}
 
 	// 아이디 중복체크 기능
 	@PostMapping("ui/checkIdMember")
@@ -132,9 +131,9 @@ public class MemberController {
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
-		if(session==null) {
+		if (session == null) {
 			return new JSONDataView();
-		}else {
+		} else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getUserId();
 			MemberVO mvo = memberMapper.selectIdMember(id);
@@ -145,6 +144,7 @@ public class MemberController {
 			return new JSONDataView();
 		}
 	}
+
 	// 로그아웃 기능 구현
 	@PostMapping("ui/logoutMember")
 	public View logoutMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequset) {
@@ -154,48 +154,50 @@ public class MemberController {
 		}
 		return new JSONDataView();
 	}
-	
+
 	// 회원 탈퇴 기능
 	@PostMapping("ui/deleteMember")
 	public View deleteMember(DataRequest dataRequest, HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
+		String result = "fail";
 		if (session == null || session.getAttribute("mvo") == null) {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("deletePassword");// 비밀번호 요청을 받아야함
+			String password = data.getValue("PASSWORD");
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			String pwd = mvo.getPassword();
-			String userId=mvo.getUserId();
+			String userId = mvo.getUserId();
 			System.out.println("******************");
 			System.out.println("비밀번호 세션 값 ==" + pwd);
+			System.out.println("비밀번호 입력 값 == " + password);
 			System.out.println("******************");
-
-			String password = data.getValue("PASSWORD");
-			memberMapper.deleteMember(userId,password);
-			session.invalidate();
-			
-		
+			if (pwd.equals(password)) {
+				memberMapper.deleteMember(userId, password);
+				session.invalidate();
+				log.info("세션지워지고 회원탈퇴");
+				result = "success";
+			} 
 		}
+		dataRequest.setResponse("result", result);
 		return new JSONDataView();
+
 	}
+
 	// 비밀번호 찾기 첫번째 페이지(아이디 인증)
 	@PostMapping("ui/selectIdMember")
 	public View selectIdMember(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
-		ParameterGroup data=dataRequset.getParameterGroup("CheckId");
-		String id=data.getValue("userId");
-		System.out.println("컬럼value값 확인 ="+id);
-		MemberVO vo=memberMapper.selectIdMember(id);
-		System.out.println("아이디 존재함 = "+vo);
-		if(vo!=null) {
-		}else {
+		ParameterGroup data = dataRequset.getParameterGroup("CheckId");
+		String id = data.getValue("userId");
+		System.out.println("컬럼value값 확인 =" + id);
+		MemberVO vo = memberMapper.selectIdMember(id);
+		System.out.println("아이디 존재함 = " + vo);
+		if (vo != null) {
+		} else {
 			return new UIView("ui/index.clx");
 		}
 		return new JSONDataView();
-		
+
 	}
-	
+
 }
-
-	
-
-

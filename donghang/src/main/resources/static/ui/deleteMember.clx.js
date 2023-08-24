@@ -33,16 +33,16 @@
 			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("deletePasswordSbm");
-				submission.send();
 				var pwd = app.lookup("password").value;
 				var pwdChk = app.lookup("passwordChk").value;
 				console.log(pwd);
 				console.log(pwdChk);
 				if (pwd != pwdChk) {
 					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
-					return false;
-				} else {
-					window.location.href = "/"
+					return;
+				}else{
+				submission.send();
+				
 				}
 			}
 
@@ -52,20 +52,18 @@
 			 */
 			function onDeletePasswordSbmSubmitSuccess(e) {
 				var deletePasswordSbm = e.control;
-				alert("회원정보를 삭제합니다")
-			}
-
-			/*
-			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
-			 * 통신 중 문제가 생기면 발생합니다.
-			 */
-			function onDeletePasswordSbmSubmitError(e) {
-				var deletePasswordSbm = e.control;
-				alert("비밀번호가 틀렸습니다");
-				return false;
+				var responseText = deletePasswordSbm.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.result);
+				if(any.result=="success"){
+					alert("회원탈퇴가 성공적으로 되었습니다.");
+					window.location.href="/"
+					
+				}else if(any.result=="fail"){
+					alert("비밀번호가 틀렸습니다.");
+				}
 				
 			}
-			//window.location.href="deleteMember.clx"
 
 			/*
 			 * 이미지에서 click 이벤트 발생 시 호출.

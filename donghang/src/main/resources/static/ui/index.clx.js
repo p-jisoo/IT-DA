@@ -106,19 +106,6 @@
 				
 			}
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			//function onWhoSubmitSuccess(e) {
-			//	var who = e.control;
-			//	console.log(app.lookup("dm1").getValue("userName"));
-			//	var whoNm = app.lookup("whoName");
-			//	//	var obj=JSON.parse(who.getResponseData("dm1"));
-			//	//console.log(obj.whoName);
-			//	app.lookup("whoName").redraw();
-			//}
-
-			/*
 			 * "  로그인   " 버튼(login)에서 value-change 이벤트 발생 시 호출.
 			 * Button의 value를 변경하여 변경된 값이 저장된 후에 발생하는 이벤트.
 			 */

@@ -1430,19 +1430,11 @@
 				exports.getText = function(){
 					// TODO: 그리드의 뷰 모드에서 표시할 텍스트를 반환하는 하는 코드를 작성해야 합니다.
 					return "";
-				};
-	
-				/*
-				 * "yes" 버튼(yes_btn)에서 click 이벤트 발생 시 호출.
-				 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-				 */
-				function onYes_btnClick(e){
-					var yes_btn = e.control;
-					app
-				};
+				};;
 				// End - User Script
 				
 				// Header
+				app.declareAppProperty("newProperty1", null);
 				app.supportMedia("all and (min-width: 1024px)", "default");
 				app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
 				app.supportMedia("all and (max-width: 499px)", "mobile");
@@ -1551,6 +1543,14 @@
 	});
 	
 	// App Properties
+	Object.defineProperty(udc.udcdialog.prototype, "newProperty1", {
+		get: function(){
+			return this.getEmbeddedAppInstance().getAppProperty("newProperty1");
+		},
+		set: function(newValue){
+			return this.getEmbeddedAppInstance().setAppProperty("newProperty1", newValue, true);
+		}
+	});
 	
 	// Register type into the Platform and package
 	cpr.core.Platform.INSTANCE.register(internalApp);

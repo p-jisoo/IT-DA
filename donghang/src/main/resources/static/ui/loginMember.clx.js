@@ -35,24 +35,35 @@
 						return false;
 					}
 					submission.send();
-			}
+					}
+					app.openDialog("", {
+					width: 500,
+					height: 350,
+					headerVisible: false
+				}, function(dialog) {
+					dialog.ready(function(dialogApp) {
+					dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
+						
+						dialogApp.addEventListener("click", function(e) {
+									
+						});	
+					});
+				}).then(function(returnValue) {
+					console.log(returnValue);
+					if(returnValue == "true"){
+						window.location.href="/";
+					}
+				});
+
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
 			function onSms1SubmitSuccess(e){
 				var sms1 = e.control;
-			//	var httpPostMethod = new cpr.protocols.HttpPostMethod("/");
-			//    httpPostMethod.submit();
+				
 				window.location.href="/"
-			}
-			/*
-			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
-			 * 통신 중 문제가 생기면 발생합니다.
-			 */
-			function onSms1SubmitError(e){
-				var sms1 = e.control;
-				alert("회원 정보를 다시 확인해주시기 바랍니다.");
+				
 			}
 
 			/*
