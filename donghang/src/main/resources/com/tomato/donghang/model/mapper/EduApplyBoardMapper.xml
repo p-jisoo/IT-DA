@@ -232,7 +232,7 @@ EDU_BOARD_CONTENT,
 EDU_BOARD_STATUS,
 USER_ID
 FROM EDU_APPLY_BOARD
-where EDU_BOARD_NO=#{eduBoardNo}
+where EDU_BOARD_NO=1111
 </select>
 	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 INSERT INTO EDU_APPLY_BOARD(
@@ -326,7 +326,19 @@ EDU_BOARD_NO='1111'
 AND
 USER_ID='b'
 </delete>
-
+<select id="selectCommentBoardMap" resultType="Hashmap" parameterType="map">
+SELECT 
+EDU_APPLY_COMMENT_BOARD_NO,
+EDU_APPLY_COMMENT_CONTENT,
+EDU_BOARD_NO,
+USER_ID
+FROM
+EDU_APPLY_COMMENT_BOARD
+WHERE
+EDU_BOARD_NO=#{eduBoardNo}
+AND
+USER_ID=#{userId}
+</select>
 
 <!--hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok-->
 </mapper>

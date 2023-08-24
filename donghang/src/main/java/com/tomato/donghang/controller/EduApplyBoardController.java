@@ -112,11 +112,8 @@ public class EduApplyBoardController {
 	
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		System.out.println("selectBoardByBoardNo Test");
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
-		System.out.println("paramSelect : "+ param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard();
-		System.out.println("SelectBoard : "+ dataMap);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");
@@ -144,16 +141,25 @@ public class EduApplyBoardController {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
 	
+//	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
+//	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+//		System.out.println("selectCommentBoardByBoardNo Test");
+//		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
+//		System.out.println("paramSelect : "+ param);
+//		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard();
+//		System.out.println("SelectCommentBoard : "+ dataMap);
+//		dataRequest.setResponse("commentBoardMap", dataMap);
+//		return  new JSONDataView();
+////		return new UIView("/ui/updateBoard.do");
+//	}
 	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		System.out.println("selectCommentBoardByBoardNo Test");
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-		System.out.println("paramSelect : "+ param);
-		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard();
-		System.out.println("SelectCommentBoard : "+ dataMap);
+		System.out.println("param "+param);
+		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoardMap(param);
+		System.out.println("dataMap "+dataMap);
 		dataRequest.setResponse("commentBoardMap", dataMap);
 		return  new JSONDataView();
-//		return new UIView("/ui/updateBoard.do");
 	}
 	
 	@PostMapping("/ui/createCommentBoard.do")

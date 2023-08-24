@@ -32,14 +32,14 @@
           <cl:datacolumn std:sid="d-column-f5b6df4a" name="EDU_BOARD_ADDRESS"/>
           <cl:datacolumn std:sid="d-column-062ab587" name="EDU_BOARD_CATEGORY"/>
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
-          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue="1234"/>
+          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-e99cbf6a" name="EDU_APPLY_COMMENT_CONTENT" datatype="string" defaultvalue=""/>
-          <cl:datacolumn std:sid="d-column-580c919a" name="EDU_BOARD_NO" datatype="string" defaultvalue="1111"/>
-          <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue="1234"/>
+          <cl:datacolumn std:sid="d-column-580c919a" name="EDU_BOARD_NO" datatype="string" defaultvalue=""/>
+          <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
@@ -48,6 +48,7 @@
       <cl:submission std:sid="submission-e948c9ec" id="deletesms" action="deleteBoard.do"/>
       <cl:submission std:sid="submission-56a8b8cf" id="selectsms" method="post" action="selectBoardByBoardNo.do">
         <cl:listener std:sid="listener-9b328656" name="submit-success" handler="onSelectsmsSubmitSuccess"/>
+        <cl:requestdata dataid="eduApplyBoardMap"/>
         <cl:responsedata dataid="eduApplyBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-24cc8e77" id="updateCommentsms" action="updateCommentBoard.do">
@@ -55,6 +56,7 @@
       </cl:submission>
       <cl:submission std:sid="submission-132b88c7" id="deleteCommentsms" action="deleteComment.do"/>
       <cl:submission std:sid="submission-9470ab79" id="selectCommentsms" action="selectCommentBoardByBoardNo.do">
+        <cl:requestdata dataid="commentBoardMap"/>
         <cl:responsedata dataid="commentBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createComment.do">

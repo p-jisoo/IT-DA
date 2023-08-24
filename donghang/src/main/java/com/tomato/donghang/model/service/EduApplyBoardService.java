@@ -27,5 +27,7 @@ public interface EduApplyBoardService {
 	
 	void deleteCommentBoard(ParameterGroup param);
 	
-	Map<String, Object> selectCommentBoard();
+	Map<String, Object> selectCommentBoardMap(ParameterGroup param);
+	
+	
 }

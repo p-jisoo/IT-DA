@@ -44,4 +44,7 @@ public interface EduApplyBoardMapper {
 	
 	EduApplyCommentBoardVO selectCommentBoard();
 
+
+	Map<String, Object> selectCommentBoardMap(Map<String, Object> map);
+
 }

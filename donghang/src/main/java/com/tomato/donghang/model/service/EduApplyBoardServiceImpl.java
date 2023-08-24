@@ -296,15 +296,16 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
-	public Map<String, Object> selectCommentBoard() {
-		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
-				eduApplyBoardMapper.selectCommentBoard();
-		System.out.println("serviceImpl evo : " + ecvo);
-		Map<String, Object> dataMap = new HashMap<>();
-		dataMap.put("EDU_APPLY_COMMENT_CONTENT", ecvo.getEduApplyCommentContent());
-		dataMap.put("EDU_BOARD_NO", ecvo.getEduApplyBoardVO().getEduBoardNo());
-		dataMap.put("USER_ID", ecvo.getMemberVO().getUserId());
-
+	public Map<String, Object> selectCommentBoardMap(ParameterGroup param) {
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		String userId = param.getValue("USER_ID");
+		log.info("userId {}",userId);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", Long.parseLong(eduBoardNo));
+		map.put("userId", userId);
+		log.info("map {}",map);
+		Map<String, Object> dataMap=eduApplyBoardMapper.selectCommentBoardMap(map);
+		
 		System.out.println("serviceImpl MAP : " + dataMap);
 		return dataMap;
 	}
