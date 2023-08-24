@@ -537,15 +537,6 @@
 				"left": "539px",
 				"height": "108px"
 			});
-			
-			var output_5 = new cpr.controls.Output("board_no");
-			output_5.value = "board_no";
-			container.addChild(output_5, {
-				"top": "56px",
-				"left": "1800px",
-				"width": "100px",
-				"height": "20px"
-			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
 			}

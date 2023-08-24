@@ -120,9 +120,6 @@
       <cl:xylayoutdata std:sid="xyl-data-12603b8e" top="84px" right="217px" left="539px" height="108px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
     </cl:navigationbar>
-    <cl:output std:sid="output-29c175ff" id="board_no" value="board_no">
-      <cl:xylayoutdata std:sid="xyl-data-d27d0865" top="56px" left="1800px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:output>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>
   </body>
   <std:studiosetting>
