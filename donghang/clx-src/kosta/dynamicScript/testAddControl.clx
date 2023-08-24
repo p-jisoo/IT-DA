@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-a16896d7" version="1.0.4638">
+  <head std:sid="head-5b5c2e8f">
+    <screen std:sid="screen-15387927" id="default" name="default" minwidth="1024px" width="1024px" height="768px"/>
+    <screen std:sid="screen-93e95f8c" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-c3d2f345" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-8e991316"/>
+    <cl:appspec title="동적으로 컨트롤 그룹에 추가(버티컬레이아웃)"/>
+  </head>
+  <body std:sid="body-6851edc7">
+    <cl:group std:sid="group-bbcda123" id="grp1">
+      <cl:xylayoutdata std:sid="xyl-data-8046b1e6" top="170px" left="70px" width="851px" height="516px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-67ce507e" id="btn1" value="동적으로 컨트롤 추가">
+        <cl:listener std:sid="listener-e1d1a296" name="click" handler="onBtn1Click"/>
+        <cl:verticaldata std:sid="v-data-83b96898" width="100px" height="50px"/>
+      </cl:button>
+      <cl:verticallayout std:sid="v-layout-b26bd583"/>
+    </cl:group>
+    <cl:output std:sid="output-a9fa1d64" style="font-size:20px; text-align:center;" value="버티컬 레이아웃">
+      <cl:xylayoutdata std:sid="xyl-data-01370c98" top="83px" left="70px" width="851px" height="49px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:xylayout std:sid="xylayout-a3aadc84"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

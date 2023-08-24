@@ -5,24 +5,20 @@
  * @author USER
  ************************************************/
 
-/*
- * 그룹에서 before-draw 이벤트 발생 시 호출.
- * 그룹 컨텐츠가 그려지기 직전에 호출되는 이벤트 입니다. 내부 컨텐츠를 동적으로 구성하기위한 용도로만 사용됩니다.
- */
 
 /*
  * 루트 컨테이너에서 init 이벤트 발생 시 호출.
  * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
  */
 function onBodyInit(e){
+	var submission2 = app.lookup("loginCheck");
 	var page = app.lookup("page");
 	var currentPageIndex = page.currentPageIndex;
 	var dataMap = app.lookup("dm2");
 	dataMap.setValue("nowpage", currentPageIndex);
 	var submission = app.lookup("sms2");
-	
+	submission2.send();
 	submission.send();
-	
 }
 
 
@@ -61,11 +57,38 @@ function onSms1SubmitDone(e){
  * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
  */
 function onBodyLoad(e){
+	var host = app.getHost();
+	var hostAppInstance = host.getAppInstance();
+	var grid = app.lookup("grd1");
+	grid.addEventListener("cell-click", function(e){
+		var vcEmb = hostAppInstance.lookup("ea1");
+		var vsAppId = "detailBoard";
+		if(vsAppId == null) {
+		return alert("추가될 App이 존재하지 않습니다.");
+	}
+		cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
+		/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+		if(vcEmb.getEmbeddedAppInstance()){
+			vcEmb.getEmbeddedAppInstance().dispose();
+		}
+		/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+		if(loadedApp){						
+			/*초기값을 전달합니다.*/			
+			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+			embApp.initValue =e.row.getRowData().EDU_BOARD_NO;
+			})
+			/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+			vcEmb.app = loadedApp;
+			var app1 = vcEmb.app;
+			app1.getInstances()
+		}
+	}); 
+	});
+	
 	var listBox = app.lookup("lbx1");
 	var comboBox = app.lookup("cmb1");
 	listBox.selectItemByValue("value1");
 	comboBox.selectItemByValue("value1");
-	
 }
 
 /*
@@ -150,122 +173,47 @@ function onSms2SubmitSuccess2(e){
  */
 function onSms3SubmitSuccess(e){
 	var sms3 = e.control; //
-	var responseDatas = sms3.getResponseData("ds3");
-	var grid = app.lookup("grd1");
-	var grid2 = app.lookup("grd2");
-	submissionSC(); 
-	var datakey = null;
-	var responseText = sms3.xhr.responseText; // xhr 통신을 통해 response를 text로 추출 
-	
-	var any =JSON.parse(responseText); //text를 json객체로 변환 
-	if(any.ds3.length==0){
-		showSearchDataNotExist();
-	}else{
-		grid.visible=true;
-		grid2.visible=false;
-	}
+	submissionSC();
+	console.log("sms3 호출");
 }
 
 
-function showSearchDataNotExist(){
-	var container = app.getContainer();
-	var dataMap = app.lookup("dm3");
+function onButtonClick2(e){
+	var button = e.control;
+	window.location.href="createBoard.clx";
+}
+
+/*
+ * 그리드에서 cell-click 이벤트 발생 시 호출.
+ * Grid의 Cell 클릭시 발생하는 이벤트.
+ */
+function onGrd1CellClick(e){
+	var grd1 = e.control;
 	var grid = app.lookup("grd1");
-	var grid2 = app.lookup("grd2");
-	var value = dataMap.getValue("keyword");
-	var dataSet = app.lookup("ds4");
-	if(grid2){
-		grid2.visible=true;
+	var cellValue = grid.getCellValue(e.row.getIndex(),0);
+	console.log(grid.getCellValue(e.row.getIndex(),0));
+	console.log(app.getRootAppInstance());
+	
+}
+
+/*
+ * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onLoginCheckSubmitSuccess(e){
+	var loginCheck = e.control;
+	var button = app.lookup("applyCtl");
+	var login = JSON.parse(loginCheck.xhr.responseText);
+	if(login.name){
+		console.log("로그인");
 	}else{
-		var grid_2 = new cpr.controls.Grid("grd2");
-				grid_2.init({
-					"dataSet": app.lookup("ds4"),
-					"hScroll": "hidden",
-					"vScroll": "hidden",
-					"columns": [
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"},
-						{"width": "100px"}
-					],
-					"header": {
-						"rows": [{"height": "24px"}],
-						"cells": [
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 0},
-								"configurator": function(cell){
-									cell.filterable = false;
-									cell.sortable = false;
-									cell.targetColumnName = "textarea";
-									cell.text = "EDU_BOARD_NO";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 1},
-								"configurator": function(cell){
-									cell.text = "EDU_BOARD_TITLE";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 2},
-								"configurator": function(cell){
-									cell.text = "TOTAL_COUNT";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 3},
-								"configurator": function(cell){
-									cell.text = "BOARD_CATEGORY";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 4},
-								"configurator": function(cell){
-									cell.text = "EDU_BOARD_STATUS";
-								}
-							},
-							{
-								"constraint": {"rowIndex": 0, "colIndex": 5},
-								"configurator": function(cell){
-									cell.text = "TOTAL_BOARD_COUNT";
-								}
-							}
-						]
-					},
-					"detail": {
-						"rows": [{"height": "350px"}],
-						"cells": [{
-							"constraint": {"rowIndex": 0, "colIndex": 0, "rowSpan": 1, "colSpan": 6},
-							"configurator": function(cell){
-								cell.columnName = "textarea";
-								cell.control = (function(){
-									var textArea_1 = new cpr.controls.TextArea("txa1");
-									textArea_1.style.css({
-										"font-size" : "23px"
-									});
-									textArea_1.bind("value").toDataColumn("textarea");
-									return textArea_1;
-								})();
-								cell.controlConstraint = {};
-							}
-						}]
-					}
-				});
-				if(typeof onGrd2SelectionChange == "function") {
-					grid_2.addEventListener("selection-change", onGrd2SelectionChange);
-				}
-				container.addChild(grid_2, {
-					"top": "369px",
-					"left": "224px",
-					"width": "1239px",
-					"height": "362px"
-				});
+		console.log("로그인못함");
+		button.dispose();
 	}
-	dataSet.setValue(0, "textarea",`${value}에 대한 검색결과가 없습니다.\r\n\r\n단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. \r\n검색 옵션을 변경해서 다시 검색해 보세요.`)
-	grid.visible=false;
-			};
-
-
-
+	
+}

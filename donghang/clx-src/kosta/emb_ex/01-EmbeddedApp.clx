@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-23660d99" version="1.0.4074">
+  <head std:sid="head-07c5d18c">
+    <std:metadata>
+      <std:property key="template-file" value="templates/예제/예제_서브페이지.clx"/>
+    </std:metadata>
+    <screen std:sid="screen-0f6d63cd" id="default" name="default" minwidth="1280px" width="1280px" height="760px"/>
+    <screen std:sid="screen-232b04d3" id="tablet" name="tablet" minwidth="800px" maxwidth="1279px" width="800px" height="760px"/>
+    <screen std:sid="screen-2ac11b02" id="mobile" name="mobile" maxwidth="799px" width="360px" height="760px"/>
+    <cl:model std:sid="model-5a2070ac">
+      <cl:dataset std:sid="d-set-5cc2d84a" id="dsMain">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-c4626794" name="label"/>
+          <cl:datacolumn std:sid="d-column-0d057c8f" name="value"/>
+          <cl:datacolumn std:sid="d-column-1c9d93b9" name="parent"/>
+          <cl:datacolumn std:sid="d-column-a66edef9" name="appId"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">페이지 1</cl:datavalue>
+            <cl:datavalue columnname="value">value1</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+            <cl:datavalue columnname="appId"><![CDATA[kosta/emb_ex/EmbeddedApp_01]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">페이지 2</cl:datavalue>
+            <cl:datavalue columnname="value">value2</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+            <cl:datavalue columnname="appId"><![CDATA[kosta/emb_ex/EmbeddedApp_02]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec title="임베디드 앱">
+      <cl:property name="mainApp" type="string" default="부모 화면 앱 속성"/>
+    </cl:appspec>
+  </head>
+  <body std:sid="body-8413b667" class="subpage">
+    <cl:listener std:sid="listener-d0c5958a" name="load" handler="onBodyLoad"/>
+    <cl:output std:sid="output-19eb3b2f" value="앱에 다른 앱을 추가할 수 있는 컨트롤입니다.&#xD;&#xA;임베디드 앱은 프로젝트 내 빈번히 사용하여 재활용 가능한 앱 또는 MDI폴더, 탭폴더 내 앱으로 많이 사용됩니다.">
+      <cl:verticaldata std:sid="v-data-66b5f140" width="1240px" height="48px" autosize="height"/>
+    </cl:output>
+    <cl:group std:sid="group-a31cbf6a" id="grp1">
+      <cl:verticaldata std:sid="v-data-d156dacf" width="1240px" height="2081px" autosize="height"/>
+      <cl:group std:sid="group-fd522747" id="grp2" class="content-box">
+        <cl:verticaldata std:sid="v-data-2010f8d2" width="400px" height="816px" autosize="height"/>
+        <cl:output std:sid="output-e6e467e7" id="opt4" class="content-tit" value="특정 앱 로드한 뒤 임베디드 앱의 인스턴스 교체하는 방법">
+          <cl:verticaldata std:sid="v-data-ce09e51f" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-17cf44cc" id="grpFunction" class="card">
+          <cl:verticaldata std:sid="v-data-60df3a1f" width="1270px" height="652px" minheight="350" autosize="height"/>
+          <cl:group std:sid="group-f4368f28" id="group2">
+            <cl:verticaldata std:sid="v-data-8692a790" width="1270px" height="400px" autosize="none"/>
+            <cl:tree std:sid="tree-2fc74316" id="tre1">
+              <cl:listener std:sid="listener-92c4b22b" name="item-click" handler="onTre1ItemClick"/>
+              <cl:formdata std:sid="f-data-1f111949" row="1" col="0"/>
+              <cl:treeitemset datasetid="dsMain" label="label" value="value" parent="parent"/>
+            </cl:tree>
+            <cl:embeddedapp std:sid="e-app-3a64ad30" id="ea1" style="border-right-style:solid; border-top-width:1px; border-bottom-color:#cccccc; border-right-width:1px; border-left-color:#cccccc; border-right-color:#cccccc; border-left-width:1px; border-top-style:solid; border-left-style:solid; border-bottom-width:1px; border-top-color:#cccccc; border-bottom-style:solid;">
+              <cl:formdata std:sid="f-data-4f29acd9" row="1" col="1"/>
+            </cl:embeddedapp>
+            <cl:group std:sid="group-2fb3e509" id="group1" class="content-form-box">
+              <cl:formdata std:sid="f-data-aa3bf161" row="0" col="0" rowspan="1" colspan="2"/>
+              <cl:output std:sid="output-0a6eb07d" id="opt5" value="현재 열리진 앱의 앱 함수">
+                <cl:formdata std:sid="f-data-5218acaf" row="1" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-aa4a1261" id="opt16" value="앱 속성">
+                <cl:formdata std:sid="f-data-28c07927" row="0" col="0"/>
+              </cl:output>
+              <cl:inputbox std:sid="i-box-a4f9f022" id="ipb2" style="color:#ff63a5; font-size:18px;" class="content-form-opt" placeholder="앱 속성 값을 입력하세요.">
+                <cl:apppropbind property="value" app-property="mainApp"/>
+                <cl:formdata std:sid="f-data-5f4b0db7" row="0" col="1" rowspan="1" colspan="2"/>
+              </cl:inputbox>
+              <cl:output std:sid="output-3beffd74" id="opt1" style="color:#816bff; padding-left:10px; font-size:18px; text-align:left;" class="content-form-opt" value="">
+                <cl:formdata std:sid="f-data-aea83604" row="1" col="1" rowspan="1" colspan="2"/>
+              </cl:output>
+              <cl:output std:sid="output-bc6b5f5a" id="opt18" value="현재 열려진 앱의 앱 속성">
+                <cl:formdata std:sid="f-data-7833c2c8" row="2" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-296fed4d" id="opt19" style="color:#1676fb; padding-left:10px; font-size:20px;" class="content-form-opt" value="">
+                <cl:formdata std:sid="f-data-43f5c054" row="2" col="2"/>
+              </cl:output>
+              <cl:button std:sid="button-2c3eac9a" id="button1" class="btn-gray" value="값 가져오기">
+                <cl:listener std:sid="listener-6df74af5" name="click" handler="onButton1Click"/>
+                <cl:formdata std:sid="f-data-eecaf6d5" row="2" col="1"/>
+              </cl:button>
+              <cl:formlayout std:sid="f-layout-409b0e50" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                <cl:rows length="30" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                <cl:columns length="200" unit="PIXEL" autoSizing="true" shadetype="BY_CLASS" shadecolor="#000000" minlength="0"/>
+                <cl:columns length="100" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+                <cl:columns length="1" unit="FRACTION" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:formlayout std:sid="f-layout-e5ccd97c" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+              <cl:rows length="125" unit="PIXEL" autoSizing="true" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0" syncminlength="false"/>
+              <cl:rows length="260" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="208" unit="PIXEL" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="1" unit="FRACTION"/>
+            </cl:formlayout>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-010e6b4c" leftmargin="10" rightmargin="10" topmargin="10" bottommargin="10"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-6b21807f" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:group std:sid="group-913de93d" id="grp4" class="content-box">
+        <cl:verticaldata std:sid="v-data-d829a44f" width="1240px" height="555px" autosize="height"/>
+        <cl:output std:sid="output-3e0fd2dd" id="opt6" class="content-tit" value="임베디드 앱 및 임베디드 된 앱 인스턴스의 이벤트 사이클">
+          <cl:verticaldata std:sid="v-data-d8d88afd" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-36fd7cc9" id="scenarioGrp" class="card">
+          <cl:verticaldata std:sid="v-data-28f18b44" width="1270px" height="483px" autosize="height"/>
+          <cl:group std:sid="group-7122c102" id="group3" class="content-form-box">
+            <cl:verticaldata std:sid="v-data-6912d955" width="984px" height="272px" autosize="height"/>
+            <cl:output std:sid="output-0295081f" id="opt20" value="임베디드 앱이 렌더링되기 전">
+              <cl:formdata std:sid="f-data-b649bd16" row="1" col="0" rowspan="3" colspan="1"/>
+            </cl:output>
+            <cl:output std:sid="output-197354da" id="opt21" value="액션">
+              <cl:formdata std:sid="f-data-3bc5bf82" row="0" col="0"/>
+            </cl:output>
+            <cl:output std:sid="output-8a16f120" id="opt22" style="padding-left:10px;" class="content-form-opt" value="app-ready 이벤트 발송">
+              <cl:formdata std:sid="f-data-9cf23030" row="3" col="1"/>
+            </cl:output>
+            <cl:output std:sid="output-9856ac17" id="opt23" value="임베디드 앱 렌더링 후">
+              <cl:formdata std:sid="f-data-91463108" row="4" col="0" rowspan="2" colspan="1"/>
+            </cl:output>
+            <cl:output std:sid="output-a059f344" id="opt24" style="padding-left:10px;" class="content-form-opt" value="load 이벤트 발송">
+              <cl:formdata std:sid="f-data-a75078ea" row="4" col="2"/>
+            </cl:output>
+            <cl:output std:sid="output-accc5a95" id="opt25" value="임베디드 앱 컨트롤에 불러온 화면의 앱 인스턴스">
+              <cl:formdata std:sid="f-data-0b20229e" row="0" col="2"/>
+            </cl:output>
+            <cl:output std:sid="output-4008053c" id="opt26" value="임베디드 앱 컨트롤">
+              <cl:formdata std:sid="f-data-dc32e5ff" row="0" col="1"/>
+            </cl:output>
+            <cl:output std:sid="output-d8d3b7e8" id="opt27" style="padding-left:10px;" class="content-form-opt" value="init 이벤트 발송">
+              <cl:formdata std:sid="f-data-5d583f27" row="1" col="2"/>
+            </cl:output>
+            <cl:output std:sid="output-6400e1c4" id="opt28" style="padding-left:10px;" class="content-form-opt" value="init 이벤트 발송">
+              <cl:formdata std:sid="f-data-cf982b25" row="2" col="1"/>
+            </cl:output>
+            <cl:output std:sid="output-bf75302d" id="opt29" style="padding-left:10px;" class="content-form-opt" value="load 이벤트 발송">
+              <cl:formdata std:sid="f-data-9b51d4bc" row="5" col="1"/>
+            </cl:output>
+            <cl:formlayout std:sid="f-layout-8828e385" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" hidden="false" shadetype="BY_CLASS" shadecolor="#000000" minlength="0"/>
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:rows length="35" unit="PIXEL" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="222" unit="PIXEL" autoSizing="true" shadetype="BY_CLASS" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="1" unit="FRACTION" autoSizing="false" hidden="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+              <cl:columns length="1" unit="FRACTION" autoSizing="false" shadetype="NONE" shadecolor="#000000" minlength="0"/>
+            </cl:formlayout>
+          </cl:group>
+          <cl:group std:sid="group-8f14d7fc" id="groAddExp" class="content-info">
+            <cl:verticaldata std:sid="v-data-b32de9ee" width="1100px" height="154px" autosize="height"/>
+            <cl:output std:sid="output-564d9426" id="opt30" class="content-tit Notice" value="이벤트 발생 순서">
+              <cl:verticaldata std:sid="v-data-076d9fe9" width="100px" height="30px"/>
+            </cl:output>
+            <cl:output std:sid="output-28ab6d03" id="opt31" class="content-info-text opt-tmpl" value="1) 임베디드 앱 컨트롤에 불러온 화면에 앱 인스턴스의 init 이벤트&#xD;&#xA;2) [임베디드 앱 컨트롤] init 이벤트&#xD;&#xA;3) [임베디드 앱 컨트롤] app-ready 이벤트&#xD;&#xA;4) 임베디드 앱 컨트롤에 불러온 화면에 앱 인스턴스의 load 이벤트&#xD;&#xA;5) [임베디드 앱 컨트롤] load 이벤트">
+              <cl:verticaldata std:sid="v-data-37c1bfe5" width="100px" height="85px" autosize="height"/>
+            </cl:output>
+            <cl:verticallayout std:sid="v-layout-ec928def" spacing="10" leftmargin="30" rightmargin="30" topmargin="20" bottommargin="20"/>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-4fffe72b" spacing="20" leftmargin="10" rightmargin="10" topmargin="10" bottommargin="10"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-e6eaa501" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:group std:sid="group-281a9f91" id="grp23" class="content-box">
+        <cl:verticaldata std:sid="v-data-1d74c402" width="1240px" height="652px" autosize="height"/>
+        <cl:output std:sid="output-74354b3c" id="opt3" class="content-tit" value="임베디드 앱 강제 실행">
+          <cl:verticaldata std:sid="v-data-face6a77" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-9dc8654c" id="scenarioGrp2" class="content-outline">
+          <cl:verticaldata std:sid="v-data-14018593" width="1270px" height="557px" autosize="height"/>
+          <cl:group std:sid="group-ac471868" id="grp5" class="content-notice">
+            <cl:verticaldata std:sid="v-data-44a103bb" width="1270px" height="101px" autosize="height"/>
+            <cl:output std:sid="output-0f9f0684" id="opt7" class="content-notice-title" value="유의사항">
+              <cl:verticaldata std:sid="v-data-5e34cfab" width="1210px" height="25px" autosize="height"/>
+            </cl:output>
+            <cl:output std:sid="output-71bb753e" id="opt32" class="content-notice-text" value="탭 폴더 및 MDI폴더의 경우 활성화 되지 않은 탭은 앱이 실행되지 않은 상태입니다. 만약 앱내 특정 데이터 및 컨트롤을 취득해야 할 경우 임베디드 앱의 forceRun() API 또는 forceRun 속성을 통해 아직 load 되지 않은 앱을 강제로 실행시킬 수 있습니다.">
+              <cl:verticaldata std:sid="v-data-4ce1ad87" width="100px" height="41px" autosize="height"/>
+            </cl:output>
+            <cl:verticallayout std:sid="v-layout-c5eda114" leftmargin="30" rightmargin="30" topmargin="20" bottommargin="20"/>
+          </cl:group>
+          <cl:mdifolder std:sid="mdifolder-daf5a3a5" id="mdi1">
+            <cl:verticaldata std:sid="v-data-385f7fbe" width="320px" height="406px"/>
+            <cl:tabitem std:sid="t-item-2a1f82ae" selected="true" text="첫번째 탭">
+              <cl:embeddedapp std:sid="e-app-4d6aa2a7" id="embapp1" src="embTab1.clx">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+              </cl:embeddedapp>
+            </cl:tabitem>
+            <cl:tabitem std:sid="t-item-105d5453" text="두번째 탭">
+              <std:metadata>
+                <std:property key="is-active-item" value="true"/>
+              </std:metadata>
+              <cl:embeddedapp std:sid="e-app-e8193349" id="embapp2" src="embTab2.clx" forceRun="true">
+                <std:metadata>
+                  <std:property key="locked" value="true"/>
+                </std:metadata>
+                <cl:listener std:sid="listener-52708f47" name="load" handler="onEmbapp2Load"/>
+              </cl:embeddedapp>
+            </cl:tabitem>
+            <cl:group std:sid="group-c045a77a" id="grp3">
+              <cl:headercontroldata std:sid="thc-data-e938d1d9" width="510" position="right"/>
+              <cl:output std:sid="output-9bafe5ec" id="optMdIH" style="text-align:right;" class="text-danger" value="">
+                <cl:xylayoutdata std:sid="xyl-data-d2d4b1e1" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
+              </cl:output>
+              <cl:xylayout std:sid="xylayout-8415e432"/>
+            </cl:group>
+          </cl:mdifolder>
+          <cl:verticallayout std:sid="v-layout-f6ffaa6b" spacing="20" topmargin="10" bottommargin="10"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-ad199eeb" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:verticallayout std:sid="v-layout-93d3025b" spacing="10"/>
+    </cl:group>
+    <cl:htmlsnippet std:sid="htmlsnippet-82cee4dd" value="&lt;style>&#xD;&#xA;.cl-container.content-box {&#xD;&#xA;&#x9;&#x9;background-color: #f5f8fa;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-tit {&#xD;&#xA;&#x9;&#x9;&#x9;font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #4d91ff;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&amp;.Notice{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;color : #EFA747;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-notice-title {&#xD;&#xA;&#x9;&#x9;   font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #7A001B;&#xD;&#xA;&#x9;&#x9;    &#xD;&#xA;&#x9;&#x9;   }&#x9;&#xD;&#xA;&#x9;&#x9;.cl-container.box {&#xD;&#xA;&#x9;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;.cl-output.box-tit {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;background-color: #e6edf9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-size: 14px;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;text-align: center;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.content-info{&#xD;&#xA;&#x9;&#x9;&#x9;background-color : #FEFBDB;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;.content-notice{&#xD;&#xA;&#x9;&#x9;&#x9;background-color :  #FFCCD7;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// 카드&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;border-radius: 0px;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.opt-tmpl{&#xD;&#xA;&#x9;&#x9;&#x9;line-height: 2.0;&#xD;&#xA;&#x9;&#x9;    color: #3B454F;&#xD;&#xA;&#x9;&#x9;    font-size : 16px;&#xD;&#xA;&#x9;&#x9;    -webkit-user-select: text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;}&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;border-radius: 4px;&#xD;&#xA;}&#x9;&#x9;&#xD;&#xA;&#x9;&lt;/style>">
+      <cl:verticaldata std:sid="v-data-4453ead0" width="1240px" height="20px" autosize="none"/>
+    </cl:htmlsnippet>
+    <cl:verticallayout std:sid="v-layout-7a09ceeb" spacing="25" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

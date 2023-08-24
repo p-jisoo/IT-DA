@@ -1,6 +1,5 @@
 package com.tomato.donghang.controller;
 
-import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,7 +136,6 @@ public class MemberController {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
 			String id = vo.getUserId();
 			MemberVO mvo = memberMapper.selectIdMember(id);
-			System.out.println("로그인 후=" + mvo);
 			if (vo != null) {
 				dataRequest.setResponse("loginSession", mvo);
 			}
@@ -168,10 +166,6 @@ public class MemberController {
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 			String pwd = mvo.getPassword();
 			String userId = mvo.getUserId();
-			System.out.println("******************");
-			System.out.println("비밀번호 세션 값 ==" + pwd);
-			System.out.println("비밀번호 입력 값 == " + password);
-			System.out.println("******************");
 			if (pwd.equals(password)) {
 				memberMapper.deleteMember(userId, password);
 				session.invalidate();

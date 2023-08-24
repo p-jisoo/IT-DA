@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-23660d99" version="1.0.4074">
+  <head std:sid="head-07c5d18c">
+    <std:metadata>
+      <std:property key="template-file" value="templates/예제/예제_서브페이지.clx"/>
+    </std:metadata>
+    <screen std:sid="screen-265e72a4" id="default" name="default" minwidth="1280px" width="1280px" height="760px" useCustomHeight="true" customHeight="1200" customWidth="800" active="true"/>
+    <screen std:sid="screen-a20a7a2a" id="tablet" name="tablet" minwidth="800px" maxwidth="1279px" width="800px" height="760px"/>
+    <screen std:sid="screen-cad64d0b" id="mobile" name="mobile" maxwidth="799px" width="360px" height="760px"/>
+    <cl:model std:sid="model-5a2070ac">
+      <cl:dataset std:sid="d-set-5d85edf4" id="dsList">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-6452ed09" name="tensDigit"/>
+          <cl:datacolumn std:sid="d-column-634d7efb" name="onesDigit"/>
+        </cl:datacolumnlist>
+        <cl:dataview std:sid="d-view-612756a1" id="dvList"/>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">10</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">11</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">20</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">21</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">30</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">31</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">10</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">12</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">20</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">22</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="tensDigit">30</cl:datavalue>
+            <cl:datavalue columnname="onesDigit">32</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-917bec4b" id="dsCmb1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-894a6321" name="label"/>
+          <cl:datacolumn std:sid="d-column-8ac1ac04" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">10</cl:datavalue>
+            <cl:datavalue columnname="value">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">20</cl:datavalue>
+            <cl:datavalue columnname="value">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">30</cl:datavalue>
+            <cl:datavalue columnname="value">30</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-40c46a55" id="dsCmb2">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-9817e30a" name="label"/>
+          <cl:datacolumn std:sid="d-column-690bcace" name="value"/>
+          <cl:datacolumn std:sid="d-column-3e588da8" name="parent"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">11</cl:datavalue>
+            <cl:datavalue columnname="value">11</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">12</cl:datavalue>
+            <cl:datavalue columnname="value">12</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">13</cl:datavalue>
+            <cl:datavalue columnname="value">13</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">14</cl:datavalue>
+            <cl:datavalue columnname="value">14</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">15</cl:datavalue>
+            <cl:datavalue columnname="value">15</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">16</cl:datavalue>
+            <cl:datavalue columnname="value">16</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">17</cl:datavalue>
+            <cl:datavalue columnname="value">17</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">18</cl:datavalue>
+            <cl:datavalue columnname="value">18</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">19</cl:datavalue>
+            <cl:datavalue columnname="value">19</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">21</cl:datavalue>
+            <cl:datavalue columnname="value">21</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">22</cl:datavalue>
+            <cl:datavalue columnname="value">22</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">23</cl:datavalue>
+            <cl:datavalue columnname="value">23</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">24</cl:datavalue>
+            <cl:datavalue columnname="value">24</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">25</cl:datavalue>
+            <cl:datavalue columnname="value">25</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">26</cl:datavalue>
+            <cl:datavalue columnname="value">26</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">27</cl:datavalue>
+            <cl:datavalue columnname="value">27</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">28</cl:datavalue>
+            <cl:datavalue columnname="value">28</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">29</cl:datavalue>
+            <cl:datavalue columnname="value">29</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">31</cl:datavalue>
+            <cl:datavalue columnname="value">31</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">32</cl:datavalue>
+            <cl:datavalue columnname="value">32</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">33</cl:datavalue>
+            <cl:datavalue columnname="value">33</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">34</cl:datavalue>
+            <cl:datavalue columnname="value">34</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">35</cl:datavalue>
+            <cl:datavalue columnname="value">35</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">36</cl:datavalue>
+            <cl:datavalue columnname="value">36</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">37</cl:datavalue>
+            <cl:datavalue columnname="value">37</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">38</cl:datavalue>
+            <cl:datavalue columnname="value">38</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">39</cl:datavalue>
+            <cl:datavalue columnname="value">39</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-38315038" id="dsCmb3">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-c7036675" name="label"/>
+          <cl:datacolumn std:sid="d-column-bd7b26d2" name="value"/>
+          <cl:datacolumn std:sid="d-column-56dd50f8" name="parent"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">11</cl:datavalue>
+            <cl:datavalue columnname="value">11</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">12</cl:datavalue>
+            <cl:datavalue columnname="value">12</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">13</cl:datavalue>
+            <cl:datavalue columnname="value">13</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">14</cl:datavalue>
+            <cl:datavalue columnname="value">14</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">15</cl:datavalue>
+            <cl:datavalue columnname="value">15</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">16</cl:datavalue>
+            <cl:datavalue columnname="value">16</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">17</cl:datavalue>
+            <cl:datavalue columnname="value">17</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">18</cl:datavalue>
+            <cl:datavalue columnname="value">18</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">19</cl:datavalue>
+            <cl:datavalue columnname="value">19</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">21</cl:datavalue>
+            <cl:datavalue columnname="value">21</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">22</cl:datavalue>
+            <cl:datavalue columnname="value">22</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">23</cl:datavalue>
+            <cl:datavalue columnname="value">23</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">24</cl:datavalue>
+            <cl:datavalue columnname="value">24</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">25</cl:datavalue>
+            <cl:datavalue columnname="value">25</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">26</cl:datavalue>
+            <cl:datavalue columnname="value">26</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">27</cl:datavalue>
+            <cl:datavalue columnname="value">27</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">28</cl:datavalue>
+            <cl:datavalue columnname="value">28</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">29</cl:datavalue>
+            <cl:datavalue columnname="value">29</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">31</cl:datavalue>
+            <cl:datavalue columnname="value">31</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">32</cl:datavalue>
+            <cl:datavalue columnname="value">32</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">33</cl:datavalue>
+            <cl:datavalue columnname="value">33</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">34</cl:datavalue>
+            <cl:datavalue columnname="value">34</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">35</cl:datavalue>
+            <cl:datavalue columnname="value">35</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">36</cl:datavalue>
+            <cl:datavalue columnname="value">36</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">37</cl:datavalue>
+            <cl:datavalue columnname="value">37</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">38</cl:datavalue>
+            <cl:datavalue columnname="value">38</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">39</cl:datavalue>
+            <cl:datavalue columnname="value">39</cl:datavalue>
+            <cl:datavalue columnname="parent">30</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-2a100359" id="dsList2">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-7ed42b21" name="label"/>
+          <cl:datacolumn std:sid="d-column-9848d449" name="value"/>
+          <cl:datacolumn std:sid="d-column-fa9e39d1" name="parent"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리0</cl:datavalue>
+            <cl:datavalue columnname="value">0</cl:datavalue>
+            <cl:datavalue columnname="parent">-1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리1</cl:datavalue>
+            <cl:datavalue columnname="value">1</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리1-1</cl:datavalue>
+            <cl:datavalue columnname="value">1-1</cl:datavalue>
+            <cl:datavalue columnname="parent">1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리1-1-1</cl:datavalue>
+            <cl:datavalue columnname="value">1-1-1</cl:datavalue>
+            <cl:datavalue columnname="parent">1-1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리1-1-2</cl:datavalue>
+            <cl:datavalue columnname="value">1-1-2</cl:datavalue>
+            <cl:datavalue columnname="parent">1-1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리1-2</cl:datavalue>
+            <cl:datavalue columnname="value">1-2</cl:datavalue>
+            <cl:datavalue columnname="parent">1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리2</cl:datavalue>
+            <cl:datavalue columnname="value">2</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리2-1</cl:datavalue>
+            <cl:datavalue columnname="value">2-1</cl:datavalue>
+            <cl:datavalue columnname="parent">2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리2-2</cl:datavalue>
+            <cl:datavalue columnname="value">2-2</cl:datavalue>
+            <cl:datavalue columnname="parent">2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리3</cl:datavalue>
+            <cl:datavalue columnname="value">3</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리4</cl:datavalue>
+            <cl:datavalue columnname="value">4</cl:datavalue>
+            <cl:datavalue columnname="parent">0</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리4-1</cl:datavalue>
+            <cl:datavalue columnname="value">4-1</cl:datavalue>
+            <cl:datavalue columnname="parent">4</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리4-2</cl:datavalue>
+            <cl:datavalue columnname="value">4-2</cl:datavalue>
+            <cl:datavalue columnname="parent">4</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리4-2-1</cl:datavalue>
+            <cl:datavalue columnname="value">4-2-1</cl:datavalue>
+            <cl:datavalue columnname="parent">4-2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">카테고리4-3</cl:datavalue>
+            <cl:datavalue columnname="value">4-3</cl:datavalue>
+            <cl:datavalue columnname="parent">4</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-50cdb37e" id="dsCmb4">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-8821c0e2" name="label"/>
+          <cl:datacolumn std:sid="d-column-f1f41a36" name="value"/>
+          <cl:datacolumn std:sid="d-column-470c9e9d" name="parent"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 서초구]]></cl:datavalue>
+            <cl:datavalue columnname="value">11</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 강남구]]></cl:datavalue>
+            <cl:datavalue columnname="value">12</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 송파구]]></cl:datavalue>
+            <cl:datavalue columnname="value">13</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 용산구]]></cl:datavalue>
+            <cl:datavalue columnname="value">14</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 성복구]]></cl:datavalue>
+            <cl:datavalue columnname="value">15</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[서울시 노원구]]></cl:datavalue>
+            <cl:datavalue columnname="value">16</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[부산시 중구]]></cl:datavalue>
+            <cl:datavalue columnname="value">17</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[부산시 서구]]></cl:datavalue>
+            <cl:datavalue columnname="value">18</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[부산시 동래구]]></cl:datavalue>
+            <cl:datavalue columnname="value">19</cl:datavalue>
+            <cl:datavalue columnname="parent">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[부산시 해운대구]]></cl:datavalue>
+            <cl:datavalue columnname="value">21</cl:datavalue>
+            <cl:datavalue columnname="parent">20</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-9361b530" id="dsCmb5">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-056ba9b4" name="label" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-09655941" name="value" datatype="number"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label">1</cl:datavalue>
+            <cl:datavalue columnname="value">1</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">2</cl:datavalue>
+            <cl:datavalue columnname="value">2</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">3</cl:datavalue>
+            <cl:datavalue columnname="value">3</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">4</cl:datavalue>
+            <cl:datavalue columnname="value">4</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">5</cl:datavalue>
+            <cl:datavalue columnname="value">5</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">6</cl:datavalue>
+            <cl:datavalue columnname="value">6</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">7</cl:datavalue>
+            <cl:datavalue columnname="value">7</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">8</cl:datavalue>
+            <cl:datavalue columnname="value">8</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">9</cl:datavalue>
+            <cl:datavalue columnname="value">9</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">10</cl:datavalue>
+            <cl:datavalue columnname="value">10</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">11</cl:datavalue>
+            <cl:datavalue columnname="value">11</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">12</cl:datavalue>
+            <cl:datavalue columnname="value">12</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">13</cl:datavalue>
+            <cl:datavalue columnname="value">13</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">14</cl:datavalue>
+            <cl:datavalue columnname="value">14</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">15</cl:datavalue>
+            <cl:datavalue columnname="value">15</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">16</cl:datavalue>
+            <cl:datavalue columnname="value">16</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">17</cl:datavalue>
+            <cl:datavalue columnname="value">17</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">18</cl:datavalue>
+            <cl:datavalue columnname="value">18</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">19</cl:datavalue>
+            <cl:datavalue columnname="value">19</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">20</cl:datavalue>
+            <cl:datavalue columnname="value">20</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">21</cl:datavalue>
+            <cl:datavalue columnname="value">21</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">22</cl:datavalue>
+            <cl:datavalue columnname="value">22</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">23</cl:datavalue>
+            <cl:datavalue columnname="value">23</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">24</cl:datavalue>
+            <cl:datavalue columnname="value">24</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">25</cl:datavalue>
+            <cl:datavalue columnname="value">25</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">26</cl:datavalue>
+            <cl:datavalue columnname="value">26</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">27</cl:datavalue>
+            <cl:datavalue columnname="value">27</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">28</cl:datavalue>
+            <cl:datavalue columnname="value">28</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">29</cl:datavalue>
+            <cl:datavalue columnname="value">29</cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label">30</cl:datavalue>
+            <cl:datavalue columnname="value">30</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+    </cl:model>
+    <cl:appspec title="필터"/>
+  </head>
+  <body std:sid="body-8413b667" class="subpage">
+    <cl:listener std:sid="listener-abe5990f" name="load" handler="onBodyLoad"/>
+    <cl:datarowcontext datacontrolid="dsCmb3" rowindex="0"/>
+    <cl:output std:sid="output-19eb3b2f" id="opt1" value="아이템을 가지는 컨트롤에서는 filter API &amp; filterExp 속성을 사용할 수 있습니다.">
+      <cl:verticaldata std:sid="v-data-66b5f140" width="1240px" height="48px" autosize="height"/>
+    </cl:output>
+    <cl:group std:sid="group-a31cbf6a" id="grp1">
+      <cl:verticaldata std:sid="v-data-d156dacf" width="1240px" height="1670px" autosize="height"/>
+      <cl:group std:sid="group-fd522747" id="grp2" class="content-box">
+        <cl:verticaldata std:sid="v-data-2010f8d2" width="1240px" height="738px" autosize="height"/>
+        <cl:output std:sid="output-e6e467e7" id="opt4" class="content-tit" value="콤보박스 filter&amp;filterExp">
+          <cl:verticaldata std:sid="v-data-ce09e51f" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-cbd446b1" id="grp3" class="card">
+          <cl:verticaldata std:sid="v-data-188f04d6" width="1200px" height="630px" autosize="height"/>
+          <cl:output std:sid="output-22671d00" id="opt5" class="opt-tmpl" value="그리드내부에 있는 콤보박스에서 제공하는 setFilter API, filterExp 속성을 통해 아이템을 필터할 수 있습니다.">
+            <cl:verticaldata std:sid="v-data-108da887" width="1158px" height="44px" autosize="height"/>
+          </cl:output>
+          <cl:group std:sid="group-e26f1f0f" id="grp8">
+            <cl:verticaldata std:sid="v-data-21e13b3c" width="1158px" height="216px"/>
+            <cl:grid std:sid="grid-85fcb36f" id="sampleGrd" datasetid="dsList">
+              <cl:formdata std:sid="f-data-8f751760" row="1" col="0"/>
+              <cl:gridcolumn std:sid="g-column-36bbfd8e" width="25px"/>
+              <cl:gridcolumn std:sid="g-column-5d218fc4"/>
+              <cl:gridcolumn std:sid="g-column-a5c83294"/>
+              <cl:gridheader std:sid="gh-band-d4c824eb">
+                <cl:gridrow std:sid="g-row-5d32e2cd" height="35px"/>
+                <cl:gridcell std:sid="gh-cell-1971789b" rowindex="0" colindex="0" sortable="false" filterable="false" text="No"/>
+                <cl:gridcell std:sid="gh-cell-ea623227" rowindex="0" colindex="1" targetcolumnname="tensDigit" sortable="false" filterable="false" text="십의 자리수"/>
+                <cl:gridcell std:sid="gh-cell-5ed1100d" rowindex="0" colindex="2" targetcolumnname="onesDigit" sortable="false" filterable="false" text="일의 자리수"/>
+              </cl:gridheader>
+              <cl:griddetail std:sid="gd-band-97fa66f1">
+                <cl:gridrow std:sid="g-row-b3693215" height="30px"/>
+                <cl:gridcell std:sid="gd-cell-022708ed" rowindex="0" colindex="0" columntype="rowindex"/>
+                <cl:gridcell std:sid="gd-cell-ea87379a" rowindex="0" colindex="1" columnname="tensDigit">
+                  <cl:combobox std:sid="c-box-336104d7" id="cmbTensDigit" class="text-center" placeholder="십의 자리수 선택">
+                    <cl:celldata std:sid="c-data-3230f597"/>
+                    <cl:itemset datasetid="dsCmb1" label="label" value="value"/>
+                  </cl:combobox>
+                </cl:gridcell>
+                <cl:gridcell std:sid="gd-cell-17bb9de5" rowindex="0" colindex="2" columnname="onesDigit">
+                  <cl:combobox std:sid="c-box-7bca8d31" id="cmbOnesDigit" class="text-center" placeholder="일의 자리수 선택">
+                    <cl:celldata std:sid="c-data-007c8821"/>
+                    <cl:itemset datasetid="dsCmb2" label="label" value="value"/>
+                  </cl:combobox>
+                </cl:gridcell>
+              </cl:griddetail>
+            </cl:grid>
+            <cl:group std:sid="group-ba1997f8" id="grp16">
+              <cl:formdata std:sid="f-data-27477d25" row="0" col="0"/>
+              <cl:output std:sid="output-49abe1f8" id="opt9" value="•  콤보박스 selection-change 이벤트에서 filterExp를 사용하여 콤보박스의 십의자리수 항목에 해당하는 일의 자리수 목록으로 필터할 수 있습니다.&#xD;&#xA;">
+                <cl:formdata std:sid="f-data-9f0298ed" row="0" col="0"/>
+              </cl:output>
+              <cl:button std:sid="button-bff1ce7e" id="btn1" value="filterExp 실행">
+                <cl:listener std:sid="listener-d6f2bc68" name="click" handler="onBtn1Click"/>
+                <cl:formdata std:sid="f-data-11ddce08" row="0" col="1"/>
+              </cl:button>
+              <cl:formlayout std:sid="f-layout-cb19608b" scrollable="false" hspace="5px" vspace="5px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px">
+                <cl:rows length="1" unit="FRACTION"/>
+                <cl:columns length="1" unit="FRACTION"/>
+                <cl:columns length="100" unit="PIXEL" autoSizing="true"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:formlayout std:sid="f-layout-b3d4a649" scrollable="true" hspace="5px" vspace="5px">
+              <cl:rows length="30" unit="PIXEL"/>
+              <cl:rows length="1" unit="FRACTION"/>
+              <cl:columns length="1" unit="FRACTION"/>
+            </cl:formlayout>
+          </cl:group>
+          <cl:group std:sid="group-be3b57fc" id="grp9">
+            <cl:attribute name="mobile-column-count" value="1"/>
+            <cl:attribute name="tablet-column-count" value="1"/>
+            <cl:verticaldata std:sid="v-data-f8c6c836" width="1158px" height="150px" syncminheight="false" autosize="height"/>
+            <cl:output std:sid="output-bbd29c38" id="opt8" value="•  콤보박스 setFilter API,  filterExp 속성을 이용하여 필터처리를 할 수 있습니다. ">
+              <cl:verticaldata std:sid="v-data-c7a118b4" width="1158px" height="30px" autosize="none"/>
+            </cl:output>
+            <cl:group std:sid="group-35f31223" id="grp10" class="content-form-box">
+              <cl:verticaldata std:sid="v-data-866d3658" width="1158px" height="115px" autosize="height"/>
+              <cl:output std:sid="output-3d5be560" id="opt11" class="label" value="#">
+                <cl:formdata std:sid="f-data-ed8bc1d2" row="0" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-c04d0b06" id="opt12" class="label" value="속성">
+                <cl:formdata std:sid="f-data-525893bc" row="0" col="1"/>
+              </cl:output>
+              <cl:output std:sid="output-a6e5ae36" id="opt13" class="label" value="설명">
+                <cl:formdata std:sid="f-data-50c3da66" row="0" col="2"/>
+              </cl:output>
+              <cl:output std:sid="output-13beb269" id="opt14" class="label" value="동작">
+                <cl:formdata std:sid="f-data-a51e0932" row="0" col="4"/>
+              </cl:output>
+              <cl:output std:sid="output-2d52a164" id="opt15" class="text-center" value="1">
+                <cl:formdata std:sid="f-data-178f6b18" row="1" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-da9b088b" id="opt16" value="ComboBox.filterExp">
+                <cl:formdata std:sid="f-data-45773b4a" row="1" col="1"/>
+              </cl:output>
+              <cl:output std:sid="output-163c1562" id="opt17" class="text-left" value="아이템을 필터하는 익스프레션을 설정합니다.">
+                <cl:formdata std:sid="f-data-2ca4f46d" row="1" col="2"/>
+              </cl:output>
+              <cl:combobox std:sid="c-box-01b2610f" id="cmb3">
+                <cl:formdata std:sid="f-data-ac752a08" row="1" col="3"/>
+                <cl:itemset datasetid="dsCmb3" label="label" value="value"/>
+              </cl:combobox>
+              <cl:output std:sid="output-cf77de16" id="opt18" class="label" value="콤보박스">
+                <cl:formdata std:sid="f-data-0a347039" row="0" col="3"/>
+              </cl:output>
+              <cl:button std:sid="button-d034b9a2" id="btnSetFilter" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-6bbdcf82" name="click" handler="onBtnSetFilterClick"/>
+                <cl:formdata std:sid="f-data-b361868a" row="1" col="4"/>
+              </cl:button>
+              <cl:output std:sid="output-fed8b99c" id="opt10" class="label" value="해제">
+                <cl:formdata std:sid="f-data-11b68f5a" row="0" col="5"/>
+              </cl:output>
+              <cl:button std:sid="button-1704bcdf" id="btnSetFilter2" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-f21f923a" name="click" handler="onBtnSetFilter2Click"/>
+                <cl:formdata std:sid="f-data-f4c56285" row="1" col="5"/>
+              </cl:button>
+              <cl:output std:sid="output-8eb8892d" id="opt45" class="text-center" value="2">
+                <cl:formdata std:sid="f-data-1a581537" row="2" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-57facfbd" id="opt46" value="ComboBox.setFilter">
+                <cl:formdata std:sid="f-data-984e30b7" row="2" col="1"/>
+              </cl:output>
+              <cl:output std:sid="output-1c7ea475" id="opt47" class="text-left" value="5보다 크고 25보다 작은 아이템만 보여주도록 필터를 설정합니다.">
+                <cl:formdata std:sid="f-data-617e4262" row="2" col="2"/>
+              </cl:output>
+              <cl:combobox std:sid="c-box-0aade5eb" id="cmb4">
+                <cl:formdata std:sid="f-data-e8c7d92a" row="2" col="3"/>
+                <cl:itemset datasetid="dsCmb5" label="label" value="value"/>
+              </cl:combobox>
+              <cl:button std:sid="button-d04fb6cf" id="btnSetFilter5" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-8fbe6d15" name="click" handler="onBtnSetFilter5Click"/>
+                <cl:formdata std:sid="f-data-44003909" row="2" col="4"/>
+              </cl:button>
+              <cl:button std:sid="button-43169d07" id="btnSetFilter6" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-277fd970" name="click" handler="onBtnSetFilter6Click"/>
+                <cl:formdata std:sid="f-data-2079b85f" row="2" col="5"/>
+              </cl:button>
+              <cl:formlayout std:sid="f-layout-63433d19" hspace="20px" vspace="10px" top-margin="5px" right-margin="10px" bottom-margin="5px" left-margin="10px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                <cl:rows length="26" unit="PIXEL" shadetype="BY_CLASS" shadecolor="transparent"/>
+                <cl:rows length="26" unit="PIXEL" autoSizing="true"/>
+                <cl:rows length="26" unit="PIXEL" autoSizing="true"/>
+                <cl:columns length="30" unit="PIXEL"/>
+                <cl:columns length="145" unit="PIXEL" minlength="100"/>
+                <cl:columns length="5" unit="FRACTION" minlength="200"/>
+                <cl:columns length="150" unit="PIXEL" minlength="200"/>
+                <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent" minlength="70"/>
+                <cl:columns length="1" unit="FRACTION" minlength="70"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:verticallayout std:sid="v-layout-4109a5cb"/>
+          </cl:group>
+          <cl:group std:sid="group-91b3c9b6" id="grp14">
+            <cl:attribute name="mobile-column-count" value="1"/>
+            <cl:attribute name="tablet-column-count" value="1"/>
+            <cl:verticaldata std:sid="v-data-3ef5a650" width="1158px" height="114px" syncminheight="false" autosize="height"/>
+            <cl:output std:sid="output-cef278be" id="opt24" value="•  필터 사용시에는 연산자를 사용하여 like와 같은 형태를 구현할 수 있습니다.">
+              <cl:verticaldata std:sid="v-data-ab664148" width="1158px" height="30px" autosize="none"/>
+            </cl:output>
+            <cl:group std:sid="group-63264cc2" id="grp15" class="content-form-box">
+              <cl:verticaldata std:sid="v-data-ce89cc4f" width="1158px" height="79px" autosize="height"/>
+              <cl:output std:sid="output-fee6bb93" id="opt27" class="label" value="#">
+                <cl:formdata std:sid="f-data-12ec3c75" row="0" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-aeb63d16" id="opt30" class="label" value="속성">
+                <cl:formdata std:sid="f-data-f7b5ee6b" row="0" col="1"/>
+              </cl:output>
+              <cl:output std:sid="output-4391471b" id="opt35" class="label" value="filterExp">
+                <cl:formdata std:sid="f-data-8ce581a1" row="0" col="2"/>
+              </cl:output>
+              <cl:output std:sid="output-13064386" id="opt36" class="label" value="동작">
+                <cl:formdata std:sid="f-data-4f05da73" row="0" col="4"/>
+              </cl:output>
+              <cl:output std:sid="output-27a3086a" id="opt37" class="text-center" value="1">
+                <cl:formdata std:sid="f-data-7236fdfe" row="1" col="0"/>
+              </cl:output>
+              <cl:output std:sid="output-09e805f6" id="opt38" value="ComboBox.filterExp">
+                <cl:formdata std:sid="f-data-11925152" row="1" col="1"/>
+              </cl:output>
+              <cl:output std:sid="output-168d8467" id="opt39" class="text-left" value="label *= &quot;서울시&quot;">
+                <cl:formdata std:sid="f-data-e3cc8f10" row="1" col="2"/>
+              </cl:output>
+              <cl:combobox std:sid="c-box-b4717c65" id="cmb2">
+                <cl:formdata std:sid="f-data-0c27d1c7" row="1" col="3"/>
+                <cl:itemset datasetid="dsCmb4" label="label" value="value"/>
+              </cl:combobox>
+              <cl:output std:sid="output-9814de6a" id="opt40" class="label" value="콤보박스">
+                <cl:formdata std:sid="f-data-b0ed2e81" row="0" col="3"/>
+              </cl:output>
+              <cl:button std:sid="button-cba4122d" id="btnSetFilter3" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-ec463cc5" name="click" handler="onBtnSetFilter3Click"/>
+                <cl:formdata std:sid="f-data-dd02da5c" row="1" col="4"/>
+              </cl:button>
+              <cl:output std:sid="output-d5a92521" id="opt41" class="label" value="해제">
+                <cl:formdata std:sid="f-data-f3858731" row="0" col="5"/>
+              </cl:output>
+              <cl:button std:sid="button-f48e1788" id="btnSetFilter4" class="btn-primary" value="실행">
+                <cl:listener std:sid="listener-2ce65f7a" name="click" handler="onBtnSetFilter4Click"/>
+                <cl:formdata std:sid="f-data-efb9d690" row="1" col="5"/>
+              </cl:button>
+              <cl:formlayout std:sid="f-layout-cc0d09b3" hspace="20px" vspace="10px" top-margin="5px" right-margin="10px" bottom-margin="5px" left-margin="10px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                <cl:rows length="26" unit="PIXEL" shadetype="BY_CLASS" shadecolor="transparent"/>
+                <cl:rows length="26" unit="PIXEL" autoSizing="true"/>
+                <cl:columns length="30" unit="PIXEL"/>
+                <cl:columns length="2" unit="FRACTION" minlength="100"/>
+                <cl:columns length="5" unit="FRACTION" minlength="200"/>
+                <cl:columns length="150" unit="PIXEL" minlength="200"/>
+                <cl:columns length="1" unit="FRACTION" shadetype="NONE" shadecolor="transparent" minlength="70"/>
+                <cl:columns length="1" unit="FRACTION" minlength="70"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:verticallayout std:sid="v-layout-09de4791"/>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-cbf1cbd6" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-6b21807f" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:group std:sid="group-3b5c5c67" id="grp4" class="content-box">
+        <cl:verticaldata std:sid="v-data-ff04d4d9" width="1240px" height="881px" autosize="height"/>
+        <cl:output std:sid="output-ce0da170" id="opt2" class="content-tit" value="트리 filter&amp;filterExp">
+          <cl:verticaldata std:sid="v-data-ed8afec2" width="100px" height="26px" autosize="height"/>
+        </cl:output>
+        <cl:group std:sid="group-6147f1e8" id="grp5" class="card">
+          <cl:verticaldata std:sid="v-data-fa6a089a" width="1200px" height="780px" autosize="height"/>
+          <cl:output std:sid="output-b760c7b6" id="opt3" class="opt-tmpl" value="트리에서는 셀렉션 컨트롤 공통으로 filterExp 기능을 가지고 있고, 추가로 setTreeFilter를 제공하고 있습니다.&#xD;&#xA;setTreeFilter는 자식 아이템만 필터 했을 시 연결된 부모 아이템도 표시하는 기능입니다. ">
+            <cl:verticaldata std:sid="v-data-2fb08ff6" width="1158px" height="44px" autosize="height"/>
+          </cl:output>
+          <cl:group std:sid="group-5179574d" id="grp6" class="card">
+            <cl:verticaldata std:sid="v-data-f792f3ef" width="1158px" height="631px" autosize="height"/>
+            <cl:group std:sid="group-8c9c3125" id="grp7" class="box">
+              <cl:verticaldata std:sid="v-data-c914017b" width="583px" height="366px" autosize="height"/>
+              <cl:output std:sid="output-fe707e7d" id="opt6" class="box-tit" value="기능 확인 컨트롤">
+                <cl:formdata std:sid="f-data-7266ba96" row="0" col="0"/>
+              </cl:output>
+              <cl:group std:sid="group-a9f4a000" id="grp11">
+                <cl:formdata std:sid="f-data-0c49b6ac" row="1" col="0"/>
+                <cl:tree std:sid="tree-6db99fc6" id="sampleTre" autoOpen="4">
+                  <cl:verticaldata std:sid="v-data-96ad112d" width="300px" height="275px" autosize="none"/>
+                  <cl:treeitemset datasetid="dsList2" label="label" value="value" parent="parent"/>
+                </cl:tree>
+                <cl:verticallayout std:sid="v-layout-2fce355b" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+              </cl:group>
+              <cl:formlayout std:sid="f-layout-9fcff56d" scrollable="false" hspace="0px" vspace="0px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px" hseparatorwidth="1" hseparatortype="BY_CLASS">
+                <cl:rows length="40" unit="PIXEL" shadetype="NONE"/>
+                <cl:rows length="1" unit="FRACTION" hidden="false" minlength="0"/>
+                <cl:columns length="1" unit="FRACTION"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:group std:sid="group-51d5675c" id="grp12">
+              <cl:attribute name="mobile-column-count" value="1"/>
+              <cl:attribute name="tablet-column-count" value="1"/>
+              <cl:verticaldata std:sid="v-data-b066f374" width="1116px" height="204px" syncminheight="false" autosize="height"/>
+              <cl:group std:sid="group-37162f46" id="grp13" class="content-form-box">
+                <cl:formdata std:sid="f-data-4115f726" height="192" row="0" col="0" rowspan="1" colspan="1"/>
+                <cl:output std:sid="output-82366182" id="opt7" class="label" value="#">
+                  <cl:formdata std:sid="f-data-4d2538f2" row="0" col="0"/>
+                </cl:output>
+                <cl:output std:sid="output-d872b168" id="opt19" class="label" value="함수">
+                  <cl:formdata std:sid="f-data-9fd3ff1c" row="0" col="1"/>
+                </cl:output>
+                <cl:output std:sid="output-7d960e45" id="opt20" class="label" value="설명">
+                  <cl:formdata std:sid="f-data-e2932a6a" row="0" col="2"/>
+                </cl:output>
+                <cl:output std:sid="output-af368c34" id="opt21" class="text-center" value="1">
+                  <cl:formdata std:sid="f-data-c7d1ca6c" row="2" col="0"/>
+                </cl:output>
+                <cl:output std:sid="output-b2e23099" id="opt22" class="label" value="동작">
+                  <cl:formdata std:sid="f-data-7d21dc5d" row="0" col="4"/>
+                </cl:output>
+                <cl:output std:sid="output-96613175" id="opt23" class="label" value="입력값">
+                  <cl:formdata std:sid="f-data-d9927de1" row="0" col="3"/>
+                </cl:output>
+                <cl:output std:sid="output-a8a6f70a" id="opt25" class="text-center" value="4">
+                  <cl:formdata std:sid="f-data-1706e1b2" row="4" col="0"/>
+                </cl:output>
+                <cl:output std:sid="output-c075744c" id="opt26" value="setFilter">
+                  <cl:formdata std:sid="f-data-3543c117" row="2" col="1"/>
+                </cl:output>
+                <cl:output std:sid="output-7fffbee2" id="opt28" value="cleartFilter">
+                  <cl:formdata std:sid="f-data-7b3c24cd" row="4" col="1"/>
+                </cl:output>
+                <cl:output std:sid="output-b0d78427" id="opt29" class="text-left" value="클릭한 트리 아이템과 하위자식들만 보이도록 설정합니다. (hasAncestor 사용)">
+                  <cl:formdata std:sid="f-data-28d3b562" row="2" col="2"/>
+                </cl:output>
+                <cl:output std:sid="output-ccede411" id="opt31" class="text-left" value="필터를 제거합니다.">
+                  <cl:formdata std:sid="f-data-345a97d0" row="4" col="2"/>
+                </cl:output>
+                <cl:output std:sid="output-cafe7d34" id="optHasAncestor" value="">
+                  <cl:formdata std:sid="f-data-65aebdf9" row="2" col="3"/>
+                </cl:output>
+                <cl:button std:sid="button-43171a38" id="btnHasAncestor" class="btn-primary" value="실행">
+                  <cl:listener std:sid="listener-add508f3" name="click" handler="onBtnHasAncestorClick"/>
+                  <cl:formdata std:sid="f-data-9b1c54ec" row="2" col="4"/>
+                </cl:button>
+                <cl:button std:sid="button-6a19fa78" id="btnHasAncestor3" class="btn-primary" value="실행">
+                  <cl:listener std:sid="listener-deb14666" name="click" handler="onBtnHasAncestor3Click"/>
+                  <cl:formdata std:sid="f-data-81f7e4fa" row="4" col="4"/>
+                </cl:button>
+                <cl:output std:sid="output-c345e9ed" id="opt32" class="text-center" value="1">
+                  <cl:formdata std:sid="f-data-3399e871" row="1" col="0"/>
+                </cl:output>
+                <cl:output std:sid="output-cfbe3d60" id="opt33" value="setFilter">
+                  <cl:formdata std:sid="f-data-2cbc1a08" row="1" col="1"/>
+                </cl:output>
+                <cl:output std:sid="output-19b8231f" id="opt34" class="text-left" value="부모의 값이 0인것만 보이도록 설정합니다.">
+                  <cl:formdata std:sid="f-data-c2794a52" row="1" col="2"/>
+                </cl:output>
+                <cl:button std:sid="button-c7321324" id="btnHasAncestor4" class="btn-primary" value="실행">
+                  <cl:listener std:sid="listener-71bffe3b" name="click" handler="onBtnHasAncestor4Click"/>
+                  <cl:formdata std:sid="f-data-405d596e" row="1" col="4"/>
+                </cl:button>
+                <cl:output std:sid="output-18c28544" id="optHasAncestor2" value="parent == '0'">
+                  <cl:formdata std:sid="f-data-115e1248" row="1" col="3"/>
+                </cl:output>
+                <cl:output std:sid="output-7b3ba1bc" id="opt42" class="text-center" value="3">
+                  <cl:formdata std:sid="f-data-b688c5f1" row="3" col="0"/>
+                </cl:output>
+                <cl:output std:sid="output-3ffc9636" id="opt43" value="setTreeFilter">
+                  <cl:formdata std:sid="f-data-3c7c5a76" row="3" col="1"/>
+                </cl:output>
+                <cl:output std:sid="output-d2494894" id="opt44" class="text-left" value="자식 아이템을 표시하고 계층 구조도 그대로 표시해야 하는 경우 사용됩니다">
+                  <cl:formdata std:sid="f-data-ebf9b8dd" row="3" col="2"/>
+                </cl:output>
+                <cl:button std:sid="button-ebc81f39" id="btnHasAncestor2" class="btn-primary" value="실행">
+                  <cl:listener std:sid="listener-79ce7501" name="click" handler="onBtnHasAncestor2Click"/>
+                  <cl:formdata std:sid="f-data-ecc98c4d" row="3" col="4"/>
+                </cl:button>
+                <cl:formlayout std:sid="f-layout-6b5d4830" hspace="20px" vspace="10px" top-margin="5px" right-margin="10px" bottom-margin="5px" left-margin="10px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+                  <cl:rows length="28" unit="PIXEL" shadetype="BY_CLASS"/>
+                  <cl:rows length="28" unit="PIXEL" autoSizing="true"/>
+                  <cl:rows length="28" unit="PIXEL" autoSizing="true"/>
+                  <cl:rows length="28" unit="PIXEL" autoSizing="true"/>
+                  <cl:rows length="28" unit="PIXEL" autoSizing="true"/>
+                  <cl:columns length="30" unit="PIXEL"/>
+                  <cl:columns length="2" unit="FRACTION" minlength="100"/>
+                  <cl:columns length="5" unit="FRACTION" minlength="200"/>
+                  <cl:columns length="2" unit="FRACTION" hidden="false" minlength="140"/>
+                  <cl:columns length="1" unit="FRACTION" minlength="70"/>
+                </cl:formlayout>
+              </cl:group>
+              <cl:formlayout std:sid="f-layout-2b3110a1" scrollable="false" user-resizing-mode="standard" hspace="36px" vspace="15px" top-margin="0px" right-margin="0px" bottom-margin="0px" left-margin="0px" vseparatorclass="splitter" vseparatorwidth="6" vseparatortype="BY_CLASS">
+                <cl:rows length="1" unit="FRACTION"/>
+                <cl:columns length="2" unit="FRACTION"/>
+              </cl:formlayout>
+            </cl:group>
+            <cl:verticallayout std:sid="v-layout-b0607a1f" spacing="20" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+          </cl:group>
+          <cl:verticallayout std:sid="v-layout-8bedce5a" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+        </cl:group>
+        <cl:verticallayout std:sid="v-layout-cf58f4f5" spacing="10" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+      </cl:group>
+      <cl:verticallayout std:sid="v-layout-93d3025b" spacing="10"/>
+    </cl:group>
+    <cl:htmlsnippet std:sid="htmlsnippet-82cee4dd" value="&lt;style>&#xD;&#xA;.cl-container.content-box {&#xD;&#xA;&#x9;&#x9;background-color: #f5f8fa;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-tit {&#xD;&#xA;&#x9;&#x9;&#x9;font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #4d91ff;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&amp;.Notice{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;color : #EFA747;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.content-notice-title {&#xD;&#xA;&#x9;&#x9;   font-size: 18px;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;color: #7A001B;&#xD;&#xA;&#x9;&#x9;    &#xD;&#xA;&#x9;&#x9;   }&#x9;&#xD;&#xA;&#x9;&#x9;.cl-container.box {&#xD;&#xA;&#x9;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;.cl-output.box-tit {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;background-color: #e6edf9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-size: 14px;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-weight: 700;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;text-align: center;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.content-info{&#xD;&#xA;&#x9;&#x9;&#x9;background-color : #FEFBDB;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;.content-notice{&#xD;&#xA;&#x9;&#x9;&#x9;background-color :  #FFCCD7;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// 카드&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;&#x9;border-radius: 0px;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output.opt-tmpl{&#xD;&#xA;&#x9;&#x9;&#x9;line-height: 2.0;&#xD;&#xA;&#x9;&#x9;    color: #3B454F;&#xD;&#xA;&#x9;&#x9;    font-size : 16px;&#xD;&#xA;&#x9;&#x9;    -webkit-user-select: text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;}&#xD;&#xA;.cl-container.card {&#xD;&#xA;&#x9;background-color: #ffffff;&#xD;&#xA;&#x9;border: 1px solid #d6d6d6;&#xD;&#xA;&#x9;border-radius: 4px;&#xD;&#xA;}&#xD;&#xA;.cl-container.content-form-box {&#xD;&#xA;&#x9;&#x9;background-color: white;&#xD;&#xA;&#x9;&#x9;border: 1px solid #dbdfea;&#xD;&#xA;&#x9;&#x9;border-radius: 4px;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-output {&#xD;&#xA;&#x9;&#x9;&#x9;font: 14px &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, sans-serif;&#xD;&#xA;&#x9;&#x9;&#x9;text-align: center;&#xD;&#xA;&#x9;&#x9;&#x9;font-weight: bold;&#xD;&#xA;&#x9;&#x9;&#x9;color: #3B454F;&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&amp;.content-form-opt {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;text-align: left;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;font-weight: normal;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;padding-left: 1rem;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-formlayout-column-shade {&#xD;&#xA;&#x9;&#x9;&#x9;background-color: #E6EAFA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-formlayout-row-shade {&#xD;&#xA;&#x9;&#x9;&#x9;background-color: #E6EAFA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;.cl-formlayout-vertical-separator,&#xD;&#xA;&#x9;&#x9;.cl-formlayout-horizontal-separator {&#xD;&#xA;&#x9;&#x9;&#x9;background-color:#dbdfea;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&amp;.type-box {&#xD;&#xA;&#x9;&#x9;&#x9;.cl-output {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;color: #184a6d;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;.cl-formlayout-column-shade {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;background-color: #d4e5f0;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;.cl-formlayout-row-shade {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;background-color: #d4e5f0;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#x9;&#x9;&#xD;&#xA;&#x9;&lt;/style>">
+      <cl:verticaldata std:sid="v-data-4453ead0" width="1240px" height="20px" autosize="none"/>
+    </cl:htmlsnippet>
+    <cl:verticallayout std:sid="v-layout-7a09ceeb" spacing="25" leftmargin="20" rightmargin="20" topmargin="20" bottommargin="20"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

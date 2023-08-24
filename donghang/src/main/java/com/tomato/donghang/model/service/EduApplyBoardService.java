@@ -9,11 +9,23 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 
 public interface EduApplyBoardService {
+	List<Map<String, Object>> findBaordList();
+	List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param);
+	List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param);
+	
 	void createBoard(ParameterGroup param);
 	
 	void updateBoard(ParameterGroup param);
 
-	List<Map<String, Object>> findBaordList();
-	List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param);
-	List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param);
+	void deleteBoard(ParameterGroup param);
+	
+	Map<String, Object> selectBoard();
+	
+	void createCommentBoard(ParameterGroup param);
+	
+	void updateCommentBoard(ParameterGroup param);
+	
+	void deleteCommentBoard(ParameterGroup param);
+	
+	Map<String, Object> selectCommentBoard();
 }

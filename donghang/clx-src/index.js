@@ -143,4 +143,3 @@ function onButtonClick5(e) {
 	var button = e.control;
 	window.location.href = "myPage.clx"
 }
-
