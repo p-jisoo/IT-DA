@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6f3833e2" version="1.0.4584">
+  <head std:sid="head-264c019c">
+    <screen std:sid="screen-42c5dfc0" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-1eab7f7c" id="default" name="default" minwidth="1024px" maxwidth="1979px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="true"/>
+    <screen std:sid="screen-dcfe6134" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-8c75b55f" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <cl:model std:sid="model-db7e769b">
+      <cl:dataset std:sid="d-set-6870e8b1" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-5bc22461" name="labal"/>
+          <cl:datacolumn std:sid="d-column-a02e4775" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="labal">HOME</cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[home]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="labal"><![CDATA[교육게시판]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[eduBoardList]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="labal">자료</cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[myPage]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="labal"><![CDATA[교육신청]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[createBoard]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-663dd3fb" id="loginSession">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-88199245" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-5f4a54c7" name="PASSWORD"/>
+          <cl:datacolumn std:sid="d-column-cd4a0d10" name="ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-bc947260" name="USER_TEL"/>
+          <cl:datacolumn std:sid="d-column-6c00f17f" name="userName"/>
+          <cl:datacolumn std:sid="d-column-b1d4f80a" name="NICKNAME"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:datamap std:sid="d-map-d2215ae0" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-9ba26657" name="userName"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
+        <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
+        <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-bb0a5232" id="sessioncheck" action="loginSessionMember">
+        <cl:listener std:sid="listener-8c83f229" name="submit-success" handler="onSms2SubmitSuccess"/>
+        <cl:listener std:sid="listener-051cba42" name="submit-done" handler="onSessioncheckSubmitDone"/>
+        <cl:responsedata dataid="loginSession"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-f4456268" id="logout" action="logoutMember">
+        <cl:listener std:sid="listener-79d8c3f0" name="submit-success" handler="onSms3SubmitSuccess"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-bda8ceea">
+    <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
+    <cl:img std:sid="image-d301729d" src="theme/images/img/boyfriend_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-1f45cbe6" top="161px" left="553px" width="223px" height="247px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:img std:sid="image-4c05344f" src="theme/images/img/woman_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-c4d6b4a3" top="161px" left="815px" width="223px" height="247px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:img std:sid="image-c7e036d3" src="theme/images/img/baby_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-90375168" top="366px" left="696px" width="205px" height="179px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:img std:sid="image-dbdaa016" src="theme/images/img/talk_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-95a0deaa" top="200px" left="1088px" width="77px" height="88px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:img std:sid="image-d6f37b33" src="theme/images/img/view_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-4cd6071d" top="86px" left="498px" width="78px" height="63px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:xylayout std:sid="xylayout-8cfc8944"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

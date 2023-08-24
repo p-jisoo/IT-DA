@@ -39,7 +39,7 @@
         <cl:listener std:sid="listener-43221df8" name="click" handler="onImgHomeClick"/>
         <cl:xylayoutdata std:sid="xyl-data-bd6325a6" top="31px" left="306px" width="206px" height="191px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
-      <cl:output std:sid="output-edf9fe6b" style="font-weight:bold; font-size:2rem; font-style:normal; text-align:center;" value="ITda    Accompany">
+      <cl:output std:sid="output-edf9fe6b" style="font-weight:bold; font-size:2rem; font-style:normal; text-align:center;" value="ITda Accompany">
         <cl:xylayoutdata std:sid="xyl-data-ff778a71" top="232px" left="252px" width="325px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-2fd14bb2" id="ipb1" style="border-radius:8px; border-bottom-color:#acacac; border-left-color:#acacac; border-top-color:#acacac; border-right-color:#acacac;" placeholder="아이디를 입력하세요.">

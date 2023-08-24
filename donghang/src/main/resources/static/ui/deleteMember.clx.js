@@ -38,7 +38,7 @@
 				console.log(pwd);
 				console.log(pwdChk);
 				if (pwd != pwdChk) {
-					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
+					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다.");
 					return;
 				}else{
 				submission.send();
@@ -171,7 +171,7 @@
 			});
 			
 			var output_1 = new cpr.controls.Output();
-			output_1.value = "ITda    Accompany";
+			output_1.value = "ITda Accompany";
 			output_1.style.css({
 				"font-weight" : "bold",
 				"font-size" : "2rem",
@@ -238,7 +238,7 @@
 				"text-align" : "left"
 			});
 			container.addChild(output_5, {
-				"top": "444px",
+				"top": "432px",
 				"left": "854px",
 				"width": "153px",
 				"height": "46px"

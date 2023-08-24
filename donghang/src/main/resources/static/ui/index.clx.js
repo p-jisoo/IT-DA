@@ -17,17 +17,46 @@
 			 *
 			 * @author USER
 			 ************************************************/
+
+			function emded(e){
+				var vcEmb = app.lookup("ea1");
+				var vsAppId = e.item.value;
+					// 입력값에 선택된 앱이 존재하지 않는 경우
+				if(vsAppId == null) {
+					return alert("추가될 App이 존재하지 않습니다.");
+				}
+				
+				/*앱을 로드하고 로드된 앱을 임베디드 앱에 설정합니다.*/
+				cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
+					/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+					if(vcEmb.getEmbeddedAppInstance()){
+						vcEmb.getEmbeddedAppInstance().dispose();
+					}
+					/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+					if(loadedApp){						
+						/*초기값을 전달합니다.*/			
+						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+							
+						})
+						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+						vcEmb.app = loadedApp;
+						var app1 = vcEmb.app;
+						app1.getInstances()
+					}
+				}); 
+			}
 			/*
 			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
 			 * 아이템 클릭시 발생하는 이벤트.
 			 */
 			function onNav1ItemClick(e) {
 				var nav1 = e.control;
-				var submission = app.lookup("sms1");
-				var navigationBar = app.lookup("nav1");
-				var count = navigationBar.getSelectedIndices().toString()
-				submission.setParameters("menu", count);
-				submission.send();
+			//	var submission = app.lookup("sms1");
+			//	var navigationBar = app.lookup("nav1");
+			//	var count = navigationBar.getSelectedIndices().toString()
+			//	submission.setParameters("menu", count);
+			//	submission.send();
+			emded(e);
 			}
 
 			/*
@@ -166,10 +195,10 @@
 					{"name": "value"}
 				],
 				"rows": [
-					{"labal": "HOME", "value": "value1"},
-					{"labal": "교육신청", "value": "value2"},
-					{"labal": "자료", "value": "value3"},
-					{"labal": "봉사참여", "value": "value4"}
+					{"labal": "HOME", "value": "home"},
+					{"labal": "교육게시판", "value": "eduApplyboardList"},
+					{"labal": "교육신청", "value": "createBoard"},
+					{"labal": "마이페이지", "value": "myPage"}
 				]
 			});
 			app.register(dataSet_1);
@@ -243,6 +272,13 @@
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
+				var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
+				container.addChild(embeddedApp_1, {
+					"top": "234px",
+					"left": "20px",
+					"width": "1880px",
+					"height": "824px"
+				});
 				var group_2 = new cpr.controls.Container();
 				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
 				group_2.setLayout(xYLayout_3);
@@ -456,46 +492,6 @@
 					"left": "129px",
 					"width": "135px",
 					"height": "102px"
-				});
-				var image_2 = new cpr.controls.Image();
-				image_2.src = "theme/images/img/boyfriend_donghang.png";
-				container.addChild(image_2, {
-					"top": "342px",
-					"left": "546px",
-					"width": "223px",
-					"height": "247px"
-				});
-				var image_3 = new cpr.controls.Image();
-				image_3.src = "theme/images/img/woman_donghang.png";
-				container.addChild(image_3, {
-					"top": "342px",
-					"left": "808px",
-					"width": "223px",
-					"height": "247px"
-				});
-				var image_4 = new cpr.controls.Image();
-				image_4.src = "theme/images/img/baby_donghang.png";
-				container.addChild(image_4, {
-					"top": "547px",
-					"left": "689px",
-					"width": "205px",
-					"height": "179px"
-				});
-				var image_5 = new cpr.controls.Image();
-				image_5.src = "theme/images/img/talk_donghang.png";
-				container.addChild(image_5, {
-					"top": "381px",
-					"left": "1081px",
-					"width": "77px",
-					"height": "88px"
-				});
-				var image_6 = new cpr.controls.Image();
-				image_6.src = "theme/images/img/view_donghang.png";
-				container.addChild(image_6, {
-					"top": "267px",
-					"left": "491px",
-					"width": "78px",
-					"height": "63px"
 				});
 			})(group_1);
 			if(typeof onGroupClick == "function") {

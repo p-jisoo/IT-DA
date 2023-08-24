@@ -177,7 +177,7 @@
 					"height": "191px"
 				});
 				var output_1 = new cpr.controls.Output();
-				output_1.value = "ITda    Accompany";
+				output_1.value = "ITda Accompany";
 				output_1.style.css({
 					"font-weight" : "bold",
 					"font-size" : "2rem",

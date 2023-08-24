@@ -48,10 +48,10 @@
   </head>
   <body std:sid="body-bde335ed" style="color:#91C8E4; text-align:center;">
     <cl:output std:sid="output-7e7d16d7" style="color:#000000; font-weight:bolder; font-size:2rem;" value="ITda">
-      <cl:xylayoutdata std:sid="xyl-data-cd015327" top="72px" left="167px" width="84px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-cd015327" top="58px" left="167px" width="84px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-657ac17b" style="color:#000000; font-weight:bold; font-size:1.6rem;" value="Accompany">
-      <cl:xylayoutdata std:sid="xyl-data-d6d2d764" top="114px" left="167px" width="157px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-d6d2d764" top="100px" left="167px" width="157px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:group std:sid="group-39caef39">
       <cl:xylayoutdata std:sid="xyl-data-6efd441e" top="162px" left="774px" width="321px" height="110px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -160,7 +160,7 @@
     <cl:img std:sid="image-49cd5a49" id="imgHome" src="theme/images/img/logo2_donghang.png">
       <cl:listener std:sid="listener-602a33c8" name="value-change" handler="onImgHomeValueChange"/>
       <cl:listener std:sid="listener-463c0080" name="click" handler="onImgHomeClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-5e17e6c4" top="34px" left="20px" width="137px" height="121px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-5e17e6c4" top="20px" left="20px" width="137px" height="121px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:xylayout std:sid="xylayout-43b1c2e8"/>
   </body>

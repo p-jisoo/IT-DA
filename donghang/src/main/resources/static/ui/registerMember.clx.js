@@ -359,7 +359,7 @@
 				"font-size" : "2rem"
 			});
 			container.addChild(output_1, {
-				"top": "72px",
+				"top": "58px",
 				"left": "167px",
 				"width": "84px",
 				"height": "44px"
@@ -373,7 +373,7 @@
 				"font-size" : "1.6rem"
 			});
 			container.addChild(output_2, {
-				"top": "114px",
+				"top": "100px",
 				"left": "167px",
 				"width": "157px",
 				"height": "41px"
@@ -771,7 +771,7 @@
 				image_1.addEventListener("click", onImgHomeClick);
 			}
 			container.addChild(image_1, {
-				"top": "34px",
+				"top": "20px",
 				"left": "20px",
 				"width": "137px",
 				"height": "121px"
