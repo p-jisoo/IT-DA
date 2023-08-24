@@ -90,13 +90,13 @@ function onBodyLoad(e){
 	listBox.selectItemByValue("value1");
 	comboBox.selectItemByValue("value1");
 }
-
 /*
  * "Button" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
 function onButtonClick(e){
-	var dataSet = app.lookup("tpSlct");
+	var button = e.control;
+		var dataSet = app.lookup("tpSlct");
 	var dataSet2 = app.lookup("dsSlct");
 	var searchInput = app.lookup("searchCtl");
 	var comboBox = app.lookup("cmb1");
@@ -217,3 +217,5 @@ function onLoginCheckSubmitSuccess(e){
 	}
 	
 }
+
+

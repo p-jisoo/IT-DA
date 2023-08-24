@@ -103,13 +103,13 @@
 				listBox.selectItemByValue("value1");
 				comboBox.selectItemByValue("value1");
 			}
-
 			/*
 			 * "Button" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 			function onButtonClick(e){
-				var dataSet = app.lookup("tpSlct");
+				var button = e.control;
+					var dataSet = app.lookup("tpSlct");
 				var dataSet2 = app.lookup("dsSlct");
 				var searchInput = app.lookup("searchCtl");
 				var comboBox = app.lookup("cmb1");
@@ -640,6 +640,26 @@
 				var searchInput_1 = new cpr.controls.SearchInput("searchCtl");
 				container.addChild(searchInput_1, {
 					"colIndex": 1,
+					"rowIndex": 0
+				});
+				var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+				(function(comboBox_1){
+					comboBox_1.setItemSet(app.lookup("dsSlct"), {
+						"label": "label",
+						"value": "value"
+					});
+				})(comboBox_1);
+				container.addChild(comboBox_1, {
+					"colIndex": 0,
+					"rowIndex": 0
+				});
+				var button_3 = new cpr.controls.Button();
+				button_3.value = "Button";
+				if(typeof onButtonClick == "function") {
+					button_3.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_3, {
+					"colIndex": 2,
 					"rowIndex": 0
 				});
 			})(group_1);
