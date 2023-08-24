@@ -327,7 +327,7 @@
 					"height": "45px"
 				});
 				var output_4 = new cpr.controls.Output();
-				output_4.value = "ITda Accompany    |";
+				output_4.value = "ITda Accompany";
 				output_4.style.css({
 					"color" : "#91C8E4",
 					"font-weight" : "normal",
@@ -336,8 +336,8 @@
 				});
 				container.addChild(output_4, {
 					"top": "747px",
-					"left": "241px",
-					"width": "162px",
+					"left": "252px",
+					"width": "139px",
 					"height": "21px"
 				});
 				var output_5 = new cpr.controls.Output();
@@ -350,7 +350,7 @@
 				});
 				container.addChild(output_5, {
 					"top": "747px",
-					"left": "404px",
+					"left": "409px",
 					"width": "200px",
 					"height": "21px"
 				});
@@ -383,9 +383,23 @@
 					"width": "139px",
 					"height": "45px"
 				});
+				var output_8 = new cpr.controls.Output();
+				output_8.value = "|";
+				output_8.style.css({
+					"color" : "#91C8E4",
+					"font-weight" : "normal",
+					"font-size" : "1rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_8, {
+					"top": "747px",
+					"left": "390px",
+					"width": "10px",
+					"height": "21px"
+				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "6px",
+				"top": "21px",
 				"left": "544px",
 				"width": "825px",
 				"height": "778px"

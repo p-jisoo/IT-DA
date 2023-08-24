@@ -158,6 +158,8 @@
       <cl:xylayout std:sid="xylayout-06388145"/>
     </cl:group>
     <cl:img std:sid="image-49cd5a49" id="imgHome" src="theme/images/img/logo2_donghang.png">
+      <cl:listener std:sid="listener-602a33c8" name="value-change" handler="onImgHomeValueChange"/>
+      <cl:listener std:sid="listener-463c0080" name="click" handler="onImgHomeClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5e17e6c4" top="34px" left="20px" width="137px" height="121px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:xylayout std:sid="xylayout-43b1c2e8"/>

@@ -60,5 +60,5 @@ function onSms1SubmitSuccess2(e){
 function onNo_btnClick(e){
 	var no_btn = e.control;
 	var dialog = app.lookup("registerdialog");
-	
+	app.close();
 }

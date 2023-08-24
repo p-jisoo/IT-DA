@@ -21,52 +21,60 @@
 			 * 이미지에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onImageClick(e){
+			function onImageClick(e) {
 				var image = e.control;
-				window.location.href="/";
+				window.location.href = "/";
 			}
 
 			/*
 			 * "탈퇴" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("deletePasswordSbm");
 				submission.send();
+				var pwd = app.lookup("password").value;
+				var pwdChk = app.lookup("passwordChk").value;
+				console.log(pwd);
+				console.log(pwdChk);
+				if (pwd != pwdChk) {
+					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
+					return false;
+				} else {
+					window.location.href = "/"
+				}
 			}
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onDeletePasswordSbmSubmitSuccess(e){
+			function onDeletePasswordSbmSubmitSuccess(e) {
 				var deletePasswordSbm = e.control;
-				var pwd = app.lookup("password").value;
-				var pwdChk = app.lookup("passwordChk").value;
-				console.log(pwd);
-				console.log(pwdChk);
-				if(pwd === pwdChk){
-				alert("아이디가 삭제되었습니다.");
-				}
-				window.location.href="/";
+				alert("회원정보를 삭제합니다")
 			}
 
 			/*
 			 * 서브미션에서 submit-error 이벤트 발생 시 호출.
 			 * 통신 중 문제가 생기면 발생합니다.
 			 */
-			function onDeletePasswordSbmSubmitError(e){
+			function onDeletePasswordSbmSubmitError(e) {
 				var deletePasswordSbm = e.control;
-				var pwd = app.lookup("password");
-				var pwdChk = app.lookup("passwordChk");
-				if(pwd.value !=pwdChk.value){
-					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
-					return false;
-						
-					}
-					//window.location.href="deleteMember.clx"
-			};
+				alert("비밀번호가 틀렸습니다");
+				return false;
+				
+			}
+			//window.location.href="deleteMember.clx"
+
+			/*
+			 * 이미지에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onImgHomeClick(e) {
+				var imgHome = e.control;
+				window.location.href = "/"
+			}
 			// End - User Script
 			
 			// Header
@@ -106,44 +114,59 @@
 			var inputBox_1 = new cpr.controls.InputBox("password");
 			inputBox_1.secret = true;
 			inputBox_1.placeholder = "비밀번호";
+			inputBox_1.style.css({
+				"border-radius" : "1rem"
+			});
 			inputBox_1.bind("value").toDataMap(app.lookup("deletePassword"), "PASSWORD");
 			container.addChild(inputBox_1, {
-				"top": "517px",
-				"left": "762px",
-				"width": "392px",
+				"top": "489px",
+				"left": "787px",
+				"width": "352px",
 				"height": "58px"
 			});
 			
 			var inputBox_2 = new cpr.controls.InputBox("passwordChk");
 			inputBox_2.secret = true;
 			inputBox_2.placeholder = "비밀번호 재확인";
+			inputBox_2.style.css({
+				"border-radius" : "1rem"
+			});
 			container.addChild(inputBox_2, {
-				"top": "585px",
-				"left": "761px",
-				"width": "393px",
+				"top": "557px",
+				"left": "787px",
+				"width": "352px",
 				"height": "58px"
 			});
 			
 			var button_1 = new cpr.controls.Button();
-			button_1.value = "탈퇴";
+			button_1.value = "회원 탈퇴";
 			button_1.style.css({
-				"background-color" : "#84888A",
-				"font-size" : "25px"
+				"background-color" : "#ECECEC",
+				"font-weight" : "bold",
+				"font-size" : "17px",
+				"background-image" : "none",
+				"text-align" : "center"
 			});
 			if(typeof onButtonClick == "function") {
 				button_1.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_1, {
-				"top": "652px",
-				"left": "1001px",
-				"width": "150px",
-				"height": "46px"
+				"top": "644px",
+				"left": "1017px",
+				"width": "120px",
+				"height": "40px"
 			});
 			
 			var image_1 = new cpr.controls.Image("imgHome");
 			image_1.src = "theme/images/img/logo2_donghang.png";
+			if(typeof onImgHomeValueChange == "function") {
+				image_1.addEventListener("value-change", onImgHomeValueChange);
+			}
+			if(typeof onImgHomeClick == "function") {
+				image_1.addEventListener("click", onImgHomeClick);
+			}
 			container.addChild(image_1, {
-				"top": "156px",
+				"top": "122px",
 				"left": "854px",
 				"width": "206px",
 				"height": "191px"
@@ -158,24 +181,78 @@
 				"text-align" : "center"
 			});
 			container.addChild(output_1, {
-				"top": "357px",
+				"top": "323px",
 				"left": "800px",
 				"width": "325px",
 				"height": "46px"
 			});
 			
 			var output_2 = new cpr.controls.Output();
-			output_2.value = "디지털 약자를 위한 교육 서비스 플랫폼";
+			output_2.value = "ITda Accompany";
 			output_2.style.css({
-				"font-weight" : "bold",
+				"color" : "#91C8E4",
+				"font-weight" : "normal",
 				"font-size" : "1rem",
-				"text-align" : "center"
+				"text-align" : "left"
 			});
 			container.addChild(output_2, {
-				"top": "413px",
-				"left": "769px",
-				"width": "387px",
-				"height": "33px"
+				"top": "790px",
+				"left": "799px",
+				"width": "139px",
+				"height": "21px"
+			});
+			
+			var output_3 = new cpr.controls.Output();
+			output_3.value = "고객센터 : 010-8299-1244";
+			output_3.style.css({
+				"color" : "#6F6F6F",
+				"font-weight" : "normal",
+				"font-size" : "1rem",
+				"text-align" : "left"
+			});
+			container.addChild(output_3, {
+				"top": "790px",
+				"left": "956px",
+				"width": "200px",
+				"height": "21px"
+			});
+			
+			var output_4 = new cpr.controls.Output();
+			output_4.value = "|";
+			output_4.style.css({
+				"color" : "#91C8E4",
+				"font-weight" : "normal",
+				"font-size" : "1rem",
+				"text-align" : "left"
+			});
+			container.addChild(output_4, {
+				"top": "790px",
+				"left": "937px",
+				"width": "10px",
+				"height": "21px"
+			});
+			
+			var output_5 = new cpr.controls.Output();
+			output_5.value = "회원정보 탈퇴";
+			output_5.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1.5rem",
+				"text-align" : "left"
+			});
+			container.addChild(output_5, {
+				"top": "444px",
+				"left": "854px",
+				"width": "153px",
+				"height": "46px"
+			});
+			
+			var image_2 = new cpr.controls.Image();
+			image_2.src = "theme/images/img/delete_donghang.png";
+			container.addChild(image_2, {
+				"top": "432px",
+				"left": "793px",
+				"width": "50px",
+				"height": "45px"
 			});
 		}
 	});

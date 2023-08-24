@@ -104,7 +104,7 @@ public class MemberController {
 			System.out.println("업데이트 후 = "+vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
-			}
+		}
 		return new JSONDataView();
 		}
 	
@@ -169,9 +169,12 @@ public class MemberController {
 			System.out.println("******************");
 			System.out.println("비밀번호 세션 값 ==" + pwd);
 			System.out.println("******************");
+
 			String password = data.getValue("PASSWORD");
 			memberMapper.deleteMember(userId,password);
 			session.invalidate();
+			
+		
 		}
 		return new JSONDataView();
 	}
