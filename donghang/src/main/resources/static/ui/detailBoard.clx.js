@@ -17,13 +17,78 @@
 			 *
 			 * @author USER
 			 ************************************************/
-
+			/*
+			 * 루트 컨테이너에서 init 이벤트 발생 시 호출.
+			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+			 */
+			function onBodyInit(e) {
+				
+				var step;
+				for (step = 0; step < 3; step++) {
+					console.log("Walking east one step");
+				}
+				
+				//Board 기존값
+				var submission = app.lookup("selectsms");
+				submission.send();
+				//Comment 기존값
+				var submission2 = app.lookup("selectCommentsms");
+				submission2.send();
+			}
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSelectsmsSubmitSuccess(e) {
+				var selectsms = e.control;
+				
+				//board
+				var title = app.lookup("title");
+				var category = app.lookup("category")
+				var memberCount = app.lookup("memberCount")
+				var content = app.lookup("content")
+				var udccomduodatepicker1 = app.lookup("udccomduodatepicker1")
+				var udccomduodatepicker2 = app.lookup("udccomduodatepicker2")
+				var address = app.lookup("address")
+				
+				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+				
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", category.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", memberCount.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", content.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker1.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker2.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", address.value);
+				
+				app.lookup("title").redraw();
+				app.lookup("category").redraw();
+				app.lookup("memberCount").redraw();
+				app.lookup("content").redraw();
+				app.lookup("udccomduodatepicker1").redraw();
+				app.lookup("udccomduodatepicker2").redraw();
+				app.lookup("address").redraw();
+				
+				//comment
+				var commentBoardMap = app.lookup("commentBoardMap");
+				
+				var userId = app.lookup("userId");
+				var commentContent = app.lookup("commentContent");
+				
+				commentBoardMap.setValue("EDU_APPLY_COMMENT_CONTENT", commentContent.value);
+				commentBoardMap.setValue("USER_ID", userId.value);
+				
+				app.lookup("userId").redraw();
+				app.lookup("commentContent").redraw();
+				app.lookup("grd1").redraw();
+				
+			}
 			/*
 			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("updatesms");
 				var dataMap = app.lookup("eduApplyBoardMap");
@@ -33,25 +98,25 @@
 				var udcExamDuoDatePicker2 = app.lookup("udccomduodatepicker2");
 				dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue);
 				dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue);
-				console.log("fromValue",udcExamDuoDatePicker.fromValue);
-				console.log("toValue",udcExamDuoDatePicker.toValue);
+				console.log("fromValue", udcExamDuoDatePicker.fromValue);
+				console.log("toValue", udcExamDuoDatePicker.toValue);
 				var addressinputBox = app.lookup("address");
 				var detailAdressinputBox = app.lookup("detailAdress");
 				
-				if(detailAdressinputBox.value!=null){
-				dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
-				}	
+				if (detailAdressinputBox.value != null) {
+					dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
+				}
 				submission.send()
-				window.location.href="updateBoard.clx";
+				window.location.href = "updateBoard.clx";
 			}
 
 			/*
 			 * "주소찾기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
-					cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
+				cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
 					.then(function(input) {
 						new daum.Postcode({
 							oncomplete: function(data) {
@@ -64,10 +129,10 @@
 								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 									addr = data.roadAddress;
-									inputBox.value = data.zonecode+"-"+addr;
+									inputBox.value = data.zonecode + "-" + addr;
 								} else { // 사용자가 지번 주소를 선택했을 경우(J)
 									addr = data.jibunAddress;
-									inputBox.value = data.zonecode+"-"+addr;
+									inputBox.value = data.zonecode + "-" + addr;
 								}
 								//inputBox2.value = data.zonecode;
 							}
@@ -79,23 +144,22 @@
 			 * "삭제" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
-					var button = e.control;
+				var button = e.control;
 				var submission = app.lookup("deletesms");
 				submission.send()
-				window.location.href="eduApplyBoardList.clx";
+				window.location.href = "toBoardList.do";
 			}
 
 			/*
 			 * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick4(e){
+			function onButtonClick4(e) {
 				var button = e.control;
-					var submission = app.lookup("selectsms");
+				var submission = app.lookup("selectsms");
 				var dataMap = app.lookup("eduApplyBoardMap");
-				
 				
 				app.lookup("title").redraw();
 				app.lookup("category").redraw();
@@ -112,13 +176,16 @@
 			 * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick5(e){
+			function onButtonClick5(e) {
 				var button = e.control;
 				var submission = app.lookup("selectCommentsms");
 				var dataMap = app.lookup("commentBoardMap");
 				
 				app.lookup("userId").redraw();
 				app.lookup("commentContent").redraw();
+				var grid = app.lookup("grd1");
+				grid.redraw();
+				
 				submission.send()
 			}
 
@@ -126,10 +193,11 @@
 			 * "댓글 수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick6(e){
+			function onButtonClick6(e) {
 				var button = e.control;
 				var submission = app.lookup("updateCommentsms");
 				var dataMap = app.lookup("commentBoardMap");
+				
 				submission.send()
 			}
 
@@ -214,17 +282,18 @@
 				"columns" : [
 					{
 						"name": "EDU_APPLY_COMMENT_CONTENT",
-						"dataType": "string"
+						"dataType": "string",
+						"defaultValue": ""
 					},
 					{
 						"name": "EDU_BOARD_NO",
 						"dataType": "string",
-						"defaultValue": "1111"
+						"defaultValue": ""
 					},
 					{
 						"name": "USER_ID",
 						"dataType": "string",
-						"defaultValue": "b"
+						"defaultValue": ""
 					}
 				]
 			});
@@ -242,6 +311,9 @@
 			submission_3.method = "post";
 			submission_3.action = "selectBoardByBoardNo.do";
 			submission_3.addResponseData(dataMap_1, false);
+			if(typeof onSelectsmsSubmitSuccess == "function") {
+				submission_3.addEventListener("submit-success", onSelectsmsSubmitSuccess);
+			}
 			app.register(submission_3);
 			
 			var submission_4 = new cpr.protocols.Submission("updateCommentsms");
@@ -291,10 +363,10 @@
 				button_1.addEventListener("click", onButtonClick7);
 			}
 			container.addChild(button_1, {
-				"top": "770px",
-				"left": "1148px",
+				"top": "594px",
+				"left": "1208px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var group_1 = new cpr.controls.Container();
@@ -476,8 +548,8 @@
 				});
 			})(group_1);
 			container.addChild(group_1, {
-				"top": "308px",
-				"left": "201px",
+				"top": "132px",
+				"left": "261px",
 				"width": "1511px",
 				"height": "163px"
 			});
@@ -492,8 +564,8 @@
 			inputBox_5.setBindContext(dataMapContext_5);
 			inputBox_5.bind("value").toDataColumn("EDU_BOARD_CONTENT");
 			container.addChild(inputBox_5, {
-				"top": "470px",
-				"left": "202px",
+				"top": "294px",
+				"left": "262px",
 				"width": "1510px",
 				"height": "283px"
 			});
@@ -517,8 +589,8 @@
 				inputBox_6.addEventListener("clear", onIpb6Clear);
 			}
 			container.addChild(inputBox_6, {
-				"top": "248px",
-				"left": "200px",
+				"top": "72px",
+				"left": "260px",
 				"width": "1509px",
 				"height": "50px"
 			});
@@ -533,10 +605,10 @@
 				button_3.addEventListener("click", onButtonClick);
 			}
 			container.addChild(button_3, {
-				"top": "770px",
-				"left": "1338px",
+				"top": "594px",
+				"left": "1398px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var output_6 = new cpr.controls.Output();
@@ -558,8 +630,8 @@
 				"border-bottom-style" : "solid"
 			});
 			container.addChild(output_6, {
-				"top": "198px",
-				"left": "200px",
+				"top": "22px",
+				"left": "260px",
 				"width": "1509px",
 				"height": "40px"
 			});
@@ -574,10 +646,10 @@
 				button_4.addEventListener("click", onButtonClick2);
 			}
 			container.addChild(button_4, {
-				"top": "770px",
-				"left": "1529px",
+				"top": "594px",
+				"left": "1589px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var button_5 = new cpr.controls.Button();
@@ -586,8 +658,8 @@
 				button_5.addEventListener("click", onButtonClick4);
 			}
 			container.addChild(button_5, {
-				"top": "122px",
-				"left": "60px",
+				"top": "22px",
+				"left": "148px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -604,13 +676,18 @@
 			formLayout_3.verticalSpacing = "10px";
 			formLayout_3.horizontalSeparatorWidth = 1;
 			formLayout_3.verticalSeparatorWidth = 1;
-			formLayout_3.setColumns(["100px", "1fr"]);
+			formLayout_3.setColumns(["100px", "1387px"]);
 			formLayout_3.setUseColumnShade(0, true);
 			formLayout_3.setRows(["1fr"]);
 			group_3.setLayout(formLayout_3);
 			(function(container){
 				var inputBox_7 = new cpr.controls.InputBox("userId");
+				inputBox_7.readOnly = true;
 				inputBox_7.placeholder = "USER_ID";
+				inputBox_7.style.css({
+					"text-align" : "center"
+				});
+				inputBox_7.bind("value").toDataMap(app.lookup("commentBoardMap"), "USER_ID");
 				container.addChild(inputBox_7, {
 					"colIndex": 0,
 					"rowIndex": 0,
@@ -626,9 +703,9 @@
 				});
 			})(group_3);
 			container.addChild(group_3, {
-				"top": "877px",
-				"left": "200px",
-				"width": "1509px",
+				"top": "701px",
+				"left": "260px",
+				"width": "1319px",
 				"height": "50px"
 			});
 			
@@ -652,8 +729,8 @@
 				"text-align" : "center"
 			});
 			container.addChild(output_7, {
-				"top": "828px",
-				"left": "200px",
+				"top": "652px",
+				"left": "260px",
 				"width": "197px",
 				"height": "40px"
 			});
@@ -665,17 +742,17 @@
 				"font-size" : "18px"
 			});
 			container.addChild(button_6, {
-				"top": "829px",
-				"left": "1528px",
+				"top": "701px",
+				"left": "1589px",
 				"width": "180px",
-				"height": "50px"
+				"height": "40px"
 			});
 			
 			var button_7 = new cpr.controls.Button();
 			button_7.value = "댓글 등록";
 			container.addChild(button_7, {
-				"top": "937px",
-				"left": "1393px",
+				"top": "761px",
+				"left": "1453px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -683,8 +760,8 @@
 			var button_8 = new cpr.controls.Button();
 			button_8.value = "댓글 삭제";
 			container.addChild(button_8, {
-				"top": "936px",
-				"left": "1502px",
+				"top": "760px",
+				"left": "1562px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -695,8 +772,8 @@
 				button_9.addEventListener("click", onButtonClick6);
 			}
 			container.addChild(button_9, {
-				"top": "936px",
-				"left": "1612px",
+				"top": "760px",
+				"left": "1672px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -707,10 +784,73 @@
 				button_10.addEventListener("click", onButtonClick5);
 			}
 			container.addChild(button_10, {
-				"top": "844px",
-				"left": "60px",
+				"top": "668px",
+				"left": "120px",
 				"width": "100px",
 				"height": "20px"
+			});
+			
+			var group_4 = new cpr.controls.Container();
+			var dataMapContext_7 = new cpr.bind.DataMapContext(app.lookup("commentBoardMap"));
+			group_4.setBindContext(dataMapContext_7);
+			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
+			group_4.setLayout(verticalLayout_1);
+			(function(container){
+				var grid_1 = new cpr.controls.Grid("grd1");
+				grid_1.init({
+					"autoFit": "1",
+					"columns": [
+						{"width": "100px"},
+						{"width": "100px"}
+					],
+					"header": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.text = "사용자 아이디";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.text = "내용";
+								}
+							}
+						]
+					},
+					"detail": {
+						"rows": [{"height": "24px"}],
+						"cells": [
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 0},
+								"configurator": function(cell){
+									cell.columnName = "USER_ID";
+								}
+							},
+							{
+								"constraint": {"rowIndex": 0, "colIndex": 1},
+								"configurator": function(cell){
+									cell.columnName = "EDU_APPLY_COMMENT_CONTENT";
+									cell.columnType = "normal";
+									cell.bind("fieldLabel").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
+								}
+							}
+						]
+					}
+				});
+				container.addChild(grid_1, {
+					"autoSize": "none",
+					"width": "1510px",
+					"height": "200px"
+				});
+			})(group_4);
+			container.addChild(group_4, {
+				"top": "791px",
+				"left": "262px",
+				"width": "1506px",
+				"height": "493px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

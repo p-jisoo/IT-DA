@@ -102,7 +102,6 @@
 				var comboBox = app.lookup("cmb1");
 				listBox.selectItemByValue("value1");
 				comboBox.selectItemByValue("value1");
-				
 			}
 
 			/*
@@ -648,33 +647,6 @@
 				"top": "112px",
 				"left": "482px",
 				"width": "1036px",
-				"height": "56px"
-			});
-			
-			var comboBox_1 = new cpr.controls.ComboBox("cmb1");
-			comboBox_1.preventInput = true;
-			(function(comboBox_1){
-				comboBox_1.setItemSet(app.lookup("dsSlct"), {
-					"label": "label",
-					"value": "value"
-				});
-			})(comboBox_1);
-			container.addChild(comboBox_1, {
-				"top": "112px",
-				"left": "500px",
-				"width": "134px",
-				"height": "56px"
-			});
-			
-			var button_3 = new cpr.controls.Button();
-			button_3.value = "Button";
-			if(typeof onButtonClick == "function") {
-				button_3.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_3, {
-				"top": "112px",
-				"left": "1402px",
-				"width": "134px",
 				"height": "56px"
 			});
 			if(typeof onBodyLoad == "function"){

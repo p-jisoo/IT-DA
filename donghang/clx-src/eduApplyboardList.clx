@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-68a7fcd2" version="1.0.4584">
   <head std:sid="head-8887224d">
-    <screen std:sid="screen-2fb1c98e" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-a66365ea" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="true"/>
-    <screen std:sid="screen-450f2330" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" customHeight="600" customWidth="800"/>
-    <screen std:sid="screen-773e1f38" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <screen std:sid="screen-fb47c1b7" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
+    <screen std:sid="screen-016a0653" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-e81e80c3" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-0f929c98" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
     <cl:model std:sid="model-98a6d020">
       <cl:dataset std:sid="d-set-1dbb85fd" id="ds1">
         <cl:datacolumnlist>
@@ -37,16 +37,16 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="label">제목</cl:datavalue>
-            <cl:datavalue columnname="value">value1</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[제목]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[value1]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label">내용</cl:datavalue>
-            <cl:datavalue columnname="value">value2</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[내용]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[value2]]></cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label">작성자</cl:datavalue>
-            <cl:datavalue columnname="value">value3</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[작성자]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[value3]]></cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -57,15 +57,15 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="label">전체</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[전체]]></cl:datavalue>
             <cl:datavalue columnname="value">value1</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label">모집중</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[모집중]]></cl:datavalue>
             <cl:datavalue columnname="value">value2</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label">모집마감</cl:datavalue>
+            <cl:datavalue columnname="label"><![CDATA[모집마감]]></cl:datavalue>
             <cl:datavalue columnname="value">value3</cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
@@ -90,7 +90,7 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="textarea">&quot;단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. 네이버 맞춤법 검사기\r\n검색 옵션을 변경해서 다시 검색해 보세요.&quot;</cl:datavalue>
+            <cl:datavalue columnname="textarea"><![CDATA["단어의 철자가 정확한지 확인해 보세요.\r\n한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.\r\n검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.\r\n두 단어 이상의 검색어인 경우, 띄어쓰기를 확인해 보세요. 네이버 맞춤법 검사기\r\n검색 옵션을 변경해서 다시 검색해 보세요."]]></cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -218,18 +218,12 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:combobox std:sid="c-box-37bd0e42" id="cmb1" preventinput="true">
-      <cl:xylayoutdata std:sid="xyl-data-2c6f6e32" top="112px" left="500px" width="134px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:itemset datasetid="dsSlct" label="label" value="value"/>
-    </cl:combobox>
-    <cl:button std:sid="button-d1106101" value="Button">
-      <cl:listener std:sid="listener-cdef198a" name="click" handler="onButtonClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-c22bb519" top="112px" left="1402px" width="134px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
     <cl:xylayout std:sid="xylayout-bec286de"/>
   </body>
   <std:studiosetting>
     <std:hruler/>
-    <std:vruler/>
+    <std:vruler>
+      <std:guide position="270"/>
+    </std:vruler>
   </std:studiosetting>
 </html>

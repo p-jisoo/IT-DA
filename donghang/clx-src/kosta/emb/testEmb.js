@@ -33,7 +33,6 @@ function onTre1ItemClick(e){
 			/*초기값을 전달합니다.*/			
 			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
 				embApp.initValue =  e.item.label;
-				debugger
 			})
 			/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
 			vcEmb.app = loadedApp;

@@ -30,7 +30,7 @@
   </head>
   <body std:sid="body-8f868f75" style="top:0px; left:0px; width:300px; height:30px;" class="datepickers">
     <cl:listener std:sid="listener-b591418b" name="load" handler="onBodyLoad"/>
-    <cl:dateinput std:sid="d-input-c6b3bcd4" id="dtiFrom" hidebutton="true" placeholder="시작일">
+    <cl:dateinput std:sid="d-input-c6b3bcd4" id="dtiFrom" style="text-align:center;" hidebutton="true" placeholder="시작일">
       <cl:listener std:sid="listener-3c918a04" name="click" handler="onDtiClick"/>
       <cl:apppropbind property="value" app-property="fromValue"/>
       <cl:apppropbind property="format" app-property="format"/>
@@ -38,7 +38,7 @@
       <cl:expbind property="class" category="CLASS" expression="@getClassValid(@dateInputClass) != &quot;&quot; ? @dateInputClass : &quot;datepicker&quot;"/>
       <cl:formdata std:sid="f-data-62f67d1c" row="0" col="0"/>
     </cl:dateinput>
-    <cl:dateinput std:sid="d-input-868dab46" id="dtiTo" hidebutton="true" placeholder="종료일" showclearbutton="true">
+    <cl:dateinput std:sid="d-input-868dab46" id="dtiTo" style="text-align:center;" hidebutton="true" placeholder="종료일" showclearbutton="true">
       <cl:listener std:sid="listener-53833d3b" name="click" handler="onDtiClick"/>
       <cl:listener std:sid="listener-e5bd7b6e" name="clear" handler="onDtiToClear"/>
       <cl:apppropbind property="value" app-property="toValue"/>
@@ -51,7 +51,7 @@
       <cl:listener std:sid="listener-00abc2a9" name="click" handler="onBtnClearClick"/>
       <cl:formdata std:sid="f-data-7debb691" row="0" col="3"/>
     </cl:button>
-    <cl:output std:sid="output-4117034c" id="opt1" class="text-center" value="-">
+    <cl:output std:sid="output-4117034c" id="opt1" style="text-align:center;" class="text-center" value="-">
       <cl:formdata std:sid="f-data-92172749" row="0" col="1"/>
     </cl:output>
     <cl:formlayout std:sid="f-layout-eda5e894" scrollable="false" hspace="0px" vspace="0px">
