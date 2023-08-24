@@ -51,6 +51,7 @@ function onButton1Click(/* cpr.events.CMouseEvent */ e){
 	/*부모 앱 인스턴스에 접근합니다.(app.getHostAppInstance() = app.getHost().getAppInstance())*/
 	var hostAppInstance = host.getAppInstance();
 	
+	
 	/*부모 앱 인스턴스의 앱 속성의 값을 가져옵니다.*/
 	app.lookup("opt2").value = hostAppInstance.getAppProperty("mainApp");
 }

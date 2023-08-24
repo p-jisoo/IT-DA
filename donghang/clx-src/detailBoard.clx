@@ -38,8 +38,8 @@
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-e99cbf6a" name="EDU_APPLY_COMMENT_CONTENT" datatype="string" defaultvalue=""/>
-          <cl:datacolumn std:sid="d-column-580c919a" name="EDU_BOARD_NO" datatype="string" defaultvalue=""/>
-          <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue=""/>
+          <cl:datacolumn std:sid="d-column-580c919a" name="EDU_BOARD_NO" datatype="string" defaultvalue="1111"/>
+          <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue="1234"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
@@ -65,7 +65,7 @@
   </head>
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-97125c65" name="init" handler="onBodyInit"/>
-    <cl:listener std:sid="listener-ece29be0" name="load" handler="onBodyLoad"/>
+    <cl:listener std:sid="listener-79582d5e" name="load" handler="onBodyLoad2"/>
     <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
       <cl:listener std:sid="listener-113ec845" name="click" handler="onButtonClick7"/>
       <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="594px" left="1208px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -99,25 +99,25 @@
         <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
         <cl:formdata std:sid="f-data-c675058e" row="1" col="3"/>
       </cl:inputbox>
-      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="text-align:center;" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="font-size:16px; text-align:center;" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_END_PERIOD"/>
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
         <cl:property name="selectOption" value="day" type="enumeration"/>
       </cl:udc>
-      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="font-size:16px;" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_END_PERIOD"/>
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
-        <cl:inputbox std:sid="i-box-f39d4871" id="address" style="font-size:18px; text-align:center;" placeholder="주소를 입력 해주세요">
+        <cl:inputbox std:sid="i-box-f39d4871" id="address" style="font-size:16px; text-align:center;" placeholder="주소를 입력 해주세요">
           <cl:relativebind property="value" columnname="EDU_BOARD_ADDRESS"/>
           <cl:formdata std:sid="f-data-4e7f9e74" row="0" col="0"/>
         </cl:inputbox>
-        <cl:inputbox std:sid="i-box-ef4a365a" id="detailAdress" style="font-size:18px; text-align:center;" placeholder="상세 주소를 입력 해주세요">
+        <cl:inputbox std:sid="i-box-ef4a365a" id="detailAdress" style="font-size:16px; text-align:center;" placeholder="상세 주소를 입력 해주세요">
           <cl:formdata std:sid="f-data-ed8837fd" row="0" col="1" rowspan="1" colspan="1"/>
         </cl:inputbox>
         <cl:button std:sid="button-c48aa9bb" style="font-size:18px;" value="주소찾기">
@@ -141,7 +141,7 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:inputbox std:sid="i-box-4e2db08c" id="content" style="font-size:18px; text-align:left;" placeholder="     내용을 입력하세요">
+    <cl:inputbox std:sid="i-box-4e2db08c" id="content" style="font-size:16px; text-align:left;" placeholder="     내용을 입력하세요">
       <cl:relativebind property="value" columnname="EDU_BOARD_CONTENT"/>
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="294px" left="262px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -167,15 +167,15 @@
     </cl:button>
     <cl:button std:sid="button-0859fe76" value="기존 값">
       <cl:listener std:sid="listener-29e23012" name="click" handler="onButtonClick4"/>
-      <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="22px" left="148px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="622px" left="370px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-49949159" class="cl-form-group">
       <cl:xylayoutdata std:sid="xyl-data-5d39d8f8" top="701px" left="260px" width="1319px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:inputbox std:sid="i-box-990282c0" id="userId" style="text-align:center;" readonly="true" placeholder="USER_ID">
+      <cl:inputbox std:sid="i-box-990282c0" id="userId" style="font-size:16px; text-align:center;" readonly="true" placeholder="USER_ID">
         <cl:datamapbind property="value" category="PROPERTY" datacontrolid="commentBoardMap" columnname="USER_ID"/>
         <cl:formdata std:sid="f-data-c8020d95" row="0" col="0" rowspan="1" colspan="1"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-27795382" id="commentContent" placeholder="댓글을 입력해주세요">
+      <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px;" placeholder="댓글을 입력해주세요">
         <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
         <cl:formdata std:sid="f-data-4e85ca39" row="0" col="1"/>
       </cl:inputbox>
@@ -203,7 +203,7 @@
     </cl:button>
     <cl:button std:sid="button-0d0fed73" value="댓글 기존 값">
       <cl:listener std:sid="listener-2e6e4358" name="click" handler="onButtonClick5"/>
-      <cl:xylayoutdata std:sid="xyl-data-696f68af" top="668px" left="120px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-696f68af" top="622px" left="260px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-3d8807f1">
       <cl:datamapcontext datacontrolid="commentBoardMap"/>

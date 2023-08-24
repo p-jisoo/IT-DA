@@ -178,7 +178,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		dataMap.put("EDU_BOARD_ADDRESS", evo.getEduBoardAddress());
 		dataMap.put("EDU_BOARD_CATEGORY", evo.getEduBoardCategory());
 		dataMap.put("EDU_BOARD_CONTENT", evo.getEduBoardContent());
-		// dataMap.put("USER_ID,", evo.getMemberVO().getUserId());
+		dataMap.put("USER_ID,", evo.getMemberVO().getUserId());
 		System.out.println("serviceImpl MAP" + dataMap);
 		
 		return dataMap;
@@ -301,8 +301,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		System.out.println("serviceImpl evo : " + ecvo);
 		Map<String, Object> dataMap = new HashMap<>();
 		dataMap.put("EDU_APPLY_COMMENT_CONTENT", ecvo.getEduApplyCommentContent());
-//		dataMap.put("EDU_BOARD_NO", ecvo.getEduApplyBoardVO().getEduBoardNo());
-//		dataMap.put("USER_ID", ecvo.getMemberVO().getUserId());
+		dataMap.put("EDU_BOARD_NO", ecvo.getEduApplyBoardVO().getEduBoardNo());
+		dataMap.put("USER_ID", ecvo.getMemberVO().getUserId());
 
 		System.out.println("serviceImpl MAP : " + dataMap);
 		return dataMap;

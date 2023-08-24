@@ -41,12 +41,14 @@ function onSelectsmsSubmitSuccess(e) {
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", category.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", memberCount.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", content.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker1.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker2.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", address.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
+	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();
@@ -195,4 +197,14 @@ function onButtonClick6(e) {
 function onButtonClick7(e) {
 	var button = e.control;
 	window.location.href = "toBoardList.do";
+}
+
+/*
+ * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+ * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+ */
+function onBodyLoad2(e){
+	var host = app.getHost();
+	host.initValue.value;
+	//컨트롤러로 boardNo 값 보내기
 }

@@ -54,12 +54,14 @@
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				
 				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", category.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", memberCount.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", content.value);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker1.fromValue);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", udccomduodatepicker2.fromValue);
-				eduApplyBoardMap.setValue("EDU_BOARD_TITLE", address.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
+				eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 				
 				app.lookup("title").redraw();
 				app.lookup("category").redraw();
@@ -209,6 +211,16 @@
 				var button = e.control;
 				window.location.href = "toBoardList.do";
 			}
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad2(e){
+				var host = app.getHost();
+				host.initValue.value;
+				//컨트롤러로 boardNo 값 보내기
+			};
 			// End - User Script
 			
 			// Header
@@ -278,12 +290,12 @@
 					{
 						"name": "EDU_BOARD_NO",
 						"dataType": "string",
-						"defaultValue": ""
+						"defaultValue": "1111"
 					},
 					{
 						"name": "USER_ID",
 						"dataType": "string",
-						"defaultValue": ""
+						"defaultValue": "1234"
 					}
 				]
 			});
@@ -464,6 +476,7 @@
 				userDefinedControl_1.useAutoSelect = true;
 				userDefinedControl_1.selectOption = "day";
 				userDefinedControl_1.style.css({
+					"font-size" : "16px",
 					"text-align" : "center"
 				});
 				userDefinedControl_1.bind("fromValue").toDataColumn("EDU_BOARD_START_PERIOD");
@@ -473,6 +486,9 @@
 					"rowIndex": 0
 				});
 				var userDefinedControl_2 = new udc.exam.udcExamDuoDatePicker("udccomduodatepicker2");
+				userDefinedControl_2.style.css({
+					"font-size" : "16px"
+				});
 				userDefinedControl_2.bind("fromValue").toDataColumn("EDU_BOARD_APPLY_START_PERIOD");
 				userDefinedControl_2.bind("toValue").toDataColumn("EDU_BOARD_APPLY_END_PERIOD");
 				container.addChild(userDefinedControl_2, {
@@ -495,7 +511,7 @@
 					var inputBox_3 = new cpr.controls.InputBox("address");
 					inputBox_3.placeholder = "주소를 입력 해주세요";
 					inputBox_3.style.css({
-						"font-size" : "18px",
+						"font-size" : "16px",
 						"text-align" : "center"
 					});
 					inputBox_3.bind("value").toDataColumn("EDU_BOARD_ADDRESS");
@@ -506,7 +522,7 @@
 					var inputBox_4 = new cpr.controls.InputBox("detailAdress");
 					inputBox_4.placeholder = "상세 주소를 입력 해주세요";
 					inputBox_4.style.css({
-						"font-size" : "18px",
+						"font-size" : "16px",
 						"text-align" : "center"
 					});
 					container.addChild(inputBox_4, {
@@ -545,7 +561,7 @@
 			var inputBox_5 = new cpr.controls.InputBox("content");
 			inputBox_5.placeholder = "     내용을 입력하세요";
 			inputBox_5.style.css({
-				"font-size" : "18px",
+				"font-size" : "16px",
 				"text-align" : "left"
 			});
 			var dataMapContext_4 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
@@ -646,8 +662,8 @@
 				button_5.addEventListener("click", onButtonClick4);
 			}
 			container.addChild(button_5, {
-				"top": "22px",
-				"left": "148px",
+				"top": "622px",
+				"left": "370px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -673,6 +689,7 @@
 				inputBox_7.readOnly = true;
 				inputBox_7.placeholder = "USER_ID";
 				inputBox_7.style.css({
+					"font-size" : "16px",
 					"text-align" : "center"
 				});
 				inputBox_7.bind("value").toDataMap(app.lookup("commentBoardMap"), "USER_ID");
@@ -684,6 +701,9 @@
 				});
 				var inputBox_8 = new cpr.controls.InputBox("commentContent");
 				inputBox_8.placeholder = "댓글을 입력해주세요";
+				inputBox_8.style.css({
+					"font-size" : "16px"
+				});
 				inputBox_8.bind("value").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
 				container.addChild(inputBox_8, {
 					"colIndex": 1,
@@ -772,8 +792,8 @@
 				button_10.addEventListener("click", onButtonClick5);
 			}
 			container.addChild(button_10, {
-				"top": "668px",
-				"left": "120px",
+				"top": "622px",
+				"left": "260px",
 				"width": "100px",
 				"height": "20px"
 			});
@@ -843,8 +863,8 @@
 			if(typeof onBodyInit == "function"){
 				app.addEventListener("init", onBodyInit);
 			}
-			if(typeof onBodyLoad == "function"){
-				app.addEventListener("load", onBodyLoad);
+			if(typeof onBodyLoad2 == "function"){
+				app.addEventListener("load", onBodyLoad2);
 			}
 		}
 	});
