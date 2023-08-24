@@ -61,7 +61,7 @@
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec dev-comment="ㄱ234ㄷㄱㅇㄱㅇㄷㅇㅌ"/>
   </head>
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-97125c65" name="init" handler="onBodyInit"/>
@@ -167,65 +167,44 @@
     </cl:button>
     <cl:button std:sid="button-0859fe76" value="기존 값">
       <cl:listener std:sid="listener-29e23012" name="click" handler="onButtonClick4"/>
-      <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="622px" left="370px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="585px" left="370px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:group std:sid="group-49949159" class="cl-form-group">
-      <cl:xylayoutdata std:sid="xyl-data-5d39d8f8" top="701px" left="260px" width="1319px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:inputbox std:sid="i-box-990282c0" id="userId" style="font-size:16px; text-align:center;" readonly="true" placeholder="USER_ID">
-        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="commentBoardMap" columnname="USER_ID"/>
-        <cl:formdata std:sid="f-data-c8020d95" row="0" col="0" rowspan="1" colspan="1"/>
-      </cl:inputbox>
-      <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px;" placeholder="댓글을 입력해주세요">
-        <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
-        <cl:formdata std:sid="f-data-4e85ca39" row="0" col="1"/>
-      </cl:inputbox>
-      <cl:formlayout std:sid="f-layout-f9f2f1b6" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
-        <cl:rows length="1" unit="FRACTION"/>
-        <cl:columns length="100" unit="PIXEL" shadetype="BY_CLASS"/>
-        <cl:columns length="1387" unit="PIXEL"/>
-      </cl:formlayout>
-    </cl:group>
     <cl:output std:sid="output-7f76207b" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid; text-align:center;" value="댓글">
-      <cl:xylayoutdata std:sid="xyl-data-ecdb8369" top="652px" left="260px" width="197px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ecdb8369" top="657px" left="265px" width="200px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:button std:sid="button-af252c5c" style="background-color:#4682A9; font-size:18px;" value="댓글쓰기">
-      <cl:xylayoutdata std:sid="xyl-data-2426c03f" top="701px" left="1589px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
     <cl:button std:sid="button-b45c0348" value="댓글 등록">
-      <cl:xylayoutdata std:sid="xyl-data-4e6b3dc6" top="761px" left="1453px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-4e6b3dc6" top="797px" left="1447px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-a01e0e21" value="댓글 삭제">
-      <cl:xylayoutdata std:sid="xyl-data-37d346a0" top="760px" left="1562px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-37d346a0" top="796px" left="1556px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-905634d1" value="댓글 수정">
       <cl:listener std:sid="listener-0af8861c" name="click" handler="onButtonClick6"/>
-      <cl:xylayoutdata std:sid="xyl-data-18b08121" top="760px" left="1672px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-18b08121" top="796px" left="1666px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:button std:sid="button-0d0fed73" value="댓글 기존 값">
       <cl:listener std:sid="listener-2e6e4358" name="click" handler="onButtonClick5"/>
-      <cl:xylayoutdata std:sid="xyl-data-696f68af" top="622px" left="260px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-696f68af" top="585px" left="260px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:group std:sid="group-3d8807f1">
-      <cl:datamapcontext datacontrolid="commentBoardMap"/>
-      <cl:xylayoutdata std:sid="xyl-data-5a282db5" top="791px" left="262px" width="1506px" height="493px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:grid std:sid="grid-84caa8ce" id="grd1" autofit="1">
-        <cl:verticaldata std:sid="v-data-498c1c4a" width="1510px" height="200px" autosize="none"/>
-        <cl:gridcolumn std:sid="g-column-c55260d5"/>
-        <cl:gridcolumn std:sid="g-column-a44c1960"/>
-        <cl:gridheader std:sid="gh-band-d98af817">
-          <cl:gridrow std:sid="g-row-6858c435"/>
-          <cl:gridcell std:sid="gh-cell-14467dca" rowindex="0" colindex="0" text="사용자 아이디"/>
-          <cl:gridcell std:sid="gh-cell-ebc3d6cc" rowindex="0" colindex="1" text="내용"/>
-        </cl:gridheader>
-        <cl:griddetail std:sid="gd-band-c6d73040">
-          <cl:gridrow std:sid="g-row-b0146233"/>
-          <cl:gridcell std:sid="gd-cell-0d2d0d42" rowindex="0" colindex="0" columnname="USER_ID"/>
-          <cl:gridcell std:sid="gd-cell-4ad03e44" rowindex="0" colindex="1" columntype="normal" columnname="EDU_APPLY_COMMENT_CONTENT">
-            <cl:datamapbind property="fieldLabel" category="PROPERTY" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
-          </cl:gridcell>
-        </cl:griddetail>
-      </cl:grid>
-      <cl:verticallayout std:sid="v-layout-a7f42ebc"/>
+    <cl:group std:sid="group-e65503dd" class="cl-form-group">
+      <cl:xylayoutdata std:sid="xyl-data-77c69493" top="707px" left="260px" width="1506px" height="80px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:inputbox std:sid="i-box-990282c0" id="userId" style="font-size:16px; text-align:center;" readonly="true" placeholder="USER_ID">
+        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="commentBoardMap" columnname="USER_ID"/>
+        <cl:formdata std:sid="f-data-62ae307b" row="0" col="0"/>
+      </cl:inputbox>
+      <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px;" placeholder="댓글을 입력해주세요">
+        <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
+        <cl:formdata std:sid="f-data-9f9b7ecd" row="0" col="1"/>
+      </cl:inputbox>
+      <cl:button std:sid="button-af252c5c" style="background-color:#4682A9; font-size:18px;" value="댓글쓰기">
+        <cl:formdata std:sid="f-data-e6f52c43" row="0" col="2" rowspan="1" colspan="1"/>
+      </cl:button>
+      <cl:formlayout std:sid="f-layout-48069188" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
+        <cl:rows length="60" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:columns length="200" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+        <cl:columns length="1" unit="FRACTION"/>
+        <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
+      </cl:formlayout>
     </cl:group>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>

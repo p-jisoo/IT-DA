@@ -232,7 +232,7 @@ EDU_BOARD_CONTENT,
 EDU_BOARD_STATUS,
 USER_ID
 FROM EDU_APPLY_BOARD
-where EDU_BOARD_NO=1111
+where EDU_BOARD_NO=#{eduBoardNo}
 </select>
 	<insert id="createBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 INSERT INTO EDU_APPLY_BOARD(
@@ -291,9 +291,9 @@ USER_ID
 FROM
 EDU_APPLY_COMMENT_BOARD
 WHERE
-EDU_BOARD_NO=1111
+EDU_BOARD_NO=#{eduBoardNo}
 AND
-USER_ID='1234'
+USER_ID=#{memberVO.userId}
 </select>
 	<insert id="createCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" >
 INSERT INTO EDU_APPLY_COMMENT_BOARD(

@@ -297,7 +297,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 
 	@Override
 	public Map<String, Object> selectCommentBoard() {
-		EduApplyCommentBoardVO ecvo = eduApplyBoardMapper.selectCommentBoard();
+		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
+				eduApplyBoardMapper.selectCommentBoard();
 		System.out.println("serviceImpl evo : " + ecvo);
 		Map<String, Object> dataMap = new HashMap<>();
 		dataMap.put("EDU_APPLY_COMMENT_CONTENT", ecvo.getEduApplyCommentContent());
