@@ -20,49 +20,49 @@ function onButtonClick(e) {
 	var name = app.lookup("userName");
 	var nickName = app.lookup("nickName");
 	var email = app.lookup("email");
-//		if (id.length == 0) {
-//			alert("아이디를 입력해주세요.");
-//			return false;
-//		}
-//		else if (id.length < 8 || id.length > 16) {
-//			alert("아이디를 8~16자리로 입력해주세요.");
-//			return false;		
-//		}
-//		else if (pwd.length == 0) {
-//			alert("비밀번호를 입력해주세요.");
-//			return false;
-//		}
-//		else if (pwd.value != pwdChk.value) {
-//			alert("비밀번호가 일치하지 않습니다.");
-//			return false;
-//		} 
-//		else if (pwd.length < 8 || pwd.length > 16) {
-//			alert("비밀번호를 8~16자리로 입력해주세요");
-//			return false;
-//		}
-//		else if (adr.length == 0) {
-//			alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-//			return false;
-//		}
-//		else if (detailAdr.length == 0) {
-//			alert("상세주소를 입력해주세요.");
-//			return false;
-//		}else if (Tel.length < 0 || Tel.length > 11) {
-//			alert("전화번호를 입력해주세요.");
-//			return false;
-//		}
-//		else if(name.length == 0) {
-//			alert("이름을 입력해주세요.");
-//			return false;
-//		}
-//		else if (nickName.length == 0) {
-//			alert("닉네임을 입력해주세요");
-//			return false;
-//		}
-//		else if(email.length==0){
-//			alert("이메일을 입력해주세요");
-//			return false;
-//		}
+		if (id.length == 0) {
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		else if (id.length < 8 || id.length > 16) {
+			alert("아이디를 8~16자리로 입력해주세요.");
+			return false;		
+		}
+		else if (pwd.length == 0) {
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}
+		else if (pwd.value != pwdChk.value) {
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		} 
+		else if (pwd.length < 8 || pwd.length > 16) {
+			alert("비밀번호를 8~16자리로 입력해주세요");
+			return false;
+		}
+		else if (adr.length == 0) {
+			alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+			return false;
+		}
+		else if (detailAdr.length == 0) {
+			alert("상세주소를 입력해주세요.");
+			return false;
+		}else if (Tel.length < 0 || Tel.length > 11) {
+			alert("전화번호를 입력해주세요.");
+			return false;
+		}
+		else if(name.length == 0) {
+			alert("이름을 입력해주세요.");
+			return false;
+		}
+		else if (nickName.length == 0) {
+			alert("닉네임을 입력해주세요");
+			return false;
+		}
+		else if(email.length==0){
+			alert("이메일을 입력해주세요");
+			return false;
+		}
 	app.openDialog("regiseterDialog", {
 		width: 500,
 		height: 350,

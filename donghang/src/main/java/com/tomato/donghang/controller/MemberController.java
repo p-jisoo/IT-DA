@@ -66,6 +66,7 @@ public class MemberController {
 	@PostMapping("ui/loginMember")
 	public View loginMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("dm1");
+		String result=null;
 		String id = data.getValue("user_id");
 		String password = data.getValue("password");
 		MemberVO memberVO = new MemberVO(id, password);
@@ -76,7 +77,11 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
 			dataRequest.setResponse("ds_member", vo);
+			result="success";
+		}else{
+			result="fail";
 		}
+		dataRequest.setResponse("result", result);
 		return new JSONDataView();
 	}
 

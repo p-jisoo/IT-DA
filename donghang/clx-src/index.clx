@@ -114,8 +114,8 @@
         <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="369px" left="580px" height="154px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
-      <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.3rem;" value="ITda">
-        <cl:xylayoutdata std:sid="xyl-data-9a953bf9" top="84px" left="274px" width="207px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.5rem;" value="ITda">
+        <cl:xylayoutdata std:sid="xyl-data-9a953bf9" top="84px" left="274px" width="207px" height="53px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
         <cl:xylayoutdata std:sid="xyl-data-8ec85627" top="127px" left="274px" width="296px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

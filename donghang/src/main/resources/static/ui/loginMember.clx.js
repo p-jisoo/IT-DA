@@ -36,24 +36,6 @@
 					}
 					submission.send();
 					}
-					app.openDialog("", {
-					width: 500,
-					height: 350,
-					headerVisible: false
-				}, function(dialog) {
-					dialog.ready(function(dialogApp) {
-					dialog.initValue={param1 : id.value, param2: pwd.value, param3: adr.value, param4: Tel.value, param5: name.value,param6: nickName.value,param7:email.value};
-						
-						dialogApp.addEventListener("click", function(e) {
-									
-						});	
-					});
-				}).then(function(returnValue) {
-					console.log(returnValue);
-					if(returnValue == "true"){
-						window.location.href="/";
-					}
-				});
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -61,9 +43,27 @@
 			 */
 			function onSms1SubmitSuccess(e){
 				var sms1 = e.control;
-				
-				window.location.href="/"
-				
+				var responseText = sms1.xhr.responseText;
+				var any = JSON.parse(responseText);
+				console.log(any.result);
+				if(any.result=="success"){
+				window.location.href="/"		
+				}else if(any.result=="fail"){
+					app.openDialog("loginfail", {
+						width : 500, 
+						height : 350,
+						headerVisible:false
+					}, function(dialog){
+						dialog.ready(function(dialogApp){
+						dialog.addEventListener("click", function(e){
+						
+						});
+						});
+					}).then(function(returnValue){
+						;
+					});
+					
+				}
 			}
 
 			/*
@@ -193,7 +193,7 @@
 				var inputBox_1 = new cpr.controls.InputBox("ipb1");
 				inputBox_1.placeholder = "아이디를 입력하세요.";
 				inputBox_1.style.css({
-					"border-radius" : "8px",
+					"border-radius" : "0.6rem",
 					"border-bottom-color" : "#acacac",
 					"border-left-color" : "#acacac",
 					"border-top-color" : "#acacac",
@@ -209,7 +209,7 @@
 				var inputBox_2 = new cpr.controls.InputBox("ipb2");
 				inputBox_2.placeholder = "비밀번호를 입력하세요.";
 				inputBox_2.style.css({
-					"border-radius" : "8px",
+					"border-radius" : "0.6rem",
 					"border-bottom-color" : "#acacac",
 					"border-left-color" : "#acacac",
 					"border-top-color" : "#acacac",

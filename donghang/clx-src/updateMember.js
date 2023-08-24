@@ -13,6 +13,73 @@ function onBodyLoad2(e){
 	submission.send();
 }
 /*
+ * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick2(e){
+	var button = e.control;
+	var submission = app.lookup("update");
+	var id = app.lookup("userId");
+	var pwd = app.lookup("password");
+	var pwdChk = app.lookup("passwordChk");
+	var adr = app.lookup("Address");
+	var detailAdr = app.lookup("detailAddress");
+	var Tel = app.lookup("Tel_mask");
+	var name = app.lookup("userName");
+	var nickName = app.lookup("nickName")
+	var email = app.lookup("email");
+	
+//	if (pwd.length == 0) {
+//		alert("비밀번호를 입력해주세요.");
+//		return false;
+//	}
+//	if (pwd.value != pwdChk.value) {
+//		alert("비밀번호가 일치하지 않습니다.");
+//		return false;
+//	} else if (pwd.length < 8 || pwd.length > 16) {
+//		alert("비밀번호를 8~16자리로 입력해주세요");
+//		return false;
+//	}
+//	if (adr.length == 0) {
+//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+//		return false;
+//	}
+//	if (detailAdr.length == 0) {
+//		alert("상세주소를 입력해주세요.");
+//		return false;
+//	}if (Tel.length < 0 || Tel.length > 11) {
+//		alert("전화번호를 입력해주세요.");
+//		return false;
+//	}
+//	if (name.length == 0) {
+//		alert("이름을 입력해주세요.");
+//		return false;
+//	}
+//	if (nickName.length == 0) {
+//		alert("닉네임을 입력해주세요");
+//		return false;
+//	}
+//	if(email.length==0){
+//		alert("이메일을 입력해주세요.")
+//	}
+		
+	app.openDialog("updateMemberdialog", {
+		width : 500,
+		height : 350,
+		headerVisible: false
+	}, function(dialog){
+		dialog.ready(function(dialogApp){
+			dialog.initValue={param1 : id.value, param2 : pwd.value, param3 : adr.value}
+		});
+	}).then(function(returnValue){
+		;
+	});
+	
+	
+	submission.send();
+}
+
+/*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
@@ -36,58 +103,6 @@ function onUpdateSessionSubmitSuccess(e){
 	
 }
 
-/*
- * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick(e) {
-	var button = e.control;
-	var submission = app.lookup("update");
-	var id = app.lookup("userId");
-	var pwd = app.lookup("password");
-	var pwdChk = app.lookup("passwordChk");
-	var adr = app.lookup("Address");
-	var detailAdr = app.lookup("detailAddress");
-	var Tel = app.lookup("Tel_mask");
-	var name = app.lookup("userName");
-	var nickName = app.lookup("nickName")
-	var email = app.lookup("email");
-	
-	if (pwd.length == 0) {
-		alert("비밀번호를 입력해주세요.");
-		return false;
-	}
-	if (pwd.value != pwdChk.value) {
-		alert("비밀번호가 일치하지 않습니다.");
-		return false;
-	} else if (pwd.length < 8 || pwd.length > 16) {
-		alert("비밀번호를 8~16자리로 입력해주세요");
-		return false;
-	}
-	if (adr.length == 0) {
-		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-		return false;
-	}
-	if (detailAdr.length == 0) {
-		alert("상세주소를 입력해주세요.");
-		return false;
-	}if (Tel.length < 0 || Tel.length > 11) {
-		alert("전화번호를 입력해주세요.");
-		return false;
-	}
-	if (name.length == 0) {
-		alert("이름을 입력해주세요.");
-		return false;
-	}
-	if (nickName.length == 0) {
-		alert("닉네임을 입력해주세요");
-		return false;
-	}
-	if(email.length==0){
-		alert("이메일을 입력해주세요.")
-	}
-	submission.send();
-}
 
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -215,3 +230,13 @@ function onImgHomeClick(e){
 	var imgHome = e.control;
 	window.location.href = "/";
 }
+
+/*
+ * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e){
+	var button = e.control;
+	
+}
+

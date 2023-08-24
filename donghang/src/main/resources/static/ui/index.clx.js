@@ -464,13 +464,13 @@
 				output_3.style.css({
 					"color" : "#262626",
 					"font-weight" : "bolder",
-					"font-size" : "1.3rem"
+					"font-size" : "1.5rem"
 				});
 				container.addChild(output_3, {
 					"top": "84px",
 					"left": "274px",
 					"width": "207px",
-					"height": "44px"
+					"height": "53px"
 				});
 				var output_4 = new cpr.controls.Output();
 				output_4.value = "Accompany";

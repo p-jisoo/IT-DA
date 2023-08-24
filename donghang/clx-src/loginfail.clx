@@ -25,22 +25,18 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-9f70a723">
-    <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; border-right-style:solid; border-bottom-color:#626262; border-left-style:solid; border-left-color:#626262; border-top-color:#626262; border-bottom-style:solid; border-right-color:#626262; background-image:none; border-top-style:solid;">
-      <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
+    <cl:group std:sid="group-017e6b17" id="registerdialog" style="border-right-style:solid; border-bottom-color:#404040; border-top-width:3px; border-right-width:3px; border-left-color:#404040; border-right-color:#404040; border-left-width:3px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:3px; border-top-color:#404040; border-bottom-style:solid; background-image:none;">
+      <cl:listener std:sid="listener-482c3091" name="click" handler="onRegisterdialogClick"/>
       <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#B4D9F0; color:#2B2B2B; font-weight:bold; font-size:1.5rem; background-image:none;" value="yes">
-        <cl:listener std:sid="listener-670b4f77" name="click" handler="onYes_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-0ef10480" bottom="0px" left="0px" width="250px" height="92px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+      <cl:button std:sid="button-d23aa4e2" id="cancle_btn" style="background-color:#F6F4EB; color:#4682A9; font-weight:bold; font-size:1.5rem; background-image:none;" value="확 인">
+        <cl:listener std:sid="listener-24edbbdb" name="click" handler="onNo_btnClick2"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="502px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#2B2B2B; font-weight:bold; font-size:1.5rem; background-image:none;" value="cancle">
-        <cl:listener std:sid="listener-8d1dd4a2" name="click" handler="onNo_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="250px" height="92px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
-      </cl:button>
-      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원 정보를 수정하시겠습니까?">
-        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="141px" left="55px" width="385px" height="97px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="아이디 또는 비밀번호를 잘못 입력하셨습니다.&#xD;&#xA;다시 입력해주세요.">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="130px" left="18px" width="444px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:img std:sid="image-81aba43e" src="theme/images/img/updatedialogo_donghang.png">
-        <cl:xylayoutdata std:sid="xyl-data-027eedaa" top="31px" left="162px" width="158px" height="111px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-baa4140e" src="theme/images/img/loginfail_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-0b35d188" top="30px" left="182px" width="116px" height="112px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>
