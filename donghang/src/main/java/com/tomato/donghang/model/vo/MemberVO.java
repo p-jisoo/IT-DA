@@ -14,6 +14,8 @@ public class MemberVO {
 	private String userTel;
 	private String userName;
 	private String nickName;
+	private String email;
+	//private String email;
 	public MemberVO(String userId, String password) {
 		super();
 		this.userId = userId;

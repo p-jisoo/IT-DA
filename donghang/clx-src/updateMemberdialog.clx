@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-ad756dfe" version="1.0.4584">
+  <head std:sid="head-efb4514b">
+    <screen std:sid="screen-d572524d" id="default" name="default" minwidth="1024px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-b8fcfc62" id="new-screen" name="new-screen" minwidth="500px" maxwidth="1023px" width="500px" height="400px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-5f5bba6b" id="tablet" name="tablet" minwidth="500px" maxwidth="499px" width="500px" height="667px"/>
+    <screen std:sid="screen-b01d5606" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-6492596e">
+      <cl:datamap std:sid="d-map-c7aa68fe" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-992e0e15" name="userId"/>
+          <cl:datacolumn std:sid="d-column-3178b5bd" name="password"/>
+          <cl:datacolumn std:sid="d-column-71d54b13" name="address"/>
+          <cl:datacolumn std:sid="d-column-616c187e" name="userTel"/>
+          <cl:datacolumn std:sid="d-column-db1cde07" name="userName"/>
+          <cl:datacolumn std:sid="d-column-4ce20cb7" name="nickName"/>
+          <cl:datacolumn std:sid="d-column-6988d705" name="email"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="registerMember">
+        <cl:listener std:sid="listener-4c7f0117" name="submit-success" handler="onSms1SubmitSuccess2"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-9f70a723">
+    <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; background-image:none;">
+      <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#4682A9; color:#F6F4EB; font-weight:bold; font-size:1.5rem; background-image:none;" value="yes">
+        <cl:listener std:sid="listener-670b4f77" name="click" handler="onYes_btnClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-0ef10480" bottom="1px" left="0px" width="250px" height="80px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+      </cl:button>
+      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#4682A9; font-weight:bold; font-size:1.5rem; background-image:none;" value="cancle">
+        <cl:listener std:sid="listener-8d1dd4a2" name="click" handler="onNo_btnClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="1px" width="250px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+      </cl:button>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원가입을 하시겠습니까?">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="96px" left="72px" width="342px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-a8d4a2da"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-6bd2f824"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

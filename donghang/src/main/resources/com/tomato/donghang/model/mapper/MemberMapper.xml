@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.donghang.model.mapper.MemberMapper">
 <insert id="registerMember" parameterType="com.tomato.donghang.model.vo.MemberVO"> 
-insert into member(user_id, password, address, user_tel, user_name, nickname)
-values(#{userId},#{password},#{address},#{userTel},#{userName},#{nickName})
+insert into member(user_id, password, address, user_tel, user_name, nickname,email)
+values(#{userId},#{password},#{address},#{userTel},#{userName},#{nickName},#{email})
 </insert>
 <select id="loginMember" parameterType="com.tomato.donghang.model.vo.MemberVO" resultType="com.tomato.donghang.model.vo.MemberVO">
 select * from member where user_id=#{userId} and password=#{password}
 </select>
 <update id="updateMember"  parameterType="com.tomato.donghang.model.vo.MemberVO">
 update member set password=#{password},address=#{address}
-,user_tel=#{userTel},user_name=#{userName},nickname=#{nickName} where user_id=#{userId}
+,user_tel=#{userTel},user_name=#{userName},nickname=#{nickName},email=#{email} where user_id=#{userId}
 </update> 
 <select id="checkIdMember" resultType="com.tomato.donghang.model.vo.MemberVO" parameterType="String">
 select * from member where user_id=#{id}
