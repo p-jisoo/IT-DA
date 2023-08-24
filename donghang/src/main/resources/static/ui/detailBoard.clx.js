@@ -205,10 +205,20 @@
 			 * "목록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick7(e) {
+			function onButtonClick7(e){
 				var button = e.control;
-				window.location.href = "toBoardList.do";
+				window.location.href="eduApplyBoardList.clx";
 			}
+
+			/*
+			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
+			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
+			 */
+			function onBodyLoad(e){
+			var host = app.getHost();
+				 host.initValue.value;
+				console.log("게시판번호",host.initValue);
+			};
 			// End - User Script
 			
 			// Header
@@ -335,6 +345,8 @@
 				"width" : "100%",
 				"height" : "100%"
 			});
+			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			container.setBindContext(dataMapContext_1);
 			
 			// Layout
 			var xYLayout_1 = new cpr.controls.layouts.XYLayout();
@@ -362,8 +374,8 @@
 			group_1.style.css({
 				"font-size" : "18px"
 			});
-			var dataMapContext_1 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			group_1.setBindContext(dataMapContext_1);
+			var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			group_1.setBindContext(dataMapContext_2);
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
 			formLayout_1.topMargin = "5px";
@@ -437,8 +449,8 @@
 					"font-size" : "16px",
 					"text-align" : "center"
 				});
-				var dataMapContext_2 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-				inputBox_1.setBindContext(dataMapContext_2);
+				var dataMapContext_3 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+				inputBox_1.setBindContext(dataMapContext_3);
 				inputBox_1.bind("value").toDataColumn("EDU_BOARD_MAX_MEMBER_COUNT");
 				if(typeof onIpb3Click == "function") {
 					inputBox_1.addEventListener("click", onIpb3Click);
@@ -453,8 +465,8 @@
 					"font-size" : "16px",
 					"text-align" : "center"
 				});
-				var dataMapContext_3 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-				inputBox_2.setBindContext(dataMapContext_3);
+				var dataMapContext_4 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+				inputBox_2.setBindContext(dataMapContext_4);
 				inputBox_2.bind("value").toDataColumn("EDU_BOARD_CATEGORY");
 				container.addChild(inputBox_2, {
 					"colIndex": 3,
@@ -548,8 +560,8 @@
 				"font-size" : "18px",
 				"text-align" : "left"
 			});
-			var dataMapContext_4 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			inputBox_5.setBindContext(dataMapContext_4);
+			var dataMapContext_5 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			inputBox_5.setBindContext(dataMapContext_5);
 			inputBox_5.bind("value").toDataColumn("EDU_BOARD_CONTENT");
 			container.addChild(inputBox_5, {
 				"top": "294px",
@@ -564,8 +576,8 @@
 				"font-size" : "18px",
 				"text-align" : "left"
 			});
-			var dataMapContext_5 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			inputBox_6.setBindContext(dataMapContext_5);
+			var dataMapContext_6 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
+			inputBox_6.setBindContext(dataMapContext_6);
 			inputBox_6.bind("value").toDataColumn("EDU_BOARD_TITLE");
 			if(typeof onIpb6ValueChange == "function") {
 				inputBox_6.addEventListener("value-change", onIpb6ValueChange);
@@ -779,8 +791,8 @@
 			});
 			
 			var group_4 = new cpr.controls.Container();
-			var dataMapContext_6 = new cpr.bind.DataMapContext(app.lookup("commentBoardMap"));
-			group_4.setBindContext(dataMapContext_6);
+			var dataMapContext_7 = new cpr.bind.DataMapContext(app.lookup("commentBoardMap"));
+			group_4.setBindContext(dataMapContext_7);
 			var verticalLayout_1 = new cpr.controls.layouts.VerticalLayout();
 			group_4.setLayout(verticalLayout_1);
 			(function(container){
@@ -840,9 +852,6 @@
 				"width": "1506px",
 				"height": "493px"
 			});
-			if(typeof onBodyInit == "function"){
-				app.addEventListener("init", onBodyInit);
-			}
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
 			}
