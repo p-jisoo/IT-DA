@@ -28,12 +28,16 @@
 			//	var count = navigationBar.getSelectedIndices().toString()
 			//	submission.setParameters("menu", count);
 			//	submission.send();
-				var vcEmb = app.lookup("ea1");
 				
 				// 선택한 아이템에 대한 값 
+				emded(e);
+			}
+
+
+			function emded(e){
+				var vcEmb = app.lookup("ea1");
 				var vsAppId = e.item.value;
-				
-				// 입력값에 선택된 앱이 존재하지 않는 경우
+					// 입력값에 선택된 앱이 존재하지 않는 경우
 				if(vsAppId == null) {
 					return alert("추가될 App이 존재하지 않습니다.");
 				}
@@ -48,16 +52,14 @@
 					if(loadedApp){						
 						/*초기값을 전달합니다.*/			
 						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
-							embApp.initValue =  e.item.label;
 							
 						})
 						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
 						vcEmb.app = loadedApp;
-						var app = vcEmb.app;
-						app.getInstances()
+						var app1 = vcEmb.app;
+						app1.getInstances()
 					}
 				}); 
-				
 			}
 
 			/*

@@ -63,6 +63,7 @@
     <cl:appspec/>
   </head>
   <body std:sid="body-d498b017">
+    <cl:listener std:sid="listener-5cd9d1a9" name="load" handler="onBodyLoad"/>
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
     <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
       <cl:listener std:sid="listener-113ec845" name="click" handler="onButtonClick7"/>
