@@ -34,27 +34,33 @@ function onYes_btnClick(e){
 	dMap.setValue("nickName", nickName);
 	dMap.setValue("email", email);
 	submission.send();
+	
+	
 }
-
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-//function onSms1SubmitSuccess2(e){
-//	var sms1 = e.control;
-//	var metadata = sms1.getMetadata("updateSuccess");
-//	//map의 키를 가져온다!
-//	var responseText = sms1.xhr.responseText;
-//	var any = JSON.parse(responseText);
-//	console.log(any.ds1);
-//
-//	console.log(metadata);
-//	// metadata가 true 일때 메타데이터를 닫아준다.
-//	if(metadata == "true"){
-//		app.close(metadata);
-//	}
-//	
-//}
+function onSms1SubmitSuccess(e){
+	var sms1 = e.control;
+	var responseText = sms1.xhr.responseText;
+	var any = JSON.parse(responseText);
+
+	app.openDialog("updateConformdialog", {
+		width : 400,
+	    height : 300,
+	    headerVisible : false
+	}, function(dialog){
+		dialog.ready(function(dialogApp){
+		dialog.addEventListener("click", function(e){
+		});
+		});
+	}).then(function(returnValue){
+		;
+	});
+	}
+
+
 
 /*
  * "cancle" 버튼(no_btn)에서 click 이벤트 발생 시 호출.
@@ -62,6 +68,7 @@ function onYes_btnClick(e){
  */
 function onNo_btnClick(e){
 	var no_btn = e.control;
-	var dialog = app.lookup("registerdialog");
+	var dialog = app.lookup("updatedialog");
 	app.close();
 }
+

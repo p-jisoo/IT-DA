@@ -91,6 +91,7 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
+		//	String result ="fail";
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("dm1");
 			String id = data.getValue("userId");
@@ -109,10 +110,11 @@ public class MemberController {
 			System.out.println("업데이트 후 = " + vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
+		//	String result="success";
 			
-//			Map<String, Object> map =new HashMap<>();
-//			map.put("updateSuccess", true);
-//			dataRequest.setMetadata(true, map);
+//			Map<String , Object> map =new HashMap<>();
+//			map.put("result", map);
+//			dataRequest.setResponse("updateSuccess", result);
 			
 		}
 		return new JSONDataView();

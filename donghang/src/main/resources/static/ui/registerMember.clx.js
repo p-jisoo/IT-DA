@@ -753,10 +753,10 @@
 				"font-style" : "normal"
 			});
 			container.addChild(output_13, {
-				"top": "58px",
-				"left": "768px",
-				"width": "269px",
-				"height": "88px"
+				"top": "83px",
+				"left": "779px",
+				"width": "236px",
+				"height": "75px"
 			});
 		}
 	});

@@ -101,7 +101,7 @@
           <cl:xylayoutdata std:sid="xyl-data-7dc23a70" top="23px" left="992px" width="138px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:output>
         <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
-          <cl:listener std:sid="listener-61c5cd62" name="value-change" handler="onOutputValueChange"/>
+          <cl:listener std:sid="listener-5ee7b881" name="value-change" handler="onWhoNameValueChange"/>
           <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
           <cl:xylayoutdata std:sid="xyl-data-36f9d886" top="17px" left="852px" width="130px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
         </cl:output>

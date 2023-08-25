@@ -29,8 +29,8 @@ function onButtonClick(e) {
 		return;
 	}else{
 	submission.send();
-	
 	}
+
 }
 
 /*

@@ -18,7 +18,7 @@
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="updateMember">
-        <cl:listener std:sid="listener-4c7f0117" name="submit-success" handler="onSms1SubmitSuccess2"/>
+        <cl:listener std:sid="listener-102c2deb" name="submit-success" handler="onSms1SubmitSuccess"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
@@ -27,20 +27,20 @@
   <body std:sid="body-9f70a723">
     <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; border-right-style:solid; border-bottom-color:#626262; border-left-style:solid; border-left-color:#626262; border-top-color:#626262; border-bottom-style:solid; border-right-color:#626262; background-image:none; border-top-style:solid;">
       <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#B4D9F0; color:#2B2B2B; font-weight:bold; font-size:1.5rem; background-image:none;" value="yes">
+      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="398px" height="298px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#B4D9F0; color:#2B2B2B; font-weight:bold; font-size:1.3rem; background-image:none;" value="yes">
         <cl:listener std:sid="listener-670b4f77" name="click" handler="onYes_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-0ef10480" bottom="0px" left="0px" width="250px" height="92px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+        <cl:xylayoutdata std:sid="xyl-data-0ef10480" right="0px" bottom="0px" width="200px" height="81px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#2B2B2B; font-weight:bold; font-size:1.5rem; background-image:none;" value="cancle">
+      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#2B2B2B; font-weight:bold; font-size:1.3rem; background-image:none;" value="cancle">
         <cl:listener std:sid="listener-8d1dd4a2" name="click" handler="onNo_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="250px" height="92px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" bottom="0px" left="0px" width="193px" height="81px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원 정보를 수정하시겠습니까?">
-        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="141px" left="55px" width="385px" height="97px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="회원 정보를 수정하시겠습니까?">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="135px" left="9px" width="364px" height="66px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:img std:sid="image-81aba43e" src="theme/images/img/updatedialog_donghang.png">
-        <cl:xylayoutdata std:sid="xyl-data-027eedaa" top="46px" left="192px" width="111px" height="96px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-027eedaa" top="35px" left="145px" width="91px" height="79px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>

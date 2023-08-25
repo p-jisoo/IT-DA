@@ -42,43 +42,43 @@
 				var nickName = app.lookup("nickName")
 				var email = app.lookup("email");
 				
-			//	if (pwd.length == 0) {
-			//		alert("비밀번호를 입력해주세요.");
-			//		return false;
-			//	}
-			//	if (pwd.value != pwdChk.value) {
-			//		alert("비밀번호가 일치하지 않습니다.");
-			//		return false;
-			//	} else if (pwd.length < 8 || pwd.length > 16) {
-			//		alert("비밀번호를 8~16자리로 입력해주세요");
-			//		return false;
-			//	}
-			//	if (adr.length == 0) {
-			//		alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
-			//		return false;
-			//	}
-			//	if (detailAdr.length == 0) {
-			//		alert("상세주소를 입력해주세요.");
-			//		return false;
-			//	}if (Tel.length < 0 || Tel.length > 11) {
-			//		alert("전화번호를 입력해주세요.");
-			//		return false;
-			//	}
-			//	if (name.length == 0) {
-			//		alert("이름을 입력해주세요.");
-			//		return false;
-			//	}
-			//	if (nickName.length == 0) {
-			//		alert("닉네임을 입력해주세요");
-			//		return false;
-			//	}
-			//	if(email.length==0){
-			//		alert("이메일을 입력해주세요.")
-			//	}
+				if (pwd.length == 0) {
+					alert("비밀번호를 입력해주세요.");
+					return false;
+				}
+				if (pwd.value != pwdChk.value) {
+					alert("비밀번호가 일치하지 않습니다.");
+					return false;
+				} else if (pwd.length < 8 || pwd.length > 16) {
+					alert("비밀번호를 8~16자리로 입력해주세요");
+					return false;
+				}
+				if (adr.length == 0) {
+					alert("우편번호와 도로명 또는 지번주소를 입력해주세요.");
+					return false;
+				}
+				if (detailAdr.length == 0) {
+					alert("상세주소를 입력해주세요.");
+					return false;
+				}if (Tel.length < 0 || Tel.length > 11) {
+					alert("전화번호를 입력해주세요.");
+					return false;
+				}
+				if (name.length == 0) {
+					alert("이름을 입력해주세요.");
+					return false;
+				}
+				if (nickName.length == 0) {
+					alert("닉네임을 입력해주세요");
+					return false;
+				}
+				if(email.length==0){
+					alert("이메일을 입력해주세요.")
+				}
 					
 				app.openDialog("updateMemberdialog", {
-					width : 500,
-					height : 350,
+					width : 400,
+					height : 300,
 					headerVisible: false
 				}, function(dialog){
 					dialog.ready(function(dialogApp){
@@ -91,9 +91,11 @@
 						param6 : nickName.value,
 						param7 : email.value
 						}
+					dialogApp.addEventListener("click", function(e){
 					});
-				}).then(function(returnValue){
-					;
+				});
+			//	}).then(function(returnValue){
+			//		;
 				});
 				
 				
@@ -115,12 +117,13 @@
 				var responseText = updateSession.xhr.responseText;
 				var any = JSON.parse(responseText);
 				console.log(any.loginSession);
-				id.value=any.loginSession.userId;
-				adr.value=any.loginSession.address;
-				tel.value=any.loginSession.userTel;
-				name.value=any.loginSession.userName;
-				nick.value=any.loginSession.nickName;
-				email.value=any.loginSession.email
+				var userInfo = any.loginSession
+				id.value = userInfo.userId;
+				adr.value = userInfo.address;
+				tel.value = userInfo.userTel;
+				name.value = userInfo.userName;
+				nick.value = userInfo.nickName;
+				email.value = userInfo.email;
 				
 			}
 
@@ -129,14 +132,14 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms1SubmitSuccess2(e) {
-				var sms1 = e.control;
-				var responseText = sms1.xhr.responseText;
-				var any = JSON.parse(responseText);
-				console.log(any.ds1);
-				window.location.href = "/";
-				alert("회원정보가 수정되었습니다.");
-			}
+			//function onSms1SubmitSuccess2(e) {
+			//	var sms1 = e.control;
+			//	var responseText = sms1.xhr.responseText;
+			//	var any = JSON.parse(responseText);
+			//	console.log(any.loginSession);
+			//	window.location.href = "/";
+			//	alert("회원정보가 수정되었습니다.");
+			//}
 
 
 			/*
@@ -374,7 +377,7 @@
 				var inputBox_1 = new cpr.controls.InputBox("password");
 				inputBox_1.fieldLabel = "13";
 				inputBox_1.secret = true;
-				inputBox_1.placeholder = "비밀번호를 입력하세요.";
+				inputBox_1.placeholder = "변경하실 비밀번호를 입력하세요.";
 				inputBox_1.style.css({
 					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
@@ -608,10 +611,12 @@
 				inputBox_8.autoSkip = true;
 				inputBox_8.style.css({
 					"border-radius" : "0.5rem",
-					"color" : "#ED3838",
+					"background-color" : "#F1F1F1",
+					"color" : "#000000",
 					"font-weight" : "normal",
 					"font-size" : "0.9rem",
-					"font-style" : "normal"
+					"font-style" : "normal",
+					"background-image" : "none"
 				});
 				inputBox_8.bind("value").toDataSet(app.lookup("loginSession"), "userId", 0);
 				container.addChild(inputBox_8, {
@@ -675,6 +680,19 @@
 					"width": "140px",
 					"height": "52px"
 				});
+				var output_10 = new cpr.controls.Output();
+				output_10.value = "아이디는 수정하실 수 없습니다.";
+				output_10.style.css({
+					"color" : "#ED3838",
+					"font-size" : "0.9rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_10, {
+					"top": "101px",
+					"left": "301px",
+					"width": "399px",
+					"height": "37px"
+				});
 			})(group_1);
 			container.addChild(group_1, {
 				"top": "288px",
@@ -683,28 +701,28 @@
 				"height": "905px"
 			});
 			
-			var output_10 = new cpr.controls.Output();
-			output_10.value = "ITda";
-			output_10.style.css({
+			var output_11 = new cpr.controls.Output();
+			output_11.value = "ITda";
+			output_11.style.css({
 				"color" : "#000000",
 				"font-weight" : "bolder",
 				"font-size" : "2rem"
 			});
-			container.addChild(output_10, {
+			container.addChild(output_11, {
 				"top": "58px",
 				"left": "167px",
 				"width": "90px",
 				"height": "53px"
 			});
 			
-			var output_11 = new cpr.controls.Output();
-			output_11.value = "Accompany";
-			output_11.style.css({
+			var output_12 = new cpr.controls.Output();
+			output_12.value = "Accompany";
+			output_12.style.css({
 				"color" : "#000000",
 				"font-weight" : "bold",
 				"font-size" : "1.6rem"
 			});
-			container.addChild(output_11, {
+			container.addChild(output_12, {
 				"top": "100px",
 				"left": "167px",
 				"width": "163px",
@@ -732,15 +750,15 @@
 				"height": "118px"
 			});
 			
-			var output_12 = new cpr.controls.Output();
-			output_12.value = "회원정보 수정";
-			output_12.style.css({
+			var output_13 = new cpr.controls.Output();
+			output_13.value = "회원정보 수정";
+			output_13.style.css({
 				"font-weight" : "bold",
 				"font-size" : "2.1rem",
 				"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
 				"font-style" : "normal"
 			});
-			container.addChild(output_12, {
+			container.addChild(output_13, {
 				"top": "217px",
 				"left": "831px",
 				"width": "270px",

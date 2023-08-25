@@ -64,7 +64,7 @@
     <cl:listener std:sid="listener-966d9b82" name="load" handler="onBodyLoad2"/>
     <cl:group std:sid="group-b8167950" style="border-radius:0.5rem; font-style:normal;">
       <cl:xylayoutdata std:sid="xyl-data-957531fe" top="288px" left="545px" width="927px" height="905px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:inputbox std:sid="i-box-28c95846" id="password" style="border-radius:0.5rem; font-size:0.9rem;" fieldLabel="13" secret="true" placeholder="비밀번호를 입력하세요.">
+      <cl:inputbox std:sid="i-box-28c95846" id="password" style="border-radius:0.5rem; font-size:0.9rem;" fieldLabel="13" secret="true" placeholder="변경하실 비밀번호를 입력하세요.">
         <cl:listener std:sid="listener-8f45d101" name="keyup" handler="onIpb2Keyup"/>
         <cl:listener std:sid="listener-3af7735c" name="value-change" handler="onPasswordValueChange"/>
         <cl:datamapbind property="value" datacontrolid="dm1" columnname="password"/>
@@ -124,7 +124,7 @@
       <cl:output std:sid="output-3297082e" style="font-weight:bold; font-size:1.05rem; text-align:left;" value="*닉네임">
         <cl:xylayoutdata std:sid="xyl-data-dc3a52d6" top="648px" left="0px" width="208px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:inputbox std:sid="i-box-d24606ea" id="userId" style="border-radius:0.5rem; color:#ED3838; font-weight:normal; font-size:0.9rem; font-style:normal;" readonly="true" placeholder="아이디 변경불가" autoskip="true">
+      <cl:inputbox std:sid="i-box-d24606ea" id="userId" style="border-radius:0.5rem; background-color:#F1F1F1; color:#000000; font-weight:normal; font-size:0.9rem; font-style:normal; background-image:none;" readonly="true" placeholder="아이디 변경불가" autoskip="true">
         <cl:datasetbind property="value" datacontrolid="loginSession" columnname="userId" rowindex="0"/>
         <cl:xylayoutdata std:sid="xyl-data-dd032dec" top="58px" left="300px" width="247px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
@@ -142,6 +142,9 @@
         <cl:listener std:sid="listener-5085c23b" name="click" handler="onButtonClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-fa1ca861" top="794px" left="301px" width="140px" height="52px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
+      <cl:output std:sid="output-32cd679f" style="color:#ED3838; font-size:0.9rem; text-align:left;" value="아이디는 수정하실 수 없습니다.">
+        <cl:xylayoutdata std:sid="xyl-data-34368ed6" top="101px" left="301px" width="399px" height="37px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
       <cl:xylayout std:sid="xylayout-2f12eb26"/>
     </cl:group>
     <cl:output std:sid="output-7e7d16d7" style="color:#000000; font-weight:bolder; font-size:2rem;" value="ITda">

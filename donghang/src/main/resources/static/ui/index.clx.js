@@ -118,15 +118,14 @@
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-				
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log(any.loginSession.userName);
-				if (any.loginSession.userName == "") {
+				
+				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
 				} else {
-					output.value = any.loginSession.userName;
+					output.value =any.loginSession.userName;
 					register.visible = false;
 					helloWelcome.visible = true;
 					myPage.visible = true;
@@ -409,8 +408,8 @@
 						"text-align" : "center"
 					});
 					output_2.bind("value").toDataMap(app.lookup("dm1"), "userName");
-					if(typeof onOutputValueChange == "function") {
-						output_2.addEventListener("value-change", onOutputValueChange);
+					if(typeof onWhoNameValueChange == "function") {
+						output_2.addEventListener("value-change", onWhoNameValueChange);
 					}
 					container.addChild(output_2, {
 						"top": "17px",

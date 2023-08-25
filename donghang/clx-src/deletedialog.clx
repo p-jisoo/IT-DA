@@ -8,36 +8,31 @@
     <cl:model std:sid="model-6492596e">
       <cl:datamap std:sid="d-map-c7aa68fe" id="dm1">
         <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-992e0e15" name="userId"/>
           <cl:datacolumn std:sid="d-column-3178b5bd" name="password"/>
-          <cl:datacolumn std:sid="d-column-71d54b13" name="address"/>
-          <cl:datacolumn std:sid="d-column-616c187e" name="userTel"/>
-          <cl:datacolumn std:sid="d-column-db1cde07" name="userName"/>
-          <cl:datacolumn std:sid="d-column-4ce20cb7" name="nickName"/>
-          <cl:datacolumn std:sid="d-column-6988d705" name="email"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="registerMember">
-        <cl:listener std:sid="listener-4c7f0117" name="submit-success" handler="onSms1SubmitSuccess2"/>
+      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="deleteMember">
+        <cl:listener std:sid="listener-f5176972" name="submit-success" handler="onSms1SubmitSuccess"/>
         <cl:requestdata dataid="dm1"/>
+        <cl:responsedata dataid="dm1"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-9f70a723">
-    <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; border-right-style:solid; border-bottom-color:#626262; border-left-style:solid; border-left-color:#626262; border-top-color:#626262; border-bottom-style:solid; border-right-color:#626262; background-image:none; border-top-style:solid;">
+    <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; border-right-style:solid; border-bottom-color:#b42e4c; border-left-style:solid; border-left-color:#b42e4c; border-top-color:#b42e4c; border-bottom-style:solid; border-right-color:#b42e4c; background-image:none; border-top-style:solid;">
       <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#B42E4C; color:#F6F4EB; font-weight:bold; font-size:1.5rem; background-image:none;" value="yes">
+      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="398px" height="298px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-6ebc13f6" id="yes_btn" style="background-color:#B42E4C; color:#FFFFFF; font-weight:bold; font-size:1.3rem; background-image:none;" value="yes">
         <cl:listener std:sid="listener-670b4f77" name="click" handler="onYes_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-0ef10480" bottom="0px" left="0px" width="250px" height="92px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
+        <cl:xylayoutdata std:sid="xyl-data-0ef10480" right="0px" bottom="0px" width="200px" height="82px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F1C4CE; color:#AA2828; font-weight:bold; font-size:1.5rem; background-image:none;" value="cancle">
+      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F1C4CE; color:#AA2828; font-weight:bold; font-size:1.3rem; background-image:none;" value="cancle">
         <cl:listener std:sid="listener-8d1dd4a2" name="click" handler="onNo_btnClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="250px" height="92px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" bottom="0px" left="0px" width="193px" height="82px" horizontalAnchor="LEFT" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="회원 정보를 수정하시겠습니까?">
-        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="118px" left="55px" width="385px" height="120px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="회원 정보를 탈퇴하겠습니다.">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="102px" left="41px" width="300px" height="98px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>

@@ -105,15 +105,14 @@ function onSms2SubmitSuccess(e) {
 	var helloWelcome = app.lookup("welcom");
 	var register = app.lookup("btn_register");
 	var output = app.lookup("whoName");
-	
 	var responseText = sms2.xhr.responseText;
 	var any = JSON.parse(responseText);
-	console.log(any.loginSession.userName);
-	if (any.loginSession.userName == "") {
+	
+	if (any.loginSession == "") {
 		onLoginClick();
 		login.value = "로그인";
 	} else {
-		output.value = any.loginSession.userName;
+		output.value =any.loginSession.userName;
 		register.visible = false;
 		helloWelcome.visible = true;
 		myPage.visible = true;
@@ -172,3 +171,5 @@ function onButtonClick5(e) {
 	var button = e.control;
 	window.location.href = "myPage.clx"
 }
+
+

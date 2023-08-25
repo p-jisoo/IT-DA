@@ -149,7 +149,7 @@
       <cl:xylayoutdata std:sid="xyl-data-5e17e6c4" top="20px" left="20px" width="137px" height="121px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:output std:sid="output-3c911c54" style="font-weight:bold; font-size:3rem; font-family:'맑은 고딕' , 'Malgun Gothic' , sans-serif; font-style:normal;" value="회원가입">
-      <cl:xylayoutdata std:sid="xyl-data-ead6a4c5" top="58px" left="768px" width="269px" height="88px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ead6a4c5" top="83px" left="779px" width="236px" height="75px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:xylayout std:sid="xylayout-43b1c2e8"/>
   </body>
