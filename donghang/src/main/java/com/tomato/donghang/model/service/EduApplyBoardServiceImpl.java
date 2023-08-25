@@ -400,4 +400,36 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		System.out.println("serviceImpl : " + ecvo);
 		eduApplyBoardMapper.deleteCommentBoard(ecvo);
 	}
+
+	@Override
+	public List<Map<String, String>> findAppliedListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);
+		for(EduApplyBoardVO eduboard : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", eduboard.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", eduboard.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", eduboard.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", eduboard.getEduBoardContent());
+			data.add(row);
+		}
+		log.info("data {}",data);
+		return data;
+	}
+
+	@Override
+	public List<Map<String, String>> findApplyingListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list = eduApplyBoardMapper.findApplyingListByUserId(id);
+		for(EduApplyBoardVO board : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", board.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", board.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", board.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", board.getEduBoardContent());
+			data.add(row);
+		}
+			
+		return data;
+	}
 }
