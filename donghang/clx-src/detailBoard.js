@@ -245,17 +245,18 @@ function onSessionCheckSubmitSuccess(e){
 		image.enabled = true;
 		console.log(image.readOnly);
 	}else {
-		console.log(1);
+		console.log("노로그인");
 		image.enabled = false;
 		console.log(image.readOnly);
 	}
 }
 
 
-
-
-function onLikeClick(e){
+/*
+ * 이미지에서 item-click 이벤트 발생 시 호출.
+ * 이미지 영역 아이템 클릭시 발생하는 이벤트.
+ */
+function onLikeItemClick(e){
 	var like = e.control;
-	
-	console.log(1);
+	console.log("1");
 }

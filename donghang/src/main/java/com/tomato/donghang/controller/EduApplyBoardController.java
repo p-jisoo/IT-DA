@@ -99,6 +99,15 @@ public class EduApplyBoardController {
 		}
 	}
 	
+	@PostMapping
+	public View addLikeCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
+//		ParameterGroup param = dataRequest.getParameterGroup
+		return new JSONDataView();
+	}
+	
+	
 	//List
 	
 	
@@ -188,7 +197,5 @@ public class EduApplyBoardController {
 		eduApplyBoardService.deleteCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
-	
-	
 
 }

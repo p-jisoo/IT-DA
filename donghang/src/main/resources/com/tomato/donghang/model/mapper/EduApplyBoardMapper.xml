@@ -213,6 +213,16 @@ WHERE
 	
 	
 	
+	<insert id="addLikeCount" parameterType="hashMap">
+INSERT INTO 
+	LIKE_BOARD(USER_ID,EDU_BOARD_NO)
+VALUES
+	(#{userId},#{eduBoardNo})
+	</insert>
+	
+	
+	
+	
 <!-- hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok -->
 <resultMap type="com.tomato.donghang.model.vo.EduApplyBoardVO" id="boardResultMap">
     <result property="eduBoardNo" column="EDU_BOARD_NO"/>

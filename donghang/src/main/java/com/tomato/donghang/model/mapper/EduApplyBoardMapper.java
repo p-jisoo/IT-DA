@@ -46,4 +46,7 @@ public interface EduApplyBoardMapper {
 
 	int isLike(Map<String, Object> map);
 
+	void addLikeCount(Map<String, Object> map);
+
+
 }

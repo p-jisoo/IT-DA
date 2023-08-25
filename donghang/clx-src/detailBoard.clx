@@ -216,10 +216,8 @@
         <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
       </cl:formlayout>
     </cl:group>
-    <cl:img std:sid="image-dbd43441" id="like" src="theme/images/heart.svg">
-      <cl:listener std:sid="listener-ffefe392" name="value-change" handler="onLikeValueChange"/>
-      <cl:listener std:sid="listener-0c08fe8e" name="item-click" handler="onLikeItemClick"/>
-      <cl:listener std:sid="listener-a2e89630" name="click" handler="onLikeClick2"/>
+    <cl:img std:sid="image-dbd43441" id="like" enabled="true" src="theme/images/heart.svg">
+      <cl:listener std:sid="listener-5484a084" name="item-click" handler="onLikeItemClick"/>
       <cl:xylayoutdata std:sid="xyl-data-3010a57a" top="239px" left="202px" width="47px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
