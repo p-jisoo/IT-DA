@@ -70,6 +70,7 @@ public class MemberController {
 	@PostMapping("ui/loginMember")
 	public View loginMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("dm1");
+		String result=null;
 		String id = data.getValue("user_id");
 		String password = data.getValue("password");
 		MemberVO memberVO = new MemberVO(id, password);
@@ -80,7 +81,11 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
 			dataRequest.setResponse("ds_member", vo);
+			result="success";
+		}else{
+			result="fail";
 		}
+		dataRequest.setResponse("result", result);
 		return new JSONDataView();
 	}
 
@@ -90,6 +95,7 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
 			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
+		//	String result ="fail";
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("dm1");
 			String id = data.getValue("userId");
@@ -108,6 +114,12 @@ public class MemberController {
 			System.out.println("업데이트 후 = " + vo);
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
+		//	String result="success";
+			
+//			Map<String , Object> map =new HashMap<>();
+//			map.put("result", map);
+//			dataRequest.setResponse("updateSuccess", result);
+			
 		}
 		return new JSONDataView();
 	}

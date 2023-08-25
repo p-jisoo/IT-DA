@@ -212,7 +212,9 @@
 			app.register(dataMap_1);
 			
 			var dataMap_2 = new cpr.data.DataMap("loginSession");
-			dataMap_2.parseData({});
+			dataMap_2.parseData({
+				"columns" : [{"name": "userName"}]
+			});
 			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
@@ -273,155 +275,6 @@
 					"width": "1880px",
 					"height": "824px"
 				});
-				var group_2 = new cpr.controls.Container();
-				var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-				group_2.setLayout(xYLayout_3);
-				(function(container){
-					var button_1 = new cpr.controls.Button();
-					button_1.value = "회원정보 수정";
-					if(typeof onButtonClick4 == "function") {
-						button_1.addEventListener("click", onButtonClick4);
-					}
-					container.addChild(button_1, {
-						"top": "20px",
-						"left": "411px",
-						"width": "139px",
-						"height": "43px"
-					});
-					var button_2 = new cpr.controls.Button();
-					button_2.value = "마이페이지";
-					if(typeof onButtonClick5 == "function") {
-						button_2.addEventListener("click", onButtonClick5);
-					}
-					container.addChild(button_2, {
-						"top": "20px",
-						"left": "239px",
-						"width": "164px",
-						"height": "44px"
-					});
-					var button_3 = new cpr.controls.Button("temporary_btn");
-					button_3.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
-					if(typeof onButtonClick3 == "function") {
-						button_3.addEventListener("click", onButtonClick3);
-					}
-					container.addChild(button_3, {
-						"top": "19px",
-						"left": "584px",
-						"width": "221px",
-						"height": "45px"
-					});
-					var button_4 = new cpr.controls.Button("btn_register");
-					button_4.value = "회원가입  ";
-					button_4.style.css({
-						"background-color" : "#FFFFFF",
-						"border-right-style" : "none",
-						"color" : "#4682A9",
-						"border-left-style" : "none",
-						"font-weight" : "bold",
-						"font-size" : "1rem",
-						"border-bottom-style" : "none",
-						"background-image" : "none",
-						"border-top-style" : "none"
-					});
-					if(typeof onButtonClick2 == "function") {
-						button_4.addEventListener("click", onButtonClick2);
-					}
-					container.addChild(button_4, {
-						"top": "20px",
-						"left": "1388px",
-						"width": "105px",
-						"height": "40px"
-					});
-					var button_5 = new cpr.controls.Button("mypage");
-					button_5.visible = false;
-					button_5.value = " 마이페이지 ";
-					button_5.style.css({
-						"background-color" : "#FFFFFF",
-						"border-right-style" : "none",
-						"color" : "#4682A9",
-						"border-left-style" : "none",
-						"font-weight" : "bold",
-						"font-size" : "1rem",
-						"border-bottom-style" : "none",
-						"background-image" : "none",
-						"border-top-style" : "none"
-					});
-					if(typeof onButtonClick == "function") {
-						button_5.addEventListener("click", onButtonClick);
-					}
-					container.addChild(button_5, {
-						"top": "20px",
-						"left": "1180px",
-						"width": "120px",
-						"height": "40px"
-					});
-					var button_6 = new cpr.controls.Button("login");
-					button_6.value = "  로그인   ";
-					button_6.style.css({
-						"background-color" : "#FFFFFF",
-						"border-right-style" : "none",
-						"color" : "#4682A9",
-						"border-left-style" : "none",
-						"font-weight" : "bold",
-						"font-size" : "1rem",
-						"border-bottom-style" : "none",
-						"background-image" : "none",
-						"border-top-style" : "none"
-					});
-					if(typeof onLoginClick == "function") {
-						button_6.addEventListener("click", onLoginClick);
-					}
-					if(typeof onLoginValueChange == "function") {
-						button_6.addEventListener("value-change", onLoginValueChange);
-					}
-					container.addChild(button_6, {
-						"top": "20px",
-						"left": "1299px",
-						"width": "90px",
-						"height": "40px"
-					});
-					var output_1 = new cpr.controls.Output("welcom");
-					output_1.visible = false;
-					output_1.value = "님 환영합니다.";
-					output_1.style.css({
-						"font-weight" : "bold",
-						"font-size" : "1rem"
-					});
-					if(typeof onWelcomValueChange == "function") {
-						output_1.addEventListener("value-change", onWelcomValueChange);
-					}
-					container.addChild(output_1, {
-						"top": "23px",
-						"left": "992px",
-						"width": "138px",
-						"height": "34px"
-					});
-					var output_2 = new cpr.controls.Output("whoName");
-					output_2.style.css({
-						"font-weight" : "bold",
-						"font-size" : "1rem",
-						"text-align" : "center"
-					});
-					output_2.bind("value").toDataMap(app.lookup("dm1"), "userName");
-					if(typeof onOutputValueChange == "function") {
-						output_2.addEventListener("value-change", onOutputValueChange);
-					}
-					container.addChild(output_2, {
-						"top": "17px",
-						"left": "852px",
-						"width": "130px",
-						"height": "41px"
-					});
-				})(group_2);
-				if(typeof onGroupClick2 == "function") {
-					group_2.addEventListener("click", onGroupClick2);
-				}
-				container.addChild(group_2, {
-					"top": "0px",
-					"right": "0px",
-					"left": "0px",
-					"height": "74px"
-				});
 				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
 				navigationBar_1.barItemSpacing = 150;
 				navigationBar_1.style.css({
@@ -453,27 +306,27 @@
 					"left": "580px",
 					"height": "154px"
 				});
-				var output_3 = new cpr.controls.Output();
-				output_3.value = "ITda";
-				output_3.style.css({
+				var output_1 = new cpr.controls.Output();
+				output_1.value = "ITda";
+				output_1.style.css({
 					"color" : "#262626",
 					"font-weight" : "bolder",
-					"font-size" : "1.3rem"
+					"font-size" : "1.5rem"
 				});
-				container.addChild(output_3, {
+				container.addChild(output_1, {
 					"top": "84px",
 					"left": "274px",
 					"width": "207px",
-					"height": "44px"
+					"height": "53px"
 				});
-				var output_4 = new cpr.controls.Output();
-				output_4.value = "Accompany";
-				output_4.style.css({
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "Accompany";
+				output_2.style.css({
 					"color" : "black",
 					"font-weight" : "bold",
 					"font-size" : "1.3rem"
 				});
-				container.addChild(output_4, {
+				container.addChild(output_2, {
 					"top": "127px",
 					"left": "274px",
 					"width": "296px",
@@ -486,6 +339,141 @@
 					"left": "129px",
 					"width": "135px",
 					"height": "102px"
+				});
+				var button_1 = new cpr.controls.Button();
+				button_1.value = "회원정보 수정";
+				if(typeof onButtonClick4 == "function") {
+					button_1.addEventListener("click", onButtonClick4);
+				}
+				container.addChild(button_1, {
+					"top": "20px",
+					"left": "368px",
+					"width": "139px",
+					"height": "43px"
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "마이페이지";
+				if(typeof onButtonClick5 == "function") {
+					button_2.addEventListener("click", onButtonClick5);
+				}
+				container.addChild(button_2, {
+					"top": "20px",
+					"left": "196px",
+					"width": "164px",
+					"height": "44px"
+				});
+				var button_3 = new cpr.controls.Button("temporary_btn");
+				button_3.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
+				if(typeof onButtonClick3 == "function") {
+					button_3.addEventListener("click", onButtonClick3);
+				}
+				container.addChild(button_3, {
+					"top": "19px",
+					"left": "541px",
+					"width": "221px",
+					"height": "45px"
+				});
+				var button_4 = new cpr.controls.Button("btn_register");
+				button_4.value = "회원가입  ";
+				button_4.style.css({
+					"background-color" : "#FFFFFF",
+					"border-right-style" : "none",
+					"color" : "#4682A9",
+					"border-left-style" : "none",
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onButtonClick2 == "function") {
+					button_4.addEventListener("click", onButtonClick2);
+				}
+				container.addChild(button_4, {
+					"top": "20px",
+					"left": "1345px",
+					"width": "105px",
+					"height": "40px"
+				});
+				var button_5 = new cpr.controls.Button("mypage");
+				button_5.visible = false;
+				button_5.value = " 마이페이지 ";
+				button_5.style.css({
+					"background-color" : "#FFFFFF",
+					"border-right-style" : "none",
+					"color" : "#4682A9",
+					"border-left-style" : "none",
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onButtonClick == "function") {
+					button_5.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_5, {
+					"top": "20px",
+					"left": "1137px",
+					"width": "120px",
+					"height": "40px"
+				});
+				var button_6 = new cpr.controls.Button("login");
+				button_6.value = "  로그인   ";
+				button_6.style.css({
+					"background-color" : "#FFFFFF",
+					"border-right-style" : "none",
+					"color" : "#4682A9",
+					"border-left-style" : "none",
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"border-bottom-style" : "none",
+					"background-image" : "none",
+					"border-top-style" : "none"
+				});
+				if(typeof onLoginClick == "function") {
+					button_6.addEventListener("click", onLoginClick);
+				}
+				if(typeof onLoginValueChange == "function") {
+					button_6.addEventListener("value-change", onLoginValueChange);
+				}
+				container.addChild(button_6, {
+					"top": "20px",
+					"left": "1256px",
+					"width": "90px",
+					"height": "40px"
+				});
+				var output_3 = new cpr.controls.Output("welcom");
+				output_3.visible = false;
+				output_3.value = "님 환영합니다.";
+				output_3.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1rem"
+				});
+				if(typeof onWelcomValueChange == "function") {
+					output_3.addEventListener("value-change", onWelcomValueChange);
+				}
+				container.addChild(output_3, {
+					"top": "23px",
+					"left": "949px",
+					"width": "138px",
+					"height": "34px"
+				});
+				var output_4 = new cpr.controls.Output("whoName");
+				output_4.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"text-align" : "center"
+				});
+				output_4.bind("value").toDataMap(app.lookup("dm1"), "userName");
+				if(typeof onWhoNameValueChange == "function") {
+					output_4.addEventListener("value-change", onWhoNameValueChange);
+				}
+				container.addChild(output_4, {
+					"top": "17px",
+					"left": "809px",
+					"width": "130px",
+					"height": "41px"
 				});
 			})(group_1);
 			if(typeof onGroupClick == "function") {

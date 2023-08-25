@@ -13,34 +13,10 @@ function onBodyLoad2(e){
 	submission.send();
 }
 /*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onUpdateSessionSubmitSuccess(e){
-	var updateSession = e.control;
-	var id = app.lookup("userId");
-	var adr = app.lookup("Address");
-	var tel = app.lookup("Tel_mask");
-	var name = app.lookup("userName");
-	var nick = app.lookup("nickName");
-	var email = app.lookup("email");
-	var responseText = updateSession.xhr.responseText;
-	var any = JSON.parse(responseText);
-	console.log(any.loginSession);
-	id.value=any.loginSession.userId;
-	adr.value=any.loginSession.address;
-	tel.value=any.loginSession.userTel;
-	name.value=any.loginSession.userName;
-	nick.value=any.loginSession.nickName;
-	email.value=any.loginSession.email
-	
-}
-
-/*
- * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
+ * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onButtonClick(e) {
+function onButtonClick2(e){
 	var button = e.control;
 	var submission = app.lookup("update");
 	var id = app.lookup("userId");
@@ -86,6 +62,30 @@ function onButtonClick(e) {
 	if(email.length==0){
 		alert("이메일을 입력해주세요.")
 	}
+		
+	app.openDialog("updateMemberdialog", {
+		width : 400,
+		height : 300,
+		headerVisible: false
+	}, function(dialog){
+		dialog.ready(function(dialogApp){
+			dialog.initValue={
+			param1 : id.value, 
+			param2 : pwd.value, 
+			param3 : adr.value,
+			param4 : Tel.value, 
+			param5 : name.value, 
+			param6 : nickName.value,
+			param7 : email.value
+			}
+		dialogApp.addEventListener("click", function(e){
+		});
+	});
+//	}).then(function(returnValue){
+//		;
+	});
+	
+	
 	submission.send();
 }
 
@@ -93,14 +93,40 @@ function onButtonClick(e) {
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
-function onSms1SubmitSuccess2(e) {
-	var sms1 = e.control;
-	var responseText = sms1.xhr.responseText;
+function onUpdateSessionSubmitSuccess(e){
+	var updateSession = e.control;
+	var id = app.lookup("userId");
+	var adr = app.lookup("Address");
+	var tel = app.lookup("Tel_mask");
+	var name = app.lookup("userName");
+	var nick = app.lookup("nickName");
+	var email = app.lookup("email");
+	var responseText = updateSession.xhr.responseText;
 	var any = JSON.parse(responseText);
-	console.log(any.ds1);
-	window.location.href = "/";
-	alert("회원정보가 수정되었습니다.");
+	console.log(any.loginSession);
+	var userInfo = any.loginSession
+	id.value = userInfo.userId;
+	adr.value = userInfo.address;
+	tel.value = userInfo.userTel;
+	name.value = userInfo.userName;
+	nick.value = userInfo.nickName;
+	email.value = userInfo.email;
+	
 }
+
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+//function onSms1SubmitSuccess2(e) {
+//	var sms1 = e.control;
+//	var responseText = sms1.xhr.responseText;
+//	var any = JSON.parse(responseText);
+//	console.log(any.loginSession);
+//	window.location.href = "/";
+//	alert("회원정보가 수정되었습니다.");
+//}
 
 
 /*
@@ -214,4 +240,13 @@ function onButtonClick3(e) {
 function onImgHomeClick(e){
 	var imgHome = e.control;
 	window.location.href = "/";
+}
+
+/*
+ * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onButtonClick4(e){
+	var button = e.control;
+	
 }
