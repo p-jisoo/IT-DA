@@ -14,37 +14,28 @@
         <cl:datarowlist>
           <cl:datarow>
             <cl:datavalue columnname="labal">HOME</cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[home]]></cl:datavalue>
+            <cl:datavalue columnname="value">home</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[교육게시판]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[eduApplyboardList]]></cl:datavalue>
+            <cl:datavalue columnname="labal">교육게시판</cl:datavalue>
+            <cl:datavalue columnname="value">eduApplyboardList</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[교육신청]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[createBoard]]></cl:datavalue>
+            <cl:datavalue columnname="labal">교육신청</cl:datavalue>
+            <cl:datavalue columnname="value">createBoard</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="labal"><![CDATA[마이페이지]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[myPage]]></cl:datavalue>
+            <cl:datavalue columnname="labal">마이페이지</cl:datavalue>
+            <cl:datavalue columnname="value">myPage</cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
-      </cl:dataset>
-      <cl:dataset std:sid="d-set-663dd3fb" id="loginSession">
-        <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-88199245" name="USER_ID"/>
-          <cl:datacolumn std:sid="d-column-5f4a54c7" name="PASSWORD"/>
-          <cl:datacolumn std:sid="d-column-cd4a0d10" name="ADDRESS"/>
-          <cl:datacolumn std:sid="d-column-bc947260" name="USER_TEL"/>
-          <cl:datacolumn std:sid="d-column-6c00f17f" name="userName"/>
-          <cl:datacolumn std:sid="d-column-b1d4f80a" name="NICKNAME"/>
-        </cl:datacolumnlist>
       </cl:dataset>
       <cl:datamap std:sid="d-map-d2215ae0" id="dm1">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-9ba26657" name="userName"/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-cf0a868d" id="loginSession"/>
       <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>

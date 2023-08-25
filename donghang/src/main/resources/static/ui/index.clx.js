@@ -118,15 +118,18 @@
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-				
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log(any.loginSession.userName);
-				if (any.loginSession.userName == "") {
+				if(responseText.length < 3){
+					// 로그인 안된상태 이거만 에러처리 
+					return;
+				}
+				
+				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
 				} else {
-					output.value = any.loginSession.userName;
+					output.value =any.loginSession.userName;
 					register.visible = false;
 					helloWelcome.visible = true;
 					myPage.visible = true;
@@ -202,24 +205,15 @@
 				]
 			});
 			app.register(dataSet_1);
-			
-			var dataSet_2 = new cpr.data.DataSet("loginSession");
-			dataSet_2.parseData({
-				"columns" : [
-					{"name": "USER_ID"},
-					{"name": "PASSWORD"},
-					{"name": "ADDRESS"},
-					{"name": "USER_TEL"},
-					{"name": "userName"},
-					{"name": "NICKNAME"}
-				]
-			});
-			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
 				"columns" : [{"name": "userName"}]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("loginSession");
+			dataMap_2.parseData({});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
 			submission_1.action = "apply";
@@ -233,7 +227,7 @@
 			
 			var submission_2 = new cpr.protocols.Submission("sessioncheck");
 			submission_2.action = "loginSessionMember";
-			submission_2.addResponseData(dataSet_2, false);
+			submission_2.addResponseData(dataMap_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
 			}
