@@ -342,4 +342,17 @@ USER_ID=#{userId}
 </select>
 
 <!--hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok-->
+
+<select id="findAppliedListByUserId" parameterType="String" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+select EDU_BOARD_TITLE,EDU_BOARD_CATEGORY,EDU_BOARD_ADDRESS,EDU_BOARD_CONTENT
+FROM edu_apply_board
+WHERE EDU_BOARD_END_PERIOD <![CDATA[<]]> sysdate AND user_id=#{userId}
+</select>
+
+<select id="findApplyingListByUserId" parameterType="String" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+select EDU_BOARD_TITLE,EDU_BOARD_CATEGORY,EDU_BOARD_ADDRESS,
+EDU_BOARD_CONTENT
+FROM edu_apply_board
+WHERE EDU_BOARD_START_PERIOD <![CDATA[>]]> sysdate AND user_id=#{userId}
+</select>
 </mapper>

@@ -18,16 +18,20 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.mapper.MemberMapper;
+import com.tomato.donghang.model.service.MemberService;
 import com.tomato.donghang.model.vo.MemberVO;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
 
+	private final MemberService memberService;
 	@GetMapping("ui/register.do")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		return new UIView("ui/registerMember.clx");
@@ -138,6 +142,7 @@ public class MemberController {
 			MemberVO mvo = memberMapper.selectIdMember(id);
 			if (vo != null) {
 				dataRequest.setResponse("loginSession", mvo);
+				
 			}
 			return new JSONDataView();
 		}
@@ -192,6 +197,14 @@ public class MemberController {
 		}
 		return new JSONDataView();
 
+	}
+	//아이디 찾기
+	@PostMapping("ui/findIdForm.do")
+	public View findIdByNameAndEmail(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
+		ParameterGroup data =dataRequset.getParameterGroup("findId");
+		String id = data.getValue("userId");
+		memberService.findIdByNameAndEmail(id);
+		return new UIView("/ui/findId.clx");
 	}
 
 }

@@ -17,6 +17,7 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.service.EduApplyBoardService;
+import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -184,4 +185,30 @@ public class EduApplyBoardController {
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
 	
+	@GetMapping("ui/mypage")
+	public View mypageForm() {
+		return new UIView("ui/mypage.clx");
+	}
+	@PostMapping("ui/appliedList.do")
+	public View findAppliedListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("ggggg");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findAppliedListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		
+		
+		return new JSONDataView();
+	} 
+	@PostMapping("ui/applyList.do")
+	public View findAppliyingListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("1111");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findApplyingListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		return new JSONDataView();
+	} 
 }

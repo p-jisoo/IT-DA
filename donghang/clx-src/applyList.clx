@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-7a98607a" version="1.0.4584">
+  <head std:sid="head-67251fd1">
+    <screen std:sid="screen-3b69de5a" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800"/>
+    <screen std:sid="screen-1e17d8da" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-f29add97" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-e8e5ace5" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-f3184d46">
+      <cl:dataset std:sid="d-set-8fcbbc5c" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-8a1c0bac" name="EDU_BOARD_TITLE"/>
+          <cl:datacolumn std:sid="d-column-e9f86ea2" name="EDU_BOARD_CATEGORY"/>
+          <cl:datacolumn std:sid="d-column-966983ac" name="EDU_BOARD_ADDRESS"/>
+          <cl:datacolumn std:sid="d-column-d5c23def" name="EDU_BOARD_CONTENT"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:submission std:sid="submission-61f333ff" id="sms1" action="applyList.do">
+        <cl:responsedata dataid="ds1"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-d52f82c2">
+    <cl:listener std:sid="listener-98a8a824" name="load" handler="onBodyLoad"/>
+    <cl:grid std:sid="grid-997796d2" id="grd1" datasetid="ds1">
+      <cl:xylayoutdata std:sid="xyl-data-6e3e2a0b" top="93px" left="20px" width="915px" height="559px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-a08fbe33"/>
+      <cl:gridcolumn std:sid="g-column-e456118a"/>
+      <cl:gridcolumn std:sid="g-column-2dc5a3a3"/>
+      <cl:gridcolumn std:sid="g-column-47858066"/>
+      <cl:gridheader std:sid="gh-band-ea96dae9">
+        <cl:gridrow std:sid="g-row-516cd421"/>
+        <cl:gridcell std:sid="gh-cell-229d9667" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gh-cell-96ebab1f" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_CATEGORY" sortable="false" filterable="false" text="EDU_BOARD_CATEGORY"/>
+        <cl:gridcell std:sid="gh-cell-87d94510" rowindex="0" colindex="2" targetcolumnname="EDU_BOARD_ADDRESS" sortable="false" filterable="false" text="EDU_BOARD_ADDRESS"/>
+        <cl:gridcell std:sid="gh-cell-f617f3de" rowindex="0" colindex="3" targetcolumnname="EDU_BOARD_CONTENT" sortable="false" filterable="false" text="EDU_BOARD_CONTENT"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-932e5245">
+        <cl:gridrow std:sid="g-row-a4133c1f" height="171px"/>
+        <cl:gridcell std:sid="gd-cell-dde67ffb" rowindex="0" colindex="0" columnname="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gd-cell-540b470e" rowindex="0" colindex="1" columnname="EDU_BOARD_CATEGORY"/>
+        <cl:gridcell std:sid="gd-cell-d1d762d3" rowindex="0" colindex="2" columnname="EDU_BOARD_ADDRESS"/>
+        <cl:gridcell std:sid="gd-cell-cda19d19" rowindex="0" colindex="3" columnname="EDU_BOARD_CONTENT"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:xylayout std:sid="xylayout-8649ae97"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

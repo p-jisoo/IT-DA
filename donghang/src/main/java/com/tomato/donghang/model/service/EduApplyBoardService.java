@@ -29,6 +29,7 @@ public interface EduApplyBoardService {
 	
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
 	
+	List<Map<String, String>> findAppliedListByUserId(String id);
 	
-	
+	public List<Map<String, String>> findApplyingListByUserId(String id);
 }
