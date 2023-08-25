@@ -99,7 +99,7 @@ public class EduApplyBoardController {
 		}
 	}
 	
-	@PostMapping
+	@PostMapping("ui/addLikeCount.do")
 	public View addLikeCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
 		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
@@ -108,7 +108,6 @@ public class EduApplyBoardController {
 	}
 	
 	
-	//List
 	
 	
 	
@@ -125,9 +124,10 @@ public class EduApplyBoardController {
 		String userId = "c"; //memberVO.getUserId();
 
 //		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
-		long eduBoardNo = 3; // eduBoardNo체크
-		long likeCount = eduApplyBoardService.likeCount(userId, eduBoardNo);
+		long eduBoardNo = 1111; // eduBoardNo체크
+		Integer likeCount = eduApplyBoardService.likeCount(userId, eduBoardNo);
 		dataMap.put("IsLike", likeCount);
+		log.info("likeCount {} ",likeCount);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");

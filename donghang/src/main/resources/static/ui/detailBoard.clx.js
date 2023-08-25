@@ -45,9 +45,8 @@
 				
 				var likeable = app.lookup("sessionCheck");
 				likeable.send();
-
 			//	var host = app.getHost();
-			//	host.initValue.value;
+			//	console.log("번호",host.initValue);
 			//	//컨트롤러로 boardNo 값 보내기
 				
 			}
@@ -106,13 +105,10 @@
 				var image = app.lookup("like");
 				var responseText = selectsms.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log("좋아요",any.eduApplyBoardMap.isLike);
-				if(any.eduApplyBoardMap.isLike){
+				console.log("좋아요",any.eduApplyBoardMap.IsLike);
+				if(any.eduApplyBoardMap.IsLike){
 					image.src ="theme/images/heart-fillsvg.svg";
 				}
-				
-				
-				
 			}
 			/*
 			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -256,22 +252,27 @@
 				if(sessionCheck.xhr.responseText.length>3){
 					console.log("로그인됨");
 					image.enabled = true;
-					console.log(image.readOnly);
+					console.log(image.enabled);
 				}else {
 					console.log("노로그인");
 					image.enabled = false;
-					console.log(image.readOnly);
+					console.log(image.enabled);
 				}
 			}
 
-
 			/*
-			 * 이미지에서 item-click 이벤트 발생 시 호출.
-			 * 이미지 영역 아이템 클릭시 발생하는 이벤트.
+			 * 이미지에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onLikeItemClick(e){
+			function onLikeClick(e){
 				var like = e.control;
-				console.log("1");
+				var image = app.lookup("like");
+				console.log("현재 상태", image.enabled);
+				var host = app.getHost();
+				var dataMap = app.lookup("dm1");
+				dataMap.setValue("board_no", host.initValue);
+				var submission = app.lookup("sms1");
+				submission.send();
 			};
 			// End - User Script
 			
@@ -359,7 +360,9 @@
 			app.register(dataMap_2);
 			
 			var dataMap_3 = new cpr.data.DataMap("dm1");
-			dataMap_3.parseData({});
+			dataMap_3.parseData({
+				"columns" : [{"name": "board_no"}]
+			});
 			app.register(dataMap_3);
 			var submission_1 = new cpr.protocols.Submission("updatesms");
 			submission_1.action = "updateBoard.do";
@@ -412,6 +415,10 @@
 				submission_9.addEventListener("submit-success", onSessionCheckSubmitSuccess);
 			}
 			app.register(submission_9);
+			
+			var submission_10 = new cpr.protocols.Submission("sms1");
+			submission_10.action = "addLikeCount.do";
+			app.register(submission_10);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -869,16 +876,15 @@
 			});
 			
 			var image_1 = new cpr.controls.Image("like");
-			image_1.enabled = true;
 			image_1.src = "theme/images/heart.svg";
-			if(typeof onLikeItemClick == "function") {
-				image_1.addEventListener("item-click", onLikeItemClick);
+			if(typeof onLikeClick == "function") {
+				image_1.addEventListener("click", onLikeClick);
 			}
 			container.addChild(image_1, {
-				"top": "239px",
-				"left": "202px",
-				"width": "47px",
-				"height": "46px"
+				"top": "234px",
+				"left": "185px",
+				"width": "64px",
+				"height": "68px"
 			});
 			if(typeof onBodyInit == "function"){
 				app.addEventListener("init", onBodyInit);

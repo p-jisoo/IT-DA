@@ -29,8 +29,8 @@ public interface EduApplyBoardService {
 	
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
 
-	long likeCount(String userId, long eduBoardNo);
-	
-	
+	Integer likeCount(String userId, long eduBoardNo);
+	void addLikeCount(String userId, long eduBoardNo);
+	void deleteLikeCount(String userId, long eduBoardNo);
 	
 }

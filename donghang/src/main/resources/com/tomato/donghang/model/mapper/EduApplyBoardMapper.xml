@@ -189,7 +189,7 @@
 		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	</select>
 	
-	<select id="isLike" parameterType="map" resultType="int">
+	<select id="isLike" parameterType="map" resultType="Integer">
 	       SELECT 
 	COUNT(e.EDU_BOARD_NO) LIKE_COUNT
 FROM
@@ -220,7 +220,12 @@ VALUES
 	(#{userId},#{eduBoardNo})
 	</insert>
 	
-	
+	<delete id="delelteLikeCount">
+DELETE FROM LIKE_BOARD
+WHERE 
+USER_ID = 'f'
+AND EDU_BOARD_NO = 47
+	</delete>
 	
 	
 <!-- hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok -->

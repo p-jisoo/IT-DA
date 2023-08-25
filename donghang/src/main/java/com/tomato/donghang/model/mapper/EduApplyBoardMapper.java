@@ -44,9 +44,11 @@ public interface EduApplyBoardMapper {
 	
 	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
 
-	int isLike(Map<String, Object> map);
+	Integer isLike(Map<String, Object> map);
 
 	void addLikeCount(Map<String, Object> map);
+
+	void deleteLikeCount(Map<String, Object> map);
 
 
 }

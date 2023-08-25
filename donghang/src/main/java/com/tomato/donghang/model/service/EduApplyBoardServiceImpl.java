@@ -404,10 +404,26 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
-	public long likeCount(String userId, long eduBoardNo) {
+	public Integer likeCount(String userId, long eduBoardNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", userId);
 		map.put("eduBoardNo", eduBoardNo);
 		return eduApplyBoardMapper.isLike(map);
 	}
+	@Override
+	public void addLikeCount(String userId, long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("eduBoardNo", eduBoardNo);
+		eduApplyBoardMapper.addLikeCount(map);
+	}
+
+	@Override
+	public void deleteLikeCount(String userId, long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("userId", userId);
+		map.put("eduBoardNo", eduBoardNo);
+		eduApplyBoardMapper.deleteLikeCount(map);
+	}
+	
 }

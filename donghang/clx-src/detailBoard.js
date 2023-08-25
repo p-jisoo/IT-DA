@@ -32,9 +32,8 @@ function onBodyLoad2(e){
 	
 	var likeable = app.lookup("sessionCheck");
 	likeable.send();
-
 //	var host = app.getHost();
-//	host.initValue.value;
+//	console.log("번호",host.initValue);
 //	//컨트롤러로 boardNo 값 보내기
 	
 }
@@ -93,13 +92,10 @@ function onSelectsmsSubmitSuccess(e) {
 	var image = app.lookup("like");
 	var responseText = selectsms.xhr.responseText;
 	var any = JSON.parse(responseText);
-	console.log("좋아요",any.eduApplyBoardMap.isLike);
-	if(any.eduApplyBoardMap.isLike){
+	console.log("좋아요",any.eduApplyBoardMap.IsLike);
+	if(any.eduApplyBoardMap.IsLike){
 		image.src ="theme/images/heart-fillsvg.svg";
 	}
-	
-	
-	
 }
 /*
  * "수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -243,20 +239,25 @@ function onSessionCheckSubmitSuccess(e){
 	if(sessionCheck.xhr.responseText.length>3){
 		console.log("로그인됨");
 		image.enabled = true;
-		console.log(image.readOnly);
+		console.log(image.enabled);
 	}else {
 		console.log("노로그인");
 		image.enabled = false;
-		console.log(image.readOnly);
+		console.log(image.enabled);
 	}
 }
 
-
 /*
- * 이미지에서 item-click 이벤트 발생 시 호출.
- * 이미지 영역 아이템 클릭시 발생하는 이벤트.
+ * 이미지에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onLikeItemClick(e){
+function onLikeClick(e){
 	var like = e.control;
-	console.log("1");
+	var image = app.lookup("like");
+	console.log("현재 상태", image.enabled);
+	var host = app.getHost();
+	var dataMap = app.lookup("dm1");
+	dataMap.setValue("board_no", host.initValue);
+	var submission = app.lookup("sms1");
+	submission.send();
 }
