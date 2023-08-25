@@ -29,6 +29,9 @@ function onBodyLoad2(e){
 	commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 	commentBoardMap.setValue("USER_ID", '1234');
 	submission2.send();
+	
+	var likeable = app.lookup("sessionCheck");
+	likeable.send();
 
 //	var host = app.getHost();
 //	host.initValue.value;
@@ -91,7 +94,7 @@ function onSelectsmsSubmitSuccess(e) {
 	var responseText = selectsms.xhr.responseText;
 	var any = JSON.parse(responseText);
 	console.log("좋아요",any.eduApplyBoardMap.isLike);
-	if(any.eduApplyBoardMap.isLike=1){
+	if(any.eduApplyBoardMap.isLike){
 		image.src ="theme/images/heart-fillsvg.svg";
 	}
 	
@@ -223,4 +226,36 @@ function onButtonClick7(e) {
 	window.location.href = "toBoardList.do";
 }
 
+/*
+ * 이미지에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
 
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSessionCheckSubmitSuccess(e){
+	var sessionCheck = e.control;
+	var image = app.lookup("like");
+	console.log(sessionCheck.xhr.responseText.length);
+	if(sessionCheck.xhr.responseText.length>3){
+		console.log("로그인됨");
+		image.enabled = true;
+		console.log(image.readOnly);
+	}else {
+		console.log(1);
+		image.enabled = false;
+		console.log(image.readOnly);
+	}
+}
+
+
+
+
+function onLikeClick(e){
+	var like = e.control;
+	
+	console.log(1);
+}

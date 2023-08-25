@@ -130,6 +130,7 @@ public class MemberController {
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
+		log.info("세션확인",session);
 		if (session == null) {
 			return new JSONDataView();
 		} else {
@@ -138,6 +139,7 @@ public class MemberController {
 			MemberVO mvo = memberMapper.selectIdMember(id);
 			if (vo != null) {
 				dataRequest.setResponse("loginSession", mvo);
+				log.info("mvo {}", mvo);
 			}
 			return new JSONDataView();
 		}
@@ -175,7 +177,6 @@ public class MemberController {
 		}
 		dataRequest.setResponse("result", result);
 		return new JSONDataView();
-
 	}
 
 	// 비밀번호 찾기 첫번째 페이지(아이디 인증)

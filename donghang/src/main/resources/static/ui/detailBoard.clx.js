@@ -42,6 +42,9 @@
 				commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 				commentBoardMap.setValue("USER_ID", '1234');
 				submission2.send();
+				
+				var likeable = app.lookup("sessionCheck");
+				likeable.send();
 
 			//	var host = app.getHost();
 			//	host.initValue.value;
@@ -104,7 +107,7 @@
 				var responseText = selectsms.xhr.responseText;
 				var any = JSON.parse(responseText);
 				console.log("좋아요",any.eduApplyBoardMap.isLike);
-				if(any.eduApplyBoardMap.isLike=1){
+				if(any.eduApplyBoardMap.isLike){
 					image.src ="theme/images/heart-fillsvg.svg";
 				}
 				
@@ -234,6 +237,40 @@
 			function onButtonClick7(e) {
 				var button = e.control;
 				window.location.href = "toBoardList.do";
+			}
+
+			/*
+			 * 이미지에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			function onSessionCheckSubmitSuccess(e){
+				var sessionCheck = e.control;
+				var image = app.lookup("like");
+				console.log(sessionCheck.xhr.responseText.length);
+				if(sessionCheck.xhr.responseText.length>3){
+					console.log("로그인됨");
+					image.enabled = true;
+					console.log(image.readOnly);
+				}else {
+					console.log(1);
+					image.enabled = false;
+					console.log(image.readOnly);
+				}
+			}
+
+
+
+
+			function onLikeClick(e){
+				var like = e.control;
+				
+				console.log(1);
 			};
 			// End - User Script
 			
@@ -364,6 +401,16 @@
 			
 			var submission_8 = new cpr.protocols.Submission("checkLike");
 			app.register(submission_8);
+			
+			var submission_9 = new cpr.protocols.Submission("sessionCheck");
+			submission_9.action = "loginSessionMember";
+			if(typeof onSessionCheckSubmitProgress == "function") {
+				submission_9.addEventListener("submit-progress", onSessionCheckSubmitProgress);
+			}
+			if(typeof onSessionCheckSubmitSuccess == "function") {
+				submission_9.addEventListener("submit-success", onSessionCheckSubmitSuccess);
+			}
+			app.register(submission_9);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");
@@ -822,6 +869,15 @@
 			
 			var image_1 = new cpr.controls.Image("like");
 			image_1.src = "theme/images/heart.svg";
+			if(typeof onLikeValueChange == "function") {
+				image_1.addEventListener("value-change", onLikeValueChange);
+			}
+			if(typeof onLikeItemClick == "function") {
+				image_1.addEventListener("item-click", onLikeItemClick);
+			}
+			if(typeof onLikeClick2 == "function") {
+				image_1.addEventListener("click", onLikeClick2);
+			}
 			container.addChild(image_1, {
 				"top": "239px",
 				"left": "202px",

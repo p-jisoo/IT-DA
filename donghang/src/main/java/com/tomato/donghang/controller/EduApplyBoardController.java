@@ -189,6 +189,6 @@ public class EduApplyBoardController {
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
 	
-
+	
 
 }
