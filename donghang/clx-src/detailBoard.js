@@ -211,4 +211,3 @@ function onButtonClick7(e) {
 	window.location.href = "toBoardList.do";
 }
 
-

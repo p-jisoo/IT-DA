@@ -108,7 +108,8 @@ function onSms2SubmitSuccess(e) {
 	var responseText = sms2.xhr.responseText;
 	var any = JSON.parse(responseText);
 	
-	if (any.loginSession == "") {
+	console.log(any.loginSession);
+	if (any.loginSession =="") {
 		onLoginClick();
 		login.value = "로그인";
 	} else {
