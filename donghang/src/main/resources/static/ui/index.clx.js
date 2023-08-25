@@ -120,9 +120,12 @@
 				var output = app.lookup("whoName");
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
+				if(responseText.length < 3){
+					// 로그인 안된상태 이거만 에러처리 
+					return;
+				}
 				
-				console.log(any.loginSession);
-				if (any.loginSession =="") {
+				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
 				} else {
