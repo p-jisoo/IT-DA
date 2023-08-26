@@ -46,7 +46,7 @@
       </cl:datamap>
       <cl:datamap std:sid="d-map-651fbea1" id="dm1">
         <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-f98ee35b" name="board_no"/>
+          <cl:datacolumn std:sid="d-column-f98ee35b" name="board_no" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
@@ -74,7 +74,11 @@
         <cl:listener std:sid="listener-c9f57996" name="submit-progress" handler="onSessionCheckSubmitProgress"/>
         <cl:listener std:sid="listener-a63ceceb" name="submit-success" handler="onSessionCheckSubmitSuccess"/>
       </cl:submission>
-      <cl:submission std:sid="submission-7a079830" id="sms1" action="addLikeCount.do"/>
+      <cl:submission std:sid="submission-7a079830" id="likeCaculate" action="likeCaculate.do">
+        <cl:listener std:sid="listener-27711fe8" name="submit-done" handler="onLikeCaculateSubmitDone"/>
+        <cl:listener std:sid="listener-8e522a1b" name="submit-success" handler="onLikeCaculateSubmitSuccess"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>

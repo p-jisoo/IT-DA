@@ -98,11 +98,13 @@ public class EduApplyBoardController {
 		}
 	}
 	
-	@PostMapping("ui/addLikeCount.do")
-	public View addLikeCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+	@PostMapping("ui/likeCaculate.do")
+	public View likeCaculate(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
 		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
-//		ParameterGroup param = dataRequest.getParameterGroup
+		eduApplyBoardService.likeCaculate(memberVO.getUserId(),param.getValue("board_no"));
+		log.info("like {}", param.getValue("board_no").getClass());
 		return new JSONDataView();
 	}
 	
@@ -120,11 +122,11 @@ public class EduApplyBoardController {
 //		HttpSession session = request.getSession(false); 세션 들어왔을때 테스트
 //		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");    유저 세션 체크
 //		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
-		String userId = "c"; //memberVO.getUserId();
 
 //		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
-		long eduBoardNo = 1111; // eduBoardNo체크
-		Integer likeCount = eduApplyBoardService.likeCount(userId, eduBoardNo);
+		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO")); // eduBoardNo체크
+		log.info("eduBoardNo {} ",eduBoardNo);
+		Integer likeCount = eduApplyBoardService.likeCount(eduBoardNo);
 		dataMap.put("IsLike", likeCount);
 		log.info("likeCount {} ",likeCount);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);

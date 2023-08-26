@@ -188,25 +188,24 @@
 	</select>
 	
 	<select id="isLike" parameterType="map" resultType="Integer">
-	       SELECT 
-	COUNT(e.EDU_BOARD_NO) LIKE_COUNT
-FROM
+select
+	COUNT(l.EDU_BOARD_NO)
+from
 	EDU_APPLY_BOARD e
-LEFT OUTER JOIN 
+LEFT OUTER JOIN
 	(SELECT 
 		EDU_BOARD_NO,
 		USER_ID
 	FROM 
 		LIKE_BOARD
-	GROUP BY 
-		EDU_BOARD_NO,
-		USER_ID) l
-ON
-	e.EDU_BOARD_NO = l.EDU_BOARD_NO
-WHERE 
-	e.edu_board_no = #{eduBoardNo} AND l.user_id = #{userId}
-	GROUP BY 
-	e.EDU_BOARD_NO
+	) l
+ON e.EDU_BOARD_NO = l.EDU_BOARD_NO
+where e.EDU_BOARD_NO = #{eduBoardNo}
+<if test="userId !=null and userId !='' ">
+	AND e.USER_ID = #{userId}
+</if>
+
+
 	</select>
 	
 	
@@ -218,11 +217,11 @@ VALUES
 	(#{userId},#{eduBoardNo})
 	</insert>
 	
-	<delete id="delelteLikeCount">
+	<delete id="deleteLikeCount">
 DELETE FROM LIKE_BOARD
 WHERE 
-USER_ID = 'f'
-AND EDU_BOARD_NO = 47
+USER_ID = #{userId}
+AND EDU_BOARD_NO = #{eduBoardNo}
 	</delete>
 	
 	
