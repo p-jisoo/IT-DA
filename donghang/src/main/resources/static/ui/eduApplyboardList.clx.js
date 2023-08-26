@@ -320,7 +320,14 @@
 					{"name": "TOTAL_BOARD_COUNT"},
 					{"name": "PREVPAGE"},
 					{"name": "NEXTPAGE"},
-					{"name": "USER_ID"}
+					{"name": "USER_ID"},
+					{"name": "EDU_BOARD_MAX_MEMBER_COUNT"},
+					{
+						"name": "NOW",
+						"dataType": "expression",
+						"displayOnly": true,
+						"expression": "TOTAL_COUNT+\"/\"+EDU_BOARD_MAX_MEMBER_COUNT"
+					}
 				],
 				"rows": []
 			});
@@ -516,13 +523,67 @@
 				"columns": [
 					{"width": "39px"},
 					{"width": "18px"},
-					{"width": "170px"},
-					{"width": "100px"},
-					{"width": "100px"},
-					{"width": "100px"}
+					{"width": "201px"},
+					{"width": "37px"},
+					{"width": "20px"}
 				],
+				"header": {
+					"rows": [{"height": "24px"}],
+					"cells": [
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 0},
+							"configurator": function(cell){
+								cell.text = "no";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-left-style" : "none",
+									"border-top-style" : "none"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 1},
+							"configurator": function(cell){
+								cell.text = "상태";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 2},
+							"configurator": function(cell){
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 4},
+							"configurator": function(cell){
+								cell.text = "user";
+								cell.style.css({
+									"background-color" : "#FFFFFF",
+									"text-align" : "left"
+								});
+							}
+						},
+						{
+							"constraint": {"rowIndex": 0, "colIndex": 3},
+							"configurator": function(cell){
+								cell.text = "모집인원";
+								cell.style.css({
+									"background-color" : "#FFFFFF"
+								});
+							}
+						}
+					]
+				},
 				"detail": {
-					"rows": [{"height": "78px"}],
+					"rows": [{"height": "71px"}],
 					"cells": [
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 0},
@@ -589,45 +650,36 @@
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.columnName = "TOTAL_COUNT";
-								cell.style.css({
-									"border-right-style" : "none",
-									"border-left-style" : "none"
-								});
-								cell.control = (function(){
-									var inputBox_3 = new cpr.controls.InputBox("ipb3");
-									inputBox_3.style.css({
-										"border-right-style" : "none",
-										"border-left-style" : "none"
-									});
-									inputBox_3.bind("value").toDataColumn("TOTAL_COUNT");
-									return inputBox_3;
-								})();
-								cell.controlConstraint = {};
-							}
-						},
-						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
 								cell.columnName = "USER_ID";
 								cell.control = (function(){
-									var inputBox_4 = new cpr.controls.InputBox("ipb4");
-									inputBox_4.bind("value").toDataColumn("USER_ID");
-									return inputBox_4;
+									var inputBox_3 = new cpr.controls.InputBox("ipb4");
+									inputBox_3.style.css({
+										"border-right-style" : "none",
+										"border-left-style" : "none",
+										"border-bottom-style" : "none",
+										"border-top-style" : "none"
+									});
+									inputBox_3.bind("value").toDataColumn("USER_ID");
+									return inputBox_3;
 								})();
-								cell.controlConstraint = {};
+								cell.controlConstraint = {
+									"horizontalAlign": "fill",
+									"verticalAlign": "fill",
+									"width": 25
+								};
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 5},
+							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
+								cell.columnName = "NOW";
 								cell.control = (function(){
 									var output_1 = new cpr.controls.Output();
+									output_1.bind("value").toDataColumn("NOW");
 									return output_1;
 								})();
-								cell.controlConstraint = {};
 							}
 						}
 					]

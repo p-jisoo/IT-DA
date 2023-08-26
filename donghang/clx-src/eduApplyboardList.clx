@@ -82,6 +82,8 @@
           <cl:datacolumn std:sid="d-column-047902f8" name="PREVPAGE"/>
           <cl:datacolumn std:sid="d-column-16ee386c" name="NEXTPAGE"/>
           <cl:datacolumn std:sid="d-column-7a41c2fd" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-4b01f6e7" name="EDU_BOARD_MAX_MEMBER_COUNT"/>
+          <cl:datacolumn std:sid="d-column-0990b7f4" name="NOW" datatype="expression" expression="TOTAL_COUNT+&quot;/&quot;+EDU_BOARD_MAX_MEMBER_COUNT"/>
         </cl:datacolumnlist>
         <cl:datarowlist/>
       </cl:dataset>
@@ -178,12 +180,19 @@
       <cl:verticaldata std:sid="v-data-571ee1c3" width="1239px" height="630px"/>
       <cl:gridcolumn std:sid="g-column-e4134739" width="39px"/>
       <cl:gridcolumn std:sid="g-column-7c10be47" width="18px"/>
-      <cl:gridcolumn std:sid="g-column-e43673cf" width="170px"/>
-      <cl:gridcolumn std:sid="g-column-e63f923e"/>
-      <cl:gridcolumn std:sid="g-column-a362e7f1"/>
-      <cl:gridcolumn std:sid="g-column-90edeb26"/>
+      <cl:gridcolumn std:sid="g-column-e43673cf" width="201px"/>
+      <cl:gridcolumn std:sid="g-column-b5225b76" width="37px"/>
+      <cl:gridcolumn std:sid="g-column-a362e7f1" width="20px"/>
+      <cl:gridheader std:sid="gh-band-1facda82">
+        <cl:gridrow std:sid="g-row-531a5069"/>
+        <cl:gridcell rowindex="0" colindex="0" style="background-color:#FFFFFF; border-right-style:none; border-left-style:none; border-top-style:none;" text="no"/>
+        <cl:gridcell rowindex="0" colindex="1" style="background-color:#FFFFFF; border-right-style:none;" text="상태"/>
+        <cl:gridcell rowindex="0" colindex="2" style="background-color:#FFFFFF; border-right-style:none;"/>
+        <cl:gridcell rowindex="0" colindex="4" style="background-color:#FFFFFF; text-align:left;" text="user"/>
+        <cl:gridcell std:sid="gh-cell-d9bb893a" rowindex="0" colindex="3" style="background-color:#FFFFFF;" text="모집인원"/>
+      </cl:gridheader>
       <cl:griddetail std:sid="gd-band-6944550b">
-        <cl:gridrow std:sid="g-row-f10538ad" height="78px"/>
+        <cl:gridrow std:sid="g-row-f10538ad" height="71px"/>
         <cl:gridcell std:sid="gd-cell-a46fee29" rowindex="0" colindex="0" style="border-right-style:none;" columnname="EDU_BOARD_NO">
           <cl:inputbox std:sid="i-box-208176fa" id="ipb1">
             <cl:celldata std:sid="c-data-6f929ecc"/>
@@ -200,19 +209,14 @@
             <cl:celldata std:sid="c-data-d950f63c" leftSpacing="30"/>
           </cl:inputbox>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-924dcaa9" rowindex="0" colindex="3" style="border-right-style:none; border-left-style:none;" columnname="TOTAL_COUNT">
-          <cl:inputbox std:sid="i-box-acd02c98" id="ipb3" style="border-right-style:none; border-left-style:none;">
-            <cl:celldata std:sid="c-data-c081413b"/>
-          </cl:inputbox>
-        </cl:gridcell>
         <cl:gridcell std:sid="gd-cell-cdece911" rowindex="0" colindex="4" columnname="USER_ID">
-          <cl:inputbox std:sid="i-box-0c0566d7" id="ipb4">
-            <cl:celldata std:sid="c-data-2fd40137"/>
+          <cl:inputbox std:sid="i-box-0c0566d7" id="ipb4" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:none;">
+            <cl:celldata std:sid="c-data-2fd40137" halign="FILL" valign="FILL" width="25"/>
           </cl:inputbox>
         </cl:gridcell>
-        <cl:gridcell std:sid="gd-cell-8d194bc5" rowindex="0" colindex="5">
-          <cl:output std:sid="output-c9338372">
-            <cl:celldata std:sid="c-data-dc1a0075"/>
+        <cl:gridcell std:sid="gd-cell-42b54587" rowindex="0" colindex="3" columnname="NOW">
+          <cl:output std:sid="output-7a2f1a94">
+            <cl:celldata/>
           </cl:output>
         </cl:gridcell>
       </cl:griddetail>
