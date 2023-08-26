@@ -74,12 +74,12 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/findBoardListPageAndSearchKeyword.do")
 	public View findBoardListPageAndSearchKeyword(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm3");
-		log.debug("param {}",param.getValue("type"));
-		log.debug("nowpage {}",param.getValue("keyword"));
+//		log.debug("param {}",param.getValue("type"));
+//		log.debug("nowpage {}",param.getValue("keyword"));
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
 		dataRequest.setParameter("keyword", param.getValue("keyword"));
-		System.out.println(dataRequest.getParameter("keyword"));
+		log.info("data {}", data);
 		return new JSONDataView();
 	}
 	
@@ -91,7 +91,6 @@ public class EduApplyBoardController {
 			return new JSONDataView();
 		}else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("로그인 후=" + vo);
 			if (vo != null) {
 				dataRequest.setResponse("name", vo.getUserName());
 			}

@@ -276,7 +276,7 @@
 				container.addChild(embeddedApp_1, {
 					"top": "234px",
 					"left": "20px",
-					"width": "1880px",
+					"width": "1960px",
 					"height": "824px"
 				});
 				var group_2 = new cpr.controls.Container();

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import com.cleopatra.protocol.data.ParameterGroup;
@@ -55,7 +57,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			applyStatus= "";
 			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		}else {
-			log.info("status{}", param.getValue("status"));
+			log.debug("status{}", param.getValue("status"));
 			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		}
 		
@@ -86,7 +88,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    map.put("status", applyStatus);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchThing(map);
 	    List<Map<String, Object>> newData = new ArrayList<>();
-	    log.info("첫data {}", data.get(0));
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
 			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
@@ -95,7 +96,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			newData.add(evo);
 		}
 		data = newData;
-		log.warn("data {}", data);
+		log.info("findBoardListWithStatusByPage data {}", data);
 		return data;
 	}
 	
@@ -143,13 +144,11 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    po.put("status", applyStatus);
 	    po.put("type", type);
 	    po.put("keyword", keyword);
-	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
-	    log.info("data {}", data);
+	    log.info("총 게시물 수 {}", data);
 	    if(data.size()==0) {
 	    	return data;
 	    }
-	    log.info("총 게시물 수 {}", data);
 	    List<Map<String, Object>> newData = new ArrayList<>();
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
@@ -202,7 +201,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		String eduBoardCategory = param.getValue("EDU_BOARD_CATEGORY");
 		String eduBoardContent = param.getValue("EDU_BOARD_CONTENT");
 		String USER_ID = param.getValue("USER_ID");
-
+		log.info("USER_ID {}", USER_ID);
 		EduApplyBoardVO vo = new EduApplyBoardVO();
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(USER_ID);
