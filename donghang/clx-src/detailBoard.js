@@ -54,8 +54,8 @@ function onSelectsmsSubmitSuccess(e) {
 	var address = app.lookup("address")
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	var image = app.lookup("like");
-
+	//지원
+	var button = app.lookup("apply");
 	
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
@@ -74,6 +74,26 @@ function onSelectsmsSubmitSuccess(e) {
 	}else{
 		eduApplyBoardMap.setValue("likeCount", "theme/images/heart.svg");
 	}
+	
+   	console.log("어플라이",any.eduApplyBoardMap.canApply);
+   	switch (any.eduApplyBoardMap.canApply) {
+  case 0:
+    	eduApplyBoardMap.setValue("btnApply", "지원하기");
+    break;
+  case 1:
+    	eduApplyBoardMap.setValue("btnApply", "지원중");
+    break;
+  case 2:
+    	eduApplyBoardMap.setValue("btnApply", "내글이다");
+    	button.enabled = false;
+    break;
+   case 3:
+    	eduApplyBoardMap.setValue("btnApply", "모집마감");
+    	button.style.css("color", "red");
+    	button.enabled = false;
+    break;
+}
+   	button.redraw();
 	
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();
@@ -95,8 +115,7 @@ function onSelectsmsSubmitSuccess(e) {
 	
 	app.lookup("userId").redraw();
 	app.lookup("commentContent").redraw();
-	
-	
+
 }
 /*
  * "수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -239,15 +258,17 @@ function onButtonClick7(e) {
 function onSessionCheckSubmitSuccess(e){
 	var sessionCheck = e.control;
 	var image = app.lookup("like");
+	var button = app.lookup("apply");
 	console.log(sessionCheck.xhr.responseText.length);
 	if(sessionCheck.xhr.responseText.length>3){
 		console.log("로그인됨");
 		image.enabled = true;
-		console.log(image.enabled);
+		button.visible= true;
+		
 	}else {
 		console.log("노로그인");
 		image.enabled = false;
-		console.log(image.enabled);
+		button.dispose();
 	}
 }
 
@@ -308,3 +329,26 @@ function onLikeCaculateSubmitDone(e){
 			dataMap.setValue("IsLike", 0);
 	}
 }
+
+/*
+ * "지원하기" 버튼(apply)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onApplyClick(e){
+	var apply = e.control;
+	var submission = app.lookup("applyEduBoard");
+	var submission2 = app.lookup("cancelEduBoard");
+	var dataMap = app.lookup("dm1");
+	var host = app.getHost();
+	dataMap.setValue("board_no", host.initValue);
+	if(apply.value=="지원하기"){
+		console.log("지원하기")
+		submission.send();
+	} else if (apply.value=="지원중"){
+		console.log("지원취소");
+		submission2.send();
+	}else{
+		console.log(3);
+	}
+}
+

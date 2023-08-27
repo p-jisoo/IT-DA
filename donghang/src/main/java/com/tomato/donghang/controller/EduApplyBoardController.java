@@ -112,14 +112,28 @@ public class EduApplyBoardController {
 	}
 	
 	
-	
-	
-	
+	@PostMapping("ui/applyEduBoard.do")
+	public View applyEduBoard(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
+		eduApplyBoardService.applyEduBoard(memberVO.getUserId(),param.getValue("board_no"));
+		return new JSONDataView();
+	}
+		@PostMapping("ui/cancelEduBoard.do")
+	public View cancelEduBoard(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
+		eduApplyBoardService.cancelEduBoard(memberVO.getUserId(),param.getValue("board_no"));
+		return new JSONDataView();
+	}
 	
 	
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		long canApply = 0;
 		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		HttpSession session = request.getSession(false);
@@ -129,16 +143,27 @@ public class EduApplyBoardController {
 			log.debug("eduBoardNo {} ",eduBoardNo);
 			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
 			log.debug("로그인 안했을때 likeCount {} ",likeCount);
+			canApply=100;
 		}else {
 			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 			Map<String, Object> map = new HashMap<>();
 			String userId = memberVO.getUserId();
+			//0이면 지원가능 1이면 이미지원 2이면 내가 게시글 썼기 때문에 지원안됨 3이면 꽉 찬상태라 지원이 안됨
+			log.info("가져온 아이디 {}", dataMap.get("USER_ID"));
+			log.info("세션 아이디 {}", userId);
+			if(userId.equals(dataMap.get("USER_ID"))) {
+				canApply =2;
+			}else {
+				canApply = eduApplyBoardService.checkCanApply(userId,eduBoardNo);
+			}
 			map.put("eduBoardNo", eduBoardNo);
 			map.put("userId", userId);
 			likeCount = eduApplyBoardMapper.isLike(map);
+			log.info("canApply 드디어 집에 갈 수 있나? {}" ,canApply);
 			log.debug("로그인 했을때 likeCount {} ",likeCount);
 		}
 		dataMap.put("IsLike", likeCount);
+		dataMap.put("canApply",canApply);
 //		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
 
 //		long likeCountLong.parseLong(param.getValue("eduBoardNo"));

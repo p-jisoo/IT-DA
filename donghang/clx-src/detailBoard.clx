@@ -52,6 +52,8 @@
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
           <cl:datacolumn std:sid="d-column-2df14696" name="IsLike" datatype="number"/>
           <cl:datacolumn std:sid="d-column-f6716691" name="likeCount" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-91b86d5f" name="canApply" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-b31597db" name="btnApply" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -97,6 +99,12 @@
       <cl:submission std:sid="submission-7a079830" id="likeCaculate" action="likeCaculate.do">
         <cl:listener std:sid="listener-8e522a1b" name="submit-success" handler="onLikeCaculateSubmitSuccess"/>
         <cl:listener std:sid="listener-e8a24b23" name="submit-done" handler="onLikeCaculateSubmitDone"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-aa9910b0" id="applyEduBoard" action="applyEduBoard.do">
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7b6354e9" id="cancelEduBoard" action="cancelEduBoard.do">
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
@@ -251,6 +259,12 @@
       <cl:datamapbind property="src" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="likeCount"/>
       <cl:xylayoutdata std:sid="xyl-data-c3eb7539" top="234px" left="185px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
+    <cl:button std:sid="button-db996a31" id="apply" visible="false" readonly="true">
+      <cl:listener std:sid="listener-418a91a9" name="click" handler="onApplyClick"/>
+      <cl:listener std:sid="listener-77e6de5e" name="value-change" handler="onApplyValueChange"/>
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
+      <cl:xylayoutdata std:sid="xyl-data-bd3aa676" top="590px" left="1060px" width="138px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>

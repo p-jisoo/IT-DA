@@ -31,5 +31,8 @@ public interface EduApplyBoardService {
 
 	Integer likeCount(long eduBoardNo);
 	void likeCaculate(String userId, String value);
+	long checkCanApply(String userId, long eduBoardNo);
+	void applyEduBoard(String userId, String value);
+	void cancelEduBoard(String userId, String value);
 	
 }

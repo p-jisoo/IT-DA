@@ -50,5 +50,19 @@ public interface EduApplyBoardMapper {
 
 	void deleteLikeCount(Map<String, Object> map);
 
+	long isMyBoard(Map<String, Object> map);
 
+	long isApply(Map<String, Object> map);
+
+	void applyEdu(Map<String, Object> map);
+
+	void cancelEdu(Map<String, Object> map);
+
+	long eduMaxMember(long eduBoardNo);
+
+	long currentMember(long eduBoardNo);
+
+	void applyEnd(long eduBoardNo);
+
+	void applyChange(long eduBoardNo);
 }

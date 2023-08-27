@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
+import com.tomato.donghang.model.mapper.MemberMapper;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
@@ -160,6 +161,12 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		data = newData;
 		return data;
 	}
+	
+	
+	
+	
+	
+	
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
         String eduBoardNo = param.getValue("EDU_BOARD_NO");
@@ -179,7 +186,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
         dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
         dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
         dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
-        dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
+        dataMap.put("USER_ID", evo2.getMemberVO().getUserId());
         dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
         dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
 
@@ -409,22 +416,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
 		return eduApplyBoardMapper.isLike(map);
 	}
-//	@Override
-//	public void addLikeCount(String userId, long eduBoardNo) {
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("userId", userId);
-//		map.put("eduBoardNo", eduBoardNo);
-//		eduApplyBoardMapper.addLikeCount(map);
-//	}
-//
-//	@Override
-//	public void deleteLikeCount(String userId, long eduBoardNo) {
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("userId", userId);
-//		map.put("eduBoardNo", eduBoardNo);
-//		eduApplyBoardMapper.deleteLikeCount(map);
-//	}
-
+	
 	@Override
 	public void likeCaculate(String userId, String value) {
 		Map<String, Object> map = new HashMap<>();
@@ -440,5 +432,58 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			eduApplyBoardMapper.deleteLikeCount(map);
 		}
 	}
-	
+
+	@Override
+	public long checkCanApply(String userId, long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long canApply = eduApplyBoardMapper.isApply(map);
+		if(canApply==0) {
+			return nowCount(eduBoardNo);
+		}
+		return canApply;
+	}
+	public long nowCount(long eduBoardNo) {
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long canApply = (maxMember - currentMember) ;
+		if(canApply == 0) {
+			canApply= 3; // 마감되어서 꽉 찬 상태
+		}else {
+			canApply = 0; // 지원가능
+		}
+		return canApply;
+		
+	}
+
+	@Override
+	public void applyEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==1) {
+			eduApplyBoardMapper.applyEnd(eduBoardNo);
+		}
+		eduApplyBoardMapper.applyEdu(map);
+	}
+
+	@Override
+	public void cancelEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==0) {
+			eduApplyBoardMapper.applyChange(eduBoardNo);
+		}
+		eduApplyBoardMapper.cancelEdu(map);
+	}
 }
