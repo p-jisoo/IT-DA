@@ -123,7 +123,6 @@ public class EduApplyBoardController {
 		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		HttpSession session = request.getSession(false);
-		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 		Integer likeCount;
 		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
 		if(session==null || session.getAttribute("mvo")==null) {
@@ -131,6 +130,7 @@ public class EduApplyBoardController {
 			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
 			log.debug("로그인 안했을때 likeCount {} ",likeCount);
 		}else {
+			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 			Map<String, Object> map = new HashMap<>();
 			String userId = memberVO.getUserId();
 			map.put("eduBoardNo", eduBoardNo);
