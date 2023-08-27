@@ -31,7 +31,6 @@ function onBodyLoad2(e){
 	commentBoardMap.setValue("EDU_BOARD_NO", '1111');
 	commentBoardMap.setValue("USER_ID", '1234');
 	submission2.send();
-	
 	var likeable = app.lookup("sessionCheck");
 	likeable.send();
 //	var host = app.getHost();
@@ -55,7 +54,8 @@ function onSelectsmsSubmitSuccess(e) {
 	var address = app.lookup("address")
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	
+	var image = app.lookup("like");
+
 	
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
@@ -68,6 +68,13 @@ function onSelectsmsSubmitSuccess(e) {
 	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
 	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
+	var any = JSON.parse(selectsms.xhr.responseText);
+	if(any.eduApplyBoardMap.IsLike==1){
+		eduApplyBoardMap.setValue("likeCount", "theme/images/heart-fillsvg.svg");
+	}else{
+		eduApplyBoardMap.setValue("likeCount", "theme/images/heart.svg");
+	}
+	
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();
 	app.lookup("memberCount").redraw();
@@ -75,6 +82,7 @@ function onSelectsmsSubmitSuccess(e) {
 	app.lookup("udccomduodatepicker1").redraw();
 	app.lookup("udccomduodatepicker2").redraw();
 	app.lookup("address").redraw();
+	app.lookup("like").redraw();
 	
 	//comment
 	var commentBoardMap = app.lookup("commentBoardMap");
@@ -88,10 +96,6 @@ function onSelectsmsSubmitSuccess(e) {
 	app.lookup("userId").redraw();
 	app.lookup("commentContent").redraw();
 	
-	
-	
-	//like
-	checkLike(e);
 	
 }
 /*
@@ -199,18 +203,8 @@ function onButtonClick5(e) {
 }
 
 
-function checkLike(e){
-	var image = app.lookup("like");
-	var responseText = e.control.xhr.responseText;
-	var any = JSON.parse(responseText);
-	console.log("좋아요",any.eduApplyBoardMap.IsLike);
-	if(any.eduApplyBoardMap.IsLike>0){
-		image.src ="theme/images/heart-fillsvg.svg";
-	}else{
-		image.src = "theme/images/heart.svg";
-	}
-	image.redraw();
-}
+
+
 
 /*
  * "댓글 수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -220,7 +214,6 @@ function onButtonClick6(e) {
 	var button = e.control;
 	var submission = app.lookup("updateCommentsms");
 	var dataMap = app.lookup("commentBoardMap");
-	
 	submission.send()
 }
 
@@ -262,23 +255,56 @@ function onSessionCheckSubmitSuccess(e){
  * 이미지에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onLikeClick(e){
+function onLikeClick2(e){
 	var like = e.control;
-	var image = app.lookup("like");
-	var host = app.getHost();
-	var dataMap = app.lookup("dm1");
-	dataMap.setValue("board_no", host.initValue);
 	var submission = app.lookup("likeCaculate");
+	var dataMap = app.lookup("dm1");
+	var host = app.getHost();
+	console.log(host.initValue);
+	dataMap.setValue("board_no", host.initValue);
 	submission.send();
 }
 
 /*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
  */
-function onLikeCaculateSubmitSuccess(e){
+function onLikeCaculateSubmitDone(e){
 	var likeCaculate = e.control;
+	var dataMap = app.lookup("eduApplyBoardMap");
 	var image = app.lookup("like");
-	checkLike(e);
-	image.redraw();
+	image.dispose();
+	
+	console.log(dataMap.getValue("IsLike"));
+		if(dataMap.getValue("IsLike")==0){
+	var container = app.getContainer();
+	var image_2 = new cpr.controls.Image("like");
+			image_2.src = "theme/images/heart-fillsvg.svg";
+			if(typeof onLikeClick2 == "function") {
+				image_2.addEventListener("click", onLikeClick2);
+			}
+			container.addChild(image_2, {
+				"top": "234px",
+				"left": "185px",
+				"width": "64px",
+				"height": "68px"
+			});
+			image_2.redraw();
+			dataMap.setValue("IsLike", 1);
+	}else{
+	var container = app.getContainer();
+	var image_2 = new cpr.controls.Image("like");
+			image_2.src = "theme/images/heart.svg";
+			if(typeof onLikeClick2 == "function") {
+				image_2.addEventListener("click", onLikeClick2);
+			}
+			container.addChild(image_2, {
+				"top": "234px",
+				"left": "185px",
+				"width": "64px",
+				"height": "68px"
+			});
+			image_2.redraw();
+			dataMap.setValue("IsLike", 0);
+	}
 }

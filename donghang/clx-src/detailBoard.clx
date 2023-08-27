@@ -21,6 +21,22 @@
           <cl:datacolumn std:sid="d-column-6e1708a8" name="EDU_BOARD_CONTENT"/>
         </cl:datacolumnlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-0dea488c" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-7d21d73d" name="label"/>
+          <cl:datacolumn std:sid="d-column-08269130" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[heart]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[theme/images/heart.svg]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[heartfilling]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[theme/images/heart-fillsvg.svg]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-81dc0af2" id="eduApplyBoardMap">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-35ec5269" name="EDU_BOARD_TITLE" datatype="string"/>
@@ -35,6 +51,7 @@
           <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
           <cl:datacolumn std:sid="d-column-2df14696" name="IsLike" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-f6716691" name="likeCount" datatype="string"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -48,6 +65,9 @@
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-f98ee35b" name="board_no" datatype="number"/>
         </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-a7887d7d" id="dm2">
+        <cl:datacolumnlist/>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
@@ -75,8 +95,8 @@
         <cl:listener std:sid="listener-a63ceceb" name="submit-success" handler="onSessionCheckSubmitSuccess"/>
       </cl:submission>
       <cl:submission std:sid="submission-7a079830" id="likeCaculate" action="likeCaculate.do">
-        <cl:listener std:sid="listener-27711fe8" name="submit-done" handler="onLikeCaculateSubmitDone"/>
         <cl:listener std:sid="listener-8e522a1b" name="submit-success" handler="onLikeCaculateSubmitSuccess"/>
+        <cl:listener std:sid="listener-e8a24b23" name="submit-done" handler="onLikeCaculateSubmitDone"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
@@ -225,8 +245,10 @@
         <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
       </cl:formlayout>
     </cl:group>
-    <cl:img std:sid="image-015c6f09" id="like" src="theme/images/heart.svg">
-      <cl:listener std:sid="listener-ce7b5cbd" name="click" handler="onLikeClick"/>
+    <cl:img std:sid="image-015c6f09" id="like">
+      <cl:listener std:sid="listener-4401ac32" name="item-click" handler="onLikeItemClick"/>
+      <cl:listener std:sid="listener-65a1fc39" name="click" handler="onLikeClick2"/>
+      <cl:datamapbind property="src" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="likeCount"/>
       <cl:xylayoutdata std:sid="xyl-data-c3eb7539" top="234px" left="185px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
