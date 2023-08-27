@@ -1,5 +1,6 @@
 package com.tomato.donghang.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.cleopatra.protocol.data.DataRequest;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
+import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
 import com.tomato.donghang.model.service.EduApplyBoardService;
 import com.tomato.donghang.model.vo.MemberVO;
 
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EduApplyBoardController {
 	private final EduApplyBoardService eduApplyBoardService;
+	private final EduApplyBoardMapper eduApplyBoardMapper;
 	@PostMapping("/ui/testajax.do")
 	public String testAjax() { 
 		return "hello ajax";  
@@ -119,16 +122,26 @@ public class EduApplyBoardController {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
 		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
-//		HttpSession session = request.getSession(false); 세션 들어왔을때 테스트
-//		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");    유저 세션 체크
+		HttpSession session = request.getSession(false);
+		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
+		Integer likeCount;
+		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
+		if(session==null || session.getAttribute("mvo")==null) {
+			log.debug("eduBoardNo {} ",eduBoardNo);
+			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
+			log.debug("로그인 안했을때 likeCount {} ",likeCount);
+		}else {
+			Map<String, Object> map = new HashMap<>();
+			String userId = memberVO.getUserId();
+			map.put("eduBoardNo", eduBoardNo);
+			map.put("userId", userId);
+			likeCount = eduApplyBoardMapper.isLike(map);
+			log.debug("로그인 했을때 likeCount {} ",likeCount);
+		}
+		dataMap.put("IsLike", likeCount);
 //		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
 
 //		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
-		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO")); // eduBoardNo체크
-		log.info("eduBoardNo {} ",eduBoardNo);
-		Integer likeCount = eduApplyBoardService.likeCount(eduBoardNo);
-		dataMap.put("IsLike", likeCount);
-		log.info("likeCount {} ",likeCount);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");

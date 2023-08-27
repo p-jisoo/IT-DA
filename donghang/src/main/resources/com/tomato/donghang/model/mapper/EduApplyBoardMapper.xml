@@ -202,7 +202,7 @@ LEFT OUTER JOIN
 ON e.EDU_BOARD_NO = l.EDU_BOARD_NO
 where e.EDU_BOARD_NO = #{eduBoardNo}
 <if test="userId !=null and userId !='' ">
-	AND e.USER_ID = #{userId}
+	AND l.USER_ID = #{userId}
 </if>
 
 
