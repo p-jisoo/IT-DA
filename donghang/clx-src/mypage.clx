@@ -72,10 +72,11 @@
     <cl:embeddedapp std:sid="e-app-23db73a1" id="ea1">
       <cl:xylayoutdata std:sid="xyl-data-78369420" top="400px" left="20px" width="1880px" height="560px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedapp>
-    <cl:navigationbar std:sid="n-bar-4333851e" id="nav1">
+    <cl:navigationbar std:sid="n-bar-4333851e" id="nav1" style="cursor:none;">
       <cl:listener std:sid="listener-44f6d6fe" name="item-click" handler="onNav1ItemClick"/>
       <cl:xylayoutdata std:sid="xyl-data-c1a592ab" top="230px" left="20px" width="1901px" height="140px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:menuitemset datasetid="ds1" label="label" value="value"/>
+      <cl:barstyle style="border-right-style:none; white-space:nowrap; border-left-style:none; border-bottom-style:none; border-top-style:none;"/>
     </cl:navigationbar>
     <cl:img std:sid="image-ad42f032" src="theme/images/login_donghang.png">
       <cl:xylayoutdata std:sid="xyl-data-8c399395" top="79px" left="738px" width="80px" height="113px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

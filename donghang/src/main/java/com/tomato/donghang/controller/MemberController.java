@@ -211,12 +211,32 @@ public class MemberController {
 
 	}
 	//아이디 찾기
+	@GetMapping("ui/findId.do")
+	public View findId() {
+		return new UIView("ui/findId.clx");
+
+	}
+
 	@PostMapping("ui/findIdForm.do")
 	public View findIdByNameAndEmail(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
 		ParameterGroup data =dataRequset.getParameterGroup("findId");
-		String id = data.getValue("userId");
-		memberService.findIdByNameAndEmail(id);
-		return new UIView("/ui/findId.clx");
+		
+		String result=null;
+		String name = data.getValue("user_name");
+		String email = data.getValue("email");
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUserName(name);
+		memberVO.setEmail(email);
+		String id = memberService.findIdByNameAndEmail(memberVO);
+		if (id != null) {
+			dataRequset.setResponse("dm2", id);
+			result="success";
+		}else{
+			result="fail";
+		}
+		dataRequset.setResponse("result", result);
+		return new JSONDataView();
+
 	}
 
 }

@@ -16,7 +16,7 @@ public interface MemberMapper {
 	MemberVO checkIdMember(String id);
 	void deleteMember(String userId, String password);
 	MemberVO selectIdMember(String id);
-	MemberVO findIdByNameAndEmail(String id);
+	String findIdByNameAndEmail(MemberVO memberVO);
 	
 	
 }

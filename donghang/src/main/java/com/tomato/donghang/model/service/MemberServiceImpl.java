@@ -11,9 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 	private final MemberMapper memberMapper;
+
 	@Override
-	public MemberVO findIdByNameAndEmail(String id) {
-		return memberMapper.findIdByNameAndEmail(id);
+	public String findIdByNameAndEmail(MemberVO memberVO) {
+		return memberMapper.findIdByNameAndEmail(memberVO);
 	}
 
 }

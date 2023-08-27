@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-3c88d159" version="1.0.4584">
+  <head std:sid="head-b5f3b421">
+    <screen std:sid="screen-26a2eb86" id="default" name="default" minwidth="1024px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-f248275b" id="new-screen" name="new-screen" minwidth="500px" maxwidth="1023px" width="500px" height="400px" active="true"/>
+    <screen std:sid="screen-b7ee1799" id="tablet" name="tablet" minwidth="500px" maxwidth="499px" width="500px" height="667px"/>
+    <screen std:sid="screen-678fcef3" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-eb29a173"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-3f3c9bc6">
+    <cl:group std:sid="group-017e6b17" id="submissionOKdialog" style="border-right-style:solid; border-bottom-color:#404040; border-top-width:3px; border-right-width:3px; border-left-color:#404040; border-right-color:#404040; border-left-width:3px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:3px; border-top-color:#404040; border-bottom-style:solid; background-image:none;">
+      <cl:xylayoutdata std:sid="xyl-data-34dea781" top="10px" left="0px" width="500px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-d23aa4e2" id="return_btn" style="background-color:#F6F4EB; color:#4682A9; font-weight:bold; font-size:1.5rem; background-image:none;" value="확 인">
+        <cl:listener std:sid="listener-a09e73b4" name="click" handler="onReturn_btnClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="502px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+      </cl:button>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="회원님의 아이디는?">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="71px" left="20px" width="444px" height="67px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-5e8c59c6" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="">
+        <cl:xylayoutdata std:sid="xyl-data-f4be33fa" top="162px" left="20px" width="444px" height="67px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-a8d4a2da"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-8a978784"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
