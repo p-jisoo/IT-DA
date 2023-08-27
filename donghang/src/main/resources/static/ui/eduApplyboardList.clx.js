@@ -437,6 +437,10 @@
 			
 			// UI Configuration
 			var group_1 = new cpr.controls.Container();
+			group_1.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1rem"
+			});
 			var formLayout_1 = new cpr.controls.layouts.FormLayout();
 			formLayout_1.scrollable = false;
 			formLayout_1.topMargin = "0px";
@@ -445,11 +449,17 @@
 			formLayout_1.leftMargin = "0px";
 			formLayout_1.horizontalSpacing = "0px";
 			formLayout_1.verticalSpacing = "0px";
-			formLayout_1.setColumns(["234px", "194px", "1429px", "1fr"]);
+			formLayout_1.setColumns(["234px", "194px", "1419px", "100px"]);
 			formLayout_1.setRows(["1fr"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
 				var listBox_1 = new cpr.controls.ListBox("lbx1");
+				listBox_1.style.css({
+					"border-radius" : "0.7rem",
+					"color" : "#6F6F6F",
+					"font-weight" : "bold",
+					"font-size" : "0.8rem"
+				});
 				(function(listBox_1){
 					listBox_1.setItemSet(app.lookup("tpSlct"), {
 						"label": "label",
@@ -462,10 +472,24 @@
 				container.addChild(listBox_1, {
 					"colIndex": 0,
 					"rowIndex": 0,
+					"colSpan": 1,
+					"rowSpan": 1,
 					"horizontalAlign": "fill",
 					"verticalAlign": "fill"
 				});
 				var comboBox_1 = new cpr.controls.ComboBox("cmb1");
+				comboBox_1.style.css({
+					"border-radius" : "0.7rem",
+					"color" : "#6F6F6F",
+					"font-weight" : "bold",
+					"font-size" : "1.2rem"
+				});
+				comboBox_1.style.list.css({
+					"border-radius" : "0.7rem",
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"font-style" : "#636363"
+				});
 				(function(comboBox_1){
 					comboBox_1.setItemSet(app.lookup("dsSlct"), {
 						"label": "label",
@@ -483,26 +507,41 @@
 					"height": 60
 				});
 				var searchInput_1 = new cpr.controls.SearchInput("searchCtl");
+				searchInput_1.style.css({
+					"border-radius" : "0.7rem",
+					"color" : "#6F6F6F",
+					"font-weight" : "bold",
+					"font-size" : "1.2rem"
+				});
 				container.addChild(searchInput_1, {
 					"colIndex": 2,
 					"rowIndex": 0,
 					"colSpan": 1,
 					"rowSpan": 1,
-					"horizontalAlign": "fill",
+					"horizontalAlign": "left",
 					"verticalAlign": "center",
+					"width": 1389,
 					"height": 60
 				});
 				var button_1 = new cpr.controls.Button();
-				button_1.value = "Button";
+				button_1.value = "검색";
+				button_1.style.css({
+					"border-radius" : "0.7rem",
+					"background-color" : "#4682A9",
+					"color" : "#FFFFFF",
+					"font-weight" : "bold",
+					"font-size" : "1rem",
+					"background-image" : "none"
+				});
 				if(typeof onButtonClick == "function") {
 					button_1.addEventListener("click", onButtonClick);
 				}
 				container.addChild(button_1, {
 					"colIndex": 3,
 					"rowIndex": 0,
-					"colSpan": 1,
-					"rowSpan": 1,
+					"horizontalAlign": "center",
 					"verticalAlign": "center",
+					"width": 120,
 					"height": 60
 				});
 			})(group_1);
@@ -521,24 +560,33 @@
 				"pasteMode": "none",
 				"tabMode": "none",
 				"columns": [
-					{"width": "39px"},
-					{"width": "18px"},
+					{"width": "20px"},
+					{"width": "20px"},
 					{"width": "201px"},
 					{"width": "37px"},
 					{"width": "20px"}
 				],
 				"header": {
-					"rows": [{"height": "24px"}],
+					"rows": [{"height": "50px"}],
 					"cells": [
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 0},
 							"configurator": function(cell){
-								cell.text = "no";
+								cell.text = "번호";
 								cell.style.css({
-									"background-color" : "#FFFFFF",
 									"border-right-style" : "none",
+									"border-bottom-color" : "#000000",
+									"font-weight" : "bold",
+									"border-left-color" : "#000000",
+									"vertical-align" : "middle",
+									"font-size" : "1.3rem",
+									"border-right-color" : "#000000",
+									"border-top-style" : "none",
+									"background-color" : "#FFFFFF",
 									"border-left-style" : "none",
-									"border-top-style" : "none"
+									"border-bottom-width" : "1px",
+									"border-top-color" : "#000000",
+									"text-align" : "center"
 								});
 							}
 						},
@@ -548,26 +596,53 @@
 								cell.text = "상태";
 								cell.style.css({
 									"background-color" : "#FFFFFF",
-									"border-right-style" : "none"
+									"border-right-style" : "none",
+									"border-bottom-color" : "#000000",
+									"font-weight" : "bold",
+									"border-bottom-width" : "1px",
+									"border-left-color" : "#000000",
+									"vertical-align" : "middle",
+									"border-top-color" : "#000000",
+									"font-size" : "1.3rem",
+									"border-right-color" : "#000000",
+									"text-align" : "center"
 								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
+								cell.text = "제목";
 								cell.style.css({
 									"background-color" : "#FFFFFF",
-									"border-right-style" : "none"
+									"border-right-style" : "none",
+									"border-bottom-color" : "#000000",
+									"font-weight" : "bold",
+									"border-bottom-width" : "1px",
+									"border-left-color" : "#000000",
+									"vertical-align" : "middle",
+									"border-top-color" : "#000000",
+									"font-size" : "1.3rem",
+									"border-right-color" : "#000000",
+									"text-align" : "center"
 								});
 							}
 						},
 						{
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
-								cell.text = "user";
+								cell.text = "글쓴이";
 								cell.style.css({
 									"background-color" : "#FFFFFF",
-									"text-align" : "left"
+									"border-right-style" : "none",
+									"border-bottom-color" : "#000000",
+									"border-left-style" : "none",
+									"font-weight" : "bold",
+									"border-bottom-width" : "1px",
+									"vertical-align" : "middle",
+									"font-size" : "1.3rem",
+									"border-top-style" : "none",
+									"text-align" : "center"
 								});
 							}
 						},
@@ -576,7 +651,16 @@
 							"configurator": function(cell){
 								cell.text = "모집인원";
 								cell.style.css({
-									"background-color" : "#FFFFFF"
+									"background-color" : "#FFFFFF",
+									"border-right-style" : "none",
+									"border-bottom-color" : "#000000",
+									"font-weight" : "bold",
+									"border-bottom-width" : "1px",
+									"border-left-color" : "#000000",
+									"vertical-align" : "middle",
+									"border-top-color" : "#000000",
+									"font-size" : "1.3rem",
+									"text-align" : "left"
 								});
 							}
 						}
@@ -594,6 +678,11 @@
 								});
 								cell.control = (function(){
 									var inputBox_1 = new cpr.controls.InputBox("ipb1");
+									inputBox_1.style.css({
+										"color" : "#7B7B7B",
+										"font-size" : "1.1rem",
+										"text-align" : "center"
+									});
 									inputBox_1.bind("value").toDataColumn("EDU_BOARD_NO");
 									return inputBox_1;
 								})();
@@ -613,7 +702,7 @@
 									button_2.enabled = false;
 									button_2.readOnly = true;
 									button_2.style.css({
-										"background-color" : "#F6F4EB",
+										"background-color" : "#E9E9E9",
 										"background-image" : "none"
 									});
 									button_2.style.bind("color").toExpression("EDU_BOARD_STATUS == \"모집중\" ? \"green\" : \"red\"");
@@ -640,6 +729,8 @@
 									inputBox_2.style.css({
 										"border-right-style" : "none",
 										"border-left-style" : "none",
+										"font-weight" : "bold",
+										"font-size" : "1.2rem",
 										"border-bottom-style" : "none",
 										"border-top-style" : "none"
 									});
@@ -653,13 +744,18 @@
 							"constraint": {"rowIndex": 0, "colIndex": 4},
 							"configurator": function(cell){
 								cell.columnName = "USER_ID";
+								cell.style.css({
+									"border-right-style" : "none",
+									"color" : "#7A7A7A",
+									"border-left-style" : "none",
+									"text-align" : "center"
+								});
 								cell.control = (function(){
 									var inputBox_3 = new cpr.controls.InputBox("ipb4");
 									inputBox_3.style.css({
 										"border-right-style" : "none",
 										"border-left-style" : "none",
-										"border-bottom-style" : "none",
-										"border-top-style" : "none"
+										"text-align" : "center"
 									});
 									inputBox_3.bind("value").toDataColumn("USER_ID");
 									return inputBox_3;
@@ -675,11 +771,17 @@
 							"constraint": {"rowIndex": 0, "colIndex": 3},
 							"configurator": function(cell){
 								cell.columnName = "NOW";
+								cell.style.css({
+									"border-right-style" : "none",
+									"color" : "#7A7A7A",
+									"text-align" : "right"
+								});
 								cell.control = (function(){
 									var output_1 = new cpr.controls.Output();
 									output_1.bind("value").toDataColumn("NOW");
 									return output_1;
 								})();
+								cell.controlConstraint = {};
 							}
 						}
 					]
@@ -687,15 +789,22 @@
 			});
 			grid_1.style.css({
 				"border-right-style" : "none",
+				"border-bottom-color" : "#000000",
+				"color" : "#3A3939",
+				"font-weight" : "bold",
 				"border-left-style" : "none",
-				"border-bottom-style" : "none"
+				"border-left-color" : "#000000",
+				"font-size" : "1.1rem",
+				"border-bottom-style" : "none",
+				"border-top-style" : "none",
+				"text-align" : "center"
 			});
 			if(typeof onGrd1CellClick == "function") {
 				grid_1.addEventListener("cell-click", onGrd1CellClick);
 			}
 			container.addChild(grid_1, {
-				"width": "1239px",
-				"height": "630px"
+				"width": "1530px",
+				"height": "650px"
 			});
 			
 			var group_2 = new cpr.controls.Container();
@@ -707,18 +816,26 @@
 			formLayout_2.leftMargin = "0px";
 			formLayout_2.horizontalSpacing = "0px";
 			formLayout_2.verticalSpacing = "0px";
-			formLayout_2.setColumns(["1fr", "100px"]);
+			formLayout_2.setColumns(["1fr", "200px"]);
 			formLayout_2.setRows(["1fr"]);
 			group_2.setLayout(formLayout_2);
 			(function(container){
 				var button_3 = new cpr.controls.Button("applyCtl");
-				button_3.value = "신청";
+				button_3.value = "신 청";
+				button_3.style.css({
+					"background-color" : "#F6F4EB",
+					"font-weight" : "bold",
+					"font-size" : "1.2rem",
+					"background-image" : "none"
+				});
 				if(typeof onButtonClick2 == "function") {
 					button_3.addEventListener("click", onButtonClick2);
 				}
 				container.addChild(button_3, {
 					"colIndex": 1,
-					"rowIndex": 0
+					"rowIndex": 0,
+					"verticalAlign": "top",
+					"height": 60
 				});
 				var pageIndexer_1 = new cpr.controls.PageIndexer("page");
 				pageIndexer_1.pageRowCount = 8;
@@ -729,8 +846,38 @@
 				pageIndexer_1.visiblePrevButton = false;
 				pageIndexer_1.visibleNextButton = false;
 				pageIndexer_1.pageIndexWidth = "50px";
+				pageIndexer_1.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.1rem"
+				});
+				pageIndexer_1.style.first.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none"
+				});
+				pageIndexer_1.style.last.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none"
+				});
+				pageIndexer_1.style.prev.css({
+					"border-radius" : "2rem",
+					"border-right-style" : "solid",
+					"border-left-style" : "solid",
+					"border-bottom-style" : "solid",
+					"border-top-style" : "solid"
+				});
 				pageIndexer_1.style.next.css({
-					"font-size" : "30px"
+					"border-radius" : "2rem",
+					"font-size" : "40px"
+				});
+				pageIndexer_1.style.index.css({
+					"border-right-style" : "none",
+					"border-left-style" : "none",
+					"border-bottom-style" : "none",
+					"border-top-style" : "none"
 				});
 				pageIndexer_1.init(1, 1, 1);
 				if(typeof onPageSelectionChange == "function") {
@@ -746,6 +893,33 @@
 			container.addChild(group_2, {
 				"width": "400px",
 				"height": "82px"
+			});
+			
+			var group_3 = new cpr.controls.Container();
+			var formLayout_3 = new cpr.controls.layouts.FormLayout();
+			formLayout_3.scrollable = false;
+			formLayout_3.topMargin = "0px";
+			formLayout_3.rightMargin = "0px";
+			formLayout_3.bottomMargin = "0px";
+			formLayout_3.leftMargin = "0px";
+			formLayout_3.horizontalSpacing = "0px";
+			formLayout_3.verticalSpacing = "0px";
+			formLayout_3.setColumns(["1fr"]);
+			formLayout_3.setRows(["1fr"]);
+			group_3.setLayout(formLayout_3);
+			container.addChild(group_3, {
+				"autoSize": "none",
+				"width": "1920px",
+				"height": "72px"
+			});
+			
+			var userDefinedControl_1 = new udc.udcDialogd();
+			userDefinedControl_1.style.css({
+				"background-color" : "#B0B0B0"
+			});
+			container.addChild(userDefinedControl_1, {
+				"width": "1534px",
+				"height": "166px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
