@@ -275,11 +275,11 @@ EDU_BOARD_MAX_MEMBER_COUNT=#{eduBoardMaxMemberCount},
 EDU_BOARD_ADDRESS=#{eduBoardAddress},
 EDU_BOARD_CATEGORY=#{eduBoardCategory},
 EDU_BOARD_CONTENT=#{eduBoardContent}
-WHERE EDU_BOARD_NO=1
+WHERE EDU_BOARD_NO=#{eduBoardNo}
 </update>	
 <delete id="deleteBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 DELETE FROM EDU_APPLY_BOARD 
-WHERE EDU_BOARD_NO = 1
+WHERE EDU_BOARD_NO =#{eduBoardNo}
 </delete>
 
 <!-- comment  -->
@@ -293,8 +293,8 @@ FROM
 EDU_APPLY_COMMENT_BOARD
 WHERE
 EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
-AND
-USER_ID=#{memberVO.userId}
+<!-- AND
+USER_ID=#{memberVO.userId} -->
 </select>
 	<insert id="createCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" >
 INSERT INTO EDU_APPLY_COMMENT_BOARD(
@@ -306,26 +306,26 @@ USER_ID
 VALUES(
 EDU_APPLY_COMMENT_BOARD_SEQ.NEXTVAL,
 #{eduApplyCommentContent},
-'1111',
-'1234'
-);
+#{eduApplyBoardVO.eduBoardNo},
+#{memberVO.userId}
+)
 	</insert>
 	<update id="updateCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
 UPDATE EDU_APPLY_COMMENT_BOARD 
 SET
 EDU_APPLY_COMMENT_CONTENT= #{eduApplyCommentContent}
 WHERE
-EDU_BOARD_NO='1111'
+EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
 AND
-USER_ID='b'
+USER_ID=#{memberVO.userId}
 </update>	
 
 <delete id="deleteCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
 DELETE FROM EDU_APPLY_COMMENT_BOARD 
 WHERE
-EDU_BOARD_NO='1111'
+EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
 AND
-USER_ID='b'
+USER_ID=#{memberVO.userId}
 </delete>
 <!-- comment  -->
 <!-- memberCount  -->

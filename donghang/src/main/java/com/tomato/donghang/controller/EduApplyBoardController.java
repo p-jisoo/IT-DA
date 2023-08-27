@@ -1,11 +1,13 @@
 package com.tomato.donghang.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,7 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.service.EduApplyBoardService;
+import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -113,16 +116,20 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
-		System.out.println("selectBoardByBoardNo : " +param);
+		//System.out.println("selectBoardByBoardNo : " +param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
-//		return new UIView("/ui/updateBoard.do");
 	}
-//	
 	@PostMapping("/ui/createBoard.do")
 	public View createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
+		
 		System.out.println("paramCreate : "+ param);
 		eduApplyBoardService.createBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
@@ -130,6 +137,12 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/updateBoard.do")
 	public View updateBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
+		
 		System.out.println("paramUpdate : "+ param);
 		eduApplyBoardService.updateBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
@@ -137,6 +150,12 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/deleteBoard.do")
 	public View deleteBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
+		
 		System.out.println("paramDelete : "+ param);
 		eduApplyBoardService.deleteBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
@@ -153,24 +172,51 @@ public class EduApplyBoardController {
 //		return  new JSONDataView();
 ////		return new UIView("/ui/updateBoard.do");
 //	}
-	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
+	@PostMapping("/ui/selectCommentBoard.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+		
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard(param);
+		System.out.println("selectCommentBoard.do controller : "+param);
+		List<Map<String, Object>> data=eduApplyBoardService.selectCommentBoard(param);
+		
+		Map<String, Object> dataMap = new HashMap<>();
+		dataMap.put("USER_ID", mvo1.getUserId());
+		
+		dataRequest.setResponse("commentListSet", data);
 		dataRequest.setResponse("commentBoardMap", dataMap);
+		System.out.println("commentBoardMap session" + dataMap);
+		
 		return  new JSONDataView();
+		
 	}
 	
 	@PostMapping("/ui/createCommentBoard.do")
-	public View createCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
+	public View createCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {        
+		
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
 		System.out.println("paramCreate : "+ param);
+		
 		eduApplyBoardService.createCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx");
 	}
 	@PostMapping("/ui/updateCommentBoard.do")
 	public View updateCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
+		System.out.println("paramUpdate : "+ param);
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
+        
 		System.out.println("paramUpdate : "+ param);
 		eduApplyBoardService.updateCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx");
@@ -179,9 +225,17 @@ public class EduApplyBoardController {
 	public View deleteCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
 		System.out.println("paramDelete : "+ param);
+		
+        HttpSession session = request.getSession(true);
+        MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
+        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+        param.setValue(0, "USER_ID", mvo1.getUserId());
+		
 		eduApplyBoardService.deleteCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
+
+//////////////////////////////////////////////////////////////////	
 	@PostMapping("/ui/selectMemberCount.do")
 	public View selectMemberCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMemeberCountMap");

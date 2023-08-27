@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6f3833e2" version="1.0.4584">
   <head std:sid="head-264c019c">
-    <screen std:sid="screen-42c5dfc0" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-1eab7f7c" id="default" name="default" minwidth="1024px" maxwidth="1979px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="true"/>
-    <screen std:sid="screen-dcfe6134" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-8c75b55f" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-0cf8b9fa" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-67cf756e" id="new-screen2" name="new-screen2" minwidth="1920px" maxwidth="1979px" width="1920px" height="3800px" active="true"/>
+    <screen std:sid="screen-d68dfd12" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="false"/>
+    <screen std:sid="screen-5505ea89" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-f5c21c3f" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-db7e769b">
       <cl:dataset std:sid="d-set-6870e8b1" id="ds1">
         <cl:datacolumnlist>
@@ -66,7 +67,7 @@
       <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
       <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
       <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
-        <cl:xylayoutdata std:sid="xyl-data-414826ed" top="234px" left="20px" width="1880px" height="824px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-414826ed" top="234px" left="20px" width="1880px" height="1344px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:embeddedapp>
       <cl:group std:sid="group-f2a4904e">
         <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>

@@ -42,11 +42,13 @@ public interface EduApplyBoardMapper {
 	
 	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
 	
-	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
+	List<EduApplyCommentBoardVO> selectCommentBoard(EduApplyCommentBoardVO ecvo);
 
 	Map<String, Object> selectMemberCount(Map<String, Object> map);
 
 	Map<String, Object> updateMemberCount(Map<String, Object> map);
+
+
 
 
 }
