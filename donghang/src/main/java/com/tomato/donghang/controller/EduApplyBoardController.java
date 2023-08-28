@@ -80,8 +80,8 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/findBoardListPageAndSearchKeyword.do")
 	public View findBoardListPageAndSearchKeyword(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("dm3");
-		log.info("param {}",param.getValue("type"));
-		log.info("nowpage {}",param.getValue("keyword"));
+//		log.debug("param {}",param.getValue("type"));
+//		log.debug("nowpage {}",param.getValue("keyword"));
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
 		dataRequest.setParameter("keyword", param.getValue("keyword"));
@@ -184,7 +184,7 @@ public class EduApplyBoardController {
 		eduApplyBoardService.deleteCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
-	
+
 	@GetMapping("ui/mypage")
 	public View mypageForm() {
 		return new UIView("ui/mypage.clx");

@@ -51,39 +51,10 @@
 			 */
 			function onNav1ItemClick(e) {
 				var nav1 = e.control;
-			//	var submission = app.lookup("sms1");
-			//	var navigationBar = app.lookup("nav1");
-			//	var count = navigationBar.getSelectedIndices().toString()
-			//	submission.setParameters("menu", count);
-			//	submission.send();
-			emded(e);
+				emded(e);
 			}
 
-			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onSms1SubmitSuccess2(e) {
-				var sms1 = e.control;
-				var number = sms1.getParameters("menu").toString();
-				//	if(number=="0"){
-				//		window.location.href="/";
-				switch (number) {
-					case "0":
-						window.location.href = "/";
-						break;
-					case "1":
-						window.location.href = "toBaordList.do";
-						break;
-					case "2":
-						window.location.href = "showmeapply.do";
-						break;
-					case "3":
-						window.location.href = "showmeapply.do";
-						break;
-				}
-				
-			}
+
 
 			/*
 			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
@@ -103,6 +74,16 @@
 			}
 
 			function onBodyLoad(e) {
+				var vcEmb = app.lookup("ea1");
+				cpr.core.App.load("home", function(/*cpr.core.App*/ loadedApp){
+					if(loadedApp){						
+						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+						})
+						vcEmb.app = loadedApp;
+						var app1 = vcEmb.app;
+						app1.getInstances();
+					}
+				});
 				var submission = app.lookup("sessioncheck");
 				submission.send();
 			}
@@ -201,21 +182,28 @@
 					{"labal": "HOME", "value": "home"},
 					{"labal": "교육게시판", "value": "eduApplyboardList"},
 					{"labal": "교육신청", "value": "createBoard"},
-					{"labal": "마이페이지", "value": "myPage"}
+					{"labal": "마이페이지", "value": "mypage"}
 				]
 			});
 			app.register(dataSet_1);
+			
+			var dataSet_2 = new cpr.data.DataSet("loginSession");
+			dataSet_2.parseData({
+				"columns" : [
+					{"name": "USER_ID"},
+					{"name": "PASSWORD"},
+					{"name": "ADDRESS"},
+					{"name": "USER_TEL"},
+					{"name": "userName"},
+					{"name": "NICKNAME"}
+				]
+			});
+			app.register(dataSet_2);
 			var dataMap_1 = new cpr.data.DataMap("dm1");
 			dataMap_1.parseData({
 				"columns" : [{"name": "userName"}]
 			});
 			app.register(dataMap_1);
-			
-			var dataMap_2 = new cpr.data.DataMap("loginSession");
-			dataMap_2.parseData({
-				"columns" : [{"name": "userName"}]
-			});
-			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
 			submission_1.action = "apply";
@@ -229,7 +217,7 @@
 			
 			var submission_2 = new cpr.protocols.Submission("sessioncheck");
 			submission_2.action = "loginSessionMember";
-			submission_2.addResponseData(dataMap_2, false);
+			submission_2.addResponseData(dataSet_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
 			}
@@ -252,6 +240,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-color" : "#B0B0B0 none",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -261,121 +250,49 @@
 			container.setLayout(xYLayout_1);
 			
 			// UI Configuration
-			var group_1 = new cpr.controls.Container();
-			group_1.style.css({
-				"font-size" : "1rem"
+			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
+			container.addChild(embeddedApp_1, {
+				"top": "245px",
+				"left": "21px",
+				"width": "1960px",
+				"height": "884px"
 			});
+			
+			var output_1 = new cpr.controls.Output();
+			output_1.value = "ITda";
+			output_1.style.css({
+				"color" : "#262626",
+				"font-weight" : "bolder",
+				"font-size" : "1.3rem"
+			});
+			container.addChild(output_1, {
+				"top": "16px",
+				"left": "162px",
+				"width": "100px",
+				"height": "44px"
+			});
+			
+			var output_2 = new cpr.controls.Output();
+			output_2.value = "Accompany";
+			output_2.style.css({
+				"color" : "black",
+				"font-weight" : "bold",
+				"font-size" : "1.3rem"
+			});
+			container.addChild(output_2, {
+				"top": "84px",
+				"left": "162px",
+				"width": "160px",
+				"height": "41px"
+			});
+			
+			var group_1 = new cpr.controls.Container();
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
-				container.addChild(embeddedApp_1, {
-					"top": "234px",
-					"left": "20px",
-					"width": "1880px",
-					"height": "824px"
-				});
-				var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
-				navigationBar_1.barItemSpacing = 150;
-				navigationBar_1.style.css({
-					"border-right-style" : "none",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1.3rem",
-					"border-bottom-style" : "none",
-					"border-top-style" : "none"
-				});
-				(function(navigationBar_1){
-					navigationBar_1.setItemSet(app.lookup("ds1"), {
-						"label": "labal",
-						"value": "value"
-					});
-				})(navigationBar_1);
-				if(typeof onNav1ItemClick == "function") {
-					navigationBar_1.addEventListener("item-click", onNav1ItemClick);
-				}
-				if(typeof onNav1Click2 == "function") {
-					navigationBar_1.addEventListener("click", onNav1Click2);
-				}
-				if(typeof onNav1SelectionChange == "function") {
-					navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
-				}
-				container.addChild(navigationBar_1, {
-					"top": "73px",
-					"right": "369px",
-					"left": "580px",
-					"height": "154px"
-				});
-				var output_1 = new cpr.controls.Output();
-				output_1.value = "ITda";
-				output_1.style.css({
-					"color" : "#262626",
-					"font-weight" : "bolder",
-					"font-size" : "1.5rem"
-				});
-				container.addChild(output_1, {
-					"top": "84px",
-					"left": "274px",
-					"width": "207px",
-					"height": "53px"
-				});
-				var output_2 = new cpr.controls.Output();
-				output_2.value = "Accompany";
-				output_2.style.css({
-					"color" : "black",
-					"font-weight" : "bold",
-					"font-size" : "1.3rem"
-				});
-				container.addChild(output_2, {
-					"top": "127px",
-					"left": "274px",
-					"width": "296px",
-					"height": "41px"
-				});
-				var image_1 = new cpr.controls.Image();
-				image_1.src = "theme/images/img/logo2_donghang.png";
-				container.addChild(image_1, {
-					"top": "73px",
-					"left": "129px",
-					"width": "135px",
-					"height": "102px"
-				});
-				var button_1 = new cpr.controls.Button();
-				button_1.value = "회원정보 수정";
-				if(typeof onButtonClick4 == "function") {
-					button_1.addEventListener("click", onButtonClick4);
-				}
-				container.addChild(button_1, {
-					"top": "20px",
-					"left": "368px",
-					"width": "139px",
-					"height": "43px"
-				});
-				var button_2 = new cpr.controls.Button();
-				button_2.value = "마이페이지";
-				if(typeof onButtonClick5 == "function") {
-					button_2.addEventListener("click", onButtonClick5);
-				}
-				container.addChild(button_2, {
-					"top": "20px",
-					"left": "196px",
-					"width": "164px",
-					"height": "44px"
-				});
-				var button_3 = new cpr.controls.Button("temporary_btn");
-				button_3.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
-				if(typeof onButtonClick3 == "function") {
-					button_3.addEventListener("click", onButtonClick3);
-				}
-				container.addChild(button_3, {
-					"top": "19px",
-					"left": "541px",
-					"width": "221px",
-					"height": "45px"
-				});
-				var button_4 = new cpr.controls.Button("btn_register");
-				button_4.value = "회원가입  ";
-				button_4.style.css({
+				var button_1 = new cpr.controls.Button("btn_register");
+				button_1.value = "회원가입  ";
+				button_1.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -387,18 +304,18 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick2 == "function") {
-					button_4.addEventListener("click", onButtonClick2);
+					button_1.addEventListener("click", onButtonClick2);
 				}
-				container.addChild(button_4, {
+				container.addChild(button_1, {
 					"top": "20px",
 					"left": "1345px",
 					"width": "105px",
 					"height": "40px"
 				});
-				var button_5 = new cpr.controls.Button("mypage");
-				button_5.visible = false;
-				button_5.value = " 마이페이지 ";
-				button_5.style.css({
+				var button_2 = new cpr.controls.Button("mypage");
+				button_2.visible = false;
+				button_2.value = " 마이페이지 ";
+				button_2.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -410,17 +327,17 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick == "function") {
-					button_5.addEventListener("click", onButtonClick);
+					button_2.addEventListener("click", onButtonClick);
 				}
-				container.addChild(button_5, {
+				container.addChild(button_2, {
 					"top": "20px",
 					"left": "1137px",
 					"width": "120px",
 					"height": "40px"
 				});
-				var button_6 = new cpr.controls.Button("login");
-				button_6.value = "  로그인   ";
-				button_6.style.css({
+				var button_3 = new cpr.controls.Button("login");
+				button_3.value = "  로그인   ";
+				button_3.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -432,12 +349,12 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onLoginClick == "function") {
-					button_6.addEventListener("click", onLoginClick);
+					button_3.addEventListener("click", onLoginClick);
 				}
 				if(typeof onLoginValueChange == "function") {
-					button_6.addEventListener("value-change", onLoginValueChange);
+					button_3.addEventListener("value-change", onLoginValueChange);
 				}
-				container.addChild(button_6, {
+				container.addChild(button_3, {
 					"top": "20px",
 					"left": "1256px",
 					"width": "90px",
@@ -476,14 +393,63 @@
 					"height": "41px"
 				});
 			})(group_1);
-			if(typeof onGroupClick == "function") {
-				group_1.addEventListener("click", onGroupClick);
+			if(typeof onGroupClick2 == "function") {
+				group_1.addEventListener("click", onGroupClick2);
 			}
 			container.addChild(group_1, {
-				"top": "0px",
-				"right": "0px",
-				"bottom": "0px",
-				"left": "0px"
+				"top": "1px",
+				"right": "-194px",
+				"left": "432px",
+				"height": "74px"
+			});
+			
+			var image_1 = new cpr.controls.Image();
+			image_1.src = "theme/images/img/logo2_donghang.png";
+			container.addChild(image_1, {
+				"top": "21px",
+				"left": "21px",
+				"width": "135px",
+				"height": "102px"
+			});
+			
+			var navigationBar_1 = new cpr.controls.NavigationBar("nav1");
+			navigationBar_1.barItemSpacing = 150;
+			navigationBar_1.style.css({
+				"border-right-style" : "none",
+				"border-left-style" : "none",
+				"font-weight" : "bold",
+				"font-size" : "1.3rem",
+				"border-bottom-style" : "none",
+				"border-top-style" : "none"
+			});
+			(function(navigationBar_1){
+				navigationBar_1.setItemSet(app.lookup("ds1"), {
+					"label": "labal",
+					"value": "value"
+				});
+			})(navigationBar_1);
+			if(typeof onNav1ItemClick == "function") {
+				navigationBar_1.addEventListener("item-click", onNav1ItemClick);
+			}
+			if(typeof onNav1Click2 == "function") {
+				navigationBar_1.addEventListener("click", onNav1Click2);
+			}
+			if(typeof onNav1SelectionChange == "function") {
+				navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
+			}
+			container.addChild(navigationBar_1, {
+				"top": "84px",
+				"right": "446px",
+				"left": "503px",
+				"height": "154px"
+			});
+			
+			var userDefinedControl_1 = new udc.udcDialogd();
+			container.addChild(userDefinedControl_1, {
+				"top": "1228px",
+				"left": "20px",
+				"width": "2062px",
+				"height": "184px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

@@ -38,39 +38,10 @@ function emded(e){
  */
 function onNav1ItemClick(e) {
 	var nav1 = e.control;
-//	var submission = app.lookup("sms1");
-//	var navigationBar = app.lookup("nav1");
-//	var count = navigationBar.getSelectedIndices().toString()
-//	submission.setParameters("menu", count);
-//	submission.send();
-emded(e);
+	emded(e);
 }
 
-/*
- * 서브미션에서 submit-success 이벤트 발생 시 호출.
- * 통신이 성공하면 발생합니다.
- */
-function onSms1SubmitSuccess2(e) {
-	var sms1 = e.control;
-	var number = sms1.getParameters("menu").toString();
-	//	if(number=="0"){
-	//		window.location.href="/";
-	switch (number) {
-		case "0":
-			window.location.href = "/";
-			break;
-		case "1":
-			window.location.href = "toBaordList.do";
-			break;
-		case "2":
-			window.location.href = "showmeapply.do";
-			break;
-		case "3":
-			window.location.href = "showmeapply.do";
-			break;
-	}
-	
-}
+
 
 /*
  * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
@@ -90,6 +61,16 @@ function onLoginClick(e) {
 }
 
 function onBodyLoad(e) {
+	var vcEmb = app.lookup("ea1");
+	cpr.core.App.load("home", function(/*cpr.core.App*/ loadedApp){
+		if(loadedApp){						
+			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+			})
+			vcEmb.app = loadedApp;
+			var app1 = vcEmb.app;
+			app1.getInstances();
+		}
+	});
 	var submission = app.lookup("sessioncheck");
 	submission.send();
 }

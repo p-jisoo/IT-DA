@@ -34,4 +34,6 @@ public interface EduApplyBoardService {
 	List<Map<String, String>> findApplyingListByUserId(String id);
 	
 	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
+	void likeCaculate(String userId, String value);
+	Integer likeCount(long eduBoardNo);
 }
