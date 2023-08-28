@@ -204,12 +204,6 @@
 				"columns" : [{"name": "userName"}]
 			});
 			app.register(dataMap_1);
-			
-			var dataMap_2 = new cpr.data.DataMap("loginSession");
-			dataMap_2.parseData({
-				"columns" : [{"name": "userName"}]
-			});
-			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
 			submission_1.action = "apply";
@@ -223,7 +217,7 @@
 			
 			var submission_2 = new cpr.protocols.Submission("sessioncheck");
 			submission_2.action = "loginSessionMember";
-			submission_2.addResponseData(dataMap_2, false);
+			submission_2.addResponseData(dataSet_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
 			}
@@ -258,7 +252,7 @@
 			// UI Configuration
 			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
 			container.addChild(embeddedApp_1, {
-				"top": "231px",
+				"top": "245px",
 				"left": "21px",
 				"width": "1960px",
 				"height": "884px"

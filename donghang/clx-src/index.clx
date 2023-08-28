@@ -45,11 +45,6 @@
           <cl:datacolumn std:sid="d-column-9ba26657" name="userName"/>
         </cl:datacolumnlist>
       </cl:datamap>
-      <cl:datamap std:sid="d-map-c01f7f33" id="loginSession">
-        <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-1a5fb5ce" name="userName"/>
-        </cl:datacolumnlist>
-      </cl:datamap>
       <cl:submission std:sid="submission-c41b4901" id="sms1" async="true" action="apply">
         <cl:listener std:sid="listener-f6398567" name="receive-json" handler="onSms1ReceiveJson"/>
         <cl:listener std:sid="listener-e3df748f" name="submit-success" handler="onSms1SubmitSuccess2"/>
@@ -68,7 +63,7 @@
   <body std:sid="body-bda8ceea" style="background-color:#B0B0B0 none;">
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
-      <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="231px" left="21px" width="1960px" height="884px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="245px" left="21px" width="1960px" height="884px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedapp>
     <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.3rem;" value="ITda">
       <cl:xylayoutdata std:sid="xyl-data-64405299" top="16px" left="162px" width="100px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -113,7 +108,6 @@
         <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
         <cl:xylayoutdata std:sid="xyl-data-dd6d5935" top="17px" left="809px" width="130px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:xylayout std:sid="xylayout-1530ee91"/>
       <cl:xylayout std:sid="xylayout-1530ee91"/>
     </cl:group>
     <cl:img std:sid="image-3cd6a300" src="theme/images/img/logo2_donghang.png">

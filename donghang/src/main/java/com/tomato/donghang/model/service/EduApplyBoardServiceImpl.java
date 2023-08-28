@@ -472,3 +472,4 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			
 		return data;
 	}
+}
