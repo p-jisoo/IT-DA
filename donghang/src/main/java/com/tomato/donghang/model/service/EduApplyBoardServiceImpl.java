@@ -444,6 +444,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			row.put("EDU_APPLY_COMMENT_CONTENT", comments.getEduApplyCommentContent());
 			data.add(row);
 		}
+		log.info("data {}",data);
 		return data;
 	}
 }

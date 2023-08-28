@@ -22,17 +22,17 @@
     <cl:listener std:sid="listener-4440c6cb" name="load" handler="onBodyLoad"/>
     <cl:grid std:sid="grid-9be30e3f" id="grd1" datasetid="ds1">
       <cl:xylayoutdata std:sid="xyl-data-5836e084" top="188px" left="624px" width="512px" height="388px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-4a208590"/>
-      <cl:gridcolumn std:sid="g-column-3e089f3d"/>
-      <cl:gridheader std:sid="gh-band-4c07316e">
-        <cl:gridrow std:sid="g-row-a4e69787"/>
-        <cl:gridcell std:sid="gh-cell-a7ecb0ee" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
-        <cl:gridcell std:sid="gh-cell-9616e5fb" rowindex="0" colindex="1" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="EDU_APPLY_COMMENT_CONTENT"/>
+      <cl:gridcolumn std:sid="g-column-8a807c80"/>
+      <cl:gridcolumn std:sid="g-column-1a1ff4ad"/>
+      <cl:gridheader std:sid="gh-band-307b91e7">
+        <cl:gridrow std:sid="g-row-a560bd21"/>
+        <cl:gridcell std:sid="gh-cell-a2587c01" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gh-cell-cfd75c75" rowindex="0" colindex="1" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="EDU_APPLY_COMMENT_CONTENT"/>
       </cl:gridheader>
-      <cl:griddetail std:sid="gd-band-845d42e1">
-        <cl:gridrow std:sid="g-row-6ad088d0"/>
-        <cl:gridcell std:sid="gd-cell-1d677bbf" rowindex="0" colindex="0" columnname="EDU_BOARD_TITLE"/>
-        <cl:gridcell std:sid="gd-cell-c97edbfe" rowindex="0" colindex="1" columnname="EDU_APPLY_COMMENT_CONTENT"/>
+      <cl:griddetail std:sid="gd-band-b9fbd89a">
+        <cl:gridrow std:sid="g-row-96edd860"/>
+        <cl:gridcell std:sid="gd-cell-7bde4cb3" rowindex="0" colindex="0" columnname="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gd-cell-62b4ecf5" rowindex="0" colindex="1" columnname="EDU_APPLY_COMMENT_CONTENT"/>
       </cl:griddetail>
     </cl:grid>
     <cl:xylayout std:sid="xylayout-34242d75"/>
