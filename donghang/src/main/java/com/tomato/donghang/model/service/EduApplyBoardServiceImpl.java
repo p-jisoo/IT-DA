@@ -402,6 +402,46 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
+	public Integer likeCount(long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
+		return eduApplyBoardMapper.isLike(map);
+	}
+//	@Override
+//	public void addLikeCount(String userId, long eduBoardNo) {
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("userId", userId);
+//		map.put("eduBoardNo", eduBoardNo);
+//		eduApplyBoardMapper.addLikeCount(map);
+//	}
+//
+//	@Override
+//	public void deleteLikeCount(String userId, long eduBoardNo) {
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("userId", userId);
+//		map.put("eduBoardNo", eduBoardNo);
+//		eduApplyBoardMapper.deleteLikeCount(map);
+//	}
+
+	@Override
+	public void likeCaculate(String userId, String value) {
+		Map<String, Object> map = new HashMap<>();
+		long eduBoardNo = Long.parseLong(value);
+		map.put("userId", userId);
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("map {}", map);
+		Integer likeCount = eduApplyBoardMapper.isLike(map);
+		log.info("likeCount {}",likeCount);
+		if(likeCount==null || likeCount==0) {
+			eduApplyBoardMapper.addLikeCount(map);
+		}else {
+			eduApplyBoardMapper.deleteLikeCount(map);
+		}
+	}
+	
+
+	@Override
 	public List<Map<String, String>> findAppliedListByUserId(String id) {
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);

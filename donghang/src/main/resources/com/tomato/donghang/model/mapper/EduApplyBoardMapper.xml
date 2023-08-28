@@ -93,7 +93,6 @@
 		USER_ID,
 		EDU_BOARD_STATUS,
 		EDU_BOARD_ADDRESS,
-		EDU_BOARD_STATUS,
 		TOTAL_COUNT,
 		EDU_BOARD_MAX_MEMBER_COUNT
 		from
@@ -137,11 +136,10 @@
 		EDU_BOARD_NO,
 		EDU_BOARD_TITLE,
 		USER_ID,
-		EDU_BOARD_STATUS,
 		EDU_BOARD_ADDRESS,
 		EDU_BOARD_STATUS,
 		TOTAL_COUNT,
-		EDU_BOARD_MAX_MEMBER_COUNT
+		EDU_BOARD_MAX_MEMBER_COUNT	
 		from
 		(SELECT
 		row_number() over(ORDER BY e.EDU_BOARD_NO DESC) as rnum,
@@ -188,6 +186,44 @@
 		WHERE
 		rnum BETWEEN #{pagination.startRowNumber} and #{pagination.endRowNumber}
 	</select>
+	
+	<select id="isLike" parameterType="map" resultType="Integer">
+select
+	COUNT(l.EDU_BOARD_NO)
+from
+	EDU_APPLY_BOARD e
+LEFT OUTER JOIN
+	(SELECT 
+		EDU_BOARD_NO,
+		USER_ID
+	FROM 
+		LIKE_BOARD
+	) l
+ON e.EDU_BOARD_NO = l.EDU_BOARD_NO
+where e.EDU_BOARD_NO = #{eduBoardNo}
+<if test="userId !=null and userId !='' ">
+	AND l.USER_ID = #{userId}
+</if>
+
+
+	</select>
+	
+	
+	
+	<insert id="addLikeCount" parameterType="hashMap">
+INSERT INTO 
+	LIKE_BOARD(USER_ID,EDU_BOARD_NO)
+VALUES
+	(#{userId},#{eduBoardNo})
+	</insert>
+	
+	<delete id="deleteLikeCount">
+DELETE FROM LIKE_BOARD
+WHERE 
+USER_ID = #{userId}
+AND EDU_BOARD_NO = #{eduBoardNo}
+	</delete>
+	
 	
 <!-- hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok -->
 <resultMap type="com.tomato.donghang.model.vo.EduApplyBoardVO" id="boardResultMap">

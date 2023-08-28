@@ -47,9 +47,9 @@ public class MemberController {
 		String userName = data.getValue("userName");
 		String nickName = data.getValue("nickName");
 		String email = data.getValue("email");
-		System.out.println(id + " " + password);
+		log.warn("registerMember 유저가 입력한 data {}",data);
 		MemberVO vo = new MemberVO(id, password, address, userTel, userName, nickName, email);
-		log.info("회원가입한 정보 {}" + vo);
+		log.info("registerMember 회원가입한 정보 {}" + vo);
 		memberMapper.registerMember(vo);
 
 		Map<String, Object> map = new HashMap<>();// map 선언
@@ -74,9 +74,7 @@ public class MemberController {
 		String id = data.getValue("user_id");
 		String password = data.getValue("password");
 		MemberVO memberVO = new MemberVO(id, password);
-		// System.out.println("id="+id+"password"+password);
 		MemberVO vo = memberMapper.loginMember(memberVO);
-		// System.out.println(vo);
 		if (vo != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
@@ -94,8 +92,7 @@ public class MemberController {
 	public View updateMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("mvo") == null) {
-			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
-		//	String result ="fail";
+			log.debug("로그인 상태가 아니므로 탈퇴 불가");
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("dm1");
 			String id = data.getValue("userId");
@@ -105,13 +102,12 @@ public class MemberController {
 			String userName = data.getValue("userName");
 			String nickName = data.getValue("nickName");
 			String email = data.getValue("email");
-			System.out.println("입력된값 = " + id + "," + password + "," + address + "," + "," + userTel + "," + userName
-					+ "," + nickName + "," + email);
+			log.debug("data {}", data); // 가져온 유저 정보 확인
 
 			MemberVO mvo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("업데이트 전 = " + mvo);
+			log.info("updateMember 회원정보 수정 전 유저 정보 {}" , mvo); // 회원정보 수정 전 유저 정보
 			MemberVO vo = new MemberVO(mvo.getUserId(), password, address, userTel, userName, nickName, email);
-			System.out.println("업데이트 후 = " + vo);
+			log.info("updateMember 회원정보 수정 전 유저 정보 {}" , vo); // 회원정보 수정 후 유저 정보
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
 		//	String result="success";
@@ -146,7 +142,8 @@ public class MemberController {
 	@PostMapping("ui/loginSessionMember")
 	public View loginSession(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		HttpSession session = request.getSession(false);
-		if (session == null) {
+		log.error("loginSessionMember 세션확인 {}",session);
+		if (session == null || session.getAttribute("mvo")==null) {
 			return new JSONDataView();
 		} else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
@@ -154,7 +151,7 @@ public class MemberController {
 			MemberVO mvo = memberMapper.selectIdMember(id);
 			if (vo != null) {
 				dataRequest.setResponse("loginSession", mvo);
-				
+				log.debug("loginSessionMember 유저정보 {}", mvo);
 			}
 			return new JSONDataView();
 		}
@@ -176,7 +173,7 @@ public class MemberController {
 		HttpSession session = request.getSession(false);
 		String result = "fail";
 		if (session == null || session.getAttribute("mvo") == null) {
-			System.out.println("로그인 상태가 아니므로 탈퇴 불가");
+			log.info("deleteMember 로그인 상태가 아니므로 탈퇴 불가");
 		} else {
 			ParameterGroup data = dataRequest.getParameterGroup("deletePassword");// 비밀번호 요청을 받아야함
 			String password = data.getValue("PASSWORD");
@@ -186,13 +183,12 @@ public class MemberController {
 			if (pwd.equals(password)) {
 				memberMapper.deleteMember(userId, password);
 				session.invalidate();
-				log.info("세션지워지고 회원탈퇴");
+				log.info("deleteMember 세션지워지고 회원탈퇴");
 				result = "success";
 			} 
 		}
 		dataRequest.setResponse("result", result);
 		return new JSONDataView();
-
 	}
 
 	// 비밀번호 찾기 첫번째 페이지(아이디 인증)
@@ -200,9 +196,9 @@ public class MemberController {
 	public View selectIdMember(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
 		ParameterGroup data = dataRequset.getParameterGroup("CheckId");
 		String id = data.getValue("userId");
-		System.out.println("컬럼value값 확인 =" + id);
+		log.info("selectIdMember 컬럼value값 확인 =" + id);
 		MemberVO vo = memberMapper.selectIdMember(id);
-		System.out.println("아이디 존재함 = " + vo);
+		log.info("selectIdMember 아이디 존재함 = " + vo);
 		if (vo != null) {
 		} else {
 			return new UIView("ui/index.clx");

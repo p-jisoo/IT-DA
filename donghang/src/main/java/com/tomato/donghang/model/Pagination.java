@@ -11,7 +11,7 @@ public class Pagination {
 	/**
 	 * 페이지당 게시물수 
 	 */
-	private long postCountPerPage=5;
+	private long postCountPerPage=8;
 	/**
 	 * 페이지 그룹당 페이지수 
 	 */
