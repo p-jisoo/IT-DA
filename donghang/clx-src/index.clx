@@ -26,7 +26,7 @@
           </cl:datarow>
           <cl:datarow>
             <cl:datavalue columnname="labal"><![CDATA[마이페이지]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[myPage]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[mypage]]></cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -74,18 +74,6 @@
     <cl:group std:sid="group-f2a4904e">
       <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-549154ea" top="1px" right="-194px" left="432px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-3b2b8523" value="회원정보 수정">
-        <cl:listener std:sid="listener-df1694d5" name="click" handler="onButtonClick4"/>
-        <cl:xylayoutdata std:sid="xyl-data-6fc4bb84" top="20px" left="368px" width="139px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:button std:sid="button-609506c0" value="마이페이지">
-        <cl:listener std:sid="listener-014af69d" name="click" handler="onButtonClick5"/>
-        <cl:xylayoutdata std:sid="xyl-data-6377c974" top="20px" left="196px" width="164px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:button std:sid="button-80b81e2e" id="temporary_btn" value="임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정">
-        <cl:listener std:sid="listener-6d11a4cc" name="click" handler="onButtonClick3"/>
-        <cl:xylayoutdata std:sid="xyl-data-f4c6877b" top="19px" left="541px" width="221px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
       <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
         <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
         <cl:xylayoutdata std:sid="xyl-data-44eb4406" top="20px" left="1345px" width="105px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

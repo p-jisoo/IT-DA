@@ -1,17 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-9c2ff1e8" version="1.0.4584">
   <head std:sid="head-3a54b73c">
-    <screen std:sid="screen-032849a1" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800"/>
-    <screen std:sid="screen-6ffd0d49" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-032849a1" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-6ffd0d49" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
     <screen std:sid="screen-32ca8e0b" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
     <screen std:sid="screen-479b365a" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
-    <cl:model std:sid="model-bb95363d"/>
+    <cl:model std:sid="model-bb95363d">
+      <cl:dataset std:sid="d-set-29dd6fdd" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-d1b1d6cb" name="EDU_BOARD_TITLE"/>
+          <cl:datacolumn std:sid="d-column-ec3e23cf" name="EDU_APPLY_COMMENT_CONTENT"/>
+        </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:submission std:sid="submission-e7334446" id="sms1" action="commentList.do">
+        <cl:responsedata dataid="ds1"/>
+      </cl:submission>
+    </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-e6d3fc13">
-    <cl:button std:sid="button-2306e3e5" value="3">
-      <cl:xylayoutdata std:sid="xyl-data-5c1f1fee" top="178px" left="304px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
+    <cl:listener std:sid="listener-4440c6cb" name="load" handler="onBodyLoad"/>
+    <cl:grid std:sid="grid-9be30e3f" id="grd1" datasetid="ds1">
+      <cl:xylayoutdata std:sid="xyl-data-5836e084" top="188px" left="624px" width="512px" height="388px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-8a807c80"/>
+      <cl:gridcolumn std:sid="g-column-1a1ff4ad"/>
+      <cl:gridheader std:sid="gh-band-307b91e7">
+        <cl:gridrow std:sid="g-row-a560bd21"/>
+        <cl:gridcell std:sid="gh-cell-a2587c01" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gh-cell-cfd75c75" rowindex="0" colindex="1" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="EDU_APPLY_COMMENT_CONTENT"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-b9fbd89a">
+        <cl:gridrow std:sid="g-row-96edd860"/>
+        <cl:gridcell std:sid="gd-cell-7bde4cb3" rowindex="0" colindex="0" columnname="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gd-cell-62b4ecf5" rowindex="0" colindex="1" columnname="EDU_APPLY_COMMENT_CONTENT"/>
+      </cl:griddetail>
+    </cl:grid>
     <cl:xylayout std:sid="xylayout-34242d75"/>
   </body>
   <std:studiosetting>

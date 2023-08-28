@@ -44,6 +44,7 @@ public interface EduApplyBoardMapper {
 	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
 	
 	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
+	
 
 	Integer isLike(Map<String, Object> map);
 
@@ -53,4 +54,6 @@ public interface EduApplyBoardMapper {
 
 	List<EduApplyBoardVO> findAppliedListByUserId(String id);
 	List<EduApplyBoardVO> findApplyingListByUserId(String id);
+	
+	List<EduApplyCommentBoardVO> findCommentListByUserIdAndBoardNo(String id);
 }

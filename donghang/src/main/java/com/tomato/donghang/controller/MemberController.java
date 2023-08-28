@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
-
+	@Autowired
 	private final MemberService memberService;
 	@GetMapping("ui/register.do")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
@@ -207,12 +207,26 @@ public class MemberController {
 
 	}
 	//아이디 찾기
+	@GetMapping("ui/findId.do")
+	public View findId() {
+		return new UIView("ui/findId.clx");
+
+	}
+
 	@PostMapping("ui/findIdForm.do")
-	public View findIdByNameAndEmail(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
-		ParameterGroup data =dataRequset.getParameterGroup("findId");
-		String id = data.getValue("userId");
-		memberService.findIdByNameAndEmail(id);
-		return new UIView("/ui/findId.clx");
+	public View findIdByNameAndEmail( HttpServletRequest request, HttpServletResponse reponse,DataRequest dataRequset) {
+		log.info("a {}", dataRequset);
+		ParameterGroup param =dataRequset.getParameterGroup("findId");
+		String name = param.getValue("userName");
+		String email = param.getValue("email");
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUserName(name);
+		memberVO.setEmail(email);
+		String id = memberService.findIdByNameAndEmail(memberVO);
+		if (id != null) {
+			dataRequset.setResponse("id", id);
+		}
+		return new JSONDataView();
 	}
 
 }

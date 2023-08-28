@@ -211,4 +211,13 @@ public class EduApplyBoardController {
 		datarequest.setResponse("ds1", data);
 		return new JSONDataView();
 	} 
+	@PostMapping("ui/commentList.do")
+	public View findCommentListByUserIdAndBoardNo(HttpServletRequest request,HttpServletResponse response, 
+			DataRequest datarequest) {
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findCommentListByUserIdAndBoardNo(mvo.getUserId());
+		datarequest.setResponse("ds1", data);
+		return new JSONDataView();
+	}
 }

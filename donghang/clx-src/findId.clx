@@ -1,18 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6523dd9e" version="1.0.4584">
-  <head std:sid="head-a2478d41">
-    <screen std:sid="screen-93482070" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800"/>
-    <screen std:sid="screen-be689134" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
-    <screen std:sid="screen-72002558" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
-    <screen std:sid="screen-7ff1bf3e" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
-    <cl:model std:sid="model-515b9fa2"/>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-c1b52633" version="1.0.4584">
+  <head std:sid="head-632d6171">
+    <screen std:sid="screen-a6792d71" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
+    <screen std:sid="screen-038d63ce" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-d556fb98" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-4357639b" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-65f3a3cb">
+      <cl:datamap std:sid="d-map-e3ff3bed" id="findId">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-e69d51e6" name="userName"/>
+          <cl:datacolumn std:sid="d-column-3221509a" name="email"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-28cb85c1" id="sms1" action="findIdForm.do">
+        <cl:listener std:sid="listener-86bd2c30" name="submit-success" handler="onSms1SubmitSuccess"/>
+        <cl:requestdata dataid="findId"/>
+      </cl:submission>
+    </cl:model>
     <cl:appspec/>
   </head>
-  <body std:sid="body-f4ebb43f">
-    <cl:button std:sid="button-f84110ba" style="font-size:30px;" value="아이디 찾기 구현 UI 만드러">
-      <cl:xylayoutdata std:sid="xyl-data-5b0bf336" top="291px" left="216px" width="671px" height="260px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:xylayout std:sid="xylayout-53687ff7"/>
+  <body std:sid="body-5a90865d">
+    <cl:group std:sid="group-af5053dc" style="font-weight:bold; font-size:3rem;">
+      <cl:xylayoutdata std:sid="xyl-data-f2d414fe" top="80px" width="985px" height="760px" horizontalAnchor="CENTER" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-a8953710" id="home" src="theme/images/pivot/logodonghang .png">
+        <cl:listener std:sid="listener-17b66111" name="click" handler="onImageClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-f1aff24e" top="91px" left="296px" width="126px" height="154px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:output std:sid="output-cd3e8350" style="color:#4682A9; font-weight:bold; font-size:2rem; text-align:left;" value="ITda">
+        <cl:xylayoutdata std:sid="xyl-data-9a7eeb6a" top="158px" left="444px" width="145px" height="48px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-d3b8c37e" style="color:#4682A9; font-weight:bold; font-size:1.5rem; text-align:left;" value="Accompany">
+        <cl:xylayoutdata std:sid="xyl-data-f264805a" top="200px" left="444px" width="151px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-8bc22ecb" style="font-weight:bold; font-size:1.39rem;" value="회원 아이디 찾기">
+        <cl:xylayoutdata std:sid="xyl-data-8868fdd5" top="255px" left="351px" width="200px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-d2469777" id="userName" style="font-size:1rem; font-style:normal;" placeholder="   유저 아이디를 입력해주세요.&#xD;&#xA;">
+        <cl:datamapbind property="value" datacontrolid="findId" columnname="userName"/>
+        <cl:xylayoutdata std:sid="xyl-data-cfe939d3" top="318px" left="350px" width="353px" height="64px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:inputbox>
+      <cl:button std:sid="button-280365bd" id="findIdBtn" style="background-color:#4682A9; color:#FFFFFF; font-size:1.5rem; background-image:none; font-style:normal;" value="아이디 찾기">
+        <cl:listener std:sid="listener-2eff6605" name="click" handler="onFindIdBtnClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-fae443ee" top="488px" left="210px" width="500px" height="66px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
+      <cl:output std:sid="output-d8165c2e" style="color:#A7A7A7; font-weight:normal; font-size:1rem;" value="비밀번호가 기억나지 않는다면?">
+        <cl:xylayoutdata std:sid="xyl-data-71221cf5" top="563px" left="293px" width="234px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-c37bf4dc" style="color:#4682A9; font-weight:bold; font-size:1rem;" value="비밀번호 찾기">
+        <cl:listener std:sid="listener-aa1e2799" name="click" handler="onOutputClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-2600e091" top="563px" left="537px" width="173px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-c8801df3" style="color:#91C8E4; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany    |">
+        <cl:xylayoutdata std:sid="xyl-data-53738a17" top="646px" left="280px" width="162px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-0d4f45e2" style="color:#6F6F6F; font-weight:normal; font-size:1rem; text-align:left;" value="고객센터 : 010-8299-1244">
+        <cl:xylayoutdata std:sid="xyl-data-bc4b4e31" top="646px" left="451px" width="200px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-c47c4302" style="color:#4682A9; font-weight:bold;" value="01. 아이디 찾기">
+        <cl:xylayoutdata std:sid="xyl-data-189122a2" top="0px" left="570px" width="108px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-085e2ef1" value=">">
+        <cl:xylayoutdata std:sid="xyl-data-68b85ace" top="0px" left="680px" width="14px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-6951df8d" value="02. 이름,email 인증">
+        <cl:xylayoutdata std:sid="xyl-data-378e011b" top="0px" left="693px" width="135px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-f7aa0e9e" value=">">
+        <cl:xylayoutdata std:sid="xyl-data-c61efe7a" top="0px" left="827px" width="14px" height="24px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-e7412211" value="03. 회원아이디 찾기">
+        <cl:xylayoutdata std:sid="xyl-data-67819fe3" top="0px" right="1px" width="141px" height="24px" horizontalAnchor="RIGHT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-598cca1b" style="font-weight:bold; font-size:1.39rem;" value="회원명  :">
+        <cl:xylayoutdata std:sid="xyl-data-fa955fb4" top="322px" left="215px" width="120px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-6b41c376" style="font-weight:bold; font-size:1.39rem;" value=" e-mail  :">
+        <cl:xylayoutdata std:sid="xyl-data-ec10c343" top="400px" left="215px" width="120px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:inputbox std:sid="i-box-16d00207" id="email" style="font-weight:normal; font-size:1rem;" placeholder="   유저 아이디를 입력해주세요.&#xD;&#xA;">
+        <cl:datamapbind property="value" datacontrolid="findId" columnname="email"/>
+        <cl:xylayoutdata std:sid="xyl-data-7b376d93" top="395px" left="350px" width="353px" height="64px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:inputbox>
+      <cl:xylayout std:sid="xylayout-37e1b76d"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-70ad39e8"/>
   </body>
   <std:studiosetting>
     <std:hruler/>

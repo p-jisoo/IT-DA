@@ -30,8 +30,10 @@ public interface EduApplyBoardService {
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
 	
 	List<Map<String, String>> findAppliedListByUserId(String id);
-
-	public List<Map<String, String>> findApplyingListByUserId(String id);
+	
+	List<Map<String, String>> findApplyingListByUserId(String id);
+	
+	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
 	void likeCaculate(String userId, String value);
 	Integer likeCount(long eduBoardNo);
 }

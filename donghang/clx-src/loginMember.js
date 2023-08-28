@@ -79,7 +79,8 @@ function onImgHomeClick(e){
  */
 function onOutputClick(e){
 	var output = e.control;
-	window.location.href=""
+	window.location.href="findId.clx"
+	
 }
 
 

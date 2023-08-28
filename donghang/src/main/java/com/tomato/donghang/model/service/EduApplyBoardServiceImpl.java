@@ -472,4 +472,22 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			
 		return data;
 	}
+
+
+	@Override
+	public List<Map<String, String>> findCommentListByUserIdAndBoardNo(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyCommentBoardVO> list = eduApplyBoardMapper.findCommentListByUserIdAndBoardNo(id);
+		for(EduApplyCommentBoardVO comments : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", comments.getEduApplyBoardVO().getEduBoardTitle());
+			row.put("EDU_APPLY_COMMENT_CONTENT", comments.getEduApplyCommentContent());
+			data.add(row);
+		}
+		log.info("data {}",data);
+		return data;
+	}
 }
+
+
+
