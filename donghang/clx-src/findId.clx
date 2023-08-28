@@ -8,19 +8,13 @@
     <cl:model std:sid="model-65f3a3cb">
       <cl:datamap std:sid="d-map-e3ff3bed" id="findId">
         <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-e69d51e6" name="user_name"/>
+          <cl:datacolumn std:sid="d-column-e69d51e6" name="userName"/>
           <cl:datacolumn std:sid="d-column-3221509a" name="email"/>
-        </cl:datacolumnlist>
-      </cl:datamap>
-      <cl:datamap std:sid="d-map-6fb24e42" id="dm2">
-        <cl:datacolumnlist>
-          <cl:datacolumn std:sid="d-column-457a6f53" name="user_id"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-28cb85c1" id="sms1" action="findIdForm.do">
         <cl:listener std:sid="listener-86bd2c30" name="submit-success" handler="onSms1SubmitSuccess"/>
         <cl:requestdata dataid="findId"/>
-        <cl:responsedata dataid="dm2"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -42,7 +36,7 @@
         <cl:xylayoutdata std:sid="xyl-data-8868fdd5" top="255px" left="351px" width="200px" height="56px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-d2469777" id="userName" style="font-size:1rem; font-style:normal;" placeholder="   유저 아이디를 입력해주세요.&#xD;&#xA;">
-        <cl:datamapbind property="value" datacontrolid="findId" columnname="user_name"/>
+        <cl:datamapbind property="value" datacontrolid="findId" columnname="userName"/>
         <cl:xylayoutdata std:sid="xyl-data-cfe939d3" top="318px" left="350px" width="353px" height="64px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:inputbox>
       <cl:button std:sid="button-280365bd" id="findIdBtn" style="background-color:#4682A9; color:#FFFFFF; font-size:1.5rem; background-image:none; font-style:normal;" value="아이디 찾기">

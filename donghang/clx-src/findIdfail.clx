@@ -10,7 +10,7 @@
   </head>
   <body std:sid="body-1d2cb021">
     <cl:group std:sid="group-017e6b17" id="submissionfaildialog" style="border-right-style:solid; border-bottom-color:#404040; border-top-width:3px; border-right-width:3px; border-left-color:#404040; border-right-color:#404040; border-left-width:3px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:3px; border-top-color:#404040; border-bottom-style:solid; background-image:none;">
-      <cl:xylayoutdata std:sid="xyl-data-2acabf31" top="10px" left="0px" width="500px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-2acabf31" top="10px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:button std:sid="button-d23aa4e2" id="return_btn" style="background-color:#F6F4EB; color:#4682A9; font-weight:bold; font-size:1.5rem; background-image:none;" value="확 인">
         <cl:listener std:sid="listener-cc6961dd" name="click" handler="onReturn_btnClick"/>
         <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="502px" height="80px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>

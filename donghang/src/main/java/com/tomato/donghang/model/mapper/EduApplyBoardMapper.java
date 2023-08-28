@@ -47,4 +47,6 @@ public interface EduApplyBoardMapper {
 
 	List<EduApplyBoardVO> findAppliedListByUserId(String id);
 	List<EduApplyBoardVO> findApplyingListByUserId(String id);
+	
+	List<EduApplyCommentBoardVO> findCommentListByUserIdAndBoardNo(String id);
 }

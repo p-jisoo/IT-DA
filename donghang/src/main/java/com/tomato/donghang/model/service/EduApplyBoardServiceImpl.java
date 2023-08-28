@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
+import com.tomato.donghang.model.vo.CommentBoardVO;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
@@ -430,6 +431,19 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			data.add(row);
 		}
 			
+		return data;
+	}
+
+	@Override
+	public List<Map<String, String>> findCommentListByUserIdAndBoardNo(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyCommentBoardVO> list = eduApplyBoardMapper.findCommentListByUserIdAndBoardNo(id);
+		for(EduApplyCommentBoardVO comments : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", comments.getEduApplyBoardVO().getEduBoardTitle());
+			row.put("EDU_APPLY_COMMENT_CONTENT", comments.getEduApplyCommentContent());
+			data.add(row);
+		}
 		return data;
 	}
 }

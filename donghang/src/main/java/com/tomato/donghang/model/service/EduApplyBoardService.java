@@ -31,5 +31,7 @@ public interface EduApplyBoardService {
 	
 	List<Map<String, String>> findAppliedListByUserId(String id);
 	
-	public List<Map<String, String>> findApplyingListByUserId(String id);
+	List<Map<String, String>> findApplyingListByUserId(String id);
+	
+	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
 }
