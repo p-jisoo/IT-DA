@@ -1631,10 +1631,10 @@
 					var image_1 = new cpr.controls.Image();
 					image_1.src = "theme/images/img/logo2_donghang.png";
 					container.addChild(image_1, {
-						"top": "32px",
+						"top": "55px",
 						"left": "52px",
-						"width": "112px",
-						"height": "90px"
+						"width": "101px",
+						"height": "85px"
 					});
 					var output_1 = new cpr.controls.Output();
 					output_1.value = "ITda Accompany";
@@ -1644,20 +1644,20 @@
 						"font-size" : "2rem"
 					});
 					container.addChild(output_1, {
-						"top": "40px",
+						"top": "79px",
 						"left": "163px",
-						"width": "267px",
-						"height": "74px"
+						"width": "302px",
+						"height": "55px"
 					});
 					var output_2 = new cpr.controls.Output();
 					output_2.value = "이용약관";
 					output_2.style.css({
 						"color" : "#F6F6F6",
 						"font-weight" : "bold",
-						"font-size" : "1.2rem"
+						"font-size" : "1.15rem"
 					});
 					container.addChild(output_2, {
-						"top": "20px",
+						"top": "40px",
 						"left": "535px",
 						"width": "120px",
 						"height": "40px"
@@ -1667,10 +1667,10 @@
 					output_3.style.css({
 						"color" : "#F6F6F6",
 						"font-weight" : "bold",
-						"font-size" : "1.2rem"
+						"font-size" : "1.15rem"
 					});
 					container.addChild(output_3, {
-						"top": "20px",
+						"top": "40px",
 						"left": "703px",
 						"width": "157px",
 						"height": "40px"
@@ -1680,10 +1680,10 @@
 					output_4.style.css({
 						"color" : "#F6F6F6",
 						"font-weight" : "bold",
-						"font-size" : "1.2rem"
+						"font-size" : "1.15rem"
 					});
 					container.addChild(output_4, {
-						"top": "20px",
+						"top": "40px",
 						"left": "921px",
 						"width": "126px",
 						"height": "40px"
@@ -1696,7 +1696,7 @@
 						"font-size" : "16px"
 					});
 					container.addChild(output_5, {
-						"top": "71px",
+						"top": "91px",
 						"left": "534px",
 						"width": "457px",
 						"height": "31px"
@@ -1708,7 +1708,7 @@
 						"font-weight" : "bold"
 					});
 					container.addChild(output_6, {
-						"top": "111px",
+						"top": "131px",
 						"left": "534px",
 						"width": "507px",
 						"height": "31px"
@@ -1721,7 +1721,7 @@
 						"font-size" : "16px"
 					});
 					container.addChild(output_7, {
-						"top": "106px",
+						"top": "126px",
 						"left": "1198px",
 						"width": "349px",
 						"height": "42px"
@@ -1730,8 +1730,8 @@
 				container.addChild(group_1, {
 					"top": "0px",
 					"left": "5px",
-					"width": "1530px",
-					"height": "170px"
+					"width": "2031px",
+					"height": "189px"
 				});
 			}
 		});

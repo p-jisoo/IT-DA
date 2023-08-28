@@ -912,15 +912,6 @@
 				"width": "1920px",
 				"height": "72px"
 			});
-			
-			var userDefinedControl_1 = new udc.udcDialogd();
-			userDefinedControl_1.style.css({
-				"background-color" : "#B0B0B0"
-			});
-			container.addChild(userDefinedControl_1, {
-				"width": "1534px",
-				"height": "166px"
-			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
 			}

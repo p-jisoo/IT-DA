@@ -237,6 +237,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-color" : "#B0B0B0 none",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -248,10 +249,10 @@
 			// UI Configuration
 			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
 			container.addChild(embeddedApp_1, {
-				"top": "237px",
+				"top": "231px",
 				"left": "21px",
 				"width": "1960px",
-				"height": "824px"
+				"height": "884px"
 			});
 			
 			var output_1 = new cpr.controls.Output();
@@ -471,6 +472,14 @@
 				"right": "446px",
 				"left": "503px",
 				"height": "154px"
+			});
+			
+			var userDefinedControl_1 = new udc.udcDialogd();
+			container.addChild(userDefinedControl_1, {
+				"top": "1228px",
+				"left": "20px",
+				"width": "2062px",
+				"height": "184px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

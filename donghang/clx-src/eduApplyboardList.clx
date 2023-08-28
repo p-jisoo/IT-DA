@@ -250,9 +250,6 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:udc std:sid="ud-control-01f139c1" style="background-color:#B0B0B0;" type="udc.udcDialogd">
-      <cl:verticaldata std:sid="v-data-0ec10faa" width="1534px" height="166px"/>
-    </cl:udc>
     <cl:verticallayout std:sid="v-layout-99c99f99" scrollable="false"/>
   </body>
   <std:studiosetting>
