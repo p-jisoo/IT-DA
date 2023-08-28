@@ -30,6 +30,7 @@ function onBodyLoad2(e) {
 	var commentListSet = app.lookup("commentListSet");
 	
 	var host = app.getHost();
+	var hostAppInstance = host.getAppInstance();
 	var initValue = host.initValue;
 	//컨트롤러로 boardNo 값 보내기
 	eduApplyBoardMap.setValue("EDU_BOARD_NO", initValue);
@@ -38,15 +39,87 @@ function onBodyLoad2(e) {
 	console.log("commentBoardMap setValue : " + commentBoardMap.getValue("EDU_BOARD_NO"));
 	selectCommentsms.send();
 	selectsms.send();
-	//selectCommentsms.send();
-	//	var eduApplyBoardMemeberCountMap = app.lookup("eduApplyBoardMemeberCountMap");
-	//	eduApplyBoardMemeberCountMap.setValue("MEMBER_COUNT_ID", value);
-	//	eduApplyBoardMemeberCountMap.setValue("USER_ID", value);
-	//	eduApplyBoardMemeberCountMap.setValue("EDU_BOARD_NO", value);
 	
-	//	var host = app.getHost();
-	//	host.initValue.value;
-	//	//컨트롤러로 boardNo 값 보내기
+	console.log("hostAppInstance : " + hostAppInstance);
+	
+	//update 이동
+	var updateButton = app.lookup("updateButton");
+	updateButton.addEventListener("click", function(e) {
+		var vcEmb = hostAppInstance.lookup("ea1");
+		var vsAppId = "updateBoard";
+		if (vsAppId == null) {
+			return alert("추가될 App이 존재하지 않습니다.");
+		}
+		cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+			/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+			if (vcEmb.getEmbeddedAppInstance()) {
+				vcEmb.getEmbeddedAppInstance().dispose();
+			}
+			/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+			if (loadedApp) {
+				/*초기값을 전달합니다.*/
+				vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {
+					embApp.initValue = eduApplyBoardMap.getValue("EDU_BOARD_NO");
+				})
+				/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+				vcEmb.app = loadedApp;
+				var app1 = vcEmb.app;
+				app1.getInstances()
+			}
+		});
+	});
+	//list 이동
+	var listButton = app.lookup("listButton");
+	listButton.addEventListener("click", function(e) {
+		var vcEmb = hostAppInstance.lookup("ea1");
+		var vsAppId = "eduApplyboardList";
+		if (vsAppId == null) {
+			return alert("추가될 App이 존재하지 않습니다.");
+		}
+		cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+			/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+			if (vcEmb.getEmbeddedAppInstance()) {
+				vcEmb.getEmbeddedAppInstance().dispose();
+			}
+			/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+			if (loadedApp) {
+				/*초기값을 전달합니다.*/
+				vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {
+					embApp.initValue = eduApplyBoardMap.getValue("EDU_BOARD_NO");
+				})
+				/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+				vcEmb.app = loadedApp;
+				var app1 = vcEmb.app;
+				app1.getInstances()
+			}
+		});
+	});
+	//delete 이동
+	var deleteButton = app.lookup("deleteButton");
+	deleteButton.addEventListener("click", function(e) {
+		var vcEmb = hostAppInstance.lookup("ea1");
+		var vsAppId = "eduApplyboardList";
+		if (vsAppId == null) {
+			return alert("추가될 App이 존재하지 않습니다.");
+		}
+		cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+			/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+			if (vcEmb.getEmbeddedAppInstance()) {
+				vcEmb.getEmbeddedAppInstance().dispose();
+			}
+			/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+			if (loadedApp) {
+				/*초기값을 전달합니다.*/
+				vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {
+					embApp.initValue = eduApplyBoardMap.getValue("EDU_BOARD_NO");
+				})
+				/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+				vcEmb.app = loadedApp;
+				var app1 = vcEmb.app;
+				app1.getInstances()
+			}
+		});
+	});
 }
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -71,16 +144,15 @@ function onSelectsmsSubmitSuccess(e) {
 	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
+	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue.substring(0, 10));
+	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue.substring(0, 10));
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue.substring(0, 10));
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue.substring(0, 10));
 	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();
 	app.lookup("memberCount").redraw();
-	app.lookup("content").redraw();
 	app.lookup("udccomduodatepicker1").redraw();
 	app.lookup("udccomduodatepicker2").redraw();
 	app.lookup("address").redraw();
@@ -104,19 +176,43 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var grid = app.lookup("grd1");
 	var grdDelete = app.lookup("grdDelete");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	var commentBoardMap = app.lookup("commentBoardMap");
 	var userIdValue = app.lookup("userId");
+	var deleteButton = app.lookup("deleteButton");
+	var updateButton = app.lookup("updateButton");
+	var applyButton = app.lookup("applyButton");
+	var commentContent = app.lookup("commentContent");
+	var insertCommentButton = app.lookup("insertCommentButton");
+	
+	console.log("userid " + userIdValue.value);
+	console.log("eduboard id " + commentBoardMap.getValue("USER_ID"));
+	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
+		deleteButton.visible = true;
+		updateButton.visible = true;
+		commentContent.visible = true;
+		insertCommentButton.visible = true;
+		deleteButton.redraw();
+		updateButton.redraw();
+		commentContent.redraw();
+		insertCommentButton.redraw();
+		if (commentBoardMap.getValue("USER_ID") != null) {
+			applyButton.visible = true;
+		}
+	}
 	//commentSet
 	var commentListSet = app.lookup("commentListSet");
 	
 	//commentMap
 	var commentBoardMap = app.lookup("commentBoardMap");
-		for (var i = 1; i < grid.rowCount; i++) {
+	for (var i = 1; i < grid.rowCount; i++) {
 		console.log(grid.getCellValue(i, "USER_ID"));
 		if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
-			grdDelete.visible = true
+			//			grid.updateRow(i, grdDelete.visible = true)
+			grdDelete.visible = true;
 			grid.redraw();
 		}
 	}
+	
 }
 /*
  * "수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -129,11 +225,11 @@ function onButtonClick(e) {
 	
 	var dataMap = app.lookup("eduApplyBoardMap");
 	var udcExamDuoDatePicker = app.lookup("udccomduodatepicker1");
-	dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue);
-	dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue);
+	dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
+	dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
 	var udcExamDuoDatePicker2 = app.lookup("udccomduodatepicker2");
-	dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue);
-	dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue);
+	dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
+	dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
 	var addressinputBox = app.lookup("address");
 	//	var detailAdressinputBox = app.lookup("detailAdress");
 	//	
@@ -141,7 +237,6 @@ function onButtonClick(e) {
 	//		dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
 	//	}
 	submission.send()
-	window.location.href = "updateBoard.clx";
 }
 
 /*
@@ -183,7 +278,6 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var submission = app.lookup("deletesms");
 	submission.send()
-	window.location.href = "toBoardList.do";
 }
 
 /*
@@ -233,14 +327,6 @@ function onButtonClick6(e) {
 	submission.send()
 }
 
-/*
- * "목록" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick7(e) {
-	var button = e.control;
-	window.location.href = "toBoardList.do";
-}
 //
 ///*
 // * "참여하기" 버튼에서 click 이벤트 발생 시 호출.
@@ -307,12 +393,17 @@ function onButtonClick11(e) {
  */
 function onButtonClick12(e) {
 	var button = e.control;
+	
 	var createCommentsms = app.lookup("createCommentsms");
 	var selectCommentsms = app.lookup("selectCommentsms");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
 	var userId = app.lookup("userId");
 	var commentContent = app.lookup("commentContent");
+	var insertCommentButton = app.lookup("insertCommentButton");
+	console.log("userId.value : " + userId.value);
+	console.log("commentBoardMap value : " + commentBoardMap.getValue("USER_ID"));
+	
 	commentBoardMap.setValue("USER_ID", userId.value);
 	commentBoardMap.setValue("EDU_APPLY_COMMENT_CONTENT", commentContent.value);
 	commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
@@ -335,6 +426,7 @@ function onButtonClick12(e) {
 		grid.redraw();
 	}
 	grid.redraw();
+	
 }
 
 /*
@@ -352,13 +444,18 @@ function onButtonClick13(e) {
  */
 function onButtonClick14(e) {
 	var button = e.control;
-	var button2 = app.lookup("grdDelete");
-	var deleteCommentsms = app.lookup("deleteCommentsms");
+	
+	var grdDelete = app.lookup("grdDelete");
+	
 	var commentBoardMap = app.lookup("commentBoardMap");
 	var selectCommentsms = app.lookup("selectCommentsms");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	var commentContent = app.lookup("commentContent");
+	commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
 	
+	var deleteCommentsms = app.lookup("deleteCommentsms");
 	deleteCommentsms.send();
+	 
 	var grid = app.lookup("grd1");
 	if (deleteCommentsms.isSuccess()) {
 		commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
@@ -367,36 +464,35 @@ function onButtonClick14(e) {
 	}
 	grid.redraw();
 }
-
-//var host = app.getHost();
-//	var hostAppInstance = host.getAppInstance();
-//	var grid = app.lookup("grd1");
-//	grid.addEventListener("cell-click", function(e){
-//		var vcEmb = hostAppInstance.lookup("ea1");
-//		var vsAppId = "detailBoard";
-//		if(vsAppId == null) {
-//		return alert("추가될 App이 존재하지 않습니다.");
-//	}
-//		cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
-//		/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
-//		if(vcEmb.getEmbeddedAppInstance()){
-//			vcEmb.getEmbeddedAppInstance().dispose();
-//		}
-//		/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
-//		if(loadedApp){						
-//			/*초기값을 전달합니다.*/			
-//			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
-//			embApp.initValue =e.row.getRowData().EDU_BOARD_NO;
-//			})
-//			/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
-//			vcEmb.app = loadedApp;
-//			var app1 = vcEmb.app;
-//			app1.getInstances()
-//		}
-//	}); 
-//	});
-//	
-//	var listBox = app.lookup("lbx1");
-//	var comboBox = app.lookup("cmb1");
-//	listBox.selectItemByValue("value1");
-//	comboBox.selectItemByValue("value1");
+/*
+ * 그리드에서 cell-click 이벤트 발생 시 호출.
+ * Grid의 Cell 클릭시 발생하는 이벤트.
+ */
+function onGrd1CellClick2(e) {
+	var grd1 = e.control;
+	var grid = app.lookup("grd1");
+	var selectCommentsms = app.lookup("selectCommentsms");
+	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	var commentBoardMap = app.lookup("commentBoardMap");
+	var deleteCommentsms = app.lookup("deleteCommentsms");
+	var cellValue = grid.getCellValue(e.row.getIndex(), 1);
+	console.log("cellValue : " + cellValue);
+	commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
+	commentBoardMap.setValue("EDU_APPLY_COMMENT_CONTENT", cellValue);
+	
+	deleteCommentsms.send();
+	if (deleteCommentsms.isSuccess()) {
+		commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
+		selectCommentsms.send();
+		grid.redraw();
+	}
+	grid.redraw();
+}
+/*
+ * "목록" 버튼(listButton)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onListButtonClick(e) {
+	var listButton = e.control;
+	
+}

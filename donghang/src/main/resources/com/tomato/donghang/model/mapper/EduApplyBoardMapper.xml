@@ -230,8 +230,7 @@ EDU_BOARD_MAX_MEMBER_COUNT,
 EDU_BOARD_ADDRESS,
 EDU_BOARD_CATEGORY,
 EDU_BOARD_CONTENT,
-EDU_BOARD_STATUS,
-USER_ID
+EDU_BOARD_STATUS
 FROM EDU_APPLY_BOARD
 where EDU_BOARD_NO=#{eduBoardNo}
 </select>
@@ -323,6 +322,8 @@ USER_ID=#{memberVO.userId}
 <delete id="deleteCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
 DELETE FROM EDU_APPLY_COMMENT_BOARD 
 WHERE
+EDU_APPLY_COMMENT_CONTENT=#{eduApplyCommentContent}
+AND
 EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
 AND
 USER_ID=#{memberVO.userId}

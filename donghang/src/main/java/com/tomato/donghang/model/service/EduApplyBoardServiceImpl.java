@@ -165,13 +165,13 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 /********************hyeok***************************************/	
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
-		//System.out.println("selectBoard param "+ param );
+		System.out.println("selectBoard param "+ param );
 		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		EduApplyBoardVO evo = new EduApplyBoardVO();
 		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
 		//System.out.println("evo : "+evo);
 		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
-		//System.out.println("serviceImpl evo : " + evo);
+		System.out.println("serviceImpl evo : " + evo);
 		Map<String, Object> dataMap = new HashMap<>();
 		
 		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
@@ -183,7 +183,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
 		dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
 		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
-		dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
 		dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
 		dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
 		
@@ -231,7 +230,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 
 	@Override
 	public void updateBoard(ParameterGroup param) {
-		// String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		String eduBoardTitle = param.getValue("EDU_BOARD_TITLE");
 		String eduBoardStartPeriod = param.getValue("EDU_BOARD_START_PERIOD");
 		String eduBoardEndPeriod = param.getValue("EDU_BOARD_END_PERIOD");
@@ -247,6 +246,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(USER_ID);
 		vo.setMemberVO(mvo);
+		vo.setEduBoardNo(Long.parseLong(eduBoardNo));
 		vo.setEduBoardTitle(eduBoardTitle);
 		vo.setEduBoardStartPeriod(eduBoardStartPeriod);
 		vo.setEduBoardEndPeriod(eduBoardEndPeriod);
@@ -268,7 +268,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 
 	@Override
 	public void deleteBoard(ParameterGroup param) {
-		// String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		String eduBoardTitle = param.getValue("EDU_BOARD_TITLE");
 		String eduBoardStartPeriod = param.getValue("EDU_BOARD_START_PERIOD");
 		String eduBoardEndPeriod = param.getValue("EDU_BOARD_END_PERIOD");
@@ -284,6 +284,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(USER_ID);
 		vo.setMemberVO(mvo);
+		vo.setEduBoardNo(Long.parseLong(eduBoardNo));
 		vo.setEduBoardTitle(eduBoardTitle);
 		vo.setEduBoardStartPeriod(eduBoardStartPeriod);
 		vo.setEduBoardEndPeriod(eduBoardEndPeriod);
@@ -309,14 +310,17 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		
 		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
 		String eduBoardNo = param.getValue("EDU_BOARD_NO");
-		String userId = param.getValue("USER_ID");
+		
 		EduApplyBoardVO evo = new EduApplyBoardVO();
 		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-		MemberVO mvo = new MemberVO();
-		mvo.setUserId(userId);
-		
+		if(param.getValue("USER_ID")!=null) {
+			String userId = param.getValue("USER_ID");
+			MemberVO mvo = new MemberVO();
+			mvo.setUserId(userId);
+			ecvo.setMemberVO(mvo);
+		}
 		ecvo.setEduApplyBoardVO(evo);
-		ecvo.setMemberVO(mvo);
+		
 		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		List<EduApplyCommentBoardVO> ecvoList=eduApplyBoardMapper.selectCommentBoard(ecvo);
@@ -325,7 +329,9 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("EDU_APPLY_COMMENT_CONTENT", ecvo2.getEduApplyCommentContent());
 		map.put("EDU_BOARD_NO", ecvo2.getEduApplyBoardVO().getEduBoardNo());
-		map.put("USER_ID", ecvo2.getMemberVO().getUserId());
+		if(ecvo2.getMemberVO().getUserId()!=null) {
+			map.put("USER_ID", ecvo2.getMemberVO().getUserId());
+		}
 		list.add(map);
 		}
 		System.out.println("comment list : "+list);
@@ -390,12 +396,12 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 
 	@Override
 	public void deleteCommentBoard(ParameterGroup param) {
-
+		System.out.println("delete Board param : "+param);
 		//String eduApplyCommentBoardNo = param.getValue("EDU_APPLY_COMMENT_BOARD_NO");
 		String eduApplyCommentContent = param.getValue("EDU_APPLY_COMMENT_CONTENT");
 		String eduBoardNo = param.getValue("EDU_BOARD_NO");
 		String USER_ID = param.getValue("USER_ID");
-
+		System.out.println("delete eduBoardNo :" + eduBoardNo);
 		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
 		
 		EduApplyBoardVO evo = new EduApplyBoardVO();

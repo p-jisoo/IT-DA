@@ -111,7 +111,7 @@
       <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
         <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
         <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
-        <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
+        <cl:listener std:sid="listener-34eb6cb5" name="selection-change" handler="onNav1SelectionChange2"/>
         <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="369px" left="580px" height="154px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
         <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
       </cl:navigationbar>
