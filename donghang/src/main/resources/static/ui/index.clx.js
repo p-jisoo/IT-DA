@@ -263,10 +263,10 @@
 			output_1.style.css({
 				"color" : "#262626",
 				"font-weight" : "bolder",
-				"font-size" : "1.3rem"
+				"font-size" : "1.5rem"
 			});
 			container.addChild(output_1, {
-				"top": "16px",
+				"top": "41px",
 				"left": "162px",
 				"width": "100px",
 				"height": "44px"
@@ -362,7 +362,7 @@
 				});
 				var output_3 = new cpr.controls.Output("welcom");
 				output_3.visible = false;
-				output_3.value = "님 환영합니다.";
+				output_3.value = "님  환영합니다.";
 				output_3.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1rem"
@@ -387,10 +387,10 @@
 					output_4.addEventListener("value-change", onWhoNameValueChange);
 				}
 				container.addChild(output_4, {
-					"top": "17px",
-					"left": "809px",
+					"top": "23px",
+					"left": "820px",
 					"width": "130px",
-					"height": "41px"
+					"height": "34px"
 				});
 			})(group_1);
 			if(typeof onGroupClick2 == "function") {

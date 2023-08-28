@@ -22,16 +22,16 @@
   <body std:sid="body-9f70a723">
     <cl:group std:sid="group-017e6b17" id="registerdialog" style="background-color:#FFFFFF; border-right-style:solid; border-bottom-color:#b42e4c; border-left-style:solid; border-left-color:#b42e4c; border-top-color:#b42e4c; border-bottom-style:solid; border-right-color:#b42e4c; background-image:none; border-top-style:solid;">
       <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="399px" height="298px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-d23aa4e2" id="yes_btn" style="background-color:#F1C4CE; color:#AA2828; font-weight:bold; font-size:2rem; background-image:none;" value="yes">
+      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="398px" height="298px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-d23aa4e2" id="yes_btn" style="background-color:#aa2828; color:#F1C4CE; font-weight:bold; font-size:2rem; background-image:none;" value="yes">
         <cl:listener std:sid="listener-9bad074a" name="click" handler="onNo_btnClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="400px" height="82px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" left="-5px" height="82px" horizontalAnchor="BOTH" verticalAnchor="BOTTOM"/>
       </cl:button>
-      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="회원 정보가 탈퇴되었습니다.">
-        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="124px" left="46px" width="300px" height="75px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.3rem; text-align:center;" value="비밀번호가 틀렸습니다.">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="136px" left="47px" width="300px" height="75px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:img std:sid="image-218109fb" src="theme/images/img/cry_donghang.png">
-        <cl:xylayoutdata std:sid="xyl-data-6ff9be9a" top="30px" left="133px" width="111px" height="95px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-218109fb" src="theme/images/img/deletefail_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-6ff9be9a" top="30px" left="133px" width="120px" height="107px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>
       <cl:xylayout std:sid="xylayout-a8d4a2da"/>
     </cl:group>

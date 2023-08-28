@@ -1728,10 +1728,10 @@
 					});
 				})(group_1);
 				container.addChild(group_1, {
-					"top": "0px",
+					"top": "8px",
 					"left": "5px",
 					"width": "2031px",
-					"height": "189px"
+					"height": "181px"
 				});
 			}
 		});

@@ -81,7 +81,7 @@ function onButtonClick(e){
  */
 function onButtonClick2(e){
 	var button = e.control;
-	window.location.href="deleteMember.clx";
+	window.location.href="deleteMemberPopup.clx";
 }
 
 

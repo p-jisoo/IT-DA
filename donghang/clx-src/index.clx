@@ -65,8 +65,8 @@
     <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
       <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="245px" left="21px" width="1960px" height="884px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedapp>
-    <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.3rem;" value="ITda">
-      <cl:xylayoutdata std:sid="xyl-data-64405299" top="16px" left="162px" width="100px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.5rem;" value="ITda">
+      <cl:xylayoutdata std:sid="xyl-data-64405299" top="41px" left="162px" width="100px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
       <cl:xylayoutdata std:sid="xyl-data-c5508eb1" top="84px" left="162px" width="160px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
@@ -87,14 +87,14 @@
         <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
         <cl:xylayoutdata std:sid="xyl-data-130f5553" top="20px" left="1256px" width="90px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
-      <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님 환영합니다.">
+      <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님  환영합니다.">
         <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
         <cl:xylayoutdata std:sid="xyl-data-0429e3da" top="23px" left="949px" width="138px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
         <cl:listener std:sid="listener-5ee7b881" name="value-change" handler="onWhoNameValueChange"/>
         <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-        <cl:xylayoutdata std:sid="xyl-data-dd6d5935" top="17px" left="809px" width="130px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+        <cl:xylayoutdata std:sid="xyl-data-dd6d5935" top="23px" left="820px" width="130px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
       <cl:xylayout std:sid="xylayout-1530ee91"/>
     </cl:group>
