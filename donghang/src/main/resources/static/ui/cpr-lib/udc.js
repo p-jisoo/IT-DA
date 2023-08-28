@@ -1565,6 +1565,7 @@
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
 /// end - udc.udcdialog
+<<<<<<< HEAD
 /// start - udc.udcDialogd
 /*
  * UDC Qualified Name: udc.udcDialogd
@@ -1757,3 +1758,5 @@
 	cpr.core.Platform.INSTANCE.register(internalApp);
 })();
 /// end - udc.udcDialogd
+=======
+>>>>>>> refs/heads/main

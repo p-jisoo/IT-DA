@@ -1,6 +1,5 @@
 package com.tomato.donghang.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +16,8 @@ import com.cleopatra.protocol.data.DataRequest;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
-import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
 import com.tomato.donghang.model.service.EduApplyBoardService;
+import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EduApplyBoardController {
 	private final EduApplyBoardService eduApplyBoardService;
-	private final EduApplyBoardMapper eduApplyBoardMapper;
 	@PostMapping("/ui/testajax.do")
 	public String testAjax() { 
 		return "hello ajax";  
@@ -51,6 +49,11 @@ public class EduApplyBoardController {
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
+	@GetMapping("/ui/detailBoardUI.do")
+	public View detailBoardUI() {
+		return new UIView("/ui/detailBoard.clx");
+	}
+
 	@PostMapping("/ui/findBaordList.do")
 	public View findBoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		List<Map<String, Object>> data = eduApplyBoardService.findBaordList();
@@ -82,7 +85,7 @@ public class EduApplyBoardController {
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
 		dataRequest.setParameter("keyword", param.getValue("keyword"));
-		log.info("data {}", data);
+		System.out.println(dataRequest.getParameter("keyword"));
 		return new JSONDataView();
 	}
 	
@@ -94,6 +97,7 @@ public class EduApplyBoardController {
 			return new JSONDataView();
 		}else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
+			System.out.println("로그인 후=" + vo);
 			if (vo != null) {
 				dataRequest.setResponse("name", vo.getUserName());
 			}
@@ -101,17 +105,7 @@ public class EduApplyBoardController {
 		}
 	}
 	
-	@PostMapping("ui/likeCaculate.do")
-	public View likeCaculate(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-		HttpSession session = request.getSession(false);
-		ParameterGroup param = dataRequest.getParameterGroup("dm1");
-		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
-		eduApplyBoardService.likeCaculate(memberVO.getUserId(),param.getValue("board_no"));
-		log.info("like {}", param.getValue("board_no").getClass());
-		return new JSONDataView();
-	}
-	
-	
+	//List
 	
 	
 	
@@ -120,28 +114,7 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
-		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
-		HttpSession session = request.getSession(false);
-		Integer likeCount;
-		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
-		if(session==null || session.getAttribute("mvo")==null) {
-			log.debug("eduBoardNo {} ",eduBoardNo);
-			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
-			log.debug("로그인 안했을때 likeCount {} ",likeCount);
-		}else {
-			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
-			Map<String, Object> map = new HashMap<>();
-			String userId = memberVO.getUserId();
-			map.put("eduBoardNo", eduBoardNo);
-			map.put("userId", userId);
-			likeCount = eduApplyBoardMapper.isLike(map);
-			log.debug("로그인 했을때 likeCount {} ",likeCount);
-		}
-		dataMap.put("IsLike", likeCount);
-//		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
-
-//		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
 //		return new UIView("/ui/updateBoard.do");
@@ -212,4 +185,30 @@ public class EduApplyBoardController {
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
 
+	@GetMapping("ui/mypage")
+	public View mypageForm() {
+		return new UIView("ui/mypage.clx");
+	}
+	@PostMapping("ui/appliedList.do")
+	public View findAppliedListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("ggggg");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findAppliedListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		
+		
+		return new JSONDataView();
+	} 
+	@PostMapping("ui/applyList.do")
+	public View findAppliyingListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("1111");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findApplyingListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		return new JSONDataView();
+	} 
 }

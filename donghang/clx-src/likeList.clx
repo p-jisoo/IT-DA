@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-d0e6f045" version="1.0.4584">
+  <head std:sid="head-d9446e1a">
+    <screen std:sid="screen-1707b015" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800"/>
+    <screen std:sid="screen-dfd53188" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-4c95e42c" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-0ead4e31" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-3fa7fe4b"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-5eacb011">
+    <cl:grid std:sid="grid-ba9f7c4a" id="grd1">
+      <cl:xylayoutdata std:sid="xyl-data-5cadf8df" top="183px" left="285px" width="400px" height="200px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-18c8100f"/>
+      <cl:gridcolumn std:sid="g-column-884091c9"/>
+      <cl:gridcolumn std:sid="g-column-5f0b1027"/>
+      <cl:gridcolumn std:sid="g-column-13b6e52f"/>
+      <cl:gridcolumn std:sid="g-column-bf2fceb2"/>
+      <cl:gridheader std:sid="gh-band-f33af2f0">
+        <cl:gridrow std:sid="g-row-529127a8"/>
+        <cl:gridcell std:sid="gh-cell-8b9f8920" rowindex="0" colindex="0"/>
+        <cl:gridcell std:sid="gh-cell-13d18062" rowindex="0" colindex="1"/>
+        <cl:gridcell std:sid="gh-cell-4b859daa" rowindex="0" colindex="2"/>
+        <cl:gridcell std:sid="gh-cell-1845cda6" rowindex="0" colindex="3"/>
+        <cl:gridcell std:sid="gh-cell-a99a8652" rowindex="0" colindex="4"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-d913a1e7">
+        <cl:gridrow std:sid="g-row-b698b385"/>
+        <cl:gridcell std:sid="gd-cell-716f81a0" rowindex="0" colindex="0"/>
+        <cl:gridcell std:sid="gd-cell-5a0cb9d8" rowindex="0" colindex="1"/>
+        <cl:gridcell std:sid="gd-cell-8734f1e8" rowindex="0" colindex="2"/>
+        <cl:gridcell std:sid="gd-cell-c6910f32" rowindex="0" colindex="3"/>
+        <cl:gridcell std:sid="gd-cell-1ff275bd" rowindex="0" colindex="4"/>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:xylayout std:sid="xylayout-df057f61"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

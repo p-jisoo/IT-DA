@@ -25,12 +25,12 @@ function onButtonClick(e) {
 	console.log(pwd);
 	console.log(pwdChk);
 	if (pwd != pwdChk) {
-		alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다");
+		alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다.");
 		return;
 	}else{
 	submission.send();
-	
 	}
+
 }
 
 /*

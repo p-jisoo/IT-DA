@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
+import com.tomato.donghang.model.vo.MemberVO;
 
 @Mapper
 public interface EduApplyBoardMapper {
@@ -50,5 +51,6 @@ public interface EduApplyBoardMapper {
 
 	void deleteLikeCount(Map<String, Object> map);
 
-
+	List<EduApplyBoardVO> findAppliedListByUserId(String id);
+	List<EduApplyBoardVO> findApplyingListByUserId(String id);
 }

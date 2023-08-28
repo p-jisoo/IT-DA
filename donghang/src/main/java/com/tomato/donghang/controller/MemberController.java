@@ -18,16 +18,20 @@ import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.mapper.MemberMapper;
+import com.tomato.donghang.model.service.MemberService;
 import com.tomato.donghang.model.vo.MemberVO;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 public class MemberController {
 	@Autowired
 	private MemberMapper memberMapper;
 
+	private final MemberService memberService;
 	@GetMapping("ui/register.do")
 	public View register(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		return new UIView("ui/registerMember.clx");
@@ -66,6 +70,7 @@ public class MemberController {
 	@PostMapping("ui/loginMember")
 	public View loginMember(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup data = dataRequest.getParameterGroup("dm1");
+		String result=null;
 		String id = data.getValue("user_id");
 		String password = data.getValue("password");
 		MemberVO memberVO = new MemberVO(id, password);
@@ -74,7 +79,11 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
 			dataRequest.setResponse("ds_member", vo);
+			result="success";
+		}else{
+			result="fail";
 		}
+		dataRequest.setResponse("result", result);
 		return new JSONDataView();
 	}
 
@@ -101,6 +110,12 @@ public class MemberController {
 			log.info("updateMember 회원정보 수정 전 유저 정보 {}" , vo); // 회원정보 수정 후 유저 정보
 			memberMapper.updateMember(vo);
 			session.setAttribute("mvo", vo);
+		//	String result="success";
+			
+//			Map<String , Object> map =new HashMap<>();
+//			map.put("result", map);
+//			dataRequest.setResponse("updateSuccess", result);
+			
 		}
 		return new JSONDataView();
 	}
@@ -190,6 +205,14 @@ public class MemberController {
 		}
 		return new JSONDataView();
 
+	}
+	//아이디 찾기
+	@PostMapping("ui/findIdForm.do")
+	public View findIdByNameAndEmail(DataRequest dataRequset, HttpServletRequest request, HttpServletResponse reponse) {
+		ParameterGroup data =dataRequset.getParameterGroup("findId");
+		String id = data.getValue("userId");
+		memberService.findIdByNameAndEmail(id);
+		return new UIView("/ui/findId.clx");
 	}
 
 }

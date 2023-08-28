@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Service;
 
 import com.cleopatra.protocol.data.ParameterGroup;
@@ -57,7 +55,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			applyStatus= "";
 			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		}else {
-			log.debug("status{}", param.getValue("status"));
+			log.info("status{}", param.getValue("status"));
 			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		}
 		
@@ -88,6 +86,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    map.put("status", applyStatus);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchThing(map);
 	    List<Map<String, Object>> newData = new ArrayList<>();
+	    log.info("첫data {}", data.get(0));
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
 			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
@@ -96,7 +95,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			newData.add(evo);
 		}
 		data = newData;
-		log.info("findBoardListWithStatusByPage data {}", data);
+		log.warn("data {}", data);
 		return data;
 	}
 	
@@ -144,11 +143,13 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    po.put("status", applyStatus);
 	    po.put("type", type);
 	    po.put("keyword", keyword);
+	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
-	    log.info("총 게시물 수 {}", data);
+	    log.info("data {}", data);
 	    if(data.size()==0) {
 	    	return data;
 	    }
+	    log.info("총 게시물 수 {}", data);
 	    List<Map<String, Object>> newData = new ArrayList<>();
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
@@ -162,31 +163,29 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
-        String eduBoardNo = param.getValue("EDU_BOARD_NO");
-        EduApplyBoardVO evo = new EduApplyBoardVO();
-        evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-        System.out.println("evo : "+evo);
-        EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
-        System.out.println("serviceImpl evo : " + evo);
-        Map<String, Object> dataMap = new HashMap<>();
-
-        dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
-        dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
-        dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
-        dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo2.getEduBoardApplyStartPeriod());
-        dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo2.getEduBoardApplyEndPeriod());
-        dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo2.getEduBoardMaxMemberCount());
-        dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
-        dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
-        dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
-        dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
-        dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
-        dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
-
-        System.out.println("serviceImpl MAP" + dataMap);
-
-        return dataMap;
-    }
+		String eduBoardNo = param.getValue("EDU_BOARD_NO");
+		EduApplyBoardVO evo = new EduApplyBoardVO();
+		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
+		
+		
+		
+		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
+		System.out.println("serviceImpl evo : " + evo);
+		Map<String, Object> dataMap = new HashMap<>();
+		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
+		dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
+		dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
+		dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo2.getEduBoardApplyStartPeriod());
+		dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo2.getEduBoardApplyEndPeriod());
+		dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo2.getEduBoardMaxMemberCount());
+		dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
+		dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
+		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
+		dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
+		System.out.println("serviceImpl MAP" + dataMap);
+		
+		return dataMap;
+	}
 
 	@Override
 	public void createBoard(ParameterGroup param) {
@@ -201,7 +200,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		String eduBoardCategory = param.getValue("EDU_BOARD_CATEGORY");
 		String eduBoardContent = param.getValue("EDU_BOARD_CONTENT");
 		String USER_ID = param.getValue("USER_ID");
-		log.info("USER_ID {}", USER_ID);
+
 		EduApplyBoardVO vo = new EduApplyBoardVO();
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(USER_ID);
@@ -441,4 +440,35 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		}
 	}
 	
-}
+
+	@Override
+	public List<Map<String, String>> findAppliedListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);
+		for(EduApplyBoardVO eduboard : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", eduboard.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", eduboard.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", eduboard.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", eduboard.getEduBoardContent());
+			data.add(row);
+		}
+		log.info("data {}",data);
+		return data;
+	}
+
+	@Override
+	public List<Map<String, String>> findApplyingListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list = eduApplyBoardMapper.findApplyingListByUserId(id);
+		for(EduApplyBoardVO board : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", board.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", board.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", board.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", board.getEduBoardContent());
+			data.add(row);
+		}
+			
+		return data;
+	}

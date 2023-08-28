@@ -99,15 +99,18 @@
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-				
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log(any.loginSession.userName);
-				if (any.loginSession.userName == "") {
+				if(responseText.length < 3){
+					// 로그인 안된상태 이거만 에러처리 
+					return;
+				}
+				
+				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
 				} else {
-					output.value = any.loginSession.userName;
+					output.value =any.loginSession.userName;
 					register.visible = false;
 					helloWelcome.visible = true;
 					myPage.visible = true;
@@ -201,6 +204,12 @@
 				"columns" : [{"name": "userName"}]
 			});
 			app.register(dataMap_1);
+			
+			var dataMap_2 = new cpr.data.DataMap("loginSession");
+			dataMap_2.parseData({
+				"columns" : [{"name": "userName"}]
+			});
+			app.register(dataMap_2);
 			var submission_1 = new cpr.protocols.Submission("sms1");
 			submission_1.async = true;
 			submission_1.action = "apply";
@@ -214,7 +223,7 @@
 			
 			var submission_2 = new cpr.protocols.Submission("sessioncheck");
 			submission_2.action = "loginSessionMember";
-			submission_2.addResponseData(dataSet_2, false);
+			submission_2.addResponseData(dataMap_2, false);
 			if(typeof onSms2SubmitSuccess == "function") {
 				submission_2.addEventListener("submit-success", onSms2SubmitSuccess);
 			}
@@ -294,7 +303,7 @@
 				}
 				container.addChild(button_1, {
 					"top": "20px",
-					"left": "213px",
+					"left": "368px",
 					"width": "139px",
 					"height": "43px"
 				});
@@ -305,7 +314,7 @@
 				}
 				container.addChild(button_2, {
 					"top": "20px",
-					"left": "19px",
+					"left": "196px",
 					"width": "164px",
 					"height": "44px"
 				});
@@ -316,7 +325,7 @@
 				}
 				container.addChild(button_3, {
 					"top": "19px",
-					"left": "584px",
+					"left": "541px",
 					"width": "221px",
 					"height": "45px"
 				});
@@ -338,7 +347,7 @@
 				}
 				container.addChild(button_4, {
 					"top": "20px",
-					"left": "1388px",
+					"left": "1345px",
 					"width": "105px",
 					"height": "40px"
 				});
@@ -361,7 +370,7 @@
 				}
 				container.addChild(button_5, {
 					"top": "20px",
-					"left": "1180px",
+					"left": "1137px",
 					"width": "120px",
 					"height": "40px"
 				});
@@ -386,7 +395,7 @@
 				}
 				container.addChild(button_6, {
 					"top": "20px",
-					"left": "1299px",
+					"left": "1256px",
 					"width": "90px",
 					"height": "40px"
 				});
@@ -402,7 +411,7 @@
 				}
 				container.addChild(output_3, {
 					"top": "23px",
-					"left": "992px",
+					"left": "949px",
 					"width": "138px",
 					"height": "34px"
 				});
@@ -413,12 +422,12 @@
 					"text-align" : "center"
 				});
 				output_4.bind("value").toDataMap(app.lookup("dm1"), "userName");
-				if(typeof onOutputValueChange == "function") {
-					output_4.addEventListener("value-change", onOutputValueChange);
+				if(typeof onWhoNameValueChange == "function") {
+					output_4.addEventListener("value-change", onWhoNameValueChange);
 				}
 				container.addChild(output_4, {
 					"top": "17px",
-					"left": "852px",
+					"left": "809px",
 					"width": "130px",
 					"height": "41px"
 				});
