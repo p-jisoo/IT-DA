@@ -340,8 +340,7 @@ EDU_BOARD_MAX_MEMBER_COUNT,
 EDU_BOARD_ADDRESS,
 EDU_BOARD_CATEGORY,
 EDU_BOARD_CONTENT,
-EDU_BOARD_STATUS,
-USER_ID
+EDU_BOARD_STATUS
 FROM EDU_APPLY_BOARD
 where EDU_BOARD_NO=#{eduBoardNo}
 </select>
@@ -385,14 +384,14 @@ EDU_BOARD_MAX_MEMBER_COUNT=#{eduBoardMaxMemberCount},
 EDU_BOARD_ADDRESS=#{eduBoardAddress},
 EDU_BOARD_CATEGORY=#{eduBoardCategory},
 EDU_BOARD_CONTENT=#{eduBoardContent}
-WHERE EDU_BOARD_NO=1
+WHERE EDU_BOARD_NO=#{eduBoardNo}
 </update>	
 <delete id="deleteBoard" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
 DELETE FROM EDU_APPLY_BOARD 
-WHERE EDU_BOARD_NO = 1
+WHERE EDU_BOARD_NO =#{eduBoardNo}
 </delete>
 
-
+<!-- comment  -->
 <select id="selectCommentBoard" resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" resultMap="commentBoardResultMap">
 SELECT 
 EDU_APPLY_COMMENT_BOARD_NO,
@@ -403,8 +402,8 @@ FROM
 EDU_APPLY_COMMENT_BOARD
 WHERE
 EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
-AND
-USER_ID=#{memberVO.userId}
+<!-- AND
+USER_ID=#{memberVO.userId} -->
 </select>
 	<insert id="createCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" >
 INSERT INTO EDU_APPLY_COMMENT_BOARD(
@@ -416,41 +415,78 @@ USER_ID
 VALUES(
 EDU_APPLY_COMMENT_BOARD_SEQ.NEXTVAL,
 #{eduApplyCommentContent},
-'1111',
-'1234'
-);
+#{eduApplyBoardVO.eduBoardNo},
+#{memberVO.userId}
+)
 	</insert>
 	<update id="updateCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
 UPDATE EDU_APPLY_COMMENT_BOARD 
 SET
 EDU_APPLY_COMMENT_CONTENT= #{eduApplyCommentContent}
 WHERE
-EDU_BOARD_NO='1111'
+EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
 AND
-USER_ID='b'
+USER_ID=#{memberVO.userId}
 </update>	
 
 <delete id="deleteCommentBoard" parameterType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
 DELETE FROM EDU_APPLY_COMMENT_BOARD 
 WHERE
-EDU_BOARD_NO='1111'
+EDU_APPLY_COMMENT_CONTENT=#{eduApplyCommentContent}
 AND
-USER_ID='b'
+EDU_BOARD_NO=#{eduApplyBoardVO.eduBoardNo}
+AND
+USER_ID=#{memberVO.userId}
 </delete>
-<select id="selectCommentBoardMap" resultType="Hashmap" parameterType="map">
-SELECT 
-EDU_APPLY_COMMENT_BOARD_NO,
-EDU_APPLY_COMMENT_CONTENT,
-EDU_BOARD_NO,
-USER_ID
+<!-- comment  -->
+<!-- memberCount  -->
+<!-- <select id="selectMemberCount" resultMap="Hashmap" parameterType="map">
+memberCount
+SELECT
+e.EDU_BOARD_NO,
+e.EDU_BOARD_TITLE,
+e.EDU_BOARD_CONTENT,
+e.USER_ID,
+e.EDU_BOARD_ADDRESS,
+e.EDU_BOARD_STATUS,
+NVL(r.TOTAL_COUNT,0) AS TOTAL_COUNT,
+e.EDU_BOARD_MAX_MEMBER_COUNT
 FROM
-EDU_APPLY_COMMENT_BOARD
-WHERE
-EDU_BOARD_NO=#{eduBoardNo}
-AND
-USER_ID=#{userId}
+EDU_APPLY_BOARD e
+LEFT OUTER JOIN
+(SELECT
+EDU_BOARD_NO,
+COUNT(EDU_BOARD_NO) AS TOTAL_COUNT
+FROM
+EDU_BOARD_MEMBER_COUNT
+GROUP BY
+EDU_BOARD_NO
+) r
+ON
+e.EDU_BOARD_NO = r.EDU_BOARD_NO
+where e.EDU_BOARD_NO = #{eduBoardNo}
 </select>
-
+<update id="updateMemberCount" parameterType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+UPDATE
+EDU_APPLY_BOARD
+SET
+EDU_BOARD_CATEGORY='모집마감'
+where EDU_BOARD_NO = #{eduBoardNo}
+</update>
+<insert id="createMemberCount" parameterType="com.tomato.donghang.model.vo.EduApplyBoardMemberCountVO">
+INSERT INTO
+EDU_BOARD_MEMBER_COUNT(
+MEMBER_COUNT_ID,
+USER_ID,
+EDU_BOARD_NO
+)
+VALUES(
+EDU_BOARD_MEMBER_COUNT_SEQ.NEXVAL,
+#{eduApplyBoard.eduBoardNo},
+#{memberVO.userId}
+)
+</insert> -->
+<!-- memberCount  -->
 <!--hyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeokhyeok-->
 
 <select id="findAppliedListByUserId" parameterType="String" resultType="com.tomato.donghang.model.vo.EduApplyBoardVO">

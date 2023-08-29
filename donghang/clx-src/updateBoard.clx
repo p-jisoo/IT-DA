@@ -32,24 +32,28 @@
           <cl:datacolumn std:sid="d-column-f5b6df4a" name="EDU_BOARD_ADDRESS"/>
           <cl:datacolumn std:sid="d-column-062ab587" name="EDU_BOARD_CATEGORY"/>
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
-          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue="1234"/>
+          <cl:datacolumn std:sid="d-column-1a0409a3" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-e6178300" name="USER_ID"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-e948c9ec" id="deletesms" action="deleteBoard.do"/>
-      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" method="post" action="selectBoardByBoardNo.do">
+      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" action="selectBoardByBoardNo.do">
+        <cl:listener std:sid="listener-64d77942" name="submit-success" handler="onSelectsmsSubmitSuccess2"/>
+        <cl:requestdata dataid="eduApplyBoardMap"/>
         <cl:responsedata dataid="eduApplyBoardMap"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
   </head>
   <body std:sid="body-d498b017">
+    <cl:listener std:sid="listener-312fffaa" name="load" handler="onBodyLoad"/>
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
+    <cl:button std:sid="button-23e6da39" id="listButton" style="background-color:#4682A9; font-size:18px;" value="목록">
       <cl:listener std:sid="listener-33f6a82d" name="click" handler="onButtonClick5"/>
-      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="593px" left="1114px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="593px" left="1309px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
@@ -85,12 +89,14 @@
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_END_PERIOD"/>
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
-        <cl:property name="selectOption" value="day" type="enumeration"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
       </cl:udc>
       <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_END_PERIOD"/>
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
+        <cl:property name="useAutoSelect" value="true" type="boolean"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
@@ -127,7 +133,7 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="301px" left="166px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-2de64cc7" id="title" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요">
+    <cl:inputbox std:sid="i-box-2de64cc7" id="title" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요" lengthunit="utf8" maxlength="60">
       <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
       <cl:listener std:sid="listener-24e36e3d" name="before-value-change" handler="onIpb6BeforeValueChange"/>
       <cl:listener std:sid="listener-ddcec956" name="clear" handler="onIpb6Clear"/>
@@ -135,17 +141,13 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="71px" left="166px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-03e35b43" style="background-color:#4682A9; font-size:18px;" value="등록">
+    <cl:button std:sid="button-03e35b43" id="createButton" style="background-color:#4682A9; font-size:18px;" value="수정">
       <cl:listener std:sid="listener-70eb8f60" name="click" handler="onButtonClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="593px" left="1304px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="593px" left="1499px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid;" value="&#x9;교육 모집 등록">
       <cl:xylayoutdata std:sid="xyl-data-2c660263" top="21px" left="167px" width="1512px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:button std:sid="button-5d620d7a" style="background-color:#4682A9; font-size:18px;" value="삭제">
-      <cl:listener std:sid="listener-4686b8d6" name="click" handler="onButtonClick2"/>
-      <cl:xylayoutdata std:sid="xyl-data-1419fe43" top="593px" left="1495px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
     <cl:button std:sid="button-0859fe76" value="기존 값">
       <cl:listener std:sid="listener-29e23012" name="click" handler="onButtonClick4"/>
       <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="21px" left="22px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-16e57a83" version="1.0.4584">
   <head std:sid="head-2f7ea532">
-    <screen std:sid="screen-0119df6f" id="notebook" name="notebook" minwidth="1920px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="true"/>
-    <screen std:sid="screen-26683f91" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="false" useCustomHeight="false" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-ca531e1b" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-9e15770c" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-034ab72a" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="3800px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-6e172409" id="notebook" name="notebook" minwidth="1920px" maxwidth="1919px" width="1920px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-6a9ffd61" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="false" useCustomHeight="false" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-b43c7648" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-cba62f04" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-5d8ada86">
       <cl:dataset std:sid="d-set-17567465" id="boardList">
         <cl:datacolumnlist>
@@ -20,6 +21,20 @@
           <cl:datacolumn std:sid="d-column-110db1ae" name="EDU_BOARD_CATEGORY"/>
           <cl:datacolumn std:sid="d-column-6e1708a8" name="EDU_BOARD_CONTENT"/>
         </cl:datacolumnlist>
+      </cl:dataset>
+      <cl:dataset std:sid="d-set-91bfe2e7" id="commentListSet">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-e5f509ba" name="EDU_APPLY_COMMENT_CONTENT"/>
+          <cl:datacolumn std:sid="d-column-5f23f100" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-5cecbae4" name="USER_ID"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="EDU_APPLY_COMMENT_CONTENT">EDU_APPLY_COMMENT_CONTENT1</cl:datavalue>
+            <cl:datavalue columnname="EDU_BOARD_NO">EDU_BOARD_NO1</cl:datavalue>
+            <cl:datavalue columnname="USER_ID">USER_ID1</cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
       </cl:dataset>
       <cl:dataset std:sid="d-set-0dea488c" id="ds1">
         <cl:datacolumnlist>
@@ -48,12 +63,13 @@
           <cl:datacolumn std:sid="d-column-f5b6df4a" name="EDU_BOARD_ADDRESS"/>
           <cl:datacolumn std:sid="d-column-062ab587" name="EDU_BOARD_CATEGORY"/>
           <cl:datacolumn std:sid="d-column-22ebcff7" name="EDU_BOARD_CONTENT"/>
-          <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
-          <cl:datacolumn std:sid="d-column-2df14696" name="IsLike" datatype="number"/>
-          <cl:datacolumn std:sid="d-column-f6716691" name="likeCount" datatype="string"/>
-          <cl:datacolumn std:sid="d-column-91b86d5f" name="canApply" datatype="number"/>
-          <cl:datacolumn std:sid="d-column-b31597db" name="btnApply" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-bf4d3a6b" name="EDU_BOARD_STATUS"/>
+          <cl:datacolumn std:sid="d-column-e7565428" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-81dfa3f7" name="IsLike" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-77f14da7" name="likeCount"/>
+          <cl:datacolumn std:sid="d-column-477abb8a" name="canApply" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-7d1ff4b0" name="btnApply"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -61,6 +77,15 @@
           <cl:datacolumn std:sid="d-column-e99cbf6a" name="EDU_APPLY_COMMENT_CONTENT" datatype="string" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-580c919a" name="EDU_BOARD_NO" datatype="string" defaultvalue=""/>
           <cl:datacolumn std:sid="d-column-d3a4c16e" name="USER_ID" datatype="string" defaultvalue=""/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-be2e8633" id="eduApplyBoardMemeberCountMap">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-02e1bfd6" name="EDU_BOARD_NO"/>
+          <cl:datacolumn std:sid="d-column-d7ea9e4a" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-2af64739" name="EDU_BOARD_STATUS"/>
+          <cl:datacolumn std:sid="d-column-ec0755e6" name="TOTAL_COUNT" datatype="string"/>
+          <cl:datacolumn std:sid="d-column-f9aae723" name="EDU_BOARD_MAX_MEMBER_COUNT"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-651fbea1" id="dm1">
@@ -74,39 +99,51 @@
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
       </cl:submission>
-      <cl:submission std:sid="submission-e948c9ec" id="deletesms" action="deleteBoard.do"/>
-      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" method="post" action="selectBoardByBoardNo.do">
-        <cl:listener std:sid="listener-9b328656" name="submit-success" handler="onSelectsmsSubmitSuccess"/>
+      <cl:submission std:sid="submission-e948c9ec" id="deletesms" action="deleteBoard.do">
+        <cl:requestdata dataid="eduApplyBoardMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-56a8b8cf" id="selectsms" action="selectBoardByBoardNo.do">
+        <cl:listener std:sid="listener-1cacba2b" name="submit-success" handler="onSelectsmsSubmitSuccess"/>
         <cl:requestdata dataid="eduApplyBoardMap"/>
         <cl:responsedata dataid="eduApplyBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-24cc8e77" id="updateCommentsms" action="updateCommentBoard.do">
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
-      <cl:submission std:sid="submission-132b88c7" id="deleteCommentsms" action="deleteComment.do"/>
-      <cl:submission std:sid="submission-9470ab79" id="selectCommentsms" action="selectCommentBoardByBoardNo.do">
+      <cl:submission std:sid="submission-132b88c7" id="deleteCommentsms" action="deleteCommentBoard.do">
+        <cl:listener std:sid="listener-49af8ad6" name="submit-success" handler="onDeleteCommentsmsSubmitSuccess"/>
         <cl:requestdata dataid="commentBoardMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-9470ab79" id="selectCommentsms" action="selectCommentBoard.do">
+        <cl:listener std:sid="listener-b03103a5" name="submit-success" handler="onSelectCommentsmsSubmitSuccess"/>
+        <cl:requestdata dataid="commentBoardMap"/>
+        <cl:responsedata dataid="commentListSet" isadd="false"/>
         <cl:responsedata dataid="commentBoardMap"/>
       </cl:submission>
-      <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createComment.do">
+      <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createCommentBoard.do">
         <cl:requestdata dataid="commentBoardMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-63bc7e6f" id="selectMemberCount" action="selectMemberCount.do">
+        <cl:requestdata dataid="eduApplyBoardMemeberCountMap"/>
+        <cl:responsedata dataid="eduApplyBoardMemeberCountMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-cbb8b307" id="updateMemberCount" action="updateMemberCount.do">
+        <cl:requestdata dataid="eduApplyBoardMemeberCountMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-c626fad1" id="checkLike"/>
       <cl:submission std:sid="submission-bced2474" id="sessionCheck" action="loginSessionMember">
-        <cl:listener std:sid="listener-c9f57996" name="submit-progress" handler="onSessionCheckSubmitProgress"/>
-        <cl:listener std:sid="listener-a63ceceb" name="submit-success" handler="onSessionCheckSubmitSuccess"/>
+        <cl:listener std:sid="listener-6e5b1d2a" name="submit-success" handler="onSessionCheckSubmitSuccess2"/>
       </cl:submission>
       <cl:submission std:sid="submission-7a079830" id="likeCaculate" action="likeCaculate.do">
-        <cl:listener std:sid="listener-8e522a1b" name="submit-success" handler="onLikeCaculateSubmitSuccess"/>
-        <cl:listener std:sid="listener-e8a24b23" name="submit-done" handler="onLikeCaculateSubmitDone"/>
+        <cl:listener std:sid="listener-f8a3e678" name="submit-done" handler="onLikeCaculateSubmitDone2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-aa9910b0" id="applyEduBoard" action="applyEduBoard.do">
-        <cl:listener std:sid="listener-4632cf09" name="submit-done" handler="onApplyEduBoardSubmitDone2"/>
+        <cl:listener std:sid="listener-3e35b0a5" name="submit-done" handler="onApplyEduBoardSubmitDone"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-7b6354e9" id="cancelEduBoard" action="cancelEduBoard.do">
-        <cl:listener std:sid="listener-c7c27e76" name="submit-done" handler="onCancelEduBoardSubmitDone2"/>
+        <cl:listener std:sid="listener-e7b86f92" name="submit-done" handler="onCancelEduBoardSubmitDone2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
@@ -115,9 +152,9 @@
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-97125c65" name="init" handler="onBodyInit"/>
     <cl:listener std:sid="listener-79582d5e" name="load" handler="onBodyLoad2"/>
-    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
-      <cl:listener std:sid="listener-113ec845" name="click" handler="onButtonClick7"/>
-      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="594px" left="1208px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:button std:sid="button-23e6da39" id="listButton" style="background-color:#4682A9; font-size:18px;" visible="true" value="목록">
+      <cl:listener std:sid="listener-7a4fb380" name="click" handler="onListButtonClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="586px" left="1593px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
@@ -137,42 +174,35 @@
       <cl:output std:sid="output-ada5ddc1" style="font-size:16px; text-align:center;" value="교육분야">
         <cl:formdata std:sid="f-data-a45bf52d" row="1" col="2"/>
       </cl:output>
-      <cl:inputbox std:sid="i-box-e1cd74e3" id="memberCount" style="font-size:16px; text-align:center;" placeholder="모집 인원을 입력하세요" inputfilter="[0-9]">
+      <cl:inputbox std:sid="i-box-e1cd74e3" id="memberCount" style="font-size:16px; text-align:center;" readonly="true" placeholder="모집 인원을 입력하세요" inputfilter="[0-9]">
         <cl:listener std:sid="listener-363433a9" name="click" handler="onIpb3Click"/>
         <cl:relativebind property="value" columnname="EDU_BOARD_MAX_MEMBER_COUNT"/>
         <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
         <cl:formdata std:sid="f-data-1f845c32" row="1" col="1"/>
       </cl:inputbox>
-      <cl:inputbox std:sid="i-box-76447741" id="category" style="font-size:16px; text-align:center;" placeholder="교육 분야를 입력하세요">
+      <cl:inputbox std:sid="i-box-76447741" id="category" style="font-size:16px; text-align:center;" readonly="true" placeholder="교육 분야를 입력하세요">
         <cl:relativebind property="value" columnname="EDU_BOARD_CATEGORY"/>
         <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
         <cl:formdata std:sid="f-data-c675058e" row="1" col="3"/>
       </cl:inputbox>
-      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="font-size:16px; text-align:center;" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="font-size:16px; text-align:center;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_END_PERIOD"/>
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
         <cl:property name="selectOption" value="day" type="enumeration"/>
       </cl:udc>
-      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="font-size:16px;" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="font-size:16px;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_END_PERIOD"/>
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
-        <cl:inputbox std:sid="i-box-f39d4871" id="address" style="font-size:16px; text-align:center;" placeholder="주소를 입력 해주세요">
+        <cl:inputbox std:sid="i-box-f39d4871" id="address" style="font-size:16px; text-align:center;" readonly="true" placeholder="주소를 입력 해주세요">
           <cl:relativebind property="value" columnname="EDU_BOARD_ADDRESS"/>
-          <cl:formdata std:sid="f-data-4e7f9e74" row="0" col="0"/>
+          <cl:formdata std:sid="f-data-ef131565" row="0" col="0" rowspan="1" colspan="3"/>
         </cl:inputbox>
-        <cl:inputbox std:sid="i-box-ef4a365a" id="detailAdress" style="font-size:16px; text-align:center;" placeholder="상세 주소를 입력 해주세요">
-          <cl:formdata std:sid="f-data-ed8837fd" row="0" col="1" rowspan="1" colspan="1"/>
-        </cl:inputbox>
-        <cl:button std:sid="button-c48aa9bb" style="font-size:18px;" value="주소찾기">
-          <cl:listener std:sid="listener-036fc797" name="click" handler="onButtonClick3"/>
-          <cl:formdata std:sid="f-data-3ac05fa4" row="0" col="2"/>
-        </cl:button>
         <cl:formlayout std:sid="f-layout-7b1d70d1" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px">
           <cl:rows length="1" unit="FRACTION"/>
           <cl:columns length="1" unit="FRACTION"/>
@@ -190,12 +220,12 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:inputbox std:sid="i-box-4e2db08c" id="content" style="font-size:16px; text-align:left;" placeholder="     내용을 입력하세요">
+    <cl:inputbox std:sid="i-box-4e2db08c" id="content" style="font-size:16px; text-align:left;" readonly="true" placeholder="     내용을 입력하세요">
       <cl:relativebind property="value" columnname="EDU_BOARD_CONTENT"/>
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="294px" left="262px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-2de64cc7" id="title" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요">
+    <cl:inputbox std:sid="i-box-2de64cc7" id="title" style="font-size:18px; text-align:left;" readonly="true" placeholder="     제목을 입력하세요">
       <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
       <cl:listener std:sid="listener-24e36e3d" name="before-value-change" handler="onIpb6BeforeValueChange"/>
       <cl:listener std:sid="listener-ddcec956" name="clear" handler="onIpb6Clear"/>
@@ -203,69 +233,65 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="72px" left="260px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-03e35b43" style="background-color:#4682A9; font-size:18px;" value="수정">
+    <cl:button std:sid="button-03e35b43" id="updateButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="수정">
       <cl:listener std:sid="listener-70eb8f60" name="click" handler="onButtonClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="594px" left="1398px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="586px" left="1016px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid;" value="&#x9;교육 모집 등록">
+    <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid; text-align:left;" readonly="true" value="교육 모집 등록">
       <cl:xylayoutdata std:sid="xyl-data-2c660263" top="22px" left="260px" width="1509px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:button std:sid="button-5d620d7a" style="background-color:#4682A9; font-size:18px;" value="삭제">
+    <cl:button std:sid="button-5d620d7a" id="deleteButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="삭제">
       <cl:listener std:sid="listener-4686b8d6" name="click" handler="onButtonClick2"/>
-      <cl:xylayoutdata std:sid="xyl-data-1419fe43" top="594px" left="1589px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:button std:sid="button-0859fe76" value="기존 값">
-      <cl:listener std:sid="listener-29e23012" name="click" handler="onButtonClick4"/>
-      <cl:xylayoutdata std:sid="xyl-data-e39fb717" top="622px" left="370px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-1419fe43" top="586px" left="1207px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:output std:sid="output-7f76207b" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid; text-align:center;" value="댓글">
-      <cl:xylayoutdata std:sid="xyl-data-ecdb8369" top="652px" left="260px" width="197px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ecdb8369" top="625px" left="260px" width="197px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:button std:sid="button-b45c0348" value="댓글 등록">
-      <cl:xylayoutdata std:sid="xyl-data-4e6b3dc6" top="778px" left="1450px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:grid std:sid="grid-44a0659a" id="grd1" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:solid;" datasetid="commentListSet" autofit="1" autorowheight="none" resizablecolumns="all">
+      <cl:listener std:sid="listener-d92c65fe" name="cell-click" handler="onGrd1CellClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-7005e64d" top="750px" left="261px" width="1511px" height="865px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-e4f5cbe1" width="144px"/>
+      <cl:gridcolumn std:sid="g-column-5589ee0f" width="345px"/>
+      <cl:gridcolumn std:sid="g-column-55f1ed30"/>
+      <cl:gridheader std:sid="gh-band-a46108e9">
+        <cl:gridrow std:sid="g-row-1e3906ea"/>
+        <cl:gridcell std:sid="gh-cell-69a059f6" rowindex="0" colindex="0" targetcolumnname="USER_ID" sortable="false" filterable="false" text="사용자 아이디"/>
+        <cl:gridcell std:sid="gh-cell-aec4edd9" rowindex="0" colindex="1" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="댓글 내용"/>
+        <cl:gridcell std:sid="gh-cell-37de0d32" rowindex="0" colindex="2" text="삭제"/>
+      </cl:gridheader>
+      <cl:griddetail std:sid="gd-band-682adf60">
+        <cl:gridrow std:sid="g-row-861b9436" height="50px"/>
+        <cl:gridcell std:sid="gd-cell-1c27cec3" rowindex="0" colindex="0" columnname="USER_ID"/>
+        <cl:gridcell std:sid="gd-cell-fe34d4f9" rowindex="0" colindex="1" columnname="EDU_APPLY_COMMENT_CONTENT"/>
+        <cl:gridcell std:sid="gd-cell-ab9fab89" rowindex="0" colindex="2" columnname="">
+          <cl:output std:sid="output-e92731fa" id="deleteColumnBox" style="text-align:center;" visible="false" value="삭제하기" datatype="text">
+            <cl:celldata std:sid="c-data-dfe8723c"/>
+          </cl:output>
+        </cl:gridcell>
+      </cl:griddetail>
+    </cl:grid>
+    <cl:inputbox std:sid="i-box-990282c0" id="userId" style="font-size:16px; text-align:center;" readonly="true" placeholder="비회원">
+      <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="USER_ID"/>
+      <cl:xylayoutdata std:sid="xyl-data-328d9d3c" top="675px" left="260px" width="200px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px; text-align:center;" visible="false" placeholder="댓글을 입력해주세요">
+      <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
+      <cl:xylayoutdata std:sid="xyl-data-2d5be7ba" top="675px" left="469px" width="1143px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:inputbox>
+    <cl:button std:sid="button-af252c5c" id="insertCommentButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="댓글쓰기">
+      <cl:listener std:sid="listener-f6c93aff" name="click" handler="onButtonClick12"/>
+      <cl:xylayoutdata std:sid="xyl-data-9bb3c5d7" top="675px" left="1624px" width="152px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-a01e0e21" value="댓글 삭제">
-      <cl:xylayoutdata std:sid="xyl-data-37d346a0" top="777px" left="1559px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:button std:sid="button-905634d1" value="댓글 수정">
-      <cl:listener std:sid="listener-0af8861c" name="click" handler="onButtonClick6"/>
-      <cl:xylayoutdata std:sid="xyl-data-18b08121" top="777px" left="1669px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:button std:sid="button-0d0fed73" value="댓글 기존 값">
-      <cl:listener std:sid="listener-2e6e4358" name="click" handler="onButtonClick5"/>
-      <cl:xylayoutdata std:sid="xyl-data-696f68af" top="622px" left="260px" width="100px" height="20px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:button>
-    <cl:group std:sid="group-60c28e81" class="cl-form-group">
-      <cl:xylayoutdata std:sid="xyl-data-9022eacb" top="700px" left="248px" width="1521px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:inputbox std:sid="i-box-990282c0" id="userId" style="font-size:16px; text-align:center;" readonly="true" placeholder="USER_ID">
-        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="commentBoardMap" columnname="USER_ID"/>
-        <cl:formdata std:sid="f-data-c29939bb" row="0" col="0"/>
-      </cl:inputbox>
-      <cl:button std:sid="button-af252c5c" style="background-color:#4682A9; font-size:18px;" value="댓글쓰기">
-        <cl:formdata std:sid="f-data-cd1997ea" row="0" col="2"/>
-      </cl:button>
-      <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px;" placeholder="댓글을 입력해주세요">
-        <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
-        <cl:formdata std:sid="f-data-f8bb9bc3" row="0" col="1"/>
-      </cl:inputbox>
-      <cl:formlayout std:sid="f-layout-ea6d10a5" scrollable="false" hspace="10px" vspace="10px" top-margin="5px" right-margin="5px" bottom-margin="5px" left-margin="5px" hseparatorwidth="1" hseparatortype="BY_CLASS" vseparatorwidth="1" vseparatortype="BY_CLASS">
-        <cl:rows length="60" unit="PIXEL"/>
-        <cl:columns length="200" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
-        <cl:columns length="1" unit="FRACTION"/>
-        <cl:columns length="180" unit="PIXEL" shadetype="NONE" shadecolor="transparent"/>
-      </cl:formlayout>
-    </cl:group>
-    <cl:img std:sid="image-015c6f09" id="like">
-      <cl:listener std:sid="listener-4401ac32" name="item-click" handler="onLikeItemClick"/>
-      <cl:listener std:sid="listener-65a1fc39" name="click" handler="onLikeClick2"/>
+    <cl:img std:sid="image-60f9c727" id="like">
+      <cl:listener std:sid="listener-83f78726" name="value-change" handler="onLikeValueChange"/>
+      <cl:listener std:sid="listener-2efccb36" name="click" handler="onLikeClick2"/>
       <cl:datamapbind property="src" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="likeCount"/>
-      <cl:xylayoutdata std:sid="xyl-data-c3eb7539" top="234px" left="185px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-a2cf16b5" top="132px" left="187px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
-    <cl:button std:sid="button-db996a31" id="apply" visible="false" readonly="true">
-      <cl:listener std:sid="listener-418a91a9" name="click" handler="onApplyClick"/>
-      <cl:listener std:sid="listener-77e6de5e" name="value-change" handler="onApplyValueChange"/>
-      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
-      <cl:xylayoutdata std:sid="xyl-data-bd3aa676" top="592px" left="1060px" width="138px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:button std:sid="button-a7d94951" id="apply" style="background-color:#4682A9; font-size:18px;" visible="false">
+      <cl:listener std:sid="listener-5694ea07" name="click" handler="onApplyClick2"/>
+      <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
+      <cl:xylayoutdata std:sid="xyl-data-3257eb28" top="586px" left="1403px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
@@ -273,6 +299,8 @@
     <std:hruler/>
     <std:vruler>
       <std:guide position="828"/>
+      <std:guide position="375"/>
+      <std:guide position="295"/>
     </std:vruler>
   </std:studiosetting>
 </html>

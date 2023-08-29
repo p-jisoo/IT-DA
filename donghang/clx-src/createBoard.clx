@@ -59,7 +59,7 @@
     <cl:listener std:sid="listener-2c93b283" name="load" handler="onBodyLoad"/>
     <cl:listener std:sid="listener-c09f7496" name="init" handler="onBodyInit"/>
     <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-    <cl:button std:sid="button-23e6da39" style="background-color:#4682A9; font-size:18px;" value="목록">
+    <cl:button std:sid="button-23e6da39" id="listButton" style="background-color:#4682A9; font-size:18px;" value="목록">
       <cl:listener std:sid="listener-bb245d76" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="602px" left="1360px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
@@ -95,10 +95,12 @@
       <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="text-align:center;" type="udc.exam.udcExamDuoDatePicker">
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
-        <cl:property name="selectOption" value="day" type="enumeration"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
       </cl:udc>
       <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" type="udc.exam.udcExamDuoDatePicker">
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
+        <cl:property name="useAutoSelect" value="true" type="boolean"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
@@ -134,7 +136,7 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="301px" left="220px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요">
+    <cl:inputbox std:sid="i-box-2de64cc7" id="ipb6" style="font-size:18px; text-align:left;" placeholder="     제목을 입력하세요" lengthunit="utf8" maxlength="60">
       <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
       <cl:listener std:sid="listener-24e36e3d" name="before-value-change" handler="onIpb6BeforeValueChange"/>
       <cl:listener std:sid="listener-ddcec956" name="clear" handler="onIpb6Clear"/>
@@ -142,7 +144,7 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="71px" left="220px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-03e35b43" style="background-color:#4682A9; font-size:18px;" value="등록">
+    <cl:button std:sid="button-03e35b43" id="createButton" style="background-color:#4682A9; font-size:18px;" value="등록">
       <cl:listener std:sid="listener-70eb8f60" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="602px" left="1550px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>

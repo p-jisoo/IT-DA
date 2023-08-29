@@ -29,23 +29,6 @@ public interface EduApplyBoardMapper {
 
 	void likePlus();
 	
-	void createBoard(EduApplyBoardVO vo);
-	
-	void updateBoard(EduApplyBoardVO vo);
-	
-	void deleteBoard(EduApplyBoardVO vo);
-	
-	EduApplyBoardVO selectBoard(EduApplyBoardVO evo);
-	
-	void createCommentBoard(EduApplyCommentBoardVO ecvo);
-	
-	void updateCommentBoard(EduApplyCommentBoardVO ecvo);
-	
-	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
-	
-	EduApplyCommentBoardVO selectCommentBoard(EduApplyCommentBoardVO ecvo);
-	
-
 	Integer isLike(Map<String, Object> map);
 
 	void addLikeCount(Map<String, Object> map);
@@ -73,4 +56,29 @@ public interface EduApplyBoardMapper {
 	List<EduApplyBoardVO> findApplyingListByUserId(String id);
 	
 	List<EduApplyCommentBoardVO> findCommentListByUserIdAndBoardNo(String id);
+	/**************************hyeok*****************************/		
+	
+	void createBoard(EduApplyBoardVO vo);
+	
+	void updateBoard(EduApplyBoardVO vo);
+	
+	void deleteBoard(EduApplyBoardVO vo);
+	
+	EduApplyBoardVO selectBoard(EduApplyBoardVO evo);
+	
+	void createCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	void updateCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	void deleteCommentBoard(EduApplyCommentBoardVO ecvo);
+	
+	List<EduApplyCommentBoardVO> selectCommentBoard(EduApplyCommentBoardVO ecvo);
+
+	Map<String, Object> selectMemberCount(Map<String, Object> map);
+
+	Map<String, Object> updateMemberCount(Map<String, Object> map);
+
+
+	/**************************hyeok*****************************/	
+
 }
