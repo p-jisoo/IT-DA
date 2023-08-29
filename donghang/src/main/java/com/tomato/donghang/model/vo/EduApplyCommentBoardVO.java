@@ -14,7 +14,6 @@ public class EduApplyCommentBoardVO {
 	private String eduApplyCommentContent;
 	private EduApplyBoardVO eduApplyBoardVO;
 	private MemberVO memberVO; 
-	
 	public EduApplyCommentBoardVO(long eduApplyCommentBoardNo) {
 		super();
 		this.eduApplyCommentBoardNo = eduApplyCommentBoardNo;
