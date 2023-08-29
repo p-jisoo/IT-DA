@@ -47,12 +47,12 @@ function onSelectsmsSubmitSuccess(e) {
 	var selectsms = e.control;
 	//board
 	var title = app.lookup("title");
-	var category = app.lookup("category")
-	var memberCount = app.lookup("memberCount")
-	var content = app.lookup("content")
-	var udccomduodatepicker1 = app.lookup("udccomduodatepicker1")
-	var udccomduodatepicker2 = app.lookup("udccomduodatepicker2")
-	var address = app.lookup("address")
+	var category = app.lookup("category");
+	var memberCount = app.lookup("memberCount");
+	var content = app.lookup("content");
+	var udccomduodatepicker1 = app.lookup("udccomduodatepicker1");
+	var udccomduodatepicker2 = app.lookup("udccomduodatepicker2");
+	var address = app.lookup("address");
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	//지원
