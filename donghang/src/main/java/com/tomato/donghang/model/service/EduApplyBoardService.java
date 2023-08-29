@@ -13,6 +13,11 @@ public interface EduApplyBoardService {
 	List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param);
 	List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param);
 	
+	Map<String, Object> selectMemberCount(ParameterGroup param);
+	
+	void updateMemberCount(ParameterGroup param);
+	
+/**************************hyeok*****************************/	
 	void createBoard(ParameterGroup param);
 	
 	void updateBoard(ParameterGroup param);
@@ -29,9 +34,7 @@ public interface EduApplyBoardService {
 	
 	List<Map<String, Object>> selectCommentBoard(ParameterGroup param);
 	
-	Map<String, Object> selectMemberCount(ParameterGroup param);
-	
-	void updateMemberCount(ParameterGroup param);
+	/**************************hyeok*****************************/		
 	
 	
 	

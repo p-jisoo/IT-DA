@@ -113,6 +113,7 @@ public class EduApplyBoardController {
 	
 	
 /****************hyeok************************************/	
+	//board CRUD
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
@@ -160,18 +161,7 @@ public class EduApplyBoardController {
 		eduApplyBoardService.deleteBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
-	
-//	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
-//	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-//		System.out.println("selectCommentBoardByBoardNo Test");
-//		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-//		System.out.println("paramSelect : "+ param);
-//		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard();
-//		System.out.println("SelectCommentBoard : "+ dataMap);
-//		dataRequest.setResponse("commentBoardMap", dataMap);
-//		return  new JSONDataView();
-////		return new UIView("/ui/updateBoard.do");
-//	}
+	//comment CRUD
 	@PostMapping("/ui/selectCommentBoard.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
         

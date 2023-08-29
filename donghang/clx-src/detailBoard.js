@@ -174,7 +174,7 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var selectCommentsms = e.control;
 	app.lookup("userId").redraw();
 	var grid = app.lookup("grd1");
-	var grdDelete = app.lookup("grdDelete");
+	var deleteColumnBox = app.lookup("deleteColumnBox");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
 	var userIdValue = app.lookup("userId");
@@ -208,7 +208,7 @@ function onSelectCommentsmsSubmitSuccess(e) {
 		console.log(grid.getCellValue(i, "USER_ID"));
 		if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
 			//			grid.updateRow(i, grdDelete.visible = true)
-			grdDelete.visible = true;
+			deleteColumnBox.visible = true;
 			grid.redraw();
 		}
 	}

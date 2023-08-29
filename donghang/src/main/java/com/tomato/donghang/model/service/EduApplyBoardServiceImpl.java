@@ -163,6 +163,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 	
 /********************hyeok***************************************/	
+	//board CRUD
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
 		System.out.println("selectBoard param "+ param );
@@ -303,7 +304,8 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		System.out.println("serviceImpl : " + vo);
 		eduApplyBoardMapper.deleteBoard(vo);
 	}
-
+	
+	//comment CRUD
 	@Override
 	public List<Map<String, Object>> selectCommentBoard(ParameterGroup param) {
 		System.out.println("selectCommentBoard param :" +param);
@@ -378,15 +380,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		//System.out.println("USER_ID "+USER_ID);
 		
 		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
-//		ecvo.setEduApplyCommentBoardNo(Long.parseLong(eduApplyCommentBoardNo));
-		
-//		EduApplyBoardVO evo = new EduApplyBoardVO();
-//		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-//		ecvo.setEduApplyBoardVO(evo);
-//		
-//		MemberVO mvo = new MemberVO();
-//		mvo.setUserId(USER_ID);
-//		ecvo.setMemberVO(mvo);
+
 
 		ecvo.setEduApplyCommentContent(eduApplyCommentContent);
 
@@ -446,5 +440,5 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	System.out.println("serviceImpl MAP : " + dataMap);
 }
 	
-	/********************hyeok***************************************/	
+/********************hyeok***************************************/	
 }

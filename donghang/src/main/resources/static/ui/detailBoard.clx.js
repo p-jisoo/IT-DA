@@ -187,7 +187,7 @@
 				var selectCommentsms = e.control;
 				app.lookup("userId").redraw();
 				var grid = app.lookup("grd1");
-				var grdDelete = app.lookup("grdDelete");
+				var deleteColumnBox = app.lookup("deleteColumnBox");
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				var commentBoardMap = app.lookup("commentBoardMap");
 				var userIdValue = app.lookup("userId");
@@ -221,7 +221,7 @@
 					console.log(grid.getCellValue(i, "USER_ID"));
 					if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
 						//			grid.updateRow(i, grdDelete.visible = true)
-						grdDelete.visible = true;
+						deleteColumnBox.visible = true;
 						grid.redraw();
 					}
 				}
@@ -939,7 +939,7 @@
 			
 			var output_6 = new cpr.controls.Output();
 			output_6.readOnly = true;
-			output_6.value = "\t교육 모집 등록";
+			output_6.value = "교육 모집 등록";
 			output_6.style.css({
 				"border-right-style" : "solid",
 				"border-bottom-color" : "#d5d5d5",
@@ -954,7 +954,8 @@
 				"border-left-style" : "solid",
 				"border-bottom-width" : "1px",
 				"border-top-color" : "#d5d5d5",
-				"border-bottom-style" : "solid"
+				"border-bottom-style" : "solid",
+				"text-align" : "left"
 			});
 			container.addChild(output_6, {
 				"top": "22px",
@@ -978,18 +979,6 @@
 				"left": "1207px",
 				"width": "180px",
 				"height": "40px"
-			});
-			
-			var button_4 = new cpr.controls.Button();
-			button_4.value = "기존 값";
-			if(typeof onButtonClick4 == "function") {
-				button_4.addEventListener("click", onButtonClick4);
-			}
-			container.addChild(button_4, {
-				"top": "622px",
-				"left": "370px",
-				"width": "100px",
-				"height": "20px"
 			});
 			
 			var output_7 = new cpr.controls.Output();
@@ -1018,45 +1007,21 @@
 				"height": "40px"
 			});
 			
-			var button_5 = new cpr.controls.Button();
-			button_5.value = "댓글 기존 값";
-			if(typeof onButtonClick5 == "function") {
-				button_5.addEventListener("click", onButtonClick5);
-			}
-			container.addChild(button_5, {
-				"top": "622px",
-				"left": "260px",
-				"width": "100px",
-				"height": "20px"
-			});
-			
-			var button_6 = new cpr.controls.Button("applyButton");
-			button_6.visible = false;
-			button_6.value = "참여하기";
-			button_6.style.css({
+			var button_4 = new cpr.controls.Button("applyButton");
+			button_4.visible = false;
+			button_4.value = "참여하기";
+			button_4.style.css({
 				"background-color" : "#4682A9",
 				"font-size" : "18px"
 			});
 			if(typeof onButtonClick8 == "function") {
-				button_6.addEventListener("click", onButtonClick8);
+				button_4.addEventListener("click", onButtonClick8);
 			}
-			container.addChild(button_6, {
+			container.addChild(button_4, {
 				"top": "586px",
 				"left": "1405px",
 				"width": "180px",
 				"height": "40px"
-			});
-			
-			var button_7 = new cpr.controls.Button();
-			button_7.value = "댓글 그리드 값";
-			if(typeof onButtonClick11 == "function") {
-				button_7.addEventListener("click", onButtonClick11);
-			}
-			container.addChild(button_7, {
-				"top": "620px",
-				"left": "480px",
-				"width": "100px",
-				"height": "20px"
 			});
 			
 			var grid_1 = new cpr.controls.Grid("grd1");
@@ -1068,8 +1033,7 @@
 				"columns": [
 					{"width": "144px"},
 					{"width": "345px"},
-					{"width": "100px"},
-					{"width": "149px"}
+					{"width": "100px"}
 				],
 				"header": {
 					"rows": [{"height": "24px"}],
@@ -1090,12 +1054,6 @@
 								cell.sortable = false;
 								cell.targetColumnName = "EDU_APPLY_COMMENT_CONTENT";
 								cell.text = "댓글 내용";
-							}
-						},
-						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.text = "삭제버튼";
 							}
 						},
 						{
@@ -1122,25 +1080,12 @@
 							}
 						},
 						{
-							"constraint": {"rowIndex": 0, "colIndex": 3},
-							"configurator": function(cell){
-								cell.control = (function(){
-									var button_8 = new cpr.controls.Button("grdDelete");
-									button_8.value = "삭제";
-									if(typeof onGrdDeleteClick == "function") {
-										button_8.addEventListener("click", onGrdDeleteClick);
-									}
-									return button_8;
-								})();
-								cell.controlConstraint = {};
-							}
-						},
-						{
 							"constraint": {"rowIndex": 0, "colIndex": 2},
 							"configurator": function(cell){
 								cell.columnName = "";
 								cell.control = (function(){
-									var output_8 = new cpr.controls.Output();
+									var output_8 = new cpr.controls.Output("deleteColumnBox");
+									output_8.visible = false;
 									output_8.value = "삭제하기";
 									output_8.dataType = "text";
 									output_8.style.css({
@@ -1189,27 +1134,28 @@
 			inputBox_7.visible = false;
 			inputBox_7.placeholder = "댓글을 입력해주세요";
 			inputBox_7.style.css({
-				"font-size" : "16px"
+				"font-size" : "16px",
+				"text-align" : "center"
 			});
 			inputBox_7.bind("value").toDataMap(app.lookup("commentBoardMap"), "EDU_APPLY_COMMENT_CONTENT");
 			container.addChild(inputBox_7, {
 				"top": "702px",
-				"left": "480px",
-				"width": "1134px",
+				"left": "469px",
+				"width": "1143px",
 				"height": "60px"
 			});
 			
-			var button_9 = new cpr.controls.Button("insertCommentButton");
-			button_9.visible = false;
-			button_9.value = "댓글쓰기";
-			button_9.style.css({
+			var button_5 = new cpr.controls.Button("insertCommentButton");
+			button_5.visible = false;
+			button_5.value = "댓글쓰기";
+			button_5.style.css({
 				"background-color" : "#4682A9",
 				"font-size" : "18px"
 			});
 			if(typeof onButtonClick12 == "function") {
-				button_9.addEventListener("click", onButtonClick12);
+				button_5.addEventListener("click", onButtonClick12);
 			}
-			container.addChild(button_9, {
+			container.addChild(button_5, {
 				"top": "702px",
 				"left": "1624px",
 				"width": "152px",

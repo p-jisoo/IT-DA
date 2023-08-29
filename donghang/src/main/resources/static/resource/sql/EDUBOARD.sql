@@ -1,5 +1,7 @@
+drop table commentboard;
 select * from MEMBER;
-
+select * from like_board;
+select count(*) from EDU_APPLY_BOARD
 select * from EDU_APPLY_COMMENT_BOARD
 CREATE SEQUENCE EDU_APPLY_COMMENT_BOARD_SEQ;
 drop SEQUENCE EDU_APPLY_COMMENT_BOARD_SEQ;
