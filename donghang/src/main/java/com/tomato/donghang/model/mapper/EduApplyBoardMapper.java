@@ -28,6 +28,8 @@ public interface EduApplyBoardMapper {
 
 	void likePlus();
 	
+	/**************************hyeok*****************************/		
+	
 	void createBoard(EduApplyBoardVO vo);
 	
 	void updateBoard(EduApplyBoardVO vo);
@@ -49,6 +51,6 @@ public interface EduApplyBoardMapper {
 	Map<String, Object> updateMemberCount(Map<String, Object> map);
 
 
-
+	/**************************hyeok*****************************/	
 
 }
