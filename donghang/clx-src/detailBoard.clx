@@ -36,6 +36,22 @@
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
+      <cl:dataset std:sid="d-set-0dea488c" id="ds1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-7d21d73d" name="label"/>
+          <cl:datacolumn std:sid="d-column-08269130" name="value"/>
+        </cl:datacolumnlist>
+        <cl:datarowlist>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[heart]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[theme/images/heart.svg]]></cl:datavalue>
+          </cl:datarow>
+          <cl:datarow>
+            <cl:datavalue columnname="label"><![CDATA[heartfilling]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[theme/images/heart-fillsvg.svg]]></cl:datavalue>
+          </cl:datarow>
+        </cl:datarowlist>
+      </cl:dataset>
       <cl:datamap std:sid="d-map-81dc0af2" id="eduApplyBoardMap">
         <cl:datacolumnlist>
           <cl:datacolumn std:sid="d-column-35ec5269" name="EDU_BOARD_TITLE" datatype="string"/>
@@ -50,6 +66,10 @@
           <cl:datacolumn std:sid="d-column-c4d66ec1" name="EDU_BOARD_NO"/>
           <cl:datacolumn std:sid="d-column-bf4d3a6b" name="EDU_BOARD_STATUS"/>
           <cl:datacolumn std:sid="d-column-e7565428" name="USER_ID"/>
+          <cl:datacolumn std:sid="d-column-81dfa3f7" name="IsLike" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-77f14da7" name="likeCount"/>
+          <cl:datacolumn std:sid="d-column-477abb8a" name="canApply" datatype="number"/>
+          <cl:datacolumn std:sid="d-column-7d1ff4b0" name="btnApply"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -67,6 +87,14 @@
           <cl:datacolumn std:sid="d-column-ec0755e6" name="TOTAL_COUNT" datatype="string"/>
           <cl:datacolumn std:sid="d-column-f9aae723" name="EDU_BOARD_MAX_MEMBER_COUNT"/>
         </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-651fbea1" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-f98ee35b" name="board_no" datatype="number"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:datamap std:sid="d-map-a7887d7d" id="dm2">
+        <cl:datacolumnlist/>
       </cl:datamap>
       <cl:submission std:sid="submission-41637d56" id="updatesms" action="updateBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
@@ -101,6 +129,22 @@
       </cl:submission>
       <cl:submission std:sid="submission-cbb8b307" id="updateMemberCount" action="updateMemberCount.do">
         <cl:requestdata dataid="eduApplyBoardMemeberCountMap"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-c626fad1" id="checkLike"/>
+      <cl:submission std:sid="submission-bced2474" id="sessionCheck" action="loginSessionMember">
+        <cl:listener std:sid="listener-6e5b1d2a" name="submit-success" handler="onSessionCheckSubmitSuccess2"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7a079830" id="likeCaculate" action="likeCaculate.do">
+        <cl:listener std:sid="listener-f8a3e678" name="submit-done" handler="onLikeCaculateSubmitDone2"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-aa9910b0" id="applyEduBoard" action="applyEduBoard.do">
+        <cl:listener std:sid="listener-3e35b0a5" name="submit-done" handler="onApplyEduBoardSubmitDone"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+      <cl:submission std:sid="submission-7b6354e9" id="cancelEduBoard" action="cancelEduBoard.do">
+        <cl:listener std:sid="listener-e7b86f92" name="submit-done" handler="onCancelEduBoardSubmitDone2"/>
+        <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
     <cl:appspec/>
@@ -205,7 +249,7 @@
     </cl:output>
     <cl:button std:sid="button-9bf09277" id="applyButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="참여하기">
       <cl:listener std:sid="listener-a0717770" name="click" handler="onButtonClick8"/>
-      <cl:xylayoutdata std:sid="xyl-data-3fcab0ad" top="586px" left="1405px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-3fcab0ad" top="652px" left="1402px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:grid std:sid="grid-44a0659a" id="grd1" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:solid;" datasetid="commentListSet" autofit="1" autorowheight="none" resizablecolumns="all">
       <cl:listener std:sid="listener-d92c65fe" name="cell-click" handler="onGrd1CellClick2"/>
@@ -242,6 +286,17 @@
       <cl:listener std:sid="listener-f6c93aff" name="click" handler="onButtonClick12"/>
       <cl:xylayoutdata std:sid="xyl-data-9bb3c5d7" top="702px" left="1624px" width="152px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
+    <cl:img std:sid="image-60f9c727" id="like">
+      <cl:listener std:sid="listener-83f78726" name="value-change" handler="onLikeValueChange"/>
+      <cl:listener std:sid="listener-2efccb36" name="click" handler="onLikeClick2"/>
+      <cl:datamapbind property="src" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="likeCount"/>
+      <cl:xylayoutdata std:sid="xyl-data-a2cf16b5" top="132px" left="187px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:button std:sid="button-a7d94951" id="apply" style="background-color:#4682A9; font-size:18px;" visible="false">
+      <cl:listener std:sid="listener-5694ea07" name="click" handler="onApplyClick2"/>
+      <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
+      <cl:xylayoutdata std:sid="xyl-data-3257eb28" top="586px" left="1403px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>
@@ -249,6 +304,7 @@
     <std:vruler>
       <std:guide position="828"/>
       <std:guide position="375"/>
+      <std:guide position="295"/>
     </std:vruler>
   </std:studiosetting>
 </html>

@@ -21,4 +21,7 @@ DELETE FROM(SELECT * FROM MEMBER WHERE USER_ID=#{userId}) MEMBER WHERE PASSWORD=
 <select id="selectIdMember" resultType="com.tomato.donghang.model.vo.MemberVO" parameterType="String">
 select * from member where user_id=#{id}
 </select>
+<select id="findIdByNameAndEmail" parameterType="com.tomato.donghang.model.vo.MemberVO" resultType="String">
+select user_id from member WHERE user_name=#{userName} AND email=#{email}
+</select>
 </mapper>

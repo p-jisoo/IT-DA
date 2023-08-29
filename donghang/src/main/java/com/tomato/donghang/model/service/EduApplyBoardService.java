@@ -38,6 +38,15 @@ public interface EduApplyBoardService {
 	
 	
 	
+	List<Map<String, String>> findAppliedListByUserId(String id);
 	
+	List<Map<String, String>> findApplyingListByUserId(String id);
+	
+	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
+	Integer likeCount(long eduBoardNo);
+	void likeCaculate(String userId, String value);
+	long checkCanApply(String userId, long eduBoardNo);
+	void applyEduBoard(String userId, String value);
+	void cancelEduBoard(String userId, String value);
 	
 }

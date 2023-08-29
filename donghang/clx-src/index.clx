@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-6f3833e2" version="1.0.4584">
   <head std:sid="head-264c019c">
-    <screen std:sid="screen-0cf8b9fa" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-67cf756e" id="new-screen2" name="new-screen2" minwidth="1920px" maxwidth="1979px" width="1920px" height="3800px" active="true"/>
-    <screen std:sid="screen-d68dfd12" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="false"/>
-    <screen std:sid="screen-5505ea89" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-f5c21c3f" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-131cd657" id="new-screen" name="new-screen" minwidth="1980px" width="1980px" height="1080px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-80b64b2d" id="default" name="default" minwidth="1024px" maxwidth="1979px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1300" customWidth="1920" active="true"/>
+    <screen std:sid="screen-0a5a489f" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-0fba4304" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-db7e769b">
       <cl:dataset std:sid="d-set-6870e8b1" id="ds1">
         <cl:datacolumnlist>
@@ -27,7 +26,7 @@
           </cl:datarow>
           <cl:datarow>
             <cl:datavalue columnname="labal"><![CDATA[마이페이지]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[myPage]]></cl:datavalue>
+            <cl:datavalue columnname="value"><![CDATA[mypage]]></cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -61,71 +60,57 @@
     </cl:model>
     <cl:appspec/>
   </head>
-  <body std:sid="body-bda8ceea">
+  <body std:sid="body-bda8ceea" style="background-color:#B0B0B0 none;">
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
-    <cl:group std:sid="group-1fb5e24e" style="font-size:1rem;">
-      <cl:listener std:sid="listener-b117f11b" name="click" handler="onGroupClick"/>
-      <cl:xylayoutdata std:sid="xyl-data-b2c29cd2" top="0px" right="0px" bottom="0px" left="0px" horizontalAnchor="BOTH" verticalAnchor="BOTH"/>
-      <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
-        <cl:xylayoutdata std:sid="xyl-data-414826ed" top="234px" left="20px" width="1880px" height="1344px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:embeddedapp>
-      <cl:group std:sid="group-f2a4904e">
-        <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-6cec5b3f" top="0px" right="0px" left="0px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-        <cl:button std:sid="button-3b2b8523" value="회원정보 수정">
-          <cl:listener std:sid="listener-df1694d5" name="click" handler="onButtonClick4"/>
-          <cl:xylayoutdata std:sid="xyl-data-c7987e01" top="20px" left="411px" width="139px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-609506c0" value="마이페이지">
-          <cl:listener std:sid="listener-014af69d" name="click" handler="onButtonClick5"/>
-          <cl:xylayoutdata std:sid="xyl-data-39567312" top="20px" left="239px" width="164px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-80b81e2e" id="temporary_btn" value="임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정">
-          <cl:listener std:sid="listener-6d11a4cc" name="click" handler="onButtonClick3"/>
-          <cl:xylayoutdata std:sid="xyl-data-109e5401" top="19px" left="584px" width="221px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
-          <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-          <cl:xylayoutdata std:sid="xyl-data-7b94e932" top="20px" left="1388px" width="105px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
-          <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
-          <cl:xylayoutdata std:sid="xyl-data-b1c244b0" top="20px" left="1180px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
-          <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
-          <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
-          <cl:xylayoutdata std:sid="xyl-data-f25d4cf1" top="20px" left="1299px" width="90px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:button>
-        <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님 환영합니다.">
-          <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
-          <cl:xylayoutdata std:sid="xyl-data-7dc23a70" top="23px" left="992px" width="138px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:output>
-        <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
-          <cl:listener std:sid="listener-61c5cd62" name="value-change" handler="onOutputValueChange"/>
-          <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-          <cl:xylayoutdata std:sid="xyl-data-36f9d886" top="17px" left="852px" width="130px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-        </cl:output>
-        <cl:xylayout std:sid="xylayout-f982d0ea"/>
-      </cl:group>
-      <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
-        <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
-        <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
-        <cl:listener std:sid="listener-34eb6cb5" name="selection-change" handler="onNav1SelectionChange2"/>
-        <cl:xylayoutdata std:sid="xyl-data-727ed520" top="73px" right="369px" left="580px" height="154px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-        <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
-      </cl:navigationbar>
-      <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.3rem;" value="ITda">
-        <cl:xylayoutdata std:sid="xyl-data-9a953bf9" top="84px" left="274px" width="207px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
+      <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="245px" left="21px" width="1960px" height="884px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:embeddedapp>
+    <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.3rem;" value="ITda">
+      <cl:xylayoutdata std:sid="xyl-data-64405299" top="16px" left="162px" width="100px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
+      <cl:xylayoutdata std:sid="xyl-data-c5508eb1" top="84px" left="162px" width="160px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:group std:sid="group-f2a4904e">
+      <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-549154ea" top="1px" right="-194px" left="432px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
+        <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
+        <cl:xylayoutdata std:sid="xyl-data-44eb4406" top="20px" left="1345px" width="105px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
+      <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
+        <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-dca60b0a" top="20px" left="1137px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
+      <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
+        <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
+        <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
+        <cl:xylayoutdata std:sid="xyl-data-130f5553" top="20px" left="1256px" width="90px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:button>
+      <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님 환영합니다.">
+        <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
+        <cl:xylayoutdata std:sid="xyl-data-0429e3da" top="23px" left="949px" width="138px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
-        <cl:xylayoutdata std:sid="xyl-data-8ec85627" top="127px" left="274px" width="296px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
+        <cl:listener std:sid="listener-5ee7b881" name="value-change" handler="onWhoNameValueChange"/>
+        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
+        <cl:xylayoutdata std:sid="xyl-data-dd6d5935" top="17px" left="809px" width="130px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:img std:sid="image-3cd6a300" src="theme/images/img/logo2_donghang.png">
-        <cl:xylayoutdata std:sid="xyl-data-a98a5886" top="73px" left="129px" width="135px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:img>
       <cl:xylayout std:sid="xylayout-1530ee91"/>
     </cl:group>
+    <cl:img std:sid="image-3cd6a300" src="theme/images/img/logo2_donghang.png">
+      <cl:xylayoutdata std:sid="xyl-data-0af1e4cd" top="21px" left="21px" width="135px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:img>
+    <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
+      <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
+      <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
+      <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
+      <cl:xylayoutdata std:sid="xyl-data-4ed4f530" top="84px" right="446px" left="503px" height="154px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
+    </cl:navigationbar>
+    <cl:udc std:sid="ud-control-730e81ef" type="udc.udcDialogd">
+      <cl:xylayoutdata std:sid="xyl-data-c3291d38" top="1228px" left="20px" width="2062px" height="184px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:udc>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>
   </body>
   <std:studiosetting>

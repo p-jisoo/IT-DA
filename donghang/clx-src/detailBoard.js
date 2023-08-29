@@ -40,6 +40,7 @@ function onBodyLoad2(e) {
 	selectCommentsms.send();
 	selectsms.send();
 	
+	app.lookup("sessionCheck").send();
 	console.log("hostAppInstance : " + hostAppInstance);
 	
 	//update 이동
@@ -156,15 +157,39 @@ function onSelectsmsSubmitSuccess(e) {
 	app.lookup("udccomduodatepicker1").redraw();
 	app.lookup("udccomduodatepicker2").redraw();
 	app.lookup("address").redraw();
+	/////////////////////jisoo//////////////////
+	//지원
+	var button = app.lookup("apply");
+	//좋아요
+	var any = JSON.parse(selectsms.xhr.responseText);
+	if (any.eduApplyBoardMap.IsLike == 1) {
+		eduApplyBoardMap.setValue("likeCount", "theme/images/heart-fillsvg.svg");
+	} else {
+		eduApplyBoardMap.setValue("likeCount", "theme/images/heart.svg");
+	}
 	
-	//	var commentContent = app.lookup("commentContent");
-	//	
-	//	commentBoardMap.setValue("EDU_APPLY_COMMENT_CONTENT", commentContent.value);
-	//	commentBoardMap.setValue("USER_ID", userId.value);
-	//	
-	//	app.lookup("userId").redraw();
-	//	app.lookup("commentContent").redraw();
-	//	
+	//지원
+	switch (any.eduApplyBoardMap.canApply) {
+		case 0:
+			eduApplyBoardMap.setValue("btnApply", "지원하기");
+			break;
+		case 1:
+			eduApplyBoardMap.setValue("btnApply", "지원중");
+			button.style.css("color", "green");
+			break;
+		case 2:
+			eduApplyBoardMap.setValue("btnApply", "내글이다");
+			button.enabled = false;
+			break;
+		case 3:
+			eduApplyBoardMap.setValue("btnApply", "모집마감");
+			button.style.css("color", "red");
+			button.enabled = false;
+			break;
+	}
+	app.lookup("like").redraw();
+	button.redraw();
+	/////////////////////jisoo//////////////////
 }
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
@@ -183,25 +208,32 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var applyButton = app.lookup("applyButton");
 	var commentContent = app.lookup("commentContent");
 	var insertCommentButton = app.lookup("insertCommentButton");
+	var image = app.lookup("like");
+	var button = app.lookup("apply");
 	
 	console.log("userid " + userIdValue.value);
 	console.log("eduboard id " + commentBoardMap.getValue("USER_ID"));
-	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
-		deleteButton.visible = true;
-		updateButton.visible = true;
-		commentContent.visible = true;
-		insertCommentButton.visible = true;
+	if (commentBoardMap.getValue("USER_ID") !=null) {
+
+		
 		deleteButton.redraw();
 		updateButton.redraw();
 		commentContent.redraw();
 		insertCommentButton.redraw();
+	}
+	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
+				deleteButton.visible = true;
+		updateButton.visible = true;
+		commentContent.visible = true;
+		insertCommentButton.visible = true;
+		console.log("userIdValue.value : ", userIdValue.value);
+		
 		if (commentBoardMap.getValue("USER_ID") != null) {
 			applyButton.visible = true;
 		}
 	}
 	//commentSet
 	var commentListSet = app.lookup("commentListSet");
-	
 	//commentMap
 	var commentBoardMap = app.lookup("commentBoardMap");
 	for (var i = 1; i < grid.rowCount; i++) {
@@ -240,36 +272,6 @@ function onButtonClick(e) {
 }
 
 /*
- * "주소찾기" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick3(e) {
-	var button = e.control;
-	cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
-		.then(function(input) {
-			new daum.Postcode({
-				oncomplete: function(data) {
-					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-					// 예제를 참고하여 다양한 활용법을 확인해 보세요.
-					var inputBox = app.lookup("address");
-					//var inputBox2 = app.lookup("PostCode");
-					var addr = "";
-					console.log(addr);
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-						inputBox.value = data.zonecode + "-" + addr;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-						inputBox.value = data.zonecode + "-" + addr;
-					}
-					//inputBox2.value = data.zonecode;
-				}
-			}).open();
-		});
-}
-
-/*
  * "삭제" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
@@ -280,52 +282,52 @@ function onButtonClick2(e) {
 	submission.send()
 }
 
-/*
- * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick4(e) {
-	var button = e.control;
-	var submission = app.lookup("selectsms");
-	var dataMap = app.lookup("eduApplyBoardMap");
-	
-	app.lookup("title").redraw();
-	app.lookup("category").redraw();
-	app.lookup("memberCount").redraw();
-	app.lookup("content").redraw();
-	app.lookup("udccomduodatepicker1").redraw();
-	app.lookup("udccomduodatepicker2").redraw();
-	app.lookup("address").redraw();
-	submission.send()
-	
-}
-
-/*
- * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-function onButtonClick5(e) {
-	var button = e.control;
-	var submission = app.lookup("selectCommentsms");
-	var dataMap = app.lookup("commentBoardMap");
-	
-	app.lookup("userId").redraw();
-	app.lookup("commentContent").redraw();
-	
-	submission.send()
-}
+///*
+// * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
+// * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+// */
+//function onButtonClick4(e) {
+//	var button = e.control;
+//	var submission = app.lookup("selectsms");
+//	var dataMap = app.lookup("eduApplyBoardMap");
+//	
+//	app.lookup("title").redraw();
+//	app.lookup("category").redraw();
+//	app.lookup("memberCount").redraw();
+//	app.lookup("content").redraw();
+//	app.lookup("udccomduodatepicker1").redraw();
+//	app.lookup("udccomduodatepicker2").redraw();
+//	app.lookup("address").redraw();
+//	submission.send()
+//	
+//}
+//
+///*
+// * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
+// * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+// */
+//function onButtonClick5(e) {
+//	var button = e.control;
+//	var submission = app.lookup("selectCommentsms");
+//	var dataMap = app.lookup("commentBoardMap");
+//	
+//	app.lookup("userId").redraw();
+//	app.lookup("commentContent").redraw();
+//	
+//	submission.send()
+//}
 
 /*
  * "댓글 수정" 버튼에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
  */
-function onButtonClick6(e) {
-	var button = e.control;
-	var submission = app.lookup("updateCommentsms");
-	var dataMap = app.lookup("commentBoardMap");
-	
-	submission.send()
-}
+//function onButtonClick6(e) {
+//	var button = e.control;
+//	var submission = app.lookup("updateCommentsms");
+//	var dataMap = app.lookup("commentBoardMap");
+//	
+//	submission.send()
+//}
 
 //
 ///*
@@ -444,9 +446,6 @@ function onButtonClick13(e) {
  */
 function onButtonClick14(e) {
 	var button = e.control;
-	
-	var grdDelete = app.lookup("grdDelete");
-	
 	var commentBoardMap = app.lookup("commentBoardMap");
 	var selectCommentsms = app.lookup("selectCommentsms");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
@@ -455,7 +454,7 @@ function onButtonClick14(e) {
 	
 	var deleteCommentsms = app.lookup("deleteCommentsms");
 	deleteCommentsms.send();
-	 
+	
 	var grid = app.lookup("grd1");
 	if (deleteCommentsms.isSuccess()) {
 		commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
@@ -496,3 +495,156 @@ function onListButtonClick(e) {
 	var listButton = e.control;
 	
 }
+
+///////////jisoo//////////////////////////////////////
+//좋아요, 지원(여기서부터 지수 한거)
+
+/*
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
+ */
+function onSessionCheckSubmitSuccess2(e) {
+	var sessionCheck = e.control;
+	var image = app.lookup("like");
+	var button = app.lookup("apply");
+	console.log(sessionCheck.xhr.responseText.length);
+	if (sessionCheck.xhr.responseText.length > 3) {
+		console.log("로그인됨");
+		image.enabled = true;
+		button.visible = true;
+		
+	} else {
+		console.log("노로그인");
+		image.enabled = false;
+		button.dispose();
+	}
+}
+
+/*
+ * 이미지에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onLikeClick2(e) {
+	var like = e.control;
+	var submission = app.lookup("likeCaculate");
+	var dataMap = app.lookup("dm1");
+	var host = app.getHost();
+	console.log(host.initValue);
+	dataMap.setValue("board_no", host.initValue);
+	submission.send();
+}
+
+/*
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
+ */
+function onLikeCaculateSubmitDone2(e) {
+	var likeCaculate = e.control;
+	var dataMap = app.lookup("eduApplyBoardMap");
+	var image = app.lookup("like");
+	image.dispose();
+	
+	console.log(dataMap.getValue("IsLike"));
+	if (dataMap.getValue("IsLike") == 0) {
+		var container = app.getContainer();
+		var image_2 = new cpr.controls.Image("like");
+		image_2.src = "theme/images/heart-fillsvg.svg";
+		if (typeof onLikeClick2 == "function") {
+			image_2.addEventListener("click", onLikeClick2);
+		}
+		container.addChild(image_2, {
+			"top": "132px",
+			"left": "187px",
+			"width": "64px",
+			"height": "68px"
+		});
+		image_2.redraw();
+		dataMap.setValue("IsLike", 1);
+	} else {
+		var container = app.getContainer();
+		var image_2 = new cpr.controls.Image("like");
+		image_2.src = "theme/images/heart.svg";
+		if (typeof onLikeClick2 == "function") {
+			image_2.addEventListener("click", onLikeClick2);
+		}
+		container.addChild(image_2, {
+			"top": "132px",
+			"left": "187px",
+			"width": "64px",
+			"height": "68px"
+		});
+		image_2.redraw();
+		dataMap.setValue("IsLike", 0);
+	}
+}
+
+/*
+ * "지원하기" 버튼(apply)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+
+function onApplyClick2(e) {
+	var apply = e.control;
+	var submission = app.lookup("applyEduBoard");
+	var submission2 = app.lookup("cancelEduBoard");
+	var dataMap = app.lookup("dm1");
+	var host = app.getHost();
+	dataMap.setValue("board_no", host.initValue);
+	if (apply.value == "지원하기") {
+		apply.dispose();
+		submission.send();
+	} else if (apply.value == "지원중") {
+		console.log("지원취소");
+		apply.dispose();
+		submission2.send();
+	} else {
+		console.log(3);
+	}
+}
+
+/*
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
+ */
+function onApplyEduBoardSubmitDone(e) {
+	var applyEduBoard = e.control;
+	var container = app.getContainer();
+	var button_14 = new cpr.controls.Button("bt");
+	button_14.value = "지원중";
+	button_14.style.css({
+		"color": "#F14747"
+	});
+	container.addChild(button_14, {
+		"top": "586px",
+		"left": "1403px",
+		"width": "180px",
+		"height": "40px"
+	});
+	button_14.addEventListener("click", function(e) {
+		onApplyClick2(e);
+	});
+}
+
+/*
+ * 서브미션에서 submit-done 이벤트 발생 시 호출.
+ * 응답처리가 모두 종료되면 발생합니다.
+ */
+function onCancelEduBoardSubmitDone2(e) {
+	var cancelEduBoard = e.control;
+	var container = app.getContainer();
+	var button_14 = new cpr.controls.Button("bt");
+	button_14.value = "지원하기";
+	button_14.style.css({
+		"color": "#15C729"
+	});
+	container.addChild(button_14, {
+		"top": "586px",
+		"left": "1403px",
+		"width": "180px",
+		"height": "40px"
+	});
+	button_14.addEventListener("click", function(e) {
+		onApplyClick2(e);
+	});
+}
+///////////jisoo//////////////////////////////////////

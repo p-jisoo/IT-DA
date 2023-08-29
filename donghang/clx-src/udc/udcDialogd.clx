@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-673abb48" version="1.0.4584">
+  <head std:sid="head-543f4143">
+    <screen std:sid="screen-99235216" id="default" name="default" minwidth="1024px" width="1024px" height="768px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-500c6ee5" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px"/>
+    <screen std:sid="screen-ac65544f" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-087e9ba1"/>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-fa3d7e4f" style="top:0px; left:0px; width:1920px; height:1080px;">
+    <cl:group std:sid="group-10759b4c" style="background-color:#B0B0B0; border-right-style:none; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
+      <cl:xylayoutdata std:sid="xyl-data-5a3e8a59" top="0px" left="5px" width="2031px" height="189px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-603139ef" src="../theme/images/img/logo2_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-33c85ec8" top="55px" left="52px" width="101px" height="85px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:output std:sid="output-7e7d16d7" style="color:#FFFFFF; font-weight:bold; font-size:2rem;" value="ITda Accompany">
+        <cl:xylayoutdata std:sid="xyl-data-21e038e7" top="79px" left="163px" width="302px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-985baed4" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="이용약관">
+        <cl:xylayoutdata std:sid="xyl-data-7e8b4e5d" top="40px" left="535px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-3e6726a5" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="개인정보취급방침">
+        <cl:xylayoutdata std:sid="xyl-data-d1969654" top="40px" left="703px" width="157px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-8698743a" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="찾아오시는 길">
+        <cl:xylayoutdata std:sid="xyl-data-41234848" top="40px" left="921px" width="126px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-eca8a62f" style="color:#F6F6F6; font-weight:bold; font-size:16px;" value="경기도 성남시 성남대로 34 하나프라자 6층 KOSTA EDU ">
+        <cl:xylayoutdata std:sid="xyl-data-b8ec3cf1" top="91px" left="534px" width="457px" height="31px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-8029d2df" style="color:#F6F6F6; font-weight:bold;" value=" TEL : 010-8299-1244 | Email : gjsdms1244@gmail.com">
+        <cl:xylayoutdata std:sid="xyl-data-4549a6e1" top="131px" left="534px" width="507px" height="31px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-62811a1f" style="color:#F6F6F6; font-weight:bold; font-size:16px;" value="담당자 : 박지수 , 김지혁 , 이히은 , 강재헌">
+        <cl:xylayoutdata std:sid="xyl-data-7fc3ae04" top="126px" left="1198px" width="349px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-72a537a1"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-f69a70c4"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
+import com.tomato.donghang.model.vo.MemberVO;
 
 @Mapper
 public interface EduApplyBoardMapper {
@@ -28,6 +29,33 @@ public interface EduApplyBoardMapper {
 
 	void likePlus();
 	
+	Integer isLike(Map<String, Object> map);
+
+	void addLikeCount(Map<String, Object> map);
+
+	void deleteLikeCount(Map<String, Object> map);
+
+	long isMyBoard(Map<String, Object> map);
+
+	long isApply(Map<String, Object> map);
+
+	void applyEdu(Map<String, Object> map);
+
+	void cancelEdu(Map<String, Object> map);
+
+	long eduMaxMember(long eduBoardNo);
+
+	long currentMember(long eduBoardNo);
+
+	void applyEnd(long eduBoardNo);
+
+	void applyChange(long eduBoardNo);
+	
+	List<EduApplyBoardVO> findAppliedListByUserId(String id);
+	
+	List<EduApplyBoardVO> findApplyingListByUserId(String id);
+	
+	List<EduApplyCommentBoardVO> findCommentListByUserIdAndBoardNo(String id);
 	/**************************hyeok*****************************/		
 	
 	void createBoard(EduApplyBoardVO vo);

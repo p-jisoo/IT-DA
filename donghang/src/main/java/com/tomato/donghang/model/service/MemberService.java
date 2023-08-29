@@ -1,5 +1,7 @@
 package com.tomato.donghang.model.service;
 
-public interface MemberService {
+import com.tomato.donghang.model.vo.MemberVO;
 
+public interface MemberService {
+	String findIdByNameAndEmail(MemberVO memberVO);
 }
