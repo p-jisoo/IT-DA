@@ -204,7 +204,7 @@
 			var output_2 = new cpr.controls.Output();
 			output_2.value = "ITda Accompany";
 			output_2.style.css({
-				"color" : "#91C8E4",
+				"color" : "#EBA5BF",
 				"font-weight" : "normal",
 				"font-size" : "1rem",
 				"text-align" : "left"
@@ -234,7 +234,7 @@
 			var output_4 = new cpr.controls.Output();
 			output_4.value = "|";
 			output_4.style.css({
-				"color" : "#91C8E4",
+				"color" : "#EBA5BF",
 				"font-weight" : "normal",
 				"font-size" : "1rem",
 				"text-align" : "left"

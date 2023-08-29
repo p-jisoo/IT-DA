@@ -39,6 +39,15 @@
 			function onImageClick(e){
 				var image = e.control;
 				window.location.href="/"
+			}
+
+			/*
+			 * "취소" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick(e){
+				var button = e.control;
+				window.location.href="/"
 			};
 			// End - User Script
 			
@@ -186,14 +195,66 @@
 				});
 				var button_1 = new cpr.controls.Button("btn");
 				button_1.value = "탈퇴하러 가기";
+				button_1.style.css({
+					"background-color" : "#E01D5C",
+					"color" : "#FFFFFF",
+					"font-weight" : "bold",
+					"background-image" : "none"
+				});
 				if(typeof onBtnClick == "function") {
 					button_1.addEventListener("click", onBtnClick);
 				}
 				container.addChild(button_1, {
-					"top": "648px",
-					"left": "1020px",
-					"width": "177px",
-					"height": "31px"
+					"top": "646px",
+					"left": "890px",
+					"width": "147px",
+					"height": "43px"
+				});
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "ITda Accompany    |";
+				output_6.style.css({
+					"color" : "#EBA5BF",
+					"font-weight" : "normal",
+					"font-size" : "1rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_6, {
+					"top": "882px",
+					"left": "719px",
+					"width": "162px",
+					"height": "21px"
+				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "고객센터 : 010-8299-1244";
+				output_7.style.css({
+					"color" : "#6F6F6F",
+					"font-weight" : "normal",
+					"font-size" : "1rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_7, {
+					"top": "882px",
+					"left": "882px",
+					"width": "200px",
+					"height": "21px"
+				});
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "취소";
+				button_2.style.css({
+					"background-color" : "#E9E9E9",
+					"color" : "#383838",
+					"font-weight" : "bold",
+					"font-size" : "14px",
+					"background-image" : "none"
+				});
+				if(typeof onButtonClick == "function") {
+					button_2.addEventListener("click", onButtonClick);
+				}
+				container.addChild(button_2, {
+					"top": "647px",
+					"left": "1047px",
+					"width": "145px",
+					"height": "42px"
 				});
 			})(group_1);
 			container.addChild(group_1, {

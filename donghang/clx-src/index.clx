@@ -63,54 +63,74 @@
   <body std:sid="body-bda8ceea" style="background-color:#B0B0B0 none;">
     <cl:listener std:sid="listener-e58003b0" name="load" handler="onBodyLoad"/>
     <cl:embeddedapp std:sid="e-app-b36ba7e7" id="ea1">
-      <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="245px" left="21px" width="1960px" height="884px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ce71e261" top="247px" left="21px" width="1980px" height="882px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedapp>
     <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.5rem;" value="ITda">
-      <cl:xylayoutdata std:sid="xyl-data-64405299" top="41px" left="162px" width="100px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-64405299" top="49px" left="137px" width="71px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
-      <cl:xylayoutdata std:sid="xyl-data-c5508eb1" top="84px" left="162px" width="160px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-c5508eb1" top="80px" left="137px" width="131px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:group std:sid="group-f2a4904e">
-      <cl:listener std:sid="listener-a03a5444" name="click" handler="onGroupClick2"/>
-      <cl:xylayoutdata std:sid="xyl-data-549154ea" top="1px" right="-194px" left="432px" height="74px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
-      <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
-        <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
-        <cl:xylayoutdata std:sid="xyl-data-44eb4406" top="20px" left="1345px" width="105px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
-        <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
-        <cl:xylayoutdata std:sid="xyl-data-dca60b0a" top="20px" left="1137px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
-        <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
-        <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-130f5553" top="20px" left="1256px" width="90px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:button>
-      <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님  환영합니다.">
-        <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
-        <cl:xylayoutdata std:sid="xyl-data-0429e3da" top="23px" left="949px" width="138px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
-      <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
-        <cl:listener std:sid="listener-5ee7b881" name="value-change" handler="onWhoNameValueChange"/>
-        <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
-        <cl:xylayoutdata std:sid="xyl-data-dd6d5935" top="23px" left="820px" width="130px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      </cl:output>
-      <cl:xylayout std:sid="xylayout-1530ee91"/>
-    </cl:group>
     <cl:img std:sid="image-3cd6a300" src="theme/images/img/logo2_donghang.png">
-      <cl:xylayoutdata std:sid="xyl-data-0af1e4cd" top="21px" left="21px" width="135px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-0af1e4cd" top="21px" left="21px" width="106px" height="102px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
     <cl:navigationbar std:sid="n-bar-47aaa208" id="nav1" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; border-top-style:none;" baritemspacing="150">
       <cl:listener std:sid="listener-c8c675ab" name="item-click" handler="onNav1ItemClick"/>
       <cl:listener std:sid="listener-af020ef9" name="click" handler="onNav1Click2"/>
       <cl:listener std:sid="listener-22d0750a" name="selection-change" handler="onNav1SelectionChange"/>
-      <cl:xylayoutdata std:sid="xyl-data-4ed4f530" top="84px" right="446px" left="503px" height="154px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-4ed4f530" top="95px" right="343px" left="399px" height="141px" horizontalAnchor="BOTH" verticalAnchor="TOP"/>
       <cl:menuitemset datasetid="ds1" label="labal" value="value"/>
     </cl:navigationbar>
-    <cl:udc std:sid="ud-control-730e81ef" type="udc.udcDialogd">
-      <cl:xylayoutdata std:sid="xyl-data-c3291d38" top="1228px" left="20px" width="2062px" height="184px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:udc>
+    <cl:group std:sid="group-19b5013b" style="background-color:#A8A8A8; background-image:none;">
+      <cl:xylayoutdata std:sid="xyl-data-cc3ee826" top="1138px" left="0px" width="2379px" height="162px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:img std:sid="image-603139ef" src="theme/images/img/logo2_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-4a942f10" top="46px" left="37px" width="101px" height="85px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:output std:sid="output-6c5200fe" style="color:#FFFFFF; font-weight:bold; font-size:2rem;" value="ITda Accompany">
+        <cl:xylayoutdata std:sid="xyl-data-f150a1b2" top="61px" left="147px" width="302px" height="55px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-985baed4" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="이용약관">
+        <cl:xylayoutdata std:sid="xyl-data-674f4e9e" top="22px" left="494px" width="120px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-3e6726a5" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="개인정보취급방침">
+        <cl:xylayoutdata std:sid="xyl-data-0514e8b7" top="22px" left="662px" width="157px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-8698743a" style="color:#F6F6F6; font-weight:bold; font-size:1.15rem;" value="찾아오시는 길">
+        <cl:xylayoutdata std:sid="xyl-data-32af19cb" top="22px" left="880px" width="126px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-eca8a62f" style="color:#F6F6F6; font-weight:bold; font-size:16px;" value="경기도 성남시 성남대로 34 하나프라자 6층 KOSTA EDU ">
+        <cl:xylayoutdata std:sid="xyl-data-fc7e1eeb" top="73px" left="493px" width="457px" height="31px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-8029d2df" style="color:#F6F6F6; font-weight:bold;" value=" TEL : 010-8299-1244 | Email : gjsdms1244@gmail.com">
+        <cl:xylayoutdata std:sid="xyl-data-410f396c" top="113px" left="493px" width="507px" height="31px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-62811a1f" style="color:#F6F6F6; font-weight:bold; font-size:16px;" value="담당자 : 박지수 , 김지혁 , 이히은 , 강재헌">
+        <cl:xylayoutdata std:sid="xyl-data-1484e88a" top="96px" left="1156px" width="349px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-a5b5239f"/>
+    </cl:group>
+    <cl:button std:sid="button-15c4f97b" id="btn_register" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="회원가입  ">
+      <cl:listener std:sid="listener-66d90c3f" name="click" handler="onButtonClick2"/>
+      <cl:xylayoutdata std:sid="xyl-data-31c8d177" top="34px" left="1570px" width="76px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-cbc3994d" id="mypage" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" visible="false" value=" 마이페이지 ">
+      <cl:listener std:sid="listener-a810a5ae" name="click" handler="onButtonClick"/>
+      <cl:xylayoutdata std:sid="xyl-data-429319ef" top="34px" left="1362px" width="91px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:button std:sid="button-14d0131e" id="login" style="background-color:#FFFFFF; border-right-style:none; color:#4682A9; border-left-style:none; font-weight:bold; font-size:1rem; border-bottom-style:none; background-image:none; border-top-style:none;" value="  로그인   ">
+      <cl:listener std:sid="listener-d94c05b8" name="click" handler="onLoginClick"/>
+      <cl:listener std:sid="listener-2394d6e7" name="value-change" handler="onLoginValueChange"/>
+      <cl:xylayoutdata std:sid="xyl-data-d9bba25f" top="34px" left="1481px" width="61px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:button>
+    <cl:output std:sid="output-ad4c99f0" id="welcom" style="font-weight:bold; font-size:1rem;" visible="false" value="님  환영합니다.">
+      <cl:listener std:sid="listener-3678ac61" name="value-change" handler="onWelcomValueChange"/>
+      <cl:xylayoutdata std:sid="xyl-data-81f420bd" top="37px" left="1174px" width="119px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
+    <cl:output std:sid="output-4bcf02b7" id="whoName" style="font-weight:bold; font-size:1rem; text-align:center;">
+      <cl:listener std:sid="listener-5ee7b881" name="value-change" handler="onWhoNameValueChange"/>
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="dm1" columnname="userName"/>
+      <cl:xylayoutdata std:sid="xyl-data-7ee80ef1" top="37px" left="1045px" width="101px" height="34px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
     <cl:xylayout std:sid="xylayout-8cfc8944"/>
   </body>
   <std:studiosetting>
