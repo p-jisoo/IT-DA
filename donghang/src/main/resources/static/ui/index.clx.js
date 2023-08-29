@@ -99,15 +99,18 @@
 				var helloWelcome = app.lookup("welcom");
 				var register = app.lookup("btn_register");
 				var output = app.lookup("whoName");
-				
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log(any.loginSession.userName);
-				if (any.loginSession.userName == "") {
+				if(responseText.length < 3){
+					// 로그인 안된상태 이거만 에러처리 
+					return;
+				}
+				
+				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
 				} else {
-					output.value = any.loginSession.userName;
+					output.value =any.loginSession.userName;
 					register.visible = false;
 					helloWelcome.visible = true;
 					myPage.visible = true;
@@ -179,7 +182,7 @@
 					{"labal": "HOME", "value": "home"},
 					{"labal": "교육게시판", "value": "eduApplyboardList"},
 					{"labal": "교육신청", "value": "createBoard"},
-					{"labal": "마이페이지", "value": "myPage"}
+					{"labal": "마이페이지", "value": "mypage"}
 				]
 			});
 			app.register(dataSet_1);
@@ -237,6 +240,7 @@
 			// Configure root container
 			var container = app.getContainer();
 			container.style.css({
+				"background-color" : "#B0B0B0 none",
 				"width" : "100%",
 				"height" : "100%"
 			});
@@ -248,10 +252,10 @@
 			// UI Configuration
 			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
 			container.addChild(embeddedApp_1, {
-				"top": "237px",
+				"top": "245px",
 				"left": "21px",
 				"width": "1960px",
-				"height": "824px"
+				"height": "884px"
 			});
 			
 			var output_1 = new cpr.controls.Output();
@@ -286,42 +290,9 @@
 			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
 			group_1.setLayout(xYLayout_2);
 			(function(container){
-				var button_1 = new cpr.controls.Button();
-				button_1.value = "회원정보 수정";
-				if(typeof onButtonClick4 == "function") {
-					button_1.addEventListener("click", onButtonClick4);
-				}
-				container.addChild(button_1, {
-					"top": "20px",
-					"left": "213px",
-					"width": "139px",
-					"height": "43px"
-				});
-				var button_2 = new cpr.controls.Button();
-				button_2.value = "마이페이지";
-				if(typeof onButtonClick5 == "function") {
-					button_2.addEventListener("click", onButtonClick5);
-				}
-				container.addChild(button_2, {
-					"top": "20px",
-					"left": "19px",
-					"width": "164px",
-					"height": "44px"
-				});
-				var button_3 = new cpr.controls.Button("temporary_btn");
-				button_3.value = "임시 회원탈퇴 버튼, 후에 마이페이지 내에 넣을 예정";
-				if(typeof onButtonClick3 == "function") {
-					button_3.addEventListener("click", onButtonClick3);
-				}
-				container.addChild(button_3, {
-					"top": "19px",
-					"left": "584px",
-					"width": "221px",
-					"height": "45px"
-				});
-				var button_4 = new cpr.controls.Button("btn_register");
-				button_4.value = "회원가입  ";
-				button_4.style.css({
+				var button_1 = new cpr.controls.Button("btn_register");
+				button_1.value = "회원가입  ";
+				button_1.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -333,18 +304,18 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick2 == "function") {
-					button_4.addEventListener("click", onButtonClick2);
+					button_1.addEventListener("click", onButtonClick2);
 				}
-				container.addChild(button_4, {
+				container.addChild(button_1, {
 					"top": "20px",
-					"left": "1388px",
+					"left": "1345px",
 					"width": "105px",
 					"height": "40px"
 				});
-				var button_5 = new cpr.controls.Button("mypage");
-				button_5.visible = false;
-				button_5.value = " 마이페이지 ";
-				button_5.style.css({
+				var button_2 = new cpr.controls.Button("mypage");
+				button_2.visible = false;
+				button_2.value = " 마이페이지 ";
+				button_2.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -356,17 +327,17 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onButtonClick == "function") {
-					button_5.addEventListener("click", onButtonClick);
+					button_2.addEventListener("click", onButtonClick);
 				}
-				container.addChild(button_5, {
+				container.addChild(button_2, {
 					"top": "20px",
-					"left": "1180px",
+					"left": "1137px",
 					"width": "120px",
 					"height": "40px"
 				});
-				var button_6 = new cpr.controls.Button("login");
-				button_6.value = "  로그인   ";
-				button_6.style.css({
+				var button_3 = new cpr.controls.Button("login");
+				button_3.value = "  로그인   ";
+				button_3.style.css({
 					"background-color" : "#FFFFFF",
 					"border-right-style" : "none",
 					"color" : "#4682A9",
@@ -378,14 +349,14 @@
 					"border-top-style" : "none"
 				});
 				if(typeof onLoginClick == "function") {
-					button_6.addEventListener("click", onLoginClick);
+					button_3.addEventListener("click", onLoginClick);
 				}
 				if(typeof onLoginValueChange == "function") {
-					button_6.addEventListener("value-change", onLoginValueChange);
+					button_3.addEventListener("value-change", onLoginValueChange);
 				}
-				container.addChild(button_6, {
+				container.addChild(button_3, {
 					"top": "20px",
-					"left": "1299px",
+					"left": "1256px",
 					"width": "90px",
 					"height": "40px"
 				});
@@ -401,7 +372,7 @@
 				}
 				container.addChild(output_3, {
 					"top": "23px",
-					"left": "992px",
+					"left": "949px",
 					"width": "138px",
 					"height": "34px"
 				});
@@ -412,12 +383,12 @@
 					"text-align" : "center"
 				});
 				output_4.bind("value").toDataMap(app.lookup("dm1"), "userName");
-				if(typeof onOutputValueChange == "function") {
-					output_4.addEventListener("value-change", onOutputValueChange);
+				if(typeof onWhoNameValueChange == "function") {
+					output_4.addEventListener("value-change", onWhoNameValueChange);
 				}
 				container.addChild(output_4, {
 					"top": "17px",
-					"left": "852px",
+					"left": "809px",
 					"width": "130px",
 					"height": "41px"
 				});
@@ -471,6 +442,14 @@
 				"right": "446px",
 				"left": "503px",
 				"height": "154px"
+			});
+			
+			var userDefinedControl_1 = new udc.udcDialogd();
+			container.addChild(userDefinedControl_1, {
+				"top": "1228px",
+				"left": "20px",
+				"width": "2062px",
+				"height": "184px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

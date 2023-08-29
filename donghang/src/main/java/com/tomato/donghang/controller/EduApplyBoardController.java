@@ -19,6 +19,7 @@ import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
 import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
 import com.tomato.donghang.model.service.EduApplyBoardService;
+import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,11 @@ public class EduApplyBoardController {
 	public View eduApplyboardList() {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
+	@GetMapping("/ui/detailBoardUI.do")
+	public View detailBoardUI() {
+		return new UIView("/ui/detailBoard.clx");
+	}
+
 	@PostMapping("/ui/findBaordList.do")
 	public View findBoardList(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		List<Map<String, Object>> data = eduApplyBoardService.findBaordList();
@@ -136,6 +142,7 @@ public class EduApplyBoardController {
 		long canApply = 0;
 		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
+		//145 여기서부터 
 		HttpSession session = request.getSession(false);
 		Integer likeCount;
 		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
@@ -148,7 +155,6 @@ public class EduApplyBoardController {
 			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 			Map<String, Object> map = new HashMap<>();
 			String userId = memberVO.getUserId();
-			//0이면 지원가능 1이면 이미지원 2이면 내가 게시글 썼기 때문에 지원안됨 3이면 꽉 찬상태라 지원이 안됨
 			log.info("가져온 아이디 {}", dataMap.get("USER_ID"));
 			log.info("세션 아이디 {}", userId);
 			if(userId.equals(dataMap.get("USER_ID"))) {
@@ -159,19 +165,16 @@ public class EduApplyBoardController {
 			map.put("eduBoardNo", eduBoardNo);
 			map.put("userId", userId);
 			likeCount = eduApplyBoardMapper.isLike(map);
-			log.info("canApply 드디어 집에 갈 수 있나? {}" ,canApply);
-			log.debug("로그인 했을때 likeCount {} ",likeCount);
+			log.info("canApply {}" ,canApply);
+			log.info("로그인 했을때 likeCount {} ",likeCount);
 		}
 		dataMap.put("IsLike", likeCount);
 		dataMap.put("canApply",canApply);
-//		ParameterGroup param = dataRequest.getParameterGroup("dm5"); 데이터 맵 확인
-
-//		long likeCountLong.parseLong(param.getValue("eduBoardNo"));
+		//174 여기까지 
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
-//		return new UIView("/ui/updateBoard.do");
 	}
-//	
+	
 	@PostMapping("/ui/createBoard.do")
 	public View createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
@@ -194,17 +197,6 @@ public class EduApplyBoardController {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
 	
-//	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
-//	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-//		System.out.println("selectCommentBoardByBoardNo Test");
-//		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-//		System.out.println("paramSelect : "+ param);
-//		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard();
-//		System.out.println("SelectCommentBoard : "+ dataMap);
-//		dataRequest.setResponse("commentBoardMap", dataMap);
-//		return  new JSONDataView();
-////		return new UIView("/ui/updateBoard.do");
-//	}
 	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
@@ -237,4 +229,39 @@ public class EduApplyBoardController {
 		return new UIView("/ui/detailBoard.clx"); 
 	}	
 
+	@GetMapping("ui/mypage")
+	public View mypageForm() {
+		return new UIView("ui/mypage.clx");
+	}
+	@PostMapping("ui/appliedList.do")
+	public View findAppliedListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("ggggg");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findAppliedListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		
+		
+		return new JSONDataView();
+	} 
+	@PostMapping("ui/applyList.do")
+	public View findAppliyingListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
+		System.out.println("1111");
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findApplyingListByUserId(mvo.getUserId());
+		System.out.println(data);
+		datarequest.setResponse("ds1", data);
+		return new JSONDataView();
+	} 
+	@PostMapping("ui/commentList.do")
+	public View findCommentListByUserIdAndBoardNo(HttpServletRequest request,HttpServletResponse response, 
+			DataRequest datarequest) {
+		HttpSession session= request.getSession(false);
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		List<Map<String, String>> data = eduApplyBoardService.findCommentListByUserIdAndBoardNo(mvo.getUserId());
+		datarequest.setResponse("ds1", data);
+		return new JSONDataView();
+	}
 }

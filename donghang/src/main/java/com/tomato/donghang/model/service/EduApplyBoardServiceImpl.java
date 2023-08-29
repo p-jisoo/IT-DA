@@ -145,6 +145,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    po.put("status", applyStatus);
 	    po.put("type", type);
 	    po.put("keyword", keyword);
+	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
 	    log.info("총 게시물 수 {}", data);
 	    if(data.size()==0) {
@@ -162,9 +163,101 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		return data;
 	}
 	
+	@Override
+	public void likeCaculate(String userId, String value) {
+		Map<String, Object> map = new HashMap<>();
+		long eduBoardNo = Long.parseLong(value);
+		map.put("userId", userId);
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("map {}", map);
+		Integer likeCount = eduApplyBoardMapper.isLike(map);
+		log.info("likeCount {}",likeCount);
+		if(likeCount==null || likeCount==0) {
+			eduApplyBoardMapper.addLikeCount(map);
+		}else {
+			eduApplyBoardMapper.deleteLikeCount(map);
+		}
+	}
+
+	@Override
+	public long checkCanApply(String userId, long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long canApply = eduApplyBoardMapper.isApply(map);
+		if(canApply==0) {
+			return nowCount(eduBoardNo);
+		}
+		return canApply;
+	}
+	public long nowCount(long eduBoardNo) {
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long canApply = (maxMember - currentMember) ;
+		if(canApply == 0) {
+			canApply= 3; // 마감되어서 꽉 찬 상태
+		}else {
+			canApply = 0; // 지원가능
+		}
+		return canApply;
+	}
+	@Override
+	public void applyEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==1) {
+			eduApplyBoardMapper.applyEnd(eduBoardNo);
+		}
+		eduApplyBoardMapper.applyEdu(map);
+	}
+
+	@Override
+	public void cancelEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==0) {
+			eduApplyBoardMapper.applyChange(eduBoardNo);
+		}
+		eduApplyBoardMapper.cancelEdu(map);
+	}
+
+	@Override
+	public List<Map<String, String>> findAppliedListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);
+		for(EduApplyBoardVO eduboard : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", eduboard.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", eduboard.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", eduboard.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", eduboard.getEduBoardContent());
+			data.add(row);
+		}
+		log.info("data {}",data);
+		return data;
+	}
+	
+	@Override
+	public Integer likeCount(long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
+		return eduApplyBoardMapper.isLike(map);
+	}
 	
 	
 	
+	//여기까지 지원 검색 좋아요 페이지네이션  한거
 	
 	
 	@Override
@@ -172,7 +265,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
         String eduBoardNo = param.getValue("EDU_BOARD_NO");
         EduApplyBoardVO evo = new EduApplyBoardVO();
         evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-        System.out.println("evo : "+evo);
         EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
         System.out.println("serviceImpl evo : " + evo);
         Map<String, Object> dataMap = new HashMap<>();
@@ -187,13 +279,10 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
         dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
         dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
         dataMap.put("USER_ID", evo2.getMemberVO().getUserId());
-        dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
-        dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
-
         System.out.println("serviceImpl MAP" + dataMap);
-
+        
         return dataMap;
-    }
+}
 
 	@Override
 	public void createBoard(ParameterGroup param) {
@@ -410,78 +499,32 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
-	public Integer likeCount(long eduBoardNo) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", eduBoardNo);
-		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
-		return eduApplyBoardMapper.isLike(map);
-	}
-	
-	@Override
-	public void likeCaculate(String userId, String value) {
-		Map<String, Object> map = new HashMap<>();
-		long eduBoardNo = Long.parseLong(value);
-		map.put("userId", userId);
-		map.put("eduBoardNo", eduBoardNo);
-		log.info("map {}", map);
-		Integer likeCount = eduApplyBoardMapper.isLike(map);
-		log.info("likeCount {}",likeCount);
-		if(likeCount==null || likeCount==0) {
-			eduApplyBoardMapper.addLikeCount(map);
-		}else {
-			eduApplyBoardMapper.deleteLikeCount(map);
+	public List<Map<String, String>> findApplyingListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list = eduApplyBoardMapper.findApplyingListByUserId(id);
+		for(EduApplyBoardVO board : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", board.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", board.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", board.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", board.getEduBoardContent());
+			data.add(row);
 		}
+			
+		return data;
 	}
 
 	@Override
-	public long checkCanApply(String userId, long eduBoardNo) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", eduBoardNo);
-		map.put("userId", userId);
-		long canApply = eduApplyBoardMapper.isApply(map);
-		if(canApply==0) {
-			return nowCount(eduBoardNo);
+	public List<Map<String, String>> findCommentListByUserIdAndBoardNo(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyCommentBoardVO> list = eduApplyBoardMapper.findCommentListByUserIdAndBoardNo(id);
+		for(EduApplyCommentBoardVO comments : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", comments.getEduApplyBoardVO().getEduBoardTitle());
+			row.put("EDU_APPLY_COMMENT_CONTENT", comments.getEduApplyCommentContent());
+			data.add(row);
 		}
-		return canApply;
-	}
-	public long nowCount(long eduBoardNo) {
-		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
-		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
-		long canApply = (maxMember - currentMember) ;
-		if(canApply == 0) {
-			canApply= 3; // 마감되어서 꽉 찬 상태
-		}else {
-			canApply = 0; // 지원가능
-		}
-		return canApply;
-	}
-	@Override
-	public void applyEduBoard(String userId, String value) {
-		long eduBoardNo = Long.parseLong(value);
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", eduBoardNo);
-		map.put("userId", userId);
-		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
-		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
-		long changeStatus = (maxMember - currentMember);
-		if(changeStatus==1) {
-			eduApplyBoardMapper.applyEnd(eduBoardNo);
-		}
-		eduApplyBoardMapper.applyEdu(map);
-	}
-
-	@Override
-	public void cancelEduBoard(String userId, String value) {
-		long eduBoardNo = Long.parseLong(value);
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", eduBoardNo);
-		map.put("userId", userId);
-		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
-		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
-		long changeStatus = (maxMember - currentMember);
-		if(changeStatus==0) {
-			eduApplyBoardMapper.applyChange(eduBoardNo);
-		}
-		eduApplyBoardMapper.cancelEdu(map);
+		log.info("data {}",data);
+		return data;
 	}
 }

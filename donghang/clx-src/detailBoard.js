@@ -69,6 +69,8 @@ function onSelectsmsSubmitSuccess(e) {
 	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue);
 	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
+	
+	//좋아요 라이크 지수
 	var any = JSON.parse(selectsms.xhr.responseText);
 	if(any.eduApplyBoardMap.IsLike==1){
 		eduApplyBoardMap.setValue("likeCount", "theme/images/heart-fillsvg.svg");
@@ -80,9 +82,11 @@ function onSelectsmsSubmitSuccess(e) {
    	switch (any.eduApplyBoardMap.canApply) {
   case 0:
     	eduApplyBoardMap.setValue("btnApply", "지원하기");
+    	button.style.css("color", "#15C729");
     break;
   case 1:
     	eduApplyBoardMap.setValue("btnApply", "지원중");
+    		button.style.css("color", "#F14747");
     break;
   case 2:
     	eduApplyBoardMap.setValue("btnApply", "내글이다");
@@ -93,6 +97,7 @@ function onSelectsmsSubmitSuccess(e) {
     	button.style.css("color", "red");
     	button.enabled = false;
     break;
+    	//좋아요 라이크 지수
 }
    	button.redraw();
 	
@@ -242,15 +247,10 @@ function onButtonClick6(e) {
  */
 function onButtonClick7(e) {
 	var button = e.control;
-	window.location.href = "toBoardList.do";
 }
 
-/*
- * 이미지에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
 
-
+//좋아요 지수
 /*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
@@ -330,6 +330,7 @@ function onLikeCaculateSubmitDone(e){
 	}
 }
 
+
 /*
  * "지원하기" 버튼(apply)에서 click 이벤트 발생 시 호출.
  * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
@@ -368,10 +369,10 @@ function onApplyEduBoardSubmitDone2(e){
 				"color" : "#F14747"
 			});
 			container.addChild(button_14, {
-				"top": "590px",
-				"left": "1061px",
-				"width": "137px",
-				"height": "52px"
+				"top": "592px",
+				"left": "1060px",
+				"width": "138px",
+				"height": "44px"
 			});
 		button_14.addEventListener("click", function(e){
 			onApplyClick(e);
@@ -391,13 +392,13 @@ function onCancelEduBoardSubmitDone2(e){
 				"color" : "#15C729"
 			});
 			container.addChild(button_14, {
-				"top": "590px",
-				"left": "1061px",
-				"width": "137px",
-				"height": "52px"
+				"top": "592px",
+				"left": "1060px",
+				"width": "138px",
+				"height": "44px"
 		});
 		button_14.addEventListener("click", function(e){
 			onApplyClick(e);
 		});
 }
-
+//좋아요 지수

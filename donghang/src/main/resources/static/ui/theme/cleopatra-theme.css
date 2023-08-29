@@ -1114,20 +1114,6 @@ body.cl-has-modal {
 .cl-grid .cl-grid-bottomsplit {
   border-top: double 3px #333;
 }
-.cl-grid .cl-nodatamsg {
-  background-image: url("controls/..theme/controls/images/slash.svg");
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-.cl-grid .cl-nodatamsg:after {
-  content: "이미지-조회된 데이터가 없습니다.";
-  position: absolute;
-  top: calc(50% - 45px);
-  left: 0px;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-}
 /* 그리드 필터 사용시 필터 다이얼로그가 펼쳐지는 영역 스타일 */
 .cl-gridfilter {
   /* 필터 다이얼로그 뒤에 비활성화 영역을 표현하기 위해 덮히는 막 */

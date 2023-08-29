@@ -26,34 +26,10 @@
 				submission.send();
 			}
 			/*
-			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
-			 * 통신이 성공하면 발생합니다.
-			 */
-			function onUpdateSessionSubmitSuccess(e){
-				var updateSession = e.control;
-				var id = app.lookup("userId");
-				var adr = app.lookup("Address");
-				var tel = app.lookup("Tel_mask");
-				var name = app.lookup("userName");
-				var nick = app.lookup("nickName");
-				var email = app.lookup("email");
-				var responseText = updateSession.xhr.responseText;
-				var any = JSON.parse(responseText);
-				console.log(any.loginSession);
-				id.value=any.loginSession.userId;
-				adr.value=any.loginSession.address;
-				tel.value=any.loginSession.userTel;
-				name.value=any.loginSession.userName;
-				nick.value=any.loginSession.nickName;
-				email.value=any.loginSession.email
-				
-			}
-
-			/*
-			 * "회원수정" 버튼에서 click 이벤트 발생 시 호출.
+			 * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick(e) {
+			function onButtonClick2(e){
 				var button = e.control;
 				var submission = app.lookup("update");
 				var id = app.lookup("userId");
@@ -99,6 +75,30 @@
 				if(email.length==0){
 					alert("이메일을 입력해주세요.")
 				}
+					
+				app.openDialog("updateMemberdialog", {
+					width : 400,
+					height : 300,
+					headerVisible: false
+				}, function(dialog){
+					dialog.ready(function(dialogApp){
+						dialog.initValue={
+						param1 : id.value, 
+						param2 : pwd.value, 
+						param3 : adr.value,
+						param4 : Tel.value, 
+						param5 : name.value, 
+						param6 : nickName.value,
+						param7 : email.value
+						}
+					dialogApp.addEventListener("click", function(e){
+					});
+				});
+			//	}).then(function(returnValue){
+			//		;
+				});
+				
+				
 				submission.send();
 			}
 
@@ -106,14 +106,40 @@
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
-			function onSms1SubmitSuccess2(e) {
-				var sms1 = e.control;
-				var responseText = sms1.xhr.responseText;
+			function onUpdateSessionSubmitSuccess(e){
+				var updateSession = e.control;
+				var id = app.lookup("userId");
+				var adr = app.lookup("Address");
+				var tel = app.lookup("Tel_mask");
+				var name = app.lookup("userName");
+				var nick = app.lookup("nickName");
+				var email = app.lookup("email");
+				var responseText = updateSession.xhr.responseText;
 				var any = JSON.parse(responseText);
-				console.log(any.ds1);
-				window.location.href = "/";
-				alert("회원정보가 수정되었습니다.");
+				console.log(any.loginSession);
+				var userInfo = any.loginSession
+				id.value = userInfo.userId;
+				adr.value = userInfo.address;
+				tel.value = userInfo.userTel;
+				name.value = userInfo.userName;
+				nick.value = userInfo.nickName;
+				email.value = userInfo.email;
+				
 			}
+
+
+			/*
+			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
+			 * 통신이 성공하면 발생합니다.
+			 */
+			//function onSms1SubmitSuccess2(e) {
+			//	var sms1 = e.control;
+			//	var responseText = sms1.xhr.responseText;
+			//	var any = JSON.parse(responseText);
+			//	console.log(any.loginSession);
+			//	window.location.href = "/";
+			//	alert("회원정보가 수정되었습니다.");
+			//}
 
 
 			/*
@@ -227,6 +253,15 @@
 			function onImgHomeClick(e){
 				var imgHome = e.control;
 				window.location.href = "/";
+			}
+
+			/*
+			 * "회원정보 수정" 버튼에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onButtonClick4(e){
+				var button = e.control;
+				
 			};
 			// End - User Script
 			
@@ -332,59 +367,19 @@
 			
 			// UI Configuration
 			var group_1 = new cpr.controls.Container();
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
-			(function(container){
-				var output_1 = new cpr.controls.Output();
-				output_1.value = "회원정보 수정";
-				output_1.style.css({
-					"font-weight" : "bold",
-					"font-size" : "2rem",
-					"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
-					"font-style" : "normal"
-				});
-				container.addChild(output_1, {
-					"top": "21px",
-					"left": "20px",
-					"width": "282px",
-					"height": "80px"
-				});
-			})(group_1);
-			container.addChild(group_1, {
-				"top": "120px",
-				"left": "825px",
-				"width": "322px",
-				"height": "107px"
-			});
-			
-			var button_1 = new cpr.controls.Button();
-			button_1.value = "회원정보 수정";
-			button_1.style.css({
-				"font-weight" : "bold",
-				"font-size" : "1.7rem"
-			});
-			if(typeof onButtonClick == "function") {
-				button_1.addEventListener("click", onButtonClick);
-			}
-			container.addChild(button_1, {
-				"top": "1160px",
-				"left": "873px",
-				"width": "188px",
-				"height": "52px"
-			});
-			
-			var group_2 = new cpr.controls.Container();
-			group_2.style.css({
+			group_1.style.css({
+				"border-radius" : "0.5rem",
 				"font-style" : "normal"
 			});
-			var xYLayout_3 = new cpr.controls.layouts.XYLayout();
-			group_2.setLayout(xYLayout_3);
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_2);
 			(function(container){
 				var inputBox_1 = new cpr.controls.InputBox("password");
 				inputBox_1.fieldLabel = "13";
 				inputBox_1.secret = true;
-				inputBox_1.placeholder = "비밀번호를 입력하세요.";
+				inputBox_1.placeholder = "변경하실 비밀번호를 입력하세요.";
 				inputBox_1.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				inputBox_1.bind("value").toDataMap(app.lookup("dm1"), "password");
@@ -395,8 +390,8 @@
 					inputBox_1.addEventListener("value-change", onPasswordValueChange);
 				}
 				container.addChild(inputBox_1, {
-					"top": "137px",
-					"left": "300px",
+					"top": "157px",
+					"left": "301px",
 					"width": "247px",
 					"height": "42px"
 				});
@@ -404,34 +399,36 @@
 				inputBox_2.secret = true;
 				inputBox_2.placeholder = "비밀번호 재확인을 입력하세요.";
 				inputBox_2.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				if(typeof onPasswordChkValueChange == "function") {
 					inputBox_2.addEventListener("value-change", onPasswordChkValueChange);
 				}
 				container.addChild(inputBox_2, {
-					"top": "182px",
-					"left": "300px",
+					"top": "202px",
+					"left": "301px",
 					"width": "247px",
 					"height": "42px"
 				});
-				var output_2 = new cpr.controls.Output("pwdMsg");
-				output_2.value = "영어, 숫자, 특수기호로 8~16자 입력해주세요.";
-				output_2.style.css({
+				var output_1 = new cpr.controls.Output("pwdMsg");
+				output_1.value = "영어, 숫자, 특수기호로 8~16자 입력해주세요.";
+				output_1.style.css({
 					"color" : "#ED3838",
 					"font-size" : "0.9rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_2, {
-					"top": "230px",
-					"left": "307px",
-					"width": "392px",
-					"height": "42px"
+				container.addChild(output_1, {
+					"top": "242px",
+					"left": "301px",
+					"width": "399px",
+					"height": "37px"
 				});
 				var inputBox_3 = new cpr.controls.InputBox("PostCode");
 				inputBox_3.readOnly = true;
 				inputBox_3.placeholder = "우편번호";
 				inputBox_3.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				container.addChild(inputBox_3, {
@@ -440,16 +437,16 @@
 					"width": "230px",
 					"height": "42px"
 				});
-				var button_2 = new cpr.controls.Button();
-				button_2.value = "우편번호 확인";
-				button_2.style.css({
+				var button_1 = new cpr.controls.Button();
+				button_1.value = "우편번호 확인";
+				button_1.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1rem"
 				});
 				if(typeof onButtonClick3 == "function") {
-					button_2.addEventListener("click", onButtonClick3);
+					button_1.addEventListener("click", onButtonClick3);
 				}
-				container.addChild(button_2, {
+				container.addChild(button_1, {
 					"top": "345px",
 					"left": "557px",
 					"width": "108px",
@@ -459,6 +456,7 @@
 				inputBox_4.readOnly = true;
 				inputBox_4.placeholder = "도로명 주소, 지번 주소";
 				inputBox_4.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				inputBox_4.bind("value").toDataMap(app.lookup("dm1"), "address");
@@ -480,6 +478,7 @@
 				var inputBox_5 = new cpr.controls.InputBox("detailAddress");
 				inputBox_5.placeholder = "상세 주소";
 				inputBox_5.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				container.addChild(inputBox_5, {
@@ -492,113 +491,116 @@
 				maskEditor_1.mask = "XXX-XXXX-XXXX";
 				maskEditor_1.autoSkip = true;
 				maskEditor_1.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				maskEditor_1.bind("value").toDataMap(app.lookup("dm1"), "userTel");
 				container.addChild(maskEditor_1, {
-					"top": "540px",
-					"left": "300px",
+					"top": "545px",
+					"left": "301px",
 					"width": "266px",
 					"height": "42px"
 				});
 				var inputBox_6 = new cpr.controls.InputBox("userName");
 				inputBox_6.placeholder = "이름을 입력해주세요.";
 				inputBox_6.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				inputBox_6.bind("value").toDataMap(app.lookup("dm1"), "userName");
 				container.addChild(inputBox_6, {
-					"top": "621px",
-					"left": "300px",
+					"top": "596px",
+					"left": "301px",
 					"width": "266px",
 					"height": "42px"
 				});
 				var inputBox_7 = new cpr.controls.InputBox("nickName");
 				inputBox_7.placeholder = "닉네임을 입력해주세요.";
 				inputBox_7.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem"
 				});
 				inputBox_7.bind("value").toDataMap(app.lookup("dm1"), "nickName");
 				container.addChild(inputBox_7, {
-					"top": "689px",
+					"top": "648px",
 					"left": "300px",
 					"width": "266px",
 					"height": "42px"
 				});
-				var output_3 = new cpr.controls.Output();
-				output_3.value = "*비밀번호";
-				output_3.style.css({
+				var output_2 = new cpr.controls.Output();
+				output_2.value = "*비밀번호";
+				output_2.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_3, {
-					"top": "137px",
-					"left": "0px",
+				container.addChild(output_2, {
+					"top": "157px",
+					"left": "1px",
 					"width": "128px",
 					"height": "35px"
 				});
-				var output_4 = new cpr.controls.Output();
-				output_4.value = "*비밀번호 재확인";
-				output_4.style.css({
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "*비밀번호 재확인";
+				output_3.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_4, {
-					"top": "192px",
-					"left": "0px",
+				container.addChild(output_3, {
+					"top": "212px",
+					"left": "1px",
 					"width": "136px",
 					"height": "29px"
 				});
-				var output_5 = new cpr.controls.Output();
-				output_5.value = "*주소";
-				output_5.style.css({
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "*주소";
+				output_4.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_5, {
+				container.addChild(output_4, {
 					"top": "336px",
 					"left": "0px",
 					"width": "208px",
 					"height": "39px"
 				});
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "*전화번호";
+				output_5.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.05rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_5, {
+					"top": "545px",
+					"left": "1px",
+					"width": "208px",
+					"height": "46px"
+				});
 				var output_6 = new cpr.controls.Output();
-				output_6.value = "*전화번호";
+				output_6.value = "*성함";
 				output_6.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
 				container.addChild(output_6, {
-					"top": "540px",
-					"left": "0px",
+					"top": "596px",
+					"left": "1px",
 					"width": "208px",
 					"height": "46px"
 				});
 				var output_7 = new cpr.controls.Output();
-				output_7.value = "*성함";
+				output_7.value = "*닉네임";
 				output_7.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
 				container.addChild(output_7, {
-					"top": "621px",
-					"left": "0px",
-					"width": "208px",
-					"height": "46px"
-				});
-				var output_8 = new cpr.controls.Output();
-				output_8.value = "*닉네임";
-				output_8.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1rem",
-					"text-align" : "left"
-				});
-				container.addChild(output_8, {
-					"top": "689px",
+					"top": "648px",
 					"left": "0px",
 					"width": "208px",
 					"height": "46px"
@@ -608,27 +610,30 @@
 				inputBox_8.placeholder = "아이디 변경불가";
 				inputBox_8.autoSkip = true;
 				inputBox_8.style.css({
-					"color" : "#ED3838",
+					"border-radius" : "0.5rem",
+					"background-color" : "#F1F1F1",
+					"color" : "#000000",
 					"font-weight" : "normal",
 					"font-size" : "0.9rem",
-					"font-style" : "normal"
+					"font-style" : "normal",
+					"background-image" : "none"
 				});
 				inputBox_8.bind("value").toDataSet(app.lookup("loginSession"), "userId", 0);
 				container.addChild(inputBox_8, {
-					"top": "16px",
+					"top": "58px",
 					"left": "300px",
-					"width": "191px",
+					"width": "247px",
 					"height": "42px"
 				});
-				var output_9 = new cpr.controls.Output();
-				output_9.value = "*아이디";
-				output_9.style.css({
+				var output_8 = new cpr.controls.Output();
+				output_8.value = "*아이디";
+				output_8.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_9, {
-					"top": "19px",
+				container.addChild(output_8, {
+					"top": "61px",
 					"left": "0px",
 					"width": "107px",
 					"height": "33px"
@@ -636,35 +641,64 @@
 				var inputBox_9 = new cpr.controls.InputBox("email");
 				inputBox_9.placeholder = "________________@____";
 				inputBox_9.style.css({
+					"border-radius" : "0.5rem",
 					"font-size" : "0.9rem",
 					"text-align" : "left"
 				});
 				inputBox_9.bind("value").toDataMap(app.lookup("dm1"), "email");
 				container.addChild(inputBox_9, {
-					"top": "759px",
-					"left": "300px",
+					"top": "699px",
+					"left": "301px",
 					"width": "266px",
 					"height": "42px"
 				});
-				var output_10 = new cpr.controls.Output();
-				output_10.value = "*이메일";
-				output_10.style.css({
+				var output_9 = new cpr.controls.Output();
+				output_9.value = "*이메일";
+				output_9.style.css({
 					"font-weight" : "bold",
-					"font-size" : "1rem",
+					"font-size" : "1.05rem",
 					"text-align" : "left"
 				});
-				container.addChild(output_10, {
-					"top": "759px",
-					"left": "0px",
+				container.addChild(output_9, {
+					"top": "699px",
+					"left": "1px",
 					"width": "208px",
 					"height": "46px"
 				});
-			})(group_2);
-			container.addChild(group_2, {
-				"top": "295px",
-				"left": "574px",
+				var button_2 = new cpr.controls.Button();
+				button_2.value = "회원정보 수정";
+				button_2.style.css({
+					"font-weight" : "bold",
+					"font-size" : "1.2rem"
+				});
+				if(typeof onButtonClick2 == "function") {
+					button_2.addEventListener("click", onButtonClick2);
+				}
+				container.addChild(button_2, {
+					"top": "794px",
+					"left": "301px",
+					"width": "140px",
+					"height": "52px"
+				});
+				var output_10 = new cpr.controls.Output();
+				output_10.value = "아이디는 수정하실 수 없습니다.";
+				output_10.style.css({
+					"color" : "#ED3838",
+					"font-size" : "0.9rem",
+					"text-align" : "left"
+				});
+				container.addChild(output_10, {
+					"top": "101px",
+					"left": "301px",
+					"width": "399px",
+					"height": "37px"
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"top": "288px",
+				"left": "545px",
 				"width": "927px",
-				"height": "856px"
+				"height": "905px"
 			});
 			
 			var output_11 = new cpr.controls.Output();
@@ -705,6 +739,30 @@
 				"left": "20px",
 				"width": "143px",
 				"height": "130px"
+			});
+			
+			var image_2 = new cpr.controls.Image();
+			image_2.src = "theme/images/img/updatemember_donghang.png";
+			container.addChild(image_2, {
+				"top": "100px",
+				"left": "891px",
+				"width": "142px",
+				"height": "118px"
+			});
+			
+			var output_13 = new cpr.controls.Output();
+			output_13.value = "회원정보 수정";
+			output_13.style.css({
+				"font-weight" : "bold",
+				"font-size" : "2.1rem",
+				"font-family" : "'맑은 고딕' , 'Malgun Gothic' , sans-serif",
+				"font-style" : "normal"
+			});
+			container.addChild(output_13, {
+				"top": "217px",
+				"left": "831px",
+				"width": "270px",
+				"height": "72px"
 			});
 			if(typeof onBodyLoad2 == "function"){
 				app.addEventListener("load", onBodyLoad2);

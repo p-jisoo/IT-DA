@@ -28,7 +28,12 @@ public interface EduApplyBoardService {
 	void deleteCommentBoard(ParameterGroup param);
 	
 	Map<String, Object> selectCommentBoard(ParameterGroup param);
-
+	
+	List<Map<String, String>> findAppliedListByUserId(String id);
+	
+	List<Map<String, String>> findApplyingListByUserId(String id);
+	
+	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
 	Integer likeCount(long eduBoardNo);
 	void likeCaculate(String userId, String value);
 	long checkCanApply(String userId, long eduBoardNo);

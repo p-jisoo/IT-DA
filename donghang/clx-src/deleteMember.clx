@@ -37,7 +37,7 @@
       <cl:listener std:sid="listener-f20af5a9" name="click" handler="onImgHomeClick"/>
       <cl:xylayoutdata std:sid="xyl-data-5bc9784a" top="122px" left="854px" width="206px" height="191px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
-    <cl:output std:sid="output-edf9fe6b" style="font-weight:bold; font-size:2rem; font-style:normal; text-align:center;" value="ITda    Accompany">
+    <cl:output std:sid="output-edf9fe6b" style="font-weight:bold; font-size:2rem; font-style:normal; text-align:center;" value="ITda Accompany">
       <cl:xylayoutdata std:sid="xyl-data-e42cde8f" top="323px" left="800px" width="325px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-c8801df3" style="color:#91C8E4; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany">
@@ -50,7 +50,7 @@
       <cl:xylayoutdata std:sid="xyl-data-0376b95c" top="790px" left="937px" width="10px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-89692fdd" style="font-weight:bold; font-size:1.5rem; text-align:left;" value="회원정보 탈퇴">
-      <cl:xylayoutdata std:sid="xyl-data-ef2816fc" top="444px" left="854px" width="153px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-ef2816fc" top="432px" left="854px" width="153px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:img std:sid="image-04089b7e" src="theme/images/img/delete_donghang.png">
       <cl:xylayoutdata std:sid="xyl-data-9a145424" top="432px" left="793px" width="50px" height="45px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
