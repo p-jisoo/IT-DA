@@ -202,6 +202,7 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var deleteColumnBox = app.lookup("deleteColumnBox");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
+	var commentListSet = app.lookup("commentListSet");
 	var userIdValue = app.lookup("userId");
 	var deleteButton = app.lookup("deleteButton");
 	var updateButton = app.lookup("updateButton");
@@ -213,29 +214,24 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	
 	console.log("userid " + userIdValue.value);
 	console.log("eduboard id " + commentBoardMap.getValue("USER_ID"));
-	if (commentBoardMap.getValue("USER_ID") !=null) {
+	
 
-		
+
+	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
+		deleteButton.visible = true;
+		updateButton.visible = true;
+		commentContent.visible = true;
+		insertCommentButton.visible = true;
 		deleteButton.redraw();
 		updateButton.redraw();
 		commentContent.redraw();
 		insertCommentButton.redraw();
-	}
-	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
-				deleteButton.visible = true;
-		updateButton.visible = true;
-		commentContent.visible = true;
-		insertCommentButton.visible = true;
 		console.log("userIdValue.value : ", userIdValue.value);
 		
 		if (commentBoardMap.getValue("USER_ID") != null) {
 			applyButton.visible = true;
 		}
 	}
-	//commentSet
-	var commentListSet = app.lookup("commentListSet");
-	//commentMap
-	var commentBoardMap = app.lookup("commentBoardMap");
 	for (var i = 1; i < grid.rowCount; i++) {
 		console.log(grid.getCellValue(i, "USER_ID"));
 		if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
