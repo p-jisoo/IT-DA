@@ -102,9 +102,11 @@
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-aa9910b0" id="applyEduBoard" action="applyEduBoard.do">
+        <cl:listener std:sid="listener-4632cf09" name="submit-done" handler="onApplyEduBoardSubmitDone2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
       <cl:submission std:sid="submission-7b6354e9" id="cancelEduBoard" action="cancelEduBoard.do">
+        <cl:listener std:sid="listener-c7c27e76" name="submit-done" handler="onCancelEduBoardSubmitDone2"/>
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
@@ -263,7 +265,7 @@
       <cl:listener std:sid="listener-418a91a9" name="click" handler="onApplyClick"/>
       <cl:listener std:sid="listener-77e6de5e" name="value-change" handler="onApplyValueChange"/>
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
-      <cl:xylayoutdata std:sid="xyl-data-bd3aa676" top="590px" left="1060px" width="138px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-bd3aa676" top="592px" left="1060px" width="138px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>

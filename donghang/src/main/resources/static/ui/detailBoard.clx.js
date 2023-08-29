@@ -22,12 +22,13 @@
 			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
 			 */
 			function onBodyInit(e) {
-				
 				var step;
 				for (step = 0; step < 3; step++) {
 					console.log("Walking east one step");
 				}
 			}
+
+
 			/*
 			 * 루트 컨테이너에서 load 이벤트 발생 시 호출.
 			 * 앱이 최초 구성된후 최초 랜더링 직후에 발생하는 이벤트 입니다.
@@ -128,7 +129,6 @@
 				
 				app.lookup("userId").redraw();
 				app.lookup("commentContent").redraw();
-
 			}
 			/*
 			 * "수정" 버튼에서 click 이벤트 발생 시 호출.
@@ -347,6 +347,8 @@
 			 * "지원하기" 버튼(apply)에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
+
+
 			function onApplyClick(e){
 				var apply = e.control;
 				var submission = app.lookup("applyEduBoard");
@@ -355,14 +357,61 @@
 				var host = app.getHost();
 				dataMap.setValue("board_no", host.initValue);
 				if(apply.value=="지원하기"){
-					console.log("지원하기")
+					apply.dispose();
 					submission.send();
 				} else if (apply.value=="지원중"){
 					console.log("지원취소");
+					apply.dispose();
 					submission2.send();
 				}else{
 					console.log(3);
 				}
+			}
+
+			/*
+			 * 서브미션에서 submit-done 이벤트 발생 시 호출.
+			 * 응답처리가 모두 종료되면 발생합니다.
+			 */
+			function onApplyEduBoardSubmitDone2(e){
+				var applyEduBoard = e.control;
+				var container = app.getContainer();
+				var button_14 = new cpr.controls.Button("bt");
+						button_14.value = "지원중";
+						button_14.style.css({
+							"color" : "#F14747"
+						});
+						container.addChild(button_14, {
+							"top": "590px",
+							"left": "1061px",
+							"width": "137px",
+							"height": "52px"
+						});
+					button_14.addEventListener("click", function(e){
+						onApplyClick(e);
+					});
+			}
+
+			/*
+			 * 서브미션에서 submit-done 이벤트 발생 시 호출.
+			 * 응답처리가 모두 종료되면 발생합니다.
+			 */
+			function onCancelEduBoardSubmitDone2(e){
+				var cancelEduBoard = e.control;
+				var container = app.getContainer();
+				var button_14 = new cpr.controls.Button("bt");
+						button_14.value = "지원하기";
+						button_14.style.css({
+							"color" : "#15C729"
+						});
+						container.addChild(button_14, {
+							"top": "590px",
+							"left": "1061px",
+							"width": "137px",
+							"height": "52px"
+					});
+					button_14.addEventListener("click", function(e){
+						onApplyClick(e);
+					});
 			};
 			// End - User Script
 			
@@ -554,11 +603,17 @@
 			var submission_11 = new cpr.protocols.Submission("applyEduBoard");
 			submission_11.action = "applyEduBoard.do";
 			submission_11.addRequestData(dataMap_3);
+			if(typeof onApplyEduBoardSubmitDone2 == "function") {
+				submission_11.addEventListener("submit-done", onApplyEduBoardSubmitDone2);
+			}
 			app.register(submission_11);
 			
 			var submission_12 = new cpr.protocols.Submission("cancelEduBoard");
 			submission_12.action = "cancelEduBoard.do";
 			submission_12.addRequestData(dataMap_3);
+			if(typeof onCancelEduBoardSubmitDone2 == "function") {
+				submission_12.addEventListener("submit-done", onCancelEduBoardSubmitDone2);
+			}
 			app.register(submission_12);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
@@ -1042,7 +1097,7 @@
 				button_11.addEventListener("value-change", onApplyValueChange);
 			}
 			container.addChild(button_11, {
-				"top": "590px",
+				"top": "592px",
 				"left": "1060px",
 				"width": "138px",
 				"height": "44px"

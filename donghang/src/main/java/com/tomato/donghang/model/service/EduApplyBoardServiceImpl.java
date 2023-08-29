@@ -454,9 +454,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			canApply = 0; // 지원가능
 		}
 		return canApply;
-		
 	}
-
 	@Override
 	public void applyEduBoard(String userId, String value) {
 		long eduBoardNo = Long.parseLong(value);
