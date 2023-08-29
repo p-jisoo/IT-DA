@@ -197,26 +197,23 @@ function onSelectsmsSubmitSuccess(e) {
  */
 function onSelectCommentsmsSubmitSuccess(e) {
 	var selectCommentsms = e.control;
-	app.lookup("userId").redraw();
+	
 	var grid = app.lookup("grd1");
 	var deleteColumnBox = app.lookup("deleteColumnBox");
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var commentBoardMap = app.lookup("commentBoardMap");
 	var commentListSet = app.lookup("commentListSet");
-	var userIdValue = app.lookup("userId");
+	var userId = app.lookup("userId");
 	var deleteButton = app.lookup("deleteButton");
 	var updateButton = app.lookup("updateButton");
 	var commentContent = app.lookup("commentContent");
 	var insertCommentButton = app.lookup("insertCommentButton");
 	var image = app.lookup("like");
 	var button = app.lookup("apply");
-	
-	console.log("userid " + userIdValue.value);
+	userId.redraw();
+	console.log("userid " + userId.value);
 	console.log("eduboard id " + commentBoardMap.getValue("USER_ID"));
-	
-
-
-	if (userIdValue.value == commentBoardMap.getValue("USER_ID")) {
+	if (userId.value.length > 2) {
 		deleteButton.visible = true;
 		updateButton.visible = true;
 		commentContent.visible = true;
@@ -225,11 +222,11 @@ function onSelectCommentsmsSubmitSuccess(e) {
 		updateButton.redraw();
 		commentContent.redraw();
 		insertCommentButton.redraw();
-		console.log("userIdValue.value : ", userIdValue.value);
 	}
+	
 	for (var i = 1; i < grid.rowCount; i++) {
 		console.log(grid.getCellValue(i, "USER_ID"));
-		if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
+		if (grid.getCellValue(i, "USER_ID") == userId.value) {
 			deleteColumnBox.visible = true;
 			grid.redraw();
 		}
@@ -353,8 +350,7 @@ function onButtonClick12(e) {
 	
 	createCommentsms.send();
 	var userIdMap = commentBoardMap.getValue("USER_ID");
-	var userIdValue = app.lookup("userId");
-	console.log("userIdValue : " + userIdValue.value);
+	console.log("userId : " + userId.value);
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	var grid = app.lookup("grd1");
@@ -445,6 +441,7 @@ function onSessionCheckSubmitSuccess2(e) {
 	var sessionCheck = e.control;
 	var image = app.lookup("like");
 	var button = app.lookup("apply");
+	
 	console.log(sessionCheck.xhr.responseText.length);
 	if (sessionCheck.xhr.responseText.length > 3) {
 		console.log("로그인됨");
@@ -456,6 +453,7 @@ function onSessionCheckSubmitSuccess2(e) {
 		image.enabled = false;
 		button.dispose();
 	}
+	
 }
 
 /*
