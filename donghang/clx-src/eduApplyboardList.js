@@ -197,11 +197,6 @@ function onGrd1CellClick(e){
 }
 
 /*
- * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-
-/*
  * 서브미션에서 submit-success 이벤트 발생 시 호출.
  * 통신이 성공하면 발생합니다.
  */
@@ -217,5 +212,4 @@ function onLoginCheckSubmitSuccess(e){
 	}
 	
 }
-
 

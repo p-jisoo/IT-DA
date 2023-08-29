@@ -1,5 +1,6 @@
 package com.tomato.donghang.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import com.cleopatra.protocol.data.DataRequest;
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.cleopatra.spring.JSONDataView;
 import com.cleopatra.spring.UIView;
+import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
 import com.tomato.donghang.model.service.EduApplyBoardService;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
@@ -28,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EduApplyBoardController {
 	private final EduApplyBoardService eduApplyBoardService;
+	private final EduApplyBoardMapper eduApplyBoardMapper;
 	@PostMapping("/ui/testajax.do")
 	public String testAjax() { 
 		return "hello ajax";  
@@ -85,7 +88,7 @@ public class EduApplyBoardController {
 		List<Map<String, Object>> data = eduApplyBoardService.findBoardListPageAndSearchKeyword(param);
 		dataRequest.setResponse("ds3", data);
 		dataRequest.setParameter("keyword", param.getValue("keyword"));
-		System.out.println(dataRequest.getParameter("keyword"));
+		log.info("data {}", data);
 		return new JSONDataView();
 	}
 	
@@ -97,7 +100,6 @@ public class EduApplyBoardController {
 			return new JSONDataView();
 		}else {
 			MemberVO vo = (MemberVO) session.getAttribute("mvo");
-			System.out.println("로그인 후=" + vo);
 			if (vo != null) {
 				dataRequest.setResponse("name", vo.getUserName());
 			}
@@ -105,21 +107,74 @@ public class EduApplyBoardController {
 		}
 	}
 	
-	//List
+	@PostMapping("ui/likeCaculate.do")
+	public View likeCaculate(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
+		eduApplyBoardService.likeCaculate(memberVO.getUserId(),param.getValue("board_no"));
+		log.info("like {}", param.getValue("board_no").getClass());
+		return new JSONDataView();
+	}
 	
 	
-	
+	@PostMapping("ui/applyEduBoard.do")
+	public View applyEduBoard(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
+		eduApplyBoardService.applyEduBoard(memberVO.getUserId(),param.getValue("board_no"));
+		return new JSONDataView();
+	}
+		@PostMapping("ui/cancelEduBoard.do")
+	public View cancelEduBoard(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("dm1");
+		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
+		eduApplyBoardService.cancelEduBoard(memberVO.getUserId(),param.getValue("board_no"));
+		return new JSONDataView();
+	}
 	
 	
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
+		long canApply = 0;
+		log.info("param {}",param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
+		//145 여기서부터 
+		HttpSession session = request.getSession(false);
+		Integer likeCount;
+		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
+		if(session==null || session.getAttribute("mvo")==null) {
+			log.debug("eduBoardNo {} ",eduBoardNo);
+			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
+			log.debug("로그인 안했을때 likeCount {} ",likeCount);
+			canApply=100;
+		}else {
+			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
+			Map<String, Object> map = new HashMap<>();
+			String userId = memberVO.getUserId();
+			log.info("가져온 아이디 {}", dataMap.get("USER_ID"));
+			log.info("세션 아이디 {}", userId);
+			if(userId.equals(dataMap.get("USER_ID"))) {
+				canApply =2;
+			}else {
+				canApply = eduApplyBoardService.checkCanApply(userId,eduBoardNo);
+			}
+			map.put("eduBoardNo", eduBoardNo);
+			map.put("userId", userId);
+			likeCount = eduApplyBoardMapper.isLike(map);
+			log.info("canApply {}" ,canApply);
+			log.info("로그인 했을때 likeCount {} ",likeCount);
+		}
+		dataMap.put("IsLike", likeCount);
+		dataMap.put("canApply",canApply);
+		//174 여기까지 
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		return  new JSONDataView();
-//		return new UIView("/ui/updateBoard.do");
 	}
-//	
+	
 	@PostMapping("/ui/createBoard.do")
 	public View createBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
@@ -142,17 +197,6 @@ public class EduApplyBoardController {
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
 	
-//	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
-//	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
-//		System.out.println("selectCommentBoardByBoardNo Test");
-//		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-//		System.out.println("paramSelect : "+ param);
-//		Map<String, Object> dataMap=eduApplyBoardService.selectCommentBoard();
-//		System.out.println("SelectCommentBoard : "+ dataMap);
-//		dataRequest.setResponse("commentBoardMap", dataMap);
-//		return  new JSONDataView();
-////		return new UIView("/ui/updateBoard.do");
-//	}
 	@PostMapping("/ui/selectCommentBoardByBoardNo.do")
 	public View selectCommentBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");

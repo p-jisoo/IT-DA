@@ -6,11 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import com.cleopatra.protocol.data.ParameterGroup;
 import com.tomato.donghang.model.Pagination;
 import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
+import com.tomato.donghang.model.mapper.MemberMapper;
 import com.tomato.donghang.model.vo.EduApplyBoardVO;
 import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
@@ -55,7 +58,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			applyStatus= "";
 			 totalBoardCount = eduApplyBoardMapper.findAllBoardCount();
 		}else {
-			log.info("status{}", param.getValue("status"));
+			log.debug("status{}", param.getValue("status"));
 			 totalBoardCount = eduApplyBoardMapper.findBoardCountByStatus(applyStatus);
 		}
 		
@@ -86,7 +89,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    map.put("status", applyStatus);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchThing(map);
 	    List<Map<String, Object>> newData = new ArrayList<>();
-	    log.info("첫data {}", data.get(0));
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
 			evo.put("TOTAL_BOARD_COUNT", totalBoardCount);
@@ -95,7 +97,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 			newData.add(evo);
 		}
 		data = newData;
-		log.warn("data {}", data);
+		log.info("findBoardListWithStatusByPage data {}", data);
 		return data;
 	}
 	
@@ -145,11 +147,10 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	    po.put("keyword", keyword);
 	    log.info("map {}", map);
 	    List<Map<String, Object>> data  = eduApplyBoardMapper.findBoardListPageAndSearchKeyword(po);
-	    log.info("data {}", data);
+	    log.info("총 게시물 수 {}", data);
 	    if(data.size()==0) {
 	    	return data;
 	    }
-	    log.info("총 게시물 수 {}", data);
 	    List<Map<String, Object>> newData = new ArrayList<>();
 		for(Map<String, Object> evo : data) {
 			evo.put("NOW_PAGE", nowPage);
@@ -161,31 +162,127 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		data = newData;
 		return data;
 	}
+	
+	@Override
+	public void likeCaculate(String userId, String value) {
+		Map<String, Object> map = new HashMap<>();
+		long eduBoardNo = Long.parseLong(value);
+		map.put("userId", userId);
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("map {}", map);
+		Integer likeCount = eduApplyBoardMapper.isLike(map);
+		log.info("likeCount {}",likeCount);
+		if(likeCount==null || likeCount==0) {
+			eduApplyBoardMapper.addLikeCount(map);
+		}else {
+			eduApplyBoardMapper.deleteLikeCount(map);
+		}
+	}
+
+	@Override
+	public long checkCanApply(String userId, long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long canApply = eduApplyBoardMapper.isApply(map);
+		if(canApply==0) {
+			return nowCount(eduBoardNo);
+		}
+		return canApply;
+	}
+	public long nowCount(long eduBoardNo) {
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long canApply = (maxMember - currentMember) ;
+		if(canApply == 0) {
+			canApply= 3; // 마감되어서 꽉 찬 상태
+		}else {
+			canApply = 0; // 지원가능
+		}
+		return canApply;
+	}
+	@Override
+	public void applyEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==1) {
+			eduApplyBoardMapper.applyEnd(eduBoardNo);
+		}
+		eduApplyBoardMapper.applyEdu(map);
+	}
+
+	@Override
+	public void cancelEduBoard(String userId, String value) {
+		long eduBoardNo = Long.parseLong(value);
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		map.put("userId", userId);
+		long maxMember = eduApplyBoardMapper.eduMaxMember(eduBoardNo);
+		long currentMember = eduApplyBoardMapper.currentMember(eduBoardNo);
+		long changeStatus = (maxMember - currentMember);
+		if(changeStatus==0) {
+			eduApplyBoardMapper.applyChange(eduBoardNo);
+		}
+		eduApplyBoardMapper.cancelEdu(map);
+	}
+
+	@Override
+	public List<Map<String, String>> findAppliedListByUserId(String id) {
+		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);
+		for(EduApplyBoardVO eduboard : list) {
+			Map<String, String> row = new HashMap<String, String>();
+			row.put("EDU_BOARD_TITLE", eduboard.getEduBoardTitle());
+			row.put("EDU_BOARD_CATEGORY", eduboard.getEduBoardCategory());
+			row.put("EDU_BOARD_ADDRESS", eduboard.getEduBoardAddress());
+			row.put("EDU_BOARD_CONTENT", eduboard.getEduBoardContent());
+			data.add(row);
+		}
+		log.info("data {}",data);
+		return data;
+	}
+	
+	@Override
+	public Integer likeCount(long eduBoardNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", eduBoardNo);
+		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
+		return eduApplyBoardMapper.isLike(map);
+	}
+	
+	
+	
+	//여기까지 지원 검색 좋아요 페이지네이션  한거
+	
+	
 	@Override
 	public Map<String, Object> selectBoard(ParameterGroup param) {
-		String eduBoardNo = param.getValue("EDU_BOARD_NO");
-		EduApplyBoardVO evo = new EduApplyBoardVO();
-		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
-		
-		
-		
-		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
-		System.out.println("serviceImpl evo : " + evo);
-		Map<String, Object> dataMap = new HashMap<>();
-		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
-		dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
-		dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
-		dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo2.getEduBoardApplyStartPeriod());
-		dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo2.getEduBoardApplyEndPeriod());
-		dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo2.getEduBoardMaxMemberCount());
-		dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
-		dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
-		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
-		dataMap.put("USER_ID,", evo2.getMemberVO().getUserId());
-		System.out.println("serviceImpl MAP" + dataMap);
-		
-		return dataMap;
-	}
+        String eduBoardNo = param.getValue("EDU_BOARD_NO");
+        EduApplyBoardVO evo = new EduApplyBoardVO();
+        evo.setEduBoardNo(Long.parseLong(eduBoardNo));
+        EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
+        System.out.println("serviceImpl evo : " + evo);
+        Map<String, Object> dataMap = new HashMap<>();
+
+        dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
+        dataMap.put("EDU_BOARD_START_PERIOD", evo2.getEduBoardStartPeriod());
+        dataMap.put("EDU_BOARD_END_PERIOD", evo2.getEduBoardEndPeriod());
+        dataMap.put("EDU_BOARD_APPLY_START_PERIOD", evo2.getEduBoardApplyStartPeriod());
+        dataMap.put("EDU_BOARD_APPLY_END_PERIOD", evo2.getEduBoardApplyEndPeriod());
+        dataMap.put("EDU_BOARD_MAX_MEMBER_COUNT", evo2.getEduBoardMaxMemberCount());
+        dataMap.put("EDU_BOARD_ADDRESS", evo2.getEduBoardAddress());
+        dataMap.put("EDU_BOARD_CATEGORY", evo2.getEduBoardCategory());
+        dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
+        dataMap.put("USER_ID", evo2.getMemberVO().getUserId());
+        System.out.println("serviceImpl MAP" + dataMap);
+        
+        return dataMap;
+}
 
 	@Override
 	public void createBoard(ParameterGroup param) {
@@ -200,7 +297,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		String eduBoardCategory = param.getValue("EDU_BOARD_CATEGORY");
 		String eduBoardContent = param.getValue("EDU_BOARD_CONTENT");
 		String USER_ID = param.getValue("USER_ID");
-
+		log.info("USER_ID {}", USER_ID);
 		EduApplyBoardVO vo = new EduApplyBoardVO();
 		MemberVO mvo = new MemberVO();
 		mvo.setUserId(USER_ID);
@@ -402,62 +499,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 	}
 
 	@Override
-	public Integer likeCount(long eduBoardNo) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("eduBoardNo", eduBoardNo);
-		log.info("여기는 로그인안했을때eduApplyBoardMapper.isLike(map) {}", eduApplyBoardMapper.isLike(map));
-		return eduApplyBoardMapper.isLike(map);
-	}
-//	@Override
-//	public void addLikeCount(String userId, long eduBoardNo) {
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("userId", userId);
-//		map.put("eduBoardNo", eduBoardNo);
-//		eduApplyBoardMapper.addLikeCount(map);
-//	}
-//
-//	@Override
-//	public void deleteLikeCount(String userId, long eduBoardNo) {
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("userId", userId);
-//		map.put("eduBoardNo", eduBoardNo);
-//		eduApplyBoardMapper.deleteLikeCount(map);
-//	}
-
-	@Override
-	public void likeCaculate(String userId, String value) {
-		Map<String, Object> map = new HashMap<>();
-		long eduBoardNo = Long.parseLong(value);
-		map.put("userId", userId);
-		map.put("eduBoardNo", eduBoardNo);
-		log.info("map {}", map);
-		Integer likeCount = eduApplyBoardMapper.isLike(map);
-		log.info("likeCount {}",likeCount);
-		if(likeCount==null || likeCount==0) {
-			eduApplyBoardMapper.addLikeCount(map);
-		}else {
-			eduApplyBoardMapper.deleteLikeCount(map);
-		}
-	}
-	
-
-	@Override
-	public List<Map<String, String>> findAppliedListByUserId(String id) {
-		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
-		List<EduApplyBoardVO> list =eduApplyBoardMapper.findAppliedListByUserId(id);
-		for(EduApplyBoardVO eduboard : list) {
-			Map<String, String> row = new HashMap<String, String>();
-			row.put("EDU_BOARD_TITLE", eduboard.getEduBoardTitle());
-			row.put("EDU_BOARD_CATEGORY", eduboard.getEduBoardCategory());
-			row.put("EDU_BOARD_ADDRESS", eduboard.getEduBoardAddress());
-			row.put("EDU_BOARD_CONTENT", eduboard.getEduBoardContent());
-			data.add(row);
-		}
-		log.info("data {}",data);
-		return data;
-	}
-
-	@Override
 	public List<Map<String, String>> findApplyingListByUserId(String id) {
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 		List<EduApplyBoardVO> list = eduApplyBoardMapper.findApplyingListByUserId(id);
@@ -473,7 +514,6 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		return data;
 	}
 
-
 	@Override
 	public List<Map<String, String>> findCommentListByUserIdAndBoardNo(String id) {
 		List<Map<String, String>> data = new ArrayList<Map<String, String>>();
@@ -488,6 +528,3 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		return data;
 	}
 }
-
-
-
