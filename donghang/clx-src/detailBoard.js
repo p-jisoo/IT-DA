@@ -262,6 +262,7 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var submission = app.lookup("deletesms");
 	submission.send()
+	alert("삭제 되었습니다");
 }
 
 //

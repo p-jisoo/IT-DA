@@ -13,7 +13,7 @@ public class EduApplyCommentBoardVO {
 	private long eduApplyCommentBoardNo;
 	private String eduApplyCommentContent;
 	private EduApplyBoardVO eduApplyBoardVO;
-	private MemberVO memberVO; 
+	private MemberVO memberVO;
 	
 	public EduApplyCommentBoardVO(long eduApplyCommentBoardNo) {
 		super();

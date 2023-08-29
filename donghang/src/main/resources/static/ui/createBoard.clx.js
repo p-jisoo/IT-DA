@@ -258,8 +258,9 @@
 			var button_1 = new cpr.controls.Button("listButton");
 			button_1.value = "목록";
 			button_1.style.css({
-				"background-color" : "#4682A9",
-				"font-size" : "18px"
+				"background-color" : "#e9e9e9",
+				"font-size" : "18px",
+				"background-image" : "none"
 			});
 			if(typeof onButtonClick2 == "function") {
 				button_1.addEventListener("click", onButtonClick2);
@@ -297,7 +298,9 @@
 				var output_1 = new cpr.controls.Output();
 				output_1.value = "교육기간";
 				output_1.style.css({
+					"background-color" : "#e9e9e9",
 					"font-size" : "16px",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_1, {
@@ -307,7 +310,9 @@
 				var output_2 = new cpr.controls.Output();
 				output_2.value = "모집기간";
 				output_2.style.css({
+					"background-color" : "#e9e9e9",
 					"font-size" : "16px",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_2, {
@@ -317,7 +322,9 @@
 				var output_3 = new cpr.controls.Output();
 				output_3.value = "모집인원";
 				output_3.style.css({
+					"background-color" : "#e9e9e9",
 					"font-size" : "16px",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_3, {
@@ -327,7 +334,9 @@
 				var output_4 = new cpr.controls.Output();
 				output_4.value = "교육장소";
 				output_4.style.css({
+					"background-color" : "#e9e9e9",
 					"font-size" : "16px",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_4, {
@@ -337,7 +346,9 @@
 				var output_5 = new cpr.controls.Output();
 				output_5.value = "교육분야";
 				output_5.style.css({
+					"background-color" : "#e9e9e9",
 					"font-size" : "16px",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(output_5, {
@@ -378,6 +389,8 @@
 				userDefinedControl_1.useAutoSelect = true;
 				userDefinedControl_1.selectOption = "date";
 				userDefinedControl_1.style.css({
+					"background-color" : "#e9e9e9",
+					"background-image" : "none",
 					"text-align" : "center"
 				});
 				container.addChild(userDefinedControl_1, {
@@ -387,6 +400,10 @@
 				var userDefinedControl_2 = new udc.exam.udcExamDuoDatePicker("udccomduodatepicker2");
 				userDefinedControl_2.useAutoSelect = true;
 				userDefinedControl_2.selectOption = "date";
+				userDefinedControl_2.style.css({
+					"background-color" : "#e9e9e9",
+					"background-image" : "none"
+				});
 				container.addChild(userDefinedControl_2, {
 					"colIndex": 3,
 					"rowIndex": 0
@@ -427,7 +444,9 @@
 					var button_2 = new cpr.controls.Button();
 					button_2.value = "주소찾기";
 					button_2.style.css({
-						"font-size" : "18px"
+						"background-color" : "#e9e9e9",
+						"font-size" : "18px",
+						"background-image" : "none"
 					});
 					if(typeof onButtonClick3 == "function") {
 						button_2.addEventListener("click", onButtonClick3);
@@ -497,8 +516,9 @@
 			var button_3 = new cpr.controls.Button("createButton");
 			button_3.value = "등록";
 			button_3.style.css({
-				"background-color" : "#4682A9",
-				"font-size" : "18px"
+				"background-color" : "#e9e9e9",
+				"font-size" : "18px",
+				"background-image" : "none"
 			});
 			if(typeof onButtonClick == "function") {
 				button_3.addEventListener("click", onButtonClick);
@@ -511,7 +531,7 @@
 			});
 			
 			var output_6 = new cpr.controls.Output();
-			output_6.value = "\t교육 모집 등록";
+			output_6.value = "\t\t교육 모집 등록";
 			output_6.style.css({
 				"border-right-style" : "solid",
 				"border-bottom-color" : "#d5d5d5",

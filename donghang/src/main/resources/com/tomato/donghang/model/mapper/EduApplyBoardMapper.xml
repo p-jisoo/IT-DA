@@ -508,4 +508,12 @@ SELECT c.edu_apply_comment_content, e.edu_board_title
  ON c.edu_board_no = e.edu_board_no
  WHERE c.user_id=#{userId}
 </select>
+<select id="findEduBoardTitleByUserId" parameterType="map" resultType="Hashmap">
+SELECT c.EDU_APPLY_COMMENT_CONTENT, e.EDU_BOARD_TITLE
+FROM EDU_APPLY_COMMENT_BOARD c
+INNER JOIN 
+EDU_APPLY_BOARD e
+ON c.EDU_BOARD_NO = e.EDU_BOARD_NO
+WHERE c.USER_ID='1234'
+</select>
 </mapper>
