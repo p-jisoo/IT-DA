@@ -1,10 +1,11 @@
 package com.tomato.donghang;
 
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
@@ -59,6 +60,18 @@ public class MemberUnitTest {
 		eduApplyBoardMapper.selectCommentBoard(ecvo);
 		System.out.println("eduApplyBoardMapper.selectCommentBoard(ecvo)"+eduApplyBoardMapper.selectCommentBoard(ecvo));
 		
+	}
+	
+	@Test
+	public void findCommentListByUserIdAndBoardNo() {
+		MemberVO mvo= new MemberVO();
+		mvo.setUserId("heeeun");
+		
+		List<EduApplyCommentBoardVO> list = eduApplyBoardMapper.findCommentListByUserIdAndBoardNo(mvo.getUserId());
+		for(EduApplyCommentBoardVO evo  : list) {
+			log.info("evo {}", evo);
+		}
+		System.out.println(list);
 	}
 }
 

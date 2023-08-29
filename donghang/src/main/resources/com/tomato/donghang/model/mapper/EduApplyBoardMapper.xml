@@ -501,7 +501,15 @@ EDU_BOARD_CONTENT
 FROM edu_apply_board
 WHERE EDU_BOARD_START_PERIOD <![CDATA[>]]> sysdate AND user_id=#{userId}
 </select>
-<select id="findCommentListByUserIdAndBoardNo" parameterType="String" resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO">
+<resultMap type="com.tomato.donghang.model.vo.EduApplyCommentBoardVO" id="commentListMap">
+    <result property="eduApplyCommentContent" column="EDU_APPLY_COMMENT_CONTENT"/>
+		<association property="eduApplyBoardVO" javaType="com.tomato.donghang.model.vo.EduApplyBoardVO">
+    	<result property="eduBoardTitle" column="EDU_BOARD_TITLE"/>
+    	</association>
+</resultMap>
+<select id="findCommentListByUserIdAndBoardNo" parameterType="String" 
+	resultType="com.tomato.donghang.model.vo.EduApplyCommentBoardVO"
+	resultMap="commentListMap">
 SELECT c.edu_apply_comment_content, e.edu_board_title
  FROM edu_apply_comment_board c
  INNER JOIN edu_apply_board e
