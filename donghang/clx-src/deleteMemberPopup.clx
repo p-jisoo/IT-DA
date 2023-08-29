@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-b2023635" version="1.0.4584">
   <head std:sid="head-05345b11">
-    <screen std:sid="screen-eec5f9d2" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="true"/>
-    <screen std:sid="screen-3dd40538" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
-    <screen std:sid="screen-bbd1ca07" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
-    <screen std:sid="screen-38eb81f0" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
+    <screen std:sid="screen-17cf1c8c" id="new-screen" name="new-screen" minwidth="1920px" width="1920px" height="1080px" active="false"/>
+    <screen std:sid="screen-26bfe525" id="default" name="default" minwidth="1024px" maxwidth="1919px" width="1024px" height="768px" useCustomWidth="true" useCustomHeight="true" customHeight="1080" customWidth="1920" active="true"/>
+    <screen std:sid="screen-796622fb" id="tablet" name="tablet" minwidth="500px" maxwidth="1023px" width="500px" height="667px" active="false"/>
+    <screen std:sid="screen-5e910fe8" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px" active="false"/>
     <cl:model std:sid="model-27ae2b8d"/>
     <cl:appspec/>
   </head>
   <body std:sid="body-909e54a7">
-    <cl:group std:sid="group-f73b8693" style="background-color:#E3E3E3;">
-      <cl:responsivexylayoutdata std:sid="rxyl-data-17576336">
-        <cl:xylayoutdata std:sid="sxyl-data-14562f64" top="112px" left="222px" width="597px" height="262px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-        <cl:xylayoutdata std:sid="sxyl-data-fedc4acd" top="422px" left="412px" width="1119px" height="262px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
+    <cl:group std:sid="group-61c2d3a9" style="vertical-align:top; text-align:left;">
+      <cl:responsivexylayoutdata std:sid="rxyl-data-cc811da5">
+        <cl:xylayoutdata std:sid="sxyl-data-264c21cd" top="0px" left="0px" width="1900px" height="1077px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
       </cl:responsivexylayoutdata>
-      <cl:output std:sid="output-cabe6504" style="font-size:30px; text-align:center;" value="정말 회원 탈퇴 하시겠습니까?">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-12df027b">
-          <cl:xylayoutdata std:sid="sxyl-data-7ee4acb3" top="20px" left="20px" width="556px" height="160px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-          <cl:xylayoutdata std:sid="sxyl-data-571d10df" top="20px" left="38px" width="1043px" height="160px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
-        </cl:responsivexylayoutdata>
+      <cl:output std:sid="output-ee338a8c" style="border-right-style:solid; border-bottom-color:#b3b3b3; border-top-width:4px; color:#898989; border-right-width:4px; font-weight:bold; border-left-color:#b3b3b3; vertical-align:top; font-size:1.1rem; border-right-color:#b3b3b3; border-left-width:4px; border-top-style:solid; border-radius:0.7rem; border-left-style:solid; border-bottom-width:4px; border-top-color:#b3b3b3; border-bottom-style:solid; text-align:left;" value="&#xD;&#xA; [회원 탈퇴 약관]&#xD;&#xA;&#xD;&#xA;&#xD;&#xA; 회원 탈퇴 신청 전 안내 사항을 확인해주세요.&#xD;&#xA; 회원 탈퇴를 신청하면 현재 로그인된  아이디는 사용할 수 없습니다.&#xD;&#xA; 회원 탈퇴를 하시면 서비스 약관 및 개인정보 취급 방안에 따라 즉시 삭제됩니다.&#xD;&#xA; &#xD;&#xA;&#xD;&#xA; - 회원정보&#xD;&#xA; - 활동 및 기록 에 관한 기록">
+        <cl:listener std:sid="listener-d4f31388" name="value-change" handler="onOutputValueChange"/>
+        <cl:xylayoutdata std:sid="xyl-data-993f7deb" top="304px" left="444px" width="759px" height="275px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:output>
-      <cl:button std:sid="button-5cef3d12" style="background-color:#84888A; font-size:25px;" value="취소">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-506ac584">
-          <cl:xylayoutdata std:sid="sxyl-data-b903328f" top="194px" left="310px" width="265px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-          <cl:xylayoutdata std:sid="sxyl-data-411dee44" top="194px" left="581px" width="497px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
-        </cl:responsivexylayoutdata>
+      <cl:checkbox std:sid="c-box-96f3732c" id="cbx1" style="font-weight:bold; font-size:1.1rem;" value="" text="  위 안내 사항을 모두 확인하였으며 , 이에 동의합니다.">
+        <cl:xylayoutdata std:sid="xyl-data-dc47d580" top="588px" left="719px" width="484px" height="32px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:checkbox>
+      <cl:img std:sid="image-fd186b92" src="theme/images/img/warning2_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-b677e582" top="142px" left="348px" width="72px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:output std:sid="output-da86add9" style="font-weight:bold; font-size:2.5rem;" value="회원정보 탈퇴 ">
+        <cl:xylayoutdata std:sid="xyl-data-559ac547" top="142px" left="434px" width="364px" height="65px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-96ebbbd6" style="font-weight:bolder; font-size:1.7rem;" value="회원정보 탈퇴 안내">
+        <cl:xylayoutdata std:sid="xyl-data-2a737613" top="252px" left="444px" width="350px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-7e7d16d7" style="color:#262626; font-weight:bolder; font-size:1.5rem;" value="ITda">
+        <cl:xylayoutdata std:sid="xyl-data-b0d9d5d0" top="30px" left="135px" width="87px" height="44px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-657ac17b" style="color:black; font-weight:bold; font-size:1.3rem;" value="Accompany">
+        <cl:xylayoutdata std:sid="xyl-data-a2e66474" top="73px" left="135px" width="160px" height="41px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:img std:sid="image-3cd6a300" src="theme/images/img/logo2_donghang.png">
+        <cl:listener std:sid="listener-311434ec" name="value-change" handler="onImageValueChange"/>
+        <cl:listener std:sid="listener-dcd4564a" name="click" handler="onImageClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-992ec45e" top="10px" left="10px" width="115px" height="94px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:button std:sid="button-f8524c5d" id="btn" style="background-color:#E01D5C; color:#FFFFFF; font-weight:bold; background-image:none;" value="탈퇴하러 가기">
+        <cl:listener std:sid="listener-1e2602f1" name="click" handler="onBtnClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-5c1adf61" top="646px" left="890px" width="147px" height="43px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
-      <cl:button std:sid="button-6ae4c36c" style="background-color:#4682A9; font-size:25px;" value="확인">
-        <cl:responsivexylayoutdata std:sid="rxyl-data-290e2590">
-          <cl:xylayoutdata std:sid="sxyl-data-a46cac31" top="194px" left="18px" width="265px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="default"/>
-          <cl:xylayoutdata std:sid="sxyl-data-a18f3bb6" top="194px" left="34px" width="497px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP" screenid="new-screen"/>
-        </cl:responsivexylayoutdata>
+      <cl:output std:sid="output-c8801df3" style="color:#EBA5BF; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany    |">
+        <cl:xylayoutdata std:sid="xyl-data-7782b629" top="882px" left="719px" width="162px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:output std:sid="output-0d4f45e2" style="color:#6F6F6F; font-weight:normal; font-size:1rem; text-align:left;" value="고객센터 : 010-8299-1244">
+        <cl:xylayoutdata std:sid="xyl-data-5d354474" top="882px" left="882px" width="200px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:button std:sid="button-acece994" style="background-color:#E9E9E9; color:#383838; font-weight:bold; font-size:14px; background-image:none;" value="취소">
+        <cl:listener std:sid="listener-ae5b0c60" name="click" handler="onButtonClick"/>
+        <cl:xylayoutdata std:sid="xyl-data-8c117c04" top="647px" left="1047px" width="145px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:button>
-      <cl:responsivexylayout std:sid="r-xylayout-62875458"/>
+      <cl:xylayout std:sid="xylayout-9e82b1d7"/>
     </cl:group>
     <cl:responsivexylayout std:sid="r-xylayout-efc6f2c5"/>
   </body>

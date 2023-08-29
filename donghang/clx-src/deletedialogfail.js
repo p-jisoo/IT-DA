@@ -11,5 +11,5 @@
  */
 function onNo_btnClick2(e){
 	var no_btn = e.control;
-	window.location.href="/"
+	app.close();
 }

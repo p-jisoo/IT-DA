@@ -22,25 +22,25 @@
   </head>
   <body std:sid="body-d52f82c2">
     <cl:listener std:sid="listener-98a8a824" name="load" handler="onBodyLoad"/>
-    <cl:grid std:sid="grid-997796d2" id="grd1" datasetid="ds1">
-      <cl:xylayoutdata std:sid="xyl-data-6e3e2a0b" top="93px" left="20px" width="915px" height="559px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:gridcolumn std:sid="g-column-a08fbe33"/>
-      <cl:gridcolumn std:sid="g-column-e456118a"/>
-      <cl:gridcolumn std:sid="g-column-2dc5a3a3"/>
-      <cl:gridcolumn std:sid="g-column-47858066"/>
+    <cl:grid std:sid="grid-997796d2" id="grd1" style="border-right-style:none; border-left-style:none; border-bottom-style:none; border-top-style:none;" datasetid="ds1" selectionmulti="single">
+      <cl:xylayoutdata std:sid="xyl-data-6e3e2a0b" top="0px" left="0px" width="1849px" height="541px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:gridcolumn std:sid="g-column-a08fbe33" width="80px"/>
+      <cl:gridcolumn std:sid="g-column-e456118a" width="50px"/>
+      <cl:gridcolumn std:sid="g-column-2dc5a3a3" width="60px"/>
+      <cl:gridcolumn std:sid="g-column-47858066" width="120px"/>
       <cl:gridheader std:sid="gh-band-ea96dae9">
-        <cl:gridrow std:sid="g-row-516cd421"/>
-        <cl:gridcell std:sid="gh-cell-229d9667" rowindex="0" colindex="0" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="EDU_BOARD_TITLE"/>
-        <cl:gridcell std:sid="gh-cell-96ebab1f" rowindex="0" colindex="1" targetcolumnname="EDU_BOARD_CATEGORY" sortable="false" filterable="false" text="EDU_BOARD_CATEGORY"/>
-        <cl:gridcell std:sid="gh-cell-87d94510" rowindex="0" colindex="2" targetcolumnname="EDU_BOARD_ADDRESS" sortable="false" filterable="false" text="EDU_BOARD_ADDRESS"/>
-        <cl:gridcell std:sid="gh-cell-f617f3de" rowindex="0" colindex="3" targetcolumnname="EDU_BOARD_CONTENT" sortable="false" filterable="false" text="EDU_BOARD_CONTENT"/>
+        <cl:gridrow std:sid="g-row-516cd421" height="50px"/>
+        <cl:gridcell std:sid="gh-cell-229d9667" rowindex="0" colindex="0" style="background-color:#FFFFFF; border-right-style:none; color:#606060; border-bottom-color:#6B6A6A; font-weight:bold; border-left-style:none; border-bottom-width:4px; font-size:20px; border-bottom-style:solid 4px #717171; background-image:none;" targetcolumnname="EDU_BOARD_TITLE" sortable="false" filterable="false" text="교육제목"/>
+        <cl:gridcell std:sid="gh-cell-96ebab1f" rowindex="0" colindex="1" style="background-color:#FFFFFF; border-right-style:none; color:#606060; border-bottom-color:#6B6A6A; font-weight:bold; border-left-style:none; border-bottom-width:4px; font-size:20px; border-bottom-style:solid 4px #717171; background-image:none;" targetcolumnname="EDU_BOARD_CATEGORY" sortable="false" filterable="false" text="교육 카테고리"/>
+        <cl:gridcell std:sid="gh-cell-87d94510" rowindex="0" colindex="2" style="background-color:#FFFFFF; border-right-style:none; color:#606060; border-bottom-color:#6B6A6A; font-weight:bold; border-left-style:none; border-bottom-width:4px; font-size:20px; border-bottom-style:solid 4px #717171; background-image:none;" targetcolumnname="EDU_BOARD_ADDRESS" sortable="false" filterable="false" text="교육 장소"/>
+        <cl:gridcell std:sid="gh-cell-f617f3de" rowindex="0" colindex="3" style="background-color:#FFFFFF; border-right-style:none; color:#606060; border-bottom-color:#6B6A6A; font-weight:bold; border-left-style:none; border-bottom-width:4px; font-size:20px; border-bottom-style:solid 4px #717171; background-image:none;" targetcolumnname="EDU_BOARD_CONTENT" sortable="false" filterable="false" text="내용"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-932e5245">
-        <cl:gridrow std:sid="g-row-a4133c1f" height="171px"/>
-        <cl:gridcell std:sid="gd-cell-dde67ffb" rowindex="0" colindex="0" columnname="EDU_BOARD_TITLE"/>
-        <cl:gridcell std:sid="gd-cell-540b470e" rowindex="0" colindex="1" columnname="EDU_BOARD_CATEGORY"/>
-        <cl:gridcell std:sid="gd-cell-d1d762d3" rowindex="0" colindex="2" columnname="EDU_BOARD_ADDRESS"/>
-        <cl:gridcell std:sid="gd-cell-cda19d19" rowindex="0" colindex="3" columnname="EDU_BOARD_CONTENT"/>
+        <cl:gridrow std:sid="g-row-a4133c1f" height="100px"/>
+        <cl:gridcell std:sid="gd-cell-dde67ffb" rowindex="0" colindex="0" style="border-right-style:none; border-left-style:none; font-weight:bold; font-size:16px;" columnname="EDU_BOARD_TITLE"/>
+        <cl:gridcell std:sid="gd-cell-540b470e" rowindex="0" colindex="1" style="border-right-style:none; color:#393939; border-left-style:none; font-weight:bold; font-size:16px;" columnname="EDU_BOARD_CATEGORY"/>
+        <cl:gridcell std:sid="gd-cell-d1d762d3" rowindex="0" colindex="2" style="border-right-style:none; color:#393939; border-left-style:none; font-weight:bold; font-size:16px;" columnname="EDU_BOARD_ADDRESS"/>
+        <cl:gridcell std:sid="gd-cell-cda19d19" rowindex="0" colindex="3" style="border-right-style:none; color:#393939; border-left-style:none; font-weight:bold; vertical-align:middle; font-size:13px; text-align:center;" columnname="EDU_BOARD_CONTENT"/>
       </cl:griddetail>
     </cl:grid>
     <cl:xylayout std:sid="xylayout-8649ae97"/>

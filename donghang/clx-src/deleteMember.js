@@ -43,14 +43,30 @@ function onDeletePasswordSbmSubmitSuccess(e) {
 	var any = JSON.parse(responseText);
 	console.log(any.result);
 	if(any.result=="success"){
-		alert("회원탈퇴가 성공적으로 되었습니다.");
-		window.location.href="/"
+		app.openDialog("deletedialog", {
+			width : 400,
+			height : 300,
+			headerVisible : false
+		}, function(dialog){
+			dialog.ready(function(dialogApp){
+				
+			});
+		});
+		
 		
 	}else if(any.result=="fail"){
-		alert("비밀번호가 틀렸습니다.");
+		app.openDialog("deletedialogfail", {
+			width : 400,
+			height : 300,
+			headerVisible : false
+		}, function(dialog){
+			dialog.ready(function(dialogApp){
+				
+			});
+		});
 	}
-	
 }
+
 
 /*
  * 이미지에서 click 이벤트 발생 시 호출.

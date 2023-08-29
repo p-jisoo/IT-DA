@@ -40,13 +40,13 @@
     <cl:output std:sid="output-edf9fe6b" style="font-weight:bold; font-size:2rem; font-style:normal; text-align:center;" value="ITda Accompany">
       <cl:xylayoutdata std:sid="xyl-data-e42cde8f" top="323px" left="800px" width="325px" height="46px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-c8801df3" style="color:#91C8E4; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany">
+    <cl:output std:sid="output-c8801df3" style="color:#EBA5BF; font-weight:normal; font-size:1rem; text-align:left;" value="ITda Accompany">
       <cl:xylayoutdata std:sid="xyl-data-60fc66a8" top="790px" left="799px" width="139px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-0d4f45e2" style="color:#6F6F6F; font-weight:normal; font-size:1rem; text-align:left;" value="고객센터 : 010-8299-1244">
       <cl:xylayoutdata std:sid="xyl-data-3ec61722" top="790px" left="956px" width="200px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-d43c0c8c" style="color:#91C8E4; font-weight:normal; font-size:1rem; text-align:left;" value="|">
+    <cl:output std:sid="output-d43c0c8c" style="color:#EBA5BF; font-weight:normal; font-size:1rem; text-align:left;" value="|">
       <cl:xylayoutdata std:sid="xyl-data-0376b95c" top="790px" left="937px" width="10px" height="21px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:output std:sid="output-89692fdd" style="font-weight:bold; font-size:1.5rem; text-align:left;" value="회원정보 탈퇴">
