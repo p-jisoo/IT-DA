@@ -72,4 +72,3 @@ function onSms1SubmitError(e){
 	alert("입력하신 아이디는 존재하지 않습니다.");
 }
 
-

@@ -210,11 +210,6 @@
 			}
 
 			/*
-			 * "Output" 아웃풋(opt)에서 click 이벤트 발생 시 호출.
-			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-			 */
-
-			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.
 			 * 통신이 성공하면 발생합니다.
 			 */
@@ -449,7 +444,7 @@
 			formLayout_1.leftMargin = "0px";
 			formLayout_1.horizontalSpacing = "0px";
 			formLayout_1.verticalSpacing = "0px";
-			formLayout_1.setColumns(["234px", "194px", "1419px", "100px"]);
+			formLayout_1.setColumns(["234px", "194px", "1330px", "150px"]);
 			formLayout_1.setRows(["1fr"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
@@ -520,7 +515,7 @@
 					"rowSpan": 1,
 					"horizontalAlign": "left",
 					"verticalAlign": "center",
-					"width": 1389,
+					"width": 1325,
 					"height": 60
 				});
 				var button_1 = new cpr.controls.Button();

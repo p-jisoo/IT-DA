@@ -13,6 +13,11 @@ public interface EduApplyBoardService {
 	List<Map<String, Object>> findBoardListWithStatusByPage(ParameterGroup param);
 	List<Map<String, Object>> findBoardListPageAndSearchKeyword(ParameterGroup param);
 	
+	Map<String, Object> selectMemberCount(ParameterGroup param);
+	
+	void updateMemberCount(ParameterGroup param);
+	
+/**************************hyeok*****************************/	
 	void createBoard(ParameterGroup param);
 	
 	void updateBoard(ParameterGroup param);
@@ -27,13 +32,21 @@ public interface EduApplyBoardService {
 	
 	void deleteCommentBoard(ParameterGroup param);
 	
-	Map<String, Object> selectCommentBoard(ParameterGroup param);
+	List<Map<String, Object>> selectCommentBoard(ParameterGroup param);
+	
+	/**************************hyeok*****************************/		
+	
+	
 	
 	List<Map<String, String>> findAppliedListByUserId(String id);
 	
 	List<Map<String, String>> findApplyingListByUserId(String id);
 	
 	List<Map<String,String>> findCommentListByUserIdAndBoardNo(String id);
-	void likeCaculate(String userId, String value);
 	Integer likeCount(long eduBoardNo);
+	void likeCaculate(String userId, String value);
+	long checkCanApply(String userId, long eduBoardNo);
+	void applyEduBoard(String userId, String value);
+	void cancelEduBoard(String userId, String value);
+	
 }

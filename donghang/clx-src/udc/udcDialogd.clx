@@ -9,7 +9,7 @@
   </head>
   <body std:sid="body-fa3d7e4f" style="top:0px; left:0px; width:1920px; height:1080px;">
     <cl:group std:sid="group-10759b4c" style="background-color:#B0B0B0; border-right-style:none; border-left-style:none; border-bottom-style:none; background-image:none; border-top-style:none;">
-      <cl:xylayoutdata std:sid="xyl-data-5a3e8a59" top="0px" left="5px" width="2031px" height="189px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:xylayoutdata std:sid="xyl-data-5a3e8a59" top="8px" left="5px" width="2031px" height="181px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:img std:sid="image-603139ef" src="../theme/images/img/logo2_donghang.png">
         <cl:xylayoutdata std:sid="xyl-data-33c85ec8" top="55px" left="52px" width="101px" height="85px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       </cl:img>

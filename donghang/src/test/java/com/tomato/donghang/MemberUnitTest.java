@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.tomato.donghang.model.mapper.EduApplyBoardMapper;
 import com.tomato.donghang.model.mapper.MemberMapper;
+import com.tomato.donghang.model.vo.EduApplyBoardVO;
+import com.tomato.donghang.model.vo.EduApplyCommentBoardVO;
 import com.tomato.donghang.model.vo.MemberVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberUnitTest {
 	@Autowired
 	private MemberMapper memberMapper;
+	@Autowired
+	private EduApplyBoardMapper eduApplyBoardMapper;
 
 	@Test
 	public void registerMember() {
@@ -41,11 +46,20 @@ public class MemberUnitTest {
 		memberMapper.updateMember(vo);
 		log.info("회원가입 테스트 {} =", vo);
 	}
+	@Test
+	public void selectEduApplyBoardComment() {
+		EduApplyCommentBoardVO ecvo = new EduApplyCommentBoardVO();
+		EduApplyBoardVO evo = new EduApplyBoardVO();
+		evo.setEduBoardNo(1111);
+		MemberVO mvo = new MemberVO();
+		mvo.setUserId("1234");
+		ecvo.setEduApplyBoardVO(evo);
+		ecvo.setMemberVO(mvo);
+		
+		eduApplyBoardMapper.selectCommentBoard(ecvo);
+		System.out.println("eduApplyBoardMapper.selectCommentBoard(ecvo)"+eduApplyBoardMapper.selectCommentBoard(ecvo));
+		
 	}
-	/*
-	 * @Test public void checkIdMember() { String id="java"; List<MemberVO> list =
-	 * memberMapper.checkIdMember(id); for(e) {
-	 * 
-	 * } }
-	 */
+}
+
 
