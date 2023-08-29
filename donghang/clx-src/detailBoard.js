@@ -206,7 +206,6 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var userIdValue = app.lookup("userId");
 	var deleteButton = app.lookup("deleteButton");
 	var updateButton = app.lookup("updateButton");
-	var applyButton = app.lookup("applyButton");
 	var commentContent = app.lookup("commentContent");
 	var insertCommentButton = app.lookup("insertCommentButton");
 	var image = app.lookup("like");
@@ -227,15 +226,10 @@ function onSelectCommentsmsSubmitSuccess(e) {
 		commentContent.redraw();
 		insertCommentButton.redraw();
 		console.log("userIdValue.value : ", userIdValue.value);
-		
-		if (commentBoardMap.getValue("USER_ID") != null) {
-			applyButton.visible = true;
-		}
 	}
 	for (var i = 1; i < grid.rowCount; i++) {
 		console.log(grid.getCellValue(i, "USER_ID"));
 		if (grid.getCellValue(i, "USER_ID") == userIdValue.value) {
-			//			grid.updateRow(i, grdDelete.visible = true)
 			deleteColumnBox.visible = true;
 			grid.redraw();
 		}
@@ -259,11 +253,6 @@ function onButtonClick(e) {
 	dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
 	dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
 	var addressinputBox = app.lookup("address");
-	//	var detailAdressinputBox = app.lookup("detailAdress");
-	//	
-	//	if (detailAdressinputBox.value != null) {
-	//		dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
-	//	}
 	submission.send()
 }
 
@@ -277,53 +266,6 @@ function onButtonClick2(e) {
 	var submission = app.lookup("deletesms");
 	submission.send()
 }
-
-///*
-// * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
-// * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-// */
-//function onButtonClick4(e) {
-//	var button = e.control;
-//	var submission = app.lookup("selectsms");
-//	var dataMap = app.lookup("eduApplyBoardMap");
-//	
-//	app.lookup("title").redraw();
-//	app.lookup("category").redraw();
-//	app.lookup("memberCount").redraw();
-//	app.lookup("content").redraw();
-//	app.lookup("udccomduodatepicker1").redraw();
-//	app.lookup("udccomduodatepicker2").redraw();
-//	app.lookup("address").redraw();
-//	submission.send()
-//	
-//}
-//
-///*
-// * "기존 값" 버튼에서 click 이벤트 발생 시 호출.
-// * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
-// */
-//function onButtonClick5(e) {
-//	var button = e.control;
-//	var submission = app.lookup("selectCommentsms");
-//	var dataMap = app.lookup("commentBoardMap");
-//	
-//	app.lookup("userId").redraw();
-//	app.lookup("commentContent").redraw();
-//	
-//	submission.send()
-//}
-
-/*
- * "댓글 수정" 버튼에서 click 이벤트 발생 시 호출.
- * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
- */
-//function onButtonClick6(e) {
-//	var button = e.control;
-//	var submission = app.lookup("updateCommentsms");
-//	var dataMap = app.lookup("commentBoardMap");
-//	
-//	submission.send()
-//}
 
 //
 ///*
