@@ -168,6 +168,15 @@
 			function onButtonClick5(e) {
 				var button = e.control;
 				window.location.href = "myPage.clx"
+			}
+
+			/*
+			 * " 마이페이지 " 버튼(mypage)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onMypageClick(e){
+				var mypage = e.control;
+				window.location.href ="mypage.clx"
 			};
 			// End - User Script
 			
@@ -254,7 +263,7 @@
 			container.addChild(embeddedApp_1, {
 				"top": "247px",
 				"left": "21px",
-				"width": "1980px",
+				"width": "1903px",
 				"height": "882px"
 			});
 			
@@ -322,7 +331,7 @@
 			}
 			container.addChild(navigationBar_1, {
 				"top": "95px",
-				"right": "343px",
+				"right": "454px",
 				"left": "399px",
 				"height": "141px"
 			});
@@ -412,11 +421,12 @@
 				output_8.value = " TEL : 010-8299-1244 | Email : gjsdms1244@gmail.com";
 				output_8.style.css({
 					"color" : "#F6F6F6",
-					"font-weight" : "bold"
+					"font-weight" : "bold",
+					"font-size" : "16px"
 				});
 				container.addChild(output_8, {
-					"top": "113px",
-					"left": "493px",
+					"top": "73px",
+					"left": "921px",
 					"width": "507px",
 					"height": "31px"
 				});
@@ -428,8 +438,8 @@
 					"font-size" : "16px"
 				});
 				container.addChild(output_9, {
-					"top": "96px",
-					"left": "1156px",
+					"top": "115px",
+					"left": "494px",
 					"width": "349px",
 					"height": "42px"
 				});
@@ -478,8 +488,8 @@
 				"background-image" : "none",
 				"border-top-style" : "none"
 			});
-			if(typeof onButtonClick == "function") {
-				button_2.addEventListener("click", onButtonClick);
+			if(typeof onMypageClick == "function") {
+				button_2.addEventListener("click", onMypageClick);
 			}
 			container.addChild(button_2, {
 				"top": "34px",
@@ -543,7 +553,7 @@
 			}
 			container.addChild(output_11, {
 				"top": "37px",
-				"left": "1045px",
+				"left": "1074px",
 				"width": "101px",
 				"height": "34px"
 			});

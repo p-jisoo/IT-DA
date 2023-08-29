@@ -449,7 +449,7 @@
 			formLayout_1.leftMargin = "0px";
 			formLayout_1.horizontalSpacing = "0px";
 			formLayout_1.verticalSpacing = "0px";
-			formLayout_1.setColumns(["234px", "194px", "1419px", "100px"]);
+			formLayout_1.setColumns(["234px", "194px", "1330px", "150px"]);
 			formLayout_1.setRows(["1fr"]);
 			group_1.setLayout(formLayout_1);
 			(function(container){
@@ -520,7 +520,7 @@
 					"rowSpan": 1,
 					"horizontalAlign": "left",
 					"verticalAlign": "center",
-					"width": 1389,
+					"width": 1325,
 					"height": 60
 				});
 				var button_1 = new cpr.controls.Button();
