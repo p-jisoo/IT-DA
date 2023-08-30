@@ -405,7 +405,7 @@
 				});
 				var userDefinedControl_1 = new udc.exam.udcExamDuoDatePicker("udccomduodatepicker1");
 				userDefinedControl_1.useAutoSelect = true;
-				userDefinedControl_1.selectOption = "date";
+				userDefinedControl_1.selectOption = "day";
 				userDefinedControl_1.style.css({
 					"background-color" : "#e9e9e9",
 					"background-image" : "none",
@@ -417,7 +417,7 @@
 				});
 				var userDefinedControl_2 = new udc.exam.udcExamDuoDatePicker("udccomduodatepicker2");
 				userDefinedControl_2.useAutoSelect = true;
-				userDefinedControl_2.selectOption = "date";
+				userDefinedControl_2.selectOption = "day";
 				userDefinedControl_2.style.css({
 					"background-color" : "#e9e9e9",
 					"background-image" : "none"

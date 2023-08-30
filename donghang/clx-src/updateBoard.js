@@ -147,8 +147,9 @@ function onButtonClick(e) {
 	console.log("toValue", udcExamDuoDatePicker.toValue);
 	var addressinputBox = app.lookup("address");
 	var detailAdressinputBox = app.lookup("detailAdress");
-	
-	if (detailAdressinputBox.value != null) {
+//	if (detailAdressinputBox.value != null) {
+	if (detailAdressinputBox.value.length>2) {
+		
 		dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
 	}
 	submission.send()
