@@ -13,12 +13,8 @@ public class EduApplyCommentBoardVO {
 	private long eduApplyCommentBoardNo;
 	private String eduApplyCommentContent;
 	private EduApplyBoardVO eduApplyBoardVO;
-<<<<<<< HEAD
 	private MemberVO memberVO;
 	
-=======
-	private MemberVO memberVO; 
->>>>>>> refs/heads/main
 	public EduApplyCommentBoardVO(long eduApplyCommentBoardNo) {
 		super();
 		this.eduApplyCommentBoardNo = eduApplyCommentBoardNo;
