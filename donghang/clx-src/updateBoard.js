@@ -152,6 +152,7 @@ function onButtonClick(e) {
 		dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
 	}
 	submission.send()
+	alert("수정 되었습니다");
 }
 
 /*
@@ -192,7 +193,8 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var button = e.control;
 	var submission = app.lookup("deletesms");
-	submission.send()
+	submission.send();
+	alert("삭제 되었습니다");
 }
 
 

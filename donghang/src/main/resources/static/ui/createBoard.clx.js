@@ -53,10 +53,15 @@
 					}
 				}); 
 				});
+				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				//create list 이동
 				var createButton = app.lookup("createButton");
 				createButton.addEventListener("click", function(e){
 					var vcEmb = hostAppInstance.lookup("ea1");
+						if(eduApplyBoardMap.getValue("USER_ID")==null){
+				alert("로그인이 필요 합니다");
+				var vsAppId = "createBoard";	
+				}
 					var vsAppId = "eduApplyboardList";
 					if(vsAppId == null) {
 					return alert("추가될 App이 존재하지 않습니다.");
@@ -101,8 +106,15 @@
 				var detailAdressinputBox = app.lookup("detailAdress");
 				dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 				console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
-				
-				submission.send()
+				console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
+				var value = dataMap.getValue("USER_ID");
+				console.log(" USER_ID : " +value);
+				if(dataMap.getValue("USER_ID")==null){
+				alert("로그인이 필요 합니다");	
+				}else{
+					submission.send()
+					alert("등록 되었습니다");
+				}
 			}
 
 			/*
@@ -236,6 +248,10 @@
 				submission_2.addEventListener("submit-success", onSessioncheckSubmitSuccess);
 			}
 			app.register(submission_2);
+			
+			var submission_3 = new cpr.protocols.Submission("loginCheck");
+			submission_3.action = "loginCheck.do";
+			app.register(submission_3);
 			app.supportMedia("all and (min-width: 1920px)", "notebook");
 			app.supportMedia("all and (min-width: 1024px) and (max-width: 1919px)", "default");
 			app.supportMedia("all and (min-width: 500px) and (max-width: 1023px)", "tablet");

@@ -314,7 +314,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
 		
 		//System.out.println("serviceImpl MAP" + dataMap);
-		
+		System.out.println("select Board : " + dataMap);
 		return dataMap;
 	}
 

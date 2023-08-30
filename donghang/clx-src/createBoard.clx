@@ -52,6 +52,7 @@
         <cl:listener std:sid="listener-33382513" name="submit-success" handler="onSessioncheckSubmitSuccess"/>
         <cl:responsedata dataid="loginSession"/>
       </cl:submission>
+      <cl:submission std:sid="submission-5233918a" id="loginCheck" action="loginCheck.do"/>
     </cl:model>
     <cl:appspec/>
   </head>
