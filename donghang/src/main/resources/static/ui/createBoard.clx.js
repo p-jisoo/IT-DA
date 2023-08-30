@@ -29,89 +29,91 @@
 				
 				//list 이동
 				var listButton = app.lookup("listButton");
-				listButton.addEventListener("click", function(e){
+				listButton.addEventListener("click", function(e) {
 					var vcEmb = hostAppInstance.lookup("ea1");
 					var vsAppId = "eduApplyboardList";
-					if(vsAppId == null) {
-					return alert("추가될 App이 존재하지 않습니다.");
-				}
-					cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
-					/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
-					if(vcEmb.getEmbeddedAppInstance()){
-						vcEmb.getEmbeddedAppInstance().dispose();
+					if (vsAppId == null) {
+						return alert("추가될 App이 존재하지 않습니다.");
 					}
-					/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
-					if(loadedApp){						
-						/*초기값을 전달합니다.*/			
-			//			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
-			//			embApp.initValue ="eduApplyBoardMap.getValue("EDU_BOARD_NO");
-			//			})
-						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
-						vcEmb.app = loadedApp;
-						var app1 = vcEmb.app;
-						app1.getInstances()
-					}
-				}); 
+					cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+						/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+						if (vcEmb.getEmbeddedAppInstance()) {
+							vcEmb.getEmbeddedAppInstance().dispose();
+						}
+						/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+						if (loadedApp) {
+							/*초기값을 전달합니다.*/
+							//			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+							//			embApp.initValue ="eduApplyBoardMap.getValue("EDU_BOARD_NO");
+							//			})
+							/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+							vcEmb.app = loadedApp;
+							var app1 = vcEmb.app;
+							app1.getInstances()
+						}
+					});
 				});
 				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				//create list 이동
 				var createButton = app.lookup("createButton");
-				createButton.addEventListener("click", function(e){
+				createButton.addEventListener("click", function(e) {
 					var vcEmb = hostAppInstance.lookup("ea1");
-						if(eduApplyBoardMap.getValue("USER_ID")==null){
-				alert("로그인이 필요 합니다");
-				var vsAppId = "createBoard";	
-				}
+					if (eduApplyBoardMap.getValue("USER_ID") == null) {
+						alert("로그인이 필요 합니다");
+						var vsAppId = "createBoard";
+					}
 					var vsAppId = "eduApplyboardList";
-					if(vsAppId == null) {
-					return alert("추가될 App이 존재하지 않습니다.");
-				}
-					cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
-					/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
-					if(vcEmb.getEmbeddedAppInstance()){
-						vcEmb.getEmbeddedAppInstance().dispose();
+					if (vsAppId == null) {
+						return alert("추가될 App이 존재하지 않습니다.");
 					}
-					/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
-					if(loadedApp){						
-						/*초기값을 전달합니다.*/			
-			//			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
-			//			embApp.initValue ="eduApplyBoardMap.getValue("EDU_BOARD_NO");
-			//			})
-						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
-						vcEmb.app = loadedApp;
-						var app1 = vcEmb.app;
-						app1.getInstances()
-					}
-				}); 
-				});  
+					cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+						/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
+						if (vcEmb.getEmbeddedAppInstance()) {
+							vcEmb.getEmbeddedAppInstance().dispose();
+						}
+						/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
+						if (loadedApp) {
+							/*초기값을 전달합니다.*/
+							//			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+							//			embApp.initValue ="eduApplyBoardMap.getValue("EDU_BOARD_NO");
+							//			})
+							/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
+							vcEmb.app = loadedApp;
+							var app1 = vcEmb.app;
+							app1.getInstances()
+						}
+					});
+				});
 			}
 			/*
 			 * "등록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
 
-			function onButtonClick(e){
+			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("createsms");
 				var dataMap = app.lookup("eduApplyBoardMap");
 				var udcExamDuoDatePicker = app.lookup("udccomduodatepicker1");
-				dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
-				dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
 				var udcExamDuoDatePicker2 = app.lookup("udccomduodatepicker2");
-				dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
-				dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
-				console.log("fromValue",udcExamDuoDatePicker.fromValue);
-				console.log("toValue",udcExamDuoDatePicker.toValue);
 				var addressinputBox = app.lookup("address");
 				var detailAdressinputBox = app.lookup("detailAdress");
-				dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
-				console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
+				var content = app.lookup("content");
+				dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
+				dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
+				dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
+				dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
+				console.log("fromValue", udcExamDuoDatePicker.fromValue);
+				console.log("toValue", udcExamDuoDatePicker.toValue);
+				dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
+				dataMap.setValue("EDU_BOARD_CONTENT", content.value);
+				console.log("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
 				console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
 				var value = dataMap.getValue("USER_ID");
-				console.log(" USER_ID : " +value);
-				if(dataMap.getValue("USER_ID")==null){
-				alert("로그인이 필요 합니다");	
-				}else{
+				console.log(" USER_ID : " + value);
+				if (dataMap.getValue("USER_ID") == null) {
+					alert("로그인이 필요 합니다");
+				} else {
 					submission.send()
 					alert("등록 되었습니다");
 				}
@@ -121,9 +123,9 @@
 			 * "주소찾기" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick3(e){
+			function onButtonClick3(e) {
 				var button = e.control;
-					cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
+				cpr.core.ResourceLoader.loadScript("//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js")
 					.then(function(input) {
 						new daum.Postcode({
 							oncomplete: function(data) {
@@ -136,10 +138,10 @@
 								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 									addr = data.roadAddress;
-									inputBox.value = data.zonecode+"-"+addr;
+									inputBox.value = data.zonecode + "-" + addr;
 								} else { // 사용자가 지번 주소를 선택했을 경우(J)
 									addr = data.jibunAddress;
-									inputBox.value = data.zonecode+"-"+addr;
+									inputBox.value = data.zonecode + "-" + addr;
 								}
 								//inputBox2.value = data.zonecode;
 							}
@@ -151,7 +153,7 @@
 			 * "목록" 버튼에서 click 이벤트 발생 시 호출.
 			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
 			 */
-			function onButtonClick2(e){
+			function onButtonClick2(e) {
 				var button = e.control;
 			}
 
@@ -159,10 +161,10 @@
 			 * 루트 컨테이너에서 init 이벤트 발생 시 호출.
 			 * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
 			 */
-			function onBodyInit(e){
+			function onBodyInit(e) {
 				var submission = app.lookup("sessioncheck");
-				submission.send();	
-			};
+				submission.send();
+			}
 			// End - User Script
 			
 			// Header
@@ -486,43 +488,27 @@
 				"height": "163px"
 			});
 			
-			var inputBox_5 = new cpr.controls.InputBox("ipb5");
-			inputBox_5.placeholder = "     내용을 입력하세요";
+			var inputBox_5 = new cpr.controls.InputBox("ipb6");
+			inputBox_5.placeholder = "     제목을 입력하세요";
+			inputBox_5.lengthUnit = "utf8";
+			inputBox_5.maxLength = 60;
 			inputBox_5.style.css({
 				"font-size" : "18px",
 				"text-align" : "left"
 			});
 			var dataMapContext_5 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
 			inputBox_5.setBindContext(dataMapContext_5);
-			inputBox_5.bind("value").toDataColumn("EDU_BOARD_CONTENT");
-			container.addChild(inputBox_5, {
-				"top": "301px",
-				"left": "220px",
-				"width": "1510px",
-				"height": "283px"
-			});
-			
-			var inputBox_6 = new cpr.controls.InputBox("ipb6");
-			inputBox_6.placeholder = "     제목을 입력하세요";
-			inputBox_6.lengthUnit = "utf8";
-			inputBox_6.maxLength = 60;
-			inputBox_6.style.css({
-				"font-size" : "18px",
-				"text-align" : "left"
-			});
-			var dataMapContext_6 = new cpr.bind.DataMapContext(app.lookup("eduApplyBoardMap"));
-			inputBox_6.setBindContext(dataMapContext_6);
-			inputBox_6.bind("value").toDataColumn("EDU_BOARD_TITLE");
+			inputBox_5.bind("value").toDataColumn("EDU_BOARD_TITLE");
 			if(typeof onIpb6ValueChange == "function") {
-				inputBox_6.addEventListener("value-change", onIpb6ValueChange);
+				inputBox_5.addEventListener("value-change", onIpb6ValueChange);
 			}
 			if(typeof onIpb6BeforeValueChange == "function") {
-				inputBox_6.addEventListener("before-value-change", onIpb6BeforeValueChange);
+				inputBox_5.addEventListener("before-value-change", onIpb6BeforeValueChange);
 			}
 			if(typeof onIpb6Clear == "function") {
-				inputBox_6.addEventListener("clear", onIpb6Clear);
+				inputBox_5.addEventListener("clear", onIpb6Clear);
 			}
-			container.addChild(inputBox_6, {
+			container.addChild(inputBox_5, {
 				"top": "71px",
 				"left": "220px",
 				"width": "1509px",
@@ -569,6 +555,20 @@
 				"left": "221px",
 				"width": "1512px",
 				"height": "40px"
+			});
+			
+			var textArea_1 = new cpr.controls.TextArea("content");
+			textArea_1.placeholder = "                                                                                                                                                                                                                                                                                                                                                                    내용을 입력 해주세요";
+			textArea_1.style.css({
+				"font-size" : "18px",
+				"text-align" : "left"
+			});
+			textArea_1.bind("value").toDataColumn("EDU_BOARD_CONTENT");
+			container.addChild(textArea_1, {
+				"top": "293px",
+				"left": "221px",
+				"width": "1507px",
+				"height": "277px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);

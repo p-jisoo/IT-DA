@@ -221,11 +221,6 @@
         <cl:columns length="1" unit="FRACTION"/>
       </cl:formlayout>
     </cl:group>
-    <cl:inputbox std:sid="i-box-4e2db08c" id="content" style="font-size:16px; text-align:left;" readonly="true" placeholder="     내용을 입력하세요">
-      <cl:relativebind property="value" columnname="EDU_BOARD_CONTENT"/>
-      <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
-      <cl:xylayoutdata std:sid="xyl-data-0f413b4f" top="294px" left="262px" width="1510px" height="283px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-    </cl:inputbox>
     <cl:inputbox std:sid="i-box-2de64cc7" id="title" style="font-size:18px; text-align:left;" readonly="true" placeholder="     제목을 입력하세요">
       <cl:listener std:sid="listener-03259722" name="value-change" handler="onIpb6ValueChange"/>
       <cl:listener std:sid="listener-24e36e3d" name="before-value-change" handler="onIpb6BeforeValueChange"/>
@@ -294,6 +289,10 @@
       <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
       <cl:xylayoutdata std:sid="xyl-data-3257eb28" top="586px" left="1403px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
+    <cl:textarea std:sid="t-area-fd16b8a4" id="content" style="font-size:18px; text-align:left;" readonly="true" placeholder="                                                                                                                                                                                                                                                                                                              내용을 입력 해주세요">
+      <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="EDU_BOARD_CONTENT"/>
+      <cl:xylayoutdata std:sid="xyl-data-7539e908" top="303px" left="260px" width="1507px" height="277px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:textarea>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>
