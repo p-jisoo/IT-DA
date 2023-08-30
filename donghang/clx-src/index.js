@@ -5,24 +5,24 @@
  * @author USER
  ************************************************/
 
-function emded(e) {
+function emded(e){
 	var vcEmb = app.lookup("ea1");
 	var vsAppId = e.item.value;
-	// 입력값에 선택된 앱이 존재하지 않는 경우
-	if (vsAppId == null) {
+		// 입력값에 선택된 앱이 존재하지 않는 경우
+	if(vsAppId == null) {
 		return alert("추가될 App이 존재하지 않습니다.");
 	}
 	
 	/*앱을 로드하고 로드된 앱을 임베디드 앱에 설정합니다.*/
-	cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+	cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
 		/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
-		if (vcEmb.getEmbeddedAppInstance()) {
+		if(vcEmb.getEmbeddedAppInstance()){
 			vcEmb.getEmbeddedAppInstance().dispose();
 		}
 		/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
-		if (loadedApp) {
-			/*초기값을 전달합니다.*/
-			vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {
+		if(loadedApp){						
+			/*초기값을 전달합니다.*/			
+			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
 				
 			})
 			/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
@@ -30,7 +30,7 @@ function emded(e) {
 			var app1 = vcEmb.app;
 			app1.getInstances()
 		}
-	});
+	}); 
 }
 /*
  * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
@@ -40,6 +40,8 @@ function onNav1ItemClick(e) {
 	var nav1 = e.control;
 	emded(e);
 }
+
+
 
 /*
  * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
@@ -60,9 +62,10 @@ function onLoginClick(e) {
 
 function onBodyLoad(e) {
 	var vcEmb = app.lookup("ea1");
-	cpr.core.App.load("home", function( /*cpr.core.App*/ loadedApp) {
-		if (loadedApp) {
-			vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {})
+	cpr.core.App.load("home", function(/*cpr.core.App*/ loadedApp){
+		if(loadedApp){						
+			vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+			})
 			vcEmb.app = loadedApp;
 			var app1 = vcEmb.app;
 			app1.getInstances();
@@ -85,23 +88,20 @@ function onSms2SubmitSuccess(e) {
 	var output = app.lookup("whoName");
 	var responseText = sms2.xhr.responseText;
 	var any = JSON.parse(responseText);
-	if (responseText.length < 3) {
+	if(responseText.length < 3){
 		// 로그인 안된상태 이거만 에러처리 
 		return;
 	}
-
+	
 	if (any.loginSession == "") {
 		onLoginClick();
 		login.value = "로그인";
-		
-
 	} else {
-		output.value = any.loginSession.userName;
+		output.value =any.loginSession.userName;
 		register.visible = false;
 		helloWelcome.visible = true;
 		myPage.visible = true;
 		login.value = "로그아웃";
-		
 	}
 	
 }
@@ -155,4 +155,13 @@ function onButtonClick4(e) {
 function onButtonClick5(e) {
 	var button = e.control;
 	window.location.href = "myPage.clx"
+}
+
+/*
+ * " 마이페이지 " 버튼(mypage)에서 click 이벤트 발생 시 호출.
+ * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+ */
+function onMypageClick(e){
+	var mypage = e.control;
+	window.location.href ="mypage.clx"
 }

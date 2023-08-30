@@ -528,7 +528,7 @@
 					"height": "42px"
 				});
 				var output_2 = new cpr.controls.Output();
-				output_2.value = "*비밀번호";
+				output_2.value = "* 비밀번호";
 				output_2.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -541,7 +541,7 @@
 					"height": "35px"
 				});
 				var output_3 = new cpr.controls.Output();
-				output_3.value = "*비밀번호 재확인";
+				output_3.value = "* 비밀번호 재확인";
 				output_3.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -550,11 +550,11 @@
 				container.addChild(output_3, {
 					"top": "212px",
 					"left": "1px",
-					"width": "136px",
+					"width": "144px",
 					"height": "29px"
 				});
 				var output_4 = new cpr.controls.Output();
-				output_4.value = "*주소";
+				output_4.value = "* 주소";
 				output_4.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -567,7 +567,7 @@
 					"height": "39px"
 				});
 				var output_5 = new cpr.controls.Output();
-				output_5.value = "*전화번호";
+				output_5.value = "* 전화번호";
 				output_5.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -580,7 +580,7 @@
 					"height": "46px"
 				});
 				var output_6 = new cpr.controls.Output();
-				output_6.value = "*성함";
+				output_6.value = "* 성함";
 				output_6.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -593,7 +593,7 @@
 					"height": "46px"
 				});
 				var output_7 = new cpr.controls.Output();
-				output_7.value = "*닉네임";
+				output_7.value = "* 닉네임";
 				output_7.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -626,7 +626,7 @@
 					"height": "42px"
 				});
 				var output_8 = new cpr.controls.Output();
-				output_8.value = "*아이디";
+				output_8.value = "* 아이디";
 				output_8.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",
@@ -653,7 +653,7 @@
 					"height": "42px"
 				});
 				var output_9 = new cpr.controls.Output();
-				output_9.value = "*이메일";
+				output_9.value = "* 이메일";
 				output_9.style.css({
 					"font-weight" : "bold",
 					"font-size" : "1.05rem",

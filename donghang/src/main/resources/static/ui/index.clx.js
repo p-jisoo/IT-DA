@@ -18,24 +18,24 @@
 			 * @author USER
 			 ************************************************/
 
-			function emded(e) {
+			function emded(e){
 				var vcEmb = app.lookup("ea1");
 				var vsAppId = e.item.value;
-				// 입력값에 선택된 앱이 존재하지 않는 경우
-				if (vsAppId == null) {
+					// 입력값에 선택된 앱이 존재하지 않는 경우
+				if(vsAppId == null) {
 					return alert("추가될 App이 존재하지 않습니다.");
 				}
 				
 				/*앱을 로드하고 로드된 앱을 임베디드 앱에 설정합니다.*/
-				cpr.core.App.load(vsAppId, function( /*cpr.core.App*/ loadedApp) {
+				cpr.core.App.load(vsAppId, function(/*cpr.core.App*/ loadedApp){
 					/*임베디드앱에 안에 앱이 있는 경우에는 앱을 삭제해줍니다.(다시 앱을 열고싶을때 스크립트 작성)*/
-					if (vcEmb.getEmbeddedAppInstance()) {
+					if(vcEmb.getEmbeddedAppInstance()){
 						vcEmb.getEmbeddedAppInstance().dispose();
 					}
 					/*로드된 앱이 있는 경우에는 임베디드앱 안에 불러온 앱을 넣습니다.*/
-					if (loadedApp) {
-						/*초기값을 전달합니다.*/
-						vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {
+					if(loadedApp){						
+						/*초기값을 전달합니다.*/			
+						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
 							
 						})
 						/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
@@ -43,7 +43,7 @@
 						var app1 = vcEmb.app;
 						app1.getInstances()
 					}
-				});
+				}); 
 			}
 			/*
 			 * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
@@ -53,6 +53,8 @@
 				var nav1 = e.control;
 				emded(e);
 			}
+
+
 
 			/*
 			 * "회원가입  " 버튼에서 click 이벤트 발생 시 호출.
@@ -73,9 +75,10 @@
 
 			function onBodyLoad(e) {
 				var vcEmb = app.lookup("ea1");
-				cpr.core.App.load("home", function( /*cpr.core.App*/ loadedApp) {
-					if (loadedApp) {
-						vcEmb.ready(function( /*cpr.controls.EmbeddedApp*/ embApp) {})
+				cpr.core.App.load("home", function(/*cpr.core.App*/ loadedApp){
+					if(loadedApp){						
+						vcEmb.ready(function(/*cpr.controls.EmbeddedApp*/embApp){
+						})
 						vcEmb.app = loadedApp;
 						var app1 = vcEmb.app;
 						app1.getInstances();
@@ -98,23 +101,20 @@
 				var output = app.lookup("whoName");
 				var responseText = sms2.xhr.responseText;
 				var any = JSON.parse(responseText);
-				if (responseText.length < 3) {
+				if(responseText.length < 3){
 					// 로그인 안된상태 이거만 에러처리 
 					return;
 				}
-
+				
 				if (any.loginSession == "") {
 					onLoginClick();
 					login.value = "로그인";
-					
-
 				} else {
-					output.value = any.loginSession.userName;
+					output.value =any.loginSession.userName;
 					register.visible = false;
 					helloWelcome.visible = true;
 					myPage.visible = true;
 					login.value = "로그아웃";
-					
 				}
 				
 			}
@@ -169,6 +169,15 @@
 				var button = e.control;
 				window.location.href = "myPage.clx"
 			}
+
+			/*
+			 * " 마이페이지 " 버튼(mypage)에서 click 이벤트 발생 시 호출.
+			 * 사용자가 컨트롤을 클릭할 때 발생하는 이벤트.
+			 */
+			function onMypageClick(e){
+				var mypage = e.control;
+				window.location.href ="mypage.clx"
+			};
 			// End - User Script
 			
 			// Header
@@ -252,10 +261,10 @@
 			// UI Configuration
 			var embeddedApp_1 = new cpr.controls.EmbeddedApp("ea1");
 			container.addChild(embeddedApp_1, {
-				"top": "245px",
+				"top": "247px",
 				"left": "21px",
-				"width": "1960px",
-				"height": "884px"
+				"width": "1903px",
+				"height": "882px"
 			});
 			
 			var output_1 = new cpr.controls.Output();
@@ -263,12 +272,12 @@
 			output_1.style.css({
 				"color" : "#262626",
 				"font-weight" : "bolder",
-				"font-size" : "1.3rem"
+				"font-size" : "1.5rem"
 			});
 			container.addChild(output_1, {
-				"top": "16px",
-				"left": "162px",
-				"width": "100px",
+				"top": "49px",
+				"left": "137px",
+				"width": "71px",
 				"height": "44px"
 			});
 			
@@ -280,127 +289,10 @@
 				"font-size" : "1.3rem"
 			});
 			container.addChild(output_2, {
-				"top": "84px",
-				"left": "162px",
-				"width": "160px",
+				"top": "80px",
+				"left": "137px",
+				"width": "131px",
 				"height": "41px"
-			});
-			
-			var group_1 = new cpr.controls.Container();
-			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
-			group_1.setLayout(xYLayout_2);
-			(function(container){
-				var button_1 = new cpr.controls.Button("btn_register");
-				button_1.value = "회원가입  ";
-				button_1.style.css({
-					"background-color" : "#FFFFFF",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1rem",
-					"border-bottom-style" : "none",
-					"background-image" : "none",
-					"border-top-style" : "none"
-				});
-				if(typeof onButtonClick2 == "function") {
-					button_1.addEventListener("click", onButtonClick2);
-				}
-				container.addChild(button_1, {
-					"top": "20px",
-					"left": "1345px",
-					"width": "105px",
-					"height": "40px"
-				});
-				var button_2 = new cpr.controls.Button("mypage");
-				button_2.visible = false;
-				button_2.value = " 마이페이지 ";
-				button_2.style.css({
-					"background-color" : "#FFFFFF",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1rem",
-					"border-bottom-style" : "none",
-					"background-image" : "none",
-					"border-top-style" : "none"
-				});
-				if(typeof onButtonClick == "function") {
-					button_2.addEventListener("click", onButtonClick);
-				}
-				container.addChild(button_2, {
-					"top": "20px",
-					"left": "1137px",
-					"width": "120px",
-					"height": "40px"
-				});
-				var button_3 = new cpr.controls.Button("login");
-				button_3.value = "  로그인   ";
-				button_3.style.css({
-					"background-color" : "#FFFFFF",
-					"border-right-style" : "none",
-					"color" : "#4682A9",
-					"border-left-style" : "none",
-					"font-weight" : "bold",
-					"font-size" : "1rem",
-					"border-bottom-style" : "none",
-					"background-image" : "none",
-					"border-top-style" : "none"
-				});
-				if(typeof onLoginClick == "function") {
-					button_3.addEventListener("click", onLoginClick);
-				}
-				if(typeof onLoginValueChange == "function") {
-					button_3.addEventListener("value-change", onLoginValueChange);
-				}
-				container.addChild(button_3, {
-					"top": "20px",
-					"left": "1256px",
-					"width": "90px",
-					"height": "40px"
-				});
-				var output_3 = new cpr.controls.Output("welcom");
-				output_3.visible = false;
-				output_3.value = "님 환영합니다.";
-				output_3.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1rem"
-				});
-				if(typeof onWelcomValueChange == "function") {
-					output_3.addEventListener("value-change", onWelcomValueChange);
-				}
-				container.addChild(output_3, {
-					"top": "23px",
-					"left": "949px",
-					"width": "138px",
-					"height": "34px"
-				});
-				var output_4 = new cpr.controls.Output("whoName");
-				output_4.style.css({
-					"font-weight" : "bold",
-					"font-size" : "1rem",
-					"text-align" : "center"
-				});
-				output_4.bind("value").toDataMap(app.lookup("dm1"), "userName");
-				if(typeof onWhoNameValueChange == "function") {
-					output_4.addEventListener("value-change", onWhoNameValueChange);
-				}
-				container.addChild(output_4, {
-					"top": "17px",
-					"left": "809px",
-					"width": "130px",
-					"height": "41px"
-				});
-			})(group_1);
-			if(typeof onGroupClick2 == "function") {
-				group_1.addEventListener("click", onGroupClick2);
-			}
-			container.addChild(group_1, {
-				"top": "1px",
-				"right": "-194px",
-				"left": "432px",
-				"height": "74px"
 			});
 			
 			var image_1 = new cpr.controls.Image();
@@ -408,7 +300,7 @@
 			container.addChild(image_1, {
 				"top": "21px",
 				"left": "21px",
-				"width": "135px",
+				"width": "106px",
 				"height": "102px"
 			});
 			
@@ -438,18 +330,232 @@
 				navigationBar_1.addEventListener("selection-change", onNav1SelectionChange);
 			}
 			container.addChild(navigationBar_1, {
-				"top": "84px",
-				"right": "446px",
-				"left": "503px",
-				"height": "154px"
+				"top": "95px",
+				"right": "454px",
+				"left": "399px",
+				"height": "141px"
 			});
 			
-			var userDefinedControl_1 = new udc.udcDialogd();
-			container.addChild(userDefinedControl_1, {
-				"top": "1228px",
-				"left": "20px",
-				"width": "2062px",
-				"height": "184px"
+			var group_1 = new cpr.controls.Container();
+			group_1.style.css({
+				"background-color" : "#A8A8A8",
+				"background-image" : "none"
+			});
+			var xYLayout_2 = new cpr.controls.layouts.XYLayout();
+			group_1.setLayout(xYLayout_2);
+			(function(container){
+				var image_2 = new cpr.controls.Image();
+				image_2.src = "theme/images/img/logo2_donghang.png";
+				container.addChild(image_2, {
+					"top": "46px",
+					"left": "37px",
+					"width": "101px",
+					"height": "85px"
+				});
+				var output_3 = new cpr.controls.Output();
+				output_3.value = "ITda Accompany";
+				output_3.style.css({
+					"color" : "#FFFFFF",
+					"font-weight" : "bold",
+					"font-size" : "2rem"
+				});
+				container.addChild(output_3, {
+					"top": "61px",
+					"left": "147px",
+					"width": "302px",
+					"height": "55px"
+				});
+				var output_4 = new cpr.controls.Output();
+				output_4.value = "이용약관";
+				output_4.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
+				container.addChild(output_4, {
+					"top": "22px",
+					"left": "494px",
+					"width": "120px",
+					"height": "40px"
+				});
+				var output_5 = new cpr.controls.Output();
+				output_5.value = "개인정보취급방침";
+				output_5.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
+				container.addChild(output_5, {
+					"top": "22px",
+					"left": "662px",
+					"width": "157px",
+					"height": "40px"
+				});
+				var output_6 = new cpr.controls.Output();
+				output_6.value = "찾아오시는 길";
+				output_6.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "1.15rem"
+				});
+				container.addChild(output_6, {
+					"top": "22px",
+					"left": "880px",
+					"width": "126px",
+					"height": "40px"
+				});
+				var output_7 = new cpr.controls.Output();
+				output_7.value = "경기도 성남시 성남대로 34 하나프라자 6층 KOSTA EDU ";
+				output_7.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "16px"
+				});
+				container.addChild(output_7, {
+					"top": "73px",
+					"left": "493px",
+					"width": "457px",
+					"height": "31px"
+				});
+				var output_8 = new cpr.controls.Output();
+				output_8.value = " TEL : 010-8299-1244 | Email : gjsdms1244@gmail.com";
+				output_8.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "16px"
+				});
+				container.addChild(output_8, {
+					"top": "73px",
+					"left": "921px",
+					"width": "507px",
+					"height": "31px"
+				});
+				var output_9 = new cpr.controls.Output();
+				output_9.value = "담당자 : 박지수 , 김지혁 , 이히은 , 강재헌";
+				output_9.style.css({
+					"color" : "#F6F6F6",
+					"font-weight" : "bold",
+					"font-size" : "16px"
+				});
+				container.addChild(output_9, {
+					"top": "115px",
+					"left": "494px",
+					"width": "349px",
+					"height": "42px"
+				});
+			})(group_1);
+			container.addChild(group_1, {
+				"top": "1138px",
+				"left": "0px",
+				"width": "2379px",
+				"height": "162px"
+			});
+			
+			var button_1 = new cpr.controls.Button("btn_register");
+			button_1.value = "회원가입  ";
+			button_1.style.css({
+				"background-color" : "#FFFFFF",
+				"border-right-style" : "none",
+				"color" : "#4682A9",
+				"border-left-style" : "none",
+				"font-weight" : "bold",
+				"font-size" : "1rem",
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
+			});
+			if(typeof onButtonClick2 == "function") {
+				button_1.addEventListener("click", onButtonClick2);
+			}
+			container.addChild(button_1, {
+				"top": "34px",
+				"left": "1570px",
+				"width": "76px",
+				"height": "40px"
+			});
+			
+			var button_2 = new cpr.controls.Button("mypage");
+			button_2.visible = false;
+			button_2.value = " 마이페이지 ";
+			button_2.style.css({
+				"background-color" : "#FFFFFF",
+				"border-right-style" : "none",
+				"color" : "#4682A9",
+				"border-left-style" : "none",
+				"font-weight" : "bold",
+				"font-size" : "1rem",
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
+			});
+			if(typeof onMypageClick == "function") {
+				button_2.addEventListener("click", onMypageClick);
+			}
+			container.addChild(button_2, {
+				"top": "34px",
+				"left": "1362px",
+				"width": "91px",
+				"height": "40px"
+			});
+			
+			var button_3 = new cpr.controls.Button("login");
+			button_3.value = "  로그인   ";
+			button_3.style.css({
+				"background-color" : "#FFFFFF",
+				"border-right-style" : "none",
+				"color" : "#4682A9",
+				"border-left-style" : "none",
+				"font-weight" : "bold",
+				"font-size" : "1rem",
+				"border-bottom-style" : "none",
+				"background-image" : "none",
+				"border-top-style" : "none"
+			});
+			if(typeof onLoginClick == "function") {
+				button_3.addEventListener("click", onLoginClick);
+			}
+			if(typeof onLoginValueChange == "function") {
+				button_3.addEventListener("value-change", onLoginValueChange);
+			}
+			container.addChild(button_3, {
+				"top": "34px",
+				"left": "1481px",
+				"width": "61px",
+				"height": "40px"
+			});
+			
+			var output_10 = new cpr.controls.Output("welcom");
+			output_10.visible = false;
+			output_10.value = "님  환영합니다.";
+			output_10.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1rem"
+			});
+			if(typeof onWelcomValueChange == "function") {
+				output_10.addEventListener("value-change", onWelcomValueChange);
+			}
+			container.addChild(output_10, {
+				"top": "37px",
+				"left": "1174px",
+				"width": "119px",
+				"height": "34px"
+			});
+			
+			var output_11 = new cpr.controls.Output("whoName");
+			output_11.style.css({
+				"font-weight" : "bold",
+				"font-size" : "1rem",
+				"text-align" : "center"
+			});
+			output_11.bind("value").toDataMap(app.lookup("dm1"), "userName");
+			if(typeof onWhoNameValueChange == "function") {
+				output_11.addEventListener("value-change", onWhoNameValueChange);
+			}
+			container.addChild(output_11, {
+				"top": "37px",
+				"left": "1074px",
+				"width": "101px",
+				"height": "34px"
 			});
 			if(typeof onBodyLoad == "function"){
 				app.addEventListener("load", onBodyLoad);
