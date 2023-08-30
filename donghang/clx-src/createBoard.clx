@@ -96,12 +96,12 @@
       <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="background-color:#e9e9e9; background-image:none; text-align:center;" type="udc.exam.udcExamDuoDatePicker">
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
-        <cl:property name="selectOption" value="date" type="enumeration"/>
+        <cl:property name="selectOption" value="day" type="enumeration"/>
       </cl:udc>
       <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="background-color:#e9e9e9; background-image:none;" type="udc.exam.udcExamDuoDatePicker">
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
-        <cl:property name="selectOption" value="date" type="enumeration"/>
+        <cl:property name="selectOption" value="day" type="enumeration"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
