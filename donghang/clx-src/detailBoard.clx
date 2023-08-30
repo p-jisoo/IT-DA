@@ -43,12 +43,12 @@
         </cl:datacolumnlist>
         <cl:datarowlist>
           <cl:datarow>
-            <cl:datavalue columnname="label"><![CDATA[heart]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[theme/images/heart.svg]]></cl:datavalue>
+            <cl:datavalue columnname="label">heart</cl:datavalue>
+            <cl:datavalue columnname="value">theme/images/heart.svg</cl:datavalue>
           </cl:datarow>
           <cl:datarow>
-            <cl:datavalue columnname="label"><![CDATA[heartfilling]]></cl:datavalue>
-            <cl:datavalue columnname="value"><![CDATA[theme/images/heart-fillsvg.svg]]></cl:datavalue>
+            <cl:datavalue columnname="label">heartfilling</cl:datavalue>
+            <cl:datavalue columnname="value">theme/images/heart-fillsvg.svg</cl:datavalue>
           </cl:datarow>
         </cl:datarowlist>
       </cl:dataset>
@@ -152,26 +152,26 @@
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-97125c65" name="init" handler="onBodyInit"/>
     <cl:listener std:sid="listener-79582d5e" name="load" handler="onBodyLoad2"/>
-    <cl:button std:sid="button-23e6da39" id="listButton" style="background-color:#4682A9; font-size:18px;" visible="true" value="목록">
+    <cl:button std:sid="button-23e6da39" id="listButton" style="background-color:#e9e9e9; font-size:18px; background-image:none;" visible="true" value="목록">
       <cl:listener std:sid="listener-7a4fb380" name="click" handler="onListButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-38d4f939" top="586px" left="1593px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
     <cl:group std:sid="group-97fe9667" style="font-size:18px;" class="cl-form-group">
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-dd91326d" top="132px" left="261px" width="1511px" height="163px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
-      <cl:output std:sid="output-0c6f2079" style="font-size:16px; text-align:center;" value="교육기간">
+      <cl:output std:sid="output-0c6f2079" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="교육기간">
         <cl:formdata std:sid="f-data-276edfc2" row="0" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-e1402406" style="font-size:16px; text-align:center;" value="모집기간">
+      <cl:output std:sid="output-e1402406" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="모집기간">
         <cl:formdata std:sid="f-data-14a49451" row="0" col="2"/>
       </cl:output>
-      <cl:output std:sid="output-ee651a14" style="font-size:16px; text-align:center;" value="모집인원">
+      <cl:output std:sid="output-ee651a14" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="모집인원">
         <cl:formdata std:sid="f-data-62adef05" row="1" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-f03c88d4" style="font-size:16px; text-align:center;" value="교육장소">
+      <cl:output std:sid="output-f03c88d4" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="교육장소">
         <cl:formdata std:sid="f-data-0da382f9" row="2" col="0"/>
       </cl:output>
-      <cl:output std:sid="output-ada5ddc1" style="font-size:16px; text-align:center;" value="교육분야">
+      <cl:output std:sid="output-ada5ddc1" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="교육분야">
         <cl:formdata std:sid="f-data-a45bf52d" row="1" col="2"/>
       </cl:output>
       <cl:inputbox std:sid="i-box-e1cd74e3" id="memberCount" style="font-size:16px; text-align:center;" readonly="true" placeholder="모집 인원을 입력하세요" inputfilter="[0-9]">
@@ -185,17 +185,18 @@
         <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
         <cl:formdata std:sid="f-data-c675058e" row="1" col="3"/>
       </cl:inputbox>
-      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="font-size:16px; text-align:center;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-6731301a" id="udccomduodatepicker1" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_END_PERIOD"/>
         <cl:formdata std:sid="f-data-e9ad5579" row="0" col="1"/>
         <cl:property name="useAutoSelect" value="true" type="boolean"/>
-        <cl:property name="selectOption" value="day" type="enumeration"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
       </cl:udc>
-      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="font-size:16px;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
+      <cl:udc std:sid="ud-control-19e4c7a1" id="udccomduodatepicker2" style="background-color:#e9e9e9; font-size:16px; background-image:none;" readonly="true" type="udc.exam.udcExamDuoDatePicker">
         <cl:relativebind property="fromValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_START_PERIOD"/>
         <cl:relativebind property="toValue" category="PROPERTY" columnname="EDU_BOARD_APPLY_END_PERIOD"/>
         <cl:formdata std:sid="f-data-22e84887" row="0" col="3"/>
+        <cl:property name="selectOption" value="date" type="enumeration"/>
       </cl:udc>
       <cl:group std:sid="group-7fdee9c7">
         <cl:formdata std:sid="f-data-0e33231d" row="2" col="1" rowspan="1" colspan="3"/>
@@ -233,14 +234,14 @@
       <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>
       <cl:xylayoutdata std:sid="xyl-data-d6b355d0" top="72px" left="260px" width="1509px" height="50px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-03e35b43" id="updateButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="수정">
+    <cl:button std:sid="button-03e35b43" id="updateButton" style="background-color:#e9e9e9; color:#000000; font-size:18px; background-image:none;" visible="false" value="수정">
       <cl:listener std:sid="listener-70eb8f60" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-1e6307ca" top="586px" left="1016px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid; text-align:left;" readonly="true" value="교육 모집 등록">
+    <cl:output std:sid="output-1971c9f1" style="border-right-style:solid; border-bottom-color:#d5d5d5; border-top-width:1px; border-right-width:1px; border-left-color:#d5d5d5; font-size:20px; border-right-color:#d5d5d5; border-left-width:1px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:1px; border-top-color:#d5d5d5; border-bottom-style:solid; text-align:left;" readonly="true" value="&#x9;&#x9;교육 모집 등록">
       <cl:xylayoutdata std:sid="xyl-data-2c660263" top="22px" left="260px" width="1509px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:button std:sid="button-5d620d7a" id="deleteButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="삭제">
+    <cl:button std:sid="button-5d620d7a" id="deleteButton" style="background-color:#e9e9e9; font-size:18px; background-image:none;" visible="false" value="삭제">
       <cl:listener std:sid="listener-4686b8d6" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-1419fe43" top="586px" left="1207px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
@@ -255,9 +256,9 @@
       <cl:gridcolumn std:sid="g-column-55f1ed30"/>
       <cl:gridheader std:sid="gh-band-a46108e9">
         <cl:gridrow std:sid="g-row-1e3906ea"/>
-        <cl:gridcell std:sid="gh-cell-69a059f6" rowindex="0" colindex="0" targetcolumnname="USER_ID" sortable="false" filterable="false" text="사용자 아이디"/>
-        <cl:gridcell std:sid="gh-cell-aec4edd9" rowindex="0" colindex="1" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="댓글 내용"/>
-        <cl:gridcell std:sid="gh-cell-37de0d32" rowindex="0" colindex="2" text="삭제"/>
+        <cl:gridcell std:sid="gh-cell-69a059f6" rowindex="0" colindex="0" style="background-color:#e9e9e9; background-image:none;" targetcolumnname="USER_ID" sortable="false" filterable="false" text="사용자 아이디"/>
+        <cl:gridcell std:sid="gh-cell-aec4edd9" rowindex="0" colindex="1" style="background-color:#e9e9e9; background-image:none;" targetcolumnname="EDU_APPLY_COMMENT_CONTENT" sortable="false" filterable="false" text="댓글 내용"/>
+        <cl:gridcell std:sid="gh-cell-37de0d32" rowindex="0" colindex="2" style="background-color:#e9e9e9; background-image:none;" text="삭제"/>
       </cl:gridheader>
       <cl:griddetail std:sid="gd-band-682adf60">
         <cl:gridrow std:sid="g-row-861b9436" height="50px"/>
@@ -278,7 +279,7 @@
       <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
       <cl:xylayoutdata std:sid="xyl-data-2d5be7ba" top="675px" left="469px" width="1143px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:button std:sid="button-af252c5c" id="insertCommentButton" style="background-color:#4682A9; font-size:18px;" visible="false" value="댓글쓰기">
+    <cl:button std:sid="button-af252c5c" id="insertCommentButton" style="background-color:#e9e9e9; font-size:18px; background-image:none;" visible="false" value="댓글쓰기">
       <cl:listener std:sid="listener-f6c93aff" name="click" handler="onButtonClick12"/>
       <cl:xylayoutdata std:sid="xyl-data-9bb3c5d7" top="675px" left="1624px" width="152px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
@@ -288,7 +289,7 @@
       <cl:datamapbind property="src" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="likeCount"/>
       <cl:xylayoutdata std:sid="xyl-data-a2cf16b5" top="132px" left="187px" width="64px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:img>
-    <cl:button std:sid="button-a7d94951" id="apply" style="background-color:#4682A9; font-size:18px;" visible="false">
+    <cl:button std:sid="button-a7d94951" id="apply" style="background-color:#e9e9e9; font-size:18px; background-image:none;" visible="false">
       <cl:listener std:sid="listener-5694ea07" name="click" handler="onApplyClick2"/>
       <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="btnApply"/>
       <cl:xylayoutdata std:sid="xyl-data-3257eb28" top="586px" left="1403px" width="180px" height="40px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>

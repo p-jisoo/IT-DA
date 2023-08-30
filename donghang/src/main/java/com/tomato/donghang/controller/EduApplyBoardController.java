@@ -154,7 +154,7 @@ public class EduApplyBoardController {
 			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
 			log.debug("로그인 안했을때 likeCount {} ",likeCount);
 			canApply=100;
-		}else {
+		}else {						
 			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 			Map<String, Object> map = new HashMap<>();
 			String userId = memberVO.getUserId();
@@ -174,6 +174,7 @@ public class EduApplyBoardController {
 		dataMap.put("IsLike", likeCount);
 		dataMap.put("canApply",canApply);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
+		System.out.println("select Board map : " + dataMap);
 		return  new JSONDataView();
 	}
 	@PostMapping("/ui/createBoard.do")
@@ -223,14 +224,17 @@ public class EduApplyBoardController {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
 		
 		if(session !=null) {
+			if(session.getAttribute("mvo") != null) {
+				
 			log.info("select session : {}", session.getAttribute("mvo"));
 			MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");    
-	        //System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
-			//System.out.println("selectCommentBoard.do controller : "+param);
+	        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+			System.out.println("selectCommentBoard.do controller : "+param);
 			Map<String, Object> dataMap = new HashMap<>();
 			dataMap.put("USER_ID", mvo1.getUserId());
 			dataRequest.setResponse("commentBoardMap", dataMap);
-			//System.out.println("commentBoardMap session" + dataMap);
+			System.out.println("commentBoardMap session" + dataMap);
+			}
 		}
 		
 		List<Map<String, Object>> data=eduApplyBoardService.selectCommentBoard(param);

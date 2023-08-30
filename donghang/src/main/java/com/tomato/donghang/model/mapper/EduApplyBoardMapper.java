@@ -77,8 +77,8 @@ public interface EduApplyBoardMapper {
 	Map<String, Object> selectMemberCount(Map<String, Object> map);
 
 	Map<String, Object> updateMemberCount(Map<String, Object> map);
-
-
+	
+	List<Map<String, Object>> findEduBoardTitleByUserId(Map<String, Object> map);
 	/**************************hyeok*****************************/	
 
 }

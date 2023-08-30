@@ -154,6 +154,7 @@ function onSelectsmsSubmitSuccess(e) {
 	app.lookup("title").redraw();
 	app.lookup("category").redraw();
 	app.lookup("memberCount").redraw();
+	app.lookup("content").redraw();
 	app.lookup("udccomduodatepicker1").redraw();
 	app.lookup("udccomduodatepicker2").redraw();
 	app.lookup("address").redraw();
@@ -262,6 +263,7 @@ function onButtonClick2(e) {
 	var button = e.control;
 	var submission = app.lookup("deletesms");
 	submission.send()
+	alert("삭제 되었습니다");
 }
 
 //

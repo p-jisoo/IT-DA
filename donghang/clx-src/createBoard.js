@@ -40,10 +40,15 @@ function onBodyLoad(e) {
 		}
 	}); 
 	});
+	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 	//create list 이동
 	var createButton = app.lookup("createButton");
 	createButton.addEventListener("click", function(e){
 		var vcEmb = hostAppInstance.lookup("ea1");
+			if(eduApplyBoardMap.getValue("USER_ID")==null){
+	alert("로그인이 필요 합니다");
+	var vsAppId = "createBoard";	
+	}
 		var vsAppId = "eduApplyboardList";
 		if(vsAppId == null) {
 		return alert("추가될 App이 존재하지 않습니다.");
@@ -88,8 +93,15 @@ function onButtonClick(e){
 	var detailAdressinputBox = app.lookup("detailAdress");
 	dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
 	console.log("EDU_BOARD_ADDRESS", addressinputBox.value+"-"+detailAdressinputBox.value);
-	
-	submission.send()
+	console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
+	var value = dataMap.getValue("USER_ID");
+	console.log(" USER_ID : " +value);
+	if(dataMap.getValue("USER_ID")==null){
+	alert("로그인이 필요 합니다");	
+	}else{
+		submission.send()
+		alert("등록 되었습니다");
+	}
 }
 
 /*
