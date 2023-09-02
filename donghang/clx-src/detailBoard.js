@@ -164,9 +164,9 @@ function onSelectsmsSubmitSuccess(e) {
 	//좋아요
 	var any = JSON.parse(selectsms.xhr.responseText);
 	if (any.eduApplyBoardMap.IsLike == 1) {
-		eduApplyBoardMap.setValue("likeCount", "theme/images/heart-fillsvg.svg");
+		eduApplyBoardMap.setValue("likeCount", "theme/images/img/redheart.png");
 	} else {
-		eduApplyBoardMap.setValue("likeCount", "theme/images/heart.svg");
+		eduApplyBoardMap.setValue("likeCount", "theme/images/img/whiteheart.png");
 	}
 	
 	//지원
@@ -486,7 +486,7 @@ function onLikeCaculateSubmitDone2(e) {
 	if (dataMap.getValue("IsLike") == 0) {
 		var container = app.getContainer();
 		var image_2 = new cpr.controls.Image("like");
-		image_2.src = "theme/images/heart-fillsvg.svg";
+		image_2.src = "theme/images/img/redheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
 		}
@@ -501,7 +501,7 @@ function onLikeCaculateSubmitDone2(e) {
 	} else {
 		var container = app.getContainer();
 		var image_2 = new cpr.controls.Image("like");
-		image_2.src = "theme/images/heart.svg";
+		image_2.src = "theme/images/img/whiteheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
 		}
