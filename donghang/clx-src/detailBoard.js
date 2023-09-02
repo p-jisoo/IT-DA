@@ -176,7 +176,7 @@ function onSelectsmsSubmitSuccess(e) {
 			break;
 		case 1:
 			eduApplyBoardMap.setValue("btnApply", "지원중");
-			button.style.css("color", "green");
+			button.style.css("color", "#15C729");
 			break;
 		case 2:
 			eduApplyBoardMap.setValue("btnApply", "내글이다");
@@ -184,7 +184,7 @@ function onSelectsmsSubmitSuccess(e) {
 			break;
 		case 3:
 			eduApplyBoardMap.setValue("btnApply", "모집마감");
-			button.style.css("color", "red");
+			button.style.css("color", "#F14747");
 			button.enabled = false;
 			break;
 	}
