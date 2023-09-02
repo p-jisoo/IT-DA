@@ -173,10 +173,11 @@ function onSelectsmsSubmitSuccess(e) {
 	switch (any.eduApplyBoardMap.canApply) {
 		case 0:
 			eduApplyBoardMap.setValue("btnApply", "지원하기");
+			button.style.css("color", "#15C729");
 			break;
 		case 1:
 			eduApplyBoardMap.setValue("btnApply", "지원중");
-			button.style.css("color", "#15C729");
+			button.style.css("color", "#F14747");
 			break;
 		case 2:
 			eduApplyBoardMap.setValue("btnApply", "내글이다");
@@ -550,7 +551,8 @@ function onApplyEduBoardSubmitDone(e) {
 	var button_14 = new cpr.controls.Button("bt");
 	button_14.value = "지원중";
 	button_14.style.css({
-		"color": "#F14747"
+		"color": "#F14747",
+		"background-image" : "none"
 	});
 	container.addChild(button_14, {
 		"top": "586px",
@@ -573,7 +575,8 @@ function onCancelEduBoardSubmitDone2(e) {
 	var button_14 = new cpr.controls.Button("bt");
 	button_14.value = "지원하기";
 	button_14.style.css({
-		"color": "#15C729"
+		"color": "#15C729",
+		"background-image" : "none"
 	});
 	container.addChild(button_14, {
 		"top": "586px",
