@@ -45,14 +45,18 @@
           <cl:datacolumn comment="" std:sid="d-column-18f38fc8" name="USER_ID" defaultvalue=""/>
         </cl:datacolumnlist>
       </cl:datamap>
+      <cl:datamap std:sid="d-map-a28e4cc3" id="createSessionCheckMap">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-3a8ebdbe" name="USER_ID"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
       <cl:submission std:sid="submission-31ee007d" id="createsms" action="createBoard.do">
         <cl:requestdata dataid="eduApplyBoardMap"/>
       </cl:submission>
-      <cl:submission std:sid="submission-bb0a5232" id="sessioncheck" action="loginSessionMember">
-        <cl:listener std:sid="listener-33382513" name="submit-success" handler="onSessioncheckSubmitSuccess"/>
-        <cl:responsedata dataid="loginSession"/>
+      <cl:submission std:sid="submission-0702bdb1" id="createSessionCheckSms" action="createSessionCheck.do">
+        <cl:listener std:sid="listener-dc1efbd9" name="submit-success" handler="onCreateSessionCheckSmsSubmitSuccess"/>
+        <cl:responsedata dataid="createSessionCheckMap"/>
       </cl:submission>
-      <cl:submission std:sid="submission-5233918a" id="loginCheck" action="loginCheck.do"/>
     </cl:model>
     <cl:appspec/>
   </head>
