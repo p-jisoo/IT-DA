@@ -105,6 +105,7 @@
 				var detailAdressinputBox = app.lookup("detailAdress");
 				var content = app.lookup("content");
 				var createSessionCheckMap = app.lookup("createSessionCheckMap");
+				
 				dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
 				dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
 				dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
@@ -117,9 +118,10 @@
 				console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
 				var value = dataMap.getValue("USER_ID");
 				console.log(" USER_ID : " + value);
-				
-				submission.send()
-				alert("등록 되었습니다");
+				if (createSessionCheckMap.getValue("USER_ID")) {
+					submission.send()
+					alert("등록 되었습니다");
+				}
 				
 			}
 
@@ -169,8 +171,7 @@
 				var createSessionCheckSms = e.control;
 				var createSessionCheckMap = app.lookup("createSessionCheckMap");
 				var value = createSessionCheckMap.getValue("USER_ID");
-				if (createSessionCheckMap.getValue("USER_ID")) {
-				}
+				if (createSessionCheckMap.getValue("USER_ID")) {}
 				console.log("createSessionCheckMap : " + createSessionCheckMap.getValue("USER_ID"));
 			}
 			// End - User Script
