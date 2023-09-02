@@ -386,6 +386,7 @@
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb3");
 				inputBox_1.placeholder = "모집 인원을 입력하세요";
+				inputBox_1.maxLength = 5;
 				inputBox_1.inputFilter = "[0-9]";
 				inputBox_1.style.css({
 					"font-size" : "16px",
