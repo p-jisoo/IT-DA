@@ -32,6 +32,8 @@ function onBodyLoad2(e) {
 	var host = app.getHost();
 	var hostAppInstance = host.getAppInstance();
 	var initValue = host.initValue;
+	
+	console.log("initValue : " + initValue);
 	//컨트롤러로 boardNo 값 보내기
 	eduApplyBoardMap.setValue("EDU_BOARD_NO", initValue);
 	console.log("eduApplyBoardMap setValue : " + eduApplyBoardMap.getValue("EDU_BOARD_NO"));
@@ -138,8 +140,36 @@ function onSelectsmsSubmitSuccess(e) {
 	var udccomduodatepicker2 = app.lookup("udccomduodatepicker2");
 	var address = app.lookup("address");
 	var userId = app.lookup("userId");
-	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	var commentBoardMap = app.lookup("commentBoardMap");
+	var deleteButton = app.lookup("deleteButton");
+	var updateButton = app.lookup("updateButton");
+	var commentContent = app.lookup("commentContent");
+	var insertCommentButton = app.lookup("insertCommentButton");
+	var deleteColumnBox = app.lookup("deleteColumnBox");
+	var grd1 = app.lookup("grd1");
+	
+	console.log("eduApplyBoardMap select : " + eduApplyBoardMap.getValue("USER_ID"));
+	console.log("commentBoardMap select : " + commentBoardMap.getValue("USER_ID"));
+	
+	if (eduApplyBoardMap.getValue("USER_ID") == commentBoardMap.getValue("USER_ID")) {
+		deleteButton.visible = true;
+		updateButton.visible = true;
+		deleteColumnBox.visible = true;
+		
+		deleteButton.redraw();
+		updateButton.redraw();
+		deleteColumnBox.redraw();
+		grd1.redraw();
+	}
+	console.log("userId.value : "+ userId.value);
+	if (userId.value.length > 2) {
+		commentContent.visible = true;
+		insertCommentButton.visible = true;
+		
+//		commentContent.redraw();
+//		insertCommentButton.redraw();
+	}
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
@@ -213,25 +243,8 @@ function onSelectCommentsmsSubmitSuccess(e) {
 	var button = app.lookup("apply");
 	userId.redraw();
 	console.log("userid " + userId.value);
-	console.log("eduboard id " + commentBoardMap.getValue("USER_ID"));
-	if (userId.value.length > 2) {
-		deleteButton.visible = true;
-		updateButton.visible = true;
-		commentContent.visible = true;
-		insertCommentButton.visible = true;
-		deleteButton.redraw();
-		updateButton.redraw();
-		commentContent.redraw();
-		insertCommentButton.redraw();
-	}
-	
-	for (var i = 1; i < grid.rowCount; i++) {
-		console.log(grid.getCellValue(i, "USER_ID"));
-		if (grid.getCellValue(i, "USER_ID") == userId.value) {
-			deleteColumnBox.visible = true;
-			grid.redraw();
-		}
-	}
+	console.log("commentBoardMap userid : " + commentBoardMap.getValue("USER_ID"));
+	console.log("eduApplyBoardMap userid : " + eduApplyBoardMap.getValue("USER_ID"));
 	
 }
 /*
@@ -349,19 +362,18 @@ function onButtonClick12(e) {
 	console.log("commentBoardMapsetValue : " + commentBoardMap.getValue("EDU_BOARD_NO"));
 	
 	console.log("eduApplyBoardMap : " + eduApplyBoardMap.getValue("EDU_BOARD_NO"));
-	
-	createCommentsms.send();
-	var userIdMap = commentBoardMap.getValue("USER_ID");
-	console.log("userId : " + userId.value);
-	
-	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	var grid = app.lookup("grd1");
-	console.log("rows" + grid.rowCount);
-	//console.log(grid.getCellValue(i, "USER_ID"));
-	if (createCommentsms.isSuccess()) {
-		commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
-		selectCommentsms.send();
-		grid.redraw();
+	if (commentContent.value.length < 5) {
+		alert(" 댓글을 5자 이상 작성해주세요");
+	} else {
+		createCommentsms.send();
+		var userIdMap = commentBoardMap.getValue("USER_ID");
+		var grid = app.lookup("grd1");
+		//console.log(grid.getCellValue(i, "USER_ID"));
+		if (createCommentsms.isSuccess()) {
+			commentBoardMap.setValue("EDU_BOARD_NO", eduApplyBoardMap.getValue("EDU_BOARD_NO"));
+			selectCommentsms.send();
+			grid.redraw();
+		}
 	}
 	grid.redraw();
 	
