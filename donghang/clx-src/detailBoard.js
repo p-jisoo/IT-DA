@@ -193,10 +193,12 @@ function onSelectsmsSubmitSuccess(e) {
 	var button = app.lookup("apply");
 	//좋아요
 	var any = JSON.parse(selectsms.xhr.responseText);
-	if (any.eduApplyBoardMap.IsLike == 1) {
+	if (any.eduApplyBoardMap.IsLike >= 1) {
 		eduApplyBoardMap.setValue("likeCount", "theme/images/img/redheart.png");
+		console.log(any.eduApplyBoardMap.IsLike);
 	} else {
 		eduApplyBoardMap.setValue("likeCount", "theme/images/img/whiteheart.png");
+			console.log(any.eduApplyBoardMap.IsLike);
 	}
 	
 	//지원
@@ -495,13 +497,14 @@ function onLikeCaculateSubmitDone2(e) {
 	var image = app.lookup("like");
 	image.dispose();
 	
-	console.log(dataMap.getValue("IsLike"));
+	console.log("IsLike",dataMap.getValue("IsLike"));
 	if (dataMap.getValue("IsLike") == 0) {
 		var container = app.getContainer();
 		var image_2 = new cpr.controls.Image("like");
 		image_2.src = "theme/images/img/redheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
+			console.log("작동확인")
 		}
 		container.addChild(image_2, {
 			"top": "132px",
@@ -517,6 +520,7 @@ function onLikeCaculateSubmitDone2(e) {
 		image_2.src = "theme/images/img/whiteheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
+			console.log("작동확인2")
 		}
 		container.addChild(image_2, {
 			"top": "132px",
