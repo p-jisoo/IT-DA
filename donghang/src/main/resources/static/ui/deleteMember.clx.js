@@ -37,14 +37,21 @@
 				var pwdChk = app.lookup("passwordChk").value;
 				console.log(pwd);
 				console.log(pwdChk);
-				if (pwd != pwdChk) {
+				if(pwd.length==0){
+					alert("비빌번호를 입력해주세요.");
+					return;
+				}
+				else if(pwdChk.length==0){
+					alert("비밀번호 재확인을 입력해주세요.");
+					return;
+				}
+				else if(pwd != pwdChk) {
 					alert("비밀번호와 비밀번호 재확인이 일치하지 않습니다.");
 					return;
-				}else{
-				submission.send();
 				}
-
+				submission.send();
 			}
+
 
 			/*
 			 * 서브미션에서 submit-success 이벤트 발생 시 호출.

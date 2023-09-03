@@ -20,9 +20,17 @@ function onBodyLoad(e){
 function onSms1SubmitSuccess(e){
 	var sms1 = e.control;
 	var output = app.lookup("userName");
+	var updateBtn = app.lookup("btn_update");
+	var deleteBtn = app.lookup("btn_delete");
+	var navigationBar = app.lookup("nav1");
+	var mypageoutput = app.lookup("mypageCheck");
 	var responseText = sms1.xhr.responseText;
 	var any = JSON.parse(responseText);
 	output.value = any.loginSession.userName;
+	updateBtn.visible=true;
+	deleteBtn.visible=true;
+	navigationBar.visible=true;
+	mypageoutput.value="님 마이페이지";
 }
 /*
  * 내비게이션 바에서 item-click 이벤트 발생 시 호출.
@@ -58,8 +66,8 @@ function emded(e){
 			})
 			/*임베디드 앱에 내장할 앱을 로드하여 설정합니다*/
 			vcEmb.app = loadedApp;
-			var app = vcEmb.app;
-			app.getInstances()
+			var app1 = vcEmb.app;
+			app1.getInstances()
 		}
 	}); 
 }

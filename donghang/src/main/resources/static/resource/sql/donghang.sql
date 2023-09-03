@@ -205,3 +205,4 @@ USER_ID
 FROM EDU_APPLY_BOARD
 where USER_ID='1234'
 
+select * from member
