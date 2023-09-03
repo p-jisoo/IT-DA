@@ -194,27 +194,28 @@ function onSelectsmsSubmitSuccess(e) {
 	//좋아요
 	var any = JSON.parse(selectsms.xhr.responseText);
 	if (any.eduApplyBoardMap.IsLike == 1) {
-		eduApplyBoardMap.setValue("likeCount", "theme/images/heart-fillsvg.svg");
+		eduApplyBoardMap.setValue("likeCount", "theme/images/img/redheart.png");
 	} else {
-		eduApplyBoardMap.setValue("likeCount", "theme/images/heart.svg");
+		eduApplyBoardMap.setValue("likeCount", "theme/images/img/whiteheart.png");
 	}
 	
 	//지원
 	switch (any.eduApplyBoardMap.canApply) {
 		case 0:
 			eduApplyBoardMap.setValue("btnApply", "지원하기");
+			button.style.css("color", "#15C729");
 			break;
 		case 1:
 			eduApplyBoardMap.setValue("btnApply", "지원중");
-			button.style.css("color", "green");
+			button.style.css("color", "#F14747");
 			break;
 		case 2:
-			eduApplyBoardMap.setValue("btnApply", "내글이다");
+			eduApplyBoardMap.setValue("btnApply", "본인교육");
 			button.enabled = false;
 			break;
 		case 3:
 			eduApplyBoardMap.setValue("btnApply", "모집마감");
-			button.style.css("color", "red");
+			button.style.css("color", "#F14747");
 			button.enabled = false;
 			break;
 	}
@@ -498,7 +499,7 @@ function onLikeCaculateSubmitDone2(e) {
 	if (dataMap.getValue("IsLike") == 0) {
 		var container = app.getContainer();
 		var image_2 = new cpr.controls.Image("like");
-		image_2.src = "theme/images/heart-fillsvg.svg";
+		image_2.src = "theme/images/img/redheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
 		}
@@ -513,7 +514,7 @@ function onLikeCaculateSubmitDone2(e) {
 	} else {
 		var container = app.getContainer();
 		var image_2 = new cpr.controls.Image("like");
-		image_2.src = "theme/images/heart.svg";
+		image_2.src = "theme/images/img/whiteheart.png";
 		if (typeof onLikeClick2 == "function") {
 			image_2.addEventListener("click", onLikeClick2);
 		}
@@ -562,7 +563,8 @@ function onApplyEduBoardSubmitDone(e) {
 	var button_14 = new cpr.controls.Button("bt");
 	button_14.value = "지원중";
 	button_14.style.css({
-		"color": "#F14747"
+		"color": "#F14747",
+		"background-image" : "none"
 	});
 	container.addChild(button_14, {
 		"top": "586px",
@@ -585,7 +587,8 @@ function onCancelEduBoardSubmitDone2(e) {
 	var button_14 = new cpr.controls.Button("bt");
 	button_14.value = "지원하기";
 	button_14.style.css({
-		"color": "#15C729"
+		"color": "#15C729",
+		"background-image" : "none"
 	});
 	container.addChild(button_14, {
 		"top": "586px",
