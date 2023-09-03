@@ -272,7 +272,7 @@
       <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="USER_ID"/>
       <cl:xylayoutdata std:sid="xyl-data-328d9d3c" top="675px" left="260px" width="200px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>
-    <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px; text-align:center;" visible="false" placeholder="댓글을 입력해주세요">
+    <cl:inputbox std:sid="i-box-27795382" id="commentContent" style="font-size:16px; text-align:center;" visible="false" placeholder="댓글을 입력해주세요" lengthunit="utf8" maxlength="40">
       <cl:datamapbind property="value" datacontrolid="commentBoardMap" columnname="EDU_APPLY_COMMENT_CONTENT"/>
       <cl:xylayoutdata std:sid="xyl-data-2d5be7ba" top="675px" left="469px" width="1143px" height="60px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:inputbox>

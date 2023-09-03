@@ -301,6 +301,29 @@ public class EduApplyBoardController {
 		eduApplyBoardService.updateMemberCount(param);
 		return new UIView("/ui/detailBoard.clx");
 	}
+	
+	@PostMapping("/ui/createSessionCheck.do")
+	public View createSessionCheck(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
+        
+		HttpSession session = request.getSession(false);
+		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
+		
+		if(session !=null) {
+			if(session.getAttribute("mvo") != null) {
+				
+			log.info("select session : {}", session.getAttribute("mvo"));
+			MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");    
+	        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
+			System.out.println("selectCommentBoard.do controller : "+param);
+			Map<String, Object> dataMap = new HashMap<>();
+			dataMap.put("USER_ID", mvo1.getUserId());
+			dataRequest.setResponse("createSessionCheckMap", dataMap);
+			System.out.println("createSessionCheckMap" + dataMap);
+			}
+		}
+		return  new JSONDataView();
+	}
+	
 	/****************hyeok************************************/
 	@GetMapping("ui/mypage")
 	public View mypageForm() {

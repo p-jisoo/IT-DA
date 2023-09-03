@@ -298,7 +298,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		evo.setEduBoardNo(Long.parseLong(eduBoardNo));
 		//System.out.println("evo : "+evo);
 		EduApplyBoardVO evo2 = eduApplyBoardMapper.selectBoard(evo);
-		System.out.println("serviceImpl evo : " + evo);
+		System.out.println("serviceImpl evo : " + evo2);
 		Map<String, Object> dataMap = new HashMap<>();
 		
 		dataMap.put("EDU_BOARD_TITLE", evo2.getEduBoardTitle());
@@ -312,6 +312,7 @@ public class EduApplyBoardServiceImpl implements EduApplyBoardService {
 		dataMap.put("EDU_BOARD_CONTENT", evo2.getEduBoardContent());
 		dataMap.put("EDU_BOARD_NO",evo2.getEduBoardNo());
 		dataMap.put("EDU_BOARD_STATUS",evo2.getEduBoardStatus());
+		dataMap.put("USER_ID", evo2.getMemberVO().getUserId());
 		
 		//System.out.println("serviceImpl MAP" + dataMap);
 		System.out.println("select Board : " + dataMap);

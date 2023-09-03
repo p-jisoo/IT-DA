@@ -6,13 +6,16 @@
  ************************************************/
 function onBodyLoad(e) {
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	
+	var createSessionCheckSms = app.lookup("createSessionCheckSms");
+	createSessionCheckSms.send();
 	var host = app.getHost();
 	var hostAppInstance = host.getAppInstance();
 	var initValue = host.initValue;
+	var createSessionCheckMap = app.lookup("createSessionCheckMap");
 	//컨트롤러로 boardNo 값 보내기
 	
-	console.log("hostAppInstance : " + hostAppInstance);
+	console.log("initValue : " + initValue);
+	console.log("eduApplyBoardMap userid :" + eduApplyBoardMap.getValue("USER_ID"));
 	
 	//list 이동
 	var listButton = app.lookup("listButton");
@@ -41,15 +44,17 @@ function onBodyLoad(e) {
 		});
 	});
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	//create list 이동
+	//create 이동
 	var createButton = app.lookup("createButton");
 	createButton.addEventListener("click", function(e) {
 		var vcEmb = hostAppInstance.lookup("ea1");
-		if (eduApplyBoardMap.getValue("USER_ID") == null) {
-			alert("로그인이 필요 합니다");
-			var vsAppId = "createBoard";
+		if (createSessionCheckMap.getValue("USER_ID")) {
+			var vsAppId = "eduApplyboardList";
+		} else {
+			alert("로그인이 필요합니다")
+			var vsAppId = " loginMember"
 		}
-		var vsAppId = "eduApplyboardList";
+		
 		if (vsAppId == null) {
 			return alert("추가될 App이 존재하지 않습니다.");
 		}
@@ -86,6 +91,8 @@ function onButtonClick(e) {
 	var addressinputBox = app.lookup("address");
 	var detailAdressinputBox = app.lookup("detailAdress");
 	var content = app.lookup("content");
+	var createSessionCheckMap = app.lookup("createSessionCheckMap");
+	
 	dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
 	dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
 	dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
@@ -98,12 +105,11 @@ function onButtonClick(e) {
 	console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
 	var value = dataMap.getValue("USER_ID");
 	console.log(" USER_ID : " + value);
-	if (dataMap.getValue("USER_ID") == null) {
-		alert("로그인이 필요 합니다");
-	} else {
+	if (createSessionCheckMap.getValue("USER_ID")) {
 		submission.send()
 		alert("등록 되었습니다");
 	}
+	
 }
 
 /*
@@ -145,10 +151,13 @@ function onButtonClick2(e) {
 }
 
 /*
- * 루트 컨테이너에서 init 이벤트 발생 시 호출.
- * 앱이 최초 구성될 때 발생하는 이벤트 입니다.
+ * 서브미션에서 submit-success 이벤트 발생 시 호출.
+ * 통신이 성공하면 발생합니다.
  */
-function onBodyInit(e) {
-	var submission = app.lookup("sessioncheck");
-	submission.send();
+function onCreateSessionCheckSmsSubmitSuccess(e) {
+	var createSessionCheckSms = e.control;
+	var createSessionCheckMap = app.lookup("createSessionCheckMap");
+	var value = createSeszsionCheckMap.getValue("USER_ID");
+	if (createSessionCheckMap.getValue("USER_ID")) {}
+	console.log("createSessionCheckMap : " + createSessionCheckMap.getValue("USER_ID"));
 }
