@@ -72,7 +72,7 @@
     <cl:embeddedapp std:sid="e-app-23db73a1" id="ea1">
       <cl:xylayoutdata std:sid="xyl-data-78369420" top="234px" left="20px" width="1849px" height="541px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:embeddedapp>
-    <cl:navigationbar std:sid="n-bar-4333851e" id="nav1" style="cursor:none; border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; background-image:none; border-top-style:none; text-align:center;" baritemspacing="150">
+    <cl:navigationbar std:sid="n-bar-4333851e" id="nav1" style="cursor:none; border-right-style:none; border-left-style:none; font-weight:bold; font-size:1.3rem; border-bottom-style:none; background-image:none; border-top-style:none; text-align:center;" visible="false" baritemspacing="150">
       <cl:listener std:sid="listener-44f6d6fe" name="item-click" handler="onNav1ItemClick"/>
       <cl:xylayoutdata std:sid="xyl-data-c1a592ab" top="122px" left="316px" width="1239px" height="100px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:menuitemset datasetid="ds1" label="label" value="value"/>
@@ -85,18 +85,18 @@
       <cl:datamapbind property="value" category="PROPERTY" datacontrolid="loginSession" columnname="userName"/>
       <cl:xylayoutdata std:sid="xyl-data-c5ae807a" top="23px" left="444px" width="204px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
-    <cl:output std:sid="output-70caad16" style="font-weight:bold; font-size:40px;" value="님 마이페이지">
-      <cl:xylayoutdata std:sid="xyl-data-98f5c044" top="23px" left="638px" width="280px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    <cl:output std:sid="output-70caad16" id="mypageCheck" style="font-weight:bold; font-size:40px;" value="로그인 후 이용해주세요.">
+      <cl:xylayoutdata std:sid="xyl-data-98f5c044" top="23px" left="638px" width="450px" height="68px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:output>
     <cl:group std:sid="group-4af966c5">
       <cl:xylayoutdata std:sid="xyl-data-f0b3c4e4" top="785px" left="20px" width="1831px" height="10px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
       <cl:verticallayout std:sid="v-layout-220c81dd"/>
     </cl:group>
-    <cl:button std:sid="button-0896e7aa" style="background-color:#F6F4EB; border-right-style:none; color:#222222; font-weight:bold; border-left-style:none; font-size:16px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="회원정보수정">
+    <cl:button std:sid="button-0896e7aa" id="btn_update" style="background-color:#F6F4EB; border-right-style:none; color:#222222; font-weight:bold; border-left-style:none; font-size:16px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="false" value="회원정보수정">
       <cl:listener std:sid="listener-377abb1c" name="click" handler="onButtonClick"/>
       <cl:xylayoutdata std:sid="xyl-data-22e73bd0" top="804px" left="1335px" width="120px" height="64px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
-    <cl:button std:sid="button-0f44e125" style="background-color:#F78787; border-right-style:none; color:#F6F4EB; font-weight:bold; border-left-style:none; font-size:16px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" value="회원탈퇴">
+    <cl:button std:sid="button-0f44e125" id="btn_delete" style="background-color:#F78787; border-right-style:none; color:#F6F4EB; font-weight:bold; border-left-style:none; font-size:16px; border-bottom-style:none; background-image:none; font-style:normal; border-top-style:none;" visible="false" value="회원탈퇴">
       <cl:listener std:sid="listener-ad940498" name="click" handler="onButtonClick2"/>
       <cl:xylayoutdata std:sid="xyl-data-1ad3af7a" top="804px" left="1463px" width="120px" height="64px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:button>
