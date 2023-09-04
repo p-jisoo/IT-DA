@@ -115,7 +115,9 @@ public class EduApplyBoardController {
 		ParameterGroup param = dataRequest.getParameterGroup("dm1");
 		MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 		eduApplyBoardService.likeCaculate(memberVO.getUserId(),param.getValue("board_no"));
-		log.info("like {}", param.getValue("board_no").getClass());
+		Map<String, Object> map = new HashMap<>();
+		map.put("eduBoardNo", param.getValue("board_no"));
+		dataRequest.setResponse("count", 	eduApplyBoardMapper.isLike(map));
 		return new JSONDataView();
 	}
 	
@@ -172,6 +174,7 @@ public class EduApplyBoardController {
 			log.info("로그인 했을때 likeCount {} ",likeCount);
 		}
 		dataMap.put("IsLike", likeCount);
+		dataMap.put("countLike", eduApplyBoardService.likeCount(eduBoardNo));
 		dataMap.put("canApply",canApply);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
 		System.out.println("select Board map : " + dataMap);
