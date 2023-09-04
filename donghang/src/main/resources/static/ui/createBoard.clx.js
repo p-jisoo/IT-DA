@@ -27,8 +27,6 @@
 				var createSessionCheckMap = app.lookup("createSessionCheckMap");
 				//컨트롤러로 boardNo 값 보내기
 				
-				console.log("initValue : " + initValue);
-				console.log("eduApplyBoardMap userid :" + eduApplyBoardMap.getValue("USER_ID"));
 				
 				//list 이동
 				var listButton = app.lookup("listButton");
@@ -98,7 +96,7 @@
 			function onButtonClick(e) {
 				var button = e.control;
 				var submission = app.lookup("createsms");
-				var dataMap = app.lookup("eduApplyBoardMap");
+				var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
 				var udcExamDuoDatePicker = app.lookup("udccomduodatepicker1");
 				var udcExamDuoDatePicker2 = app.lookup("udccomduodatepicker2");
 				var addressinputBox = app.lookup("address");
@@ -106,18 +104,17 @@
 				var content = app.lookup("content");
 				var createSessionCheckMap = app.lookup("createSessionCheckMap");
 				
-				dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
-				dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
-				dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
-				dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
-				console.log("fromValue", udcExamDuoDatePicker.fromValue);
-				console.log("toValue", udcExamDuoDatePicker.toValue);
-				dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
-				dataMap.setValue("EDU_BOARD_CONTENT", content.value);
-				console.log("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
-				console.log("dataMap USER_ID : " + dataMap.getValue("USER_ID"));
-				var value = dataMap.getValue("USER_ID");
-				console.log(" USER_ID : " + value);
+				var fromValueList = udcExamDuoDatePicker.fromValue.split(" ");
+				var toValueList = udcExamDuoDatePicker.toValue.split(" ");
+				var fromValueList2 = udcExamDuoDatePicker2.fromValue.split(" ");
+				var toValueList2 = udcExamDuoDatePicker2.toValue.split(" ");
+				eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD",fromValueList[0]);
+				eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", toValueList[0]);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", fromValueList2[0]);
+				eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", toValueList2[0]);
+				eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
+				eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
+				var value = eduApplyBoardMap.getValue("USER_ID");
 				if (createSessionCheckMap.getValue("USER_ID")) {
 					submission.send()
 					alert("등록 되었습니다");
@@ -140,7 +137,6 @@
 								var inputBox = app.lookup("address");
 								//var inputBox2 = app.lookup("PostCode");
 								var addr = "";
-								console.log(addr);
 								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 									addr = data.roadAddress;
@@ -172,8 +168,7 @@
 				var createSessionCheckMap = app.lookup("createSessionCheckMap");
 				var value = createSeszsionCheckMap.getValue("USER_ID");
 				if (createSessionCheckMap.getValue("USER_ID")) {}
-				console.log("createSessionCheckMap : " + createSessionCheckMap.getValue("USER_ID"));
-			}
+			};
 			// End - User Script
 			
 			// Header
@@ -386,6 +381,7 @@
 				});
 				var inputBox_1 = new cpr.controls.InputBox("ipb3");
 				inputBox_1.placeholder = "모집 인원을 입력하세요";
+				inputBox_1.maxLength = 5;
 				inputBox_1.inputFilter = "[0-9]";
 				inputBox_1.style.css({
 					"font-size" : "16px",

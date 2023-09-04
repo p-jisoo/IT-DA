@@ -142,7 +142,6 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectBoardByBoardNo.do")
 	public View selectBoardByBoardNo(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
-		log.info("param {}",param);
 		HttpSession session = request.getSession(false);
 		Map<String, Object> dataMap=eduApplyBoardService.selectBoard(param);
 		//145 여기서부터 
@@ -150,16 +149,12 @@ public class EduApplyBoardController {
 		Integer likeCount;
 		long eduBoardNo = Long.parseLong(param.getValue("EDU_BOARD_NO"));
 		if(session==null || session.getAttribute("mvo")==null) {
-			log.debug("eduBoardNo {} ",eduBoardNo);
 			likeCount = eduApplyBoardService.likeCount(eduBoardNo);
-			log.debug("로그인 안했을때 likeCount {} ",likeCount);
 			canApply=100;
 		}else {						
 			MemberVO memberVO =  (MemberVO) session.getAttribute("mvo");
 			Map<String, Object> map = new HashMap<>();
 			String userId = memberVO.getUserId();
-			log.info("가져온 아이디 {}", dataMap.get("USER_ID"));
-			log.info("세션 아이디 {}", userId);
 			if(userId.equals(dataMap.get("USER_ID"))) {
 				canApply =2;
 			}else {
@@ -168,13 +163,10 @@ public class EduApplyBoardController {
 			map.put("eduBoardNo", eduBoardNo);
 			map.put("userId", userId);
 			likeCount = eduApplyBoardMapper.isLike(map);
-			log.info("canApply {}" ,canApply);
-			log.info("로그인 했을때 likeCount {} ",likeCount);
 		}
 		dataMap.put("IsLike", likeCount);
 		dataMap.put("canApply",canApply);
 		dataRequest.setResponse("eduApplyBoardMap", dataMap);
-		System.out.println("select Board map : " + dataMap);
 		return  new JSONDataView();
 	}
 	@PostMapping("/ui/createBoard.do")
@@ -183,10 +175,8 @@ public class EduApplyBoardController {
 		
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
 		
-		System.out.println("paramCreate : "+ param);
 		eduApplyBoardService.createBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
@@ -196,10 +186,8 @@ public class EduApplyBoardController {
 		
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
 		
-		System.out.println("paramUpdate : "+ param);
 		eduApplyBoardService.updateBoard(param);	
 		return new UIView("/ui/eduApplyboardList.clx");
 	}
@@ -207,10 +195,8 @@ public class EduApplyBoardController {
 	public View deleteBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMap");
 		
-		System.out.println("delete param : "+ param);
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
 		
 		eduApplyBoardService.deleteBoard(param);	
@@ -226,14 +212,10 @@ public class EduApplyBoardController {
 		if(session !=null) {
 			if(session.getAttribute("mvo") != null) {
 				
-			log.info("select session : {}", session.getAttribute("mvo"));
 			MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");    
-	        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
-			System.out.println("selectCommentBoard.do controller : "+param);
 			Map<String, Object> dataMap = new HashMap<>();
 			dataMap.put("USER_ID", mvo1.getUserId());
 			dataRequest.setResponse("commentBoardMap", dataMap);
-			System.out.println("commentBoardMap session" + dataMap);
 			}
 		}
 		
@@ -249,9 +231,7 @@ public class EduApplyBoardController {
 		
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        //System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
-		//System.out.println("paramCreate : "+ param);
 		
 		eduApplyBoardService.createCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx");
@@ -259,25 +239,20 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/updateCommentBoard.do")
 	public View updateCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-		//System.out.println("paramUpdate : "+ param);
 		
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        //System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
         
-		//System.out.println("paramUpdate : "+ param);
 		eduApplyBoardService.updateCommentBoard(param);	
 		return new UIView("/ui/detailBoard.clx");
 	}
 	@PostMapping("/ui/deleteCommentBoard.do")
 	public View deleteCommentBoard(HttpServletRequest request, HttpServletResponse response,DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("commentBoardMap");
-		//System.out.println("paramDelete : "+ param);
 		
         HttpSession session = request.getSession(false);
         MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");
-        //System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
         param.setValue(0, "USER_ID", mvo1.getUserId());
 		
 		eduApplyBoardService.deleteCommentBoard(param);	
@@ -288,16 +263,13 @@ public class EduApplyBoardController {
 	@PostMapping("/ui/selectMemberCount.do")
 	public View selectMemberCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMemeberCountMap");
-		//System.out.println("param "+param);
 		Map<String, Object> dataMap=eduApplyBoardService.selectMemberCount(param);
-		//System.out.println("dataMap "+dataMap);
 		dataRequest.setResponse("eduApplyBoardMemeberCountMap", dataMap);
 		return  new JSONDataView();
 	}
 	@PostMapping("/ui/updateMemberCount.do")
 	public View updateMemberCount(HttpServletRequest request, HttpServletResponse response, DataRequest dataRequest) {
 		ParameterGroup param = dataRequest.getParameterGroup("eduApplyBoardMemeberCountMap");
-		//System.out.println("param "+param);
 		eduApplyBoardService.updateMemberCount(param);
 		return new UIView("/ui/detailBoard.clx");
 	}
@@ -311,14 +283,10 @@ public class EduApplyBoardController {
 		if(session !=null) {
 			if(session.getAttribute("mvo") != null) {
 				
-			log.info("select session : {}", session.getAttribute("mvo"));
 			MemberVO mvo1 = (MemberVO) session.getAttribute("mvo");    
-	        System.out.println("mvo1.getUserId() : "+mvo1.getUserId());
-			System.out.println("selectCommentBoard.do controller : "+param);
 			Map<String, Object> dataMap = new HashMap<>();
 			dataMap.put("USER_ID", mvo1.getUserId());
 			dataRequest.setResponse("createSessionCheckMap", dataMap);
-			System.out.println("createSessionCheckMap" + dataMap);
 			}
 		}
 		return  new JSONDataView();
@@ -331,11 +299,9 @@ public class EduApplyBoardController {
 	}
 	@PostMapping("ui/appliedList.do")
 	public View findAppliedListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
-		System.out.println("ggggg");
 		HttpSession session= request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		List<Map<String, String>> data = eduApplyBoardService.findAppliedListByUserId(mvo.getUserId());
-		System.out.println(data);
 		datarequest.setResponse("ds1", data);
 		
 		
@@ -343,11 +309,9 @@ public class EduApplyBoardController {
 	} 
 	@PostMapping("ui/applyList.do")
 	public View findAppliyingListByUserId(HttpServletRequest request,HttpServletResponse response, DataRequest datarequest) {
-		System.out.println("1111");
 		HttpSession session= request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		List<Map<String, String>> data = eduApplyBoardService.findApplyingListByUserId(mvo.getUserId());
-		System.out.println(data);
 		datarequest.setResponse("ds1", data);
 		return new JSONDataView();
 	} 
