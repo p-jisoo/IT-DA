@@ -153,7 +153,7 @@ function onButtonClick2(e) {
 function onCreateSessionCheckSmsSubmitSuccess(e) {
 	var createSessionCheckSms = e.control;
 	var createSessionCheckMap = app.lookup("createSessionCheckMap");
-	var value = createSessionCheckMap.getValue("USER_ID");
+	var value = createSeszsionCheckMap.getValue("USER_ID");
 	if (createSessionCheckMap.getValue("USER_ID")) {}
 }
 

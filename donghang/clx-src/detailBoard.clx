@@ -148,7 +148,9 @@
         <cl:requestdata dataid="dm1"/>
       </cl:submission>
     </cl:model>
-    <cl:appspec/>
+    <cl:appspec>
+      <cl:event name="event" type="cpr.events.CAppEvent"/>
+    </cl:appspec>
   </head>
   <body std:sid="body-d498b017">
     <cl:listener std:sid="listener-97125c65" name="init" handler="onBodyInit"/>
