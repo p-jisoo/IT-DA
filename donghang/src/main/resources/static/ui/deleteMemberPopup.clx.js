@@ -78,7 +78,7 @@
 			group_1.setLayout(xYLayout_1);
 			(function(container){
 				var output_1 = new cpr.controls.Output();
-				output_1.value = "\r\n [회원 탈퇴 약관]\r\n\r\n\r\n 회원 탈퇴 신청 전 안내 사항을 확인해주세요.\r\n 회원 탈퇴를 신청하면 현재 로그인된  아이디는 사용할 수 없습니다.\r\n 회원 탈퇴를 하시면 서비스 약관 및 개인정보 취급 방안에 따라 즉시 삭제됩니다.\r\n \r\n\r\n - 회원정보\r\n - 활동 및 기록 에 관한 기록";
+				output_1.value = "\r\n [회원 탈퇴 약관]\r\n\r\n\r\n 회원 탈퇴 신청 전 안내 사항을 확인해주세요.\r\n 회원 탈퇴를 신청하면 현재 로그인된  아이디는 사용할 수 없습니다.\r\n 회원 탈퇴를 하시면 서비스 약관 및 개인정보 취급 방안에 따라 즉시 삭제됩니다.\r\n \r\n\r\n - 회원정보\r\n";
 				output_1.style.css({
 					"border-right-style" : "solid",
 					"border-bottom-color" : "#b3b3b3",
