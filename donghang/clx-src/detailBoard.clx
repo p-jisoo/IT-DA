@@ -70,6 +70,7 @@
           <cl:datacolumn std:sid="d-column-77f14da7" name="likeCount"/>
           <cl:datacolumn std:sid="d-column-477abb8a" name="canApply" datatype="number"/>
           <cl:datacolumn std:sid="d-column-7d1ff4b0" name="btnApply"/>
+          <cl:datacolumn std:sid="d-column-62bd0dab" name="countLike" datatype="number"/>
         </cl:datacolumnlist>
       </cl:datamap>
       <cl:datamap std:sid="d-map-f5920479" id="commentBoardMap">
@@ -296,6 +297,10 @@
       <cl:datamapbind property="value" datacontrolid="eduApplyBoardMap" columnname="EDU_BOARD_CONTENT"/>
       <cl:xylayoutdata std:sid="xyl-data-7539e908" top="303px" left="260px" width="1507px" height="277px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
     </cl:textarea>
+    <cl:output std:sid="output-aa995607" id="numberLike" style="font-size:20px;">
+      <cl:datamapbind property="value" category="PROPERTY" datacontrolid="eduApplyBoardMap" columnname="countLike"/>
+      <cl:xylayoutdata std:sid="xyl-data-136a6428" top="199px" left="210px" width="100px" height="42px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+    </cl:output>
     <cl:xylayout std:sid="xylayout-5097d20a"/>
   </body>
   <std:studiosetting>

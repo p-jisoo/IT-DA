@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:cl="http://tomatosystem.co.kr/cleopatra" xmlns:std="http://tomatosystem.co.kr/cleopatra/studio" std:sid="html-ad756dfe" version="1.0.4584">
+  <head std:sid="head-efb4514b">
+    <screen std:sid="screen-d572524d" id="default" name="default" minwidth="1024px" width="1024px" height="768px" customHeight="600" customWidth="800" active="false"/>
+    <screen std:sid="screen-b8fcfc62" id="new-screen" name="new-screen" minwidth="500px" maxwidth="1023px" width="500px" height="400px" customHeight="600" customWidth="800" active="true"/>
+    <screen std:sid="screen-5f5bba6b" id="tablet" name="tablet" minwidth="500px" maxwidth="499px" width="500px" height="667px"/>
+    <screen std:sid="screen-b01d5606" id="mobile" name="mobile" maxwidth="499px" width="350px" height="525px"/>
+    <cl:model std:sid="model-6492596e">
+      <cl:datamap std:sid="d-map-c7aa68fe" id="dm1">
+        <cl:datacolumnlist>
+          <cl:datacolumn std:sid="d-column-992e0e15" name="userId"/>
+          <cl:datacolumn std:sid="d-column-3178b5bd" name="password"/>
+          <cl:datacolumn std:sid="d-column-71d54b13" name="address"/>
+          <cl:datacolumn std:sid="d-column-616c187e" name="userTel"/>
+          <cl:datacolumn std:sid="d-column-db1cde07" name="userName"/>
+          <cl:datacolumn std:sid="d-column-4ce20cb7" name="nickName"/>
+          <cl:datacolumn std:sid="d-column-6988d705" name="email"/>
+        </cl:datacolumnlist>
+      </cl:datamap>
+      <cl:submission std:sid="submission-2c96c0a1" id="sms1" action="registerMember">
+        <cl:listener std:sid="listener-4c7f0117" name="submit-success" handler="onSms1SubmitSuccess2"/>
+        <cl:requestdata dataid="dm1"/>
+      </cl:submission>
+    </cl:model>
+    <cl:appspec/>
+  </head>
+  <body std:sid="body-9f70a723">
+    <cl:group std:sid="group-017e6b17" id="applydialog" style="border-right-style:solid; border-bottom-color:#626262; border-top-width:3px; border-right-width:3px; border-left-color:#626262; border-right-color:#626262; border-left-width:3px; border-top-style:solid; background-color:#FFFFFF; border-left-style:solid; border-bottom-width:3px; border-top-color:#626262; border-bottom-style:solid; background-image:none;">
+      <cl:listener std:sid="listener-56aeb1aa" name="click" handler="onGroupClick"/>
+      <cl:listener std:sid="listener-7983ce5e" name="before-draw" handler="onApplydialogBeforeDraw"/>
+      <cl:xylayoutdata std:sid="xyl-data-714c5361" top="0px" left="0px" width="497px" height="346px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      <cl:button std:sid="button-d23aa4e2" id="no_btn" style="background-color:#F6F4EB; color:#2B2B2B; font-weight:bold; font-size:1.5rem; background-image:none;" value="닫기">
+        <cl:listener std:sid="listener-5eb916b9" name="click" handler="onNo_btnClick2"/>
+        <cl:xylayoutdata std:sid="xyl-data-4ff7d092" right="0px" bottom="0px" width="492px" height="92px" horizontalAnchor="RIGHT" verticalAnchor="BOTTOM"/>
+      </cl:button>
+      <cl:output std:sid="output-ceda9078" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="되었습니다">
+        <cl:xylayoutdata std:sid="xyl-data-faedcbe8" top="148px" left="167px" width="201px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:img std:sid="image-58c8411e" src="theme/images/img/register_donghang.png">
+        <cl:xylayoutdata std:sid="xyl-data-4dde7a7f" top="32px" left="182px" width="117px" height="107px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:img>
+      <cl:output std:sid="output-f2d01b68" id="check" style="font-weight:bold; font-size:1.55rem; text-align:center;" value="">
+        <cl:xylayoutdata std:sid="xyl-data-bf2908e7" top="148px" left="74px" width="201px" height="90px" horizontalAnchor="LEFT" verticalAnchor="TOP"/>
+      </cl:output>
+      <cl:xylayout std:sid="xylayout-a8d4a2da"/>
+    </cl:group>
+    <cl:xylayout std:sid="xylayout-6bd2f824"/>
+  </body>
+  <std:studiosetting>
+    <std:hruler/>
+    <std:vruler/>
+  </std:studiosetting>
+</html>
