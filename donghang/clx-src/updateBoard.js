@@ -28,9 +28,7 @@ function onBodyLoad(e) {
 	var hostAppInstance = host.getAppInstance();
 	var initValue = host.initValue;
 	//컨트롤러로 boardNo 값 보내기
-	console.log("update initValue : " + initValue);
 	eduApplyBoardMap.setValue("EDU_BOARD_NO", initValue);
-	console.log("eduApplyBoardMap setValue : " + eduApplyBoardMap.getValue("EDU_BOARD_NO"));
 	
 	selectsms.send();
 	
@@ -112,18 +110,19 @@ function onSelectsmsSubmitSuccess(e) {
 	app.lookup("address").redraw();
 	
 	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
-	console.log("eduApplyBoardMapTITLE : " + eduApplyBoardMap.getValue("EDU_BOARD_TITLE"));
 	
 	eduApplyBoardMap.setValue("EDU_BOARD_TITLE", title.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_CATEGORY", category.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_MAX_MEMBER_COUNT", memberCount.value);
 	eduApplyBoardMap.setValue("EDU_BOARD_CONTENT", content.value);
-	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", udccomduodatepicker1.fromValue.substring(0, 10));
-	console.log("EDU_BOARD_START_PERIOD" + udccomduodatepicker1.fromValue);
-	console.log("EDU_BOARD_END_PERIOD" + udccomduodatepicker1.toValue);
-	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", udccomduodatepicker1.toValue.substring(0, 10));
-	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udccomduodatepicker2.fromValue.substring(0, 10));
-	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udccomduodatepicker2.toValue.substring(0, 10));
+	var fromValueList = udccomduodatepicker1.fromValue.split(" ");
+	var toValueList = udccomduodatepicker1.toValue.split(" ");
+	var fromValueList2 = udccomduodatepicker2.fromValue.split(" ");
+	var toValueList2 = udccomduodatepicker2.toValue.split(" ");
+	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", fromValueList[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", toValueList[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", fromValueList2[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", toValueList2[0]);
 	eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", address.value);
 	
 }
@@ -136,21 +135,22 @@ function onSelectsmsSubmitSuccess(e) {
 function onButtonClick(e) {
 	var button = e.control;
 	var submission = app.lookup("updatesms");
-	var dataMap = app.lookup("eduApplyBoardMap");
-	var udcExamDuoDatePicker = app.lookup("udccomduodatepicker1");
-	dataMap.setValue("EDU_BOARD_START_PERIOD", udcExamDuoDatePicker.fromValue.substring(0, 10));
-	dataMap.setValue("EDU_BOARD_END_PERIOD", udcExamDuoDatePicker.toValue.substring(0, 10));
-	var udcExamDuoDatePicker2 = app.lookup("udccomduodatepicker2");
-	dataMap.setValue("EDU_BOARD_APPLY_START_PERIOD", udcExamDuoDatePicker2.fromValue.substring(0, 10));
-	dataMap.setValue("EDU_BOARD_APPLY_END_PERIOD", udcExamDuoDatePicker2.toValue.substring(0, 10));
-	console.log("fromValue", udcExamDuoDatePicker.fromValue);
-	console.log("toValue", udcExamDuoDatePicker.toValue);
+	var eduApplyBoardMap = app.lookup("eduApplyBoardMap");
+	var udccomduodatepicker1 = app.lookup("udccomduodatepicker1");
+	var udccomduodatepicker2 = app.lookup("udccomduodatepicker2");
+	var fromValueList = udccomduodatepicker1.fromValue.split(" ");
+	var toValueList = udccomduodatepicker1.toValue.split(" ");
+	var fromValueList2 = udccomduodatepicker2.fromValue.split(" ");
+	var toValueList2 = udccomduodatepicker2.toValue.split(" ");
+	eduApplyBoardMap.setValue("EDU_BOARD_START_PERIOD", fromValueList[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_END_PERIOD", toValueList[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_START_PERIOD", fromValueList2[0]);
+	eduApplyBoardMap.setValue("EDU_BOARD_APPLY_END_PERIOD", toValueList2[0]);
 	var addressinputBox = app.lookup("address");
 	var detailAdressinputBox = app.lookup("detailAdress");
 //	if (detailAdressinputBox.value != null) {
 	if (detailAdressinputBox.value.length>2) {
-		
-		dataMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
+		eduApplyBoardMap.setValue("EDU_BOARD_ADDRESS", addressinputBox.value + "-" + detailAdressinputBox.value);
 	}
 	submission.send()
 	alert("수정 되었습니다");
@@ -173,7 +173,6 @@ function onButtonClick3(e) {
 					var inputBox = app.lookup("address");
 					//var inputBox2 = app.lookup("PostCode");
 					var addr = "";
-					console.log(addr);
 					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 						addr = data.roadAddress;

@@ -73,7 +73,7 @@
       <cl:output std:sid="output-ada5ddc1" style="background-color:#e9e9e9; font-size:16px; background-image:none; text-align:center;" value="교육분야">
         <cl:formdata std:sid="f-data-a45bf52d" row="1" col="2"/>
       </cl:output>
-      <cl:inputbox std:sid="i-box-e1cd74e3" id="memberCount" style="font-size:16px; text-align:center;" placeholder="모집 인원을 입력하세요" inputfilter="[0-9]">
+      <cl:inputbox std:sid="i-box-e1cd74e3" id="memberCount" style="font-size:16px; text-align:center;" placeholder="모집 인원을 입력하세요" maxlength="5" inputfilter="[0-9]">
         <cl:listener std:sid="listener-363433a9" name="click" handler="onIpb3Click"/>
         <cl:relativebind property="value" columnname="EDU_BOARD_MAX_MEMBER_COUNT"/>
         <cl:datamapcontext datacontrolid="eduApplyBoardMap"/>

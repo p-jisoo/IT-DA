@@ -112,7 +112,7 @@
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-132b88c7" id="deleteCommentsms" action="deleteCommentBoard.do">
-        <cl:listener std:sid="listener-49af8ad6" name="submit-success" handler="onDeleteCommentsmsSubmitSuccess"/>
+        <cl:listener std:sid="listener-7a5da9f6" name="submit-success" handler="onDeleteCommentsmsSubmitSuccess2"/>
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-9470ab79" id="selectCommentsms" action="selectCommentBoard.do">
@@ -122,6 +122,7 @@
         <cl:responsedata dataid="commentBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-6a05f561" id="createCommentsms" action="createCommentBoard.do">
+        <cl:listener std:sid="listener-90350ceb" name="submit-success" handler="onCreateCommentsmsSubmitSuccess"/>
         <cl:requestdata dataid="commentBoardMap"/>
       </cl:submission>
       <cl:submission std:sid="submission-63bc7e6f" id="selectMemberCount" action="selectMemberCount.do">
